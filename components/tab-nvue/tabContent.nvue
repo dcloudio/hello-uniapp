@@ -1,0 +1,15 @@
+<script>
+    export default {
+        render(createElement) {
+            return createElement('slider', {
+                style: {
+                    flex: 1
+                },
+                attrs: {
+                    index:0,
+                    infinite: false
+                }
+            }, this.$slots.default)
+        }
+    }
+</script>
