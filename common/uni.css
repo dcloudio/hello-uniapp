@@ -273,6 +273,10 @@ radio-group label, checkbox-group label{
 .uni-card-content {
 	font-size: 30upx;
 }
+.uni-card-content.image-view{
+    width: 100%;
+    margin: 0;
+}
 .uni-card-content-inner {
 	position: relative;
 	padding: 30upx;
