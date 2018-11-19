@@ -9,7 +9,6 @@
 					<view class="uni-comment-body">
 						<view class="uni-comment-top">
 							<text>网友</text>
-							<text class="uni-iconfont icon-zan"></text>
 						</view>
 						<view class="uni-comment-date">
 							<text>08/10 08:12</text>

@@ -894,7 +894,6 @@ radio-group label, checkbox-group label{
 .uni-comment-body{width:100%;}
 .uni-comment-top{line-height:1.5em; justify-content:space-between;}
 .uni-comment-top text{color:#0A98D5; font-size:24upx;}
-.uni-comment-top text:last-child{color:#666666;}
 .uni-comment-date{line-height:38upx; flex-direction:row; justify-content:space-between; display:flex !important; flex-grow:1;}
 .uni-comment-date view{color:#666666; font-size:24upx; line-height:38upx;}
 .uni-comment-content{line-height:1.6em; font-size:28upx; padding:8rpx 0;}
