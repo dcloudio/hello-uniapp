@@ -145,6 +145,11 @@
 </script>
 
 <style>
+	page{
+		height: auto;
+		min-height: 100%;
+	}
+	
 	.uni-card {
 		box-shadow: none;
 	}
