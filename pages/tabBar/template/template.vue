@@ -157,11 +157,12 @@
 						url: '/platforms/app-plus/feedback/feedback'
 					},
 					// #endif
-					// #ifndef H5
 					{
 						name: '二维码生成',
 						url: 'qrcode'
-					}, {
+					}, 
+					// #ifndef H5
+					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
