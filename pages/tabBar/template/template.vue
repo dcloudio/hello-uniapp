@@ -145,9 +145,6 @@
 					},
 					// #endif
 					{
-						name: 'markdown 富文本渲染',
-						url: 'mdparse'
-					}, {
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
@@ -157,15 +154,20 @@
 						url: '/platforms/app-plus/feedback/feedback'
 					},
 					// #endif
-					// #ifndef H5
 					{
 						name: '二维码生成',
 						url: 'qrcode'
-					}, {
+					}, 
+					// #ifndef H5
+					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
 					// #endif
+					{
+						name: 'markdown 富文本渲染',
+						url: 'mdparse'
+					},
 					{
 						name: 'markdown富文本编辑器',
 						url: 'md-editor'
