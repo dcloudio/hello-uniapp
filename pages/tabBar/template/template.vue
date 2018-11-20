@@ -145,9 +145,6 @@
 					},
 					// #endif
 					{
-						name: 'markdown 富文本渲染',
-						url: 'mdparse'
-					}, {
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
@@ -167,6 +164,10 @@
 						url: 'crop'
 					},
 					// #endif
+					{
+						name: 'markdown 富文本渲染',
+						url: 'mdparse'
+					},
 					{
 						name: 'markdown富文本编辑器',
 						url: 'md-editor'
