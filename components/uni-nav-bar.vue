@@ -171,7 +171,7 @@
 
     .uni-navbar.uni-navbar-fixed {
         position: fixed;
-        z-index: 9;
+        z-index: 998;
     }
 
     .uni-navbar-header {
