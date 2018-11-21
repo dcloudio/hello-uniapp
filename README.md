@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://m3w.cn/uniapp" target="blank">
-	    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/hello-uniapp-barcode.png" width="450"/>
+	    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/hello-uniapp-barcode.png"/>
     </a>
 </p>
 
