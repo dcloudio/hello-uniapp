@@ -1,16 +1,19 @@
 <template>
 	<view>
 		<page-head :title="title"></page-head>
-		<view class="uni-text-small uni-center" style="margin:80upx 0 20upx 0;">示例1</view>
-		<view style="justify-content:center;">
+		<!-- 示例1 -->
+		<view class="uni-text-small uni-center title">示例1</view>
+		<view>
 			<uni-countdown :timer="timer1"></uni-countdown>
 		</view>
-		<view class="uni-text-small uni-center" style="margin:80rpx 0 20rpx 0;">示例2</view>
-		<view style="justify-content:center; background:#00B26A; padding:50rpx 0;">
+		<!-- 示例2：绿底白字 -->
+		<view class="uni-text-small uni-center title" >示例2</view>
+		<view style="background:#00B26A; padding:50upx 0;">
 			<uni-countdown :timer="timer2" borderColor="#FFFFFF" splitorColor="#FFF" fontColor="#FFFFFF" bgrColor="none"></uni-countdown>
 		</view>
-		<view class="uni-text-small uni-center" style="margin:80rpx 0 20rpx 0;">示例3</view>
-		<view style="justify-content:center;">
+		<!-- 示例3：黑底白字 -->
+		<view class="uni-text-small uni-center title">示例3</view>
+		<view>
 			<uni-countdown fontColor="#FFFFFF" bgrColor="#000000" :timer="timer3"></uni-countdown>
 		</view>
 	</view>
@@ -61,28 +64,9 @@
 		flex-wrap: wrap;
 		justify-content: center;
 	}
-	.uni-countdown {
-		padding: 2rpx 0;
-		flex-wrap: nowrap;
-		justify-content: center;
+	
+	.title{
+		margin:80upx 0 20upx 0;
 	}
-
-	.uni-countdown-splitor {
-		width: auto !important;
-		justify-content: center;
-		line-height: 44upx;
-		padding: 0 5upx;
-	}
-
-	.uni-countdown-numbers {
-		line-height: 44upx;
-		width: auto !important;
-		padding: 0 10upx;
-		justify-content: center;
-		height: 44upx;
-		border-radius: 8upx;
-		margin: 0 5upx;
-		border: 1px solid #000000;
-		font-size: 22upx;
-	}
+	
 </style>
