@@ -18,7 +18,7 @@
 		<view class="uni-indexed-list-bar" :class="touchmove ? 'active' : ''" @touchstart="touchStart" @touchmove="touchMove"
 		 @touchend="touchEnd" @touchcancel="touchCancel" :style="{height:winHeight + 'px'}">
 			<text v-for="(list,key) in lists" :key="key" class="uni-indexed-list-text" :class="touchmoveIndex == key ? 'active' : ''"
-			 :style="{heigth:itemHeight + 'px',lineHeight:itemHeight + 'px'}">{{list.letter}}</text>
+			 :style="{height:itemHeight + 'px',lineHeight:itemHeight + 'px'}">{{list.letter}}</text>
 		</view>
 		<view class="uni-indexed-list-alert" v-if="touchmove">
 			{{lists[touchmoveIndex].letter}}
