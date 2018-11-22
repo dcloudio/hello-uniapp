@@ -46,9 +46,6 @@
 			let winHeight = uni.getSystemInfoSync().windowHeight;
 			this.itemHeight = winHeight / 26;
 			this.winHeight = winHeight;
-			//#ifdef H5
-			this.titleHeight = 44
-			//#endif
 		},
 		methods: {
 			touchStart(e) {
