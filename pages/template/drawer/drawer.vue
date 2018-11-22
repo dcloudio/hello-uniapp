@@ -84,6 +84,13 @@
 		},
 		onNavigationBarButtonTap(e) {
 			this.rightDrawerVisible = !this.rightDrawerVisible
+		},
+		onBackPress() {
+			// 返回按钮监听
+			if(this.rightDrawerVisible){
+				this.rightDrawerVisible = false;
+				return true;
+			}
 		}
 	}
 </script>
