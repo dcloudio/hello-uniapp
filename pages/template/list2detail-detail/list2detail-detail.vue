@@ -34,7 +34,7 @@
 			}
 		},
 		onLoad(e) {
-			this.banner = JSON.parse(e.detailDate);
+			this.banner = JSON.parse(decodeURIComponent(e.detailDate));
 			this.getDetail();
 			uni.setNavigationBarTitle({
 				title: this.banner.title

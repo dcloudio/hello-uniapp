@@ -103,7 +103,7 @@
 					title: e.title
 				}
 				uni.navigateTo({
-					url: "../list2detail-detail/list2detail-detail?detailDate=" + JSON.stringify(detail)
+					url: "../list2detail-detail/list2detail-detail?detailDate=" + encodeURIComponent(JSON.stringify(detail))
 				})
 			},
 			setTime: function (items) {
