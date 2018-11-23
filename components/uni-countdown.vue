@@ -114,6 +114,7 @@
 </script>
 <style>
 	.uni-countdown {
+        display: flex;
 		padding: 2upx 0;
 		flex-wrap: nowrap;
 		justify-content: center;
