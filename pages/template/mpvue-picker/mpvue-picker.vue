@@ -1,5 +1,5 @@
 <template>
-	<view class="mvpue-picker">
+	<view class="mpvue-picker">
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view style="uni-title">选中的值 : </view>
@@ -33,7 +33,7 @@
 		},
 		data() {
 			return {
-				title : "mvpue-picker 使用示例",
+				title : "mpvue-picker 使用示例",
 				pickerSingleArray: [{
 						label: '中国',
 						value: 1
