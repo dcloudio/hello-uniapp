@@ -137,7 +137,7 @@
 					},
 					// #ifndef H5
 					{
-						name: 'ECharts图表',
+						name: 'ECharts 图表',
 						url: 'echarts'
 					}, {
 						name: '手势图案锁屏',
@@ -169,7 +169,7 @@
 						url: 'mdparse'
 					},
 					{
-						name: 'markdown富文本编辑器',
+						name: 'markdown 富文本编辑器',
 						url: 'md-editor'
 					}, {
 						name: '侧边分类导航',
