@@ -55,7 +55,7 @@
 	.uni-badge.uni-badge-size-small,
 	.uni-badge-default.uni-badge-size-small {
 		height: 10px;
-		line-height: 10px;
+		line-height: 11px;
 		padding: 0px 3px;
 		font-size: 8px !important;
 	}
