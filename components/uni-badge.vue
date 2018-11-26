@@ -16,11 +16,15 @@
 			text: {
 				type: String,
 				default: ''
+			},
+			size: {
+				type: String,
+				default: 'normal'
 			}
 		},
 		computed: {
 			setClass() {
-				let classList = ['uni-badge-' + this.type];
+				let classList = ['uni-badge-' + this.type, 'uni-badge-size-' + this.size];
 				if (this.inverted === true) {
 					classList.push('uni-badge-inverted')
 				}
@@ -46,6 +50,14 @@
 		padding: 3px 6px;
 		color: #333;
 		border-radius: 100px;
+	}
+
+	.uni-badge.uni-badge-size-small,
+	.uni-badge-default.uni-badge-size-small {
+		height: 10px;
+		line-height: 10px;
+		padding: 0px 3px;
+		font-size: 8px !important;
 	}
 
 	.uni-badge.uni-badge-inverted {
