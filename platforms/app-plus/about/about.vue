@@ -9,7 +9,19 @@
 				<text class="code">uni-app</text>
 				 是一个使用 <text class="code">Vue.js</text> 开发跨平台应用的前端框架 。
 			</view>
-			<button type="primary" @tap="share">分享</button>
+			<view class="source">
+				<view class="title">本示例源码获取方式：</view>
+				<view class="source-list">
+					<view class="source-cell">
+						<text space="nbsp">1. </text>
+						<text>下载 HBuilderX，新建 uni-app 项目时选择 <text class="code">Hello uni-app</text> 模板。</text>
+					</view>
+					<view class="source-cell">
+						<text space="nbsp">2. </text><text @click="openLink" class="link">{{sourceLink}}</text> 
+					</view>
+				</view>
+			</view>
+			<button type="primary" @click="share">分享</button>
 		</view>
 		<view class="version">
 			当前版本：{{version}}
@@ -22,7 +34,8 @@
 		data(){
 			return {
 				providerList:[],
-				version:''
+				version:'',
+				sourceLink: 'https://github.com/dcloudio/hello-uniapp'
 			}
 		},
 		onLoad() {
@@ -114,6 +127,9 @@
 						});
 					}
 				})
+			},
+			openLink() {
+				plus.runtime.openURL(this.sourceLink)
 			}
 		}
 	}
@@ -130,8 +146,8 @@
 		background-color: #FFFFFF;
 	}
 	image{
-		width: 400upx;
-		height: 400upx;
+		width: 360upx;
+		height: 360upx;
 	}
 	.about{
 		flex-direction: column;
@@ -165,5 +181,16 @@
 		line-height: 80upx;
 		justify-content: center;
 		color: #ccc;
+	}
+	.source {
+		margin-top: 30upx;
+		flex-direction: column;
+	}
+	
+	.source-list {
+		flex-direction: column;
+	}
+	.link {
+		color: #007AFF;
 	}
 </style>
