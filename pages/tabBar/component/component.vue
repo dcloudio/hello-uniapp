@@ -35,9 +35,7 @@
 							'view',
 							'scroll-view',
 							'swiper',
-							//#ifndef H5
-							'movable-view',
-							//#endif
+							'movable-view'
 						]
 					}, {
 						id: 'content',
@@ -69,15 +67,12 @@
 						pages: ['map']
 
 					},
-					// #ifndef H5
 					{
 						id: 'web-view',
 						name: '网页',
 						open: false,
-						pages: ['web-view'],
-
-					},
-					// #endif
+						pages: ['web-view']
+					}
 				]
 			}
 		},
