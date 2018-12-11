@@ -1,7 +1,8 @@
 <template>
 	<view>
 		<view class="uni-padding-wrap uni-common-mt">
-			<uni-segmented-control :current="current" :values="items" v-on:clickItem="onClickItem" :styleType="styleType" :activeColor="activeColor"></uni-segmented-control>
+			<uni-segmented-control :current="current" :values="items" v-on:clickItem="onClickItem" :styleType="styleType"
+			 :activeColor="activeColor"></uni-segmented-control>
 		</view>
 		<view class="content">
 			<view v-show="current === 0">
@@ -14,7 +15,7 @@
 				选项卡3的内容
 			</view>
 		</view>
-		
+
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title">Style</view>
 		</view>
@@ -26,7 +27,7 @@
 				</label>
 			</radio-group>
 		</view>
-		
+
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title">Color</view>
 		</view>
@@ -94,6 +95,10 @@
 </script>
 
 <style>
+	page {
+		height: auto;
+	}
+
 	.content {
 		display: flex;
 		justify-content: center;
@@ -101,6 +106,7 @@
 		height: 300upx;
 		text-align: center;
 	}
+
 	.color-tag {
 		width: 50upx;
 		height: 50upx;

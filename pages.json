@@ -604,7 +604,10 @@
 			{
 				"path": "segmented-control/segmented-control",
 				"style": {
-					"navigationBarTitleText": "分段器segement"
+					"navigationBarTitleText": "分段器segement",
+					"app-plus": {
+						"bounce": "none"
+					}
 				}
 			},
 			{
@@ -640,7 +643,10 @@
 			{
 				"path": "popup/popup",
 				"style": {
-					"navigationBarTitleText": "popup"
+					"navigationBarTitleText": "popup",
+					"app-plus": {
+						"bounce": "none"
+					}
 				}
 			},
 			{
@@ -805,7 +811,10 @@
 			{
 				"path": "sbanner/sbanner",
 				"style": {
-					"navigationBarTitleText": "插屏弹窗"
+					"navigationBarTitleText": "插屏弹窗",
+					"app-plus": {
+						"bounce": "none"
+					}
 				}
 			}
 		]
