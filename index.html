@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>
+			<%= htmlWebpackPlugin.options.title %>
+		</title>
+		<script>
+			var UA = window.navigator.userAgent.toLowerCase();
+			var isAndroid = UA.indexOf('android') > 0;
+			var isIOS = /iphone|ipad|ipod|ios/.test(UA);
+			if (!(isAndroid || isIOS)) {
+				window.location.href = '/h5/pcguide.html';
+			}
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
+			})
+		</script>
+		<link rel="stylesheet" href="<%= htmlWebpackPlugin.options.baseUrl %>static/index.css" />
+	</head>
+	<body>
+		<noscript>
+			<strong>Please enable JavaScript to continue.</strong>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?fe3b7a223fc08c795f0f4b6350703e6f";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+	</body>
+</html>
