@@ -94,10 +94,25 @@
 </script>
 <style>
 	.uni-numbox {
-		display: flex;
+		display: inline-flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		height: 70upx;
+		position: relative;
+	}
+
+	.uni-numbox::after {
+		content: '';
+		position: absolute;
+		transform-origin: center;
+		box-sizing: border-box;
+		pointer-events: none;
+		top: -50%;
+		left: -50%;
+		right: -50%;
+		bottom: -50%;
+		border: 1px solid #c8c7cc;
+		transform: scale(.5);
 	}
 
 	.uni-numbox-minus,
@@ -109,28 +124,46 @@
 		line-height: 70upx;
 		text-align: center;
 		color: #555555;
+		position: relative;
 	}
 
 	.uni-numbox-minus {
-		border: 2upx solid #cccccc;
 		border-right: none;
 		border-top-left-radius: 6upx;
 		border-bottom-left-radius: 6upx;
 	}
 
 	.uni-numbox-plus {
-		border: 2upx solid #cccccc;
 		border-left: none;
 		border-top-right-radius: 6upx;
 		border-bottom-right-radius: 6upx;
 	}
 
 	.uni-numbox-value {
-		border: 2upx solid #cccccc;
+		position: relative;
 		background-color: #ffffff;
 		width: 80upx;
 		height: 100%;
 		text-align: center;
+	}
+
+	.uni-numbox-value::after {
+		content: '';
+		position: absolute;
+		transform-origin: center;
+		box-sizing: border-box;
+		pointer-events: none;
+		top: -50%;
+		left: -50%;
+		right: -50%;
+		bottom: -50%;
+		border-style: solid;
+		border-color: #cccccc;
+		border-left-width: 1px;
+		border-right-width: 1px;
+		border-top-width: 0;
+		border-bottom-width: 0;
+		transform: scale(.5);
 	}
 
 	.uni-numbox-disabled {
