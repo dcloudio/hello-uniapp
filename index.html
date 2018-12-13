@@ -12,7 +12,8 @@
 			var isAndroid = UA.indexOf('android') > 0;
 			var isIOS = /iphone|ipad|ipod|ios/.test(UA);
 			if (!(isAndroid || isIOS)) {
-				window.location.href = '/h5/pcguide.html';
+				// TODO 正式发布的时候使用，开发期间不启用。
+				// window.location.href = '/h5/pcguide.html';
 			}
 		</script>
 		<script>

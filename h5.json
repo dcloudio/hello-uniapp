@@ -1,9 +1,0 @@
-{
-	"h5": {
-		"template": "index.html",
-		"router": {
-			"mode": "history",
-			"base": "/h5/"
-		}
-	}
-}
