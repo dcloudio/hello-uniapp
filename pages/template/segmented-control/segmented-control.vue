@@ -21,9 +21,9 @@
 		</view>
 		<view class="uni-list">
 			<radio-group @change="styleChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="item in styles" :key="item.value">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in styles" :key="index">
 					{{item.text}}
-					<radio :value="item.value" :checked="item.checked" />
+					<radio :value="item.value" :checked="index === styleIndex" />
 				</label>
 			</radio-group>
 		</view>
@@ -35,7 +35,7 @@
 			<radio-group @change="colorChange">
 				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in colors" :key="index">
 					<view class="color-tag" :style="{backgroundColor: item}"></view>
-					<radio :value="item" :checked="index === 0" />
+					<radio :value="item" :checked="index === colorIndex" />
 				</label>
 			</radio-group>
 		</view>
@@ -55,8 +55,7 @@
 				],
 				styles: [{
 					value: 'button',
-					text: '按钮',
-					checked: true
+					text: '按钮'
 				}, {
 					value: 'text',
 					text: '文字'
@@ -68,7 +67,9 @@
 				],
 				current: 0,
 				activeColor: '#007aff',
-				styleType: 'button'
+				styleType: 'button',
+				styleIndex: 0,
+				colorIndex: 0,
 			}
 		},
 		components: {
@@ -81,13 +82,21 @@
 				}
 			},
 			styleChange(evt) {
-				if (this.styleType !== evt.target.value) {
-					this.styleType = evt.target.value;
+				const value = evt.target.value;
+				if (this.styleType !== value) {
+					this.styleType = value;
+					for (let i = 0; i < this.styles.length; i++) {
+						if (this.styles[i].value === value) {
+							this.styleIndex = i;
+							break;
+						}
+					}
 				}
 			},
 			colorChange(evt) {
 				if (this.styleType !== evt.target.value) {
 					this.activeColor = evt.target.value;
+					this.colorIndex = this.colors.indexOf(evt.target.value);
 				}
 			}
 		}
