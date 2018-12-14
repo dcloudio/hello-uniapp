@@ -2,7 +2,7 @@
     <view class="uni-tab-bar">
         <scroll-view id="tab-bar" class="uni-swiper-tab" scroll-x :scroll-left="scrollLeft">
             <view v-for="(tab,index) in tabBars" :key="tab.id" :class="['swiper-tab-list',tabIndex==index ? 'active' : '']"
-                :id="tab.id" :data-current="index" @tap="tapTab">{{tab.name}}</view>
+                :id="tab.id" :data-current="index" @click="tapTab(index)">{{tab.name}}</view>
         </scroll-view>
         <swiper :current="tabIndex" class="swiper-box" duration="300" @change="changeTab">
             <swiper-item v-for="(tab,index1) in newsitems" :key="index1">
@@ -154,7 +154,7 @@
 				this.newsitems[e].loadingType = 1;
             },
             async changeTab(e) {
-                let index = e.target.current;
+                let index = e.detail.current;
                 if (this.isClickChange) {
                     this.tabIndex = index;
                     this.isClickChange = false;
@@ -190,15 +190,15 @@
                     }).exec();
                 })
             },
-            async tapTab(e) { //点击tab-bar
-                if (this.tabIndex === e.target.dataset.current) {
+            async tapTab(index) { //点击tab-bar
+                if (this.tabIndex === index) {
                     return false;
                 } else {
                     let tabBar = await this.getElSize("tab-bar"),
                         tabBarScrollLeft = tabBar.scrollLeft; //点击的时候记录并设置scrollLeft
                     this.scrollLeft = tabBarScrollLeft;
                     this.isClickChange = true;
-                    this.tabIndex = e.target.dataset.current
+                    this.tabIndex = index;
                 }
             },
             randomfn() {
