@@ -40,6 +40,11 @@
 				<button type="primary" open-type="share">分享</button>
 			</view>
 			<!-- #endif -->
+			<!-- #ifdef MP-BAIDU -->
+			<view class="uni-btn-v uni-common-mt">
+				<button type="primary" open-type="share">分享</button>
+			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>

@@ -17,7 +17,7 @@
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @tap="bindLogin(value)" :key="key">{{value.name}}</button>
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">{{value.name}}</button>
 			</view>
 		</view>
 	</view>
@@ -42,28 +42,29 @@
 			uni.getProvider({
 				service: "oauth",
 				success: (e) => {
+					console.log('oauth..........');
 					this.providerList = e.provider.map((value) => {
+						let providerName = '';
 						switch (value) {
 							case 'weixin':
-								return {
-									name: '微信登录',
-									id: value
-								}
+								providerName = '微信登录'
+								break;
 							case 'qq':
-								return {
-									name: 'QQ登录',
-									id: value
-								}
+								providerName = 'QQ登录'
+								break;
 							case 'sinaweibo':
-								return {
-									name: '新浪微博登录',
-									id: value
-								}
+								providerName = '新浪微博登录'
+								break;
 							case 'xiaomi':
-								return {
-									name: '小米登录',
-									id: value
-								}
+								providerName = '小米登录'
+								break;
+							case 'baidu':
+								providerName = '百度登录'
+								break;
+						}
+						return {
+							name: providerName,
+							id: value
 						}
 					})
 				},
@@ -74,15 +75,15 @@
 		},
 		methods: {
 			...mapMutations(['login']),
-			bindLogin(e) {
+			tologin(provider) {
 				uni.login({
-					provider: e.id,
+					provider: provider.id,
 					success: (res) => {
-						console.log("登录", res);
-						this.login(e.id); //改变保存在store里的登录状态
+						console.log('login success:', res);
+						this.login(provider.id); //改变保存在store里的登录状态
 					},
-					fail: (e) => {
-						console.log("fail", e);
+					fail: (err) => {
+						console.log('login fail:', err);
 					}
 				})
 			}
