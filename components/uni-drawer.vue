@@ -54,7 +54,7 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.uni-drawer {
 		display: block;
 		position: fixed;
