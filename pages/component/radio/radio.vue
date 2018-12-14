@@ -12,13 +12,12 @@
 				</label>
 			</view>
 		</view>
-			
 		<view class="uni-title uni-common-mt uni-common-pl">推荐展示样式</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="item in items" :key="item.value">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="item.value">
 					<view>
-						<radio :value="item.value" checked="true" />
+						<radio :value="item.value" :checked="index === current" />
 					</view>
 					<view>{{item.name}}</view>
 				</label>
@@ -56,18 +55,18 @@
 						value: 'FRA',
 						name: '法国'
 					},
-				]
+				],
+				current: 0
 			}
 		},
 		methods: {
-			radioChange: function (e) {
-				console.log('radio发生change事件，携带value值为：', e.detail.value)
-				var items = this.items;
-				for (var i = 0, len = items.length; i < len; ++i) {
-					items[i].checked = items[i].value == e.detail.value
+			radioChange: function(evt) {
+				for (let i = 0; i < this.items.length; i++) {
+					if (this.items[i].value === evt.target.value) {
+						this.current = i;
+						break;
+					}
 				}
-
-				this.items = items
 			}
 		}
 	}
