@@ -6,7 +6,12 @@
 				<input confirm-type="search" @confirm="confirm" class="input" type="text" placeholder="输入搜索关键词" />
 			</view>
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="icon" @tap="showRightDrawer">
+			<view class="icon" @click="showRightDrawer">
+				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-BAIDU -->
+			<view class="icon" @click="showRightDrawer">
 				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
 			</view>
 			<!-- #endif -->
