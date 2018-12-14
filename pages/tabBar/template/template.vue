@@ -45,13 +45,26 @@
 						pages: [{
 							name: '默认样式',
 							url: 'nav-default'
-						}, {
+						}, 
+						// #ifdef APP-PLUS
+						{
 							name: '透明渐变样式',
 							url: 'nav-transparent'
 						}, {
 							name: '导航栏带自定义按钮',
 							url: 'nav-button'
+						}, 
+						// #endif
+						// #ifdef H5
+						{
+							name: '透明渐变样式',
+							url: 'nav-transparent'
 						}, {
+							name: '导航栏带自定义按钮',
+							url: 'nav-button'
+						}, 
+						// #endif
+						{
 							name: '自定义导航栏组件(非原生)',
 							url: 'nav-bar'
 						}]
@@ -135,11 +148,22 @@
 						name: '标签 tag',
 						url: 'tag'
 					},
-					// #ifndef H5
+					// #ifdef APP-PLUS
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
-					}, {
+					}, 
+					{
+						name: '手势图案锁屏',
+						url: 'gesture-lock'
+					},
+					// #endif
+					// #ifdef MP-WEIXIN
+					{
+						name: 'ECharts 图表',
+						url: 'echarts'
+					}, 
+					{
 						name: '手势图案锁屏',
 						url: 'gesture-lock'
 					},
@@ -164,6 +188,7 @@
 						url: 'crop'
 					},
 					// #endif
+					// #ifndef MP-BAIDU
 					{
 						name: 'markdown 富文本渲染',
 						url: 'mdparse'
@@ -171,7 +196,9 @@
 					{
 						name: 'markdown 富文本编辑器',
 						url: 'md-editor'
-					}, {
+					}, 
+					// #endif
+					{
 						name: '侧边分类导航',
 						url: 'left-category'
 					}, {
