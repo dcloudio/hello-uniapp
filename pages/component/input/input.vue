@@ -16,16 +16,18 @@
 			</view>
 			<view class="uni-form-item uni-column">
 				<view class="title">实时获取输入值：{{inputValue}}</view>
-				<input class="uni-input" @input="bindKeyInput" placeholder="输入同步到view中" />
+				<input class="uni-input" @input="onKeyInput" placeholder="输入同步到view中" />
 			</view>
 			<view class="uni-form-item uni-column">
 				<view class="title">控制输入的input</view>
-				<input class="uni-input" @input="bindReplaceInput" v-model="changeValue" placeholder="连续的两个1会变成2" />
+				<input class="uni-input" @input="replaceInput" v-model="changeValue" placeholder="连续的两个1会变成2" />
 			</view>
+			<!-- #ifndef MP-BAIDU -->
 			<view class="uni-form-item uni-column">
 				<view class="title">控制键盘的input</view>
-				<input class="uni-input" ref="input1" @input="bindHideKeyboard" placeholder="输入123自动收起键盘" />
+				<input class="uni-input" ref="input1" @input="hideKeyboard" placeholder="输入123自动收起键盘" />
 			</view>
+			<!-- #endif -->
 			<view class="uni-form-item uni-column">
 				<view class="title">数字输入的input</view>
 				<input class="uni-input" type="number" placeholder="这是一个数字输入框" />
@@ -49,7 +51,7 @@
 			<view class="uni-form-item uni-column">
 				<view class="title">带清除按钮的输入框</view>
 				<view class="with-fun">
-					<input class="uni-input" placeholder="带清除按钮的输入框" :value="inputClearValue" @input="bindClearInput" />
+					<input class="uni-input" placeholder="带清除按钮的输入框" :value="inputClearValue" @input="clearInput" />
 					<view class="uni-icon uni-icon-clear" v-if="showClearIcon" @click="clearIcon"></view>
 				</view>
 			</view>
@@ -71,41 +73,40 @@
 				focus: false,
 				inputValue: '',
 				showClearIcon: false,
-				inputClearValue: "",
-				changeValue:"",
+				inputClearValue: '',
+				changeValue: '',
 				showPassword: true,
-				src: "../../../static/eye-1.png"
+				src: '../../../static/eye-1.png'
 			}
 		},
 		methods: {
-			bindKeyInput: function (e) {
-				this.inputValue = e.target.value
+			onKeyInput: function(event) {
+				this.inputValue = event.target.value
 			},
-			bindReplaceInput: function (e) {
-				var value = e.target.value;
-				if(value === '11'){
-					this.changeValue = "2";
+			replaceInput: function(event) {
+				var value = event.target.value;
+				if (value === '11') {
+					this.changeValue = '2';
 				}
 			},
-			bindHideKeyboard: function (e) {
-				if (e.target.value === '123') {
-					// 收起键盘
+			hideKeyboard: function(event) {
+				if (event.target.value === '123') {
 					uni.hideKeyboard();
 				}
 			},
-			bindClearInput: function (e) {
-				this.inputClearValue = e.target.value;
-				if (e.target.value.length > 0) {
+			clearInput: function(event) {
+				this.inputClearValue = event.target.value;
+				if (event.target.value.length > 0) {
 					this.showClearIcon = true;
 				} else {
 					this.showClearIcon = false;
 				}
 			},
-			clearIcon: function () {
-				this.inputClearValue = "";
+			clearIcon: function() {
+				this.inputClearValue = '';
 				this.showClearIcon = false;
 			},
-			changePassword: function () {
+			changePassword: function() {
 				this.showPassword = !this.showPassword;
 			}
 		}
@@ -113,5 +114,7 @@
 </script>
 
 <style>
-	.title{padding:10upx 25upx;}
+	.title {
+		padding: 10upx 25upx;
+	}
 </style>
