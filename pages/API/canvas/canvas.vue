@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-common-mt">
-			<canvas class="canvas-element" canvas-id="canvas"></canvas>
+			<canvas class="canvas-element" canvas-id="canvas" id="canvas"></canvas>
 			<scroll-view class="canvas-buttons" scroll-y="true">
 				<block v-for="(name, index) in names" :key="index">
 					<button class="canvas-button" @tap="handleCanvasButton(name)">{{name}}</button>
@@ -25,32 +25,32 @@
 				]
 			}
 		},
-		onReady: function () {
+		onReady: function() {
 			context = uni.createCanvasContext('canvas')
 		},
 		methods: {
-			toTempFilePath: function () {
+			toTempFilePath: function() {
 				uni.canvasToTempFilePath({
 					canvasId: 'canvas',
-					success: function (res) {
+					success: function(res) {
 						console.log(res.tempFilePath)
 					},
-					fail: function (err) {
+					fail: function(err) {
 						console.error(JSON.stringify(err))
 					}
 				})
 			},
-			handleCanvasButton: function (name) {
-				this[name]()
+			handleCanvasButton: function(name) {
+				this[name] && this[name]();
 			},
-			rotate: function () {
+			rotate: function() {
 				context.beginPath()
 				context.rotate(10 * Math.PI / 180)
 				context.rect(225, 75, 20, 10)
 				context.fill()
 				context.draw()
 			},
-			scale: function () {
+			scale: function() {
 				context.beginPath()
 				context.rect(25, 25, 50, 50)
 				context.stroke()
@@ -62,7 +62,7 @@
 				context.stroke()
 				context.draw()
 			},
-			reset: function () {
+			reset: function() {
 				context.beginPath()
 
 				context.setFillStyle('#000000')
@@ -77,7 +77,7 @@
 				context.setMiterLimit(10)
 				context.draw()
 			},
-			translate: function () {
+			translate: function() {
 				context.beginPath()
 				context.rect(10, 10, 100, 50)
 				context.fill()
@@ -88,7 +88,7 @@
 				context.fill()
 				context.draw()
 			},
-			save: function () {
+			save: function() {
 				context.beginPath()
 				context.setStrokeStyle('#00ff00')
 				context.save()
@@ -103,8 +103,8 @@
 				context.stroke()
 				context.draw()
 			},
-			restore: function () {
-				[3, 2, 1].forEach(function (item) {
+			restore: function() {
+				[3, 2, 1].forEach(function(item) {
 					context.beginPath()
 					context.save()
 					context.scale(item, item)
@@ -114,11 +114,11 @@
 				});
 				context.draw()
 			},
-			drawImage: function () {
+			drawImage: function() {
 				context.drawImage('../../../static/uni@2x.png', 0, 0)
 				context.draw()
 			},
-			fillText: function () {
+			fillText: function() {
 				context.setStrokeStyle('#ff0000')
 
 				context.beginPath()
@@ -141,14 +141,14 @@
 				context.stroke()
 				context.draw()
 			},
-			fill: function () {
+			fill: function() {
 				context.beginPath()
 				context.rect(20, 20, 150, 100)
 				context.setStrokeStyle('#00ff00')
 				context.fill()
 				context.draw()
 			},
-			stroke: function () {
+			stroke: function() {
 				context.beginPath()
 				context.moveTo(20, 20)
 				context.lineTo(20, 100)
@@ -157,7 +157,7 @@
 				context.stroke()
 				context.draw()
 			},
-			clearRect: function () {
+			clearRect: function() {
 				context.setFillStyle('#ff0000')
 				context.beginPath()
 				context.rect(0, 0, 300, 150)
@@ -165,7 +165,7 @@
 				context.clearRect(20, 20, 100, 50)
 				context.draw()
 			},
-			beginPath: function () {
+			beginPath: function() {
 				context.beginPath()
 				context.setLineWidth(5)
 				context.setStrokeStyle('#ff0000')
@@ -179,7 +179,7 @@
 				context.stroke()
 				context.draw()
 			},
-			closePath: function () {
+			closePath: function() {
 				context.beginPath()
 				context.setLineWidth(1)
 				context.moveTo(20, 20)
@@ -189,14 +189,14 @@
 				context.stroke()
 				context.draw()
 			},
-			moveTo: function () {
+			moveTo: function() {
 				context.beginPath()
 				context.moveTo(0, 0)
 				context.lineTo(300, 150)
 				context.stroke()
 				context.draw()
 			},
-			lineTo: function () {
+			lineTo: function() {
 				context.beginPath()
 				context.moveTo(20, 20)
 				context.lineTo(20, 100)
@@ -204,13 +204,13 @@
 				context.stroke()
 				context.draw()
 			},
-			rect: function () {
+			rect: function() {
 				context.beginPath()
 				context.rect(20, 20, 150, 100)
 				context.stroke()
 				context.draw()
 			},
-			arc: function () {
+			arc: function() {
 				context.beginPath()
 				context.setLineWidth(2)
 				context.arc(75, 75, 50, 0, Math.PI * 2, true)
@@ -223,22 +223,22 @@
 				context.stroke()
 				context.draw()
 			},
-			quadraticCurveTo: function () {
+			quadraticCurveTo: function() {
 				context.beginPath()
 				context.moveTo(20, 20)
 				context.quadraticCurveTo(20, 100, 200, 20)
 				context.stroke()
 				context.draw()
 			},
-			bezierCurveTo: function () {
+			bezierCurveTo: function() {
 				context.beginPath()
 				context.moveTo(20, 20)
 				context.bezierCurveTo(20, 100, 200, 100, 200, 20)
 				context.stroke()
 				context.draw()
 			},
-			setFillStyle: function () {
-				['#fef957', 'rgb(242,159,63)', 'rgb(242,117,63)', '#e87e51'].forEach(function (item, index) {
+			setFillStyle: function() {
+				['#fef957', 'rgb(242,159,63)', 'rgb(242,117,63)', '#e87e51'].forEach(function(item, index) {
 					context.setFillStyle(item)
 					context.beginPath()
 					context.rect(0 + 75 * index, 0, 50, 50)
@@ -246,8 +246,8 @@
 				})
 				context.draw()
 			},
-			setStrokeStyle: function () {
-				['#fef957', 'rgb(242,159,63)', 'rgb(242,117,63)', '#e87e51'].forEach(function (item, index) {
+			setStrokeStyle: function() {
+				['#fef957', 'rgb(242,159,63)', 'rgb(242,117,63)', '#e87e51'].forEach(function(item, index) {
 					context.setStrokeStyle(item)
 					context.beginPath()
 					context.rect(0 + 75 * index, 0, 50, 50)
@@ -255,9 +255,9 @@
 				})
 				context.draw()
 			},
-			setGlobalAlpha: function () {
+			setGlobalAlpha: function() {
 				context.setFillStyle('#000000');
-				[1, 0.5, 0.1].forEach(function (item, index) {
+				[1, 0.5, 0.1].forEach(function(item, index) {
 					context.setGlobalAlpha(item)
 					context.beginPath()
 					context.rect(0 + 75 * index, 0, 50, 50)
@@ -266,23 +266,23 @@
 				context.draw()
 				context.setGlobalAlpha(1)
 			},
-			setShadow: function () {
+			setShadow: function() {
 				context.beginPath()
 				context.setShadow(10, 10, 10, 'rgba(0, 0, 0, 199)')
 				context.rect(10, 10, 100, 100)
 				context.fill()
 				context.draw()
 			},
-			setFontSize: function () {
-				[10, 20, 30, 40].forEach(function (item, index) {
+			setFontSize: function() {
+				[10, 20, 30, 40].forEach(function(item, index) {
 					context.setFontSize(item)
 					context.fillText('Hello, world', 20, 20 + 40 * index)
 				})
 				context.draw()
 			},
-			setLineCap: function () {
+			setLineCap: function() {
 				context.setLineWidth(10);
-				['butt', 'round', 'square'].forEach(function (item, index) {
+				['butt', 'round', 'square'].forEach(function(item, index) {
 					context.beginPath()
 					context.setLineCap(item)
 					context.moveTo(20, 20 + 20 * index)
@@ -291,9 +291,9 @@
 				})
 				context.draw()
 			},
-			setLineJoin: function () {
+			setLineJoin: function() {
 				context.setLineWidth(10);
-				['bevel', 'round', 'miter'].forEach(function (item, index) {
+				['bevel', 'round', 'miter'].forEach(function(item, index) {
 					context.beginPath()
 					context.setLineJoin(item)
 					context.moveTo(20 + 80 * index, 20)
@@ -303,8 +303,8 @@
 				})
 				context.draw()
 			},
-			setLineWidth: function () {
-				[2, 4, 6, 8, 10].forEach(function (item, index) {
+			setLineWidth: function() {
+				[2, 4, 6, 8, 10].forEach(function(item, index) {
 					context.beginPath()
 					context.setLineWidth(item)
 					context.moveTo(20, 20 + 20 * index)
@@ -313,9 +313,9 @@
 				})
 				context.draw()
 			},
-			setMiterLimit: function () {
+			setMiterLimit: function() {
 				context.setLineWidth(4);
-				[2, 4, 6, 8, 10].forEach(function (item, index) {
+				[2, 4, 6, 8, 10].forEach(function(item, index) {
 					context.beginPath()
 					context.setMiterLimit(item)
 					context.moveTo(20 + 80 * index, 20)
