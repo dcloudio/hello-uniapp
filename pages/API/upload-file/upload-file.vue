@@ -7,7 +7,7 @@
 					<image :src="imageSrc" class="image" mode="widthFix"></image>
 				</block>
 				<block v-else>
-					<view class="uni-hello-addfile" @tap="chooseImage">+ 选择图片</view>
+					<view class="uni-hello-addfile" @click="chooseImage">+ 选择图片</view>
 				</block>
 			</view>
 		</view>
@@ -25,8 +25,7 @@
 			this.imageSrc = '';
 		},
 		methods: {
-			chooseImage: function () {
-				uni.showLoading({});
+			chooseImage: function() {
 				uni.chooseImage({
 					count: 1,
 					sizeType: ['compressed'],
@@ -35,8 +34,9 @@
 						console.log('chooseImage success, temp path is', res.tempFilePaths[0])
 						var imageSrc = res.tempFilePaths[0]
 						uni.uploadFile({
-							url: "https://unidemo.dcloud.net.cn/upload",
+							url: 'https://unidemo.dcloud.net.cn/upload',
 							filePath: imageSrc,
+							fileType: 'image',
 							name: 'data',
 							success: (res) => {
 								console.log('uploadImage success, res is:', res)
@@ -50,20 +50,14 @@
 							fail: (err) => {
 								console.log('uploadImage fail', err);
 								uni.showModal({
-									content:err.errMsg,
-									showCancel:false
+									content: err.errMsg,
+									showCancel: false
 								});
-								uni.hideLoading();
-							},
-							complete: () => {
-								console.log("complate")
 							}
-						})
-
+						});
 					},
 					fail: (err) => {
 						console.log('chooseImage fail', err)
-						uni.hideLoading();
 					}
 				})
 			}
@@ -76,8 +70,8 @@
 		width: 100%;
 	}
 
-	.demo{
-		background:#FFF;
-		padding:50upx;
+	.demo {
+		background: #FFF;
+		padding: 50upx;
 	}
 </style>
