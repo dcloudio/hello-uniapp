@@ -30,6 +30,7 @@
 				this.loading = true
 				uni.request({
 					url: requestUrl,
+					dataType:'text',
 					data: {
 						noncestr: Date.now()
 					},
