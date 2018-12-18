@@ -9,7 +9,8 @@
 		<view class="uni-card" v-for="(list,index) in lists" :key="index">
 			<view class="uni-list">
 				<view class="uni-list-cell uni-collapse">
-					<view class="uni-list-cell-navigate" hover-class="uni-list-cell-hover" :class="[list.open ? 'uni-active' : '',list.pages ? 'uni-navigate-bottom' : 'uni-navigate-right']" @click="trigerCollapse(index)">
+					<view class="uni-list-cell-navigate" hover-class="uni-list-cell-hover" :class="[list.open ? 'uni-active' : '',list.pages ? 'uni-navigate-bottom' : 'uni-navigate-right']"
+					 @click="triggerCollapse(index)">
 						{{list.name}}
 					</view>
 					<view class="uni-list uni-collapse" v-if="list.pages" :class="list.open ? 'uni-active' : ''">
@@ -43,32 +44,35 @@
 						name: '顶部导航标题栏',
 						open: false,
 						pages: [{
-							name: '默认样式',
-							url: 'nav-default'
-						}, 
-						// #ifdef APP-PLUS
-						{
-							name: '透明渐变样式',
-							url: 'nav-transparent'
-						}, {
-							name: '导航栏带自定义按钮',
-							url: 'nav-button'
-						}, 
-						// #endif
-						// #ifdef H5
-						{
-							name: '透明渐变样式',
-							url: 'nav-transparent'
-						}, {
-							name: '导航栏带自定义按钮',
-							url: 'nav-button'
-						}, 
-						// #endif
-						{
-							name: '自定义导航栏组件(非原生)',
-							url: 'nav-bar'
-						}]
-					}, {
+								name: '默认样式',
+								url: 'nav-default'
+							},
+							// #ifdef APP-PLUS
+							{
+								name: '透明渐变样式',
+								url: 'nav-transparent'
+							}, {
+								name: '导航栏带自定义按钮',
+								url: 'nav-button'
+							},
+							// #endif
+							// #ifdef H5
+							{
+								name: '透明渐变样式',
+								url: 'nav-transparent'
+							}, {
+								name: '导航栏带自定义按钮',
+								url: 'nav-button'
+							},
+							// #endif
+							{
+								name: '自定义导航栏组件(非原生)',
+								url: 'nav-bar'
+							}
+						]
+					}, 
+					// #ifndef MP-ALIPAY
+					{
 						id: 'tabbar',
 						name: '顶部选项卡',
 						url: 'tabbar',
@@ -82,7 +86,9 @@
 							url: 'tabbar'
 						}]
 						// #endif
-					}, {
+					}, 
+					// #endif
+					{
 						name: '顶部分段器 segment',
 						url: 'segmented-control'
 					}, {
@@ -134,13 +140,18 @@
 					}, {
 						name: '懒加载 lazy-load',
 						open: false,
+						// #ifndef MP-ALIPAY
 						pages: [{
 							name: '默认',
 							url: 'lazy-load'
 						}, {
 							name: '自定义',
 							url: 'lazy-load-custom'
-						}]
+						}],
+						// #endif
+						// #ifdef MP-ALIPAY
+						url: 'lazy-load',
+						// #endif
 					}, {
 						name: '时间轴 timeline',
 						url: 'timeline'
@@ -152,7 +163,7 @@
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
-					}, 
+					},
 					{
 						name: '手势图案锁屏',
 						url: 'gesture-lock'
@@ -162,7 +173,7 @@
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
-					}, 
+					},
 					{
 						name: '手势图案锁屏',
 						url: 'gesture-lock'
@@ -181,14 +192,14 @@
 					{
 						name: '二维码生成',
 						url: 'qrcode'
-					}, 
+					},
 					// #ifndef H5
 					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
 					// #endif
-					// #ifndef MP-BAIDU
+					// #ifdef APP-PLUS
 					{
 						name: 'markdown 富文本渲染',
 						url: 'mdparse'
@@ -196,7 +207,27 @@
 					{
 						name: 'markdown 富文本编辑器',
 						url: 'md-editor'
-					}, 
+					},
+					// #endif
+					// #ifdef MP-WEIXIN
+					{
+						name: 'markdown 富文本渲染',
+						url: 'mdparse'
+					},
+					{
+						name: 'markdown 富文本编辑器',
+						url: 'md-editor'
+					},
+					// #endif
+					// #ifdef H5
+					{
+						name: 'markdown 富文本渲染',
+						url: 'mdparse'
+					},
+					{
+						name: 'markdown 富文本编辑器',
+						url: 'md-editor'
+					},
 					// #endif
 					{
 						name: '侧边分类导航',
@@ -246,10 +277,10 @@
 			})
 		},
 		methods: {
-			trigerCollapse(e) {
-				if(!this.lists[e].pages){
+			triggerCollapse(e) {
+				if (!this.lists[e].pages) {
 					this.goDetailPage(this.lists[e].url);
-					return ;
+					return;
 				}
 				for (var i = 0; i < this.lists.length; ++i) {
 					if (e === i) {
@@ -272,11 +303,11 @@
 </script>
 
 <style>
-	page{
+	page {
 		height: auto;
 		min-height: 100%;
 	}
-	
+
 	.uni-card {
 		box-shadow: none;
 	}

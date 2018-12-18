@@ -27,7 +27,53 @@
 <script>
 	export default {
 		data() {
-			let list = [{
+			// 暂时这么写，后面看怎么优化。
+			let mediaPages = [{
+					name: '图片',
+					url: 'image'
+				},
+				// #ifdef APP-PLUS
+				{
+					name: '录音',
+					url: 'voice'
+				}, {
+					name: '背景音频',
+					url: 'background-audio'
+				},
+				// #endif
+				// #ifdef MP-WEIXIN
+				{
+					name: '录音',
+					url: 'voice'
+				}, {
+					name: '背景音频',
+					url: 'background-audio'
+				},
+				// #endif
+				// #ifdef MP-BAIDU
+				{
+					name: '录音',
+					url: 'voice'
+				}, {
+					name: '背景音频',
+					url: 'background-audio'
+				},
+				// #endif
+				// #ifndef MP-ALIPAY
+				{
+					name: '视频',
+					url: 'video'
+				},
+				// #endif
+				// #ifndef H5
+				{
+					name: '文件',
+					url: 'file'
+				},
+				// #endif
+			];
+
+			const list = [{
 					id: 'page',
 					name: '界面',
 					open: false,
@@ -78,7 +124,7 @@
 						}, {
 							name: '打电话',
 							url: 'make-phone-call'
-						}, 
+						},
 						//#ifndef H5
 						{
 							name: '扫码',
@@ -86,7 +132,7 @@
 						}, {
 							name: '剪贴板',
 							url: 'clipboard'
-						}, 
+						},
 						//#endif
 						{
 							name: '监听加速度传感器',
@@ -94,9 +140,9 @@
 						}, {
 							name: '监听罗盘数据',
 							url: 'on-compass-change'
-						}
+						},
 						//#ifdef APP-PLUS
-						, {
+						{
 							name: '监听距离传感器',
 							url: '/platforms/app-plus/proximity/proximity'
 						}, {
@@ -123,30 +169,7 @@
 					id: 'media',
 					name: '媒体',
 					open: false,
-					pages: [{
-						name: '图片',
-						url: 'image'
-					}, 
-					//#ifndef H5
-					{
-						name: '录音',
-						url: 'voice'
-					}, {
-						name: '背景音频',
-						url: 'background-audio'
-					}, 
-					//#endif
-					{
-						name: '视频',
-						url: 'video'
-					}, 
-					//#ifndef H5
-					{
-						name: '文件',
-						url: 'file'
-					},
-					//#endif
-					]
+					pages: mediaPages
 				}, {
 					id: 'location',
 					name: '位置',
@@ -169,7 +192,7 @@
 						name: '数据存储',
 						url: 'storage'
 					}]
-				}, 
+				},
 				//#ifdef MP-WEIXIN
 				{
 					id: 'login',
@@ -182,7 +205,7 @@
 						name: '获取用户信息',
 						url: 'get-user-info'
 					}]
-				}, 
+				},
 				{
 					id: 'payment',
 					name: '支付',
@@ -191,7 +214,7 @@
 						name: '发起支付',
 						url: 'request-payment'
 					}]
-				}, 
+				},
 				{
 					id: 'share',
 					name: '分享',
@@ -214,7 +237,7 @@
 						name: '获取用户信息',
 						url: 'get-user-info'
 					}]
-				}, 
+				},
 				{
 					id: 'share',
 					name: '分享',
@@ -237,7 +260,7 @@
 						name: '获取用户信息',
 						url: 'get-user-info'
 					}]
-				}, 
+				},
 				{
 					id: 'payment',
 					name: '支付',
@@ -246,7 +269,7 @@
 						name: '发起支付',
 						url: 'request-payment'
 					}]
-				}, 
+				},
 				{
 					id: 'share',
 					name: '分享',
@@ -297,9 +320,9 @@
 		},
 		methods: {
 			triggerCollapse(e) {
-				if(!this.lists[e].pages){
+				if (!this.lists[e].pages) {
 					this.goDetailPage(this.lists[e].url);
-					return ;
+					return;
 				}
 				for (var i = 0; i < this.lists.length; ++i) {
 					if (e === i) {
@@ -321,11 +344,11 @@
 </script>
 
 <style>
-	page{
+	page {
 		height: auto;
 		min-height: 100%;
 	}
-	
+
 	.uni-card {
 		box-shadow: none;
 	}
