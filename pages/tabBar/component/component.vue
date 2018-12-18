@@ -10,7 +10,7 @@
 			<view class="uni-list">
 				<view class="uni-list-cell uni-collapse">
 					<view class="uni-list-cell-navigate uni-navigate-bottom" hover-class="uni-list-cell-hover" :class="list.open ? 'uni-active' : ''"
-					 @click="trigerCollapse(index)">
+					 @click="triggerCollapse(index)">
 						{{list.name}}
 					</view>
 					<view class="uni-list uni-collapse" :class="list.open ? 'uni-active' : ''">
@@ -111,7 +111,7 @@
 			})
 		},
 		methods: {
-			trigerCollapse(e) {
+			triggerCollapse(e) {
 				if(!this.lists[e].pages){
 					this.goDetailPage(this.lists[e].url);
 					return ;

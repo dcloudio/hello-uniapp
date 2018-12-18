@@ -5,20 +5,30 @@
 			<form @submit="formSubmit" @reset="formReset">
 				<view class="uni-form-item uni-column">
 					<view class="title">switch</view>
-					<switch name="switch" />
+					<view>
+						<switch name="switch" />
+					</view>
 				</view>
 				<view class="uni-form-item uni-column">
 					<view class="title">radio</view>
 					<radio-group name="radio">
-						<label><radio value="radio1" />选项一</label>
-						<label><radio value="radio2" />选项二</label>
+						<label>
+							<radio value="radio1" />选项一
+						</label>
+						<label>
+							<radio value="radio2" />选项二
+						</label>
 					</radio-group>
 				</view>
 				<view class="uni-form-item uni-column">
 					<view class="title">checkbox</view>
 					<checkbox-group name="checkbox">
-						<label><checkbox value="checkbox1" />选项一</label>
-						<label><checkbox value="checkbox2" />选项二</label>
+						<label>
+							<checkbox value="checkbox1" />选项一
+						</label>
+						<label>
+							<checkbox value="checkbox2" />选项二
+						</label>
 					</checkbox-group>
 				</view>
 				<view class="uni-form-item uni-column">
@@ -47,21 +57,21 @@
 			}
 		},
 		methods: {
-			pickerConfirm: function (e) {
+			pickerConfirm: function(e) {
 				this.pickerHidden = true
 				this.chosen = e.target.value
 			},
-			pickerCancel: function (e) {
+			pickerCancel: function(e) {
 				this.pickerHidden = true
 			},
-			pickerShow: function (e) {
+			pickerShow: function(e) {
 				this.pickerHidden = false
 			},
-			formSubmit: function (e) {
+			formSubmit: function(e) {
 				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
 			},
-			formReset: function (e) {
-				console.log("清空数据")
+			formReset: function(e) {
+				console.log('清空数据')
 				this.chosen = ''
 			}
 		}
@@ -69,5 +79,7 @@
 </script>
 
 <style>
-	.title{padding:10px 0 !important;}
+	.uni-form-item .title {
+		padding: 20upx 0;
+	}
 </style>
