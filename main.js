@@ -15,8 +15,8 @@ Vue.prototype.$backgroundAudioData = {
 	formatedPlayTime: '00:00:00'
 }
 
-Vue.component('page-head',pageHead)
-Vue.component('page-foot',pageFoot)
+Vue.component('page-head', pageHead)
+Vue.component('page-foot', pageFoot)
 
 
 App.mpType = 'app'
