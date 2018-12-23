@@ -531,13 +531,15 @@
 					"navigationBarTitleText": "图片裁剪"
 				}
 			},
-			// #ifdef APP-PLUS || MP-WEIXIN
+			// #ifndef MP-ALIPAY
 			{
 				"path": "echarts/echarts",
 				"style": {
 					"navigationBarTitleText": "ECharts图表"
 				}
 			},
+			// #endif
+			// #ifdef APP-PLUS || MP-WEIXIN
 			{
 				"path": "gesture-lock/gesture-lock",
 				"style": {

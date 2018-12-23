@@ -154,11 +154,13 @@
 						name: '标签 tag',
 						url: 'tag'
 					},
-					// #ifdef APP-PLUS || MP-WEIXIN
+					// #ifndef MP-ALIPAY
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
 					},
+					// #endif
+					// #ifdef APP-PLUS || MP-WEIXIN
 					{
 						name: '手势图案锁屏',
 						url: 'gesture-lock'
