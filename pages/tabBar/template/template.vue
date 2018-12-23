@@ -116,10 +116,14 @@
 							name: '三行列表',
 							url: 'list-triplex-row'
 						}]
-					}, {
+					},
+					// #ifndef MP-BAIDU
+					{
 						name: '右侧索引列表 indexList',
 						url: 'index-list'
-					}, {
+					},
+					// #endif
+					{
 						name: '图文列表',
 						url: 'media-list'
 					}, {
@@ -176,10 +180,12 @@
 						name: '二维码生成',
 						url: 'qrcode'
 					},
+					// #ifndef MP-BAIDU
 					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
+					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || H5
 					{
 						name: 'markdown 富文本渲染',
