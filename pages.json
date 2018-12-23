@@ -1,6 +1,6 @@
 {
 	"pages": [
-		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/tabBar/component/component",
 			"style": {
@@ -503,6 +503,7 @@
 					"onReachBottomDistance": 20
 				}
 			},
+			// #ifdef APP-PLUS || MP-WEIXIN || H5
 			{
 				"path": "mdparse/mdparse",
 				"style": {
@@ -510,17 +511,27 @@
 				}
 			},
 			{
+				"path": "md-editor/md-editor",
+				"style": {
+					"navigationBarTitleText": "md富文本编辑器"
+				}
+			},
+			// #endif
+			{
 				"path": "qrcode/qrcode",
 				"style": {
 					"navigationBarTitleText": "二维码生成"
 				}
 			},
+			// #ifndef H5
 			{
 				"path": "crop/crop",
 				"style": {
 					"navigationBarTitleText": "图片裁剪"
 				}
 			},
+			// #endif
+			// #ifdef APP-PLUS || MP-WEIXIN
 			{
 				"path": "echarts/echarts",
 				"style": {
@@ -528,11 +539,19 @@
 				}
 			},
 			{
+				"path": "gesture-lock/gesture-lock",
+				"style": {
+					"navigationBarTitleText": "手势图案锁屏"
+				}
+			},
+			// #endif
+			{
 				"path": "nav-default/nav-default",
 				"style": {
 					"navigationBarTitleText": "默认导航栏"
 				}
 			},
+			// #ifdef APP-PLUS || H5
 			{
 				"path": "nav-transparent/nav-transparent",
 				"style": {
@@ -561,6 +580,7 @@
 					}
 				}
 			},
+			// #endif
 			{
 				"path": "mpvue-picker/mpvue-picker",
 				"style": {
@@ -590,12 +610,6 @@
 				}
 			},
 			{
-				"path": "md-editor/md-editor",
-				"style": {
-					"navigationBarTitleText": "md富文本编辑器"
-				}
-			},
-			{
 				"path": "left-category/left-category",
 				"style": {
 					"navigationBarTitleText": "侧边分类导航"
@@ -622,6 +636,7 @@
 					"navigationBarTitleText": "三行列表"
 				}
 			},
+			// #ifndef MP-ALIPAY
 			{
 				"path": "list2detail-list/list2detail-list",
 				"style": {
@@ -640,6 +655,7 @@
 					}
 				}
 			},
+			// #endif
 			{
 				"path": "popup/popup",
 				"style": {
@@ -658,11 +674,11 @@
 							"titleText": "可拖动顶部选项卡（原生）"
 						}
 					},
-                    "h5": {
-                        "titleNView": {
-                            "titleText": "可拖动顶部选项卡"
-                        }
-                    }
+					"h5": {
+						"titleNView": {
+							"titleText": "可拖动顶部选项卡"
+						}
+					}
 				}
 			},
 			{
@@ -761,12 +777,6 @@
 				}
 			},
 			{
-				"path": "gesture-lock/gesture-lock",
-				"style": {
-					"navigationBarTitleText": "手势图案锁屏"
-				}
-			},
-			{
 				"path": "scrollmsg/scrollmsg",
 				"style": {
 					"navigationBarTitleText": "滚动公告"
@@ -823,13 +833,16 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "Hello uniapp",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"mp-alipay": {
+			"titleBarColor": "#FFFFFF"
+		}
 	},
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#007AFF",
 		"borderStyle": "black",
-		"backgroundColor": "#ffffff",
+		"backgroundColor": "#F8F8F8",
 		"list": [{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",

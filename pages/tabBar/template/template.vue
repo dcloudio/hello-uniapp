@@ -47,16 +47,7 @@
 								name: '默认样式',
 								url: 'nav-default'
 							},
-							// #ifdef APP-PLUS
-							{
-								name: '透明渐变样式',
-								url: 'nav-transparent'
-							}, {
-								name: '导航栏带自定义按钮',
-								url: 'nav-button'
-							},
-							// #endif
-							// #ifdef H5
+							// #ifdef APP-PLUS || H5
 							{
 								name: '透明渐变样式',
 								url: 'nav-transparent'
@@ -70,7 +61,7 @@
 								url: 'nav-bar'
 							}
 						]
-					}, 
+					},
 					// #ifndef MP-ALIPAY
 					{
 						id: 'tabbar',
@@ -86,7 +77,7 @@
 							url: 'tabbar'
 						}]
 						// #endif
-					}, 
+					},
 					// #endif
 					{
 						name: '顶部分段器 segment',
@@ -159,7 +150,7 @@
 						name: '标签 tag',
 						url: 'tag'
 					},
-					// #ifdef APP-PLUS
+					// #ifdef APP-PLUS || MP-WEIXIN
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
@@ -169,20 +160,12 @@
 						url: 'gesture-lock'
 					},
 					// #endif
-					// #ifdef MP-WEIXIN
-					{
-						name: 'ECharts 图表',
-						url: 'echarts'
-					},
-					{
-						name: '手势图案锁屏',
-						url: 'gesture-lock'
-					},
-					// #endif
+					// #ifndef MP-ALIPAY
 					{
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
+					// #endif
 					// #ifdef APP-PLUS 
 					{
 						name: '问题反馈',
@@ -199,27 +182,7 @@
 						url: 'crop'
 					},
 					// #endif
-					// #ifdef APP-PLUS
-					{
-						name: 'markdown 富文本渲染',
-						url: 'mdparse'
-					},
-					{
-						name: 'markdown 富文本编辑器',
-						url: 'md-editor'
-					},
-					// #endif
-					// #ifdef MP-WEIXIN
-					{
-						name: 'markdown 富文本渲染',
-						url: 'mdparse'
-					},
-					{
-						name: 'markdown 富文本编辑器',
-						url: 'md-editor'
-					},
-					// #endif
-					// #ifdef H5
+					// #ifdef APP-PLUS || MP-WEIXIN || H5
 					{
 						name: 'markdown 富文本渲染',
 						url: 'mdparse'
