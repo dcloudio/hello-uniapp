@@ -74,11 +74,11 @@
 							name: '创建动画',
 							url: 'animation'
 						},
+						//#endif
 						{
 							name: '创建绘画',
 							url: 'canvas'
 						},
-						//#endif
 						{
 							name: '显示操作菜单',
 							url: 'action-sheet'

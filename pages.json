@@ -278,12 +278,14 @@
 				"enablePullDownRefresh": true
 			}
 		},
+		// #ifndef H5
 		{
 			"path": "pages/API/animation/animation",
 			"style": {
 				"navigationBarTitleText": "创建动画"
 			}
 		},
+		// #endif
 		{
 			"path": "pages/API/canvas/canvas",
 			"style": {
@@ -523,14 +525,12 @@
 					"navigationBarTitleText": "二维码生成"
 				}
 			},
-			// #ifndef H5
 			{
 				"path": "crop/crop",
 				"style": {
 					"navigationBarTitleText": "图片裁剪"
 				}
 			},
-			// #endif
 			// #ifdef APP-PLUS || MP-WEIXIN
 			{
 				"path": "echarts/echarts",
