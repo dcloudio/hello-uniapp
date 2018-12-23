@@ -16,16 +16,13 @@
 				</block>
 			</view>
 			<view class="uni-btn-v">
-				<!-- #ifdef APP-PLUS -->
-				<button type="primary" @tap="getUserInfo">获取用户信息</button>
+				<!-- #ifdef APP-PLUS || MP-ALIPAY -->
+				<button type="primary" @click="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- #ifdef MP-WEIXIN || MP-BAIDU -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-BAIDU -->
-				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
-				<!-- #endif -->
-				<button @tap="clear">清空</button>
+				<button @click="clear">清空</button>
 			</view>
 		</view>
 	</view>
@@ -49,42 +46,42 @@
 				loginProvider: state => state.loginProvider
 			})
 		},
-		onLoad: function() {},
 		methods: {
-			getUserInfo() { //获取用户信息api在微信小程序可直接使用，在5+app里面需要先登录才能调用
+			// 获取用户信息 API 在小程序可直接使用，在 5+App 里面需要先登录才能调用
+			getUserInfo() {
 				uni.getUserInfo({
 					provider: this.loginProvider,
-					success: (e) => {
-						console.log("得到用户信息", e);
+					success: (result) => {
+						console.log('getUserInfo success', result);
 						this.hasUserInfo = true;
-						this.userInfo = e.userInfo
+						this.userInfo = result.userInfo;
 					},
-					fail: (e) => {
-						console.log("fail", e);
-						let content = e.errMsg;
-						if (~content.indexOf("uni.login")) {
-							content = "请在登录页面完成登录操作"
+					fail: (error) => {
+						console.log('getUserInfo fail', error);
+						let content = error.errMsg;
+						if (~content.indexOf('uni.login')) {
+							content = '请在登录页面完成登录操作';
 						}
 						uni.showModal({
-							title: "获取用户信息失败",
-							content: "错误原因" + content,
+							title: '获取用户信息失败',
+							content: '错误原因' + content,
 							showCancel: false
-						})
+						});
 					}
-				})
+				});
 			},
-			mpGetUserInfo(e) {
-				console.log("得到用户信息", e);
-				if (e.detail.errMsg !== 'getUserInfo:ok') {
+			mpGetUserInfo(result) {
+				console.log('mpGetUserInfo', result);
+				if (result.detail.errMsg !== 'getUserInfo:ok') {
 					uni.showModal({
-						title: "获取用户信息失败",
-						content: "错误原因" + e.detail.errMsg,
+						title: '获取用户信息失败',
+						content: '错误原因' + result.detail.errMsg,
 						showCancel: false
 					});
 					return;
 				}
 				this.hasUserInfo = true;
-				this.userInfo = e.detail.userInfo
+				this.userInfo = result.detail.userInfo;
 			},
 			clear() {
 				this.hasUserInfo = false;

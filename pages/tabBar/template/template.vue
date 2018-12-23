@@ -180,7 +180,7 @@
 						name: '二维码生成',
 						url: 'qrcode'
 					},
-					// #ifndef MP-BAIDU
+					// #ifdef APP-PLUS || H5 || MP-BAIDU
 					{
 						name: '图片裁剪',
 						url: 'crop'
