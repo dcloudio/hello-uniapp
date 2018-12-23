@@ -19,11 +19,21 @@
 				covers: [{
 					latitude: 39.9085,
 					longitude: 116.39747,
-					iconPath: '../../../static/location@3x.png'
+					// #ifdef APP-PLUS
+					iconPath: '../../../static/app-plus/location@3x.png',
+					// #endif
+					// #ifndef APP-PLUS
+					iconPath: '../../../static/location.png',
+					// #endif
 				}, {
 					latitude: 39.90,
 					longitude: 116.39,
-					iconPath: '../../../static/location@3x.png'
+					// #ifdef APP-PLUS
+					iconPath: '../../../static/app-plus/location@3x.png',
+					// #endif
+					// #ifndef APP-PLUS
+					iconPath: '../../../static/location.png',
+					// #endif
 				}]
 			}
 		},

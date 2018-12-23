@@ -5,14 +5,9 @@
 				<uni-icon type="search" size="22" color="#666666"></uni-icon>
 				<input confirm-type="search" @confirm="confirm" class="input" type="text" placeholder="输入搜索关键词" />
 			</view>
-			<!-- #ifdef MP-WEIXIN -->
+			<!-- #ifdef MP -->
 			<view class="icon" @click="showRightDrawer">
-				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
-			</view>
-			<!-- #endif -->
-			<!-- #ifdef MP-BAIDU -->
-			<view class="icon" @click="showRightDrawer">
-				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
+				<uni-icon type="bars" color="#666666" :size="22"></uni-icon>
 			</view>
 			<!-- #endif -->
 		</view>
@@ -92,7 +87,7 @@
 		},
 		onBackPress() {
 			// 返回按钮监听
-			if(this.rightDrawerVisible){
+			if (this.rightDrawerVisible) {
 				this.rightDrawerVisible = false;
 				return true;
 			}

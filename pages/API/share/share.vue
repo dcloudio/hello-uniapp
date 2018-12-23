@@ -5,7 +5,7 @@
 			<view class="uni-title">分享内容</view>
 			<view class="uni-textarea">
 				<textarea class="textarea" v-model="shareText" />
-			</view>
+				</view>
 			<view class="uni-title">分享图片：</view>
 			<view class="uni-uploader" style="padding:15upx; background:#FFF;">
 				<view class="uni-uploader__input-box" v-if="!image" @tap="chooseImage"></view>
@@ -35,12 +35,7 @@
 				</block>
 			</view>
 			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN -->
-			<view class="uni-btn-v uni-common-mt">
-				<button type="primary" open-type="share">分享</button>
-			</view>
-			<!-- #endif -->
-			<!-- #ifdef MP-BAIDU -->
+			<!-- #ifdef MP -->
 			<view class="uni-btn-v uni-common-mt">
 				<button type="primary" open-type="share">分享</button>
 			</view>
@@ -69,14 +64,14 @@
 		},
 		onUnload:function(){
 			this.shareText='uni-app可以同时发布成原生App、微信小程序、H5，邀请你一起体验！',
-			this.href = "https://uniapp.dcloud.io",
+			this.href = 'https://uniapp.dcloud.io',
 			this.image='';
 		},
 		onLoad: function () {
 			uni.getProvider({
-				service: "share",
+				service: 'share',
 				success: (e) => {
-					console.log("success", e);
+					console.log('success', e);
 					let data = []
 					for (let i = 0; i < e.provider.length; i++) {
 						switch (e.provider[i]) {
@@ -116,9 +111,9 @@
 					});
 				},
 				fail: (e) => {
-					console.log("获取登录通道失败", e);
+					console.log('获取登录通道失败', e);
 					uni.showModal({
-						content:"获取登录通道失败",
+						content:'获取登录通道失败',
 						showCancel:false
 					})
 				}
@@ -126,11 +121,11 @@
 		},
 		methods: {
 			async share(e) {
-				console.log("分享通道:"+ e.id +"； 分享类型:" + this.shareType);
+				console.log('分享通道:'+ e.id +'； 分享类型:' + this.shareType);
 				
 				if(!this.shareText && (this.shareType === 1 || this.shareType === 0)){
 					uni.showModal({
-						content:"分享内容不能为空",
+						content:'分享内容不能为空',
 						showCancel:false
 					})
 					return;
@@ -138,7 +133,7 @@
 				
 				if(!this.image && (this.shareType === 2 || this.shareType === 0)){
 					uni.showModal({
-						content:"分享图片不能为空",
+						content:'分享图片不能为空',
 						showCancel:false
 					})
 					return;
@@ -146,24 +141,24 @@
 				
 				let shareOPtions = {
 					provider: e.id,
-					scene: e.type && e.type === 'WXSenceTimeline' ? 'WXSenceTimeline' : "WXSceneSession", //WXSceneSession”分享到聊天界面，“WXSenceTimeline”分享到朋友圈，“WXSceneFavorite”分享到微信收藏     
+					scene: e.type && e.type === 'WXSenceTimeline' ? 'WXSenceTimeline' : 'WXSceneSession', //WXSceneSession”分享到聊天界面，“WXSenceTimeline”分享到朋友圈，“WXSceneFavorite”分享到微信收藏     
 					type: this.shareType,
 					success: (e) => {
-						console.log("success", e);
+						console.log('success', e);
 						uni.showModal({
-							content: "分享成功",
+							content: '分享成功',
 							showCancel:false
 						})
 					},
 					fail: (e) => {
-						console.log("fail", e)
+						console.log('fail', e)
 						uni.showModal({
 							content: e.errMsg,
 							showCancel:false
 						})
 					},
 					complete:function(){
-						console.log("分享操作结束!")
+						console.log('分享操作结束!')
 					}
 				}
 				
@@ -171,8 +166,8 @@
 					case 0:
 						shareOPtions.summary = this.shareText;
 						shareOPtions.imageUrl = this.image;
-						shareOPtions.title = "欢迎体验uniapp";
-						shareOPtions.href = "http://uniapp.dcloud.io";
+						shareOPtions.title = '欢迎体验uniapp';
+						shareOPtions.href = 'http://uniapp.dcloud.io';
 						break;
 					case 1:
 						shareOPtions.summary = this.shareText;
@@ -182,11 +177,11 @@
 						break;
 					case 5:
 						shareOPtions.imageUrl = this.image ? this.image : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png'
-						shareOPtions.title = "欢迎体验uniapp";
+						shareOPtions.title = '欢迎体验uniapp';
 						shareOPtions.miniProgram = {
-							id:"gh_33446d7f7a26",
-							path:"/pages/tabBar/component/component",
-							webUrl:"http://uniapp.dcloud.io",
+							id:'gh_33446d7f7a26',
+							path:'/pages/tabBar/component/component',
+							webUrl:'http://uniapp.dcloud.io',
 							type:0
 						};
 						break;
@@ -198,13 +193,13 @@
 					shareOPtions.imageUrl = await this.compress();
 				}
 				if(shareOPtions.type === 1 && shareOPtions.provider === 'qq'){//如果是分享文字到qq，则必须加上href和title
-					shareOPtions.href = "http://uniapp.dcloud.io";
-					shareOPtions.title = "欢迎体验uniapp";
+					shareOPtions.href = 'http://uniapp.dcloud.io';
+					shareOPtions.title = '欢迎体验uniapp';
 				}
 				uni.share(shareOPtions);
 			},
 			radioChange(e){
-				console.log("type:" + e.detail.value);
+				console.log('type:' + e.detail.value);
 				this.shareType = parseInt(e.detail.value);
 			},
 			chooseImage() {
@@ -218,7 +213,7 @@
 				})
 			},
 			compress(){//压缩图片 图文分享要求分享图片大小不能超过20Kb
-				console.log("开始压缩");
+				console.log('开始压缩');
 				let img = this.image;
 				return new Promise((res) => {
 					var localPath = plus.io.convertAbsoluteFileSystem(img.replace('file://', ''));
@@ -226,7 +221,7 @@
 					// 压缩size
 					plus.io.resolveLocalFileSystemURL(localPath, (entry) => {
 						entry.file((file) => {// 可通过entry对象操作图片 
-							console.log("getFile:" + JSON.stringify(file));
+							console.log('getFile:' + JSON.stringify(file));
 							if(file.size > 20480) {// 压缩后size 大于20Kb
 								plus.zip.compressImage({
 									src: img,
@@ -241,16 +236,16 @@
 									res(newImg);
 								}, function(error) {
 									uni.showModal({
-										content:"分享图片太大,需要请重新选择图片!",
+										content:'分享图片太大,需要请重新选择图片!',
 										showCancel:false
 									})
 								});
 							}
 						});
 					}, (e) => {
-						console.log("Resolve file URL failed: " + e.message);
+						console.log('Resolve file URL failed: ' + e.message);
 						uni.showModal({
-							content:"分享图片太大,需要请重新选择图片!",
+							content:'分享图片太大,需要请重新选择图片!',
 							showCancel:false
 						})
 					});

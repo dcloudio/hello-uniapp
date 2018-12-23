@@ -6,7 +6,7 @@
 				<block v-if="hasLogin === true">
 					<view class="uni-h3 uni-center uni-common-mt">已登录</view>
 					<view class="uni-hello-text uni-center">
-						<text>每个帐号仅需登录 1 次，\n后续每次进入页面即可自动拉取用户信息。</text>
+						<text>每个账号仅需登录 1 次，\n后续每次进入页面即可自动拉取用户信息。</text>
 					</view>
 				</block>
 				<block v-if="hasLogin === false">
@@ -40,7 +40,7 @@
 		},
 		onLoad() {
 			uni.getProvider({
-				service: "oauth",
+				service: 'oauth',
 				success: (e) => {
 					console.log('oauth..........');
 					this.providerList = e.provider.map((value) => {
@@ -61,6 +61,9 @@
 							case 'baidu':
 								providerName = '百度登录'
 								break;
+							case 'alipay':
+								providerName = '支付宝登录'
+								break;
 						}
 						return {
 							name: providerName,
@@ -80,12 +83,13 @@
 					provider: provider.id,
 					success: (res) => {
 						console.log('login success:', res);
-						this.login(provider.id); //改变保存在store里的登录状态
+						// 更新保存在 store 中的登录状态
+						this.login(provider.id);
 					},
 					fail: (err) => {
 						console.log('login fail:', err);
 					}
-				})
+				});
 			}
 		}
 	}

@@ -115,7 +115,12 @@
 				context.draw()
 			},
 			drawImage: function() {
-				context.drawImage('../../../static/uni@2x.png', 0, 0)
+				// #ifdef APP-PLUS
+				context.drawImage('../../../static/app-plus/uni@2x.png', 0, 0)
+				// #endif
+				// #ifndef APP-PLUS
+				context.drawImage('../../../static/uni.png', 0, 0)
+				// #endif
 				context.draw()
 			},
 			fillText: function() {

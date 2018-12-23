@@ -3,8 +3,8 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v">
-				<button class="btn-load" type="primary" @tap="showLoading">显示 loading 提示框</button>
-				<button @tap="hideLoading">隐藏 loading 提示框</button>
+				<button class="btn-load" type="primary" @click="showLoading">显示 loading 提示框</button>
+				<button @click="hideLoading">隐藏 loading 提示框</button>
 			</view>
 		</view>
 	</view>
@@ -17,16 +17,18 @@
 			}
 		},
 		methods: {
-			showLoading: function () {
-				uni.showLoading()
+			showLoading: function() {
+				uni.showLoading({
+					title: 'loading'
+				});
 			},
-			hideLoading: function () {
-				uni.hideLoading()
+			hideLoading: function() {
+				uni.hideLoading();
 			}
 		}
 	}
 </script>
 
 <style>
-	
+
 </style>

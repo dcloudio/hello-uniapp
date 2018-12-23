@@ -24,6 +24,17 @@
 	import * as echarts from '../../../components/echarts/echarts.simple.min.js';
 	import mpvueEcharts from '../../../components/mpvue-echarts/src/echarts.vue';
 
+	const cityList = [{
+		value: 55,
+		name: '北京'
+	}, {
+		value: 38,
+		name: '上海'
+	}, {
+		value: 20,
+		name: '广州'
+	}];
+
 	let pieOption = {
 		animation: false,
 		backgroundColor: '#F8F8F8',
@@ -37,16 +48,7 @@
 			type: 'pie',
 			center: ['50%', '50%'],
 			radius: [0, '60%'],
-			data: [{
-				value: 55,
-				name: '北京'
-			}, {
-				value: 38,
-				name: '上海'
-			}, {
-				value: 20,
-				name: '广州'
-			}],
+			data: [],
 			itemStyle: {
 				emphasis: {
 					shadowBlur: 10,
@@ -94,6 +96,9 @@
 				echarts: echarts,
 				updateStatus: false
 			}
+		},
+		onLoad() {
+			pieOption.series[0].data = cityList.slice(0);
 		},
 		methods: {
 			goBrowser() {
@@ -162,6 +167,7 @@
 	page {
 		min-height: 100%;
 	}
+
 	.page-section-title {
 		padding: 0 30upx;
 	}

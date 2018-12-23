@@ -2,13 +2,13 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<block v-if="recording === false && playing === false && hasRecord === false">
+			<block v-if="!recording && !playing && !hasRecord">
 				<view class="page-body-time">
 					<text class="time-big">{{formatedRecordTime}}</text>
 				</view>
 				<view class="page-body-buttons">
 					<view class="page-body-button"></view>
-					<view class="page-body-button" @tap="startRecord">
+					<view class="page-body-button" @click="startRecord">
 						<image src="../../../static/record.png"></image>
 					</view>
 					<view class="page-body-button"></view>
@@ -20,7 +20,7 @@
 				</view>
 				<view class="page-body-buttons">
 					<view class="page-body-button"></view>
-					<view class="page-body-button" @tap="stopRecord">
+					<view class="page-body-button" @click="stopRecord">
 						<view class="button-stop-record"></view>
 					</view>
 					<view class="page-body-button"></view>
@@ -33,10 +33,10 @@
 				</view>
 				<view class="page-body-buttons">
 					<view class="page-body-button"></view>
-					<view class="page-body-button" @tap="playVoice">
+					<view class="page-body-button" @click="playVoice">
 						<image src="../../../static/play.png"></image>
 					</view>
-					<view class="page-body-button" @tap="clear">
+					<view class="page-body-button" @click="clear">
 						<image src="../../../static/trash.png"></image>
 					</view>
 				</view>
@@ -47,10 +47,10 @@
 					<text class="time-small">{{formatedRecordTime}}</text>
 				</view>
 				<view class="page-body-buttons">
-					<view class="page-body-button" @tap="stopVoice">
+					<view class="page-body-button" @click="stopVoice">
 						<image src="../../../static/stop.png"></image>
 					</view>
-					<view class="page-body-button" @tap="clear">
+					<view class="page-body-button" @click="clear">
 						<image src="../../../static/trash.png"></image>
 					</view>
 				</view>
@@ -78,10 +78,10 @@
 				formatedPlayTime: '00:00:00' //播放录音的当前时间
 			}
 		},
-		onUnload: function () {
+		onUnload: function() {
 			this.end();
 		},
-		onLoad: function () {
+		onLoad: function() {
 			music = uni.createInnerAudioContext();
 			music.onEnded(() => {
 				clearInterval(playTimeInterval)
@@ -96,6 +96,7 @@
 				console.log('recorder start');
 			});
 			recorderManager.onStop((res) => {
+				console.log('on stop');
 				music.src = res.tempFilePath;
 
 				this.hasRecord = true;
@@ -118,6 +119,7 @@
 				clearInterval(recordTimeInterval);
 			},
 			playVoice() {
+				console.log('play voice');
 				playTimeInterval = setInterval(() => {
 					this.playing = true;
 					this.playTime += 1;
@@ -127,9 +129,9 @@
 			},
 			stopVoice() {
 				clearInterval(playTimeInterval)
-				this.playing = false,
-					this.formatedPlayTime = util.formatTime(0),
-					this.playTime = 0;
+				this.playing = false;
+				this.formatedPlayTime = util.formatTime(0);
+				this.playTime = 0;
 				music.stop();
 			},
 			end() {

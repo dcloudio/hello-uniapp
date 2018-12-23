@@ -32,25 +32,7 @@
 					name: '图片',
 					url: 'image'
 				},
-				// #ifdef APP-PLUS
-				{
-					name: '录音',
-					url: 'voice'
-				}, {
-					name: '背景音频',
-					url: 'background-audio'
-				},
-				// #endif
-				// #ifdef MP-WEIXIN
-				{
-					name: '录音',
-					url: 'voice'
-				}, {
-					name: '背景音频',
-					url: 'background-audio'
-				},
-				// #endif
-				// #ifdef MP-BAIDU
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
 				{
 					name: '录音',
 					url: 'voice'
@@ -92,11 +74,11 @@
 							name: '创建动画',
 							url: 'animation'
 						},
+						//#endif
 						{
 							name: '创建绘画',
 							url: 'canvas'
 						},
-						//#endif
 						{
 							name: '显示操作菜单',
 							url: 'action-sheet'
@@ -193,7 +175,7 @@
 						url: 'storage'
 					}]
 				},
-				//#ifdef MP-WEIXIN
+				// #ifndef H5
 				{
 					id: 'login',
 					name: '登录',
@@ -206,6 +188,17 @@
 						url: 'get-user-info'
 					}]
 				},
+				{
+					id: 'share',
+					name: '分享',
+					open: false,
+					pages: [{
+						name: '分享',
+						url: 'share'
+					}]
+				},
+				// #endif
+				// #ifdef APP-PLUS || MP-WEIXIN
 				{
 					id: 'payment',
 					name: '支付',
@@ -215,70 +208,8 @@
 						url: 'request-payment'
 					}]
 				},
-				{
-					id: 'share',
-					name: '分享',
-					open: false,
-					pages: [{
-						name: '分享',
-						url: 'share'
-					}]
-				},
-				//#endif
-				//#ifdef MP-BAIDU
-				{
-					id: 'login',
-					name: '登录',
-					open: false,
-					pages: [{
-						name: '登录',
-						url: 'login'
-					}, {
-						name: '获取用户信息',
-						url: 'get-user-info'
-					}]
-				},
-				{
-					id: 'share',
-					name: '分享',
-					open: false,
-					pages: [{
-						name: '分享',
-						url: 'share'
-					}]
-				},
-				//#endif
-				//#ifdef APP-PLUS
-				{
-					id: 'login',
-					name: '登录',
-					open: false,
-					pages: [{
-						name: '登录',
-						url: 'login'
-					}, {
-						name: '获取用户信息',
-						url: 'get-user-info'
-					}]
-				},
-				{
-					id: 'payment',
-					name: '支付',
-					open: false,
-					pages: [{
-						name: '发起支付',
-						url: 'request-payment'
-					}]
-				},
-				{
-					id: 'share',
-					name: '分享',
-					open: false,
-					pages: [{
-						name: '分享',
-						url: 'share'
-					}]
-				},
+				// #endif
+				// #ifdef APP-PLUS
 				{
 					id: 'speech',
 					name: '语音',

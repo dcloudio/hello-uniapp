@@ -48,13 +48,10 @@
 		},
 		methods: {
 			load() {
-				console.log('load..............................');
-				console.log(uni.createSelectorQuery().selectAll('.lazy'));
 				uni.createSelectorQuery().selectAll('.lazy').boundingClientRect((images) => {
-					console.log('boundingClientRect...........');
 					images.forEach((image, index) => {
 						if (image.top <= this.windowHeight) {
-							this.list[image.dataset.index].show = true
+							this.list[image.dataset.index].show = true;
 						}
 					})
 				}).exec()
@@ -75,7 +72,6 @@
 			}
 		},
 		onPageScroll() {
-			console.log('scroll.............................');
 			this.load()
 		}
 	}
