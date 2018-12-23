@@ -115,7 +115,7 @@
 				context.draw()
 			},
 			drawImage: function() {
-				context.drawImage('../../../static/uni@2x.png', 0, 0)
+				context.drawImage('../../../static/uni.png', 0, 0)
 				context.draw()
 			},
 			fillText: function() {

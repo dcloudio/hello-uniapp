@@ -41,7 +41,7 @@
 			toast4Tap: function () {
 				uni.showToast({
 					title: "logo",
-					image: "../../../static/uni@2x.png"
+					image: "../../../static/uni.png"
 				})
 			},
 			hideToast: function () {
