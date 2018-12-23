@@ -7,12 +7,17 @@
 			</view>
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="icon" @click="showRightDrawer">
-				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
+				<uni-icon type="bars" color="#666666" :size="22"></uni-icon>
 			</view>
 			<!-- #endif -->
 			<!-- #ifdef MP-BAIDU -->
 			<view class="icon" @click="showRightDrawer">
-				<uni-icon type="bars" color="#666666" size="22"></uni-icon>
+				<uni-icon type="bars" color="#666666" :size="22"></uni-icon>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-ALIPAY -->
+			<view class="icon" @click="showRightDrawer">
+				<uni-icon type="bars" color="#666666" :size="22"></uni-icon>
 			</view>
 			<!-- #endif -->
 		</view>
