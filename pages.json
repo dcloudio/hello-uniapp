@@ -214,7 +214,7 @@
 		{
 			"path": "pages/API/login/login",
 			"style": {
-				"navigationBarTitleText": "微信登录"
+				"navigationBarTitleText": "授权登录"
 			}
 		},
 		{
