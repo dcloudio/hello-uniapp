@@ -354,19 +354,19 @@ radio-group label, checkbox-group label{
 	right: 0;
 	bottom: 0;
 	left: 0;
-	height: 1upx;
+	height: 1px;
 	content: '';
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
 }
-.uni-list:before {
+.uni-list::before {
 	position: absolute;
 	z-index: 10;
 	right: 0;
 	top: 0;
 	left: 0;
-	height: 1upx;
+	height: 1px;
 	content: '';
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
@@ -393,22 +393,22 @@ radio-group label, checkbox-group label{
 .uni-list-cell-right {
 	flex: 1;
 }
-.uni-list-cell:after {
+.uni-list-cell::after {
 	position: absolute;
   z-index: 3;
 	right: 0;
 	bottom: 0;
 	left: 30upx;
-	height: 1upx;
+	height: 1px;
 	content: '';
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
 }
-.uni-list .uni-list-cell:last-child:after {
+.uni-list .uni-list-cell:last-child::after {
 	height: 0upx;
 }
-.uni-list-cell-last.uni-list-cell:after {
+.uni-list-cell-last.uni-list-cell::after {
 	height: 0upx;
 }
 .uni-list-cell-divider {
@@ -418,23 +418,23 @@ radio-group label, checkbox-group label{
 	background-color: #f7f7f7;
 	padding:15upx 20upx;
 }
-.uni-list-cell-divider:before {
+.uni-list-cell-divider::before {
 	position: absolute;
 	right: 0;
 	top: 0;
-	left: 0upx;
-	height: 1upx;
+	left: 0;
+	height: 1px;
 	content: '';
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
 }
-.uni-list-cell-divider:after {
+.uni-list-cell-divider::after {
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	left: 0upx;
-	height: 1upx;
+	height: 1px;
 	content: '';
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
@@ -478,7 +478,7 @@ radio-group label, checkbox-group label{
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-.uni-list-cell-navigate.uni-navigate-bottom.uni-active:after {
+.uni-list-cell-navigate.uni-navigate-bottom.uni-active::after {
 	font-family: uniicons;
 	content: '\e580';
 	position: absolute;
@@ -502,7 +502,7 @@ radio-group label, checkbox-group label{
 .uni-collapse .uni-list-cell {
 	padding-left: 20upx;
 }
-.uni-collapse .uni-list-cell:after {
+.uni-collapse .uni-list-cell::after {
 	left: 52upx;
 }
 .uni-list.uni-active {
