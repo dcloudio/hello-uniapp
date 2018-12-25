@@ -2,16 +2,18 @@
 	<view class="page">
 		<scroll-view class="scrollList" scroll-y :scroll-into-view="scrollViewId" :style="{height:winHeight + 'px'}">
 			<view class="uni-list">
-				<block v-for="(list,key) in lists" :key="key" v-if="list.data[0]">
-					<view class="uni-list-cell-divider" :id="list.letter">
-						{{list.letter}}
-					</view>
-					<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list.data" :key="index"
-					 :class="list.data.length -1 == index ? 'uni-list-cell-last' : ''">
-						<view class="uni-list-cell-navigate">
-							{{item}}
+				<block v-for="(list, key) in lists" :key="key">
+					<block v-if="list.data.length">
+						<view class="uni-list-cell-divider" :id="list.letter">
+							{{list.letter}}
 						</view>
-					</view>
+						<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list.data" :key="index"
+						 :class="list.data.length -1 == index ? 'uni-list-cell-last' : ''">
+							<view class="uni-list-cell-navigate">
+								{{item}}
+							</view>
+						</view>
+					</block>
 				</block>
 			</view>
 		</scroll-view>

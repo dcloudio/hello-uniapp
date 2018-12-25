@@ -117,12 +117,10 @@
 							url: 'list-triplex-row'
 						}]
 					},
-					// #ifndef MP-BAIDU
 					{
 						name: '右侧索引列表 indexList',
 						url: 'index-list'
 					},
-					// #endif
 					{
 						name: '图文列表',
 						url: 'media-list'
