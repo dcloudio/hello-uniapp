@@ -79,12 +79,14 @@
 				"navigationBarTitleText": "text"
 			}
 		},
+		// #ifndef MP-ALIPAY
 		{
 			"path": "pages/component/rich-text/rich-text",
 			"style": {
 				"navigationBarTitleText": "rich-text"
 			}
 		},
+		// #endif
 		{
 			"path": "pages/component/progress/progress",
 			"style": {
@@ -181,6 +183,7 @@
 				"navigationBarTitleText": "image"
 			}
 		},
+		// #ifndef MP-ALIPAY
 		{
 			"path": "pages/component/audio/audio",
 			"style": {
@@ -193,6 +196,7 @@
 				"navigationBarTitleText": "video"
 			}
 		},
+		// #endif
 		{
 			"path": "pages/component/map/map",
 			"style": {

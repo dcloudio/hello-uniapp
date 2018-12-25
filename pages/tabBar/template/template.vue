@@ -182,13 +182,11 @@
 						name: '二维码生成',
 						url: 'qrcode'
 					},
-					// #ifdef APP-PLUS || H5 || MP-BAIDU
+					// #ifdef APP-PLUS || MP-WEIXIN || H5
 					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
-					// #endif
-					// #ifdef APP-PLUS || MP-WEIXIN || H5
 					{
 						name: 'markdown 富文本渲染',
 						url: 'mdparse'

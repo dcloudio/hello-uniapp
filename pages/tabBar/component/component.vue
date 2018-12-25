@@ -41,7 +41,12 @@
 						id: 'content',
 						name: '基础内容',
 						open: false,
-						pages: ['text', 'rich-text', 'icon', 'progress']
+						// #ifdef MP-ALIPAY
+						pages: ['text', 'icon', 'progress'],
+						// #endif
+						// #ifndef MP-ALIPAY
+						pages: ['text', 'rich-text', 'icon', 'progress'],
+						// #endif
 					}, {
 						id: 'form',
 						name: '表单组件',
@@ -59,7 +64,12 @@
 						id: 'media',
 						name: '媒体组件',
 						open: false,
-						pages: ['image', 'audio', 'video']
+						// #ifdef MP-ALIPAY
+						pages: ['image'],
+						// #endif
+						// #ifndef MP-ALIPAY
+						pages: ['image', 'audio', 'video'],
+						// #endif
 					}, {
 						id: 'map',
 						name: '地图',
@@ -112,9 +122,9 @@
 		},
 		methods: {
 			triggerCollapse(e) {
-				if(!this.lists[e].pages){
+				if (!this.lists[e].pages) {
 					this.goDetailPage(this.lists[e].url);
-					return ;
+					return;
 				}
 				for (var i = 0; i < this.lists.length; ++i) {
 					if (e === i) {
@@ -140,11 +150,11 @@
 </script>
 
 <style>
-	page{
+	page {
 		height: auto;
 		min-height: 100%;
 	}
-	
+
 	.uni-card {
 		box-shadow: none;
 	}
