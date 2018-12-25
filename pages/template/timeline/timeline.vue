@@ -12,7 +12,7 @@
 				<view class="uni-timeline-item">
 					<view class="uni-timeline-item-keynode">2018.07</view>
 					<view class="uni-timeline-item-divider"></view>
-					<view class="uni-timeline-item-content">uni-app 正式发布，使用vue技术，开发一次，iOS、Android、微信小程序三端同时生成</view>
+					<view class="uni-timeline-item-content">uni-app 正式发布，使用vue技术，开发一次，App、小程序、H5多端同时生成</view>
 				</view>
 				<view class="uni-timeline-item uni-timeline-last-item">
 					<view class="uni-timeline-item-keynode">2018.10</view>
@@ -37,7 +37,7 @@
 				<view class="uni-timeline-item">
 					<view class="uni-timeline-item-divider"></view>
 					<view class="uni-timeline-item-content">
-						<view>uni-app 正式发布，使用vue技术，开发一次，iOS、Android、微信小程序三端同时生成</view>
+						<view>uni-app 正式发布，使用vue技术，开发一次，App、小程序、H5多端同时生成</view>
 						<view class="datetime">2018.07</view>
 					</view>
 				</view>

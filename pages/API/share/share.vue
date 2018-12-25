@@ -48,7 +48,7 @@
 		data() {
 			return {
 				title: 'share',
-				shareText: 'uni-app可以同时发布成原生App、微信小程序、H5，邀请你一起体验！',
+				shareText: 'uni-app可以同时发布成原生App、小程序、H5，邀请你一起体验！',
 				href:"https://uniapp.dcloud.io",
 				image: '',
 				shareType:1,
@@ -63,7 +63,7 @@
 			}
 		},
 		onUnload:function(){
-			this.shareText='uni-app可以同时发布成原生App、微信小程序、H5，邀请你一起体验！',
+			this.shareText='uni-app可以同时发布成原生App、小程序、H5，邀请你一起体验！',
 			this.href = 'https://uniapp.dcloud.io',
 			this.image='';
 		},
