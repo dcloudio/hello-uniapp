@@ -164,12 +164,10 @@
 						url: 'gesture-lock'
 					},
 					// #endif
-					// #ifndef MP-ALIPAY
 					{
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
-					// #endif
 					// #ifdef APP-PLUS 
 					{
 						name: '问题反馈',

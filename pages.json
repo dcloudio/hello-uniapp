@@ -79,14 +79,12 @@
 				"navigationBarTitleText": "text"
 			}
 		},
-		// #ifndef MP-ALIPAY
 		{
 			"path": "pages/component/rich-text/rich-text",
 			"style": {
 				"navigationBarTitleText": "rich-text"
 			}
 		},
-		// #endif
 		{
 			"path": "pages/component/progress/progress",
 			"style": {
@@ -642,7 +640,6 @@
 					"navigationBarTitleText": "三行列表"
 				}
 			},
-			// #ifndef MP-ALIPAY
 			{
 				"path": "list2detail-list/list2detail-list",
 				"style": {
@@ -661,7 +658,6 @@
 					}
 				}
 			},
-			// #endif
 			{
 				"path": "popup/popup",
 				"style": {

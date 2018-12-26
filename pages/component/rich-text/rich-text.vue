@@ -35,7 +35,7 @@
                         text: 'Hello&nbsp;uni-app!'
                     }]
                 }],
-                strings: "<div style='text-align:center;'><img src='https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png' /></div>"
+                strings: "<div style='text-align:center;'><img style='width: 100px;height: 100px;' src='https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png' /></div>"
             }
         }
     }

@@ -41,12 +41,7 @@
 						id: 'content',
 						name: '基础内容',
 						open: false,
-						// #ifdef MP-ALIPAY
-						pages: ['text', 'icon', 'progress'],
-						// #endif
-						// #ifndef MP-ALIPAY
-						pages: ['text', 'rich-text', 'icon', 'progress'],
-						// #endif
+						pages: ['text', 'rich-text', 'icon', 'progress']
 					}, {
 						id: 'form',
 						name: '表单组件',
