@@ -33,12 +33,18 @@
 				path: '/pages/template/list2detail-detail/list2detail-detail?detailDate=' + JSON.stringify(this.banner)
 			}
 		},
-		onLoad(e) {
-			this.banner = JSON.parse(decodeURIComponent(e.detailDate));
+		onLoad(event) {
+			// 目前在某些平台参数会被主动 decode，暂时这样处理。
+			try {
+				this.banner = JSON.parse(decodeURIComponent(event.detailDate));
+			} catch (error) {
+				this.banner = JSON.parse(event.detailDate);
+			}
+
 			this.getDetail();
 			uni.setNavigationBarTitle({
 				title: this.banner.title
-			})
+			});
 		},
 		methods: {
 			getDetail() {
