@@ -145,6 +145,7 @@
 		width: 80upx;
 		height: 100%;
 		text-align: center;
+		padding: 0;
 	}
 
 	.uni-numbox-value::after {
