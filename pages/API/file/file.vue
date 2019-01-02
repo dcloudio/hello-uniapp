@@ -15,9 +15,11 @@
 				<button class="btn-savefile" @click="saveFile">保存文件</button>
 				<button @click="clear">删除文件</button>
 			</view>
+			<!-- #ifndef MP-ALIPAY -->
 			<view class="btn-area">
 				<button @click="openDocument">打开pdf文件</button>
 			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
@@ -38,56 +40,55 @@
 				uni.chooseImage({
 					count: 1,
 					success: (res) => {
-						this.tempFilePath = res.tempFilePaths[0]
+						this.tempFilePath = res.tempFilePaths[0];
 					}
-				})
+				});
 			},
 			saveFile() {
 				if (this.tempFilePath.length > 0) {
 					uni.saveFile({
 						tempFilePath: this.tempFilePath,
 						success: (res) => {
-							this.savedFilePath = res.savedFilePath
-							uni.setStorageSync('savedFilePath', res.savedFilePath)
+							this.savedFilePath = res.savedFilePath;
+							uni.setStorageSync('savedFilePath', res.savedFilePath);
 							uni.showModal({
 								title: '保存成功',
 								content: '下次进入页面时，此文件仍可用',
 								showCancel: false
-							})
+							});
 						},
 						fail: (res) => {
 							uni.showModal({
 								title: '保存失败',
 								content: '失败原因: ' + JSON.stringify(res),
 								showCancel: false
-							})
+							});
 						}
 					})
 				} else {
 					uni.showModal({
-						content: "请选择文件",
+						content: '请选择文件',
 						showCancel: false
-					})
+					});
 				}
 			},
 			clear() {
-				uni.setStorageSync('savedFilePath', '')
-				this.tempFilePath = '',
-					this.savedFilePath = ''
+				uni.setStorageSync('savedFilePath', '');
+				this.tempFilePath = '';
+				this.savedFilePath = '';
 			},
 			openDocument() {
 				uni.downloadFile({
 					url: 'https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/learning/helloworld.pdf',
-					success: function(res) {
-						var filePath = res.tempFilePath
+					success: (res) => {
 						uni.openDocument({
-							filePath: filePath,
-							success: function(res) {
-								console.log('打开文档成功')
+							filePath: res.tempFilePath,
+							success: () => {
+								console.log('打开文档成功');
 							}
-						})
+						});
 					}
-				})
+				});
 			}
 		}
 	}
