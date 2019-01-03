@@ -1429,3 +1429,30 @@ radio-group label, checkbox-group label{
 .uni-icon-scan:before {
     content: "\e612";
 }
+
+/* 分界线 */
+.uni-divider{
+    height: 110upx;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+}
+.uni-divider__content{
+    font-size: 28upx;
+    color: #999;
+    padding: 0 20upx;
+    position: relative;
+    z-index: 101;
+    background: #F4F5F6;
+}
+.uni-divider__line{
+    background-color: #CCCCCC;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 0;
+    transform: translateY(50%);
+}

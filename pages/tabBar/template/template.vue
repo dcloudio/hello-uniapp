@@ -4,7 +4,7 @@
 			<image src="../../../static/templateIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
-			以下是uni-app的部分模板示例，欢迎大家积极分享更多的模板，一起完善uni-app生态。
+			以下是部分模板示例，更多模板见插件市场：https://ext.dcloud.net.cn。
 		</view>
 		<view class="uni-card" v-for="(list,index) in lists" :key="index">
 			<view class="uni-list">
@@ -21,6 +21,10 @@
 				</view>
 			</view>
 		</view>
+        <view class="uni-divider">
+            <view class="uni-divider__content">更多模板见插件市场：https://ext.dcloud.net.cn</view>
+            <view class="uni-divider__line"></view>
+        </view>
 	</view>
 </template>
 <script>
@@ -282,4 +286,7 @@
 	.uni-list:before {
 		height: 0;
 	}
+    .uni-hello-text{
+        word-break: break-all;
+    }
 </style>
