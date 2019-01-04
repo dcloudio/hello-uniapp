@@ -43,7 +43,7 @@
                 <text class="feedback-star" v-for="(value,key) in stars" :key="key" :class="key < sendDate.score ? 'active' : ''" @tap="chooseStar(value)"></text>
             </view>
         </view>
-        <button type="primary" class="feedback-submit" @tap="send">提交</button>
+        <button type="default" class="feedback-submit" @tap="send">提交</button>
         <view class='feedback-title'>
             <text>用户反馈的结果可在app打包后于DCloud开发者中心查看</text>
         </view>
