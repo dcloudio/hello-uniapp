@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view :class="node.node == 'element' && node.tag == 'li' ? node.classStr : ''">
 		<!--判断是否是标签节点-->
 		<block v-if="node.node == 'element'">
 			<block v-if="node.tag == 'button'">
@@ -12,7 +12,8 @@
 
 			<!--li类型-->
 			<block v-else-if="node.tag == 'li'">
-				<view :class="node.classStr" :style="node.styleStr">
+				<!-- <view :class="node.classStr" :style="node.styleStr"> -->
+				<view :style="node.styleStr">
 					<block v-for="(node, index) of node.nodes" :key="index">
 						<wx-parse-template :node="node" />
 					</block>
