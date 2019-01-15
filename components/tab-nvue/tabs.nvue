@@ -1,5 +1,5 @@
 <script>
-	import tabContent from './tabContent.nvue'
+	import uniTabContent from './tabContent.nvue'
 	export default {
 		props: {
 			index: {
@@ -13,7 +13,7 @@
 			}
 		},
 		components: {
-			tabContent,
+			uniTabContent,
 		},
 		render(createElement) {
 			const vnodes = this.$slots.default;
@@ -24,9 +24,9 @@
 					if (!vnode || !vnode.componentOptions) {
 						continue
 					}
-					if (vnode.componentOptions.tag === 'tab-content') {
+					if (vnode.componentOptions.tag === 'uni-tab-content') {
 
-						const newVNode = createElement('tab-content', {
+						const newVNode = createElement('uni-tab-content', {
 							staticClass: vnode.data.staticClass,
 							'class': vnode.data['class'],
 							style: vnode.data.style
@@ -48,7 +48,7 @@
 						newVNode.data.on.change = this._change
 						newVNodes.push(newVNode)
 					}
-					if (vnode.componentOptions.tag === 'tab-bar') {
+					if (vnode.componentOptions.tag === 'uni-tab-bar') {
 						if (!vnode.componentOptions.listeners) { //监听子元素传递过来的事件
 							vnode.componentOptions.listeners = Object.create(null)
 						}

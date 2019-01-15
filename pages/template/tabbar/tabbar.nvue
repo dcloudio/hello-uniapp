@@ -1,41 +1,37 @@
 <template>
     <div>
-        <tabs @change="changeTab" :index="tabIndex">
-            <tab-bar>
-                <div class="tab-bar-item" v-for="(tabBar, t) in tabBars" :key="t" :ref="tabBar.id + t">
-                    <text class="tab-bar-title" :class="[tabIndex === t ? 'active' : '']">{{tabBar.name}}</text>
-                </div>
-            </tab-bar>
-            <tab-content>
+        <uni-tabs @change="changeTab" :index="tabIndex">
+            <uni-tab-bar :drag="true" :tab-bars="tabBars" :tab-index="tabIndex"></uni-tab-bar>
+            <uni-tab-content>
                 <list class="list" @loadmore="loadMore(index1)" loadmoreoffset="10" v-for="(tab,index1) in newsitems"
                     :key="index1">
                     <refresh class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
                         <text class="refresh-text">{{refreshText}}</text>
                     </refresh>
                     <cell v-for="(newsitem,index2) in tab.data" :key="index2">
-                        <media-list :data="newsitem" @close="close(index1,index2)" @click="goDetail(newsitem)"></media-list>
+                        <uni-media-list :data="newsitem" @close="close(index1,index2)" @click="goDetail(newsitem)"></uni-media-list>
                     </cell>
                     <cell class="loadmore">
                         <text class="loadmore-text">{{tab.loadingText}}</text>
                     </cell>
-                </list>
-            </tab-content>
-        </tabs>
+                </list> 
+            </uni-tab-content>
+        </uni-tabs>
     </div>
 </template>
 
 <script>
-    import tabContent from '@/components/tab-nvue/tabContent.nvue'
-    import tabBar from '@/components/tab-nvue/tabBar.nvue'
-    import tabs from '@/components/tab-nvue/tabs.nvue'
-    import mediaList from '@/components/tab-nvue/mediaList.nvue'
+	import uniTabContent from '@/components/tab-nvue/tabContent.nvue'
+	import uniTabBar from '@/components/tab-nvue/tabBar.nvue'
+	import uniTabs from '@/components/tab-nvue/tabs.nvue'
+	import uniMediaList from '@/components/tab-nvue/mediaList.nvue'
     const dom = weex.requireModule('dom')
     export default {
         components: {
-            tabContent,
-            tabBar,
-            tabs,
-            mediaList
+            uniTabContent,
+            uniTabBar,
+            uniTabs,
+            uniMediaList
         },
         data() {
             return {
@@ -131,48 +127,35 @@
         },
         methods: {
             goDetail(e) {
-                uni.navigateTo({
-                    url: '/pages/template/tabbar/detail/detail?data=' + e.title
-                })
+                console.log("前往详情页面")
             },
             close(index1, index2) {
-            	uni.showModal({
-            		content: '是否删除本条信息？',
-            		success: (res) => {
-            			if (res.confirm) {
-            				this.newsitems[index1].data.splice(index2, 1);
-            			}
-            		}
-            	})
+                uni.showModal({
+                    content: '是否删除本条信息？',
+                    success: (res) => {
+                        if (res.confirm) {
+                            this.newsitems[index1].data.splice(index2, 1);
+                        }
+                    }
+                })
             },
             loadMore(e) {
-            	setTimeout(() => {
-            		this.addData(e);
-            	}, 1000);
+                setTimeout(() => {
+                    this.addData(e);
+                }, 1000);
             },
             addData(e) {
-            	console.log("加载更多...");
-            	if (this.newsitems[e].data.length > 30) {
-            		this.newsitems[e].loadingText = '没有更多了';
-            		return;
-            	}
-            	for (let i = 1; i <= 10; i++) {
-            		this.newsitems[e].data.push(this['data' + Math.floor(Math.random() * 5)]);
-            	}
+                console.log("加载更多...");
+                if (this.newsitems[e].data.length > 30) {
+                    this.newsitems[e].loadingText = '没有更多了';
+                    return;
+                }
+                for (let i = 1; i <= 10; i++) {
+                    this.newsitems[e].data.push(this['data' + Math.floor(Math.random() * 5)]);
+                }
             },
             async changeTab(e) {
                 this.tabIndex = e.index;
-                const el = this.$refs[this.tabBars[e.index].id + e.index][0]
-                let elSize = await this.getElSize(el);
-                if (elSize.left + elSize.width > 750) {
-                    let index = e.index - 4;
-                    let newEl = this.$refs[this.tabBars[index].id + index][0]
-                    dom.scrollToElement(newEl, {});
-                    return;
-                }
-                if (elSize.left < 0) {
-                    dom.scrollToElement(el, {});
-                }
             },
             getElSize(el) { //得到元素的size
                 return new Promise((res, rej) => {
@@ -196,26 +179,26 @@
                 return ary;
             },
             onrefresh(event) {
-            	uni.showToast({
-            		title: "refresh",
-            		icon: "none"
-            	});
-            	this.refreshText = "正在刷新...";
-            	this.refreshing = true;
-            	setTimeout(() => {
-            		console.log("刷新结束")
-            		this.refreshing = false
-            	}, 2000)
+                uni.showToast({
+                    title: "refresh",
+                    icon: "none"
+                });
+                this.refreshText = "正在刷新...";
+                this.refreshing = true;
+                setTimeout(() => {
+                    console.log("刷新结束")
+                    this.refreshing = false
+                }, 2000)
             },
             onpullingdown(event) {
-            	if (this.refreshing) {
-            		return;
-            	}
-            	if (Math.abs(event.pullingDistance) > Math.abs(event.viewHeight)) {
-            		this.refreshText = "释放立即刷新";
-            	} else {
-            		this.refreshText = "下拉可以刷新";
-            	}
+                if (this.refreshing) {
+                    return;
+                }
+                if (Math.abs(event.pullingDistance) > Math.abs(event.viewHeight)) {
+                    this.refreshText = "释放立即刷新";
+                } else {
+                    this.refreshText = "下拉可以刷新";
+                }
             }
         }
     }
