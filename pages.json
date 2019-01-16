@@ -469,18 +469,6 @@
 			}
 		},
 		{
-			"path": "platforms/app-plus/about/about",
-			"style": {
-				"navigationBarTitleText": "关于"
-			}
-		},
-		{
-			"path": "platforms/h5/about/about",
-			"style": {
-				"navigationBarTitleText": "关于"
-			}
-		},
-		{
 			"path": "platforms/app-plus/tabbar/tabbar",
 			"style": {
 				"navigationBarTitleText": "可拖动顶部选项卡（非原生）"
@@ -489,6 +477,12 @@
 		{
 			"path": "platforms/app-plus/web-view-local/web-view-local",
 			"style": {}
+		},
+		{
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于"
+			}
 		}
 	],
 	"subPackages": [{
