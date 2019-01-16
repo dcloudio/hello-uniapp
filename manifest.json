@@ -78,7 +78,7 @@
 		}
 	},
 	"h5": {
-		"template": "index.html",
+		"template": "template.html",
 		"router": {
 			"mode": "history",
 			"base": "/h5/"
