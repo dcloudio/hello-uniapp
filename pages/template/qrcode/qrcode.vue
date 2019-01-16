@@ -17,12 +17,12 @@
 			<view class="uni-title">设置二维码大小</view>
 		</view>
 		<view class="body-view">
-			<slider :value="qrsize" @change="sliderchange" min="50" max="500" show-value/>
+			<slider :value="qrsize" @change="sliderchange" min="50" max="500" show-value />
 		</view>
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary" @tap="creatQrcode">生成二维码</button>
-				<button type="warn" @tap="clearQrcode">清除二维码</button>
+				<button type="primary" @click="creatQrcode">生成二维码</button>
+				<button type="warn" @click="clearQrcode">清除二维码</button>
 			</view>
 		</view>
 		<page-foot :name="name"></page-foot>
@@ -35,14 +35,14 @@
 		data() {
 			return {
 				title: '二维码生成',
-				name:'诗小柒',
+				name: '诗小柒',
 				showClearIcon: false,
-				qrval:'',
-				qrsize:100,
+				qrval: '',
+				qrsize: 100,
 			}
 		},
 		methods: {
-			bindClearInput: function (e) {
+			bindClearInput: function(e) {
 				this.qrval = e.target.value;
 				if (e.target.value.length > 0) {
 					this.showClearIcon = true;
@@ -50,17 +50,24 @@
 					this.showClearIcon = false;
 				}
 			},
-			clearIcon: function () {
-				this.qrval = "";
+			clearIcon: function() {
+				this.qrval = '';
 				this.showClearIcon = false;
 			},
-			sliderchange(e){
+			sliderchange(e) {
 				this.qrsize = e.detail.value
 			},
-			creatQrcode(){
+			creatQrcode() {
+				if (!this.qrval) {
+					uni.showToast({
+						title: '请输入二维码内容',
+						icon: 'none'
+					});
+					return;
+				}
 				this.$refs.qrcode.creatQrcode();
 			},
-			clearQrcode(){
+			clearQrcode() {
 				this.$refs.qrcode.clearQrcode();
 				this.clearIcon();
 			}
@@ -70,4 +77,3 @@
 		}
 	}
 </script>
-
