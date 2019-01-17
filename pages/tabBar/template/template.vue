@@ -21,10 +21,10 @@
 				</view>
 			</view>
 		</view>
-        <view class="uni-divider">
-            <view class="uni-divider__content">更多模板见插件市场：https://ext.dcloud.net.cn</view>
-            <view class="uni-divider__line"></view>
-        </view>
+		<view class="uni-divider">
+			<view class="uni-divider__content">更多模板见插件市场：https://ext.dcloud.net.cn</view>
+			<view class="uni-divider__line"></view>
+		</view>
 	</view>
 </template>
 <script>
@@ -241,13 +241,8 @@
 		},
 		onNavigationBarButtonTap(e) {
 			uni.navigateTo({
-				// #ifdef APP-PLUS
-				url: '/platforms/app-plus/about/about',
-				// #endif
-				// #ifdef H5
-				url: '/platforms/h5/about/about',
-				// #endif
-			})
+				url: '/pages/about/about'
+			});
 		},
 		methods: {
 			triggerCollapse(e) {
@@ -292,7 +287,8 @@
 	.uni-list:before {
 		height: 0;
 	}
-    .uni-hello-text{
-        word-break: break-all;
-    }
+
+	.uni-hello-text {
+		word-break: break-all;
+	}
 </style>

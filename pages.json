@@ -475,7 +475,7 @@
             }
         },
         {
-            "path" : "platforms/app-plus/about/about",
+            "path" : "pages/about/about",
             "style" : {
                 "navigationBarTitleText" : "关于"
             }
@@ -610,6 +610,7 @@
 						        	}
 						        }]
 						    }
+
 						}
 					}
 				},
