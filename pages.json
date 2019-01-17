@@ -481,7 +481,7 @@
             }
         },
         {
-            "path" : "platforms/h5/about/about",
+            "path" : "pages/about/about",
             "style" : {
                 "navigationBarTitleText" : "关于"
             }
@@ -593,24 +593,67 @@
                         }
                     }
                 },
+                // #endif
+                // #ifdef APP-PLUS
+                {
+                    "path" : "nav-image/nav-image",
+                    "style" : {
+                        "app-plus" : {
+                            "titleNView" : {
+                                "titleText" : "",
+                                "tags" : [
+                                    {
+                                        "tag" : "img",
+                                        "src" : "/static/nav.png",
+                                        "position" : {
+                                            "left" : "auto",
+                                            "top" : "auto",
+                                            "width" : "110px",
+                                            "height" : "26px"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "path" : "nav-city-dropdown/nav-city-dropdown",
+                    "style" : {
+                        "navigationBarTitleText" : "导航栏带城市选择",
+                        "app-plus" : {
+                            "titleNView" : {
+                                "buttons" : [
+                                    {
+                                        "text" : "北京市",
+                                        "fontSize" : "14",
+                                        "select" : true,
+                                        "width" : "auto"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
 				{
-				    "path" : "nav-image/nav-image",
+				    "path" : "nav-dot/nav-dot",
 				    "style" : {
-						"navigationBarTitleText" : " ",
-						"app-plus" : {
-						    "titleNView" : {
-						        "tags":[{
-						        	"tag":"img",
-						        	"src":"/static/nav.png",
-						        	"position":{
-						        		"left":"auto",
-						        		"top":"auto",
-						        		"width":"110px",
-						        		"height":"26px"
-						        	}
-						        }]
-						    }
-
+						"navigationBarTitleText" : "导航栏带红点和角标",
+						"app-plus": {
+							"titleNView": {
+								"buttons": [ 
+									{
+										"text": "消息", 
+										"fontSize": "14",
+										"redDot": true
+									},
+									{
+										"text": "关注", 
+										"fontSize": "14",
+										"badgeText": "12"
+									}
+								]
+							}
 						}
 					}
 				},

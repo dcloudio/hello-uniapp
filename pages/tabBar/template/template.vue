@@ -65,6 +65,14 @@
 								name: '导航栏带图片',
 								url: 'nav-image'
 							},
+							{
+								name: '导航栏带红点和角标',
+								url:'nav-dot'
+							},
+							{
+								name: '导航栏带城市选择',
+								url:'nav-city-dropdown'
+							},
 							// #endif
 							{
 								name: '自定义导航栏组件(非原生)',
