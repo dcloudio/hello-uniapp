@@ -62,7 +62,7 @@ export default {
 			
 		};
 	},
-	onLoad() {
+	onReady() {
 		this.setStyle(0,'北京市');
 	},
 	methods: {
@@ -95,7 +95,7 @@ export default {
 			if(text.length > 3){
 				text = text.substr(0,3)+"..."
 			}
-			titleNView.buttons[index].text = text;
+			titleNView.buttons[0].text = text;
 			currentWebview.setStyle({
 				titleNView:titleNView
 			});
