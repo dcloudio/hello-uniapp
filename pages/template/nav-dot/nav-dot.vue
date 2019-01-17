@@ -19,45 +19,47 @@ export default {
 			title: 'nav-dot'
 		};
 	},
-	onLoad() {
+	onReady() {
 		this.setStyle(0,true);
-		this.setStyle(1,'20');
+		this.setStyle(1,true,'9');
 
 	},
 	methods: {
 		/**
 		 * 修改导航栏buttons
 		 * index[number] 修改的buttons 下标索引，最右边索引为0
-		 * text[boolean|string] 需要修改的text 内容 ，如果定义redDot请设置 true||false ，如果定义badgeText请设置具体数字，如果没有输入''
+		 * show[boolean] 显示还是隐藏角标或者红点
+		 * text[string] 需要修改的角标的text 内容 ，如果定义redDot 此参数无效 ，如果定义badgeText请设置具体，如果不用输入
 		 */
-		setStyle(index, text) {
+		setStyle(index, show,text) {
 			let pages = getCurrentPages();
 			let page = pages[pages.length - 1];
 			// #ifdef APP-PLUS
 			let currentWebview = page.$getAppWebview();
-			let titleNView = currentWebview.getStyle().titleNView;
-
-			let dot = titleNView.buttons[index].redDot;
-			let badgeText = titleNView.buttons[index].badgeText;
-			if (dot) {
-				titleNView.buttons[index].redDot = text;
+			if(show){
+				if(index === 0){
+					currentWebview.showTitleNViewButtonRedDot({index:index,text:text})
+				}else{
+					currentWebview.setTitleNViewButtonBadge({index:index,text:text})
+				}
+			}else{
+				if(index === 0){
+					currentWebview.hideTitleNViewButtonRedDot({index:index})
+				}else{
+					currentWebview.removeTitleNViewButtonBadge({index:index})
+				}
 			}
-			if (badgeText) {
-				titleNView.buttons[index].badgeText = text;
-			}
-			currentWebview.setStyle({
-				titleNView: titleNView
-			});
+			
 			// #endif
 		}
 	},
 	onNavigationBarButtonTap(e) {
 		uni.showToast({
-			title: e.index === 0 ? '你点了消息按钮' : '你点了关注按钮',
+			title: e.index === 0 ? '你点了消息按钮' : '你点了关注按钮', 
 			icon: 'none'
 		});
 		// 取消红点或者角标 
-		this.setStyle(e.index, e.index === 0 ? false : '');
+		this.setStyle(e.index,false);
 	},
 	components: {
 		uniIcon
