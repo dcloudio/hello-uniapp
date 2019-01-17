@@ -44,7 +44,6 @@ export default {
 					currentWebview.setTitleNViewButtonBadge({index:index,text:text})
 				}
 			}else{
-				console.log(index)
 				if(index === 0){
 					currentWebview.hideTitleNViewButtonRedDot({index:index})
 				}else{
