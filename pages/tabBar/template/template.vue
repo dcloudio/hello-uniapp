@@ -60,6 +60,12 @@
 								url: 'nav-button'
 							},
 							// #endif
+							// #ifdef APP-PLUS
+							{
+								name: '导航栏带图片',
+								url: 'nav-image'
+							},
+							// #endif
 							{
 								name: '自定义导航栏组件(非原生)',
 								url: 'nav-bar'
