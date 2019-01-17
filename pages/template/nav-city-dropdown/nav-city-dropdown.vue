@@ -91,6 +91,7 @@ export default {
 			// #ifdef APP-PLUS
 			let currentWebview = page.$getAppWebview();
 			let titleNView = currentWebview.getStyle().titleNView;
+			// 添加文字过长截取为3个字符，请根据自己业务需求更改
 			if(text.length > 3){
 				text = text.substr(0,3)+"..."
 			}
