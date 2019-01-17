@@ -481,12 +481,6 @@
             }
         },
         {
-            "path" : "pages/about/about",
-            "style" : {
-                "navigationBarTitleText" : "关于"
-            }
-        },
-        {
             "path" : "platforms/app-plus/tabbar/tabbar",
             "style" : {
                 "navigationBarTitleText" : "可拖动顶部选项卡（非原生）"
