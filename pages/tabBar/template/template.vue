@@ -201,9 +201,17 @@
 						name: '图片裁剪',
 						url: 'crop'
 					},
-					{
-						name: 'markdown 富文本渲染',
-						url: 'mdparse'
+                    {
+						id: 'uparse',
+						name: '富文本渲染',
+						open: false,
+						pages: [{
+							name: 'uParse 富文本渲染示例 - markdown',
+							url: 'uparse-md'
+						}, {
+							name: 'uParse 富文本渲染示例 - html',
+							url: 'uparse-html'
+						}]
 					},
 					{
 						name: 'markdown 富文本编辑器',

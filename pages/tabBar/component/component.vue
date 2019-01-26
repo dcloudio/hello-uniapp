@@ -62,9 +62,12 @@
 						// #ifdef MP-ALIPAY
 						pages: ['image'],
 						// #endif
-						// #ifndef MP-ALIPAY
-						pages: ['image', 'audio', 'video'],
-						// #endif
+                        // #ifdef MP-ALIPAY || MP-TOUTIAO
+                        pages: ['image', 'video'],
+                        // #endif
+                        // #ifdef MP-BAIDU || APP-PLUS || H5
+                        pages: ['image', 'audio' ,'video'],
+                        // #endif
 					}, {
 						id: 'map',
 						name: '地图',

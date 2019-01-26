@@ -24,7 +24,7 @@
 		</view>
 		<view class="preview" v-if="showPreview && textareaHtmlSync">
 			<scroll-view scroll-y :style="'height:'+screenHeight/2.5+'px;padding:10px;box-sizing: border-box;'">
-				<wxParse :content="textareaHtmlSync" @preview="preview" @navigate="navigate" />
+				<uParse :content="textareaHtmlSync" @preview="preview" @navigate="navigate" />
 			</scroll-view>
 		</view>
 	</view>
@@ -32,11 +32,11 @@
 
 <script>
 	import marked from '../marked'
-	import wxParse from '../mpvue-wxparse/src/wxParse.vue'
+	import uParse from '../uParse/src/wxParse.vue'
 	export default {
 		name: "ly-markdown",
 		components: {
-			wxParse
+			uParse
 		},
 		data: function () {
 			return {
@@ -172,7 +172,7 @@
 
 <style>
 	@import './markdown.css';
-	@import url("../mpvue-wxparse/src/wxParse.css");
+	@import url("../uParse/src/wxParse.css");
 
 	.input-content {
 		width: 100%;

@@ -187,13 +187,15 @@
                 "navigationBarTitleText" : "image"
             }
         },
-        // #ifndef MP-ALIPAY
+        // #ifdef H5 || APP-PLUS || MP-BAIDU
         {
             "path" : "pages/component/audio/audio",
             "style" : {
                 "navigationBarTitleText" : "audio"
             }
         },
+        // #endif
+        // #ifndef MP-ALIPAY
         {
             "path" : "pages/component/video/video",
             "style" : {
@@ -511,9 +513,15 @@
                 },
                 // #ifdef APP-PLUS || MP-WEIXIN || H5
                 {
-                    "path" : "mdparse/mdparse",
+                    "path" : "uparse-md/uparse-md",
                     "style" : {
-                        "navigationBarTitleText" : "markdown富文本渲染"
+                        "navigationBarTitleText" : "富文本渲染示例-markdown"
+                    }
+                },
+                {
+                    "path" : "uparse-html/uparse-html",
+                    "style" : {
+                        "navigationBarTitleText" : "富文本渲染示例-html"
                     }
                 },
                 {
