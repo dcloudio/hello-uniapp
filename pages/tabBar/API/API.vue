@@ -109,6 +109,9 @@
 						},
 						//#ifndef H5
 						{
+							name: '添加手机联系人',
+							url: 'add-phone-contact'
+						}, {
 							name: '扫码',
 							url: 'scan-code'
 						}, {

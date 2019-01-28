@@ -333,6 +333,12 @@
             }
         },
         {
+            "path" : "pages/API/add-phone-contact/add-phone-contact",
+            "style" : {
+                "navigationBarTitleText" : "添加手机联系人"
+            }
+        },
+        {
             "path" : "pages/API/on-accelerometer-change/on-accelerometer-change",
             "style" : {
                 "navigationBarTitleText" : "监听加速度计数据"
@@ -637,28 +643,28 @@
                         }
                     }
                 },
-				{
-				    "path" : "nav-dot/nav-dot",
-				    "style" : {
-						"navigationBarTitleText" : "导航栏带红点和角标",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [ 
-									{
-										"text": "消息", 
-										"fontSize": "14",
-										"redDot": true
-									},
-									{
-										"text": "关注", 
-										"fontSize": "14",
-										"badgeText": "12"
-									}
-								]
-							}
-						}
-					}
-				},
+                {
+                    "path" : "nav-dot/nav-dot",
+                    "style" : {
+                        "navigationBarTitleText" : "导航栏带红点和角标",
+                        "app-plus" : {
+                            "titleNView" : {
+                                "buttons" : [
+                                    {
+                                        "text" : "消息",
+                                        "fontSize" : "14",
+                                        "redDot" : true
+                                    },
+                                    {
+                                        "text" : "关注",
+                                        "fontSize" : "14",
+                                        "badgeText" : "12"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
                 // #endif
                 {
                     "path" : "mpvue-picker/mpvue-picker",
