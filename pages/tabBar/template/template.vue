@@ -135,10 +135,12 @@
 							url: 'list-triplex-row'
 						}]
 					},
+					// #ifndef MP-BAIDU
 					{
 						name: '右侧索引列表 indexList',
 						url: 'index-list'
 					},
+					// #endif
 					{
 						name: '图文列表',
 						url: 'media-list'
@@ -170,7 +172,7 @@
 						name: '标签 tag',
 						url: 'tag'
 					},
-					// #ifndef MP-ALIPAY
+					// #ifndef MP-ALIPAY || MP-TOUTIAO
 					{
 						name: 'ECharts 图表',
 						url: 'echarts'
@@ -196,11 +198,13 @@
 						name: '二维码生成',
 						url: 'qrcode'
 					},
-					// #ifdef APP-PLUS || MP-WEIXIN || H5
+					// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-BAIDU
 					{
 						name: '图片裁剪',
 						url: 'crop'
 					},
+					// #endif
+					// #ifdef APP-PLUS || MP-WEIXIN || H5
                     {
 						id: 'uparse',
 						name: '富文本渲染',

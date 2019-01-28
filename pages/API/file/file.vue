@@ -15,7 +15,7 @@
 				<button class="btn-savefile" @click="saveFile">保存文件</button>
 				<button @click="clear">删除文件</button>
 			</view>
-			<!-- #ifndef MP-ALIPAY -->
+			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
 			<view class="btn-area">
 				<button @click="openDocument">打开pdf文件</button>
 			</view>

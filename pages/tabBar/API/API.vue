@@ -165,10 +165,14 @@
 					}, {
 						name: '使用地图查看位置',
 						url: 'open-location'
-					}, {
+					}, 
+					// #ifndef MP-TOUTIAO
+					{
 						name: '使用地图选择位置',
 						url: 'choose-location'
-					}]
+					},
+					// #endif
+					]
 				}, {
 					id: 'storage',
 					name: '数据',

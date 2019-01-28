@@ -73,12 +73,14 @@
                 "navigationBarTitleText" : "swiper"
             }
         },
+        // #ifndef MP-TOUTIAO
         {
-            "path" : "pages/component/movable-view/movable-view",
-            "style" : {
-                "navigationBarTitleText" : "movable-view"
-            }
+        	"path": "pages/component/movable-view/movable-view",
+        	"style": {
+        		"navigationBarTitleText": "movable-view"
+        	}
         },
+        // #endif
         {
             "path" : "pages/component/text/text",
             "style" : {
@@ -189,26 +191,28 @@
         },
         // #ifdef H5 || APP-PLUS || MP-BAIDU
         {
-            "path" : "pages/component/audio/audio",
-            "style" : {
-                "navigationBarTitleText" : "audio"
-            }
+        	"path": "pages/component/video/video",
+        	"style": {
+        		"navigationBarTitleText": "video"
+        	}
         },
         // #endif
-        // #ifndef MP-ALIPAY
+        // #ifndef MP-ALIPAY || MP-TOUTIAO
         {
-            "path" : "pages/component/video/video",
-            "style" : {
-                "navigationBarTitleText" : "video"
-            }
+        	"path": "pages/component/audio/audio",
+        	"style": {
+        		"navigationBarTitleText": "audio"
+        	}
         },
         // #endif
+        // #ifndef MP-TOUTIAO
         {
-            "path" : "pages/component/map/map",
-            "style" : {
-                "navigationBarTitleText" : "map"
-            }
+        	"path": "pages/component/map/map",
+        	"style": {
+        		"navigationBarTitleText": "map"
+        	}
         },
+        // #endif
         {
             "path" : "pages/component/canvas/canvas",
             "style" : {
@@ -332,12 +336,12 @@
                 "navigationBarTitleText" : "获取手机系统信息"
             }
         },
-        {
-            "path" : "pages/API/add-phone-contact/add-phone-contact",
-            "style" : {
-                "navigationBarTitleText" : "添加手机联系人"
-            }
-        },
+		{
+		    "path" : "pages/API/add-phone-contact/add-phone-contact",
+		    "style" : {
+		        "navigationBarTitleText" : "添加手机联系人"
+		    }
+		},
         {
             "path" : "pages/API/on-accelerometer-change/on-accelerometer-change",
             "style" : {
@@ -434,12 +438,14 @@
                 "navigationBarTitleText" : "查看位置"
             }
         },
+        // #ifndef MP-TOUTIAO
         {
-            "path" : "pages/API/choose-location/choose-location",
-            "style" : {
-                "navigationBarTitleText" : "使用地图选择位置"
-            }
+        	"path": "pages/API/choose-location/choose-location",
+        	"style": {
+        		"navigationBarTitleText": "使用地图选择位置"
+        	}
         },
+        // #endif
         {
             "path" : "pages/API/storage/storage",
             "style" : {
@@ -482,12 +488,14 @@
                 "navigationBarTitleText" : "问题反馈"
             }
         },
+        // #ifdef H5 || APP-PLUS
         {
-            "path" : "pages/about/about",
-            "style" : {
-                "navigationBarTitleText" : "关于"
-            }
+        	"path": "pages/about/about",
+        	"style": {
+        		"navigationBarTitleText": "关于"
+        	}
         },
+        // #endif
         {
             "path" : "platforms/app-plus/tabbar/tabbar",
             "style" : {
@@ -549,12 +557,12 @@
                         "navigationBarTitleText" : "图片裁剪"
                     }
                 },
-                // #ifndef MP-ALIPAY
+                // #ifndef MP-ALIPAY || MP-TOUTIAO
                 {
-                    "path" : "echarts/echarts",
-                    "style" : {
-                        "navigationBarTitleText" : "ECharts图表"
-                    }
+                	"path": "echarts/echarts",
+                	"style": {
+                		"navigationBarTitleText": "ECharts图表"
+                	}
                 },
                 // #endif
                 // #ifdef APP-PLUS || H5 || MP-WEIXIN
@@ -643,28 +651,28 @@
                         }
                     }
                 },
-                {
-                    "path" : "nav-dot/nav-dot",
-                    "style" : {
-                        "navigationBarTitleText" : "导航栏带红点和角标",
-                        "app-plus" : {
-                            "titleNView" : {
-                                "buttons" : [
-                                    {
-                                        "text" : "消息",
-                                        "fontSize" : "14",
-                                        "redDot" : true
-                                    },
-                                    {
-                                        "text" : "关注",
-                                        "fontSize" : "14",
-                                        "badgeText" : "12"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
+				{
+				    "path" : "nav-dot/nav-dot",
+				    "style" : {
+						"navigationBarTitleText" : "导航栏带红点和角标",
+						"app-plus": {
+							"titleNView": {
+								"buttons": [ 
+									{
+										"text": "消息", 
+										"fontSize": "14",
+										"redDot": true
+									},
+									{
+										"text": "关注", 
+										"fontSize": "14",
+										"badgeText": "12"
+									}
+								]
+							}
+						}
+					}
+				},
                 // #endif
                 {
                     "path" : "mpvue-picker/mpvue-picker",

@@ -19,7 +19,7 @@
 				<!-- #ifdef APP-PLUS || MP-ALIPAY -->
 				<button type="primary" @click="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-WEIXIN || MP-BAIDU -->
+				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-TOUTIAO -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
 				<!-- #endif -->
 				<button @click="clear">清空</button>

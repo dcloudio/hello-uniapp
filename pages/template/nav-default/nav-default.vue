@@ -7,7 +7,9 @@
 			</view>
 			<view class="uni-btn-v">
 				<button type="default" @click="setText">改变标题栏文字</button>
+				<!-- #ifndef MP-TOUTIAO -->
 				<button type="primary" @click="setBg">改变标题栏颜色</button>
+				<!-- #endif -->
 			</view>
 		</view>
 	</view>

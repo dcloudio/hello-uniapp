@@ -35,7 +35,9 @@
 							'view',
 							'scroll-view',
 							'swiper',
-							'movable-view'
+							// #ifndef MP-TOUTIAO
+							'movable-view',
+							// #endif
 						]
 					}, {
 						id: 'content',
@@ -59,22 +61,25 @@
 						id: 'media',
 						name: '媒体组件',
 						open: false,
-						// #ifdef MP-ALIPAY
-						pages: ['image'],
-						// #endif
-                        // #ifdef MP-ALIPAY || MP-TOUTIAO
-                        pages: ['image', 'video'],
-                        // #endif
-                        // #ifdef MP-BAIDU || APP-PLUS || H5
-                        pages: ['image', 'audio' ,'video'],
-                        // #endif
-					}, {
+						pages: [
+							'image',
+							// #ifndef MP-ALIPAY
+							'video',
+							// #endif
+							// #ifndef MP-ALIPAY || MP-TOUTIAO
+							'audio',
+							// #endif
+						],
+					}, 
+					// #ifndef MP-TOUTIAO
+					{
 						id: 'map',
 						name: '地图',
 						open: false,
 						pages: ['map']
-
+					
 					},
+					// #endif
 					{
 						id: 'web-view',
 						name: '网页',
