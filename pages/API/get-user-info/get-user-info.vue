@@ -16,10 +16,10 @@
 				</block>
 			</view>
 			<view class="uni-btn-v">
-				<!-- #ifdef APP-PLUS || MP-ALIPAY -->
+				<!-- #ifdef APP-PLUS || MP-ALIPAY || MP-TOUTIAO -->
 				<button type="primary" @click="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-TOUTIAO -->
+				<!-- #ifdef MP-WEIXIN || MP-BAIDU -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
 				<!-- #endif -->
 				<button @click="clear">清空</button>
