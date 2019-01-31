@@ -7,6 +7,12 @@
 	"transformPx": false,
 	/* 5+App特有相关 */
 	"app-plus": {
+		"splashscreen": {
+			"alwaysShowBeforeRender": true,
+			"waiting": true,
+			"autoclose": true,
+			"delay": 0
+		},
 		"modules": {
 			"OAuth": {},
 			"Payment": {},
