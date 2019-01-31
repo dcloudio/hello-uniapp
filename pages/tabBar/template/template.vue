@@ -171,6 +171,9 @@
 					}, {
 						name: '标签 tag',
 						url: 'tag'
+					}, {
+						name: '悬浮按钮 fab',
+						url: 'fab'
 					},
 					// #ifndef MP-ALIPAY || MP-TOUTIAO
 					{

@@ -898,6 +898,11 @@
                     "style" : {
                         "navigationBarTitleText" : "标签tag"
                     }
+                },{
+                    "path" : "fab/fab",
+                    "style" : {
+                        "navigationBarTitleText" : "悬浮按钮 fab"
+                    }
                 },
                 {
                     "path" : "countdown/countdown",
