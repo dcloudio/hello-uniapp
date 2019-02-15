@@ -44,21 +44,6 @@ export default {
 		};
 	},
 	onLoad() {
-		// 页面进入之后，主动获取焦点有些bug ，以下为临时解决方案。修复之后，将删除这段代码。
-
-		let pages = getCurrentPages();
-		let page = pages[pages.length - 1];
-		// #ifdef APP-PLUS
-		let currentWebview = page.$getAppWebview();
-		let titleNView = currentWebview.getStyle().titleNView;
-		titleNView.searchInput.autoFocus = true;
-		setTimeout(() => {
-			currentWebview.setStyle({
-				titleNView: titleNView
-			});
-		}, 500);
-		// #endif
-
 		// 本示例用的是高德 sdk ，请根据具体需求换成自己的服务器接口。
 		this.amapPlugin = util.mapInit();
 		this.historyList = uni.getStorageSync('search:history');
