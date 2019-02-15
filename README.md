@@ -4,9 +4,17 @@
 
 <p align="center">
     <a href="https://m3w.cn/uniapp" target="blank">
-	    <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni01240.png"/>
+	    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/barcode-20190131.png"/>
     </a>
 </p>
 
+`uni-app`官网文档详见[https://uniapp.dcloud.io](https://uniapp.dcloud.io)
 
+更多uni-app的模板、示例详见[插件市场](https://ext.dcloud.net.cn/)
+
+扫码加入uni-app微信交流群：
+
+<p>
+    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/wx-barcode.png" width="250"/>
+</p>
 
