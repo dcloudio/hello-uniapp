@@ -20,7 +20,7 @@
 				:style="{ 'background-color': styles.buttonColor }"
 				@click="open"
 			>
-				<text class="icon icon-jia" :class="{ active: showContent }"></text>
+				<text class="uni-icon uni-icon-plusempty" :class="{ active: showContent }"></text>
 			</view>
 			<view
 				class="fab-content"
@@ -273,13 +273,14 @@ export default {
 	bottom: 0;
 }
 
-.fab-circle .icon-jia {
+.fab-circle .uni-icon-plusempty {
 	color: #ffffff;
-	font-size: 50upx;
+	font-size: 80upx;
 	transition: all 0.3s;
+	font-weight: bold;
 }
 
-.fab-circle .icon-jia.active {
+.fab-circle .uni-icon-plusempty.active {
 	transform: rotate(135deg);
 }
 
@@ -344,25 +345,4 @@ export default {
 	width: 110upx;
 }
 
-@font-face {
-	font-family: 'iconfont';
-	src: url('https://at.alicdn.com/t/font_1028200_xhbo4rn58rp.ttf?t=1548214263520')
-		format('truetype');
-}
-
-.icon {
-	font-family: 'iconfont' !important;
-	font-size: 16px;
-	font-style: normal;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-jia:before {
-	content: '\e630';
-}
-
-.icon-arrow-up:before {
-	content: '\e603';
-}
 </style>

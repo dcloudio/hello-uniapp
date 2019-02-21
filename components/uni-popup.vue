@@ -24,7 +24,7 @@
 				type: String,
 				default: ""
 			}
-		},
+		}, 
 		data() {
 			let offsetTop = 0;
 			//#ifdef H5
