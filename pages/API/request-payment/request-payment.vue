@@ -6,7 +6,7 @@
                 <view class="uni-hello-text uni-center">支付金额</text></view>
                 <view class="uni-h1 uni-center uni-common-mt">
                     <text class="rmbLogo">￥</text>
-                    <input class="price" type="number" :value="price" maxlength="3" @input="priceChange" />
+                    <input class="price" type="digit" :value="price" maxlength="4" @input="priceChange" />
                 </view>
             </view>
             <view class="uni-btn-v uni-common-mt">
