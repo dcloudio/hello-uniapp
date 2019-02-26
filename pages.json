@@ -848,7 +848,10 @@
                         },
                         "app-plus" : {
                             "bounce" : "none"
-                        }
+                        },
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
                     }
                 },
                 {
