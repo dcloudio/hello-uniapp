@@ -41,9 +41,8 @@
 		onLoad() {
 			uni.getProvider({
 				service: 'oauth',
-				success: (e) => {
-					console.log('oauth..........');
-					this.providerList = e.provider.map((value) => {
+				success: (result) => {
+					this.providerList = result.provider.map((value) => {
 						let providerName = '';
 						switch (value) {
 							case 'weixin':
@@ -58,21 +57,25 @@
 							case 'xiaomi':
 								providerName = '小米登录'
 								break;
+							case 'alipay':
+								providerName = '支付宝登录'
+								break;
 							case 'baidu':
 								providerName = '百度登录'
 								break;
-							case 'alipay':
-								providerName = '支付宝登录'
+							case 'toutiao':
+								providerName = '头条登录'
 								break;
 						}
 						return {
 							name: providerName,
 							id: value
 						}
-					})
+					});
+
 				},
-				fail: (e) => {
-					console.log("获取登录通道失败", e);
+				fail: (error) => {
+					console.log('获取登录通道失败', error);
 				}
 			});
 		},

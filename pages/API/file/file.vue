@@ -77,6 +77,7 @@
 				this.tempFilePath = '';
 				this.savedFilePath = '';
 			},
+			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			openDocument() {
 				uni.downloadFile({
 					url: 'https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/learning/helloworld.pdf',
@@ -89,7 +90,8 @@
 						});
 					}
 				});
-			}
+			},
+			// #endif
 		}
 	}
 </script>
