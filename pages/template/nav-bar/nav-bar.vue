@@ -136,5 +136,6 @@
 		line-height:30px;
 		width:94%;
 		padding: 0 3%;
+		background-color: #e7e7e7;
 	}
 </style>
