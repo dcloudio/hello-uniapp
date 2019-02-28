@@ -20,7 +20,7 @@
                     <view class="uni-uploader__files">
                         <block v-for="(image,index) in imageList" :key="index">
                             <view class="uni-uploader__file" style="position: relative;">
-                                <image class="uni-uploader__img" :src="image" @tap="previewImage"></image>
+                                <image class="uni-uploader__img" :src="image" @tap="previewImage(index)"></image>
                                 <view class="close-view" @click="close(index)">x</view>
                             </view>
                         </block>
@@ -102,9 +102,10 @@
             chooseStar(e) { //点击评星
                 this.sendDate.score = e;
             },
-            previewImage() { //预览图片
+            previewImage(index) { //预览图片
                 uni.previewImage({
-                    urls: this.imageList
+                    urls: this.imageList,
+					current:this.imageList[index]
                 });
             },
             send() { //发送反馈
