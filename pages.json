@@ -189,7 +189,7 @@
                 "navigationBarTitleText" : "image"
             }
         },
-        // #ifdef H5 || APP-PLUS || MP-BAIDU
+        // #ifndef MP-ALIPAY
         {
         	"path": "pages/component/video/video",
         	"style": {
