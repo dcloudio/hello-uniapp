@@ -7,7 +7,7 @@
 						<view class="uni-list-cell-divider" :id="list.letter">
 							{{list.letter}}
 						</view>
-						<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list.data" :key="index"
+						<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list.data" :key="item"
 						 :class="list.data.length -1 == index ? 'uni-list-cell-last' : ''">
 							<view class="uni-list-cell-navigate">
 								{{item}}
