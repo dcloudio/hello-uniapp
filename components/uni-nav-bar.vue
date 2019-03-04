@@ -97,7 +97,7 @@
              */
             statusBar: {
                 type: [Boolean, String],
-                default: ''
+                default: false
             },
             /**
              * 是否使用阴影，默认根据背景色判断
