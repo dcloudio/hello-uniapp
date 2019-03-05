@@ -1,8 +1,8 @@
 <template>
 	<view class="uni-numbox">
-		<view class="uni-numbox-minus" :class="{'uni-numbox-disabled': disableSubtract}" @click="_calcValue('subtract')">-</view>
+		<view class="uni-numbox-minus" :class="{'uni-numbox-disabled': minusDisabled}" @click="_calcValue('minus')">-</view>
 		<input class="uni-numbox-value" type="number" :disabled="disabled" :value="inputValue" @blur="_onBlur">
-		<view class="uni-numbox-plus" :class="{'uni-numbox-disabled': disableAdd}" @click="_calcValue('add')">+</view>
+		<view class="uni-numbox-plus" :class="{'uni-numbox-disabled': plusDisabled}" @click="_calcValue('plus')">+</view>
 	</view>
 </template>
 <script>
@@ -36,11 +36,11 @@
 			}
 		},
 		computed: {
-			disableSubtract() {
-				return this.value <= this.min
+			minusDisabled() {
+				return this.inputValue <= this.min;
 			},
-			disableAdd() {
-				return this.value >= this.max
+			plusDisabled() {
+				return this.inputValue >= this.max;
 			}
 		},
 		watch: {
@@ -52,18 +52,16 @@
 			}
 		},
 		methods: {
-			_calcValue(type) {
+			_calcValue(action) {
 				const scale = this._getDecimalScale();
 				let value = this.inputValue * scale;
 				let step = this.step * scale;
-
-				if (type === 'subtract') {
-					value -= step
-				} else if (type === 'add') {
-					value += step
+				if (action === 'minus') {
+					step = step * -1;
 				}
+				value += step;
 				if (value < this.min || value > this.max) {
-					return
+					return;
 				}
 				this.inputValue = value / scale;
 			},
@@ -79,15 +77,15 @@
 				let value = event.detail.value;
 				if (!value) {
 					this.inputValue = 0;
-					return
+					return;
 				}
 				value = +value;
 				if (value > this.max) {
 					value = this.max;
 				} else if (value < this.min) {
-					value = this.min
+					value = this.min;
 				}
-				this.inputValue = value
+				this.inputValue = value;
 			}
 		}
 	}
