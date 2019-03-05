@@ -31,13 +31,13 @@
 	export default {
 		data() {
 			return {
-				type:''
+				type: ''
 			}
 		},
 		methods: {
-            togglePopup:function(type){
-                this.type = type;
-            }
+			togglePopup: function(type) {
+				this.type = type;
+			}
 		},
 		components: {
 			uniPopup
