@@ -2,11 +2,16 @@
 	<view class="mpvue-picker">
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-title"> <uni-icon size="16" type="info"></uni-icon>说明 : </view>
+			<view class="uni-title">
+				<!-- #ifndef H5 -->
+				<uni-icon size="16" type="info"></uni-icon>
+				<!-- #endif -->
+				说明 :
+			</view>
 			<view class="uni-helllo-text">
-				<view
-					>在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听城市选择按钮的点击事件。</view
-				>
+				<view>
+					在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听城市选择按钮的点击事件。
+				</view>
 			</view>
 		</view>
 		<mpvue-picker
@@ -58,11 +63,10 @@ export default {
 			deepLength: 1,
 			pickerValueDefault: [0],
 			pickerValueArray: []
-			
 		};
 	},
 	onReady() {
-		this.setStyle(0,'北京市');
+		this.setStyle(0, '北京市');
 	},
 	methods: {
 		onCancel(e) {
@@ -77,27 +81,32 @@ export default {
 			this.$refs.mpvuePicker.show();
 		},
 		onConfirm(e) {
-			this.setStyle(0,e.label)
+			console.log(e.label);
+			this.setStyle(0, e.label);
 		},
 		/**
 		 * 修改导航栏buttons
 		 * index[number] 修改的buttons 下标索引，最右边索引为0
 		 * text[string] 需要修改的text 内容
 		 */
-		setStyle(index,text) {
+		setStyle(index, text) {
 			let pages = getCurrentPages();
 			let page = pages[pages.length - 1];
+			if (text.length > 3) {
+				text = text.substr(0, 3) + '...';
+			}
 			// #ifdef APP-PLUS
 			let currentWebview = page.$getAppWebview();
 			let titleNView = currentWebview.getStyle().titleNView;
 			// 添加文字过长截取为3个字符，请根据自己业务需求更改
-			if(text.length > 3){
-				text = text.substr(0,3)+"..."
-			}
 			titleNView.buttons[0].text = text;
 			currentWebview.setStyle({
-				titleNView:titleNView
+				titleNView: titleNView
 			});
+			// #endif
+			// #ifdef H5
+			// h5 临时方案
+			document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
 			// #endif
 		}
 	},

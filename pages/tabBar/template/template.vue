@@ -65,6 +65,8 @@
 								name: '导航栏带图片',
 								url: 'nav-image'
 							},
+							// #endif
+							// #ifdef APP-PLUS || H5
 							{
 								name: '导航栏带红点和角标',
 								url:'nav-dot'
@@ -73,8 +75,6 @@
 								name: '导航栏带城市选择',
 								url:'nav-city-dropdown'
 							},
-							// #endif
-							// #ifdef APP-PLUS || H5
 							{
 								name: '导航栏带搜索框',
 								url:'nav-search-input'

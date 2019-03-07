@@ -655,48 +655,48 @@
                         }
                     }
                 },
-                {
-                    "path" : "nav-city-dropdown/nav-city-dropdown",
-                    "style" : {
-                        "navigationBarTitleText" : "导航栏带城市选择",
-                        "app-plus" : {
-                            "titleNView" : {
-                                "buttons" : [
-                                    {
-                                        "text" : "北京市",
-                                        "fontSize" : "14",
-                                        "select" : true,
-                                        "width" : "auto"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                {
-                    "path" : "nav-dot/nav-dot",
-                    "style" : {
-                        "navigationBarTitleText" : "导航栏带红点和角标",
-                        "app-plus" : {
-                            "titleNView" : {
-                                "buttons" : [
-                                    {
-                                        "text" : "消息",
-                                        "fontSize" : "14",
-                                        "redDot" : true
-                                    },
-                                    {
-                                        "text" : "关注",
-                                        "fontSize" : "14",
-                                        "badgeText" : "12"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
                 // #endif
 				// #ifdef APP-PLUS || H5
+				{
+				    "path" : "nav-city-dropdown/nav-city-dropdown",
+				    "style" : {
+				        "navigationBarTitleText" : "导航栏带城市选择",
+				        "app-plus" : {
+				            "titleNView" : {
+				                "buttons" : [
+				                    {
+				                        "text" : "北京市",
+				                        "fontSize" : "14",
+				                        "select" : true,
+				                        "width" : "auto"
+				                    }
+				                ]
+				            }
+				        }
+				    }
+				},
+				{
+				    "path" : "nav-dot/nav-dot",
+				    "style" : {
+				        "navigationBarTitleText" : "导航栏带红点和角标",
+				        "app-plus" : {
+				            "titleNView" : {
+				                "buttons" : [
+				                    {
+				                        "text" : "消息",
+				                        "fontSize" : "14",
+				                        "redDot" : true
+				                    },
+				                    {
+				                        "text" : "关注",
+				                        "fontSize" : "14",
+				                        "badgeText" : "12"
+				                    }
+				                ]
+				            }
+				        }
+				    }
+				},
 				{
 				    "path" : "nav-search-input/nav-search-input",
 				    "style" : {
