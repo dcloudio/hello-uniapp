@@ -695,63 +695,65 @@
                         }
                     }
                 },
-                {
-                    "path" : "nav-search-input/nav-search-input",
-                    "style" : {
-                        "navigationBarTitleText" : "导航栏带搜索框",
-                        "app-plus" : {
-                            "titleNView" : {
-                                "type" : "transparent",
-                                "titleColor" : "#fff",
-                                "backgroundColor" : "#007AFF",
-                                "buttons" : [
-                                    {
-                                        "fontSrc" : "/static/uni.ttf",
-                                        "text" : "\ue537",
-                                        "width" : "40px",
-                                        "fontSize" : "28px",
-                                        "color" : "#fff",
-                                        "background" : "rgba(0,0,0,0)"
-                                    }
-                                ],
-                                "searchInput" : {
-                                    "backgroundColor" : "#fff",
-                                    "borderRadius" : "6px",
-                                    "placeholder" : "请输入地址 如：大钟寺",
-                                    "disabled" : true
-                                }
-                            }
-                        }
-                    }
-                },
-                {
-                    "path" : "/nav-search-input/detail/detail",
-                    "style" : {
-                        "navigationBarTitleText" : "搜索",
-                        "app-plus" : {
-                            "titleNView" : {
-                                "titleColor" : "#fff",
-                                "backgroundColor" : "#007AFF",
-                                "buttons" : [
-                                    {
-                                        "fontSrc" : "/static/uni.ttf",
-                                        "text" : "\ue537",
-                                        "width" : "auto",
-                                        "fontSize" : "28px",
-                                        "color" : "#fff"
-                                    }
-                                ],
-                                "searchInput" : {
-                                    "backgroundColor" : "#fff",
-                                    "borderRadius" : "6px",
-                                    "placeholder" : "请输入地址 如：大钟寺",
-                                    "autoFocus" : true
-                                }
-                            }
-                        }
-                    }
-                },
                 // #endif
+				// #ifdef APP-PLUS || H5
+				{
+				    "path" : "nav-search-input/nav-search-input",
+				    "style" : {
+				        "navigationBarTitleText" : "导航栏带搜索框",
+				        "app-plus" : {
+				            "titleNView" : {
+				                "type" : "transparent",
+				                "titleColor" : "#fff",
+				                "backgroundColor" : "#007AFF",
+				                "buttons" : [
+				                    {
+				                        "fontSrc" : "/static/uni.ttf",
+				                        "text" : "\ue537",
+				                        "width" : "40px",
+				                        "fontSize" : "28px",
+				                        "color" : "#fff",
+				                        "background" : "rgba(0,0,0,0)"
+				                    }
+				                ],
+				                "searchInput" : {
+				                    "backgroundColor" : "#fff",
+				                    "borderRadius" : "6px",
+				                    "placeholder" : "请输入地址 如：大钟寺",
+				                    "disabled" : true
+				                }
+				            }
+				        }
+				    }
+				},
+				{
+				    "path" : "/nav-search-input/detail/detail",
+				    "style" : {
+				        "navigationBarTitleText" : "搜索",
+				        "app-plus" : {
+				            "titleNView" : {
+				                "titleColor" : "#fff",
+				                "backgroundColor" : "#007AFF",
+				                "buttons" : [
+				                    {
+				                        "fontSrc" : "/static/uni.ttf",
+				                        "text" : "\ue537",
+				                        "width" : "auto",
+				                        "fontSize" : "28px",
+				                        "color" : "#fff"
+				                    }
+				                ],
+				                "searchInput" : {
+				                    "backgroundColor" : "#fff",
+				                    "borderRadius" : "6px",
+				                    "placeholder" : "请输入地址 如：大钟寺",
+				                    "autoFocus" : true
+				                }
+				            }
+				        }
+				    }
+				},
+				// #endif
                 {
                     "path" : "mpvue-picker/mpvue-picker",
                     "style" : {

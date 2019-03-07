@@ -73,11 +73,14 @@
 								name: '导航栏带城市选择',
 								url:'nav-city-dropdown'
 							},
+							// #endif
+							// #ifdef APP-PLUS || H5
 							{
 								name: '导航栏带搜索框',
 								url:'nav-search-input'
 							},
 							// #endif
+
 							{
 								name: '自定义导航栏组件(非原生)',
 								url: 'nav-bar'
