@@ -1,12 +1,12 @@
 <template>
 	<view class="page">
-		<page-head :title="title"></page-head>
+		<page-head title="popup"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-helllo-text uni-common-mt uni-center">
 				请点击下面的按钮进行体验
 			</view>
 			<!-- 居中 -->
-			<uni-popup :show="showPopupMiddle" :type="popType" v-on:hidePopup="hidePopup">
+			<uni-popup :show="type==='middle'" type="middle" v-on:hidePopup="togglePopup('')">
 				<view class="uni-center" style="font-size:0;">
 					<image class="image" style="width:150upx;height:150upx;" mode="widthFix" src="../../../static/uni.png" />
 				</view>
@@ -15,13 +15,13 @@
 				</view>
 			</uni-popup>
 			<!-- 顶部 -->
-			<uni-popup :show="showPopupTop" :type="popType" :msg="msg" v-on:hidePopup="hidePopup"></uni-popup>
+			<uni-popup :show="type==='top'" type="top" msg="顶部 popup 信息内容" v-on:hidePopup="togglePopup('')"></uni-popup>
 			<!-- 底部 -->
-			<uni-popup :show="showPopupBottom" :type="popType" :msg="msg" v-on:hidePopup="hidePopup"></uni-popup>
+			<uni-popup :show="type==='bottom'" type="bottom" msg="底部 popup 信息内容" v-on:hidePopup="togglePopup('')"></uni-popup>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="button" @click="showMiddlePopup">居中弹出 popup</button>
-				<button type="button" @click="showTopPopup" data-position="top">顶部弹出 popup</button>
-				<button type="button" @click="showBottomPopup" data-position="bottom">底部弹出 popup</button>
+				<button type="button" @click="togglePopup('middle')">居中弹出 popup</button>
+				<button type="button" @click="togglePopup('top')" data-position="top">顶部弹出 popup</button>
+				<button type="button" @click="togglePopup('bottom')" data-position="bottom">底部弹出 popup</button>
 			</view>
 		</view>
 	</view>
@@ -31,40 +31,12 @@
 	export default {
 		data() {
 			return {
-				popType: 'middle',
-				title: 'popup',
-				showPopupMiddle: false,
-				showPopupTop: false,
-				showPopupBottom: false,
-				msg: ''
+				type: ''
 			}
 		},
 		methods: {
-			//统一的关闭popup方法
-			hidePopup: function() {
-				this.showPopupMiddle = false;
-				this.showPopupTop = false;
-				this.showPopupBottom = false;
-			},
-			//展示居中 popup
-			showMiddlePopup: function() {
-				this.hidePopup();
-				this.popType = 'middle';
-				this.showPopupMiddle = true;
-			},
-			//展示顶部 popup
-			showTopPopup: function() {
-				this.hidePopup();
-				this.popType = 'top';
-				this.msg = '顶部 popup 信息内容';
-				this.showPopupTop = true;
-			},
-			//展示底部 popup
-			showBottomPopup: function() {
-				this.hidePopup();
-				this.popType = 'bottom';
-				this.msg = '底部 popup 信息内容';
-				this.showPopupBottom = true;
+			togglePopup: function(type) {
+				this.type = type;
 			}
 		},
 		components: {
