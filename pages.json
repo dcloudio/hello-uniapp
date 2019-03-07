@@ -75,10 +75,10 @@
         },
         // #ifndef MP-TOUTIAO
         {
-        	"path": "pages/component/movable-view/movable-view",
-        	"style": {
-        		"navigationBarTitleText": "movable-view"
-        	}
+            "path" : "pages/component/movable-view/movable-view",
+            "style" : {
+                "navigationBarTitleText" : "movable-view"
+            }
         },
         // #endif
         {
@@ -191,26 +191,26 @@
         },
         // #ifndef MP-ALIPAY
         {
-        	"path": "pages/component/video/video",
-        	"style": {
-        		"navigationBarTitleText": "video"
-        	}
+            "path" : "pages/component/video/video",
+            "style" : {
+                "navigationBarTitleText" : "video"
+            }
         },
         // #endif
         // #ifndef MP-ALIPAY || MP-TOUTIAO
         {
-        	"path": "pages/component/audio/audio",
-        	"style": {
-        		"navigationBarTitleText": "audio"
-        	}
+            "path" : "pages/component/audio/audio",
+            "style" : {
+                "navigationBarTitleText" : "audio"
+            }
         },
         // #endif
         // #ifndef MP-TOUTIAO
         {
-        	"path": "pages/component/map/map",
-        	"style": {
-        		"navigationBarTitleText": "map"
-        	}
+            "path" : "pages/component/map/map",
+            "style" : {
+                "navigationBarTitleText" : "map"
+            }
         },
         // #endif
         {
@@ -336,12 +336,12 @@
                 "navigationBarTitleText" : "获取手机系统信息"
             }
         },
-		{
-		    "path" : "pages/API/add-phone-contact/add-phone-contact",
-		    "style" : {
-		        "navigationBarTitleText" : "添加手机联系人"
-		    }
-		},
+        {
+            "path" : "pages/API/add-phone-contact/add-phone-contact",
+            "style" : {
+                "navigationBarTitleText" : "添加手机联系人"
+            }
+        },
         {
             "path" : "pages/API/on-accelerometer-change/on-accelerometer-change",
             "style" : {
@@ -440,10 +440,10 @@
         },
         // #ifndef MP-TOUTIAO
         {
-        	"path": "pages/API/choose-location/choose-location",
-        	"style": {
-        		"navigationBarTitleText": "使用地图选择位置"
-        	}
+            "path" : "pages/API/choose-location/choose-location",
+            "style" : {
+                "navigationBarTitleText" : "使用地图选择位置"
+            }
         },
         // #endif
         {
@@ -490,10 +490,10 @@
         },
         // #ifdef H5 || APP-PLUS
         {
-        	"path": "pages/about/about",
-        	"style": {
-        		"navigationBarTitleText": "关于"
-        	}
+            "path" : "pages/about/about",
+            "style" : {
+                "navigationBarTitleText" : "关于"
+            }
         },
         // #endif
         {
@@ -505,6 +505,28 @@
         {
             "path" : "platforms/app-plus/web-view-local/web-view-local",
             "style" : {}
+        },
+        // #ifndef H5 
+        {
+            "path" : "pages/API/brightness/brightness",
+            "style" : {
+                "navigationBarTitleText" : "屏幕亮度"
+            }
+        },
+        // #endif
+        // #ifndef H5 || MP-ALIPAY
+        {
+            "path" : "pages/API/save-media/save-media",
+            "style" : {
+                "navigationBarTitleText" : "保存媒体到本地"
+            }
+        },
+        // #endif
+        {
+            "path" : "pages/API/vibrate/vibrate",
+            "style" : {
+                "navigationBarTitleText" : "震动"
+            }
         }
     ],
     "subPackages" : [
@@ -559,10 +581,10 @@
                 },
                 // #ifndef MP-ALIPAY || MP-TOUTIAO
                 {
-                	"path": "echarts/echarts",
-                	"style": {
-                		"navigationBarTitleText": "ECharts图表"
-                	}
+                    "path" : "echarts/echarts",
+                    "style" : {
+                        "navigationBarTitleText" : "ECharts图表"
+                    }
                 },
                 // #endif
                 // #ifdef APP-PLUS || H5 || MP-WEIXIN
@@ -651,81 +673,84 @@
                         }
                     }
                 },
-				{
-				    "path" : "nav-dot/nav-dot",
-				    "style" : {
-						"navigationBarTitleText" : "导航栏带红点和角标",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [ 
-									{
-										"text": "消息", 
-										"fontSize": "14",
-										"redDot": true
-									},
-									{
-										"text": "关注", 
-										"fontSize": "14",
-										"badgeText": "12"
-									}
-								]
-							}
-						}
-					}
-				},
-				{
-				    "path" : "nav-search-input/nav-search-input",
-				    "style" : {
-						"navigationBarTitleText" : "导航栏带搜索框",
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent",
-								"titleColor":"#fff",
-								"backgroundColor":"#007AFF",
-								"buttons": [{
-									"fontSrc": "/static/uni.ttf",
-									"text": "\ue537",
-									"width": "40px",
-									"fontSize": "28px",
-									"color":"#fff",
-									"background": "rgba(0,0,0,0)"
-								
-								}],
-								"searchInput": {
-									"backgroundColor": "#fff",
-									"borderRadius": "6px",
-									"placeholder": "请输入地址 如：大钟寺",
-									"disabled": true
-								}
-							}
-						}
-					}
-				},
-				{
-					"path": "/nav-search-input/detail/detail",
-					"style": {
-						"navigationBarTitleText": "搜索",
-						"app-plus": {
-							"titleNView": {
-								"titleColor":"#fff",
-								"backgroundColor":"#007AFF",
-								"buttons": [{
-									"fontSrc": "/static/uni.ttf",
-									"text": "\ue537",
-									"width": "auto",
-									"fontSize": "28px",
-									"color":"#fff"
-								}],
-								"searchInput": {
-									"backgroundColor": "#fff",
-									"borderRadius": "6px",
-									"placeholder": "请输入地址 如：大钟寺",
-									"autoFocus": true
-								}
-							}
-						}
-					}
-				},
+                {
+                    "path" : "nav-dot/nav-dot",
+                    "style" : {
+                        "navigationBarTitleText" : "导航栏带红点和角标",
+                        "app-plus" : {
+                            "titleNView" : {
+                                "buttons" : [
+                                    {
+                                        "text" : "消息",
+                                        "fontSize" : "14",
+                                        "redDot" : true
+                                    },
+                                    {
+                                        "text" : "关注",
+                                        "fontSize" : "14",
+                                        "badgeText" : "12"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "path" : "nav-search-input/nav-search-input",
+                    "style" : {
+                        "navigationBarTitleText" : "导航栏带搜索框",
+                        "app-plus" : {
+                            "titleNView" : {
+                                "type" : "transparent",
+                                "titleColor" : "#fff",
+                                "backgroundColor" : "#007AFF",
+                                "buttons" : [
+                                    {
+                                        "fontSrc" : "/static/uni.ttf",
+                                        "text" : "\ue537",
+                                        "width" : "40px",
+                                        "fontSize" : "28px",
+                                        "color" : "#fff",
+                                        "background" : "rgba(0,0,0,0)"
+                                    }
+                                ],
+                                "searchInput" : {
+                                    "backgroundColor" : "#fff",
+                                    "borderRadius" : "6px",
+                                    "placeholder" : "请输入地址 如：大钟寺",
+                                    "disabled" : true
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "path" : "/nav-search-input/detail/detail",
+                    "style" : {
+                        "navigationBarTitleText" : "搜索",
+                        "app-plus" : {
+                            "titleNView" : {
+                                "titleColor" : "#fff",
+                                "backgroundColor" : "#007AFF",
+                                "buttons" : [
+                                    {
+                                        "fontSrc" : "/static/uni.ttf",
+                                        "text" : "\ue537",
+                                        "width" : "auto",
+                                        "fontSize" : "28px",
+                                        "color" : "#fff"
+                                    }
+                                ],
+                                "searchInput" : {
+                                    "backgroundColor" : "#fff",
+                                    "borderRadius" : "6px",
+                                    "placeholder" : "请输入地址 如：大钟寺",
+                                    "autoFocus" : true
+                                }
+                            }
+                        }
+                    }
+                },
                 // #endif
                 {
                     "path" : "mpvue-picker/mpvue-picker",
@@ -849,9 +874,9 @@
                         "app-plus" : {
                             "bounce" : "none"
                         },
-						"mp-alipay": {
-							"allowsBounceVertical": "NO"
-						}
+                        "mp-alipay" : {
+                            "allowsBounceVertical" : "NO"
+                        }
                     }
                 },
                 {
@@ -902,6 +927,12 @@
                         "navigationBarTitleText" : "懒加载"
                     }
                 },
+				{
+				    "path" : "scheme/scheme",
+				    "style" : {
+						"navigationBarTitleText" : "打开外部应用"
+					}
+				},
                 {
                     "path" : "im-chat/im-chat",
                     "style" : {
@@ -954,7 +985,8 @@
                     "style" : {
                         "navigationBarTitleText" : "标签tag"
                     }
-                },{
+                },
+                {
                     "path" : "fab/fab",
                     "style" : {
                         "navigationBarTitleText" : "悬浮按钮 fab"

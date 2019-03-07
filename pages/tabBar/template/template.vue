@@ -251,6 +251,10 @@
 						name: '倒计时',
 						url: 'countdown'
 					},
+					{
+						name:'打开外部应用',
+						url: 'scheme'
+					},
 					// #ifdef APP-PLUS 
 					{
 						name: '聊天窗口 chat',

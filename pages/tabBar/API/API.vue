@@ -73,6 +73,13 @@
                     url: 'file'
                 },
                 // #endif
+				// #ifndef H5 || MP-ALIPAY
+				{
+					name:'保存媒体到本地',
+					url:'save-media'
+				},
+				// #endif
+
             ];
 
             const list = [{
@@ -135,6 +142,10 @@
                             url: 'make-phone-call'
                         },
                         //#ifndef H5
+						{
+							name:'震动',
+							url:'vibrate'
+						},
                         {
                             name: '添加手机联系人',
                             url: 'add-phone-contact'
@@ -145,6 +156,10 @@
                             name: '剪贴板',
                             url: 'clipboard'
                         },
+						{
+							name:'屏幕亮度',
+							url:'brightness'
+						},
                         //#endif
                         {
                             name: '监听加速度传感器',
