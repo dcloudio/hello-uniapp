@@ -165,11 +165,13 @@
 							name: '剪贴板',
 							url: 'clipboard'
 						},
-						{
+						//#endif
+						// #ifndef H5 || MP-ALIPAY
+							{
 							name: '屏幕亮度',
 							url: 'brightness'
 						},
-						//#endif
+						// #endif
 						{
 							name: '监听加速度传感器',
 							url: 'on-accelerometer-change'
