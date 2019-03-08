@@ -2,7 +2,7 @@
 	<view>
 		<!-- #ifndef MP -->
 		<!-- 固定在顶部的导航栏 -->
-		<uni-nav-bar fixed="true" left-icon="back" @click-left="back" @click-right="showMenu" left-text="返回" right-text="菜单"
+		<uni-nav-bar :fixed="true" :status-bar="true" left-icon="back" @click-left="back" @click-right="showMenu" left-text="返回" right-text="菜单"
 		 title="导航栏组件"></uni-nav-bar>
 		<!-- 使用非原生导航栏后需要在页面顶部占位 -->
 		<view style="height:80px;">...</view>
