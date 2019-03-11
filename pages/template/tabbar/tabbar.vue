@@ -20,7 +20,7 @@
 </template>
 <script>
 	import mediaList from '@/components/tab-nvue/mediaList.vue';
-	import uniLoadMore from '@/components/uni-load-more.vue';
+	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
 	export default {
 		components: {
 			mediaList,

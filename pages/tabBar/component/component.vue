@@ -43,7 +43,7 @@
 						id: 'content',
 						name: '基础内容',
 						open: false,
-						pages: ['text', 'rich-text', 'icon', 'progress']
+						pages: ['text', 'rich-text', 'progress']
 					}, {
 						id: 'form',
 						name: '表单组件',
