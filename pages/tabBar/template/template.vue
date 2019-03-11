@@ -32,15 +32,6 @@
 		data() {
 			return {
 				lists: [{
-						name: '数字角标 badge',
-						url: 'badge'
-					}, {
-						name: '数字选择框 number-box',
-						url: 'number-box'
-					}, {
-						name: '弹出层 popup',
-						url: 'popup'
-					}, {
 						name: '多列选择 picker',
 						url: 'mpvue-picker'
 					}, {
@@ -105,42 +96,8 @@
 					},
 					// #endif
 					{
-						name: '顶部分段器 segment',
-						url: 'segmented-control'
-					}, {
-						name: '抽屉侧滑菜单 drawer',
-						url: 'drawer'
-					}, {
-						name: '折叠面板',
-						url: 'accordion'
-					}, {
-						id: 'grid',
-						name: '九宫格',
-						open: false,
-						pages: [{
-							name: '默认样式',
-							url: 'grid'
-						}, {
-							name: '可左右滑动的九宫导航',
-							url: 'grid-pagination'
-						}]
-					}, {
-						name: '卡片视图',
-						url: 'cardview'
-					}, {
-						id: 'lists',
-						name: '列表',
-						open: false,
-						pages: [{
-							name: '右侧带角标',
-							url: 'list-with-badges'
-						}, {
-							name: '二级列表',
-							url: 'list-with-collapses'
-						}, {
-							name: '三行列表',
-							url: 'list-triplex-row'
-						}]
+						name: '三行列表',
+						url: 'list-triplex-row'
 					},
 					// #ifndef MP-BAIDU
 					{
@@ -154,9 +111,6 @@
 					}, {
 						name: '商品列表',
 						url: 'product-list'
-					}, {
-						name: '加载更多 load-more',
-						url: 'load-more'
 					}, {
 						name: '懒加载 lazy-load',
 						open: false,
@@ -175,9 +129,6 @@
 					}, {
 						name: '时间轴 timeline',
 						url: 'timeline'
-					}, {
-						name: '标签 tag',
-						url: 'tag'
 					}, {
 						name: '悬浮按钮 fab',
 						url: 'fab'
@@ -235,9 +186,6 @@
 					{
 						name: '侧边分类导航',
 						url: 'left-category'
-					}, {
-						name: '步骤提示',
-						url: 'steps'
 					}, {
 						name: '评论列表',
 						url: 'comments'
