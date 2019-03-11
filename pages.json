@@ -666,8 +666,7 @@
 		},
 		{
 			"root": "pages/template",
-			"pages": [
-				{
+			"pages": [{
 					"path": "product-list/product-list",
 					"style": {
 						"navigationBarTitleText": "商品列表",

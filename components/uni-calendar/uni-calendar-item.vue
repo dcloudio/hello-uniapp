@@ -1,17 +1,17 @@
 <template>
 	<view>
 		<block v-for="(weeks, week) in canlender.weeks" :key="week">
-			<view class="calender-body-date-week">
+			<view class="uni-calender__body-date-week">
 				<block v-for="(day, index) in weeks" :key="index">
-					<view class="date" :class="{
-							disable: canlender.month !== day.month || day.disable,
-							'date-current':
+					<view class="uni-calender__date" :class="{
+							'uni-calender__disable': canlender.month !== day.month || day.disable,
+							'uni-calender__date-current':
 								(day.date == canlender.date || day.checked) &&
 								canlender.month == day.month &&
 								!day.disable,
-							lunar: lunar,
-							active: day.isDay,
-							'is-day': day.isDay
+							'uni-calender__lunar': lunar,
+							'uni-calender__active': day.isDay,
+							'uni-calender__is-day': day.isDay
 						}" @tap="
 							selectDays(
 								week,
@@ -21,10 +21,10 @@
 								canlender.lunar
 							)
 						">
-						<view class="circle-box">
+						<view class="uni-calender__circle-box">
 							{{ day.date }}
-							<view v-if="lunar" class="lunar">{{ day.lunar }}</view>
-							<view v-if="day.have" class="data-circle"></view>
+							<view v-if="lunar" class="uni-calender__lunar">{{ day.lunar }}</view>
+							<view v-if="day.have" class="uni-calender__data-circle"></view>
 						</view>
 					</view>
 				</block>
@@ -54,9 +54,7 @@
 		data() {
 			return {};
 		},
-		created() {
-
-		},
+		created() {},
 		methods: {
 			selectDays(week, index, ischeck, isDay, lunar) {
 				this.$emit('selectDays', {
@@ -74,17 +72,17 @@
 <style>
 	@charset "UTF-8";
 
-	.calender-body-date-week {
+	.uni-calender__body-date-week {
 		display: flex;
 		width: 100%;
 		border-bottom: 1px #f5f5f5 solid
 	}
 
-	.calender-body-date-week:last-child {
+	.uni-calender__body-date-week:last-child {
 		border: none
 	}
 
-	.calender-body-date-week .date {
+	.uni-calender__body-date-week .uni-calender__date {
 		position: relative;
 		width: 100%;
 		text-align: center;
@@ -98,12 +96,12 @@
 		line-height: 1.5
 	}
 
-	.calender-body-date-week .date .lunar {
+	.uni-calender__body-date-week .uni-calender__date .uni-calender__lunar {
 		font-size: 20upx;
 		color: #000
 	}
 
-	.calender-body-date-week .date .circle-box {
+	.uni-calender__body-date-week .uni-calender__date .uni-calender__circle-box {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -115,36 +113,36 @@
 		transition: all .2s
 	}
 
-	.calender-body-date-week .date.disable {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__disable {
 		color: #d4d4d4
 	}
 
-	.calender-body-date-week .date.disable .lunar {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__disable .uni-calender__lunar {
 		color: #d4d4d4
 	}
 
-	.calender-body-date-week .date.is-day {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__is-day {
 		color: #fd2e32
 	}
 
-	.calender-body-date-week .date.is-day .lunar {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__is-day .uni-calender__lunar {
 		color: #fd2e32
 	}
 
-	.calender-body-date-week .date.date-current {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current {
 		color: #fff;
 		box-sizing: border-box
 	}
 
-	.calender-body-date-week .date.date-current .circle-box {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current .uni-calender__circle-box {
 		background: #fd2e32
 	}
 
-	.calender-body-date-week .date.date-current .lunar {
+	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current .uni-calender__lunar {
 		color: #fff
 	}
 
-	.calender-body-date-week .date .data-circle {
+	.uni-calender__body-date-week .uni-calender__date .uni-calender__data-circle {
 		position: absolute;
 		top: 10upx;
 		right: 10upx;
