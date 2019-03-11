@@ -198,9 +198,6 @@
 					}, {
 						name: '插屏弹窗',
 						url: 'sbanner'
-					}, {
-						name: '倒计时',
-						url: 'countdown'
 					},
 					// #ifdef APP-PLUS 
 					{
