@@ -23,7 +23,7 @@
 			<uni-list-item title="标题文字" show-extra-icon="true" :extra-icon="extraIcon"></uni-list-item>
 			<uni-list-item title="标题文字" note="描述信息" show-extra-icon="true" :extra-icon="{color: '#4cd964',size: '22',type: 'spinner'}"></uni-list-item>
 		</uni-list>
-		<view class="example-title" @click="test">显示Switch</view>
+		<view class="example-title">显示Switch</view>
 		<uni-list>
 			<uni-list-item title="标题文字" show-switch="true" show-arrow="false" @switchChange="switchChange"></uni-list-item>
 			<uni-list-item title="标题文字" show-switch="true" switch-checked="true" show-arrow="false" @switchChange="switchChange"></uni-list-item>
