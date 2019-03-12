@@ -31,13 +31,13 @@ export default {
   methods: {
     wxParseImgTap(e) {
       if (!this.preview) return;
-      const { src } = e.target.dataset;
+      const { src } = e.currentTarget.dataset;
       if (!src) return;
       this.node.$host.preview(src, e);
     },
     // 图片视觉宽高计算函数区
     wxParseImgLoad(e) {
-      const { src } = e.target.dataset;
+      const { src } = e.currentTarget.dataset;
       if (!src) return;
       const { width, height } = e.mp.detail;
       const recal = this.wxAutoImageCal(width, height);

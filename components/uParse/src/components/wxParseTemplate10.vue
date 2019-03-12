@@ -84,7 +84,7 @@
 			wxParseATap(e) {
 				const {
 					href
-				} = e.target.dataset;
+				} = e.currentTarget.dataset;
 				if (!href) return;
 				this.node.$host.navigate(href, e);
 			},
