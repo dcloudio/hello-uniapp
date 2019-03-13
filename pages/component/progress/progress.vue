@@ -19,7 +19,7 @@
 	</view>
 </template>
 <script>
-    import uniIcon from '../../../components/uni-icon.vue'
+    import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	export default {
 		data() {
 			return {
