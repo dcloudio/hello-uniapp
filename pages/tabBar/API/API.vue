@@ -37,7 +37,7 @@
 </template>
 <script>
 	// #ifndef MP-ALIPAY || MP-TOUTIAO
-	import setTabBar from '@/components/api-set-tababr.vue';
+	import setTabBar from '@/components/api-set-tabbar.vue';
 	// #endif
 
 	export default {
