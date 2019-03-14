@@ -1,9 +1,9 @@
 <template>
 	<view class="example">
 		<view class="example-title">基本用法</view>
-		<uni-steps :data="list1" :active="active"></uni-steps>
+		<uni-steps :options="list1" :active="active"></uni-steps>
 		<view class="example-title">纵向排列</view>
-		<uni-steps :data="list2" direction="column" :active="active"></uni-steps>
+		<uni-steps :options="list2" direction="column" :active="active"></uni-steps>
 		<button type="primary" @click="change">改变状态</button>
 	</view>
 </template>

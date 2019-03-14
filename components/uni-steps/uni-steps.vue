@@ -1,16 +1,16 @@
 <template>
 	<view class="uni-steps">
 		<view class="uni-steps-items" :class="'uni-steps-' + direction">
-			<view class="uni-steps-item" v-for="(item,index) in steps" :key="index" :class="[item.status ? 'uni-steps-' + item.status : '']">
-				<view class="uni-steps-item-title-container" :style="{color:item.status === 'process' ? activeColor : ''}">
+			<view class="uni-steps-item" v-for="(item,index) in options" :key="index" :class="{'uni-steps-process':index === active,'uni-steps-finish':index < active}">
+				<view class="uni-steps-item-title-container" :style="{color:index === active ? activeColor : ''}">
 					<view class="uni-steps-item-title">{{ item.title }}</view>
 					<view class="uni-steps-item-desc" v-if="item.desc">{{ item.desc}}</view>
 				</view>
 				<view class="uni-steps-item-circle-container">
-					<view class="uni-steps-item-circle" v-if="item.status !== 'process'" :style="{backgroundColor:item.status === 'finish' ? activeColor : ''}"></view>
+					<view class="uni-steps-item-circle" v-if="index !== active" :style="{backgroundColor:index < active ? activeColor : ''}"></view>
 					<uni-icon v-else type="checkbox-filled" size="14" :color="activeColor"></uni-icon>
 				</view>
-				<view class="uni-steps-item-line" v-if="index !== steps.length-1" :style="{backgroundColor:item.status === 'finish' ? activeColor : ''}"></view>
+				<view class="uni-steps-item-line" v-if="index !== options.length-1" :style="{backgroundColor:index < active ? activeColor : ''}"></view>
 			</view>
 		</view>
 	</view>
@@ -33,36 +33,13 @@
 				default: '#1aad19'
 			},
 			active: { //当前步骤
-				type: [Number, String],
+				type: Number,
 				default: 0
 			},
-			data: Array //数据
+			options: Array //数据
 		},
 		data() {
 			return {}
-		},
-		computed: {
-			steps() {
-				let steps = []
-				this.data.forEach((item, index) => {
-					let step = {}
-					step.title = item.title
-					step.desc = item.desc
-					step.status = this.getStatus(index)
-					steps.push(step)
-				})
-				return steps
-			}
-		},
-		methods: {
-			getStatus(index) {
-				if (index < Number(this.active)) {
-					return 'finish'
-				} else if (index === Number(this.active)) {
-					return 'process'
-				}
-				return ''
-			}
 		}
 	}
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-swipe-action">
-		<view class="uni-swipe-action__container" :class="!isMoving ? 'animtion' : ''" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @touchcancel="touchEnd" @click="bindClickCont" :style="{'transform':transformX,'-webkit-transform':transformX}">
+		<view class="uni-swipe-action__container" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @touchcancel="touchEnd" @click="bindClickCont" :style="{'transform':transformX,'-webkit-transform':transformX}">
 			<view class="uni-swipe-action__content">
 				<slot></slot>
 			</view>
@@ -41,49 +41,37 @@
 			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				elId: elId,
-				moveLength: 0,
-				isMoving: false,
-				direction: '',
-				startX: 0,
-				startY: 0,
-				isShowBtn: false,
-				btnGroupWidth: 0
+				transformX: 'translateX(0px)'
 			}
+		},
+		created() {
+			this.direction = ''
+			this.startX = 0
+			this.startY = 0
+			this.btnGroupWidth = 0
+			this.isShowBtn = false
+			this.isMoving = false
 		},
 		// #ifdef H5
 		mounted() {
-			let view = uni.createSelectorQuery().select(`#${this.elId}`);
-			view.fields({
-				size: true
-			}, data => {
-				this.btnGroupWidth = data.width;
-			}).exec();
-			if (this.isOpened === true) {
-				this.isShowBtn = true;
-				this.endMove();
-			}
+			this.getSize()
 		},
 		// #endif
 		// #ifndef H5
 		onReady() {
-			let view = uni.createSelectorQuery().select(`#${this.elId}`);
-			view.fields({
-				size: true
-			}, data => {
-				this.btnGroupWidth = data.width;
-			}).exec();
-			if (this.isOpened === true) {
-				this.isShowBtn = true;
-				this.endMove();
-			}
+			this.getSize()
 		},
 		// #endif
-		computed: {
-			transformX() {
-				return `translateX(${this.moveLength}px)`
-			}
-		},
 		methods: {
+			getSize() {
+				uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
+					this.btnGroupWidth = ret[0].width;
+				});
+				if (this.isOpened === true) {
+					this.isShowBtn = true;
+					this.endMove();
+				}
+			},
 			bindClickBtn(item, index) {
 				this.$emit('click', {
 					text: item.text,
@@ -133,10 +121,10 @@
 					return;
 				}
 				if (this.isShowBtn) {
-					this.moveLength = -this.btnGroupWidth;
+					this.transformX = `translateX(${-this.btnGroupWidth}px)`;
 					this.$emit('opened');
 				} else {
-					this.moveLength = 0;
+					this.transformX = 'translateX(0px)';
 					this.$emit('closed');
 				}
 				this.direction = '';
@@ -158,10 +146,7 @@
 		width: 200%;
 		display: flex;
 		flex-direction: row;
-		flex-wrap: wrap
-	}
-
-	.uni-swipe-action__container.animtion {
+		flex-wrap: wrap;
 		transition: transform 350ms cubic-bezier(.165, .84, .44, 1)
 	}
 
