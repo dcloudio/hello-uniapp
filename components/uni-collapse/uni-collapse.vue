@@ -20,8 +20,9 @@
 			let childrens = []
 			this.getChildren(children, childrens)
 			this.childrens = childrens
-			if (this.accordion === true || this.accordion === 'true') {
-				childrens.forEach((vm, index) => {
+			childrens.forEach((vm, index) => {
+				vm.nameSync = vm.name ? vm.name : index
+				if (this.accordion === true || this.accordion === 'true') {
 					childrens.forEach((v, i) => {
 						if (index >= i) {
 							return
@@ -30,8 +31,8 @@
 							vm.isOpen = false
 						}
 					})
-				})
-			}
+				}
+			})
 		},
 		methods: {
 			onChange(e) {
