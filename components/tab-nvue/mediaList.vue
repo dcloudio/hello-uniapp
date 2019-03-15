@@ -1,21 +1,21 @@
 <template>
     <view>
         <view class="list-cell" hover-class="uni-list-cell-hover" @click="bindClick">
-            <view class="media-list" v-if="data.title">
+            <view class="media-list" v-if="options.title">
                 <view :class="[isImgRight?'media-image-right':'',isImgLeft?'media-image-left':'']">
-                    <text :class="['media-title',isImgRight||isImgLeft?'media-title2':'']">{{data.title}}</text>
+                    <text :class="['media-title',isImgRight||isImgLeft?'media-title2':'']">{{options.title}}</text>
                     <view v-if="showImg" :class="['image-section',isImgRight?'image-section-right':'',isImgLeft?'image-section-left':'']">
-                        <image :class="['image-list1',isImgRight||isImgLeft?'image-list2':'']" v-if="data.image_url"
-                            :src="data.image_url"></image>
-                        <image class="image-list3" v-if="data.image_list" :src="source.url" v-for="(source, i) in data.image_list"
+                        <image :class="['image-list1',isImgRight||isImgLeft?'image-list2':'']" v-if="options.image_url"
+                            :src="options.image_url"></image>
+                        <image class="image-list3" v-if="options.image_list" :src="source.url" v-for="(source, i) in options.image_list"
                             :key="i" />
                     </view>
                 </view>
                 <view class="media-foot">
                     <view class="media-info">
-                        <text class="info-text">{{data.source}}</text>
-                        <text class="info-text">{{data.comment_count}}条评论</text>
-                        <text class="info-text">{{data.datetime}}</text>
+                        <text class="info-text">{{options.source}}</text>
+                        <text class="info-text">{{options.comment_count}}条评论</text>
+                        <text class="info-text">{{options.datetime}}</text>
                     </view>
                     <view class="max-close-view" @click.stop="close">
                         <view class="close-view"><text class="close">×</text></view>
@@ -29,7 +29,7 @@
 <script>
     export default {
         props: {
-            data: {
+            options: {
                 type: Object,
                 default: function(e) {
                     return {}
@@ -38,13 +38,13 @@
         },
         computed: {
             isImgRight() {
-                return this.data.article_type === 2
+                return this.options.article_type === 2
             },
             isImgLeft() {
-                return this.data.article_type === 1
+                return this.options.article_type === 1
             },
             showImg() {
-                return this.data.image_list || this.data.image_url
+                return this.options.image_list || this.options.image_url
             }
         },
         methods: {
