@@ -11,11 +11,11 @@
 				<view class="title">饼图示例</view>
 				<button class="update-btn" type="primary" size="mini" @click="updatePie">修改饼状图数据</button>
 			</view>
-			<mpvue-echarts :echarts="echarts" :onInit="pieInit" canvasId="pie" ref="pieChart" />
+			<mpvue-echarts class="ec-canvas" :onInit="pieInit" canvasId="pie" ref="pieChart" />
 		</view>
 		<view class="canvasView">
 			<view class="title">折线图示例</view>
-			<mpvue-echarts :echarts="echarts" :onInit="lineInit" canvasId="line" ref="lineChart" />
+			<mpvue-echarts class="ec-canvas" :onInit="lineInit" canvasId="line" ref="lineChart" />
 		</view>
 	</view>
 </template>
@@ -93,7 +93,7 @@
 	export default {
 		data() {
 			return {
-				echarts: echarts,
+				// echarts: echarts,
 				updateStatus: false
 			}
 		},
@@ -131,6 +131,7 @@
 				this.updateStatus = true;
 			},
 			pieInit(canvas, width, height) {
+				echarts.setCanvasCreator(() => canvas);
 				let pieChart = echarts.init(canvas, null, {
 					width: width,
 					height: height
@@ -141,6 +142,7 @@
 				return pieChart
 			},
 			lineInit(canvas, width, height) {
+				echarts.setCanvasCreator(() => canvas);
 				let lineChart = echarts.init(canvas, null, {
 					width: width,
 					height: height
@@ -186,6 +188,12 @@
 	.canvasView {
 		flex: 1;
 		flex-direction: column;
+	}
+
+	.ec-canvas {
+		width: 100%;
+		height: 100%;
+		flex: 1;
 	}
 
 	.navigate {

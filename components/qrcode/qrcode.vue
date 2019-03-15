@@ -1,10 +1,10 @@
 <template>
 	<view class="qrcode">
-		<image class="image" v-if="img != ''" :src="img" :style="{ width: size+'px', height: size + 'px' }"/>
+		<image class="image" v-if="img" :src="img" :style="{width: sizeSync + 'px', height: sizeSync + 'px'}" />
 	</view>
 </template>
 <script>
-	import QR from "./qrcode.js";
+	import QR from './qrcode.js';
 	export default {
 		name: 'number-box',
 		props: {
@@ -12,45 +12,47 @@
 				type: String,
 				default: ''
 			},
-			size:{
-				type:Number,
-				default:100
+			size: {
+				type: Number,
+				default: 100
 			}
 		},
-		data(){
-			return{
-				img:''
+		data() {
+			return {
+				img: '',
+				sizeSync: 100
 			}
-		},
-		onUnload(){
 		},
 		methods: {
-			creatQrcode(){
-				let val = String(this.val)
-				if(val == ''){
-					return false
+			creatQrcode() {
+				let val = this.val + '';
+				if (!val) {
+					return;
 				}
 				let img = QR.createQrCodeImg(val, {
 					size: parseInt(this.size)
-				})
+				});
 				this.img = img;
 			},
-			clearQrcode(){
+			clearQrcode() {
 				this.img = '';
 			}
 		},
-		watch:{
-			size(newVal, oldVal){
-				if(newVal != oldVal){
-					this.size = newVal;
-					this.creatQrcode()
+		watch: {
+			size(newVal, oldVal) {
+				if (newVal != oldVal) {
+					this.sizeSync = newVal;
+					this.creatQrcode();
 				}
 			}
+		},
+		created() {
+			this.sizeSync = this.size;
 		}
 	}
 </script>
 <style>
-	.qrcode{
+	.qrcode {
 		display: flex;
 		justify-content: center;
 	}

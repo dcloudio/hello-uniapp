@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import uniIcon from '@/components/uni-icon.vue';
+import uniIcon from '@/components/uni-icon/uni-icon.vue';
 import uniFab from '@/components/uni-fab.vue';
 export default {
 	data() {

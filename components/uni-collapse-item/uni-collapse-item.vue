@@ -1,5 +1,5 @@
 <template>
-	<view :class="setCollapseCellClass" :hover-class="disabled === true || disabled === 'true' ? '' : 'uni-collapse-cell--hover'">
+	<view :class="['uni-collapse-cell',{'uni-collapse-cell--disabled':disabled,'uni-collapse-cell--open':isOpen}]" :hover-class="disabled === true || disabled === 'true' ? '' : 'uni-collapse-cell--hover'">
 		<view class="uni-collapse-cell__title" @click="onClick">
 			<view class="uni-collapse-cell__title-extra" v-if="thumb">
 				<image class="uni-collapse-cell__title-img" :src="thumb"></image>
@@ -7,12 +7,12 @@
 			<view class="uni-collapse-cell__title-inner">
 				<view class="uni-collapse-cell__title-text">{{title}}</view>
 			</view>
-			<view class="uni-collapse-cell__title-arrow" :class="setActive">
+			<view class="uni-collapse-cell__title-arrow" :class="{'uni-active':isOpen}">
 				<uni-icon color="#bbb" size="20" type="arrowdown"></uni-icon>
 			</view>
 		</view>
-		<view class="uni-collapse-cell__content" :class="animation==='outer' ? 'uni-collapse-cell--animation' : ''" :style="{height:isOpen==='true' || isOpen=== true ? height + 'px' : '0px'}">
-			<view :class="setContClass" :id="elId">
+		<view class="uni-collapse-cell__content" :class="{'uni-collapse-cell--animation':animation==='outer'}" :style="{height:isOpen==='true' || isOpen=== true ? height + 'px' : '0px'}">
+			<view :class="{'uni-collapse-cell__inner':animation === 'inner','uni-active':isOpen}" :id="elId">
 				<slot />
 			</view>
 		</view>
@@ -26,60 +26,15 @@
 		components: {
 			uniIcon
 		},
-		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
-			return {
-				isOpen: this.open,
-				height: 0,
-				elId: elId
-			};
-		},
-		watch: {
-			open(val) {
-				this.isOpen = val
-			}
-		},
-		computed: {
-			index() {
-				return this.$parent.$children.indexOf(this)
-			},
-			nameSync() {
-				return this.name === 0 ? this.index : this.name
-			},
-			setCollapseCellClass() {
-				let classList = ['uni-collapse-cell']
-				if (this.disabled === true || this.disabled === 'true') {
-					classList.push('uni-collapse-cell--disabled')
-				}
-				if (this.isOpen === true || this.isOpen === 'true') {
-					classList.push('uni-collapse-cell--open')
-				}
-				return classList
-			},
-			setActive() {
-				let classList = []
-				if (this.isOpen === true || this.isOpen === 'true') {
-					classList.push('uni-active')
-				}
-				return classList
-			},
-			setContClass() {
-				let classList = []
-				if (this.isOpen === true || this.isOpen === 'true') {
-					classList.push('uni-active')
-				}
-				if (this.animation === 'inner') {
-					classList.push('uni-collapse-cell__inner')
-				}
-				return classList
-			}
-		},
 		props: {
 			animation: { //动画效果:inner内容动；outer容器动
 				type: String,
 				default: 'outer'
 			},
-			title: String, //列表标题
+			title: { //列表标题
+				type: String,
+				default: ''
+			},
 			name: { //唯一标识符
 				type: [Number, String],
 				default: 0
@@ -92,11 +47,28 @@
 				type: [Boolean, String],
 				default: false
 			},
-			thumb: String //缩略图
+			thumb: { //缩略图
+				type: String,
+				default: ''
+			}
+		},
+		data() {
+			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
+			return {
+				isOpen: false,
+				height: 0,
+				elId: elId
+			};
+		},
+		watch: {
+			open(val) {
+				this.isOpen = val
+			}
 		},
 		created() {
 			let parent = this.$parent || this.$root
 			let name = parent.$options.name
+			this.isOpen = this.open
 
 			while (parent && name !== 'uni-collapse') {
 				parent = parent.$parent
@@ -108,25 +80,20 @@
 		},
 		// #ifdef H5
 		mounted() {
-			let view = uni.createSelectorQuery().select(`#${this.elId}`);
-			view.fields({
-				size: true
-			}, data => {
-				this.height = data.height
-			}).exec();
+			this.getSize()
 		},
 		// #endif
 		// #ifndef H5
 		onReady() {
-			let view = uni.createSelectorQuery().select(`#${this.elId}`);
-			view.fields({
-				size: true
-			}, data => {
-				this.height = data.height
-			}).exec();
+			this.getSize()
 		},
 		// #endif
 		methods: {
+			getSize() {
+				uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
+					this.height = ret[0].height
+				});
+			},
 			onClick() {
 				if (this.disabled) {
 					return

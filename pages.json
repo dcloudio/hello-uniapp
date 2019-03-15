@@ -564,7 +564,7 @@
 						"app-plus": {
 							"titleNView": {
 								"buttons": [{
-									"text": "\ue563",
+									"text": "",
 									"fontSrc": "/static/uni.ttf",
 									"fontSize": "22px"
 								}]
@@ -618,7 +618,7 @@
 						"navigationBarTitleText": "Card 卡片"
 					}
 				},
-				// #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO
+				// #ifdef H5 || APP-PLUS
 				{
 					"path": "collapse/collapse",
 					"style": {

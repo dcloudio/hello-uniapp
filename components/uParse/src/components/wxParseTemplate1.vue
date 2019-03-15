@@ -1,5 +1,5 @@
 <template>
-	<view :class="node.node == 'element' && node.tag == 'li' ? node.classStr : ''">
+	<view :class="(node.tag == 'li' ? node.classStr : (node.node==='text'?'text':''))">
 		<!--判断是否是标签节点-->
 		<block v-if="node.node == 'element'">
 			<block v-if="node.tag == 'button'">
@@ -88,7 +88,11 @@
 					href
 				} = e.currentTarget.dataset;
 				if (!href) return;
-				this.node.$host.navigate(href, e);
+				let parent = this.$parent;
+				while(!parent.preview || typeof parent.preview !== 'function') {
+					parent = parent.$parent;
+				}
+				parent.navigate(href, e);
 			},
 		},
 	};

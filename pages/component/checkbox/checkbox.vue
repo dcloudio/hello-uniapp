@@ -71,12 +71,11 @@
 				var items = this.items,
 					values = e.detail.value;
 				for (var i = 0, lenI = items.length; i < lenI; ++i) {
-					items[i].checked = false;
-					for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-						if (items[i].value == values[j]) {
-							items[i].checked = true;
-							break
-						}
+					const item = items[i]
+					if(values.includes(item.value)){
+						this.$set(item,'checked',true)
+					}else{
+						this.$set(item,'checked',false)
 					}
 				}
 			}

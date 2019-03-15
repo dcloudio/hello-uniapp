@@ -1,5 +1,5 @@
 <template>
-	<text class="uni-badge" v-if="text" :class="setClass" @click="onClick()">{{text}}</text>
+	<text class="uni-badge" v-if="text" :class="inverted ? 'uni-badge-' + type + ' uni-badge--' + size + ' uni-badge-inverted' : 'uni-badge-' + type + ' uni-badge--' + size" @click="onClick()">{{text}}</text>
 </template>
 
 <script>
@@ -21,15 +21,6 @@
 			size: { //small.normal
 				type: String,
 				default: 'normal'
-			}
-		},
-		computed: {
-			setClass() {
-				let classList = ['uni-badge-' + this.type, 'uni-badge--' + this.size];
-				if (this.inverted === true) {
-					classList.push('uni-badge-inverted')
-				}
-				return classList.join(" ")
 			}
 		},
 		methods: {

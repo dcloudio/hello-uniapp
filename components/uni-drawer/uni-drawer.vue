@@ -57,11 +57,6 @@
 				}
 			}
 		},
-		computed: {
-			showMask() {
-				return String(this.mask) === 'true'
-			}
-		},
 		created() {
 			this.visibleSync = this.visible
 			setTimeout(() => {

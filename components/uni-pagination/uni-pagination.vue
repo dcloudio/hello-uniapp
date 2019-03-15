@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-pagination">
 		<view class="uni-pagination__btns">
-			<view @click="clickLeft" :class="setLeftBtnClass" :hover-class="setLeftBtnHoverClass" :hover-start-time="20" :hover-stay-time="70">
+			<view @click="clickLeft" :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === 1}]" :hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70">
 				<template v-if="showIcon===true || showIcon === 'true'">
 					<uni-icon color="#000" size="20" type="arrowleft"></uni-icon>
 				</template>
@@ -9,7 +9,7 @@
 					{{prevText}}
 				</template>
 			</view>
-			<view @click="clickRight" :class="setRightBtnClass" :hover-class="setRightBtnHoverClass" :hover-start-time="20" :hover-stay-time="70">
+			<view @click="clickRight" :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === maxPage}]" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70">
 				<template v-if="showIcon===true || showIcon === 'true'">
 					<uni-icon color="#000" size="20" type="arrowright"></uni-icon>
 				</template>
@@ -27,7 +27,7 @@
 <script>
 	import uniIcon from '../uni-icon/uni-icon.vue'
 	export default {
-		name: "uni-pagination",
+		name: 'uni-pagination',
 		components: {
 			uniIcon
 		},
@@ -59,12 +59,12 @@
 		},
 		watch: {
 			current(val) {
-				this.currentIndex = Number(val)
+				this.currentIndex = +val
 			}
 		},
 		data() {
 			return {
-				currentIndex: Number(this.current)
+				currentIndex: 1
 			}
 		},
 		computed: {
@@ -76,34 +76,6 @@
 					maxPage = Math.ceil(total / pageSize)
 				}
 				return maxPage
-			},
-			setLeftBtnClass() {
-				let classList = ['uni-pagination__btn']
-				if (Number(this.currentIndex) === 1) {
-					classList.push('uni-pagination--disabled')
-				}
-				return classList
-			},
-			setLeftBtnHoverClass() {
-				let hoverClass = 'uni-pagination--hover'
-				if (Number(this.currentIndex) === 1) {
-					hoverClass = ''
-				}
-				return hoverClass
-			},
-			setRightBtnClass() {
-				let classList = ['uni-pagination__btn']
-				if (Number(this.currentIndex) === this.maxPage) {
-					classList.push('uni-pagination--disabled')
-				}
-				return classList
-			},
-			setRightBtnHoverClass() {
-				let hoverClass = 'uni-pagination--hover'
-				if (Number(this.currentIndex) === this.maxPage) {
-					hoverClass = ''
-				}
-				return hoverClass
 			}
 		},
 		methods: {
@@ -127,6 +99,9 @@
 					current: this.currentIndex
 				})
 			}
+		},
+		created() {
+			this.currentIndex = +this.current;
 		}
 	}
 </script>

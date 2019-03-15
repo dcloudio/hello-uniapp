@@ -38,22 +38,22 @@
 		components: {
 			uParse
 		},
-		data: function () {
+		data: function() {
 			return {
 				screenHeight: 0,
 				cursor: 0,
-                textareaDataSync:this.textareaData,
-                textareaHtmlSync:this.textareaHtml
+				textareaDataSync: '',
+				textareaHtmlSync: ''
 			}
 		},
 		props: {
 			textareaData: {
 				type: String,
-				default: ""
+				default: ''
 			},
 			textareaHtml: {
 				type: String,
-				default: ""
+				default: ''
 			},
 			showPreview: {
 				type: Boolean,
@@ -74,7 +74,7 @@
 				// #ifdef MP-WEIXIN
 				uni.setClipboardData({
 					data: href,
-					success: function () {
+					success: function() {
 						uni.showModal({
 							content: "网址已复制,请在浏览器中粘贴打开",
 							showCancel: false
@@ -154,13 +154,17 @@
 			}
 		},
 		watch: {
-			"textareaDataSync": function (newValue, oldValue) {
+			"textareaDataSync": function(newValue, oldValue) {
 				this.textareaHtmlSync = marked(newValue)
 				this.$emit('update:textareaData', newValue)
 				this.$emit('update:textareaHtml', this.textareaHtmlSync)
 			}
 		},
-		mounted: function () {
+		created() {
+			this.textareaDataSync = this.textareaData;
+			this.textareaHtmlSync = this.textareaHtml;
+		},
+		mounted() {
 			uni.getSystemInfo({
 				success: res => {
 					this.screenHeight = res.screenHeight

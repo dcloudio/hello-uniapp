@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-navbar">
-		<view class="uni-navbar__content" :class="{'uni-navbar--fixed':isFixed,'uni-navbar--shadow':hasShadow,'uni-navbar--border':hasBorder}" :style="{'background-color':backgroundColor}">
-			<uni-status-bar v-if="insertStatusBar"></uni-status-bar>
+		<view class="uni-navbar__content" :class="{'uni-navbar--fixed': !!fixed,'uni-navbar--shadow':!!border,'uni-navbar--border':!!border}" :style="{'background-color':backgroundColor}">
+			<uni-status-bar v-if="statusBar"></uni-status-bar>
 			<view class="uni-navbar__header" :style="{color:color}">
 				<view class="uni-navbar__header-btns" @tap="onClickLeft">
 					<view v-if="leftIcon.length">
@@ -25,8 +25,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="uni-navbar__placeholder" v-if="isFixed">
-			<uni-status-bar v-if="insertStatusBar"></uni-status-bar>
+		<view class="uni-navbar__placeholder" v-if="fixed">
+			<uni-status-bar v-if="statusBar"></uni-status-bar>
 			<view class="uni-navbar__placeholder-view"></view>
 		</view>
 	</view>
@@ -86,20 +86,6 @@
 			border: {
 				type: [String, Boolean],
 				default: true
-			}
-		},
-		computed: {
-			isFixed() {
-				return String(this.fixed) === 'true'
-			},
-			insertStatusBar() {
-				return String(this.statusBar) === 'true'
-			},
-			hasShadow() {
-				return String(this.border) === 'true'
-			},
-			hasBorder() {
-				return String(this.border) === 'true'
 			}
 		},
 		methods: {

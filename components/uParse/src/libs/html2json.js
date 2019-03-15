@@ -69,12 +69,13 @@ function html2json(html, customHandler, imageProp, host) {
     imageUrls: [],
   };
 
+	const screen = getScreenInfo();
   function Node(tag) {
     this.node = 'element';
     this.tag = tag;
+		
+		this.$screen = screen;
   }
-  Node.prototype.$screen = getScreenInfo();
-  Node.prototype.$host = host;
 
   HTMLParser(html, {
     start(tag, attrs, unary) {

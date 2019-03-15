@@ -1,7 +1,17 @@
 <template>
-	<view class="segmented-control" :class="styleType" :style="wrapStyle">
-		<view v-for="(item, index) in values" class="segmented-control-item" :class="styleType" :key="index" :style="index === currentIndex ? activeStyle : itemStyle" @click="onClick(index)">
-			{{item}}
+	<view class="segmented-control" :class="{ text: styleType === 'text' }" :style="{ borderColor: styleType === 'text' ? '' : activeColor }">
+		<view v-for="(item, index) in values" class="segmented-control-item" :class="[{ text: styleType === 'text' }, { active: index === currentIndex }]" :key="index" @click="_onClick(index)" :style="{
+				color:
+					index === currentIndex
+						? styleType === 'text'
+							? activeColor
+							: '#fff'
+						: styleType === 'text'
+						? '#000'
+						: activeColor,
+				backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : ''
+			}">
+			{{ item }}
 		</view>
 	</view>
 </template>
@@ -31,8 +41,8 @@
 		},
 		data() {
 			return {
-				currentIndex: this.current
-			}
+				currentIndex: 0
+			};
 		},
 		watch: {
 			current(val) {
@@ -41,94 +51,63 @@
 				}
 			}
 		},
-		computed: {
-			wrapStyle() {
-				let styleString = '';
-				switch (this.styleType) {
-					case 'text':
-						styleString = `border:0;`;
-						break;
-					default:
-						styleString = `border-color: ${this.activeColor}`;
-						break;
-				}
-				return styleString;
-			},
-			itemStyle() {
-				let styleString = '';
-				switch (this.styleType) {
-					case 'text':
-						styleString = `color:#000;border-left:0;`;
-						break;
-					default:
-						styleString = `color:${this.activeColor};border-color:${this.activeColor};`;
-						break;
-				}
-				return styleString;
-			},
-			activeStyle() {
-				let styleString = '';
-				switch (this.styleType) {
-					case 'text':
-						styleString = `color:${this.activeColor};border-left:0;border-bottom-style:solid;`;
-						break;
-					default:
-						styleString = `color:#fff;border-color:${this.activeColor};background-color:${this.activeColor}`;
-						break;
-				}
-				return styleString;
-			}
-		},
 		methods: {
-			onClick(index) {
+			_onClick(index) {
 				if (this.currentIndex !== index) {
 					this.currentIndex = index;
 					this.$emit('clickItem', index);
 				}
 			}
 		},
-	}
+		created() {
+			this.currentIndex = this.current;
+		}
+	};
 </script>
 
 <style>
+	@charset "UTF-8";
+
 	.segmented-control {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		width: 75%;
 		font-size: 28upx;
-		border-radius: 10upx;
 		box-sizing: border-box;
 		margin: 0 auto;
 		overflow: hidden;
-	}
-
-	.segmented-control.button {
-		border: 2upx solid;
+		border: 1px solid;
+		border-radius: 10upx
 	}
 
 	.segmented-control.text {
 		border: 0;
-		border-radius: 0upx;
+		border-radius: 0
 	}
-
 
 	.segmented-control-item {
 		flex: 1;
 		text-align: center;
 		line-height: 60upx;
 		box-sizing: border-box;
+		border-left: 1px solid
 	}
 
-	.segmented-control-item.button {
-		border-left: 1upx solid;
+	.segmented-control-item.active {
+		color: #fff
 	}
 
 	.segmented-control-item.text {
 		border-left: 0;
+		color: #000
+	}
+
+	.segmented-control-item.text.active {
+		border-bottom-style: solid
 	}
 
 	.segmented-control-item:first-child {
-		border-left-width: 0;
+		border-left-width: 0
 	}
 </style>

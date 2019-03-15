@@ -78,30 +78,13 @@
 		},
 		methods: {
 			checkboxChange: function(e) {
-				console.log(e)
 				var checked = e.target.value
-				var changed = {}
-				for (var i = 0; i < this.checkboxItems.length; i++) {
-					if (checked.indexOf(this.checkboxItems[i].name) !== -1) {
-						changed['checkboxItems[' + i + '].checked'] = true
-					} else {
-						changed['checkboxItems[' + i + '].checked'] = false
-					}
-				}
+				console.log(checked)
+
 			},
 			radioChange: function(e) {
 				var checked = e.target.value
-				var changed = {}
-				for (var i = 0; i < this.radioItems.length; i++) {
-					if (checked.indexOf(this.radioItems[i].name) !== -1) {
-						changed['radioItems[' + i + '].checked'] = true
-					} else {
-						changed['radioItems[' + i + '].checked'] = false
-					}
-				}
-			},
-			tapEvent: function(e) {
-				console.log('按钮被点击')
+				console.log(checked)
 			}
 		}
 	}

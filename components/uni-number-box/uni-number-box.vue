@@ -1,8 +1,8 @@
 <template>
 	<view class="uni-numbox">
-		<view class="uni-numbox__minus" :class="{'uni-numbox--disabled': disableSubtract||disabled}" @click="_calcValue('subtract')">-</view>
-		<input class="uni-numbox__value" type="number" :disabled="disabled" :value="inputValue" @blur="_onBlur">
-		<view class="uni-numbox__plus" :class="{'uni-numbox--disabled': disableAdd||disabled}" @click="_calcValue('add')">+</view>
+		<view class="uni-numbox__minus" :class="{'uni-numbox--disabled': inputValue <= min || disabled}" @click="_calcValue('minus')">-</view>
+		<input class="uni-numbox__value" type="number" :disabled="disabled" v-model="inputValue" @blur="_onBlur">
+		<view class="uni-numbox__plus" :class="{'uni-numbox--disabled': inputValue >= max || disabled}" @click="_calcValue('plus')">+</view>
 	</view>
 </template>
 <script>
@@ -10,7 +10,7 @@
 		name: 'uni-number-box',
 		props: {
 			value: {
-				type: Number,
+				type: [Number, String],
 				default: 1
 			},
 			min: {
@@ -32,23 +32,17 @@
 		},
 		data() {
 			return {
-				inputValue: this.value
-			}
-		},
-		computed: {
-			disableSubtract() {
-				return this.inputValue <= this.min
-			},
-			disableAdd() {
-				return this.inputValue >= this.max
+				inputValue: 0
 			}
 		},
 		watch: {
 			value(val) {
-				this.inputValue = val;
+				this.inputValue = +val;
 			},
-			inputValue(val) {
-				this.$emit('change', val);
+			inputValue(newVal, oldVal) {
+				if (+newVal !== +oldVal) {
+					this.$emit('change', newVal);
+				}
 			}
 		},
 		methods: {
@@ -59,9 +53,9 @@
 				const scale = this._getDecimalScale()
 				let value = this.inputValue * scale
 				let step = this.step * scale
-				if (type === 'subtract') {
+				if (type === 'minus') {
 					value -= step
-				} else if (type === 'add') {
+				} else if (type === 'plus') {
 					value += step
 				}
 				if (value < this.min || value > this.max) {
@@ -91,6 +85,9 @@
 				}
 				this.inputValue = value
 			}
+		},
+		created() {
+			this.inputValue = +this.value;
 		}
 	}
 </script>

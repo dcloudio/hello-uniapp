@@ -26,7 +26,7 @@
 			}
 		},
 		onReady: function() {
-			context = uni.createCanvasContext('canvas')
+			context = uni.createCanvasContext('canvas',this)
 		},
 		methods: {
 			toTempFilePath: function() {

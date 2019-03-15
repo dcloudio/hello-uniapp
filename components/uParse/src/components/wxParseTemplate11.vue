@@ -76,7 +76,11 @@
 					href
 				} = e.currentTarget.dataset;
 				if (!href) return;
-				this.node.$host.navigate(href, e);
+				let parent = this.$parent;
+				while(!parent.preview || typeof parent.preview !== 'function') {
+					parent = parent.$parent;
+				}
+				parent.navigate(href, e);
 			},
 		},
 	};

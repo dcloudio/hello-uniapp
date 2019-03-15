@@ -61,11 +61,26 @@
 	</view>
 </template>
 <script>
+	
+	function getDate(type) {
+		const date = new Date();
+	
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+	
+		if (type === 'start') {
+			year = year - 60;
+		} else if (type === 'end') {
+			year = year + 2;
+		}
+		month = month > 9 ? month : '0' + month;;
+		day = day > 9 ? day : '0' + day;
+	
+		return `${year}-${month}-${day}`;
+	}
 	export default {
 		data() {
-			const currentDate = this.getDate({
-				format: true
-			});
 			return {
 				title: 'picker',
 				array: ['中国', '美国', '巴西', '日本'],
@@ -76,16 +91,12 @@
 					['猪肉绦虫', '吸血虫']
 				],
 				multiIndex: [0, 0, 0],
-				date: currentDate,
+				date: getDate({
+					format: true
+				}),
+				startDate:getDate('start'),
+				endDate:getDate('end'),
 				time: '12:01'
-			}
-		},
-		computed: {
-			startDate() {
-				return this.getDate('start');
-			},
-			endDate() {
-				return this.getDate('end');
 			}
 		},
 		methods: {
@@ -156,24 +167,8 @@
 			},
 			bindTimeChange: function(e) {
 				this.time = e.target.value
-			},
-			getDate(type) {
-				const date = new Date();
-
-				let year = date.getFullYear();
-				let month = date.getMonth() + 1;
-				let day = date.getDate();
-
-				if (type === 'start') {
-					year = year - 60;
-				} else if (type === 'end') {
-					year = year + 2;
-				}
-				month = month > 9 ? month : '0' + month;;
-				day = day > 9 ? day : '0' + day;
-
-				return `${year}-${month}-${day}`;
 			}
+			
 		}
 	}
 </script>
