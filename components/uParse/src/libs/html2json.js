@@ -75,7 +75,6 @@ function html2json(html, customHandler, imageProp, host) {
     this.tag = tag;
 		
 		this.$screen = screen;
-		this.$host = host;
   }
 
   HTMLParser(html, {
