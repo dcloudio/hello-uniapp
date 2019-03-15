@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        data: function () {
+        data () {
             const date = new Date()
             const years = []
             const year = date.getFullYear()
@@ -59,7 +59,7 @@
             }
         },
         methods: {
-            bindChange: function (e) {
+            bindChange (e) {
                 const val = e.detail.value
                 this.year = this.years[val[0]]
                 this.month = this.months[val[1]]
