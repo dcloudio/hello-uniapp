@@ -19,16 +19,16 @@
 	</view>
 </template>
 <script>
-    import uniIcon from '../../../components/uni-icon.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	export default {
 		data() {
 			return {
 				title: 'progress'
 			}
 		},
-        components: {
-        	uniIcon
-        },
+		components: {
+			uniIcon
+		},
 	}
 </script>
 
@@ -38,6 +38,11 @@
 		height: 50upx;
 		margin-bottom: 60upx;
 	}
+
+	.uni-icon {
+		line-height: 1.5;
+	}
+
 	.progress-cancel {
 		margin-left: 40upx;
 	}
