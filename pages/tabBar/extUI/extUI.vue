@@ -25,7 +25,7 @@
 						name: 'Card 卡片',
 						url: 'card'
 					},
-					// #ifndef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO
+					// #ifdef H5 || APP-PLUS
 					{
 						name: 'Collapse 折叠面板',
 						url: 'collapse'
