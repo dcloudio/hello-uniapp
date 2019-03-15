@@ -4,7 +4,7 @@
 			<scroll-view id="scrollview" scroll-y="true" :style="{height:style.contentViewHeight+'px'}" :scroll-with-animation="true"
 			    :scroll-top="scrollTop">
 				<page-foot :name="name"></page-foot>
-				<message-show v-for="(message,index) in messages" :key="index" :message="message" :id="index"></message-show>
+				<message-show v-for="(message,index) in messages" :key="index" :message="message" :cid="index"></message-show>
 				<view id="bottom"></view>
 			</scroll-view>
 		</view>

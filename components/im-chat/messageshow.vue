@@ -1,5 +1,5 @@
 <template>
-	<view class="m-item" :id="'message'+id">
+	<view class="m-item" :id="'message'+cid">
 		<view class="m-left">
 			<image class="head_icon" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/homeHL.png" v-if="message.user=='home'"></image>
 		</view>
@@ -16,7 +16,16 @@
 
 <script>
 	export default {
-		props: ['message', 'id']
+		props: {
+			message: {
+				type: String,
+				default: ''
+			},
+			cid: {
+				type: [Number, String],
+				default: ''
+			}
+		}
 	}
 </script>
 
@@ -26,12 +35,14 @@
 		flex-direction: row;
 		padding-top: 40upx;
 	}
+
 	.m-left {
 		display: flex;
 		width: 120upx;
 		justify-content: center;
 		align-items: flex-start;
 	}
+
 	.m-content {
 		display: flex;
 		flex: 1;
@@ -39,23 +50,28 @@
 		justify-content: center;
 		word-break: break-all;
 	}
+
 	.m-right {
 		display: flex;
 		width: 120upx;
 		justify-content: center;
 		align-items: flex-start;
 	}
+
 	.head_icon {
 		width: 80upx;
 		height: 80upx;
 	}
+
 	.m-content-head {
 		position: relative;
 	}
+
 	.m-content-head-right {
 		display: flex;
 		justify-content: flex-end;
 	}
+
 	.m-content-head-home {
 		text-align: left;
 		background: #1482d1;
@@ -64,6 +80,7 @@
 		padding: 20upx;
 		color: white;
 	}
+
 	.m-content-head-home:before {
 		border: 15upx solid transparent;
 		border-right: 15upx solid #1482d1;
@@ -73,12 +90,14 @@
 		position: absolute;
 		content: ' '
 	}
+
 	.m-content-head-customer {
 		border: 1upx white solid;
 		background: white;
 		border-radius: 20upx;
 		padding: 20upx;
 	}
+
 	.m-content-head-customer:after {
 		border: 15upx solid transparent;
 		border-left: 15upx solid white;
