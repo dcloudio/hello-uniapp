@@ -60,8 +60,7 @@
 		},
 		data() {
 			return {
-				maxSync: this.max,
-				valueSync: this.value
+				valueSync: ''
 			};
 		},
 		computed: {
@@ -98,6 +97,9 @@
 					value: this.valueSync
 				});
 			}
+		},
+		created() {
+			this.valueSync = this.value;
 		}
 	};
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<view class="qrcode">
-		<image class="image" v-if="img" :src="img" :style="{width: sizySync + 'px', height: sizySync + 'px'}"/>
+		<image class="image" v-if="img" :src="img" :style="{width: sizeSync + 'px', height: sizeSync + 'px'}" />
 	</view>
 </template>
 <script>
@@ -12,21 +12,21 @@
 				type: String,
 				default: ''
 			},
-			size:{
-				type:Number,
-				default:100
+			size: {
+				type: Number,
+				default: 100
 			}
 		},
-		data(){
-			return{
+		data() {
+			return {
 				img: '',
-				sizySync: this.size
+				sizeSync: 100
 			}
 		},
 		methods: {
-			creatQrcode(){
+			creatQrcode() {
 				let val = this.val + '';
-				if(!val){
+				if (!val) {
 					return;
 				}
 				let img = QR.createQrCodeImg(val, {
@@ -34,22 +34,25 @@
 				});
 				this.img = img;
 			},
-			clearQrcode(){
+			clearQrcode() {
 				this.img = '';
 			}
 		},
-		watch:{
-			size(newVal, oldVal){
-				if(newVal != oldVal){
-					this.sizySync = newVal;
+		watch: {
+			size(newVal, oldVal) {
+				if (newVal != oldVal) {
+					this.sizeSync = newVal;
 					this.creatQrcode();
 				}
 			}
+		},
+		created() {
+			this.sizeSync = this.size;
 		}
 	}
 </script>
 <style>
-	.qrcode{
+	.qrcode {
 		display: flex;
 		justify-content: center;
 	}

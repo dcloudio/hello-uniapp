@@ -27,7 +27,7 @@
 <script>
 	import uniIcon from '../uni-icon/uni-icon.vue'
 	export default {
-		name: "uni-pagination",
+		name: 'uni-pagination',
 		components: {
 			uniIcon
 		},
@@ -59,12 +59,12 @@
 		},
 		watch: {
 			current(val) {
-				this.currentIndex = Number(val)
+				this.currentIndex = +val
 			}
 		},
 		data() {
 			return {
-				currentIndex: Number(this.current)
+				currentIndex: 1
 			}
 		},
 		computed: {
@@ -99,6 +99,9 @@
 					current: this.currentIndex
 				})
 			}
+		},
+		created() {
+			this.currentIndex = +this.current;
 		}
 	}
 </script>

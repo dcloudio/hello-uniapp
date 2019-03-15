@@ -41,7 +41,7 @@
 		},
 		data() {
 			return {
-				currentIndex: this.current
+				currentIndex: 0
 			};
 		},
 		watch: {
@@ -58,6 +58,9 @@
 					this.$emit('clickItem', index);
 				}
 			}
+		},
+		created() {
+			this.currentIndex = this.current;
 		}
 	};
 </script>

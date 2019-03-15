@@ -26,25 +26,15 @@
 		components: {
 			uniIcon
 		},
-		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
-			return {
-				isOpen: this.open,
-				height: 0,
-				elId: elId
-			};
-		},
-		watch: {
-			open(val) {
-				this.isOpen = val
-			}
-		},
 		props: {
 			animation: { //动画效果:inner内容动；outer容器动
 				type: String,
 				default: 'outer'
 			},
-			title: String, //列表标题
+			title: { //列表标题
+				type: String,
+				default: ''
+			},
 			name: { //唯一标识符
 				type: [Number, String],
 				default: 0
@@ -57,11 +47,28 @@
 				type: [Boolean, String],
 				default: false
 			},
-			thumb: String //缩略图
+			thumb: { //缩略图
+				type: String,
+				default: ''
+			}
+		},
+		data() {
+			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
+			return {
+				isOpen: false,
+				height: 0,
+				elId: elId
+			};
+		},
+		watch: {
+			open(val) {
+				this.isOpen = val
+			}
 		},
 		created() {
 			let parent = this.$parent || this.$root
 			let name = parent.$options.name
+			this.isOpen = this.open
 
 			while (parent && name !== 'uni-collapse') {
 				parent = parent.$parent

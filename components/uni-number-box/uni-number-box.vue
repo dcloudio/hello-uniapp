@@ -32,7 +32,7 @@
 		},
 		data() {
 			return {
-				inputValue: +this.value
+				inputValue: 0
 			}
 		},
 		watch: {
@@ -85,6 +85,9 @@
 				}
 				this.inputValue = value
 			}
+		},
+		created() {
+			this.inputValue = +this.value;
 		}
 	}
 </script>
