@@ -31,13 +31,17 @@ export default {
   methods: {
     wxParseImgTap(e) {
       if (!this.preview) return;
-      const { src } = e.target.dataset;
+      const { src } = e.currentTarget.dataset;
       if (!src) return;
-      this.node.$host.preview(src, e);
+      let parent = this.$parent;
+      while(!parent.preview || typeof parent.preview !== 'function') {// TODO 遍历获取父节点执行方法
+      	parent = parent.$parent;
+      }
+      parent.preview(src, e);
     },
     // 图片视觉宽高计算函数区
     wxParseImgLoad(e) {
-      const { src } = e.target.dataset;
+      const { src } = e.currentTarget.dataset;
       if (!src) return;
       const { width, height } = e.mp.detail;
       const recal = this.wxAutoImageCal(width, height);
@@ -56,7 +60,11 @@ export default {
 
       if (originalWidth < 60 || originalHeight < 60) {
         const { src } = this.node.attr;
-        this.node.$host.removeImageUrl(src);
+				let parent = this.$parent;
+				while(!parent.preview || typeof parent.preview !== 'function') {
+					parent = parent.$parent;
+				}
+				parent.removeImageUrl(src);
         this.preview = false;
       }
 

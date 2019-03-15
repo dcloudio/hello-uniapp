@@ -94,9 +94,13 @@
 			wxParseATap(e) {
 				const {
 					href
-				} = e.target.dataset;
+				} = e.currentTarget.dataset;// TODO currentTarget才有dataset
 				if (!href) return;
-				this.node.$host.navigate(href, e);
+				let parent = this.$parent;
+				while(!parent.preview || typeof parent.preview !== 'function') {// TODO 遍历获取父节点执行方法
+					parent = parent.$parent;
+				}
+				parent.navigate(href, e);
 			},
 		},
 	};
