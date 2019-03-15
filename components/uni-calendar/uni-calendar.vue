@@ -612,10 +612,11 @@
 			getQueryDom(index) {
 				let dom = uni.createSelectorQuery().selectAll(`.${this.elClass}`);
 				dom.boundingClientRect(rect => {}).exec(e => {
-					if (!e[0]) {
-						this.getQueryDom(1);
+					if (!e[0][index]) {
+						setTimeout(() => this.getQueryDom(1), 50);
 						return;
 					}
+					console.log(e[0][index])
 					if (e[0][index]) {
 						this.domHeihgt = e[0][index].height;
 					}

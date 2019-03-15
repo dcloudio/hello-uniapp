@@ -98,7 +98,8 @@
 
 	.uni-calender__body-date-week .uni-calender__date .uni-calender__lunar {
 		font-size: 20upx;
-		color: #000
+		color: #000;
+		line-height: 1.2
 	}
 
 	.uni-calender__body-date-week .uni-calender__date .uni-calender__circle-box {
@@ -110,7 +111,8 @@
 		height: 80upx;
 		flex-shrink: 0;
 		border-radius: 50%;
-		transition: all .2s
+		transition: all .2s;
+		line-height: 1.2
 	}
 
 	.uni-calender__body-date-week .uni-calender__date.uni-calender__disable {
