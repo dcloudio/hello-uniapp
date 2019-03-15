@@ -47,23 +47,11 @@ export default {
   },
 	// #ifdef H5
   mounted() {
-    if (!this.echarts) {
-      console.warn('组件需绑定 echarts 变量，例：<ec-canvas id="mychart-dom-bar" '
-        + 'canvas-id="mychart-bar" :echarts="echarts"></ec-canvas>');
-      return;
-    }
-
     if (!this.lazyLoad) this.init();
   },
 	// #endif
 	// #ifndef H5
 	onReady() {
-		if (!this.echarts) {
-		  console.warn('组件需绑定 echarts 变量，例：<ec-canvas id="mychart-dom-bar" '
-		    + 'canvas-id="mychart-bar" :echarts="echarts"></ec-canvas>');
-		  return;
-		}
-		
 		if (!this.lazyLoad) this.init();
 	},
 	// #endif
@@ -75,13 +63,11 @@ export default {
       }
 
       const { canvasId } = this;
-      this.ctx = wx.createCanvasContext(canvasId);
+      this.ctx = wx.createCanvasContext(canvasId, this);
 
       const canvas = new WxCanvas(this.ctx, canvasId);
 
-      this.echarts.setCanvasCreator(() => canvas);
-
-      const query = wx.createSelectorQuery();
+      const query = wx.createSelectorQuery().in(this);
       query.select(`#${canvasId}`).boundingClientRect((res) => {
         if (!res) {
           setTimeout(() => this.init(), 50);
