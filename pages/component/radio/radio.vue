@@ -60,7 +60,7 @@
 			}
 		},
 		methods: {
-			radioChange: function(evt) {
+			radioChange(evt) {
 				for (let i = 0; i < this.items.length; i++) {
 					if (this.items[i].value === evt.target.value) {
 						this.current = i;
