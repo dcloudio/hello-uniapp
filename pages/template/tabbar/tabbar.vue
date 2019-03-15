@@ -153,7 +153,7 @@
 					return;
 				}
 				for (let i = 1; i <= 10; i++) {
-					this.newsitems[e].data.push(this['data' + Math.floor(Math.random() * 5)]);
+					this.newsitems[e].data.push(tpl['data' + Math.floor(Math.random() * 5)]);
 				}
 				this.newsitems[e].loadingType = 1;
 			},

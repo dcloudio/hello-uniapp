@@ -16,13 +16,6 @@ import WxCanvas from './wx-canvas';
 
 export default {
   props: {
-    echarts: {
-      required: true,
-      type: Object,
-      default() {
-        return null;
-      },
-    },
     onInit: {
       required: true,
       type: Function,
