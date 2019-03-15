@@ -1,10 +1,10 @@
 <template>
 	<view class="qrcode">
-		<image class="image" v-if="img != ''" :src="img" :style="{ width: size+'px', height: size + 'px' }"/>
+		<image class="image" v-if="img" :src="img" :style="{width: sizySync + 'px', height: sizySync + 'px'}"/>
 	</view>
 </template>
 <script>
-	import QR from "./qrcode.js";
+	import QR from './qrcode.js';
 	export default {
 		name: 'number-box',
 		props: {
@@ -19,20 +19,19 @@
 		},
 		data(){
 			return{
-				img:''
+				img: '',
+				sizySync: this.size
 			}
-		},
-		onUnload(){
 		},
 		methods: {
 			creatQrcode(){
-				let val = String(this.val)
-				if(val == ''){
-					return false
+				let val = this.val + '';
+				if(!val){
+					return;
 				}
 				let img = QR.createQrCodeImg(val, {
 					size: parseInt(this.size)
-				})
+				});
 				this.img = img;
 			},
 			clearQrcode(){
@@ -42,8 +41,8 @@
 		watch:{
 			size(newVal, oldVal){
 				if(newVal != oldVal){
-					this.size = newVal;
-					this.creatQrcode()
+					this.sizySync = newVal;
+					this.creatQrcode();
 				}
 			}
 		}

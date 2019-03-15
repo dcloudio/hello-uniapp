@@ -3,11 +3,11 @@
 		<view v-if="showClose === 'true' || showClose === true" class="uni-noticebar__close">
 			<uni-icon type="closefill" size="12"></uni-icon>
 		</view>
-		<view class="uni-noticebar__content" :class="setContenClass">
+		<view class="uni-noticebar__content" :class="{'uni-noticebar--flex': scrollable || single || moreText}">
 			<view v-if="showIcon === 'true' || showIcon === true" class="uni-noticebar__content-icon" :style="{backgroundColor:backgroundColor,color:color}">
 				<uni-icon type="sound" size="14" :color="color"></uni-icon>
 			</view>
-			<view class="uni-noticebar__content-text" :class="setTextClass">
+			<view class="uni-noticebar__content-text" :class="{'uni-noticebar--scrollable':scrollable,'uni-noticebar--single':!scrollable && (single || moreText)}">
 				<view class="uni-noticebar__content-inner" :id="elId" :style="{'animation': animation,'-webkit-animation': animation}">{{text}}</view>
 			</view>
 			<view class="uni-noticebar__content-more" v-if="showGetMore === 'true' || showGetMore === true" @click="clickMore" :style="{width:moreText ? '180upx' : '20px'}">
@@ -76,29 +76,8 @@
 				})
 			}
 		},
-		computed: {
-			setTextClass() {
-				let classList = []
-				if (this.scrollable === true || this.scrollable === 'true') {
-					classList.push('uni-noticebar--scrollable')
-				} else {
-					if (this.single === 'true' || this.single === true || this.moreText) {
-						classList.push('uni-noticebar--single')
-					}
-				}
-				return classList
-			},
-			setContenClass() {
-				let classList = []
-				if (this.scrollable === true || this.scrollable === 'true' || this.single === 'true' || this.single === true ||
-					this.moreText) {
-					classList.push('uni-noticebar--flex')
-				}
-				return classList
-			}
-		},
 		// #ifdef H5
-		mounted() { //在h5的时候走mounted，app和小程序走onReady
+		mounted() {
 			this.setAnimation()
 		},
 		// #endif
@@ -125,13 +104,13 @@
 				}
 				//#ifdef MP-TOUTIAO
 				setTimeout(() => {
-					uni.createSelectorQuery().select(`#${this.elId}`).boundingClientRect().exec((ret) => {
+					uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
 						this.animation = `notice ${ret[0].width / this.speed}s linear infinite both`;
 					});
 				}, 200)
 				// #endif
 				// #ifndef MP-TOUTIAO
-				uni.createSelectorQuery().select(`#${this.elId}`).boundingClientRect().exec((ret) => {
+				uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
 					this.animation = `notice ${ret[0].width / this.speed}s linear infinite both`;
 				});
 				// #endif

@@ -564,7 +564,7 @@
 						"app-plus": {
 							"titleNView": {
 								"buttons": [{
-									"text": "\ue563",
+									"text": "",
 									"fontSrc": "/static/uni.ttf",
 									"fontSize": "22px"
 								}]

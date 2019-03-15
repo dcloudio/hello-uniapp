@@ -1,24 +1,19 @@
 <template>
-	<view class="uni-status-bar" :style="style">
+	<view class="uni-status-bar" :style="{ height: statusBarHeight }">
 		<slot></slot>
 	</view>
 </template>
 
 <script>
+	var statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px';
 	export default {
 		name: 'uni-status-bar',
-		computed: {
-			style() {
-				//#ifdef MP-WEIXIN
-				var systemInfo = uni.getSystemInfoSync()
-				return `height:${systemInfo.statusBarHeight}px`
-				//#endif
-				//#ifdef APP-PLUS
-				return ''
-				//#endif
-			}
+		data() {
+			return {
+				statusBarHeight: statusBarHeight
+			};
 		}
-	}
+	};
 </script>
 
 <style>
