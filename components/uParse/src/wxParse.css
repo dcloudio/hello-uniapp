@@ -32,40 +32,41 @@
   padding: 0;
 }
 
-.wxParse .h1>view {
+.wxParse .h1 .text {
   font-size: 2em;
   margin: 0.67em 0;
 }
-.wxParse .h2>view {
+.wxParse .h2 .text {
   font-size: 1.5em;
   margin: 0.83em 0;
 }
-.wxParse .h3>view {
+.wxParse .h3 .text {
   font-size: 1.17em;
   margin: 1em 0;
 }
-.wxParse .h4>view {
+.wxParse .h4 .text {
   margin: 1.33em 0;
 }
-.wxParse .h5>view {
+.wxParse .h5 .text {
   font-size: 0.83em;
   margin: 1.67em 0;
 }
-.wxParse .h6>view {
+.wxParse .h6 .text {
   font-size: 0.67em;
   margin: 2.33em 0;
 }
 
-.wxParse .h1>view,
-.wxParse .h2>view,
-.wxParse .h3>view,
-.wxParse .h4>view,
-.wxParse .h5>view,
-.wxParse .h6>view,
+.wxParse .h1 .text,
+.wxParse .h2 .text,
+.wxParse .h3 .text,
+.wxParse .h4 .text,
+.wxParse .h5 .text,
+.wxParse .h6 .text,
 .wxParse .b,
 .wxParse .strong {
   font-weight: bolder;
 }
+
 
 .wxParse .p {
   margin: 1em 0;
@@ -169,7 +170,13 @@
 .wxParse .ol {
   list-style-type: decimal;
 }
-.wxParse .li {
+.wxParse .ol>weixin-parse-template,.wxParse .ul>weixin-parse-template {
+  display: list-item;
+  align-items: baseline;
+  text-align: match-parent;
+}
+
+.wxParse .ol>.li,.wxParse .ul>.li {
   display: list-item;
   align-items: baseline;
   text-align: match-parent;
