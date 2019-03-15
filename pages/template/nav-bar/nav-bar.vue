@@ -38,8 +38,8 @@
 </template>
 
 <script>
-	import uniNavBar from '../../../components/uni-nav-bar.vue'
-	import uniIcon from '../../../components/uni-icon.vue'
+	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 
 	export default {
 		components: {
