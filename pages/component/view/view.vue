@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<page-head :title="title"></page-head>
+		<page-head title="view"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-hello-text">
 				Flex是Flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性。当设置display: flex后，继续给view等容器组件设置flex-direction: row或column，就可以在该容器内按行或列排布子组件。uni-app默认全局使用flex布局(在App.vue里预设了)。因为flex布局有利于跨更多平台，尤其是采用原生渲染的平台。
@@ -105,7 +105,6 @@
 	export default {
 		data() {
 			return {
-				title: 'view'
 			}
 		}
 	}

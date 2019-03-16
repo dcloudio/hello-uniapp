@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<page-head :title="title"></page-head>
+		<page-head title="scroll-view,区域滚动视图"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
 				Vertical Scroll
@@ -36,7 +36,6 @@
 	export default {
 		data() {
 			return {
-				title: 'scroll-view',
 				scrollTop: 0,
 				old: {
 					scrollTop: 0

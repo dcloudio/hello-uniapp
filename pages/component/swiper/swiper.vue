@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<page-head :title="title"></page-head>
+		<page-head title="swiper,可滑动视图"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="page-section swiper">
 				<view class="page-section-spacing">
@@ -48,7 +48,6 @@
 	export default {
 		data() {
 			return {
-				title: 'swiper',
 				background: ['color1', 'color2', 'color3'],
 				indicatorDots: true,
 				autoplay: true,

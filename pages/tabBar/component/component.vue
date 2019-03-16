@@ -34,9 +34,11 @@
 						pages: [
 							'view',
 							'scroll-view',
-							'swiper',
+							'swiper'
 							// #ifndef MP-TOUTIAO
+							,
 							'movable-view',
+							'cover-view'
 							// #endif
 						]
 					}, {

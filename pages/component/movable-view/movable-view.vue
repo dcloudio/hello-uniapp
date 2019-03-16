@@ -1,6 +1,6 @@
 <template>
 	<view class="page-body">
-		<page-head title="movable-view"></page-head>
+		<page-head title="movable-view,可拖动视图"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
 				示例 1
