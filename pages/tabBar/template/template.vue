@@ -190,9 +190,6 @@
 					}, {
 						name: '表单验证',
 						url: 'datachecker'
-					}, {
-						name: '插屏弹窗',
-						url: 'sbanner'
 					},
 					// #ifdef APP-PLUS 
 					{

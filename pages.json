@@ -1009,15 +1009,6 @@
 					"style": {
 						"navigationBarTitleText": "表单校验"
 					}
-				},
-				{
-					"path": "sbanner/sbanner",
-					"style": {
-						"navigationBarTitleText": "插屏弹窗",
-						"app-plus": {
-							"bounce": "none"
-						}
-					}
 				}
 			]
 		}
