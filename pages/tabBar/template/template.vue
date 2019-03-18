@@ -69,13 +69,8 @@
 							{
 								name: '导航栏带搜索框',
 								url:'nav-search-input'
-							},
-							// #endif
-
-							{
-								name: '自定义导航栏组件(非原生)',
-								url: 'nav-bar'
 							}
+							// #endif
 						]
 					},
 					// #ifndef MP-ALIPAY

@@ -981,23 +981,6 @@
 					}
 				},
 				{
-					"path": "nav-bar/nav-bar",
-					"style": {
-						"navigationBarTitleText": "导航栏组件",
-						"enablePullDownRefresh": true,
-						"app-plus": {
-							"titleNView": false,
-							"bounce": "none",
-							"scrollIndicator": "none",
-							"pullToRefresh": {
-								"style": "circle",
-								"offset": "70px",
-								"color": "#007AFF"
-							}
-						}
-					}
-				},
-				{
 					"path": "scrollmsg/scrollmsg",
 					"style": {
 						"navigationBarTitleText": "滚动公告"
