@@ -83,8 +83,8 @@
 		},
 		// #ifndef MP-TOUTIAO
 		{
-		    "path" : "pages/component/cover-view/cover-view",
-		    "style" : {
+			"path": "pages/component/cover-view/cover-view",
+			"style": {
 				"navigationBarTitleText": "cover-view"
 			}
 		},
@@ -550,7 +550,7 @@
 				"navigationBarTitleText": "震动"
 			}
 		}
-    ],
+	],
 	"subPackages": [{
 			"root": "pages/extUI",
 			"pages": [{

@@ -8,7 +8,7 @@
 		<view class="example-title">左右显示文字</view>
 		<uni-nav-bar left-icon="back" right-text="菜单" left-text="返回" @click-left="back" title="标题"></uni-nav-bar>
 		<view class="example-title">插入slot</view>
-		<uni-nav-bar color="#333333" background-color="#FFFFFF" fixed="false" right-icon="scan" @click-left="showCity" @click-right="scan">
+		<uni-nav-bar color="#333333" background-color="#FFFFFF" :fixed="false" right-icon="scan" @click-left="showCity" @click-right="scan">
 			<block slot="left">
 				<view class="city">
 					<view>{{city}}</view>

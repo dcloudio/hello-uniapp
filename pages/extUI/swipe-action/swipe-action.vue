@@ -8,20 +8,12 @@
 		<uni-swipe-action :disabled="true">
 			<view class='cont'>SwipeAction 禁止滑动展示</view>
 		</uni-swipe-action>
-		<view class="example-title">传递点击事件</view>
-		<uni-swipe-action :options="options" @click="bindClick">
-			<view class='cont'>点击选项时触发事件</view>
-		</uni-swipe-action>
-		<view class="example-title">开启或关闭事件</view>
-		<uni-swipe-action :options="options" @opened="bindOpened" @closed="bindClosed">
-			<view class='cont'>开启或关闭事件时触发事件</view>
-		</uni-swipe-action>
 		<view class="example-title">使用变量控制开关</view>
 		<view class="button-view">
 			<view class="button" @click="setOpened">当前状态：{{isOpened ? '开' : '关'}}</view>
 		</view>
-		<uni-swipe-action :options="options" :is-opened="isOpened" :auto-close="true" @opened="bindOpened2" @closed="bindClosed2">
-			<view class='cont'>开启或关闭事件时触发事件</view>
+		<uni-swipe-action :options="options" :is-opened="isOpened" :auto-close="true" @opened="bindOpened" @closed="bindClosed">
+			<view class='cont'>使用变量控制SwipeAction的开启状态</view>
 		</uni-swipe-action>
 		<view class="example-title">与 List 组件一起使用</view>
 		<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
@@ -103,25 +95,13 @@
 					icon: 'none'
 				})
 			},
-			bindOpened() {
-				uni.showToast({
-					title: `SwipeAction 开启`,
-					icon: 'none'
-				})
-			},
-			bindClosed() {
-				uni.showToast({
-					title: `SwipeAction 关闭`,
-					icon: 'none'
-				})
-			},
 			setOpened() {
 				this.isOpened = !this.isOpened
 			},
-			bindOpened2() {
+			bindOpened() {
 				this.isOpened = true
 			},
-			bindClosed2() {
+			bindClosed() {
 				this.isOpened = false
 			}
 		}

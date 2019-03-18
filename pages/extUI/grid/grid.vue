@@ -3,6 +3,17 @@
 		<view class="example">
 			<view class="example-title">默认样式</view>
 			<uni-grid :options="data1" @click="onClick"></uni-grid>
+			<view class="example-title">可滑动宫格组件</view>
+			<swiper :indicator-dots="true" :style="{height:swiperGridHeight,width:swiperGridWidth}">
+				<swiper-item>
+					<view class="grid-view">
+						<uni-grid :options="data1" @click="onClick"></uni-grid>
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<uni-grid :options="data1" @click="onClick"></uni-grid>
+				</swiper-item>
+			</swiper>
 			<view class="example-title">无外边框</view>
 			<uni-grid :options="data3" show-out-border="false"></uni-grid>
 			<view class="example-title">无所有框</view>
@@ -24,6 +35,8 @@
 		},
 		data() {
 			return {
+				swiperGridHeight: '0px',
+				swiperGridWidth: '100%',
 				data1: [{
 						image: '/static/c1.png',
 						text: 'Grid'
@@ -120,6 +133,14 @@
 					}
 				]
 			}
+		},
+		onReady() {
+			uni.createSelectorQuery().select('.grid-view').boundingClientRect().exec((ret) => {
+				this.swiperGridHeight = ret[0].height + 1 + 'px'
+				// #ifndef H5
+				this.swiperGridWidth = ret[0].width + 1 + 'px'
+				// #endif
+			})
 		},
 		methods: {
 			onClick(e) {
