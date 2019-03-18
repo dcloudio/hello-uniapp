@@ -2,7 +2,7 @@
 	<view class="uni-tab-bar">
 		<scroll-view id="tab-bar" class="uni-swiper-tab" scroll-x :scroll-left="scrollLeft">
 			<view v-for="(tab,index) in tabBars" :key="tab.id" :class="['swiper-tab-list',tabIndex==index ? 'active' : '']" :id="tab.id"
-			 :data-current="index" @click="tapTab(index)">{{tab.name}}</view>
+			 :data-current="index" @tap="tapTab">{{tab.name}}</view>
 		</scroll-view>
 		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="changeTab">
 			<swiper-item v-for="(tab,index1) in newsitems" :key="index1">
@@ -11,7 +11,7 @@
 						<media-list :options="newsitem" @close="close(index1,index2)" @click="goDetail(newsitem)"></media-list>
 					</block>
 					<view class="uni-tab-bar-loading">
-						<uni-load-more :loadingType="tab.loadingType" :contentText="loadingText"></uni-load-more>
+						{{tab.loadingText}}
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -20,7 +20,6 @@
 </template>
 <script>
 	import mediaList from '@/components/tab-nvue/mediaList.vue';
-	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
 
 	const tpl = {
 		data0: {
@@ -78,16 +77,10 @@
 
 	export default {
 		components: {
-			mediaList,
-			uniLoadMore
+			mediaList
 		},
 		data() {
 			return {
-				loadingText: {
-					contentdown: "上拉显示更多",
-					contentrefresh: "正在加载...",
-					contentnomore: "没有更多数据了"
-				},
 				scrollLeft: 0,
 				isClickChange: false,
 				tabIndex: 0,
@@ -122,7 +115,7 @@
 				}]
 			}
 		},
-		onLoad: function() {
+		onLoad() {
 			this.newsitems = this.randomfn()
 		},
 		methods: {
@@ -142,23 +135,24 @@
 				})
 			},
 			loadMore(e) {
-				this.newsitems[e].loadingType = 1;
 				setTimeout(() => {
 					this.addData(e);
 				}, 1200);
 			},
 			addData(e) {
 				if (this.newsitems[e].data.length > 30) {
-					this.newsitems[e].loadingType = 2;
+					this.newsitems[e].loadingText = '没有更多了';
 					return;
 				}
 				for (let i = 1; i <= 10; i++) {
 					this.newsitems[e].data.push(tpl['data' + Math.floor(Math.random() * 5)]);
 				}
-				this.newsitems[e].loadingType = 1;
 			},
 			async changeTab(e) {
-				let index = e.detail.current;
+				let index = e.target.current;
+				if(this.newsitems[index].data.length === 0){
+					this.addData(index)
+				}
 				if (this.isClickChange) {
 					this.tabIndex = index;
 					this.isClickChange = false;
@@ -186,34 +180,40 @@
 			},
 			getElSize(id) { //得到元素的size
 				return new Promise((res, rej) => {
-					uni.createSelectorQuery().select('#' + id).fields({
+					uni.createSelectorQuery().select("#" + id).fields({
 						size: true,
 						scrollOffset: true
 					}, (data) => {
 						res(data);
 					}).exec();
-				});
+				})
 			},
-			async tapTab(index) { //点击tab-bar
-				if (this.tabIndex === index) {
+			async tapTab(e) { //点击tab-bar
+				let tabIndex = e.target.dataset.current;
+				if(this.newsitems[tabIndex].data.length === 0){
+					this.addData(tabIndex)
+				}
+				if (this.tabIndex === tabIndex) {
 					return false;
 				} else {
 					let tabBar = await this.getElSize("tab-bar"),
 						tabBarScrollLeft = tabBar.scrollLeft; //点击的时候记录并设置scrollLeft
 					this.scrollLeft = tabBarScrollLeft;
 					this.isClickChange = true;
-					this.tabIndex = index;
+					this.tabIndex = tabIndex;
 				}
 			},
 			randomfn() {
 				let ary = [];
 				for (let i = 0, length = this.tabBars.length; i < length; i++) {
 					let aryItem = {
-						loadingType: 0,
+						loadingText: '加载更多...',
 						data: []
 					};
-					for (let j = 1; j <= 10; j++) {
-						aryItem.data.push(tpl['data' + Math.floor(Math.random() * 5)]);
+					if(i < 1){
+						for (let j = 1; j <= 10; j++) {
+							aryItem.data.push(tpl['data' + Math.floor(Math.random() * 5)]);
+						}
 					}
 					ary.push(aryItem);
 				}
@@ -224,10 +224,9 @@
 </script>
 
 <style>
-	/* #ifdef MP-ALIPAY */
-	.swiper-tab-list {
-		display: inline-block;
+	.uni-tab-bar-loading{
+		text-align: center;
+		font-size: 28upx;
+		color: #999;
 	}
-
-	/* #endif */
 </style>
