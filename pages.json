@@ -624,7 +624,7 @@
 						"navigationBarTitleText": "Card 卡片"
 					}
 				},
-				// #ifdef H5 || APP-PLUS
+				// #ifdef H5 || APP-PLUS || MP-WEIXIN
 				{
 					"path": "collapse/collapse",
 					"style": {

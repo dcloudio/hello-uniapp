@@ -15,27 +15,16 @@
 		data() {
 			return {}
 		},
-		mounted() {
-			let children = this.$children
-			let childrens = []
-			this.getChildren(children, childrens)
-			this.childrens = childrens
-			childrens.forEach((vm, index) => {
-				vm.nameSync = vm.name ? vm.name : index
-				if (this.accordion === true || this.accordion === 'true') {
-					childrens.forEach((v, i) => {
-						if (index >= i) {
-							return
-						}
-						if (v.isOpen) {
-							vm.isOpen = false
-						}
-					})
-				}
-			})
+		provide() {
+			return {
+				collapse: this
+			}
+		},
+		created() {
+			this.childrens = []
 		},
 		methods: {
-			onChange(e) {
+			onChange() {
 				let activeItem = []
 				this.childrens.forEach((vm, index) => {
 					if (vm.isOpen) {
@@ -43,16 +32,6 @@
 					}
 				})
 				this.$emit('change', activeItem)
-			},
-			getChildren(arr, childrens) {
-				for (let i = 0, length = arr.length; i < length; i++) {
-					let name = arr[i].$options.name
-					if (name !== 'uni-collapse-item') {
-						arr[i].$children && this.getChildren(arr[i].$children, childrens)
-					} else {
-						childrens.push(arr[i])
-					}
-				}
 			}
 		}
 	}

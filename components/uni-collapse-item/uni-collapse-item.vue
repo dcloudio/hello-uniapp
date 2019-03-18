@@ -65,18 +65,19 @@
 				this.isOpen = val
 			}
 		},
+		inject: ['collapse'],
 		created() {
-			let parent = this.$parent || this.$root
-			let name = parent.$options.name
 			this.isOpen = this.open
-
-			while (parent && name !== 'uni-collapse') {
-				parent = parent.$parent
-				if (parent) {
-					name = parent.$options.name
+			this.nameSync = this.name ? this.name : this.collapse.childrens.length
+			this.collapse.childrens.push(this)
+			if (String(this.collapse.accordion) === 'true') {
+				if (this.isOpen) {
+					let lastEl = this.collapse.childrens[this.collapse.childrens.length - 2]
+					if (lastEl) {
+						this.collapse.childrens[this.collapse.childrens.length - 2].isOpen = false
+					}
 				}
 			}
-			this.parent = parent
 		},
 		// #ifdef H5
 		mounted() {
@@ -98,9 +99,8 @@
 				if (this.disabled) {
 					return
 				}
-				let accordion = this.parent.accordion ? this.parent.accordion : false
-				if (accordion === true || accordion === 'true') {
-					this.$parent.$children.forEach(vm => {
+				if (String(this.collapse.accordion) === 'true') {
+					this.collapse.childrens.forEach(vm => {
 						if (vm === this) {
 							return
 						}
@@ -108,7 +108,7 @@
 					})
 				}
 				this.isOpen = !this.isOpen
-				this.parent.onChange && this.parent.onChange(this)
+				this.collapse.onChange && this.collapse.onChange()
 			}
 		}
 	}
