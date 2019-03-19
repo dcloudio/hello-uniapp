@@ -1,6 +1,6 @@
 <template>
 	<view class="product">
-		<image class="product-image" :src="image ? image : 'http://via.placeholder.com/150x200'"></image>
+		<image class="product-image" :src="image ? image : 'https://via.placeholder.com/150x200'"></image>
 		<view class="product-title">{{title}}</view>
 		<view class="product-price">
 			<text class="product-price-favour">￥{{originalPrice}}</text>

@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://m3w.cn/uniapp" target="blank">
-	    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/barcode-20190131.png"/>
+	    <img src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/barcode-20190131.png"/>
     </a>
 </p>
 
@@ -15,6 +15,6 @@
 扫码加入uni-app微信交流群：
 
 <p>
-    <img src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/wx-barcode.png" width="250"/>
+    <img src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/wx-barcode.png" width="250"/>
 </p>
 

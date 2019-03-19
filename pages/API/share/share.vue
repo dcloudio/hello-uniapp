@@ -167,7 +167,7 @@
 						shareOPtions.summary = this.shareText;
 						shareOPtions.imageUrl = this.image;
 						shareOPtions.title = '欢迎体验uniapp';
-						shareOPtions.href = 'http://uniapp.dcloud.io';
+						shareOPtions.href = 'https://uniapp.dcloud.io';
 						break;
 					case 1:
 						shareOPtions.summary = this.shareText;
@@ -181,7 +181,7 @@
 						shareOPtions.miniProgram = {
 							id:'gh_33446d7f7a26',
 							path:'/pages/tabBar/component/component',
-							webUrl:'http://uniapp.dcloud.io',
+							webUrl:'https://uniapp.dcloud.io',
 							type:0
 						};
 						break;
@@ -193,7 +193,7 @@
 					shareOPtions.imageUrl = await this.compress();
 				}
 				if(shareOPtions.type === 1 && shareOPtions.provider === 'qq'){//如果是分享文字到qq，则必须加上href和title
-					shareOPtions.href = 'http://uniapp.dcloud.io';
+					shareOPtions.href = 'https://uniapp.dcloud.io';
 					shareOPtions.title = '欢迎体验uniapp';
 				}
 				uni.share(shareOPtions);
