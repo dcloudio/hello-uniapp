@@ -2,19 +2,19 @@
 	<view class="page">
 		<view class="example">
 			<view class="example-title">基本用法</view>
-			<uni-rate value="2" @change="onChange"></uni-rate>
+			<uni-rate :value="2" @change="onChange"></uni-rate>
 			<view class="example-title">设置尺寸大小</view>
-			<uni-rate size="18" value="5"></uni-rate>
+			<uni-rate :size="18" :value="5"></uni-rate>
 			<view class="example-title">设置评分数</view>
-			<uni-rate max="10" value="5"></uni-rate>
+			<uni-rate :max="10" :value="5"></uni-rate>
 			<view class="example-title">设置星星间隔</view>
-			<uni-rate value="4" margin="5"></uni-rate>
+			<uni-rate :value="4" :margin="5"></uni-rate>
 			<view class="example-title">设置颜色</view>
-			<uni-rate value="3" color="#bbb" active-color="red"></uni-rate>
+			<uni-rate :value="3" color="#bbb" active-color="red"></uni-rate>
 			<view class="example-title">不可点击状态</view>
-			<uni-rate disabled="true" value="3.5"></uni-rate>
+			<uni-rate :disabled="true" :value="3.5"></uni-rate>
 			<view class="example-title">未选中的星星为镂空状态</view>
-			<uni-rate value="3" isFill="false"></uni-rate>
+			<uni-rate :value="3" :isFill="false"></uni-rate>
 		</view>
 	</view>
 </template>
