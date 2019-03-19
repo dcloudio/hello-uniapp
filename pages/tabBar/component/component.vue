@@ -103,7 +103,7 @@
 					url: '/pages/component/web-view/web-view'
 				}, {
 					name: '本地网页',
-					url: '/platforms/app-plus/web-view-local/web-view-local'
+					url: '/pages/component/web-view-local/web-view-local'
 				}];
 				this.lists[this.lists.length - 1].pages = newPages;
 			}

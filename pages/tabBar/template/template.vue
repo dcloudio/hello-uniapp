@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap uni-common-pb">
 		<view class="uni-header-logo">
-			<image src="../../../static/templateIndex.png"></image>
+			<image src="/static/templateIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
 			以下是部分模板示例，更多模板见插件市场：https://ext.dcloud.net.cn。
@@ -82,10 +82,10 @@
 						open: false,
 						pages: [{
 							name: '非原生',
-							url: '/platforms/app-plus/tabbar/tabbar'
+							url: 'tabbar'
 						}, {
 							name: '原生',
-							url: 'tabbar'
+							url: 'tabbar-native'
 						}]
 						// #endif
 					},
