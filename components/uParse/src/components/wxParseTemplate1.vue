@@ -82,17 +82,14 @@
 			wxParseVideo,
 			wxParseAudio,
 		},
+		inject: ['uparse'],
 		methods: {
 			wxParseATap(e) {
 				const {
 					href
 				} = e.currentTarget.dataset;
 				if (!href) return;
-				let parent = this.$parent;
-				while(!parent.preview || typeof parent.preview !== 'function') {
-					parent = parent.$parent;
-				}
-				parent.navigate(href, e);
+				this.uparse.navigate(href, e);
 			},
 		},
 	};

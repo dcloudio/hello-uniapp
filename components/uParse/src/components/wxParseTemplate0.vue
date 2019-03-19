@@ -90,18 +90,15 @@
 			wxParseVideo,
 			wxParseAudio,
 		},
+		inject: ['uparse'],
 		methods: {
 			wxParseATap(e) {
 				const {
 					href
 				} = e.currentTarget.dataset;// TODO currentTarget才有dataset
 				if (!href) return;
-				let parent = this.$parent;
-				while(!parent.preview || typeof parent.preview !== 'function') {// TODO 遍历获取父节点执行方法
-					parent = parent.$parent;
-				}
-				parent.navigate(href, e);
-			},
-		},
+				this.uparse.navigate(href, e);
+			}
+		}
 	};
 </script>

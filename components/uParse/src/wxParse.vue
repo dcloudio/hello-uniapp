@@ -67,12 +67,17 @@ export default {
       },
     },
   },
+	provide() {
+		return {
+			uparse: this
+		}
+	},
   components: {
     wxParseTemplate,
   },
   data() {
     return {
-      imageUrls: [],
+      imageUrls: []
     };
   },
   computed: {
@@ -93,7 +98,6 @@ export default {
       };
       const results = HtmlToJson(parseData, customHandler, imageProp, this);
       this.imageUrls = results.imageUrls;
-      console.log(results)
       return results.nodes;
     },
   },
