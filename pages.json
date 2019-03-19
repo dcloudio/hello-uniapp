@@ -270,18 +270,6 @@
             }
         },
         {
-            "path": "platforms/mp-weixin/custom-message/custom-message",
-            "style": {
-                "navigationBarTitleText": "客服消息"
-            }
-        },
-        {
-            "path": "platforms/mp-weixin/template-message/template-message",
-            "style": {
-                "navigationBarTitleText": "模板消息"
-            }
-        },
-        {
             "path": "pages/API/set-navigation-bar-title/set-navigation-bar-title",
             "style": {
                 "navigationBarTitleText": "设置界面标题"
