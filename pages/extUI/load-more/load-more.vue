@@ -10,7 +10,7 @@
 		</view>
 		<radio-group @change="onChange">
 			<label>
-				<radio value="more" checked="true" />加载前
+				<radio value="more" :checked="true" />加载前
 			</label>
 			<label>
 				<radio value="loading" />加载中

@@ -11,15 +11,17 @@
 					</view>
 				</swiper-item>
 				<swiper-item>
-					<uni-grid :options="data1" @click="onClick"></uni-grid>
+					<view class="grid-view">
+						<uni-grid :options="data1" @click="onClick"></uni-grid>
+					</view>
 				</swiper-item>
 			</swiper>
 			<view class="example-title">无外边框</view>
-			<uni-grid :options="data3" show-out-border="false"></uni-grid>
+			<uni-grid :options="data3" :show-out-border="false"></uni-grid>
 			<view class="example-title">无所有框</view>
-			<uni-grid :options="data3" show-border="false"></uni-grid>
+			<uni-grid :options="data3" :show-border="false"></uni-grid>
 			<view class="example-title">一行四个</view>
-			<uni-grid :options="data2" show-out-border="false" column-num="4"></uni-grid>
+			<uni-grid :options="data2" :show-out-border="false" :column-num="4"></uni-grid>
 			<view class="example-title">矩形案例</view>
 			<uni-grid :options="data3" type="oblong"></uni-grid>
 		</view>
@@ -149,7 +151,6 @@
 		}
 	}
 </script>
-
 <style>
 	page {
 		display: flex;
@@ -181,5 +182,12 @@
 
 	.example-body {
 		padding: 0 40upx
+	}
+
+	.grid-view {
+		/* #ifdef H5 */
+		padding: 0 0.5px;
+		/* #endif */
+		box-sizing: border-box;
 	}
 </style>

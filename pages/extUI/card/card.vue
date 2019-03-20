@@ -9,7 +9,7 @@
 			内容主体，可自定义内容及样式
 		</uni-card>
 		<view class="example-title">通栏卡片</view>
-		<uni-card is-full="true" title="DCloud" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="2018.12.12" note="Tips">
+		<uni-card :is-full="true" title="DCloud" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="2018.12.12" note="Tips">
 			内容主体，可自定义内容及样式，内容主体，可自定义内容及样式，内容主体，可自定义内容及样式
 		</uni-card>
 	</view>

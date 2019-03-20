@@ -18,14 +18,14 @@
 					<uni-list>
 						<uni-list-item title="Item1"></uni-list-item>
 						<uni-list-item title="Item2"></uni-list-item>
-						<uni-list-item title="Item3" show-badge="true" badge-text="12"></uni-list-item>
+						<uni-list-item title="Item3" :show-badge="true" badge-text="12"></uni-list-item>
 					</uni-list>
 					<!-- #endif -->
 					<!-- #ifdef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<view class="uni-list">
 						<uni-list-item title="Item1"></uni-list-item>
 						<uni-list-item title="Item2"></uni-list-item>
-						<uni-list-item title="Item3" show-badge="true" badge-text="12"></uni-list-item>
+						<uni-list-item title="Item3" :show-badge="true" badge-text="12"></uni-list-item>
 					</view>
 					<!-- #endif -->
 					<view class="close">
@@ -41,14 +41,14 @@
 					<uni-list>
 						<uni-list-item title="Item1"></uni-list-item>
 						<uni-list-item title="Item2"></uni-list-item>
-						<uni-list-item title="Item3" show-badge="true" badge-text="12"></uni-list-item>
+						<uni-list-item title="Item3" :show-badge="true" badge-text="12"></uni-list-item>
 					</uni-list>
 					<!-- #endif -->
 					<!-- #ifdef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<view class="uni-list">
 						<uni-list-item title="Item1"></uni-list-item>
 						<uni-list-item title="Item2"></uni-list-item>
-						<uni-list-item title="Item3" show-badge="true" badge-text="12"></uni-list-item>
+						<uni-list-item title="Item3" :show-badge="true" badge-text="12"></uni-list-item>
 					</view>
 					<!-- #endif -->
 					<view class="close">

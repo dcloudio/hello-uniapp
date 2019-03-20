@@ -35,8 +35,14 @@
 			};
 		},
 		props: {
-			title: String, //列表标题
-			note: String, //列表描述
+			title: {
+				type: String,
+				default: ''
+			}, //列表标题
+			note: {
+				type: String,
+				default: ''
+			}, //列表描述
 			disabled: { //是否禁用
 				type: [Boolean, String],
 				default: false
@@ -71,9 +77,9 @@
 				type: Object,
 				default () {
 					return {
-						type: "contact",
-						color: "#000000",
-						size: "20"
+						type: 'contact',
+						color: '#000000',
+						size: 20
 					};
 				}
 			}

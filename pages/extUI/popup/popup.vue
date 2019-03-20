@@ -19,7 +19,7 @@
 			</uni-popup>
 			<button type="button" @click="togglePopup('middle-list')">居中弹出（滚动列表）</button>
 			<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
-				<scroll-view class="uni-center center-box" scroll-y="true">
+				<scroll-view class="uni-center center-box" :scroll-y="true">
 					<view class="uni-list-item" v-for="(item, index) in list" :key="index">
 						滚动列表数据 {{ item }}
 					</view>

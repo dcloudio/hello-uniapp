@@ -19,26 +19,26 @@
 		<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 		<uni-list>
 			<uni-swipe-action :options="options1">
-				<uni-list-item title="item1" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item1" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options">
-				<uni-list-item title="item2" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item2" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options3">
-				<uni-list-item title="item3" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item3" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 		</uni-list>
 		<!-- #endif -->
 		<!-- #ifdef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 		<view class="uni-list">
 			<uni-swipe-action :options="options1">
-				<uni-list-item title="item1" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item1" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options">
-				<uni-list-item title="item2" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item2" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options3">
-				<uni-list-item title="item3" show-arrow="false"></uni-list-item>
+				<uni-list-item title="item3" :show-arrow="false"></uni-list-item>
 			</uni-swipe-action>
 		</view>
 		<!-- #endif -->

@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<view class="example-title">默认样式</view>
-		<uni-pagination title="标题文字" total="20"></uni-pagination>
+		<uni-pagination title="标题文字" :total="20"></uni-pagination>
 		<view class="example-title">修改按钮文字</view>
-		<uni-pagination title="标题文字" total="20" prev-text="前一页" next-text="后一页"></uni-pagination>
+		<uni-pagination title="标题文字" :total="20" prev-text="前一页" next-text="后一页"></uni-pagination>
 		<view class="example-title">图标样式</view>
-		<uni-pagination title="标题文字" show-icon="true" total="20"></uni-pagination>
+		<uni-pagination title="标题文字" :show-icon="true" :total="20"></uni-pagination>
 		<view class="example-title">修改数据长度</view>
 		<uni-pagination title="标题文字" show-icon="true" :current="current" :total="total" @change="change"></uni-pagination>
 		<view class="btn-view">

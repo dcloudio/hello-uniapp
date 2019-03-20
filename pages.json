@@ -644,7 +644,11 @@
 				}, {
 					"path": "swipe-action/swipe-action",
 					"style": {
-						"navigationBarTitleText": "SwipeAction 滑动操作"
+						"navigationBarTitleText": "SwipeAction 滑动操作",
+						"app-plus": {
+							"bounce": "none"
+						},
+						"disableScroll": true
 					}
 				}, {
 					"path": "calendar/calendar",
