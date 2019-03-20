@@ -9,10 +9,34 @@
 			</view>
 		</view>
 		<button class="calendar-button" type="button" @click="open">打开日历</button>
-
+		<text v-if="timeData.lunar" class="calendar-title">已选日期</text>
+		<view v-if="timeData.lunar" class="calendar-info">
+			<view>当前选择时间 : {{timeData.fulldate}}</view>
+			<view v-if="tags['lunar'].checked">农历日期 : {{timeData.year +
+									'年' +
+									timeData.month +
+									'月' +
+									timeData.date +
+									'日 （' +
+									timeData.lunar.astro +
+									')'}}</view>
+			<view v-if="tags['lunar'].checked"> {{
+					timeData.lunar.gzYear +
+						'年' +
+						timeData.lunar.gzMonth +
+						'月' +
+						timeData.lunar.gzDay +
+						'日 (' +
+						timeData.lunar.Animal +
+						'年)'
+				}}
+				{{ timeData.lunar.IMonthCn + timeData.lunar.IDayCn }}
+				{{ timeData.lunar.isTerm ? timeData.lunar.Term : '' }}</view>
+		</view>
 		<view v-if="show" class="calendar-mask" @click="closeMask">
 			<view class="calendar-box" @click.stop="">
-				<uni-calendar :lunar="tags['lunar'].checked" :fixedHeihgt="tags['fixedHeihgt'].checked" :slide="slide" :disableBefore="tags['disableBefore'].checked" :start-date="startDate" :end-date="endDate" :date="date" />
+				<uni-calendar :lunar="tags['lunar'].checked" :fixedHeihgt="tags['fixedHeihgt'].checked" :slide="slide" :disableBefore="tags['disableBefore'].checked" :start-date="startDate" :end-date="endDate" :date="date" @change="change" @to-click="toClick" />
+				<button class="calendar-button-confirm" @click="confirm">确认选择日期</button>
 			</view>
 		</view>
 	</view>
@@ -75,7 +99,8 @@
 				slide: 'none',
 				date: '',
 				startDate: '',
-				endDate: ''
+				endDate: '',
+				timeData: {}
 			};
 		},
 		onLoad() {},
@@ -118,6 +143,17 @@
 					this.date = '';
 				}
 				this.show = true;
+			},
+			change(e) {
+				console.log('change 返回:', e.fulldate);
+				this.timeData = e;
+			},
+			toClick(e) {
+				console.log('点击事件', e.fulldate);
+				this.timeData = e;
+			},
+			confirm() {
+				this.show = false;
 			}
 		}
 	};
@@ -211,6 +247,10 @@
 		margin: 10upx 20upx;
 	}
 
+	.calendar-info {
+		padding: 0 20upx;
+	}
+
 	.calendar-mask {
 		position: fixed;
 		top: 0;
@@ -227,5 +267,10 @@
 		border-radius: 10upx;
 		width: 100%;
 		overflow: hidden;
+		background: #fff;
+	}
+
+	.calendar-button-confirm {
+		margin: 10upx;
 	}
 </style>

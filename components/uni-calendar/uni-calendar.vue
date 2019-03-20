@@ -225,25 +225,6 @@
 				let after = this.getWeek(this.getDate(afteryear, +1, 'month'));
 				this.selectDay = canlender.month + '月' + canlender.date + '日';
 				this.canlender = canlender;
-				if (this.isSilde) {
-					let isClick = '';
-					if (this.isClick) {
-						isClick = 'to-click';
-						this.isClick = false;
-					} else {
-						isClick = 'change';
-					}
-					this.$emit(isClick, {
-						year: canlender.year,
-						month: canlender.month,
-						date: canlender.date,
-						lunar: canlender.lunar,
-						clockinfo: canlender.clockinfo || {},
-						fulldate: canlender.year + '-' + canlender.month + '-' + canlender.date
-					});
-					this.isSilde = false;
-				}
-
 				if (this.slide === 'none') {
 					// console.log(before);
 					this.duration = 0;
@@ -264,8 +245,12 @@
 					}
 					this.selectDay = canlender.month + '月' + canlender.date + '日';
 					this.hold = false;
+					// console.log(this.canlender)
+					this.setEmit(this.canlender);
 					return;
 				}
+				this.setEmit(canlender);
+
 				this.currentIndex = index;
 
 				if (first && index === 1) {
@@ -291,6 +276,26 @@
 					this.swiperData[1] = before;
 					this.swiperData[2] = canlender;
 					return;
+				}
+			},
+			setEmit(canlender) {
+				if (this.isSilde) {
+					let isClick = '';
+					if (this.isClick) {
+						isClick = 'to-click';
+						this.isClick = false;
+					} else {
+						isClick = 'change';
+					}
+					this.$emit(isClick, {
+						year: canlender.year,
+						month: canlender.month,
+						date: canlender.date,
+						lunar: canlender.lunar,
+						clockinfo: canlender.clockinfo || {},
+						fulldate: canlender.year + '-' + canlender.month + '-' + canlender.date
+					});
+					this.isSilde = false;
 				}
 			},
 			/**
@@ -616,7 +621,7 @@
 						setTimeout(() => this.getQueryDom(1), 50);
 						return;
 					}
-					console.log(e[0][index])
+					// console.log(e[0][index])
 					if (e[0][index]) {
 						this.domHeihgt = e[0][index].height;
 					}
