@@ -67,9 +67,9 @@
 		methods: {
 			close() {
 				this.showDrawer = false
-				this.$emit('close')
 				this.closeTimer = setTimeout(() => {
 					this.visibleSync = false
+					this.$emit('close')
 				}, 200)
 			},
 			moveHandle() {}
