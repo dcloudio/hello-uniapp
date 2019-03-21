@@ -36,7 +36,10 @@
 		<view v-if="show" class="calendar-mask" @click="closeMask">
 			<view class="calendar-box" @click.stop="">
 				<uni-calendar :lunar="tags['lunar'].checked" :fixedHeihgt="tags['fixedHeihgt'].checked" :slide="slide" :disableBefore="tags['disableBefore'].checked" :start-date="startDate" :end-date="endDate" :date="date" @change="change" @to-click="toClick" />
-				<button class="calendar-button-confirm" @click="confirm">确认选择日期</button>
+				<view class="calendar-button-groups">
+					<button class="calendar-button-confirm" @click="closeMask">取消</button>
+					<button class="calendar-button-confirm" @click="confirm">确认</button>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -49,7 +52,22 @@
 		components: {
 			uniCalendar
 		},
+
 		data() {
+			/**
+			 * 时间计算
+			 */
+			function getDate(date, AddDayCount = 0) {
+				if (typeof date !== 'object') {
+					date = date.replace(/-/g, '/');
+				}
+				let dd = new Date(date);
+				dd.setMonth(dd.getMonth() + AddDayCount); // 获取AddDayCount天后的日期
+				let y = dd.getFullYear();
+				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1; // 获取当前月份的日期，不足10补0
+				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
+				return y + '-' + m + '-' + d;
+			}
 			let tags = {
 				lunar: {
 					name: '农历',
@@ -72,12 +90,14 @@
 					attr: 'horizontal'
 				},
 				startDate: {
-					name: '开始日期(2019-03-05)',
+					name: '开始日期(' + getDate(new Date(), -1) + ')',
 					checked: false,
+					value: getDate(new Date(), -1),
 					attr: 'startDate'
 				},
 				endDate: {
-					name: '结束日期(2019-04-10)',
+					name: '结束日期(' + getDate(new Date(), 2) + ')',
+					value: getDate(new Date(), 2),
 					checked: false,
 					attr: 'endDate'
 				},
@@ -87,11 +107,13 @@
 					attr: 'disableBefore'
 				},
 				date: {
-					name: '自定义当前日期(2019-03-20)',
+					name: '自定义当前日期(' + getDate(new Date(), 1) + ')',
+					value: getDate(new Date(), 1),
 					checked: false,
 					attr: 'date'
 				}
 			};
+
 
 			return {
 				show: false,
@@ -128,21 +150,22 @@
 					this.slide = 'none';
 				}
 				if (this.tags['startDate'].checked) {
-					this.startDate = '2019-03-05';
+					this.startDate = this.tags['startDate'].value;
 				} else {
 					this.startDate = '';
 				}
 				if (this.tags['endDate'].checked) {
-					this.endDate = '2019-04-10';
+					this.endDate = this.tags['endDate'].value;
 				} else {
 					this.endDate = '';
 				}
 				if (this.tags['date'].checked) {
-					this.date = '2019-03-20';
+					this.date = this.tags['date'].value;
 				} else {
 					this.date = '';
 				}
 				this.show = true;
+				console.log(this.date)
 			},
 			change(e) {
 				console.log('change 返回:', e.fulldate);
@@ -253,7 +276,12 @@
 
 	.calendar-mask {
 		position: fixed;
+		/* #ifdef H5 */
+		top: 45px;
+		/* #endif */
+		/* #ifndef H5 */
 		top: 0;
+		/* #endif */
 		bottom: 0;
 		display: flex;
 		align-items: center;
@@ -262,15 +290,30 @@
 	}
 
 	.calendar-box {
-		margin: 20upx;
+		/* margin: 20upx; */
 		border: 1px #f5f5f5 solid;
-		border-radius: 10upx;
+		/* border-radius: 10upx; */
 		width: 100%;
+		height: 100%;
 		overflow: hidden;
 		background: #fff;
 	}
 
+	.calendar-button-groups {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		display: flex;
+	}
+
 	.calendar-button-confirm {
+		width: 50%;
 		margin: 10upx;
+		border: 1px #eee solid;
+		font-size: 32upx;
+	}
+
+	.calendar-button-confirm:after {
+		border: none;
 	}
 </style>
