@@ -34,14 +34,14 @@
 				</view>
 			</uni-collapse-item>
 		</uni-collapse>
-		<view class="example-title">动画效果</view>
+		<view class="example-title">添加动画效果</view>
 		<uni-collapse>
-			<uni-collapse-item title="容器进行动画" animation="outer">
+			<uni-collapse-item title="标题文字" :show-animation="true">
 				<view style="padding: 30upx;">
 					折叠内容主体，可自定义内容及样式
 				</view>
 			</uni-collapse-item>
-			<uni-collapse-item title="内容进行动画" animation="inner">
+			<uni-collapse-item title="标题文字" :show-animation="true">
 				<view style="padding: 30upx;">
 					折叠内容主体，可自定义内容及样式
 				</view>

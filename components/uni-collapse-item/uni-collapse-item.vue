@@ -1,5 +1,5 @@
 <template>
-	<view :class="['uni-collapse-cell',{'uni-collapse-cell--disabled':disabled,'uni-collapse-cell--open':isOpen}]" :hover-class="disabled === true || disabled === 'true' ? '' : 'uni-collapse-cell--hover'">
+	<view :class="['uni-collapse-cell',{'uni-collapse-cell--disabled':disabled,'uni-collapse-cell--open':isOpen}]" :hover-class="disabled ? '' : 'uni-collapse-cell--hover'">
 		<view class="uni-collapse-cell__title" @click="onClick">
 			<view class="uni-collapse-cell__title-extra" v-if="thumb">
 				<image class="uni-collapse-cell__title-img" :src="thumb"></image>
@@ -7,12 +7,12 @@
 			<view class="uni-collapse-cell__title-inner">
 				<view class="uni-collapse-cell__title-text">{{title}}</view>
 			</view>
-			<view class="uni-collapse-cell__title-arrow" :class="{'uni-active':isOpen}">
+			<view class="uni-collapse-cell__title-arrow" :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}">
 				<uni-icon color="#bbb" size="20" type="arrowdown"></uni-icon>
 			</view>
 		</view>
-		<view class="uni-collapse-cell__content" :class="{'uni-collapse-cell--animation':animation==='outer'}" :style="{height:isOpen==='true' || isOpen=== true ? height + 'px' : '0px'}">
-			<view :class="{'uni-collapse-cell__inner':animation === 'inner','uni-active':isOpen}" :id="elId">
+		<view class="uni-collapse-cell__content" :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}">
+			<view :id="elId">
 				<slot />
 			</view>
 		</view>
@@ -27,10 +27,6 @@
 			uniIcon
 		},
 		props: {
-			animation: { //动画效果:inner内容动；outer容器动
-				type: String,
-				default: 'outer'
-			},
 			title: { //列表标题
 				type: String,
 				default: ''
@@ -41,6 +37,10 @@
 			},
 			disabled: { //是否禁用
 				type: [Boolean, String],
+				default: false
+			},
+			showAnimation: { //是否显示动画
+				type: Boolean,
 				default: false
 			},
 			open: { //是否展开
@@ -56,7 +56,7 @@
 			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				isOpen: false,
-				height: 0,
+				height: 'auto',
 				elId: elId
 			};
 		},
@@ -91,9 +91,11 @@
 		// #endif
 		methods: {
 			getSize() {
-				uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
-					this.height = ret[0].height
-				});
+				if (this.showAnimation) {
+					uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
+						this.height = ret[0].height + 'px'
+					});
+				}
 			},
 			onClick() {
 				if (this.disabled) {
@@ -179,8 +181,7 @@
 		width: 20px;
 		height: 20px;
 		transform: rotate(0);
-		transform-origin: center center;
-		transition: transform .3s
+		transform-origin: center center
 	}
 
 	.uni-collapse-cell__title-arrow.uni-active {
@@ -212,17 +213,5 @@
 
 	.uni-collapse-cell__content view {
 		font-size: 28upx
-	}
-
-	.uni-collapse-cell__inner {
-		opacity: 0;
-		transform: translateY(-50%);
-		transition: all .3s;
-		transform-origin: center center
-	}
-
-	.uni-collapse-cell__inner.uni-active {
-		opacity: 1;
-		transform: translateY(0)
 	}
 </style>
