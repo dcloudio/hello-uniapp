@@ -36,6 +36,9 @@
 		data() {
 			return {}
 		},
+		created() {
+			this.columnNumber = this.gridGroup[0].length
+		},
 		computed: {
 			gridGroup() {
 				let group = []
