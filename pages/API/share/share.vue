@@ -111,9 +111,9 @@
 					});
 				},
 				fail: (e) => {
-					console.log('获取登录通道失败', e);
+					console.log('获取分享通道失败', e);
 					uni.showModal({
-						content:'获取登录通道失败',
+						content:'获取分享通道失败',
 						showCancel:false
 					})
 				}

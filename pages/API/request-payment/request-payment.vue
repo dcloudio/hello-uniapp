@@ -64,7 +64,7 @@
                     this.providerList = providerList;
                 },
                 fail: (e) => {
-                    console.log("获取登录通道失败：", e);
+                    console.log("获取支付通道失败：", e);
                 }
             });
             // #endif
