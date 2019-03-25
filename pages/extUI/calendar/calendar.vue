@@ -227,11 +227,11 @@
 
 	.calendar-content>.calendar-title {
 		line-height: 80upx;
-		font-weight: bold;
-		color: #333;
-		font-size: 30upx;
-		border-left: 2px #0d9ebb solid;
-		padding-left: 20upx;
+		/* font-weight: bold; */
+		color: #666;
+		font-size: 32upx;
+		/* border-left: 2px #0d9ebb solid; */
+		/* padding-left: 20upx; */
 		margin: 0 20upx;
 	}
 
@@ -249,11 +249,12 @@
 
 	.calendar-tags-item {
 		padding: 10upx 20upx;
-		border: 1px #999 solid;
-		color: #666;
+		border: 1px rgba(0, 0, 0, .2) solid;
+		color: #333;
 		border-radius: 10upx;
 		text-align: center;
 		margin: 10upx;
+		background: #f8f8f8;
 	}
 
 	.calendar-tags-item:active {
@@ -261,7 +262,8 @@
 	}
 
 	.checked .calendar-tags-item {
-		background: #0d9ebb;
+		background: rgb(0, 122, 255);
+		;
 		color: #fff;
 		border: 1px rgba(0, 0, 0, 0.1) solid;
 	}
