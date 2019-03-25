@@ -535,18 +535,15 @@
 			}
 		},
 		// #ifdef APP-PLUS || MP-WEIXIN
-	    {
-            "path" : "pages/API/bluetooth/bluetooth",
-            "style" : {
-				"style": {
-					"navigationBarTitleText": "蓝牙"
-				}
+		{
+			"path": "pages/API/bluetooth/bluetooth",
+			"style": {
+				"navigationBarTitleText": "蓝牙"
 			}
-        }
+		}
 		// #endif
-    ],
+	],
 	"subPackages": [{
-
 			"root": "pages/extUI",
 			"pages": [{
 					"path": "badge/badge",
@@ -656,10 +653,10 @@
 					"path": "swipe-action/swipe-action",
 					"style": {
 						"navigationBarTitleText": "SwipeAction 滑动操作",
+						"disableScroll": true,
 						"app-plus": {
 							"bounce": "none"
-						},
-						"disableScroll": true
+						}
 					}
 				}, {
 					"path": "calendar/calendar",
@@ -670,7 +667,7 @@
 			]
 		},
 		{
-			"root": "pages/template/",
+			"root": "pages/template",
 			"pages": [{
 					"path": "product-list/product-list",
 					"style": {
@@ -932,7 +929,7 @@
 				{
 					"path": "tabbar-native/tabbar-native",
 					"style": {
-						"navigationBarTitleText":"可拖动顶部选项卡（原生）"
+						"navigationBarTitleText": "可拖动顶部选项卡（原生）"
 					}
 				},
 				// #endif

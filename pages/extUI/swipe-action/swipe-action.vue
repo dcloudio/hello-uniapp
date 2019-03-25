@@ -8,6 +8,10 @@
 		<uni-swipe-action :disabled="true">
 			<view class='cont'>SwipeAction 禁止滑动展示</view>
 		</uni-swipe-action>
+		<view class="example-title">跟手滑动</view>
+		<uni-swipe-action :is-drag="true" :options="options2" @click="bindClick">
+			<view class='cont'>SwipeAction 跟手滑动</view>
+		</uni-swipe-action>
 		<view class="example-title">使用变量控制开关</view>
 		<view class="button-view">
 			<view class="button" @click="setOpened">当前状态：{{isOpened ? '开' : '关'}}</view>
