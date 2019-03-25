@@ -75,7 +75,7 @@
 					this.providerList = data;
 				},
 				fail: (error) => {
-					console.log('获取登录通道失败' + JSON.stringify(error));
+					console.log('获取分享通道失败' + JSON.stringify(error));
 				}
 			});
 			// #endif

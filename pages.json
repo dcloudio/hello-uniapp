@@ -546,6 +546,7 @@
 		// #endif
     ],
 	"subPackages": [{
+
 			"root": "pages/extUI",
 			"pages": [{
 					"path": "badge/badge",
@@ -917,7 +918,7 @@
 						"navigationBarTitleText": "可拖动顶部选项卡",
 						"app-plus": {
 							"titleNView": {
-								"titleText": "可拖动顶部选项卡（原生）"
+								"titleText": "可拖动顶部选项卡（非原生）"
 							}
 						},
 						"h5": {
@@ -930,7 +931,9 @@
 				// #ifdef APP-PLUS
 				{
 					"path": "tabbar-native/tabbar-native",
-					"style": {}
+					"style": {
+						"navigationBarTitleText":"可拖动顶部选项卡（原生）"
+					}
 				},
 				// #endif
 				{
