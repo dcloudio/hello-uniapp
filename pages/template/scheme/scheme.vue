@@ -101,6 +101,7 @@ export default {
 }
 .button {
 	height: 100upx;
+	line-height: 100upx;
 	margin: 30upx;
 }
 </style>
