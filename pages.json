@@ -533,8 +533,18 @@
 			"style": {
 				"navigationBarTitleText": "震动"
 			}
-		}
-	],
+		},
+		// #ifdef APP-PLUS || MP-WEIXIN
+	    {
+            "path" : "pages/API/bluetooth/bluetooth",
+            "style" : {
+				"style": {
+					"navigationBarTitleText": "蓝牙"
+				}
+			}
+        }
+		// #endif
+    ],
 	"subPackages": [{
 			"root": "pages/extUI",
 			"pages": [{

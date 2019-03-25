@@ -172,6 +172,12 @@
 							url: 'brightness'
 						},
 						// #endif
+						// #ifdef APP-PLUS || MP-WEIXIN
+							{
+							name: '蓝牙',
+							url: 'bluetooth'
+						},
+						// #endif
 						{
 							name: '监听加速度传感器',
 							url: 'on-accelerometer-change'
