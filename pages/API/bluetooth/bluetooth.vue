@@ -149,6 +149,7 @@ export default {
 			servicesData: [],
 			characteristicsData: [],
 			valueChangeData: {},
+			isStop:true ,
 			list: []
 		};
 	},
@@ -207,6 +208,7 @@ export default {
 				success: e => {
 					console.log('初始化蓝牙成功:' + e.errMsg);
 					console.log(JSON.stringify(e));
+					this.isStop = false ;
 					this.$set(this.disabled, 0, true);
 					this.$set(this.disabled, 1, false);
 					this.$set(this.disabled, 10, false);
@@ -456,6 +458,7 @@ export default {
 				console.log(`蓝牙连接状态 -------------------------->`);
 				console.log(JSON.stringify(res));
 				if (!res.connected) {
+					if(this.isStop) return ;
 					console.log('断开低功耗蓝牙成功:');
 					this.$set(this.disabled, 1, false);
 					this.$set(this.disabled, 3, true);
@@ -549,6 +552,7 @@ export default {
 			uni.closeBluetoothAdapter({
 				success: res => {
 					console.log('断开蓝牙模块成功');
+					this.isStop = true ;
 					this.$set(this.disabled, 0, false);
 					this.$set(this.disabled, 1, true);
 					this.$set(this.disabled, 2, true);
