@@ -72,42 +72,40 @@
 							'audio',
 							// #endif
 						],
-					}, 
+					},
 					// #ifndef MP-TOUTIAO
 					{
 						id: 'map',
 						name: '地图',
 						open: false,
 						pages: ['map']
-					
+
 					},
 					// #endif
+					// #ifdef APP-PLUS
+					{
+						id: 'web-view',
+						name: '网页',
+						open: false,
+						pages: [{
+							name: '网络网页',
+							url: 'web-view'
+						}, {
+							name: '本地网页',
+							url: 'web-view-local'
+						}]
+					},
+					// #endif
+					// #ifndef APP-PLUS
 					{
 						id: 'web-view',
 						name: '网页',
 						open: false,
 						pages: ['web-view']
-					}
+					},
+					// #endif
 				]
 			}
-		},
-		onLoad() {
-			// #ifdef APP-PLUS 
-			// web-view组件支持本地html，依赖最新版的客户端基座
-			var innerversion = plus.runtime.innerVersion;
-			var _v = innerversion.substring(innerversion.lastIndexOf('.') + 1, innerversion.length);
-			if (_v && parseInt(_v) >= 53650) {
-
-				var newPages = [{
-					name: '网络网页',
-					url: '/pages/component/web-view/web-view'
-				}, {
-					name: '本地网页',
-					url: '/pages/component/web-view-local/web-view-local'
-				}];
-				this.lists[this.lists.length - 1].pages = newPages;
-			}
-			// #endif
 		},
 		onShareAppMessage() {
 			return {
