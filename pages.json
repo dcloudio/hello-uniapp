@@ -528,20 +528,20 @@
 			}
 		},
 		// #endif
-		{
-			"path": "pages/API/vibrate/vibrate",
-			"style": {
-				"navigationBarTitleText": "震动"
-			}
-		},
 		// #ifdef APP-PLUS || MP-WEIXIN
 		{
 			"path": "pages/API/bluetooth/bluetooth",
 			"style": {
 				"navigationBarTitleText": "蓝牙"
 			}
-		}
+		},
 		// #endif
+		{
+			"path": "pages/API/vibrate/vibrate",
+			"style": {
+				"navigationBarTitleText": "震动"
+			}
+		}
 	],
 	"subPackages": [{
 			"root": "pages/extUI",
