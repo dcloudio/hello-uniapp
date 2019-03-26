@@ -85,8 +85,8 @@
 			</view>
 		</view>
 		<!-- 遮罩 -->
-		<view v-if="maskShow" class="uni-mask" @touchmove.stop.prevent="moveHandle">
-			<scroll-view class="uni-scroll-box" scroll-y @touchmove.stop.prevent="moveHandle">
+		<view v-if="maskShow" class="uni-mask" @touchmove.stop.prevent="moveHandle" @click="maskclose">
+			<scroll-view class="uni-scroll-box" scroll-y @touchmove.stop.prevent="moveHandle" @click.stop="moveHandle">
 				<view class="uni-title">
 					已经发现{{ list.length }}{{ showMaskType === 'device' ? '台设备' : '个服务' }}:
 				</view>
@@ -158,10 +158,16 @@ export default {
 	methods: {
 		moveHandle() {},
 		/**
+		 * 关闭遮罩
+		 */
+		maskclose(){
+			this.maskShow = false;
+		},
+		/**
 		 * 选择设备
 		 */
 		queryDevices() {
-			this.newDeviceLoad = true;
+			// this.newDeviceLoad = true;
 			this.showMaskType = 'device';
 			this.maskShow = true;
 		},
