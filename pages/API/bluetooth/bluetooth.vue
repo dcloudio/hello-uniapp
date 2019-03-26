@@ -53,17 +53,17 @@
 					获取服务的特征值
 				</button>
 				<view v-if="characteristicsData.length > 0">
-					<view class="list-name">uuid:{{ characteristicsData[0].uuid }}</view>
-					<view class="list-item">
+					<view class="uni-list_name">uuid:{{ characteristicsData[0].uuid }}</view>
+					<view class="uni-list_item">
 						是否支持 read 操作:{{ characteristicsData[0].properties.read }}
 					</view>
-					<view class="list-item">
+					<view class="uni-list_item">
 						是否支持 write 操作:{{ characteristicsData[0].properties.write }}
 					</view>
-					<view class="list-item">
+					<view class="uni-list_item">
 						是否支持 notify 操作:{{ characteristicsData[0].properties.notify }}
 					</view>
-					<view class="list-item">
+					<view class="uni-list_item">
 						是否支持 indicate 操作:{{ characteristicsData[0].properties.indicate }}
 					</view>
 				</view>
@@ -86,26 +86,26 @@
 		</view>
 		<!-- 遮罩 -->
 		<view v-if="maskShow" class="uni-mask" @touchmove.stop.prevent="moveHandle" @click="maskclose">
-			<scroll-view class="uni-scroll-box" scroll-y @touchmove.stop.prevent="moveHandle" @click.stop="moveHandle">
+			<scroll-view class="uni-scroll_box" scroll-y @touchmove.stop.prevent="moveHandle" @click.stop="moveHandle">
 				<view class="uni-title">
 					已经发现{{ list.length }}{{ showMaskType === 'device' ? '台设备' : '个服务' }}:
 				</view>
 				<view
-					class="list"
+					class="uni-list-box"
 					v-for="(item, index) in list"
 					:key="index"
 					@click="tapQuery(item)"
 				>
 					<view v-if="showMaskType === 'device'">
-						<view class="list-name">{{ item.name || item.localName }}</view>
-						<view class="list-item">信号强度:{{ item.RSSI }}dBm</view>
-						<view class="list-item">UUID:{{ item.deviceId }}</view>
+						<view class="uni-list_name">{{ item.name || item.localName }}</view>
+						<view class="uni-list_item">信号强度:{{ item.RSSI }}dBm</view>
+						<view class="uni-list_item">UUID:{{ item.deviceId }}</view>
 						<!-- <view class="list-item" v-if="showMaskType === 'device'">
 							Service数量:{{ item.advertisServiceUUIDs.length }}
 						</view> -->
 					</view>
 					<view v-if="showMaskType === 'service'">
-						<view class="list-item" style="line-height:2.2;">
+						<view class="uni-list_item" style="line-height:2.2;">
 							UUID: {{ item.uuid }}
 							<text v-if="showMaskType === 'service'">
 								{{ item.isPrimary ? '（主服务）' : '' }}
@@ -113,15 +113,15 @@
 						</view>
 					</view>
 					<view v-if="showMaskType === 'characteristics'">
-						<view class="list-name">uuid:{{ item.uuid }}</view>
-						<view class="list-item">是否支持 read 操作:{{ item.properties.read }}</view>
-						<view class="list-item">
+						<view class="uni-list_name">uuid:{{ item.uuid }}</view>
+						<view class="uni-list_item">是否支持 read 操作:{{ item.properties.read }}</view>
+						<view class="uni-list_item">
 							是否支持 write 操作:{{ item.properties.write }}
 						</view>
-						<view class="list-item">
+						<view class="uni-list_item">
 							是否支持 notify 操作:{{ item.properties.notify }}
 						</view>
-						<view class="list-item">
+						<view class="uni-list_item">
 							是否支持 indicate 操作:{{ item.properties.indicate }}
 						</view>
 					</view>
@@ -630,15 +630,7 @@ function toast(content, showCancel = false) {
 </script>
 
 <style>
-.text-box {
-	margin-bottom: 40upx;
-	display: flex;
-	flex-direction: column;
-	min-height: 300upx;
-	background-color: #ffffff;
-	font-size: 30upx;
-	color: #353535;
-}
+
 .uni-title {
 	/* width: 100%; */
 	/* height: 80upx; */
@@ -658,31 +650,31 @@ function toast(content, showCancel = false) {
 	box-sizing: border-box;
 }
 
-.uni-scroll-box {
+.uni-scroll_box {
 	height: 70%;
 	background: #fff;
 	border-radius: 20upx;
 }
-.list {
+.uni-list-box {
 	margin: 0 20upx;
 	padding: 15upx 0;
 	border-bottom: 1px #f5f5f5 solid;
 	box-sizing: border-box;
 }
-.list:last-child {
+.uni-list:last-child {
 	border: none;
 }
-.list-name {
+.uni-list_name {
 	font-size: 30upx;
 	color: #333;
 }
-.list-item {
+.uni-list_item {
 	font-size: 24upx;
 	color: #555;
 	line-height: 1.5;
 }
 
-.success-box {
+.uni-success_box {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -692,7 +684,7 @@ function toast(content, showCancel = false) {
 	box-sizing: border-box;
 	border-top: 1px #eee solid;
 }
-.success-sub {
+.uni-success_sub {
 	/* width: 100%%; */
 	height: 100upx;
 	display: flex;
@@ -700,7 +692,7 @@ function toast(content, showCancel = false) {
 	align-items: center;
 	padding: 0 30upx;
 }
-.close-button {
+.uni-close_button {
 	padding: 0 20upx;
 	height: 60upx;
 	line-height: 60upx;
@@ -708,18 +700,18 @@ function toast(content, showCancel = false) {
 	color: #ffffff;
 	border-radius: 10upx;
 }
-.success-content {
+.uni-success_content {
 	height: 600upx;
 	margin: 30upx;
 	margin-top: 0;
 	border: 1px #eee solid;
 	padding: 30upx;
 }
-.content-list {
+.uni-content_list {
 	padding-bottom: 10upx;
 	border-bottom: 1px #f5f5f5 solid;
 }
-.tips {
+.uni-tips {
 	text-align: center;
 	font-size: 24upx;
 	color: #666;
