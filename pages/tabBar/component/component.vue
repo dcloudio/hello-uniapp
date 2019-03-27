@@ -89,10 +89,10 @@
 						open: false,
 						pages: [{
 							name: '网络网页',
-							url: 'web-view'
+							url: '/pages/component/web-view/web-view'
 						}, {
 							name: '本地网页',
-							url: 'web-view-local'
+							url: '/pages/component/web-view-local/web-view-local'
 						}]
 					},
 					// #endif
