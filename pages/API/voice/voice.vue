@@ -112,7 +112,9 @@
 					this.formatedRecordTime = util.formatTime(this.recordTime);
 				}, 1000)
 
-				recorderManager.start();
+				recorderManager.start({
+					format: 'mp3'
+				});
 			},
 			stopRecord() { //停止录音
 				recorderManager.stop();
