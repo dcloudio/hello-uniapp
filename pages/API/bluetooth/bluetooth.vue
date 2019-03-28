@@ -2,6 +2,9 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
+			<view>
+				本蓝牙协议只支持低功耗蓝牙协议ble。如果想连接非ble蓝牙设备，请在社区搜索 Native.js 蓝牙。
+			</view>
 			<view class="uni-btn-v">
 				<button type="primary" :disabled="disabled[0]" @click="openBluetoothAdapter">
 					初始化蓝牙模块
