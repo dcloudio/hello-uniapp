@@ -1,8 +1,8 @@
 <template>
 	<view class="uni-grid" :class="{'uni-grid-no-border':!showBorder,'uni-grid-no-out-border':showBorder && !showOutBorder}">
 		<view class="uni-grid__flex" v-for="(items,i) in gridGroup" :key="i">
-			<view class="uni-grid-item" hover-class="uni-grid-item-hover" :hover-start-time="20" :hover-stay-time="70" v-for="(item,index) in items" :key="index" :class="[index == columnNum ? 'uni-grid-item-last' : '','uni-grid-item-' + type]" @click="onClick(i,index)">
-				<view class="uni-grid-item__content">
+			<view class="uni-grid-item" hover-class="uni-grid-item-hover" :hover-start-time="20" :hover-stay-time="70" v-for="(item,index) in items" :key="index" :class="[index == columnNum ? 'uni-grid-item-last' : '','uni-grid-item-' + type]" @click="onClick(i,index)" :style="{visibility:item.seize ? 'hidden' : 'inherit'}">
+				<view class="uni-grid-item__content" v-if="!item.seize">
 					<image class="uni-grid-item-image" :src="item.image"></image>
 					<text class="uni-grid-item-text">{{item.text}}</text>
 				</view>
@@ -51,6 +51,13 @@
 					}
 				})
 				if (groupItem.length > 0) {
+					if (this.columnNum > groupItem.length) {
+						for (let i = 0, length = groupItem.length; i < this.columnNum - length; i++) {
+							groupItem.push({
+								seize: true
+							})
+						}
+					}
 					group.push(groupItem)
 				}
 				groupItem = null
