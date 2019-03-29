@@ -12,7 +12,7 @@
 			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in list" :key="index">
 				<view class="uni-media-list">
 					<view class="uni-media-list-logo">
-						<image class="image" :class="{lazy:!item.show}" :data-index="index" @load="onLoad" :src="item.show?item.src:''" />
+						<image class="image" :class="{lazy:!item.show}" :data-index="index" @load="imageLoad" :src="item.show?item.src:''" />
 						<image class="image placeholder" :class="{loaded:item.loaded}" :src="placeholderSrc" />
 					</view>
 					<view class="uni-media-list-body">
@@ -56,7 +56,7 @@
 					})
 				}).exec()
 			},
-			onLoad(e) {
+			imageLoad(e) {
 				this.list[e.target.dataset.index].loaded = true
 			}
 		},
