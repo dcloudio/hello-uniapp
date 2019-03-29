@@ -81,7 +81,8 @@
 		"appid": "",
 		"setting": {
 			"urlCheck": false
-		}
+		},
+		"usingComponents": true
 	},
 	"h5": {
 		"template": "template.h5.html",
