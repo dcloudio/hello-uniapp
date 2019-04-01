@@ -86,7 +86,7 @@
 					name: '界面',
 					open: false,
 					pages: [{
-							name: '设置界面标题',
+							name: '设置导航条',
 							url: 'set-navigation-bar-title'
 						}, {
 							name: '页面跳转',

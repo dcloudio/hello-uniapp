@@ -1,48 +1,46 @@
 <template>
-	<view>
+	<view class="page">
 		<page-head :title="title"></page-head>
-		<view>
-			<form @submit="setNaivgationBarTitle">
-				<view class="uni-list">
-					<view class="uni-list-cell">
-						<view class="uni-list-cell-left">
-							页面标题
-						</view>
-						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" placeholder="请输入页面标题并点击设置即可" name="title"></input>
-						</view>
-					</view>
-				</view>
-				<view class="uni-padding-wrap">
-					<view class="uni-btn-v">
-						<button type="primary" formType="submit">设置</button>
-					</view>
-				</view>
-			</form>
+		<view class="uni-padding-wrap">
+			<view class="uni-helllo-text">
+				本页标题栏是uni-app的默认配置，开发者可在pages.json里配置文字内容及标题颜色，也可通过api接口将其改变。
+			</view>
+			<view class="uni-btn-v">
+				<button type="default" @click="setText">改变标题栏文字</button>
+				<!-- #ifndef MP-TOUTIAO -->
+				<button type="primary" @click="setBg">改变标题栏颜色</button>
+				<!-- #endif -->
+			</view>
 		</view>
 	</view>
 </template>
+
 <script>
 	export default {
 		data() {
 			return {
-				title: 'setNaivgationBarTitle'
+				title: 'nav-default',
+				hasSetText:false,
+				hasSetBg:false
 			}
 		},
 		methods: {
-			setNaivgationBarTitle: function (e) {
-				let title = e.detail.value.title
+			setText() {
+				this.hasSetText = !this.hasSetText;
 				uni.setNavigationBarTitle({
-					title: title,
-					success: () => {
-						console.log('setNavigationBarTitle success')
-					},
-					fail: (err) => {
-						console.log('setNavigationBarTitle fail, err is', err)
-					}
+					title: this.hasSetText ? "Hello uni-app" : "默认导航栏"
+				})
+			},
+			setBg() {
+				this.hasSetBg = !this.hasSetBg;
+				uni.setNavigationBarColor({
+					frontColor: this.hasSetBg ? "#ffffff" : "#000000",
+					backgroundColor: this.hasSetBg ? "#007AFF" : "#F8F8F8"
 				})
 			}
 		}
 	}
 </script>
 
+<style>
+</style>

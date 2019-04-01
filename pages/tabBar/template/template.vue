@@ -38,10 +38,11 @@
 						id: 'navbar',
 						name: '顶部导航标题栏',
 						open: false,
-						pages: [{
-								name: '默认样式',
-								url: 'nav-default'
-							},
+						pages: [
+// 							{
+// 								name: '默认样式',
+// 								url: 'nav-default'
+// 							},
 							// #ifdef APP-PLUS || H5
 							{
 								name: '透明渐变样式',
