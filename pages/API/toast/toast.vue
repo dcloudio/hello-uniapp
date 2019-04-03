@@ -49,7 +49,11 @@
 			},
 			// #ifdef APP-PLUS
 			toast5Tap: function () {
-				plus.nativeUI.toast("显示一段轻提示")
+				// plus.nativeUI.toast("显示一段轻提示")
+				uni.showToast({
+					title: "显示一段轻提示",
+					position:'bottom'
+				})
 			},
 			// #endif
 			hideToast: function () {
