@@ -47,6 +47,9 @@
 						name: 'Pagination 分页器',
 						url: 'pagination'
 					}, {
+						name: 'SwiperDot 轮播图指示点',
+						url: 'swiper-dot'
+					}, {
 						name: 'Steps 步骤条',
 						url: 'steps'
 					}, {

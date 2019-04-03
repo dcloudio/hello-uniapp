@@ -630,6 +630,11 @@
 						"navigationBarTitleText": "Pagination 分页器"
 					}
 				}, {
+					"path": "swiper-dot/swiper-dot",
+					"style": {
+						"navigationBarTitleText": "SwiperDot 轮播图指示点"
+					}
+				}, {
 					"path": "grid/grid",
 					"style": {
 						"navigationBarTitleText": "Grid 宫格"
