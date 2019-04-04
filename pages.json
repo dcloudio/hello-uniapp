@@ -909,7 +909,16 @@
 						"navigationBarTitleText": "详情",
 						"app-plus": {
 							"titleNView": {
-								"type": "transparent"
+								"type": "transparent",
+								"buttons": [{
+									"type": "share"
+								}]
+							}
+						},
+						"h5": {
+							"titleNView": {
+								"type": "transparent",
+								"buttons": []
 							}
 						}
 					}
