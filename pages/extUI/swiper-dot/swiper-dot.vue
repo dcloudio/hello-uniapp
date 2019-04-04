@@ -45,17 +45,14 @@
 		data() {
 			return {
 				info: [{
-					name: 'test',
 					colorClass: 'uni-bg-red',
 					url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg',
 					content: '内容 A'
 				}, {
-					name: 'test',
 					colorClass: 'uni-bg-green',
 					url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg',
 					content: '内容 B'
 				}, {
-					name: 'test',
 					colorClass: 'uni-bg-blue',
 					url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg',
 					content: '内容 C'
@@ -91,17 +88,17 @@
 		},
 		methods: {
 			change(e) {
-				this.current = e.detail.current
+				this.current = e.detail.current;
 			},
 			selectStyle(index) {
-				this.dotsStyles = this.dotStyle[index]
+				this.dotsStyles = this.dotStyle[index];
 				this.styleIndex = index;
 			},
 			selectMode(mode, index) {
 				this.mode = mode;
 				this.modeIndex = index;
 				this.styleIndex = -1;
-				this.dotsStyles = this.dotStyle[0]
+				this.dotsStyles = this.dotStyle[0];
 			}
 		}
 	}

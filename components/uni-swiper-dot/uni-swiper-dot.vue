@@ -9,7 +9,7 @@
 			<view class="uni-swiper__dots-item " v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
 				 'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index"></view>
 		</view>
-		<view v-if="mode === 'nav'" class="uni-swiper__dots-box uni-swiper__dots-nav" :style="{'background-color':dotsStyles.selectedBackgroundColor}">
+		<view v-if="mode === 'nav'" class="uni-swiper__dots-box uni-swiper__dots-nav" :style="{'background-color':dotsStyles.backgroundColor}">
 			<view class="uni-swiper__dots-nav-item" :style="{'color':dotsStyles.color}">{{(current+1)+"/"+info.length}}
 				{{info[current][field]}}</view>
 		</view>
@@ -58,13 +58,9 @@
 					height: 8,
 					bottom: 10,
 					color: '#fff',
-					// nav 模式下为前景色
 					backgroundColor: 'rgba(0, 0, 0, .3)',
-					// nav 模式下无效
 					border: '1px rgba(0, 0, 0, .3) solid',
-					// nav 模式下为背景色
 					selectedBackgroundColor: '#333',
-					// nav 模式下无效
 					selectedBorder: '1px rgba(0, 0, 0, .9) solid'
 				}
 			};
