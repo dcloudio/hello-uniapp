@@ -218,9 +218,10 @@ export default {
 					this.getBluetoothAdapterState();
 				},
 				fail: e => {
-					console.log('初始化蓝牙失败，错误吗：' + e.errCode);
+					console.log(e)
+					console.log('初始化蓝牙失败，错误码：' + (e.errCode || e.errMsg));
 					if (e.errCode !== 0) {
-						initTypes(e.errCode);
+						initTypes(e.errCode,e.errMsg);
 					}
 				}
 			});
@@ -239,7 +240,7 @@ export default {
 					this.onBluetoothDeviceFound();
 				},
 				fail: e => {
-					console.log('搜索蓝牙设备失败，错误吗：' + e.errCode);
+					console.log('搜索蓝牙设备失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -263,7 +264,7 @@ export default {
 					this.searchLoad = false;
 				},
 				fail: e => {
-					console.log('停止搜索蓝牙设备失败，错误吗：' + e.errCode);
+					console.log('停止搜索蓝牙设备失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -292,7 +293,7 @@ export default {
 					this.list = res.devices;
 				},
 				fail: e => {
-					console.log('获取蓝牙设备错误，错误吗：' + e.errCode);
+					console.log('获取蓝牙设备错误，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -310,7 +311,7 @@ export default {
 					this.adapterState = res;
 				},
 				fail: e => {
-					console.log('获取本机蓝牙适配器状态失败，错误吗：' + e.errCode);
+					console.log('获取本机蓝牙适配器状态失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -348,7 +349,7 @@ export default {
 					this.connected = true;
 				},
 				fail: e => {
-					console.log('连接低功耗蓝牙失败，错误吗：' + e.errCode);
+					console.log('连接低功耗蓝牙失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -378,7 +379,7 @@ export default {
 					this.characteristicsData = [];
 				},
 				fail: e => {
-					console.log('断开低功耗蓝牙成功，错误吗：' + e.errCode);
+					console.log('断开低功耗蓝牙成功，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -411,7 +412,7 @@ export default {
 					this.maskShow = true;
 				},
 				fail: e => {
-					console.log('获取设备服务失败，错误吗：' + e.errCode);
+					console.log('获取设备服务失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -445,7 +446,7 @@ export default {
 					this.maskShow = true;
 				},
 				fail: e => {
-					console.log('获取特征值失败，错误吗：' + e.errCode);
+					console.log('获取特征值失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
@@ -503,7 +504,7 @@ export default {
 					this.notifyBLECharacteristicValueChange();
 				},
 				fail(e) {
-					console.log('读取设备数据值失败，错误吗：' + e.errCode);
+					console.log('读取设备数据值失败，错误码：' + e.errCode);
 					if (e.errCode !== 0) {
 						initTypes(e.errCode);
 					}
