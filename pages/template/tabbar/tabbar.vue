@@ -1,8 +1,8 @@
 <template>
 	<view class="uni-tab-bar">
 		<scroll-view id="tab-bar" class="uni-swiper-tab" scroll-x :scroll-left="scrollLeft">
-			<view v-for="(tab,index) in tabBars" :key="tab.id" class="swiper-tab-list" :class="tabIndex==index ? 'active' : ''" :id="tab.id"
-			 :data-current="index" @click="tapTab">{{tab.name}}</view>
+			<view v-for="(tab,index) in tabBars" :key="tab.id" class="swiper-tab-list" :class="tabIndex==index ? 'active' : ''"
+			 :id="tab.id" :data-current="index" @click="tapTab">{{tab.name}}</view>
 		</scroll-view>
 		<swiper :current="tabIndex" class="swiper-box" :duration="300" @change="changeTab">
 			<swiper-item v-for="(tab,index1) in newsitems" :key="index1">
@@ -121,8 +121,8 @@
 		methods: {
 			goDetail(e) {
 				uni.navigateTo({
-					url: '/pages/template/tabbar/detail/detail?data=' + e.title
-				})
+					url: '/pages/template/tabbar/detail/detail?title=' + e.title
+				});
 			},
 			close(index1, index2) {
 				uni.showModal({
@@ -150,7 +150,7 @@
 			},
 			async changeTab(e) {
 				let index = e.target.current;
-				if(this.newsitems[index].data.length === 0){
+				if (this.newsitems[index].data.length === 0) {
 					this.addData(index)
 				}
 				if (this.isClickChange) {
@@ -190,7 +190,7 @@
 			},
 			async tapTab(e) { //点击tab-bar
 				let tabIndex = e.target.dataset.current;
-				if(this.newsitems[tabIndex].data.length === 0){
+				if (this.newsitems[tabIndex].data.length === 0) {
 					this.addData(tabIndex)
 				}
 				if (this.tabIndex === tabIndex) {
@@ -210,7 +210,7 @@
 						loadingText: '加载更多...',
 						data: []
 					};
-					if(i < 1){
+					if (i < 1) {
 						for (let j = 1; j <= 10; j++) {
 							aryItem.data.push(tpl['data' + Math.floor(Math.random() * 5)]);
 						}
@@ -224,7 +224,7 @@
 </script>
 
 <style>
-	.uni-tab-bar-loading{
+	.uni-tab-bar-loading {
 		text-align: center;
 		font-size: 28upx;
 		color: #999;
