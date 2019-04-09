@@ -52,7 +52,8 @@
 		height: 60upx;
 		line-height: calc(60upx - 2px);
 		font-size: 28upx;
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
 		color: #333;
 		border-radius: 6upx;
 		background-color: #f8f8f8;

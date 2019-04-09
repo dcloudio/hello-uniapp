@@ -115,7 +115,6 @@
 
 	.animation-button {
 		float: left;
-		line-height: 2;
 		width: 44%;
 		margin: 15upx 3%;
 	}
