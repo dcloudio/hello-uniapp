@@ -167,13 +167,13 @@
 						},
 						//#endif
 						// #ifndef H5 || MP-ALIPAY
-							{
+						{
 							name: '屏幕亮度',
 							url: 'brightness'
 						},
 						// #endif
 						// #ifdef APP-PLUS || MP-WEIXIN
-							{
+						{
 							name: '蓝牙',
 							url: 'bluetooth'
 						},
@@ -310,6 +310,16 @@
 			uni.navigateTo({
 				url: '/pages/about/about'
 			});
+		},
+		onLoad() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.showWaiting('加载中……');
+			// #endif
+		},
+		onReady() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.closeWaiting();
+			// #endif
 		},
 		onShow() {
 			this.leaveSetTabBarPage()

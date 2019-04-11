@@ -92,6 +92,16 @@
 				]
 			}
 		},
+		onLoad() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.showWaiting('加载中……');
+			// #endif
+		},
+		onReady() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.closeWaiting();
+			// #endif
+		},
 		onShareAppMessage() {
 			return {
 				title: '欢迎体验uni-app',
