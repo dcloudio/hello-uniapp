@@ -13,7 +13,7 @@
 				<progress percent="60" active stroke-width="3" />
 			</view>
 			<view class="progress-box">
-				<progress percent="80" color="#10AEFF" active stroke-width="3" />
+				<progress percent="80" activeColor="#10AEFF" active stroke-width="3" />
 			</view>
 		</view>
 	</view>
