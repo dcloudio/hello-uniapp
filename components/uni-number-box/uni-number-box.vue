@@ -125,6 +125,7 @@
 		font-size: 40upx;
 		height: 100%;
 		line-height: 70upx;
+		text-align: center;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
