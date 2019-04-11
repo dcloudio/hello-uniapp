@@ -10,16 +10,18 @@
 			<text class="article-time">{{banner.published_at}}</text>
 		</view>
 		<view class="article-content">
-			<rich-text :nodes="htmlString"></rich-text>
+			<rich-text :nodes="htmlNodes"></rich-text>
 		</view>
 		<!-- #ifdef MP-WEIXIN -->
-		<ad v-if="htmlString" unit-id="adunit-01b7a010bf53d74e"></ad>
+		<ad v-if="htmlNodes.length > 0" unit-id="adunit-01b7a010bf53d74e"></ad>
 		<!-- #endif -->
 	</view>
 </template>
 
 <script>
 	const DETAIL_PAGE_PATH = '/pages/template/list2detail-detail/list2detail-detail';
+
+	import htmlParser from '@/common/html-parser'
 
 	function _handleShareChannels(provider) {
 		let channels = [];
@@ -52,7 +54,7 @@
 			return {
 				title: 'list-triplex-row',
 				banner: {},
-				htmlString: ''
+				htmlNodes: []
 			}
 		},
 		onLoad(event) {
@@ -122,7 +124,8 @@
 					url: 'https://unidemo.dcloud.net.cn/api/news/36kr/' + this.banner.post_id,
 					success: (data) => {
 						if (data.statusCode == 200) {
-							this.htmlString = data.data.content.replace(/\\/g, "").replace(/<img/g, "<img style=\"display:none;\"");
+							var htmlString = data.data.content.replace(/\\/g, "").replace(/<img/g, "<img style=\"display:none;\"");
+							this.htmlNodes = htmlParser(htmlString);
 						}
 					},
 					fail: () => {
