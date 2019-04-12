@@ -18,7 +18,8 @@
 		methods: {
 			actionSheetTap() {
 				uni.showActionSheet({
-					itemList: ['item1', 'item2', 'item3', 'item4'],
+					title:'标题',
+					itemList: ['item1', 'item2', 'item3', 'item4','item5', 'item6','item7'],
 					success: (e) => {
 						console.log(e.tapIndex);
 						uni.showToast({
