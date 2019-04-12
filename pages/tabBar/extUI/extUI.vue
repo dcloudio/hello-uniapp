@@ -120,7 +120,8 @@
 					url: '/pages/extUI/' + path + '/' + path
 				});
 			}
-		},components: {
+		},
+		components: {
 			uLink
 		}
 	}
