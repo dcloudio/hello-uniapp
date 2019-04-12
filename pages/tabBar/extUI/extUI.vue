@@ -4,7 +4,7 @@
 			<image src="/static/extuiIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
-			以下是uni-app扩展组件示例，更多组件见插件市场：https://ext.dcloud.net.cn。
+			uni ui扩展组件，组件文档见插件市场：<u-link href="https://ext.dcloud.net.cn" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
 		<view class="uni-card" v-for="(list,index) in lists" :key="index">
 			<view class="uni-list">
@@ -18,6 +18,7 @@
 	</view>
 </template>
 <script>
+	import uLink from "@/components/uLink.vue"
 	export default {
 		data() {
 			return {
@@ -119,6 +120,8 @@
 					url: '/pages/extUI/' + path + '/' + path
 				});
 			}
+		},components: {
+			uLink
 		}
 	}
 </script>
