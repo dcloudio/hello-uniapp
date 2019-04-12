@@ -4,7 +4,7 @@
 			<image src="/static/templateIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
-			以下是部分模板示例，更多模板见插件市场：https://ext.dcloud.net.cn。
+			以下是部分模板示例，更多模板见插件市场：<u-link href="https://ext.dcloud.net.cn" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
 		<view class="uni-card" v-for="(list,index) in lists" :key="index">
 			<view class="uni-list">
@@ -28,7 +28,11 @@
 	</view>
 </template>
 <script>
+	import uLink from "@/components/uLink.vue"
 	export default {
+		components: {
+			uLink
+		},
 		data() {
 			return {
 				lists: [{
@@ -155,12 +159,6 @@
 						name: '二维码生成',
 						url: 'qrcode'
 					},
-					// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-BAIDU
-					{
-						name: '图片裁剪',
-						url: 'crop'
-					},
-					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || H5
                     {
 						id: 'uparse',
@@ -201,6 +199,12 @@
 						name: '聊天窗口 chat',
 						url: 'im-chat'
 					},
+					// #endif
+					// #ifdef APP-PLUS || MP-WEIXIN
+					{
+						name: '微信自定义组件示例（vant ui）',
+						url: 'vant-button'
+					}
 					// #endif
 				]
 			}

@@ -1,10 +1,9 @@
 <template>
 	<view class="container">
 		<view class="page-section-title" style="display: block;">
-			<view class="uni-hello-text uni-common-pb">
-				这是uni-app集成mpvue-echarts的图表示例，mpvue-echarts组件的用法参考：
+			<view class="uni-hello-text uni-common-pb" style="display: block;">
+				集成mpvue-echarts的图表示例，用法参考：<u-link :href="'https://github.com/F-loat/mpvue-echarts'" :text="'https://github.com/F-loat/mpvue-echarts'"></u-link>
 			</view>
-			<text class="navigate" @click="goBrowser" selectable>https://github.com/F-loat/mpvue-echarts</text>
 		</view>
 		<view class="canvasView">
 			<view class="canvas-bar">
@@ -21,8 +20,9 @@
 </template>
 
 <script>
-	import * as echarts from '../../../components/echarts/echarts.simple.min.js';
-	import mpvueEcharts from '../../../components/mpvue-echarts/src/echarts.vue';
+	import * as echarts from '@/components/echarts/echarts.simple.min.js';
+	import mpvueEcharts from '@/components/mpvue-echarts/src/echarts.vue';
+	import uLink from "@/components/uLink.vue"
 
 	const cityList = [{
 		value: 55,
@@ -101,17 +101,6 @@
 			pieOption.series[0].data = cityList.slice(0);
 		},
 		methods: {
-			goBrowser() {
-				// #ifdef APP-PLUS
-				plus.runtime.openURL('https://github.com/F-loat/mpvue-echarts');
-				// #endif
-				// #ifdef MP-WEIXIN
-				uni.showModal({
-					content: '请复制链接在浏览器里打开',
-					showCancel: false
-				})
-				// #endif
-			},
 			updatePie() {
 				// 参考 mpvue-charts 的懒加载示例
 				// https://github.com/F-loat/mpvue-echarts/blob/master/examples/lazyLoad.vue
@@ -154,7 +143,8 @@
 			}
 		},
 		components: {
-			mpvueEcharts
+			mpvueEcharts,
+			uLink
 		}
 	}
 </script>
@@ -194,10 +184,6 @@
 		width: 100%;
 		height: 100%;
 		flex: 1;
-	}
-
-	.navigate {
-		color: #007AFF;
 	}
 
 	.canvas-bar {

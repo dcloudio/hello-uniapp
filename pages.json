@@ -707,12 +707,6 @@
 						"navigationBarTitleText": "二维码生成"
 					}
 				},
-				{
-					"path": "crop/crop",
-					"style": {
-						"navigationBarTitleText": "图片裁剪"
-					}
-				},
 				// #ifndef MP-ALIPAY || MP-TOUTIAO
 				{
 					"path": "echarts/echarts",
@@ -1028,6 +1022,17 @@
 						"navigationBarTitleText": "表单校验"
 					}
 				}
+				// #ifdef APP-PLUS || MP-WEIXIN
+				, {
+					"path": "vant-button/vant-button",
+					"style": {
+						"navigationBarTitleText": "微信自定义组件示例",
+						"usingComponents": {
+							"van-button": "/wxcomponents/vant/button/index"
+						}
+					}
+				}
+				// #endif
 			]
 		}
 	],

@@ -11,7 +11,7 @@
 					<image src="../../../static/apiIndex.png"></image>
 				</view>
 				<view class="uni-hello-text uni-common-pb">
-					以下将演示uni-app接口能力，具体属性参数详见uni-app开发文档。
+					以下将演示uni-app接口能力，详细文档见：<u-link :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'" :inWhiteList="true"></u-link>
 				</view>
 				<view class="uni-card" v-for="(list,index) in lists" :key="index">
 					<view class="uni-list">
@@ -39,11 +39,14 @@
 	// #ifndef MP-ALIPAY || MP-TOUTIAO
 	import setTabBar from '@/components/api-set-tabbar.vue';
 	// #endif
-
+	import uLink from "@/components/uLink.vue"
 	export default {
 		// #ifndef MP-ALIPAY || MP-TOUTIAO
 		components: {
-			setTabBar
+			// #ifndef MP-ALIPAY || MP-TOUTIAO
+			setTabBar,
+			// #endif
+			uLink
 		},
 		// #endif
 		data() {

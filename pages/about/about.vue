@@ -17,7 +17,8 @@
 						<text>下载 HBuilderX，新建 uni-app 项目时选择 <text class="code">Hello uni-app</text> 模板。</text>
 					</view>
 					<view class="source-cell">
-						<text space="nbsp">2. </text><text @click="openLink" class="link">{{sourceLink}}</text>
+						<text space="nbsp">2. </text>
+						<u-link class="link" :href="'https://github.com/dcloudio/hello-uniapp'" :text="'https://github.com/dcloudio/hello-uniapp'"></u-link>
 					</view>
 				</view>
 			</view>
@@ -34,12 +35,16 @@
 </template>
 
 <script>
+	import uLink from "@/components/uLink.vue"
+
 	export default {
+		components: {
+			uLink
+		},
 		data() {
 			return {
 				providerList: [],
-				version: '',
-				sourceLink: 'https://github.com/dcloudio/hello-uniapp'
+				version: ''
 			}
 		},
 		onLoad() {
@@ -135,16 +140,8 @@
 						});
 					}
 				})
-			},
-			// #endif
-			openLink() {
-				// #ifdef APP-PLUS
-				plus.runtime.openURL(this.sourceLink);
-				// #endif
-				// #ifdef H5
-				window.open(this.sourceLink);
-				// #endif
 			}
+			// #endif
 		}
 	}
 </script>
