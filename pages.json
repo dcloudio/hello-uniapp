@@ -989,7 +989,10 @@
 				{
 					"path": "im-chat/im-chat",
 					"style": {
-						"navigationBarTitleText": "聊天窗口chat"
+						"navigationBarTitleText": "聊天窗口chat",
+						"app-plus": {
+							"softinputMode": "adjustResize"
+						}
 					}
 				},
 				{
