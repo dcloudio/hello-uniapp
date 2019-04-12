@@ -7,6 +7,7 @@
 	"transformPx": false,
 	/* 5+App特有相关 */
 	"app-plus": {
+		"usingComponents": true,
 		"splashscreen": {
 			"alwaysShowBeforeRender": true,
 			"waiting": true,
