@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap uni-common-pb">
 		<view class="uni-header-logo">
-			<image src="../../../static/extuiIndex.png"></image>
+			<image src="/static/extuiIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
 			以下是uni-app扩展组件示例，更多组件见插件市场：https://ext.dcloud.net.cn。
@@ -90,7 +90,17 @@
 						url: 'calendar'
 					}
 				]
-			}
+			};
+		},
+		onLoad() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.showWaiting('加载中……');
+			// #endif
+		},
+		onReady() {
+			// #ifdef APP-PLUS
+			plus.nativeUI.closeWaiting();
+			// #endif
 		},
 		onShareAppMessage() {
 			return {
