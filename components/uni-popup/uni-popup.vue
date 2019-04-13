@@ -151,6 +151,12 @@
 		z-index: -1;
 	}
 
+	.uni-close-bottom {
+		margin: auto;
+		left: 0;
+		right: 0;
+	}
+
 	.uni-close-right {
 		right: -60upx;
 		top: -80upx;

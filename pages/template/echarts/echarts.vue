@@ -10,11 +10,11 @@
 				<view class="title">饼图示例</view>
 				<button class="update-btn" type="primary" size="mini" @click="updatePie">修改饼状图数据</button>
 			</view>
-			<mpvue-echarts class="ec-canvas" :onInit="pieInit" canvasId="pie" ref="pieChart" />
+			<mpvue-echarts class="ec-canvas" @onInit="pieInit" canvasId="pie" ref="pieChart" />
 		</view>
 		<view class="canvasView">
 			<view class="title">折线图示例</view>
-			<mpvue-echarts class="ec-canvas" :onInit="lineInit" canvasId="line" ref="lineChart" />
+			<mpvue-echarts class="ec-canvas" @onInit="lineInit" canvasId="line" ref="lineChart" />
 		</view>
 	</view>
 </template>
@@ -119,7 +119,9 @@
 				this.$refs.pieChart.init();
 				this.updateStatus = true;
 			},
-			pieInit(canvas, width, height) {
+			// pieInit(canvas, width, height) {
+			pieInit(e) {
+				let {canvas, width, height,fire} = e ;
 				echarts.setCanvasCreator(() => canvas);
 				let pieChart = echarts.init(canvas, null, {
 					width: width,
@@ -128,9 +130,12 @@
 				canvas.setChart(pieChart)
 
 				pieChart.setOption(pieOption)
-				return pieChart
+				fire(pieChart)
+				// return pieChart
 			},
-			lineInit(canvas, width, height) {
+			// lineInit(canvas, width, height) {
+			lineInit(e) {
+				let {canvas, width, height,fire} = e ;
 				echarts.setCanvasCreator(() => canvas);
 				let lineChart = echarts.init(canvas, null, {
 					width: width,
@@ -139,7 +144,8 @@
 				canvas.setChart(lineChart)
 
 				lineChart.setOption(lineOption)
-				return lineChart
+				fire(lineChart)
+				// return lineChart
 			}
 		},
 		components: {

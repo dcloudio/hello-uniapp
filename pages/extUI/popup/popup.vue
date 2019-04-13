@@ -30,7 +30,7 @@
 				<view class="bottom-title">分享到</view>
 				<view class="bottom-content">
 					<view class="bottom-content-box" v-for="(item, index) in bottomData" :key="index">
-						<view class="bottom-content-image">
+						<view class="bottom-content-image" :class="item.name">
 							<text class="icon">{{ item.icon }}</text>
 						</view>
 						<view class="bottom-content-text">{{ item.text }}</view>
