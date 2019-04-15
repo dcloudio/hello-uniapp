@@ -615,7 +615,7 @@
 				}
 			},
 			getQueryDom(index) {
-				let dom = uni.createSelectorQuery().selectAll(`.${this.elClass}`);
+				let dom = uni.createSelectorQuery().in(this).selectAll(`.${this.elClass}`);
 				dom.boundingClientRect(rect => {}).exec(e => {
 					if (!e[0][index]) {
 						setTimeout(() => this.getQueryDom(1), 50);
