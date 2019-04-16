@@ -93,7 +93,6 @@
 	export default {
 		data() {
 			return {
-				// echarts: echarts,
 				updateStatus: false
 			}
 		},
@@ -119,9 +118,9 @@
 				this.$refs.pieChart.init();
 				this.updateStatus = true;
 			},
-			// pieInit(canvas, width, height) {
 			pieInit(e) {
-				let {canvas, width, height,fire} = e ;
+				let { width, height} = e ;
+				let canvas = this.$refs.pieChart.canvas 
 				echarts.setCanvasCreator(() => canvas);
 				let pieChart = echarts.init(canvas, null, {
 					width: width,
@@ -130,22 +129,19 @@
 				canvas.setChart(pieChart)
 
 				pieChart.setOption(pieOption)
-				fire(pieChart)
-				// return pieChart
+				this.$refs.pieChart.setChart(pieChart)
 			},
-			// lineInit(canvas, width, height) {
 			lineInit(e) {
-				let {canvas, width, height,fire} = e ;
+				let {width, height} = e ;
+				let canvas = this.$refs.lineChart.canvas 
 				echarts.setCanvasCreator(() => canvas);
 				let lineChart = echarts.init(canvas, null, {
 					width: width,
 					height: height
 				})
 				canvas.setChart(lineChart)
-
 				lineChart.setOption(lineOption)
-				fire(lineChart)
-				// return lineChart
+				this.$refs.lineChart.setChart(lineChart)
 			}
 		},
 		components: {

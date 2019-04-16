@@ -7,11 +7,6 @@ import WxCanvas from './wx-canvas';
 
 export default {
 	props: {
-		//     onInit: {
-		//       required: true,
-		//       type: Function,
-		//       default: null,
-		//     },
 		canvasId: {
 			type: String,
 			default: 'ec-canvas'
@@ -40,15 +35,14 @@ export default {
 	},
 	// #endif
 	methods: {
+		setChart(chart){
+			this.chart = chart
+		},
 		init() {
-			//       if (!this.onInit) {
-			//         console.warn('请传入 onInit 函数进行初始化');
-			//         return;
-			//       }
 			const { canvasId } = this;
 			this.ctx = wx.createCanvasContext(canvasId, this);
 
-			const canvas = new WxCanvas(this.ctx, canvasId);
+			this.canvas = new WxCanvas(this.ctx, canvasId);
 
 			const query = wx.createSelectorQuery().in(this);
 			query
@@ -59,15 +53,9 @@ export default {
 						return;
 					}
 					this.$emit('onInit', {
-						canvas,
 						width: res.width,
-						height: res.height,
-						fire: chart => {
-							console.log(chart);
-							this.chart = chart;
-						}
+						height: res.height
 					});
-					// this.chart = this.onInit(canvas, res.width, res.height);
 				})
 				.exec();
 		},
