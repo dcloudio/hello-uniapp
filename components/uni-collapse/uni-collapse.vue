@@ -1,13 +1,13 @@
 <template>
 	<view class="uni-collapse">
-		<slot></slot>
+		<slot />
 	</view>
 </template>
 <script>
 	export default {
-		name: 'uni-collapse',
+		name: 'UniCollapse',
 		props: {
-			accordion: { //是否开启手风琴效果
+			accordion: { // 是否开启手风琴效果
 				type: [Boolean, String],
 				default: false
 			}

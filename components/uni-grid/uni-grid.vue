@@ -1,10 +1,10 @@
 <template>
-	<view class="uni-grid" :class="{'uni-grid-no-border':!showBorder,'uni-grid-no-out-border':showBorder && !showOutBorder}">
-		<view class="uni-grid__flex" v-for="(items,i) in gridGroup" :key="i">
-			<view class="uni-grid-item" hover-class="uni-grid-item-hover" :hover-start-time="20" :hover-stay-time="70" v-for="(item,index) in items" :key="index" :class="[index == columnNum ? 'uni-grid-item-last' : '','uni-grid-item-' + type]" @click="onClick(i,index)" :style="{visibility:item.seize ? 'hidden' : 'inherit'}">
-				<view class="uni-grid-item__content" v-if="!item.seize">
-					<image class="uni-grid-item-image" :src="item.image"></image>
-					<text class="uni-grid-item-text">{{item.text}}</text>
+	<view :class="{'uni-grid-no-border':!showBorder,'uni-grid-no-out-border':showBorder && !showOutBorder}" class="uni-grid">
+		<view v-for="(items,i) in gridGroup" :key="i" class="uni-grid__flex">
+			<view v-for="(item,index) in items" :hover-start-time="20" :hover-stay-time="70" :key="index" :class="[index == columnNum ? 'uni-grid-item-last' : '','uni-grid-item-' + type]" :style="{visibility:item.seize ? 'hidden' : 'inherit'}" class="uni-grid-item" hover-class="uni-grid-item-hover" @click="onClick(i,index)">
+				<view v-if="!item.seize" class="uni-grid-item__content">
+					<image :src="item.image" class="uni-grid-item-image" />
+					<text class="uni-grid-item-text">{{ item.text }}</text>
 				</view>
 			</view>
 		</view>
@@ -13,31 +13,33 @@
 
 <script>
 	export default {
-		name: "uni-grid",
+		name: 'UniGrid',
 		props: {
-			options: Array,
-			type: { //布局格式，长方形oblong，正方形square
+			options: {
+				type: Array,
+				default () {
+					return []
+				}
+			},
+			type: { // 布局格式，长方形oblong，正方形square
 				type: String,
 				default: 'square'
 			},
-			columnNum: { //每一行有多少个
+			columnNum: { // 每一行有多少个
 				type: [Number, String],
 				default: 3
 			},
-			showOutBorder: { //显示外边框
+			showOutBorder: { // 显示外边框
 				type: [Boolean, String],
 				default: true
 			},
-			showBorder: { //是否显示border，如果为false，showOutBorder无效
+			showBorder: { // 是否显示border，如果为false，showOutBorder无效
 				type: [Boolean, String],
 				default: true
 			}
 		},
 		data() {
 			return {}
-		},
-		created() {
-			this.columnNumber = this.gridGroup[0].length
 		},
 		computed: {
 			gridGroup() {
@@ -63,6 +65,9 @@
 				groupItem = null
 				return group
 			}
+		},
+		created() {
+			this.columnNumber = this.gridGroup[0].length
 		},
 		methods: {
 			onClick(index, num) {

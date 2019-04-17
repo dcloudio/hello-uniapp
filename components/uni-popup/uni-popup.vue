@@ -1,20 +1,20 @@
 <template>
 	<view>
-		<view class="uni-mask" v-show="show" :style="{ top: offsetTop + 'px' }" @click="hide" @touchmove.stop.prevent="moveHandle"></view>
-		<view class="uni-popup" :class="'uni-popup-' + position + ' ' + 'uni-popup-' + mode" v-show="show">
+		<view v-show="show" :style="{ top: offsetTop + 'px' }" class="uni-mask" @click="hide" @touchmove.stop.prevent="moveHandle" />
+		<view v-show="show" :class="'uni-popup-' + position + ' ' + 'uni-popup-' + mode" class="uni-popup">
 			{{ msg }}
-			<slot></slot>
-			<view v-if="position === 'middle' && mode === 'insert'" class=" uni-icon uni-icon-close" :class="{
-					'uni-close-bottom': buttonMode === 'bottom',
-					'uni-close-right': buttonMode === 'right'
-				}" @click="closeMask"></view>
+			<slot />
+			<view v-if="position === 'middle' && mode === 'insert'" :class="{
+          'uni-close-bottom': buttonMode === 'bottom',
+          'uni-close-right': buttonMode === 'right'
+        }" class=" uni-icon uni-icon-close" @click="closeMask" />
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
-		name: 'uni-popup',
+		name: 'UniPopup',
 		props: {
 			/**
 			 * 页面显示
@@ -28,7 +28,7 @@
 			 */
 			position: {
 				type: String,
-				//top - 顶部， middle - 居中, bottom - 底部
+				// top - 顶部， middle - 居中, bottom - 底部
 				default: 'middle'
 			},
 			/**
@@ -60,41 +60,41 @@
 		data() {
 			return {
 				offsetTop: 0
-			};
+			}
 		},
 		watch: {
 			h5Top(newVal) {
 				if (newVal) {
-					this.offsetTop = 44;
+					this.offsetTop = 44
 				} else {
-					this.offsetTop = 0;
+					this.offsetTop = 0
 				}
 			}
+		},
+		created() {
+			let offsetTop = 0
+			// #ifdef H5
+			if (!this.h5Top) {
+				offsetTop = 44
+			} else {
+				offsetTop = 0
+			}
+			// #endif
+			this.offsetTop = offsetTop
 		},
 		methods: {
 			hide() {
-				if (this.mode === 'insert' && this.position === 'middle') return;
-				this.$emit('hidePopup');
+				if (this.mode === 'insert' && this.position === 'middle') return
+				this.$emit('hidePopup')
 			},
 			closeMask() {
 				if (this.mode === 'insert') {
-					this.$emit('hidePopup');
+					this.$emit('hidePopup')
 				}
 			},
 			moveHandle() {}
-		},
-		created() {
-			let offsetTop = 0;
-			//#ifdef H5
-			if (!this.h5Top) {
-				offsetTop = 44;
-			} else {
-				offsetTop = 0;
-			}
-			//#endif
-			this.offsetTop = offsetTop;
 		}
-	};
+	}
 </script>
 <style>
 	.uni-mask {

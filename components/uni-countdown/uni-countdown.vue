@@ -1,18 +1,18 @@
 <template>
 	<view class="uni-countdown">
-		<view v-if="showDay" class="uni-countdown__number" :style="{borderColor:borderColor, color:color, background:backgroundColor}">{{d}}</view>
-		<view v-if="showDay" class="uni-countdown__splitor" :style="{color:splitorColor}">天</view>
-		<view class="uni-countdown__number" :style="{borderColor:borderColor, color:color, background:backgroundColor}">{{h}}</view>
-		<view class="uni-countdown__splitor" :style="{color:splitorColor}">{{showColon ? ':' : '时'}}</view>
-		<view class="uni-countdown__number" :style="{borderColor:borderColor, color:color, background:backgroundColor}">{{i}}</view>
-		<view class="uni-countdown__splitor" :style="{color:splitorColor}">{{showColon ? ':' : '分'}}</view>
-		<view class="uni-countdown__number" :style="{borderColor:borderColor, color:color, background:backgroundColor}">{{s}}</view>
-		<view v-if="!showColon" class="uni-countdown__splitor" :style="{color:splitorColor}">秒</view>
+		<view v-if="showDay" :style="{borderColor:borderColor, color:color, background:backgroundColor}" class="uni-countdown__number">{{ d }}</view>
+		<view v-if="showDay" :style="{color:splitorColor}" class="uni-countdown__splitor">天</view>
+		<view :style="{borderColor:borderColor, color:color, background:backgroundColor}" class="uni-countdown__number">{{ h }}</view>
+		<view :style="{color:splitorColor}" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</view>
+		<view :style="{borderColor:borderColor, color:color, background:backgroundColor}" class="uni-countdown__number">{{ i }}</view>
+		<view :style="{color:splitorColor}" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</view>
+		<view :style="{borderColor:borderColor, color:color, background:backgroundColor}" class="uni-countdown__number">{{ s }}</view>
+		<view v-if="!showColon" :style="{color:splitorColor}" class="uni-countdown__splitor">秒</view>
 	</view>
 </template>
 <script>
 	export default {
-		name: "uni-countdown",
+		name: 'UniCountdown',
 		props: {
 			showDay: {
 				type: Boolean,
@@ -24,19 +24,19 @@
 			},
 			backgroundColor: {
 				type: String,
-				default: "#FFFFFF"
+				default: '#FFFFFF'
 			},
 			borderColor: {
 				type: String,
-				default: "#000000"
+				default: '#000000'
 			},
 			color: {
 				type: String,
-				value: "#000000"
+				default: '#000000'
 			},
 			splitorColor: {
 				type: String,
-				default: "#000000"
+				default: '#000000'
 			},
 			day: {
 				type: Number,

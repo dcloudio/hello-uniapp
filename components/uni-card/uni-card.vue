@@ -1,29 +1,41 @@
 <template>
-	<view class="uni-card" :class="isFull === true || isFull === 'true' ? 'uni-card--full' : ''" @click="onClick">
-		<view class="uni-card__header" v-if="title">
-			<view class="uni-card__header-extra-img-view" v-if="thumbnail">
-				<image class="uni-card__header-extra-img" :src="thumbnail"></image>
+	<view :class="isFull ? 'uni-card--full' : ''" class="uni-card" @click="onClick">
+		<view v-if="title" class="uni-card__header">
+			<view v-if="thumbnail" class="uni-card__header-extra-img-view">
+				<image :src="thumbnail" class="uni-card__header-extra-img" />
 			</view>
-			<view class="uni-card__header-title-text">{{title}}</view>
-			<view class="uni-card__header-extra-text" v-if="extra">{{extra}}</view>
+			<view class="uni-card__header-title-text">{{ title }}</view>
+			<view v-if="extra" class="uni-card__header-extra-text">{{ extra }}</view>
 		</view>
 		<view class="uni-card__content uni-card__content--pd">
 			<slot />
 		</view>
-		<view class="uni-card__footer" v-if="note">{{note}}</view>
+		<view v-if="note" class="uni-card__footer">{{ note }}</view>
 	</view>
 </template>
 
 <script>
 	export default {
-		name: "uni-card",
+		name: 'UniCard',
 		props: {
-			title: String, //标题
-			extra: String, //扩展信息
-			note: String, //Tips
-			thumbnail: String, //缩略图
-			isFull: { //内容区域是否通栏
-				type: [Boolean, String],
+			title: {
+				type: String,
+				default: ''
+			}, // 标题
+			extra: {
+				type: String,
+				default: ''
+			}, // 扩展信息
+			note: {
+				type: String,
+				default: ''
+			}, // Tips
+			thumbnail: {
+				type: String,
+				default: ''
+			}, // 缩略图
+			isFull: { // 内容区域是否通栏
+				type: Boolean,
 				default: false
 			}
 		},

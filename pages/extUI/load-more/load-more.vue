@@ -2,11 +2,11 @@
 	<view>
 		<view>
 			<view class="example-title">基本用法</view>
-			<uni-load-more :status="status"></uni-load-more>
+			<uni-load-more :status="status" />
 		</view>
 		<view>
 			<view class="example-title">修改默认颜色及文字</view>
-			<uni-load-more color="#007aff" :status="status" :contentText="contentText"></uni-load-more>
+			<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
 		</view>
 
 		<view class="example-title">改变组件状态</view>
@@ -14,7 +14,7 @@
 			<label v-for="(item, index) in statusTypes" :key="index" class="uni-list-item">
 				<view class="uni-list-item__container">
 					<view class="uni-list-item__content">
-						<view class="uni-list-item__content-title">{{item.text}}</view>
+						<view class="uni-list-item__content-title">{{ item.text }}</view>
 					</view>
 					<view class="uni-list-item__extra">
 						<radio :value="item.value" :checked="item.checked" />
@@ -48,9 +48,9 @@
 					checked: false
 				}],
 				contentText: {
-					contentdown: "查看更多",
-					contentrefresh: "加载中",
-					contentnomore: "没有更多"
+					contentdown: '查看更多',
+					contentrefresh: '加载中',
+					contentnomore: '没有更多'
 				}
 			}
 		},

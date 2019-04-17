@@ -1,9 +1,9 @@
 <template>
 	<view class="page">
 		<view>
-			<view class="icon-item" v-for="(item,index) in iconClassList" :key="index">
-				<uni-icon size="40" :type="item" :color="activeIndex === index?'#007aff':'#8f8f94'" @click="switchActive(index)"></uni-icon>
-				<text>{{item}}</text>
+			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item">
+				<uni-icon :type="item" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" @click="switchActive(index)" />
+				<text>{{ item }}</text>
 			</view>
 		</view>
 	</view>
@@ -110,7 +110,7 @@
 					'sound'
 				],
 				activeIndex: -1
-			};
+			}
 		},
 		methods: {
 			switchActive(index) {

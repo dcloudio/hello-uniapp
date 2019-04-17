@@ -1,17 +1,17 @@
 <template>
 	<view :class="['uni-collapse-cell',{'uni-collapse-cell--disabled':disabled,'uni-collapse-cell--open':isOpen}]" :hover-class="disabled ? '' : 'uni-collapse-cell--hover'">
 		<view class="uni-collapse-cell__title" @click="onClick">
-			<view class="uni-collapse-cell__title-extra" v-if="thumb">
-				<image class="uni-collapse-cell__title-img" :src="thumb"></image>
+			<view v-if="thumb" class="uni-collapse-cell__title-extra">
+				<image :src="thumb" class="uni-collapse-cell__title-img" />
 			</view>
 			<view class="uni-collapse-cell__title-inner">
-				<view class="uni-collapse-cell__title-text">{{title}}</view>
+				<view class="uni-collapse-cell__title-text">{{ title }}</view>
 			</view>
-			<view class="uni-collapse-cell__title-arrow" :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}">
-				<uni-icon color="#bbb" size="20" type="arrowdown"></uni-icon>
+			<view :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}" class="uni-collapse-cell__title-arrow">
+				<uni-icon color="#bbb" size="20" type="arrowdown" />
 			</view>
 		</view>
-		<view class="uni-collapse-cell__content" :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}">
+		<view :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}" class="uni-collapse-cell__content">
 			<view :id="elId">
 				<slot />
 			</view>
@@ -22,32 +22,32 @@
 <script>
 	import uniIcon from '../uni-icon/uni-icon.vue'
 	export default {
-		name: 'uni-collapse-item',
+		name: 'UniCollapseItem',
 		components: {
 			uniIcon
 		},
 		props: {
-			title: { //列表标题
+			title: { // 列表标题
 				type: String,
 				default: ''
 			},
-			name: { //唯一标识符
+			name: { // 唯一标识符
 				type: [Number, String],
 				default: 0
 			},
-			disabled: { //是否禁用
+			disabled: { // 是否禁用
 				type: [Boolean, String],
 				default: false
 			},
-			showAnimation: { //是否显示动画
+			showAnimation: { // 是否显示动画
 				type: Boolean,
 				default: false
 			},
-			open: { //是否展开
+			open: { // 是否展开
 				type: [Boolean, String],
 				default: false
 			},
-			thumb: { //缩略图
+			thumb: { // 缩略图
 				type: String,
 				default: ''
 			}
@@ -58,7 +58,7 @@
 				isOpen: false,
 				height: 'auto',
 				elId: elId
-			};
+			}
 		},
 		watch: {
 			open(val) {
@@ -94,7 +94,7 @@
 				if (this.showAnimation) {
 					uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
 						this.height = ret[0].height + 'px'
-					});
+					})
 				}
 			},
 			onClick() {

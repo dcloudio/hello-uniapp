@@ -1,33 +1,33 @@
 <template>
 	<view class="uni-navbar">
-		<view class="uni-navbar__content" :class="{'uni-navbar--fixed': !!fixed,'uni-navbar--shadow':!!border,'uni-navbar--border':!!border}" :style="{'background-color':backgroundColor}">
-			<uni-status-bar v-if="statusBar"></uni-status-bar>
-			<view class="uni-navbar__header" :style="{color:color}">
+		<view :class="{'uni-navbar--fixed': !!fixed,'uni-navbar--shadow':!!border,'uni-navbar--border':!!border}" :style="{'background-color':backgroundColor}" class="uni-navbar__content">
+			<uni-status-bar v-if="statusBar" />
+			<view :style="{color:color}" class="uni-navbar__header">
 				<view class="uni-navbar__header-btns" @tap="onClickLeft">
 					<view v-if="leftIcon.length">
-						<uni-icon :type="leftIcon" :color="color" size="24"></uni-icon>
+						<uni-icon :type="leftIcon" :color="color" size="24" />
 					</view>
-					<view v-if="leftText.length" class="uni-navbar-btn-text" :class="{'uni-navbar-btn-icon-left':!leftIcon.length}">{{leftText}}</view>
-					<slot name="left"></slot>
+					<view v-if="leftText.length" :class="{'uni-navbar-btn-icon-left':!leftIcon.length}" class="uni-navbar-btn-text">{{ leftText }}</view>
+					<slot name="left" />
 				</view>
 				<view class="uni-navbar__header-container">
-					<view v-if="title.length" class="uni-navbar__header-container-inner">{{title}}</view>
+					<view v-if="title.length" class="uni-navbar__header-container-inner">{{ title }}</view>
 					<!-- 标题插槽 -->
-					<slot></slot>
+					<slot />
 				</view>
 				<view class="uni-navbar__header-btns" @tap="onClickRight">
 					<view v-if="rightIcon.length">
-						<uni-icon :type="rightIcon" :color="color" size="24"></uni-icon>
+						<uni-icon :type="rightIcon" :color="color" size="24" />
 					</view>
 					<!-- 优先显示图标 -->
-					<view v-if="rightText.length&&!rightIcon.length" class="uni-navbar-btn-text">{{rightText}}</view>
-					<slot name="right"></slot>
+					<view v-if="rightText.length&&!rightIcon.length" class="uni-navbar-btn-text">{{ rightText }}</view>
+					<slot name="right" />
 				</view>
 			</view>
 		</view>
-		<view class="uni-navbar__placeholder" v-if="fixed">
-			<uni-status-bar v-if="statusBar"></uni-status-bar>
-			<view class="uni-navbar__placeholder-view"></view>
+		<view v-if="fixed" class="uni-navbar__placeholder">
+			<uni-status-bar v-if="statusBar" />
+			<view class="uni-navbar__placeholder-view" />
 		</view>
 	</view>
 </template>
@@ -37,7 +37,7 @@
 	import uniIcon from '../uni-icon/uni-icon.vue'
 
 	export default {
-		name: 'uni-nav-bar',
+		name: 'UniNavBar',
 		components: {
 			uniStatusBar,
 			uniIcon

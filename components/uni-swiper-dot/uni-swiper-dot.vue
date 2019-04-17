@@ -1,28 +1,28 @@
 <template>
 	<view class="uni-swiper__warp">
-		<slot></slot>
-		<view v-if="mode === 'default'" class="uni-swiper__dots-box" :style="{'bottom':dots.bottom + 'px'}">
-			<view class="uni-swiper__dots-item" v-for="(item,index) in info" :style="{
-				 'width': dots.width + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index"></view>
+		<slot />
+		<view v-if="mode === 'default'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
+			<view v-for="(item,index) in info" :style="{
+        'width': dots.width + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item" />
 		</view>
-		<view v-if="mode === 'long'" class="uni-swiper__dots-box" :style="{'bottom':dots.bottom + 'px'}">
-			<view class="uni-swiper__dots-item " v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
-				 'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index"></view>
+		<view v-if="mode === 'long'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
+			<view v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
+        'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item " />
 		</view>
-		<view v-if="mode === 'nav'" class="uni-swiper__dots-box uni-swiper__dots-nav" :style="{'background-color':dotsStyles.backgroundColor}">
-			<view class="uni-swiper__dots-nav-item" :style="{'color':dotsStyles.color}">{{(current+1)+"/"+info.length}}
-				{{info[current][field]}}</view>
+		<view v-if="mode === 'nav'" :style="{'background-color':dotsStyles.backgroundColor}" class="uni-swiper__dots-box uni-swiper__dots-nav">
+			<view :style="{'color':dotsStyles.color}" class="uni-swiper__dots-nav-item">{{ (current+1)+"/"+info.length }}
+				{{ info[current][field] }}</view>
 		</view>
-		<view v-if="mode === 'indexes'" class="uni-swiper__dots-box" :style="{'bottom':dots.bottom + 'px'}">
-			<view class="uni-swiper__dots-item uni-swiper__dots-indexes" v-for="(item,index) in info" :style="{
-				 'width':dots.width + 'px','height':dots.height +'px' ,'color':index === current?dots.selectedColor:dots.color,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index">{{index+1}}</view>
+		<view v-if="mode === 'indexes'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
+			<view v-for="(item,index) in info" :style="{
+        'width':dots.width + 'px','height':dots.height +'px' ,'color':index === current?dots.selectedColor:dots.color,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-indexes">{{ index+1 }}</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
-		name: 'uni-swiper-dot',
+		name: 'UniSwiperDot',
 		props: {
 			info: {
 				type: Array,
@@ -31,7 +31,7 @@
 				}
 			},
 			current: {
-				info: Number,
+				type: Number,
 				default: 0
 			},
 			dotsStyles: {
@@ -63,14 +63,7 @@
 					selectedBackgroundColor: '#333',
 					selectedBorder: '1px rgba(0, 0, 0, .9) solid'
 				}
-			};
-		},
-		created() {
-			if (this.mode === 'indexes') {
-				this.dots.width = 20
-				this.dots.height = 20
 			}
-			this.dots = Object.assign(this.dots, this.dotsStyles)
 		},
 		watch: {
 			dotsStyles(newVal) {
@@ -86,6 +79,13 @@
 				}
 			}
 
+		},
+		created() {
+			if (this.mode === 'indexes') {
+				this.dots.width = 20
+				this.dots.height = 20
+			}
+			this.dots = Object.assign(this.dots, this.dotsStyles)
 		}
 	}
 </script>

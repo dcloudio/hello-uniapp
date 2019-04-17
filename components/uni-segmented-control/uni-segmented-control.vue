@@ -1,16 +1,16 @@
 <template>
-	<view class="segmented-control" :class="{ text: styleType === 'text' }" :style="{ borderColor: styleType === 'text' ? '' : activeColor }">
-		<view v-for="(item, index) in values" class="segmented-control-item" :class="[{ text: styleType === 'text' }, { active: index === currentIndex }]" :key="index" @click="_onClick(index)" :style="{
-				color:
-					index === currentIndex
-						? styleType === 'text'
-							? activeColor
-							: '#fff'
-						: styleType === 'text'
-						? '#000'
-						: activeColor,
-				backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : ''
-			}">
+	<view :class="{ text: styleType === 'text' }" :style="{ borderColor: styleType === 'text' ? '' : activeColor }" class="segmented-control">
+		<view v-for="(item, index) in values" :class="[{ text: styleType === 'text' }, { active: index === currentIndex }]" :key="index" :style="{
+        color:
+          index === currentIndex
+            ? styleType === 'text'
+              ? activeColor
+              : '#fff'
+            : styleType === 'text'
+              ? '#000'
+              : activeColor,
+        backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : ''
+      }" class="segmented-control-item" @click="_onClick(index)">
 			{{ item }}
 		</view>
 	</view>
@@ -18,7 +18,7 @@
 
 <script>
 	export default {
-		name: 'uni-segmented-control',
+		name: 'UniSegmentedControl',
 		props: {
 			current: {
 				type: Number,
@@ -27,7 +27,7 @@
 			values: {
 				type: Array,
 				default () {
-					return [];
+					return []
 				}
 			},
 			activeColor: {
@@ -42,27 +42,27 @@
 		data() {
 			return {
 				currentIndex: 0
-			};
+			}
 		},
 		watch: {
 			current(val) {
 				if (val !== this.currentIndex) {
-					this.currentIndex = val;
-				}
-			}
-		},
-		methods: {
-			_onClick(index) {
-				if (this.currentIndex !== index) {
-					this.currentIndex = index;
-					this.$emit('clickItem', index);
+					this.currentIndex = val
 				}
 			}
 		},
 		created() {
-			this.currentIndex = this.current;
+			this.currentIndex = this.current
+		},
+		methods: {
+			_onClick(index) {
+				if (this.currentIndex !== index) {
+					this.currentIndex = index
+					this.$emit('clickItem', index)
+				}
+			}
 		}
-	};
+	}
 </script>
 
 <style>

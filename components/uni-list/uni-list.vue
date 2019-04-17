@@ -1,11 +1,11 @@
 <template>
 	<view class="uni-list">
-		<slot></slot>
+		<slot />
 	</view>
 </template>
 <script>
 	export default {
-		name: 'uni-list'
+		name: 'UniList'
 	}
 </script>
 <style>

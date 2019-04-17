@@ -1,15 +1,15 @@
 <template>
-	<view v-if="visibleSync" class="uni-drawer" @touchmove.stop.prevent="moveHandle" :class="{'uni-drawer--visible':showDrawer,'uni-drawer--right':rightMode}">
-		<view class="uni-drawer__mask" @tap="close"></view>
+	<view v-if="visibleSync" :class="{'uni-drawer--visible':showDrawer,'uni-drawer--right':rightMode}" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
+		<view class="uni-drawer__mask" @click="close" />
 		<view class="uni-drawer__content">
-			<slot></slot>
+			<slot />
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
-		name: 'uni-drawer',
+		name: 'UniDrawer',
 		props: {
 			/**
 			 * 显示状态
@@ -21,12 +21,15 @@
 			/**
 			 * 显示模式（左、右），只在初始化生效
 			 */
-			mode: String,
+			mode: {
+				type: String,
+				default: ''
+			},
 			/**
 			 * 蒙层显示状态
 			 */
 			mask: {
-				type: [Boolean, String],
+				type: Boolean,
 				default: true
 			}
 		},

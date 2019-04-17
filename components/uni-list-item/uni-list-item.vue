@@ -1,20 +1,20 @@
 <template>
-	<view class="uni-list-item" :class="[disabled === true || disabled === 'true' ? 'uni-list-item--disabled' : '']" :hover-class="disabled === true || disabled === 'true' || showSwitch === true || showSwitch === 'true' ? '' : 'uni-list-item--hover'" @click="onClick">
+	<view :class="disabled ? 'uni-list-item--disabled' : ''" :hover-class="disabled || showSwitch ? '' : 'uni-list-item--hover'" class="uni-list-item" @click="onClick">
 		<view class="uni-list-item__container">
-			<view class="uni-list-item__icon" v-if="thumb">
-				<image class="uni-list-item__icon-img" :src="thumb"></image>
+			<view v-if="thumb" class="uni-list-item__icon">
+				<image :src="thumb" class="uni-list-item__icon-img" />
 			</view>
-			<view class="uni-list-item__icon" v-else-if="showExtraIcon === true || showExtraIcon === 'true'">
-				<uni-icon :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type"></uni-icon>
+			<view v-else-if="showExtraIcon" class="uni-list-item__icon">
+				<uni-icon :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" />
 			</view>
 			<view class="uni-list-item__content">
-				<view class="uni-list-item__content-title">{{title}}</view>
-				<view class="uni-list-item__content-note" v-if="note">{{note}}</view>
+				<view class="uni-list-item__content-title">{{ title }}</view>
+				<view v-if="note" class="uni-list-item__content-note">{{ note }}</view>
 			</view>
-			<view class="uni-list-item__extra" v-if="showBadge === true || showBadge === 'true' || showArrow === true || showArrow === 'true'||showSwitch === true || showSwitch === 'true'">
-				<uni-badge v-if="showBadge === true || showBadge === 'true'" :type="badgeType" :text="badgeText"></uni-badge>
-				<switch v-if="showSwitch === true || showSwitch === 'true'" :disabled='disabled' :checked="switchChecked" @change="onSwitchChange" />
-				<uni-icon v-if="showArrow === true || showArrow === 'true'" color="#bbb" size="20" type="arrowright"></uni-icon>
+			<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
+				<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
+				<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
+				<uni-icon v-if="showArrow" :size="20" color="#bbb" type="arrowright" />
 			</view>
 		</view>
 	</view>
@@ -24,53 +24,54 @@
 	import uniIcon from '../uni-icon/uni-icon.vue'
 	import uniBadge from '../uni-badge/uni-badge.vue'
 	export default {
-		name: 'uni-list-item',
+		name: 'UniListItem',
 		components: {
 			uniIcon,
 			uniBadge
-		},
-		data() {
-			return {
-
-			};
 		},
 		props: {
 			title: {
 				type: String,
 				default: ''
-			}, //列表标题
+			}, // 列表标题
 			note: {
 				type: String,
 				default: ''
-			}, //列表描述
-			disabled: { //是否禁用
-				type: [Boolean, String],
+			}, // 列表描述
+			disabled: { // 是否禁用
+				type: Boolean,
 				default: false
 			},
-			showArrow: { //是否显示箭头
-				type: [Boolean, String],
+			showArrow: { // 是否显示箭头
+				type: Boolean,
 				default: true
 			},
-			showBadge: { //是否显示数字角标
-				type: [Boolean, String],
+			showBadge: { // 是否显示数字角标
+				type: Boolean,
 				default: false
 			},
-			showSwitch: { //是否显示Switch
-				type: [Boolean, String],
+			showSwitch: { // 是否显示Switch
+				type: Boolean,
 				default: false
 			},
-			switchChecked: { //Switch是否被选中
-				type: [Boolean, String],
+			switchChecked: { // Switch是否被选中
+				type: Boolean,
 				default: false
 			},
-			badgeText: String, //badge内容
-			badgeType: { //badge类型
+			badgeText: {
+				type: [String, Number],
+				default: ''
+			}, // badge内容
+			badgeType: { // badge类型
 				type: String,
 				default: 'success'
 			},
-			thumb: String, //缩略图
-			showExtraIcon: { //是否显示扩展图标
-				type: [Boolean, String],
+			thumb: {
+				type: String,
+				default: ''
+			}, // 缩略图
+			showExtraIcon: { // 是否显示扩展图标
+				type: Boolean,
 				default: false
 			},
 			extraIcon: {
@@ -80,8 +81,13 @@
 						type: 'contact',
 						color: '#000000',
 						size: 20
-					};
+					}
 				}
+			}
+		},
+		data() {
+			return {
+
 			}
 		},
 		methods: {
