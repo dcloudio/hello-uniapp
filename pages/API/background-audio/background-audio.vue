@@ -16,16 +16,16 @@
 			<view class="page-body-buttons">
 				<block v-if="playing">
 					<view class="page-body-button" @tap="stop">
-						<image src="../../../static/stop.png"></image>
+						<image src="/static/stop.png"></image>
 					</view>
 					<view class="page-body-button" @tap="pause">
-						<image src="../../../static/pause.png"></image>
+						<image src="/static/pause.png"></image>
 					</view>
 				</block>
 				<block v-if="!playing">
 					<view class="page-body-button"></view>
 					<view class="page-body-button" @tap="play">
-						<image src="../../../static/play.png"></image>
+						<image src="/static/play.png"></image>
 					</view>
 				</block>
 				<view class="page-body-button"></view>
