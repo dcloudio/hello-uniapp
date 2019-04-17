@@ -119,11 +119,12 @@
 				uni.showActionSheet({
 					itemList: itemList,
 					success: (res) => {
+						let provider = this.providerList[res.tapIndex].id;
 						uni.share({
-							provider: this.providerList[res.tapIndex].id,
+							provider: provider,
 							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
 								'WXSenceTimeline' : "WXSceneSession",
-							type: 0,
+							type: (provider === "qq") ? 1 : 0,
 							title: '欢迎体验uni-app',
 							summary: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架',
 							imageUrl: 'https://img-cdn-qiniu.dcloud.net.cn/uploads/nav_menu/8.jpg',
