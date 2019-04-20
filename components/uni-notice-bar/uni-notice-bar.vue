@@ -1,16 +1,16 @@
 <template>
 	<view v-if="show" :style="{backgroundColor:backgroundColor,color:color}" class="uni-noticebar" @click="onClick">
-		<view v-if="showClose === 'true' || showClose === true" class="uni-noticebar__close">
+		<view v-if="showClose" class="uni-noticebar__close">
 			<uni-icon type="closefill" size="12" />
 		</view>
 		<view :class="{'uni-noticebar--flex': scrollable || single || moreText}" class="uni-noticebar__content">
-			<view v-if="showIcon === 'true' || showIcon === true" :style="{backgroundColor:backgroundColor,color:color}" class="uni-noticebar__content-icon">
+			<view v-if="showIcon" :style="{backgroundColor:backgroundColor,color:color}" class="uni-noticebar__content-icon">
 				<uni-icon :color="color" type="sound" size="14" />
 			</view>
 			<view :class="{'uni-noticebar--scrollable':scrollable,'uni-noticebar--single':!scrollable && (single || moreText)}" class="uni-noticebar__content-text">
 				<view :id="elId" :style="{'animation': animation,'-webkit-animation': animation}" class="uni-noticebar__content-inner">{{ text }}</view>
 			</view>
-			<view v-if="showGetMore === 'true' || showGetMore === true" :style="{width:moreText ? '180upx' : '20px'}" class="uni-noticebar__content-more" @click="clickMore">
+			<view v-if="showGetMore" :style="{width:moreText ? '180upx' : '20px'}" class="uni-noticebar__content-more" @click="clickMore">
 				<view v-if="moreText" class="uni-noticebar__content-more-text">{{ moreText }}</view>
 				<uni-icon type="arrowright" size="14" />
 			</view>
@@ -47,23 +47,23 @@
 				default: '#de8c17'
 			},
 			single: { // 是否单行
-				type: [String, Boolean],
+				type: Boolean,
 				default: false
 			},
 			scrollable: { // 是否滚动，添加后控制单行效果取消
-				type: [String, Boolean],
+				type: Boolean,
 				default: false
 			},
 			showIcon: { // 是否显示左侧icon
-				type: [String, Boolean],
+				type: Boolean,
 				default: false
 			},
 			showGetMore: { // 是否显示右侧查看更多
-				type: [String, Boolean],
+				type: Boolean,
 				default: false
 			},
 			showClose: { // 是否显示左侧关闭按钮
-				type: [String, Boolean],
+				type: Boolean,
 				default: false
 			}
 		},
@@ -98,14 +98,14 @@
 			},
 			onClick(e) {
 				let clientX = e.touches ? (e.touches[0] ? e.touches[0].clientX : e.changedTouches[0].clientX) : e.detail.clientX
-				if (uni.upx2px(48) + 12 > clientX && (String(this.showClose) === 'true')) {
+				if (uni.upx2px(48) + 12 > clientX && this.showClose) {
 					this.show = false
 					this.$emit('close')
 				}
 				this.$emit('click')
 			},
 			setAnimation() {
-				if (this.scrollable === false || this.scrollable === 'false') {
+				if (!this.scrollable) {
 					return
 				}
 				// #ifdef MP-TOUTIAO

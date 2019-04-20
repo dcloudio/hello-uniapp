@@ -36,7 +36,7 @@
 				default: 0
 			},
 			disabled: { // 是否禁用
-				type: [Boolean, String],
+				type: Boolean,
 				default: false
 			},
 			showAnimation: { // 是否显示动画
@@ -44,7 +44,7 @@
 				default: false
 			},
 			open: { // 是否展开
-				type: [Boolean, String],
+				type: Boolean,
 				default: false
 			},
 			thumb: { // 缩略图
@@ -70,7 +70,7 @@
 			this.isOpen = this.open
 			this.nameSync = this.name ? this.name : this.collapse.childrens.length
 			this.collapse.childrens.push(this)
-			if (String(this.collapse.accordion) === 'true') {
+			if (this.collapse.accordion) {
 				if (this.isOpen) {
 					let lastEl = this.collapse.childrens[this.collapse.childrens.length - 2]
 					if (lastEl) {
@@ -101,7 +101,7 @@
 				if (this.disabled) {
 					return
 				}
-				if (String(this.collapse.accordion) === 'true') {
+				if (this.collapse.accordion) {
 					this.collapse.childrens.forEach(vm => {
 						if (vm === this) {
 							return

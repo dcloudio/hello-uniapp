@@ -30,11 +30,11 @@
 				default: 3
 			},
 			showOutBorder: { // 显示外边框
-				type: [Boolean, String],
+				type: Boolean,
 				default: true
 			},
 			showBorder: { // 是否显示border，如果为false，showOutBorder无效
-				type: [Boolean, String],
+				type: Boolean,
 				default: true
 			}
 		},
