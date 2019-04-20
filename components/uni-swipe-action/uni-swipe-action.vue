@@ -42,7 +42,7 @@
 			}
 		},
 		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
+			const elId = this.__call_hook ? 'uni_swipe_action' : `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				elId: elId,
 				isShowBtn: false,
