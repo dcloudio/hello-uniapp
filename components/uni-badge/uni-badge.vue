@@ -1,10 +1,10 @@
 <template>
-	<text class="uni-badge" v-if="text" :class="inverted ? 'uni-badge-' + type + ' uni-badge--' + size + ' uni-badge-inverted' : 'uni-badge-' + type + ' uni-badge--' + size" @click="onClick()">{{text}}</text>
+	<text v-if="text" :class="inverted ? 'uni-badge-' + type + ' uni-badge--' + size + ' uni-badge-inverted' : 'uni-badge-' + type + ' uni-badge--' + size" class="uni-badge" @click="onClick()">{{ text }}</text>
 </template>
 
 <script>
 	export default {
-		name: 'uni-badge',
+		name: 'UniBadge',
 		props: {
 			type: {
 				type: String,
@@ -15,10 +15,10 @@
 				default: false
 			},
 			text: {
-				type: String,
+				type: [String, Number],
 				default: ''
 			},
-			size: { //small.normal
+			size: { // small.normal
 				type: String,
 				default: 'normal'
 			}

@@ -4,7 +4,7 @@
 		:end-date="'2019-3-15'" -->
 		<text class="calendar-title">日历组件</text>
 		<view class="calendar-tags-group">
-			<view class="calendar-tags" :class="{ checked: item.checked }" v-for="(item, index) in tags" :key="index" @click="toggle(index, item)">
+			<view v-for="(item, index) in tags" :class="{ checked: item.checked }" :key="index" class="calendar-tags" @click="toggle(index, item)">
 				<view class="calendar-tags-item">{{ item.name }}</view>
 			</view>
 		</view>
@@ -20,7 +20,7 @@
 		</view>
 		<view v-if="show" class="calendar-mask" @click="closeMask">
 			<view class="calendar-box" @click.stop="">
-				<uni-calendar :lunar="tags[0].checked" :fixedHeihgt="tags[1].checked" :slide="slide" :disableBefore="tags[6].checked" :start-date="startDate" :end-date="endDate" :date="date" @change="change" @to-click="toClick" />
+				<uni-calendar :lunar="tags[0].checked" :fixed-heihgt="tags[1].checked" :slide="slide" :disable-before="tags[6].checked" :start-date="startDate" :end-date="endDate" :date="date" @change="change" @to-click="toClick" />
 				<view class="calendar-button-groups">
 					<button class="calendar-button-confirm" @click="closeMask">取消</button>
 					<button class="calendar-button-confirm" @click="confirm">确认</button>
@@ -43,14 +43,14 @@
 			 */
 			function getDate(date, AddDayCount = 0) {
 				if (typeof date !== 'object') {
-					date = date.replace(/-/g, '/');
+					date = date.replace(/-/g, '/')
 				}
-				let dd = new Date(date);
-				dd.setMonth(dd.getMonth() + AddDayCount); // 获取AddDayCount天后的日期
-				let y = dd.getFullYear();
-				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1; // 获取当前月份的日期，不足10补0
-				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
-				return y + '-' + m + '-' + d;
+				let dd = new Date(date)
+				dd.setMonth(dd.getMonth() + AddDayCount) // 获取AddDayCount天后的日期
+				let y = dd.getFullYear()
+				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1 // 获取当前月份的日期，不足10补0
+				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate() // 获取当前几号，不足10补0
+				return y + '-' + m + '-' + d
 			}
 			let tags = [{
 					id: 0,
@@ -103,7 +103,7 @@
 					checked: false,
 					attr: 'date'
 				}
-			];
+			]
 
 			return {
 				show: false,
@@ -113,64 +113,64 @@
 				startDate: '',
 				endDate: '',
 				timeData: {}
-			};
+			}
 		},
 		onLoad() {},
 		methods: {
 			closeMask() {
-				this.show = false;
+				this.show = false
 			},
 			toggle(index, item) {
-				this.tags[index].checked = !item.checked;
+				this.tags[index].checked = !item.checked
 				// item.checked = !item.checked;
 				console.log(index)
 				if (index === 2) {
-					this.tags[3].checked = false;
+					this.tags[3].checked = false
 				}
 				if (index === 3) {
-					this.tags[2].checked = false;
+					this.tags[2].checked = false
 				}
 				// this.attribute[item.attr] = !item.checked;
 			},
 			open() {
 				if (this.tags[3].checked) {
-					this.slide = 'horizontal';
+					this.slide = 'horizontal'
 				} else if (this.tags[2].checked) {
-					this.slide = 'vertical';
+					this.slide = 'vertical'
 				} else {
-					this.slide = 'none';
+					this.slide = 'none'
 				}
 				if (this.tags[4].checked) {
-					this.startDate = this.tags[4].value;
+					this.startDate = this.tags[4].value
 				} else {
-					this.startDate = '';
+					this.startDate = ''
 				}
 				if (this.tags[5].checked) {
-					this.endDate = this.tags[5].value;
+					this.endDate = this.tags[5].value
 				} else {
-					this.endDate = '';
+					this.endDate = ''
 				}
 				if (this.tags[7].checked) {
-					this.date = this.tags[7].value;
+					this.date = this.tags[7].value
 				} else {
-					this.date = '';
+					this.date = ''
 				}
-				this.show = true;
-				console.log(this.date);
+				this.show = true
+				console.log(this.date)
 			},
 			change(e) {
-				console.log('change 返回:', e.fulldate);
-				this.timeData = e;
+				console.log('change 返回:', e.fulldate)
+				this.timeData = e
 			},
 			toClick(e) {
-				console.log('点击事件', e.fulldate);
-				this.timeData = e;
+				console.log('点击事件', e.fulldate)
+				this.timeData = e
 			},
 			confirm() {
-				this.show = false;
+				this.show = false
 			}
 		}
-	};
+	}
 </script>
 
 <style>

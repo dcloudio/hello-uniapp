@@ -2,28 +2,28 @@
 	<view class="page">
 		<view class="example">
 			<view class="example-title">默认样式</view>
-			<uni-grid :options="data1" @click="onClick"></uni-grid>
+			<uni-grid :options="data1" @click="onClick" />
 			<view class="example-title">可滑动宫格组件</view>
 			<swiper :indicator-dots="true" :style="{height:swiperGridHeight,width:swiperGridWidth}">
 				<swiper-item>
 					<view class="grid-view">
-						<uni-grid :options="data1" @click="onClick"></uni-grid>
+						<uni-grid :options="data1" @click="onClick" />
 					</view>
 				</swiper-item>
 				<swiper-item>
 					<view class="grid-view">
-						<uni-grid :options="data1" @click="onClick"></uni-grid>
+						<uni-grid :options="data1" @click="onClick" />
 					</view>
 				</swiper-item>
 			</swiper>
 			<view class="example-title">无外边框</view>
-			<uni-grid :options="data3" :show-out-border="false"></uni-grid>
+			<uni-grid :options="data3" :show-out-border="false" />
 			<view class="example-title">无所有框</view>
-			<uni-grid :options="data3" :show-border="false"></uni-grid>
+			<uni-grid :options="data3" :show-border="false" />
 			<view class="example-title">一行四个</view>
-			<uni-grid :options="data2" :show-out-border="false" :column-num="4"></uni-grid>
+			<uni-grid :options="data2" :show-out-border="false" :column-num="4" />
 			<view class="example-title">矩形案例</view>
-			<uni-grid :options="data3" type="oblong"></uni-grid>
+			<uni-grid :options="data3" type="oblong" />
 		</view>
 	</view>
 </template>
@@ -146,7 +146,7 @@
 		},
 		methods: {
 			onClick(e) {
-				console.log('点击grid:' + JSON.stringify(e));
+				console.log('点击grid:' + JSON.stringify(e))
 			}
 		}
 	}

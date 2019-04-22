@@ -1,19 +1,19 @@
 <template>
-	<view class="uni-status-bar" :style="{ height: statusBarHeight }">
-		<slot></slot>
+	<view :style="{ height: statusBarHeight }" class="uni-status-bar">
+		<slot />
 	</view>
 </template>
 
 <script>
-	var statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px';
+	var statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 	export default {
-		name: 'uni-status-bar',
+		name: 'UniStatusBar',
 		data() {
 			return {
 				statusBarHeight: statusBarHeight
-			};
+			}
 		}
-	};
+	}
 </script>
 
 <style>

@@ -5,41 +5,41 @@
 				<view class="uni-calenda__content">
 					<view class="uni-calendar__panel">
 						<view class="uni-calendar__date-befor" @tap="dataBefor('0', 'month')">
-							<text class="iconfont icon-jiantou"></text>
+							<text class="iconfont icon-jiantou" />
 						</view>
 						<view class="uni-calendar__panel-box">
 							<view>{{ canlender.year }}年</view>
 							<view>{{ canlender.month }}月</view>
 						</view>
 						<view class="uni-calendar__date-after uni-calendar__rollback" @tap="dataBefor('1', 'month')">
-							<text class="iconfont icon-jiantou "></text>
+							<text class="iconfont icon-jiantou " />
 						</view>
 						<view class="uni-calendar__backtoday" @tap="backtoday">回到今天</view>
 					</view>
 					<view v-if="lunar" class="uni-calendar__day-detail">
 						<view>
 							{{
-								canlender.year +
-									'年' +
-									canlender.month +
-									'月' +
-									canlender.date +
-									'日 （' +
-									canlender.lunar.astro +
-									')'
-							}}
+                canlender.year +
+                  '年' +
+                  canlender.month +
+                  '月' +
+                  canlender.date +
+                  '日 （' +
+                  canlender.lunar.astro +
+                  ')'
+              }}
 						</view>
 						<view>
 							{{
-								canlender.lunar.gzYear +
-									'年' +
-									canlender.lunar.gzMonth +
-									'月' +
-									canlender.lunar.gzDay +
-									'日 (' +
-									canlender.lunar.Animal +
-									'年)'
-							}}
+                canlender.lunar.gzYear +
+                  '年' +
+                  canlender.lunar.gzMonth +
+                  '月' +
+                  canlender.lunar.gzDay +
+                  '日 (' +
+                  canlender.lunar.Animal +
+                  '年)'
+              }}
 							{{ canlender.lunar.IMonthCn + canlender.lunar.IDayCn }}
 							{{ canlender.lunar.isTerm ? canlender.lunar.Term : '' }}
 						</view>
@@ -53,11 +53,11 @@
 						<view class="uni-calendar__week">五</view>
 						<view class="uni-calendar__week">六</view>
 					</view>
-					<uni-calendar-item v-if="slide === 'none'" :canlender="canlender" :lunar="lunar" @selectDays="selectDays"></uni-calendar-item>
-					<swiper v-else class="uni-calendar__body" :style="{ height: domHeihgt + 'px' }" :current="currentIndex" circular :vertical="slide === 'vertical' ? true : false" skip-hidden-item-layout :duration="duration" @animationfinish="animationfinish" @change="change">
+					<uni-calendar-item v-if="slide === 'none'" :canlender="canlender" :lunar="lunar" @selectDays="selectDays" />
+					<swiper v-else :style="{ height: domHeihgt + 'px' }" :current="currentIndex" :vertical="slide === 'vertical' ? true : false" :duration="duration" class="uni-calendar__body" circular skip-hidden-item-layout @animationfinish="animationfinish" @change="change">
 						<swiper-item v-for="(item, itemindx) in swiperData" :key="itemindx">
 							<view :class="elClass">
-								<uni-calendar-item :canlender="item" :lunar="lunar" @selectDays="selectDays"></uni-calendar-item>
+								<uni-calendar-item :canlender="item" :lunar="lunar" @selectDays="selectDays" />
 							</view>
 						</swiper-item>
 					</swiper>
@@ -68,10 +68,10 @@
 </template>
 
 <script>
-	import CALENDAR from './calendar.js';
-	import uniCalendarItem from './uni-calendar-item';
+	import CALENDAR from './calendar.js'
+	import uniCalendarItem from './uni-calendar-item'
 	export default {
-		name: 'uni-calendar',
+		name: 'UniCalendar',
 		components: {
 			uniCalendarItem
 		},
@@ -88,8 +88,8 @@
 			 */
 			selected: {
 				type: Array,
-				default: () => {
-					return [];
+				default () {
+					return []
 				}
 			},
 			/**
@@ -133,7 +133,12 @@
 			}
 		},
 		data() {
-			const elClass = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`;
+			/**
+			 * TODO 兼容新旧编译器
+			 * 新编译器（自定义组件模式）下必须使用固定数值，否则部分平台下会获取不到节点。
+			 * 随机数值是在旧编译器下使用的，旧编译器模式已经不推荐使用，后续直接废掉随机数值的写法。
+			 */
+			const elClass = this.__call_hook ? 'uni_canlender' : `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				dateShow: false, // 日期是否选择
 				selectDay: '', // 当前选择日期
@@ -149,28 +154,27 @@
 				isSilde: false,
 				isClick: false,
 				elClass: elClass
-			};
-		},
-		created() {
-			// 可以执行函数，返回给用户值
-			this.isSilde = true;
-			if (this.slide === 'none') {
-				this.getMonthAll(0, this.date, true);
-			} else {
-				this.getMonthAll(1, this.date, true);
-				this.getQueryDom(1);
-
 			}
 		},
 		watch: {
 			selected(newVal) {
-				let canlender = this.canlender;
+				let canlender = this.canlender
 				// 打卡之后更新信息
-				this.isSilde = true;
+				this.isSilde = true
 				this.getMonthAll(
 					this.currentIndex,
 					canlender.year + '-' + canlender.month + '-' + canlender.date
-				);
+				)
+			}
+		},
+		created() {
+			// 可以执行函数，返回给用户值
+			this.isSilde = true
+			if (this.slide === 'none') {
+				this.getMonthAll(0, this.date, true)
+			} else {
+				this.getMonthAll(1, this.date, true)
+				this.getQueryDom(1)
 			}
 		},
 		methods: {
@@ -178,114 +182,113 @@
 			 * 滑动切换月份
 			 */
 			animationfinish(e) {
-				let index = e.detail.current;
+				let index = e.detail.current
 				let date =
 					this.swiperData[index].year +
 					'-' +
 					this.swiperData[index].month +
 					'-' +
-					this.swiperData[index].date;
-				this.currentIndex = index;
-				this.getMonthAll(index, date);
-				clearTimeout(this.timer);
-				this.duration = 200;
+					this.swiperData[index].date
+				this.currentIndex = index
+				this.getMonthAll(index, date)
+				clearTimeout(this.timer)
+				this.duration = 200
 			},
 			change(e) {
-				let index = e.detail.current;
+				let index = e.detail.current
 				// 可以执行函数，返回给用户值
-				this.isSilde = true;
-				this.getQueryDom(index);
+				this.isSilde = true
+				this.getQueryDom(index)
 			},
 			/**
 			 * 获取全部月份
 			 */
 			getMonthAll(index, date, first) {
 				if (date === '') {
-					date = new Date();
+					date = new Date()
 				}
-				let canlender = this.getWeek(date);
-				this.currentSelDate = canlender.date;
-				let tempyear = canlender.year + '-' + canlender.month + '-1';
-				let tempbefore = this.getWeek(this.getDate(tempyear, -1, 'month'));
-				let tempafter = this.getWeek(this.getDate(tempyear, +1, 'month'));
+				let canlender = this.getWeek(date)
+				this.currentSelDate = canlender.date
+				let tempyear = canlender.year + '-' + canlender.month + '-1'
+				let tempbefore = this.getWeek(this.getDate(tempyear, -1, 'month'))
+				let tempafter = this.getWeek(this.getDate(tempyear, +1, 'month'))
 				let beforeyear =
 					canlender.year +
 					'-' +
 					canlender.month +
 					'-' +
-					(canlender.date > tempbefore.lastDate ? tempbefore.lastDate : canlender.date);
+					(canlender.date > tempbefore.lastDate ? tempbefore.lastDate : canlender.date)
 				let afteryear =
 					canlender.year +
 					'-' +
 					canlender.month +
 					'-' +
-					(canlender.date > tempafter.lastDate ? tempafter.lastDate : canlender.date);
+					(canlender.date > tempafter.lastDate ? tempafter.lastDate : canlender.date)
 
-				let before = this.getWeek(this.getDate(beforeyear, -1, 'month'));
-				let after = this.getWeek(this.getDate(afteryear, +1, 'month'));
-				this.selectDay = canlender.month + '月' + canlender.date + '日';
-				this.canlender = canlender;
+				let before = this.getWeek(this.getDate(beforeyear, -1, 'month'))
+				let after = this.getWeek(this.getDate(afteryear, +1, 'month'))
+				this.selectDay = canlender.month + '月' + canlender.date + '日'
+				this.canlender = canlender
 				if (this.slide === 'none') {
 					// console.log(before);
-					this.duration = 0;
-					this.currentIndex = 0;
+					this.duration = 0
+					this.currentIndex = 0
 					if (first && index === 0) {
 						// console.log('第一次进入');
-						this.canlender = canlender;
+						this.canlender = canlender
 					} else {
 						if (index === 0) {
-							this.canlender = canlender;
+							this.canlender = canlender
 						}
 						if (index === -1) {
-							this.canlender = before;
+							this.canlender = before
 						}
 						if (index === 1) {
-							this.canlender = after;
+							this.canlender = after
 						}
 					}
-					this.selectDay = canlender.month + '月' + canlender.date + '日';
-					this.hold = false;
+					this.selectDay = canlender.month + '月' + canlender.date + '日'
+					this.hold = false
 					// console.log(this.canlender)
-					this.setEmit(this.canlender);
-					return;
+					this.setEmit(this.canlender)
+					return
 				}
-				this.setEmit(canlender);
+				this.setEmit(canlender)
 
-				this.currentIndex = index;
+				this.currentIndex = index
 
 				if (first && index === 1) {
-					this.swiperData.push(before);
-					this.swiperData.push(canlender);
-					this.swiperData.push(after);
-					return;
+					this.swiperData.push(before)
+					this.swiperData.push(canlender)
+					this.swiperData.push(after)
+					return
 				}
 				if (index === 0) {
-					this.swiperData[0] = canlender;
-					this.swiperData[1] = after;
-					this.swiperData[2] = before;
-					return;
+					this.swiperData[0] = canlender
+					this.swiperData[1] = after
+					this.swiperData[2] = before
+					return
 				}
 				if (index === 1) {
-					this.swiperData[0] = before;
-					this.swiperData[1] = canlender;
-					this.swiperData[2] = after;
-					return;
+					this.swiperData[0] = before
+					this.swiperData[1] = canlender
+					this.swiperData[2] = after
+					return
 				}
 				if (index === 2) {
-					this.swiperData[0] = after;
-					this.swiperData[1] = before;
-					this.swiperData[2] = canlender;
-					return;
+					this.swiperData[0] = after
+					this.swiperData[1] = before
+					this.swiperData[2] = canlender
 				}
 			},
 			setEmit(canlender) {
 				if (this.isSilde) {
-					let isClick = '';
+					let isClick = ''
 					if (this.isClick) {
-						isClick = 'to-click';
-						this.isClick = false;
+						isClick = 'to-click'
+						this.isClick = false
 					} else {
-						isClick = 'change';
+						isClick = 'change'
 					}
 					this.$emit(isClick, {
 						year: canlender.year,
@@ -294,53 +297,53 @@
 						lunar: canlender.lunar,
 						clockinfo: canlender.clockinfo || {},
 						fulldate: canlender.year + '-' + canlender.month + '-' + canlender.date
-					});
-					this.isSilde = false;
+					})
+					this.isSilde = false
 				}
 			},
 			/**
 			 * 计算阴历日期显示
 			 */
 			getlunar(year, month, date) {
-				return CALENDAR.solar2lunar(year, month, date).IDayCn;
+				return CALENDAR.solar2lunar(year, month, date).IDayCn
 			},
 
 			/**
 			 * 今天之前的日期是否可选
 			 */
 			isDisableBefore(year, month, date) {
-				let nowDate = this.date ? this.date : new Date();
-				let time = year + '-' + month + '-' + date;
-				let startDate = false;
-				let endDate = false;
+				let nowDate = this.date ? this.date : new Date()
+				let time = year + '-' + month + '-' + date
+				let startDate = false
+				let endDate = false
 				if (this.startDate) {
-					startDate = this.dateCompare(this.startDate, time);
+					startDate = this.dateCompare(this.startDate, time)
 				}
 				if (this.endDate) {
-					endDate = this.dateCompare(this.getDate(this.endDate, 1), time);
+					endDate = this.dateCompare(this.getDate(this.endDate, 1), time)
 				}
 
 				if (this.disableBefore) {
 					if (!this.startDate) {
 						if (!this.endDate) {
-							return !this.dateCompare(this.getDate(nowDate, 0), time);
+							return !this.dateCompare(this.getDate(nowDate, 0), time)
 						} else {
-							return !this.dateCompare(this.getDate(nowDate, 0), time) || endDate;
+							return !this.dateCompare(this.getDate(nowDate, 0), time) || endDate
 						}
 					} else {
 						return (
 							!this.dateCompare(this.getDate(nowDate, 0), time) || !startDate || endDate
-						);
+						)
 					}
 				} else {
 					if (!this.startDate) {
 						if (!this.endDate) {
-							return false;
+							return false
 						} else {
-							return endDate;
+							return endDate
 						}
 					} else {
-						return !startDate || endDate;
+						return !startDate || endDate
 					}
 
 					// return false ;
@@ -351,21 +354,21 @@
 			 */
 			backtoday() {
 				if (this.hold) {
-					return;
+					return
 				}
-				this.hold = true;
-				this.duration = 0;
-				clearTimeout(this.indexTimer);
+				this.hold = true
+				this.duration = 0
+				clearTimeout(this.indexTimer)
 				this.indexTimer = setTimeout(() => {
 					// 可以执行函数，返回给用户值
-					this.isSilde = true;
+					this.isSilde = true
 					if (this.slide === 'none') {
-						this.getMonthAll(0, this.date);
+						this.getMonthAll(0, this.date)
 					} else {
-						this.getMonthAll(1, this.date);
+						this.getMonthAll(1, this.date)
 					}
-					this.hold = false;
-				}, 200);
+					this.hold = false
+				}, 200)
 			},
 
 			/**
@@ -374,38 +377,38 @@
 			dataBefor(id, types) {
 				// 避免重复输入
 				if (this.hold) {
-					return;
+					return
 				}
-				this.hold = true;
+				this.hold = true
 				// 可以执行函数，返回给用户值
-				this.isSilde = true;
+				this.isSilde = true
 				if (this.slide === 'none') {
-					let num = 0;
+					let num = 0
 					if (id === '0') {
-						num = -1;
+						num = -1
 					} else {
-						num = 1;
+						num = 1
 					}
 					let year =
-						this.canlender.year + '-' + this.canlender.month + '-' + this.canlender.date;
+						this.canlender.year + '-' + this.canlender.month + '-' + this.canlender.date
 
-					this.getMonthAll(num, year);
-					return;
+					this.getMonthAll(num, year)
+					return
 				}
-				let index = this.currentIndex;
-				this.duration = 0;
+				let index = this.currentIndex
+				this.duration = 0
 				if (id === '0') {
-					index--;
-					if (index < 0) index = 2;
+					index--
+					if (index < 0) index = 2
 				} else {
-					index++;
-					if (index > 2) index = 0;
+					index++
+					if (index > 2) index = 0
 				}
-				clearTimeout(this.indexTimer);
+				clearTimeout(this.indexTimer)
 				this.indexTimer = setTimeout(() => {
-					this.currentIndex = index;
-					this.hold = false;
-				}, 200);
+					this.currentIndex = index
+					this.hold = false
+				}, 200)
 			},
 			/**
 			 * 选择当前的日期
@@ -418,51 +421,46 @@
 					week,
 					index,
 					ischeck,
-					isDay,
-					lunar
-				} = params;
-				let canlender = null;
+					isDay
+				} = params
+				let canlender = null
 				if (this.slide === 'none') {
-					canlender = this.canlender;
+					canlender = this.canlender
 				} else {
-					canlender = this.swiperData[this.currentIndex];
+					canlender = this.swiperData[this.currentIndex]
 				}
-				if (!ischeck) return false;
-				if (isDay) return false;
+				if (!ischeck) return false
+				if (isDay) return false
 				// console.log(isDay);
 				let month =
-					canlender.weeks[week][index].month < 10 ?
-					'0' + canlender.weeks[week][index].month :
-					canlender.weeks[week][index].month;
-				let date =
-					canlender.weeks[week][index].date < 10 ?
-					'0' + canlender.weeks[week][index].date :
-					canlender.weeks[week][index].date;
+					canlender.weeks[week][index].month < 10 ? '0' + canlender.weeks[week][index].month : canlender.weeks[week][index].month
+				let date = canlender.weeks[week][index].date < 10 ? '0' +
+					canlender.weeks[week][index].date :
+					canlender.weeks[week][index].date
 				// this.getWeek(canlender.year + '-' + month + '-' + date);
-				let indexNum = 0;
+				let indexNum = 0
 				if (this.slide !== 'none') {
-					indexNum = this.currentIndex;
+					indexNum = this.currentIndex
 				}
 				// 可以执行函数，返回给用户值
-				this.isSilde = true;
-				this.isClick = true;
-				this.getMonthAll(indexNum, canlender.year + '-' + month + '-' + date);
+				this.isSilde = true
+				this.isClick = true
+				this.getMonthAll(indexNum, canlender.year + '-' + month + '-' + date)
 			},
 			// 获取日历内容
 			getWeek(dateData) {
-				let selected = this.selected;
-				let a = new Date();
-				let nowDate = this.getDate(this.date);
+				let selected = this.selected
+				let nowDate = this.getDate(this.date)
 				// 判断当前是 安卓还是ios ，传入不容的日期格式
 				if (typeof dateData !== 'object') {
-					dateData = dateData.replace(/-/g, '/');
+					dateData = dateData.replace(/-/g, '/')
 				}
-				let _date = new Date(dateData);
-				let year = _date.getFullYear(); //年
-				let month = _date.getMonth() + 1; //月
-				let date = _date.getDate(); //日
-				let day = _date.getDay(); // 天
-				let canlender = [];
+				let _date = new Date(dateData)
+				let year = _date.getFullYear() // 年
+				let month = _date.getMonth() + 1 // 月
+				let date = _date.getDate() // 日
+				let day = _date.getDay() // 天
+				let canlender = []
 				// console.log(selected)
 				let dates = {
 					firstDay: new Date(year, month - 1, 1).getDay(),
@@ -471,45 +469,45 @@
 					nextMonthDays: [], // 下个月开始几天
 					endDay: new Date(year, month, 0).getDay(),
 					weeks: []
-				};
+				}
 				// 循环上个月末尾几天添加到数组
 				for (let i = dates.firstDay; i > 0; i--) {
-					let beforeDate = new Date(year, month - 1, -i + 1).getDate() + '';
+					let beforeDate = new Date(year, month - 1, -i + 1).getDate() + ''
 					dates.lastMonthDays.push({
 						date: beforeDate,
 						month: month - 1,
 						disable: this.isDisableBefore(year, month - 1, beforeDate),
 						lunar: this.getlunar(year, month - 1, beforeDate),
 						isDay: false
-					});
+					})
 				}
 				let clockinfo = {
 					have: false
-				};
+				}
 				// 循环本月天数添加到数组
 				for (let i = 1; i <= new Date(year, month, 0).getDate(); i++) {
-					let have = false;
-					let clockinfoTemp = {};
+					let have = false
+					let clockinfoTemp = {}
 					// 处理打卡信息
 					for (let j = 0; j < selected.length; j++) {
-						let selDate = selected[j].date.split('-');
+						let selDate = selected[j].date.split('-')
 
 						if (
 							Number(year) === Number(selDate[0]) &&
 							Number(month) === Number(selDate[1]) &&
 							Number(i) === Number(selDate[2])
 						) {
-							have = true;
-							clockinfoTemp.have = true;
-							clockinfoTemp.date = selected[j].date;
+							have = true
+							clockinfoTemp.have = true
+							clockinfoTemp.date = selected[j].date
 							if (selected[j].info) {
-								clockinfoTemp.info = selected[j].info;
+								clockinfoTemp.info = selected[j].info
 							}
 							if (
-								JSON.stringify(selected[j].data) == '{}' ||
-								selected[j].data != undefined
+								JSON.stringify(selected[j].data) === '{}' ||
+								selected[j].data !== undefined
 							) {
-								clockinfoTemp.data = selected[j].data;
+								clockinfoTemp.data = selected[j].data
 							}
 
 							if (
@@ -517,7 +515,7 @@
 								Number(month) === Number(selDate[1]) &&
 								Number(date) === Number(selDate[2])
 							) {
-								clockinfo = clockinfoTemp;
+								clockinfo = clockinfoTemp
 							}
 						}
 					}
@@ -534,12 +532,12 @@
 							(month < 10 ? '0' + month : month) +
 							'-' +
 							(i < 10 ? '0' + i : i)
-					});
+					})
 				}
-				let surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
+				let surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length)
 
 				if (!this.fixedHeihgt) {
-					surplus = 6 - dates.endDay;
+					surplus = 6 - dates.endDay
 				}
 				// 循环下个月开始几天 添加到数组
 				for (let i = 1; i < surplus + 1; i++) {
@@ -549,20 +547,20 @@
 						disable: this.isDisableBefore(year, month + 1, i + ''),
 						lunar: this.getlunar(year, month + 1, i + ''),
 						isDay: false
-					});
+					})
 				}
 
 				canlender = canlender.concat(
 					dates.lastMonthDays,
 					dates.currentMonthDys,
 					dates.nextMonthDays
-				);
+				)
 				// 拼接数组  上个月开始几天 + 本月天数+ 下个月开始几天
 				for (let i = 0; i < canlender.length; i++) {
-					if (i % 7 == 0) {
-						dates.weeks[parseInt(i / 7)] = new Array(7);
+					if (i % 7 === 0) {
+						dates.weeks[parseInt(i / 7)] = new Array(7)
 					}
-					dates.weeks[parseInt(i / 7)][i % 7] = canlender[i];
+					dates.weeks[parseInt(i / 7)][i % 7] = canlender[i]
 				}
 
 				return {
@@ -574,61 +572,61 @@
 					clockinfo,
 					lunar: CALENDAR.solar2lunar(year, month, date),
 					lastDate: dates.currentMonthDys[dates.currentMonthDys.length - 1].date
-				};
+				}
 			},
 			/**
 			 * 时间计算
 			 */
 			getDate(date, AddDayCount = 0, str = 'day') {
 				if (typeof date !== 'object') {
-					date = date.replace(/-/g, '/');
+					date = date.replace(/-/g, '/')
 				}
-				let dd = new Date(date);
+				let dd = new Date(date)
 				switch (str) {
 					case 'day':
-						dd.setDate(dd.getDate() + AddDayCount); // 获取AddDayCount天后的日期
-						break;
+						dd.setDate(dd.getDate() + AddDayCount) // 获取AddDayCount天后的日期
+						break
 					case 'month':
-						dd.setMonth(dd.getMonth() + AddDayCount); // 获取AddDayCount天后的日期
-						break;
+						dd.setMonth(dd.getMonth() + AddDayCount) // 获取AddDayCount天后的日期
+						break
 					case 'year':
-						dd.setFullYear(dd.getFullYear() + AddDayCount); // 获取AddDayCount天后的日期
-						break;
+						dd.setFullYear(dd.getFullYear() + AddDayCount) // 获取AddDayCount天后的日期
+						break
 				}
-				let y = dd.getFullYear();
-				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1; // 获取当前月份的日期，不足10补0
-				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate(); // 获取当前几号，不足10补0
-				return y + '-' + m + '-' + d;
+				let y = dd.getFullYear()
+				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1 // 获取当前月份的日期，不足10补0
+				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate() // 获取当前几号，不足10补0
+				return y + '-' + m + '-' + d
 			},
 			/**
 			 * 计算时间大小
 			 */
 			dateCompare(startDate, endDate) {
-				//计算截止时间
-				startDate = new Date(startDate.replace('-', '/').replace('-', '/'));
-				//计算详细项的截止时间
-				endDate = new Date(endDate.replace('-', '/').replace('-', '/'));
+				// 计算截止时间
+				startDate = new Date(startDate.replace('-', '/').replace('-', '/'))
+				// 计算详细项的截止时间
+				endDate = new Date(endDate.replace('-', '/').replace('-', '/'))
 				if (startDate <= endDate) {
-					return true;
+					return true
 				} else {
-					return false;
+					return false
 				}
 			},
 			getQueryDom(index) {
-				let dom = uni.createSelectorQuery().in(this).selectAll(`.${this.elClass}`);
+				let dom = uni.createSelectorQuery().in(this).selectAll(`.${this.elClass}`)
 				dom.boundingClientRect(rect => {}).exec(e => {
 					if (!e[0][index]) {
-						setTimeout(() => this.getQueryDom(1), 50);
-						return;
+						setTimeout(() => this.getQueryDom(1), 50)
+						return
 					}
 					// console.log(e[0][index])
 					if (e[0][index]) {
-						this.domHeihgt = e[0][index].height;
+						this.domHeihgt = e[0][index].height
 					}
-				});
+				})
 			}
 		}
-	};
+	}
 </script>
 
 <style>

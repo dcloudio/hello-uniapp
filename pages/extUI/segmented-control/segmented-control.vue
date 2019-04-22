@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="uni-padding-wrap uni-common-mt">
-			<uni-segmented-control :current="current" :values="items" v-on:clickItem="onClickItem" :styleType="styleType" :activeColor="activeColor"></uni-segmented-control>
+			<uni-segmented-control :current="current" :values="items" :style-type="styleType" :active-color="activeColor" @clickItem="onClickItem" />
 		</view>
 		<view class="content">
 			<view v-show="current === 0">
@@ -20,7 +20,7 @@
 			<label v-for="(item, index) in styles" :key="index" class="uni-list-item">
 				<view class="uni-list-item__container">
 					<view class="uni-list-item__content">
-						<view class="uni-list-item__content-title">{{item.text}}</view>
+						<view class="uni-list-item__content-title">{{ item.text }}</view>
 					</view>
 					<view class="uni-list-item__extra">
 						<radio :value="item.value" :checked="item.checked" />
@@ -34,7 +34,7 @@
 			<label v-for="(item, index) in colors" :key="index" class="uni-list-item">
 				<view class="uni-list-item__container">
 					<view class="uni-list-item__content">
-						<view class="color-tag" :style="{backgroundColor: item}"></view>
+						<view :style="{backgroundColor: item}" class="color-tag" />
 					</view>
 					<view class="uni-list-item__extra">
 						<radio :value="item" :checked="index === colorIndex" />
@@ -81,17 +81,17 @@
 		methods: {
 			onClickItem(index) {
 				if (this.current !== index) {
-					this.current = index;
+					this.current = index
 				}
 			},
 			styleChange(evt) {
 				if (this.styleType !== evt.target.value) {
-					this.styleType = evt.target.value;
+					this.styleType = evt.target.value
 				}
 			},
 			colorChange(evt) {
 				if (this.styleType !== evt.target.value) {
-					this.activeColor = evt.target.value;
+					this.activeColor = evt.target.value
 				}
 			}
 		}

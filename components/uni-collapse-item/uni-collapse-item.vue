@@ -1,17 +1,17 @@
 <template>
 	<view :class="['uni-collapse-cell',{'uni-collapse-cell--disabled':disabled,'uni-collapse-cell--open':isOpen}]" :hover-class="disabled ? '' : 'uni-collapse-cell--hover'">
 		<view class="uni-collapse-cell__title" @click="onClick">
-			<view class="uni-collapse-cell__title-extra" v-if="thumb">
-				<image class="uni-collapse-cell__title-img" :src="thumb"></image>
+			<view v-if="thumb" class="uni-collapse-cell__title-extra">
+				<image :src="thumb" class="uni-collapse-cell__title-img" />
 			</view>
 			<view class="uni-collapse-cell__title-inner">
-				<view class="uni-collapse-cell__title-text">{{title}}</view>
+				<view class="uni-collapse-cell__title-text">{{ title }}</view>
 			</view>
-			<view class="uni-collapse-cell__title-arrow" :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}">
-				<uni-icon color="#bbb" size="20" type="arrowdown"></uni-icon>
+			<view :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}" class="uni-collapse-cell__title-arrow">
+				<uni-icon color="#bbb" size="20" type="arrowdown" />
 			</view>
 		</view>
-		<view class="uni-collapse-cell__content" :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}">
+		<view :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}" class="uni-collapse-cell__content">
 			<view :id="elId">
 				<slot />
 			</view>
@@ -22,43 +22,48 @@
 <script>
 	import uniIcon from '../uni-icon/uni-icon.vue'
 	export default {
-		name: 'uni-collapse-item',
+		name: 'UniCollapseItem',
 		components: {
 			uniIcon
 		},
 		props: {
-			title: { //列表标题
+			title: { // 列表标题
 				type: String,
 				default: ''
 			},
-			name: { //唯一标识符
+			name: { // 唯一标识符
 				type: [Number, String],
 				default: 0
 			},
-			disabled: { //是否禁用
-				type: [Boolean, String],
-				default: false
-			},
-			showAnimation: { //是否显示动画
+			disabled: { // 是否禁用
 				type: Boolean,
 				default: false
 			},
-			open: { //是否展开
-				type: [Boolean, String],
+			showAnimation: { // 是否显示动画
+				type: Boolean,
 				default: false
 			},
-			thumb: { //缩略图
+			open: { // 是否展开
+				type: Boolean,
+				default: false
+			},
+			thumb: { // 缩略图
 				type: String,
 				default: ''
 			}
 		},
 		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
+			/**
+			 * TODO 兼容新旧编译器
+			 * 新编译器（自定义组件模式）下必须使用固定数值，否则部分平台下会获取不到节点。
+			 * 随机数值是在旧编译器下使用的，旧编译器模式已经不推荐使用，后续直接废掉随机数值的写法。
+			 */
+			const elId = this.__callback_hook ? 'uni_collapse_item' : `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				isOpen: false,
 				height: 'auto',
 				elId: elId
-			};
+			}
 		},
 		watch: {
 			open(val) {
@@ -70,7 +75,7 @@
 			this.isOpen = this.open
 			this.nameSync = this.name ? this.name : this.collapse.childrens.length
 			this.collapse.childrens.push(this)
-			if (String(this.collapse.accordion) === 'true') {
+			if (this.collapse.accordion) {
 				if (this.isOpen) {
 					let lastEl = this.collapse.childrens[this.collapse.childrens.length - 2]
 					if (lastEl) {
@@ -94,14 +99,14 @@
 				if (this.showAnimation) {
 					uni.createSelectorQuery().in(this).select(`#${this.elId}`).boundingClientRect().exec((ret) => {
 						this.height = ret[0].height + 'px'
-					});
+					})
 				}
 			},
 			onClick() {
 				if (this.disabled) {
 					return
 				}
-				if (String(this.collapse.accordion) === 'true') {
+				if (this.collapse.accordion) {
 					this.collapse.childrens.forEach(vm => {
 						if (vm === this) {
 							return

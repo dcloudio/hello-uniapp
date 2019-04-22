@@ -1,10 +1,10 @@
 <template>
-	<view class="uni-icon" :class="'uni-icon-' + type" :style="{ color: color, 'font-size': size + 'px' }" @click="_onClick"></view>
+	<view :class="'uni-icon-' + type" :style="{ color: color, 'font-size': size + 'px' }" class="uni-icon" @click="_onClick" />
 </template>
 
 <script>
 	export default {
-		name: 'uni-icon',
+		name: 'UniIcon',
 		props: {
 			type: {
 				type: String,
@@ -21,10 +21,10 @@
 		},
 		methods: {
 			_onClick() {
-				this.$emit('click');
+				this.$emit('click')
 			}
 		}
-	};
+	}
 </script>
 
 <style>

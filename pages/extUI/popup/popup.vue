@@ -3,11 +3,11 @@
 		<view class="example">
 			<view class="example-title">基本用法</view>
 			<button type="button" @click="togglePopup('top')">顶部弹出 popup</button>
-			<uni-popup :show="type === 'top'" position="top" mode="fixed" msg="顶部弹出popup" @hidePopup="togglePopup('')"></uni-popup>
+			<uni-popup :show="type === 'top'" position="top" mode="fixed" msg="顶部弹出popup" @hidePopup="togglePopup('')" />
 			<button type="button" @click="togglePopup('middle')">居中弹出 popup</button>
-			<uni-popup :show="type === 'middle'" position="middle" mode="fixed" msg="居中弹出popup" @hidePopup="togglePopup('')"></uni-popup>
+			<uni-popup :show="type === 'middle'" position="middle" mode="fixed" msg="居中弹出popup" @hidePopup="togglePopup('')" />
 			<button type="button" @click="togglePopup('bottom')">底部部弹出 popup</button>
-			<uni-popup :show="type === 'bottom'" position="bottom" mode="fixed" msg="底部弹出popup" @hidePopup="togglePopup('')"></uni-popup>
+			<uni-popup :show="type === 'bottom'" position="bottom" mode="fixed" msg="底部弹出popup" @hidePopup="togglePopup('')" />
 		</view>
 		<view class="example">
 			<view class="example-title">slot用法</view>
@@ -19,18 +19,18 @@
 			</uni-popup>
 			<button type="button" @click="togglePopup('middle-list')">居中弹出（滚动列表）</button>
 			<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
-				<scroll-view class="uni-center center-box" :scroll-y="true">
-					<view class="uni-list-item" v-for="(item, index) in list" :key="index">
+				<scroll-view :scroll-y="true" class="uni-center center-box">
+					<view v-for="(item, index) in list" :key="index" class="uni-list-item">
 						滚动列表数据 {{ item }}
 					</view>
 				</scroll-view>
 			</uni-popup>
-			<button type="button" @click="togglePopup('bottom-share')" data-position="bottom">底部弹出（分享界面）</button>
+			<button type="button" data-position="bottom" @click="togglePopup('bottom-share')">底部弹出（分享界面）</button>
 			<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
 				<view class="bottom-title">分享到</view>
 				<view class="bottom-content">
-					<view class="bottom-content-box" v-for="(item, index) in bottomData" :key="index">
-						<view class="bottom-content-image" :class="item.name">
+					<view v-for="(item, index) in bottomData" :key="index" class="bottom-content-box">
+						<view :class="item.name" class="bottom-content-image">
 							<text class="icon">{{ item.icon }}</text>
 						</view>
 						<view class="bottom-content-text">{{ item.text }}</view>
@@ -84,20 +84,20 @@
 						name: 'more'
 					}
 				]
-			};
+			}
 		},
 		onBackPress() {
 			if (this.type !== '') {
-				this.type = '';
-				return true;
+				this.type = ''
+				return true
 			}
 		},
 		methods: {
 			togglePopup(type) {
-				this.type = type;
+				this.type = type
 			}
 		}
-	};
+	}
 </script>
 <style>
 	page {
