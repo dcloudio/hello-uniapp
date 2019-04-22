@@ -31,7 +31,7 @@
 			</view>
 			<view class="uni-btn-v uni-common-mt" v-if="providerList.length > 0">
 				<block v-for="(value,index) in providerList" :key="index">
-					<button type="primary" v-if="value" :disabled="shareType === 5 && value.name !== '分享到微信好友'" @tap="share(value)">{{value.name}}</button>
+					<button type="primary" v-if="value" :disabled="isDisableButton(value)" @tap="share(value)">{{value.name}}</button>
 				</block>
 			</view>
 			<!-- #endif -->
@@ -53,6 +53,19 @@
 				image: '',
 				shareType:1,
 				providerList: []
+			}
+		},
+		computed:{
+			isDisableButton() {
+				return function(item) {
+					if(this.shareType === 0 && item.id === 'qq'){
+						return true;
+					}
+					if(this.shareType === 5 && item.name !== '分享到微信好友'){
+						return true;
+					}
+					return false;
+				}
 			}
 		},
 		onShareAppMessage() {
