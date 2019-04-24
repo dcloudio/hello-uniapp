@@ -8,8 +8,8 @@
 					当前选择
 				</view>
 				<view class="uni-list-cell-db">
-					<picker @change="bindPickerChange" :value="index" :range="array">
-						<view class="uni-input">{{array[index]}}</view>
+					<picker @change="bindPickerChange" :value="index" :range="array" range-key="name">
+						<view class="uni-input">{{array[index].name}}</view>
 					</picker>
 				</view>
 			</view>
@@ -83,7 +83,7 @@
 		data() {
 			return {
 				title: 'picker',
-				array: ['中国', '美国', '巴西', '日本'],
+				array: [{name:'中国'},{name: '美国'}, {name:'巴西'}, {name:'日本'}],
 				index: 0,
 				multiArray: [
 					['无脊柱动物', '脊柱动物'],
