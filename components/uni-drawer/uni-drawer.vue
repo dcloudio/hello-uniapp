@@ -37,9 +37,7 @@
 			return {
 				visibleSync: false,
 				showDrawer: false,
-				rightMode: false,
-				closeTimer: null,
-				watchTimer: null
+				rightMode: false
 			}
 		},
 		watch: {

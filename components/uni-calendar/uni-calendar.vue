@@ -133,6 +133,11 @@
 			}
 		},
 		data() {
+			/**
+			 * TODO 兼容新旧编译器
+			 * 新编译器（自定义组件模式）下必须使用固定数值，否则部分平台下会获取不到节点。
+			 * 随机数值是在旧编译器下使用的，旧编译器模式已经不推荐使用，后续直接废掉随机数值的写法。
+			 */
 			const elClass = this.__call_hook ? 'uni_canlender' : `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				dateShow: false, // 日期是否选择
