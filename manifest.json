@@ -64,7 +64,8 @@
 			},
 			/* ios打包配置 */
 			"ios": {
-				"UIBackgroundModes": ["audio"]
+				"UIBackgroundModes": ["audio"],
+				"urlschemewhitelist" : ["baidumap", "iosamap"]
 			},
 			/* SDK配置 */
 			"sdkConfigs": {

@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-padding-wrap uni-common-pb">
 		<view class="uni-header-logo">
-			<image src="../../../static/componentIndex.png"></image>
+			<image src="/static/componentIndex.png"></image>
 		</view>
 		<view class="uni-hello-text uni-common-pb">
 			uni-app内置组件，展示样式仅供参考，文档详见<u-link :href="'https://uniapp.dcloud.io/component/'" :text="'https://uniapp.dcloud.io/component/'" :inWhiteList="true"></u-link>

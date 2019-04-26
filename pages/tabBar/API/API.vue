@@ -1,17 +1,16 @@
 <template>
-	<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
 	<view>
 		<template v-if="showSetTabBarPage">
 			<set-tab-bar @unmount="leaveSetTabBarPage"></set-tab-bar>
 		</template>
 		<template v-else>
-			<!-- #endif -->
 			<view class="uni-padding-wrap uni-common-pb">
 				<view class="uni-header-logo">
-					<image src="../../../static/apiIndex.png"></image>
+					<image src="/static/apiIndex.png"></image>
 				</view>
 				<view class="uni-hello-text uni-common-pb">
-					以下将演示uni-app接口能力，详细文档见：<u-link :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'" :inWhiteList="true"></u-link>
+					以下将演示uni-app接口能力，详细文档见：<u-link :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'"
+					 :inWhiteList="true"></u-link>
 				</view>
 				<view class="uni-card" v-for="(list,index) in lists" :key="index">
 					<view class="uni-list">
@@ -30,25 +29,17 @@
 					</view>
 				</view>
 			</view>
-			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
 		</template>
 	</view>
-	<!-- #endif -->
 </template>
 <script>
-	// #ifndef MP-ALIPAY || MP-TOUTIAO
 	import setTabBar from '@/components/api-set-tabbar.vue';
-	// #endif
-	import uLink from "@/components/uLink.vue"
+	import uLink from '@/components/uLink.vue'
 	export default {
-		// #ifndef MP-ALIPAY || MP-TOUTIAO
 		components: {
-			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			setTabBar,
-			// #endif
 			uLink
 		},
-		// #endif
 		data() {
 			// 暂时这么写，后面看怎么优化。
 			let mediaPages = [{
