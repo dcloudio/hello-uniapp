@@ -39,15 +39,13 @@
 						name: '多列选择 picker',
 						url: 'mpvue-picker'
 					}, 
-					// #ifndef MP
+					// #ifdef APP-PLUS || H5
 					{
 						id: 'navbar',
 						name: '顶部导航标题栏',
 						open: false,
 						pages: [
-					// #endif
-
-							// #ifdef APP-PLUS || H5
+							
 							{
 								name: '透明渐变样式',
 								url: 'nav-transparent'
@@ -67,14 +65,12 @@
 								name: '导航栏带搜索框',
 								url:'nav-search-input'
 							},
-							// #endif
 							// #ifdef APP-PLUS
 							{
 								name: '导航栏带图片',
 								url: 'nav-image'
 							}
 							// #endif
-					// #ifndef MP
 						]
 					},
 					// #endif
@@ -149,16 +145,10 @@
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
-					// #ifdef APP-PLUS 
-					{
-						name: '问题反馈',
-						url: '/platforms/app-plus/feedback/feedback'
-					},
-					// #endif
-					{
-						name: '二维码生成',
-						url: 'qrcode'
-					},
+					// {
+					// 	name: '二维码生成',
+					// 	url: 'qrcode'
+					// },
 					// #ifdef APP-PLUS || MP-WEIXIN || H5
                     {
 						id: 'uparse',
@@ -191,6 +181,10 @@
 						url: 'datachecker'
 					},
 					// #ifdef APP-PLUS 
+					{
+						name: '问题反馈',
+						url: '/platforms/app-plus/feedback/feedback'
+					},
 					{
 						name:'打开外部应用',
 						url: 'scheme'
