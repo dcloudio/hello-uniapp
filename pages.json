@@ -701,12 +701,6 @@
 					}
 				},
 				// #endif
-				{
-					"path": "qrcode/qrcode",
-					"style": {
-						"navigationBarTitleText": "二维码生成"
-					}
-				},
 				// #ifndef MP-ALIPAY || MP-TOUTIAO
 				{
 					"path": "echarts/echarts",
@@ -1011,12 +1005,6 @@
 					"path": "timeline/timeline",
 					"style": {
 						"navigationBarTitleText": "时间轴 timeline"
-					}
-				},
-				{
-					"path": "fab/fab",
-					"style": {
-						"navigationBarTitleText": "悬浮按钮 fab"
 					}
 				},
 				{

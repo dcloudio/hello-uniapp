@@ -125,9 +125,6 @@
 					}, {
 						name: '时间轴 timeline',
 						url: 'timeline'
-					}, {
-						name: '悬浮按钮 fab',
-						url: 'fab'
 					},
 					// #ifndef MP-ALIPAY || MP-TOUTIAO
 					{
