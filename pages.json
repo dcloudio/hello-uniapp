@@ -668,6 +668,11 @@
 					"style": {
 						"navigationBarTitleText": "calendar 日历"
 					}
+				}, {
+					"path": "fab/fab",
+					"style": {
+						"navigationBarTitleText": "fab 悬浮按钮"
+					}
 				}
 			]
 		},
