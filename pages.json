@@ -475,6 +475,12 @@
 			}
 		},
 		{
+			"path": "pages/API/sqlite/sqlite",
+			"style": {
+				"navigationBarTitleText": "SQLite"
+			}
+		},
+		{
 			"path": "platforms/app-plus/speech/speech",
 			"style": {
 				"navigationBarTitleText": "语音识别"
@@ -533,6 +539,12 @@
 			"path": "pages/API/bluetooth/bluetooth",
 			"style": {
 				"navigationBarTitleText": "蓝牙"
+			}
+		},
+		{
+			"path": "pages/API/fingerprint/fingerprint",
+			"style": {
+				"navigationBarTitleText": "指纹"
 			}
 		},
 		// #endif
