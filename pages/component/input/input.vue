@@ -133,8 +133,12 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.title {
 		padding: 10upx 25upx;
+	}
+	.uni-icon-clear,
+	.uni-icon-eye {
+		color: #999;
 	}
 </style>
