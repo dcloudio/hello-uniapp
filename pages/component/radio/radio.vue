@@ -4,7 +4,7 @@
 		<view class="uni-padding-wrap">
 			<view class="uni-title">默认样式</view>
 			<view>
-				<label class="radio">
+				<label class="radio" style="margin-right: 30upx;">
 					<radio value="r1" checked="true" />选中
 				</label>
 				<label class="radio">

@@ -57,16 +57,22 @@
 					uni.setClipboardData({
 						data: data,
 						success: () => {
+							// 成功处理
+							// #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO
 							uni.showModal({
 								content: '设置剪贴板成功',
 								showCancel: false
 							})
+							// #endif
 						},
 						fail: () => {
+							// 失败处理
+							// #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO
 							uni.showModal({
 								content: '储存数据失败!',
 								showCancel: false
 							})
+							// #endif
 						}
 					});
 				}
