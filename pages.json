@@ -678,12 +678,17 @@
 				}, {
 					"path": "calendar/calendar",
 					"style": {
-						"navigationBarTitleText": "calendar 日历"
+						"navigationBarTitleText": "Calendar 日历"
 					}
 				}, {
 					"path": "fab/fab",
 					"style": {
-						"navigationBarTitleText": "fab 悬浮按钮"
+						"navigationBarTitleText": "Fab 悬浮按钮"
+					}
+				}, {
+					"path": "indexed-list/indexed-list",
+					"style": {
+						"navigationBarTitleText": "IndexedList 索引列表"
 					}
 				}
 			]

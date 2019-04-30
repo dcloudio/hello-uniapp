@@ -8,7 +8,7 @@
 			<button class="btn" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
 			<button class="btn" type="primary" @click="switchBtn('right', 'top')">右上角显示</button>
 		</view>
-		<uni-fab :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" ref="fab"></uni-fab>
+		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" />
 	</view>
 </template>
 
@@ -51,43 +51,43 @@
 						active: false
 					}
 				]
-			};
+			}
 		},
 		onBackPress() {
 			if (this.$refs.fab.isShow) {
-				this.$refs.fab.close();
-				return true;
+				this.$refs.fab.close()
+				return true
 			}
-			return false;
+			return false
 		},
 		methods: {
 			trigger(e) {
-				console.log(e);
-				this.content[e.index].active = !e.item.active;
+				console.log(e)
+				this.content[e.index].active = !e.item.active
 				uni.showModal({
 					title: '提示',
 					content: `您${this.content[e.index].active ? '选中了' : '取消了'}${e.item.text}`,
 					success: function(res) {
 						if (res.confirm) {
-							console.log('用户点击确定');
+							console.log('用户点击确定')
 						} else if (res.cancel) {
-							console.log('用户点击取消');
+							console.log('用户点击取消')
 						}
 					}
-				});
+				})
 			},
 			switchBtn(hor, ver) {
 				if (hor === 0) {
-					this.direction = this.direction === 'horizontal' ? 'vertical' : 'horizontal';
-					this.directionStr = this.direction === 'horizontal' ? '垂直' : '水平';
+					this.direction = this.direction === 'horizontal' ? 'vertical' : 'horizontal'
+					this.directionStr = this.direction === 'horizontal' ? '垂直' : '水平'
 				} else {
-					this.horizontal = hor;
-					this.vertical = ver;
+					this.horizontal = hor
+					this.vertical = ver
 				}
-				this.$forceUpdate();
+				this.$forceUpdate()
 			}
 		}
-	};
+	}
 </script>
 
 <style>

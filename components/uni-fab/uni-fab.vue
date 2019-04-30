@@ -1,34 +1,34 @@
 <template>
 	<view>
-		<view class="fab-box fab" :class="{
-				leftBottom: leftBottom,
-				rightBottom: rightBottom,
-				leftTop: leftTop,
-				rightTop: rightTop
-			}">
-			<view class="fab-circle" :class="{
-					left: horizontal === 'left' && direction === 'horizontal',
-					top: vertical === 'top' && direction === 'vertical',
-					bottom: vertical === 'bottom' && direction === 'vertical',
-					right: horizontal === 'right' && direction === 'horizontal'
-				}" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
-				<text class="uni-icon uni-icon-plusempty" :class="{ active: isShow }"></text>
+		<view :class="{
+        leftBottom: leftBottom,
+        rightBottom: rightBottom,
+        leftTop: leftTop,
+        rightTop: rightTop
+      }" class="fab-box fab">
+			<view :class="{
+          left: horizontal === 'left' && direction === 'horizontal',
+          top: vertical === 'top' && direction === 'vertical',
+          bottom: vertical === 'bottom' && direction === 'vertical',
+          right: horizontal === 'right' && direction === 'horizontal'
+        }" :style="{ 'background-color': styles.buttonColor }" class="fab-circle" @click="_onClick">
+				<text :class="{ active: isShow }" class="uni-icon uni-icon-plusempty" />
 			</view>
-			<view class="fab-content" :class="{
-					left: horizontal === 'left',
-					right: horizontal === 'right',
-					flexDirection: direction === 'vertical',
-					flexDirectionStart: flexDirectionStart,
-					flexDirectionEnd: flexDirectionEnd
-				}" :style="{ width: boxWidth, height: boxHeight, background: styles.backgroundColor }">
-				<view v-if="flexDirectionStart || horizontalLeft" class="fab-item first"></view>
-				<view class="fab-item" v-for="(item, index) in content" :key="index" :class="{ active: isShow }" :style="{
-						color: item.active ? styles.selectedColor : styles.color
-					}" @click="_onItemClick(index, item)">
-					<image class="content-image" :src="item.active ? item.selectedIconPath : item.iconPath" mode="widthFix"></image>
+			<view :class="{
+          left: horizontal === 'left',
+          right: horizontal === 'right',
+          flexDirection: direction === 'vertical',
+          flexDirectionStart: flexDirectionStart,
+          flexDirectionEnd: flexDirectionEnd
+        }" :style="{ width: boxWidth, height: boxHeight, background: styles.backgroundColor }" class="fab-content">
+				<view v-if="flexDirectionStart || horizontalLeft" class="fab-item first" />
+				<view v-for="(item, index) in content" :key="index" :class="{ active: isShow }" :style="{
+            color: item.active ? styles.selectedColor : styles.color
+          }" class="fab-item" @click="_onItemClick(index, item)">
+					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="content-image" mode="widthFix" />
 					<text class="text">{{ item.text }}</text>
 				</view>
-				<view v-if="flexDirectionEnd || horizontalRight" class="fab-item first"></view>
+				<view v-if="flexDirectionEnd || horizontalRight" class="fab-item first" />
 			</view>
 		</view>
 	</view>
@@ -36,12 +36,12 @@
 
 <script>
 	export default {
-		name: 'uni-fab',
+		name: 'UniFab',
 		props: {
 			pattern: {
 				type: Object,
 				default () {
-					return {};
+					return {}
 				}
 			},
 			horizontal: {
@@ -59,7 +59,7 @@
 			content: {
 				type: Array,
 				default () {
-					return [];
+					return []
 				}
 			},
 			show: {
@@ -78,25 +78,74 @@
 					backgroundColor: '#fff',
 					buttonColor: '#3c3e49'
 				}
-			};
+			}
+		},
+		computed: {
+			contentWidth(e) {
+				return uni.upx2px((this.content.length + 1) * 110 + 20) + 'px'
+			},
+			contentWidthMin() {
+				return uni.upx2px(110) + 'px'
+			},
+			// 动态计算宽度
+			boxWidth() {
+				return this.getPosition(3, 'horizontal')
+			},
+			// 动态计算高度
+			boxHeight() {
+				return this.getPosition(3, 'vertical')
+			},
+			// 计算左下位置
+			leftBottom() {
+				return this.getPosition(0, 'left', 'bottom')
+			},
+			// 计算右下位置
+			rightBottom() {
+				return this.getPosition(0, 'right', 'bottom')
+			},
+			// 计算左上位置
+			leftTop() {
+				return this.getPosition(0, 'left', 'top')
+			},
+			rightTop() {
+				return this.getPosition(0, 'right', 'top')
+			},
+			flexDirectionStart() {
+				return this.getPosition(1, 'vertical', 'top')
+			},
+			flexDirectionEnd() {
+				return this.getPosition(1, 'vertical', 'bottom')
+			},
+			horizontalLeft() {
+				return this.getPosition(2, 'horizontal', 'left')
+			},
+			horizontalRight() {
+				return this.getPosition(2, 'horizontal', 'right')
+			}
+		},
+		watch: {
+			pattern(newValue, oldValue) {
+				console.log(JSON.stringify(newValue))
+				this.styles = Object.assign({}, this.styles, newValue)
+			}
 		},
 		created() {
-			this.isShow = this.show;
+			this.isShow = this.show
 			if (this.top === 0) {
-				this.fabShow = true;
+				this.fabShow = true
 			}
 			// 初始化样式
-			this.styles = Object.assign({}, this.styles, this.pattern);
+			this.styles = Object.assign({}, this.styles, this.pattern)
 		},
 		methods: {
 			_onClick() {
-				this.isShow = !this.isShow;
+				this.isShow = !this.isShow
 			},
 			open() {
-				this.isShow = true;
+				this.isShow = true
 			},
 			close() {
-				this.isShow = false;
+				this.isShow = false
 			},
 			/**
 			 * 按钮点击事件
@@ -105,73 +154,24 @@
 				this.$emit('trigger', {
 					index,
 					item
-				});
+				})
 			},
 			/**
 			 * 获取 位置信息
 			 */
 			getPosition(types, paramA, paramB) {
 				if (types === 0) {
-					return this.horizontal === paramA && this.vertical === paramB;
+					return this.horizontal === paramA && this.vertical === paramB
 				} else if (types === 1) {
-					return this.direction === paramA && this.vertical === paramB;
+					return this.direction === paramA && this.vertical === paramB
 				} else if (types === 2) {
-					return this.direction === paramA && this.horizontal === paramB;
+					return this.direction === paramA && this.horizontal === paramB
 				} else {
-					return this.isShow && this.direction === paramA ? this.contentWidth : this.contentWidthMin;
+					return this.isShow && this.direction === paramA ? this.contentWidth : this.contentWidthMin
 				}
 			}
-		},
-		watch: {
-			pattern(newValue, oldValue) {
-				console.log(JSON.stringify(newValue));
-				this.styles = Object.assign({}, this.styles, newValue);
-			}
-		},
-		computed: {
-			contentWidth(e) {
-				return uni.upx2px((this.content.length + 1) * 110 + 20) + 'px';
-			},
-			contentWidthMin() {
-				return uni.upx2px(110) + 'px';
-			},
-			// 动态计算宽度
-			boxWidth() {
-				return this.getPosition(3, 'horizontal');
-			},
-			// 动态计算高度
-			boxHeight() {
-				return this.getPosition(3, 'vertical');
-			},
-			// 计算左下位置
-			leftBottom() {
-				return this.getPosition(0, 'left', 'bottom');
-			},
-			// 计算右下位置
-			rightBottom() {
-				return this.getPosition(0, 'right', 'bottom');
-			},
-			// 计算左上位置
-			leftTop() {
-				return this.getPosition(0, 'left', 'top');
-			},
-			rightTop() {
-				return this.getPosition(0, 'right', 'top');
-			},
-			flexDirectionStart() {
-				return this.getPosition(1, 'vertical', 'top');
-			},
-			flexDirectionEnd() {
-				return this.getPosition(1, 'vertical', 'bottom');
-			},
-			horizontalLeft() {
-				return this.getPosition(2, 'horizontal', 'left');
-			},
-			horizontalRight() {
-				return this.getPosition(2, 'horizontal', 'right');
-			}
 		}
-	};
+	}
 </script>
 
 <style scoped>
