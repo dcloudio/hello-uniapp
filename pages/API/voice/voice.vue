@@ -32,7 +32,6 @@
 					<text class="time-small">{{formatedRecordTime}}</text>
 				</view>
 				<view class="page-body-buttons">
-					<view class="page-body-button"></view>
 					<view class="page-body-button" @click="playVoice">
 						<image src="../../../static/play.png"></image>
 					</view>
@@ -122,8 +121,8 @@
 			},
 			playVoice() {
 				console.log('play voice');
+				this.playing = true;
 				playTimeInterval = setInterval(() => {
-					this.playing = true;
 					this.playTime += 1;
 					this.formatedPlayTime = util.formatTime(this.playTime);
 				}, 1000)
