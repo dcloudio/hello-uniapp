@@ -31,9 +31,10 @@
 				uni.getClipboardData({
 					success: (res) => {
 						console.log(res.data);
+						const content = res.data ? '剪贴板内容为:' + res.data : '剪贴板暂无内容';
 						uni.showModal({
+							content,
 							title: '读取剪贴板',
-							content: '剪贴板内容为: ' + res.data,
 							showCancel: false
 						})
 					},
