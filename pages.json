@@ -689,7 +689,16 @@
 				}, {
 					"path": "indexed-list/indexed-list",
 					"style": {
-						"navigationBarTitleText": "IndexedList 索引列表"
+						"navigationBarTitleText": "IndexedList 索引列表",
+						"mp-weixin": {
+							"disableScroll": true
+						},
+						"app-plus": {
+							"bounce": "none"
+						},
+						"mp-alipay": {
+							"allowsBounceVertical": "NO"
+						}
 					}
 				}
 			]
@@ -971,21 +980,6 @@
 					}
 				},
 				{
-					"path": "index-list/index-list",
-					"style": {
-						"navigationBarTitleText": "索引列表index-list",
-						"mp-weixin": {
-							"disableScroll": true
-						},
-						"app-plus": {
-							"bounce": "none"
-						},
-						"mp-alipay": {
-							"allowsBounceVertical": "NO"
-						}
-					}
-				},
-				{
 					"path": "lazy-load/lazy-load",
 					"style": {
 						"navigationBarTitleText": "懒加载"
@@ -1056,8 +1050,8 @@
 		"navigationBarTitleText": "Hello uniapp",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"backgroundColorTop":"#F4F5F6",
-		"backgroundColorBottom":"#F4F5F6",
+		"backgroundColorTop": "#F4F5F6",
+		"backgroundColorBottom": "#F4F5F6",
 		"mp-alipay": {
 			"titleBarColor": "#FFFFFF"
 		}

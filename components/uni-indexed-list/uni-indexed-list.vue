@@ -61,7 +61,7 @@
 			// 	this.lists = this.options;
 			// 	return;
 			// }
-			console.log(this.options)
+			// console.log(this.options)
 			this.lists = this.options.map(value => {
 				// console.log(value)
 				let items = value.data.map(item => {
@@ -79,7 +79,7 @@
 					items: items
 				};
 			});
-			console.log(this.lists)
+			// console.log(this.lists)
 		},
 		methods: {
 			touchStart(e) {

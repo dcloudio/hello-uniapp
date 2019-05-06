@@ -63,6 +63,12 @@
 						name: "Icon 图标",
 						url: "icon"
 					},
+					// #ifndef MP-BAIDU 
+					{
+						name: "IndexedList 索引列表",
+						url: "indexed-list"
+					},
+					// #endif 
 					{
 						name: "List 列表",
 						url: "list"
