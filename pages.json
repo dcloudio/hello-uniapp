@@ -1007,7 +1007,8 @@
 					"style": {
 						"navigationBarTitleText": "聊天窗口chat",
 						"app-plus": {
-							"softinputMode": "adjustResize"
+							"softinputMode": "adjustResize",
+							"softinputNavBar": "none"
 						}
 					}
 				},
