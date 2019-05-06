@@ -6,6 +6,7 @@
 			"style": {
 				"navigationBarTitleText": "内置组件",
 				"app-plus": {
+					"bounce": "vertical",
 					"titleNView": {
 						"buttons": [{
 							"text": "\ue534",
@@ -1055,6 +1056,8 @@
 		"navigationBarTitleText": "Hello uniapp",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
+		"backgroundColorTop":"#F4F5F6",
+		"backgroundColorBottom":"#F4F5F6",
 		"mp-alipay": {
 			"titleBarColor": "#FFFFFF"
 		}
