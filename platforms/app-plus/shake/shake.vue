@@ -13,7 +13,8 @@
 		data() {
 			return {
 				img: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/1.jpg',
-				show: false
+				show: false,
+				isOpened: false
 			}
 		},
 		onLoad: function () {
@@ -23,7 +24,7 @@
 			let index = 1,
 				t = null;
 			uni.onAccelerometerChange((res) => {
-				if (Math.abs(res.x) + Math.abs(res.y) + Math.abs(res.z) > 20 && !this.show) {
+				if (Math.abs(res.x) + Math.abs(res.y) + Math.abs(res.z) > 20 && !this.show && this.isOpened) {
 					music.play();
 					setTimeout(() => {
 						index++;
@@ -43,8 +44,12 @@
 				}
 			})
 		},
+		onShow() {
+			this.isOpened = true;
+		},
 		onUnload() {
 			this.show = false;
+			this.isOpened = false;
 			uni.stopAccelerometer();
 		}
 	}
