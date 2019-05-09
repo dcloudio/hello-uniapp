@@ -65,7 +65,7 @@
 			/* ios打包配置 */
 			"ios": {
 				"UIBackgroundModes": ["audio"],
-				"urlschemewhitelist" : ["baidumap", "iosamap"]
+				"urlschemewhitelist": ["baidumap", "iosamap"]
 			},
 			/* SDK配置 */
 			"sdkConfigs": {
@@ -91,6 +91,13 @@
 		"router": {
 			"mode": "history",
 			"base": "/h5/"
+		},
+		"sdkConfigs": {
+			"maps": {
+				"qqmap": {
+					"key": "XVXBZ-NDMC4-JOGUS-XGIEE-QVHDZ-AMFV2"
+				}
+			}
 		}
 	}
 }
