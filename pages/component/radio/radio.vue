@@ -12,6 +12,17 @@
 				</label>
 			</view>
 		</view>
+		<view class="uni-padding-wrap">
+			<view class="uni-title">不同颜色和尺寸的radio</view>
+			<view>
+				<label class="radio" style="margin-right: 30upx;">
+					<radio value="r1" checked="true" color="#FFCC33" style="transform:scale(0.7)"/>选中
+				</label>
+				<label class="radio">
+					<radio value="r2" color="#FFCC33" style="transform:scale(0.7)"/>未选中
+				</label>
+			</view>
+		</view>
 		<view class="uni-title uni-common-mt uni-common-pl">推荐展示样式</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
@@ -29,7 +40,7 @@
 	export default {
 		data() {
 			return {
-				title: 'radio',
+				title: 'radio 单选框',
 				items: [{
 						value: 'USA',
 						name: '美国'

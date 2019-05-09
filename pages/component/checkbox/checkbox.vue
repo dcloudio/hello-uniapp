@@ -13,6 +13,17 @@
 					</label>
 				</checkbox-group>
 			</view>
+			<view class="uni-title uni-common-mt">不同颜色和尺寸的checkbox</view>
+			<view>
+				<checkbox-group>
+					<label>
+						<checkbox value="cb" checked="true" color="#FFCC33" style="transform:scale(0.7)" />选中
+					</label>
+					<label>
+						<checkbox value="cb" color="#FFCC33" style="transform:scale(0.7)" />未选中
+					</label>
+				</checkbox-group>
+			</view>
 		</view>
 		
 		<view class="uni-padding-wrap">
@@ -37,7 +48,7 @@
 	export default {
 		data() {
 			return {
-				title: 'checkbox',
+				title: 'checkbox 复选框',
 				items: [{
 						value: 'USA',
 						name: '美国'

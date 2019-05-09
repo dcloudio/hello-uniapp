@@ -86,9 +86,9 @@
 				array: [{name:'中国'},{name: '美国'}, {name:'巴西'}, {name:'日本'}],
 				index: 0,
 				multiArray: [
-					['无脊柱动物', '脊柱动物'],
-					['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'],
-					['猪肉绦虫', '吸血虫']
+					['亚洲', '欧洲'],
+					['中国', '日本'],
+					['北京', '上海', '广州']
 				],
 				multiIndex: [0, 0, 0],
 				date: getDate({
@@ -108,51 +108,39 @@
 				console.log('修改的列为：' + e.detail.column + '，值为：' + e.detail.value)
 				this.multiIndex[e.detail.column] = e.detail.value
 				switch (e.detail.column) {
-					case 0:
+					case 0: //拖动第1列
 						switch (this.multiIndex[0]) {
 							case 0:
-								this.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']
-								this.multiArray[2] = ['猪肉绦虫', '吸血虫']
+								this.multiArray[1] = ['中国', '日本']
+								this.multiArray[2] = ['北京', '上海', '广州']
 								break
 							case 1:
-								this.multiArray[1] = ['鱼', '两栖动物', '爬行动物']
-								this.multiArray[2] = ['鲫鱼', '带鱼']
+								this.multiArray[1] = ['英国', '法国']
+								this.multiArray[2] = ['伦敦', '曼彻斯特']
 								break
 						}
 						this.multiIndex[1] = 0
 						this.multiIndex[2] = 0
 						break
-					case 1:
-						switch (this.multiIndex[0]) {
+					case 1: //拖动第2列
+						switch (this.multiIndex[0]) { //判断第一列是什么
 							case 0:
 								switch (this.multiIndex[1]) {
 									case 0:
-										this.multiArray[2] = ['猪肉绦虫', '吸血虫']
+										this.multiArray[2] = ['北京', '上海', '广州']
 										break
 									case 1:
-										this.multiArray[2] = ['蛔虫']
-										break
-									case 2:
-										this.multiArray[2] = ['蚂蚁', '蚂蟥']
-										break
-									case 3:
-										this.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓']
-										break
-									case 4:
-										this.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物']
+										this.multiArray[2] = ['东京','北海道']
 										break
 								}
 								break
 							case 1:
 								switch (this.multiIndex[1]) {
 									case 0:
-										this.multiArray[2] = ['鲫鱼', '带鱼']
+										this.multiArray[2] = ['伦敦', '曼彻斯特']
 										break
 									case 1:
-										this.multiArray[2] = ['青蛙', '娃娃鱼']
-										break
-									case 2:
-										this.multiArray[2] = ['蜥蜴', '龟', '壁虎']
+										this.multiArray[2] = ['巴黎', '马赛']
 										break
 								}
 								break
