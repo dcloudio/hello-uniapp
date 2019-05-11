@@ -9,7 +9,6 @@
 	</view>
 </template>
 <script>
-	let music = uni.createInnerAudioContext();
 	export default {
 		data() {
 			return {
@@ -19,13 +18,14 @@
 			}
 		},
 		onLoad: function () {
-			music.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shake.wav';
+			this.music = uni.createInnerAudioContext();
+			this.music.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shake.wav';
 
 			let index = 1,
 				t = null;
 			uni.onAccelerometerChange((res) => {
 				if (Math.abs(res.x) + Math.abs(res.y) + Math.abs(res.z) > 20 && !this.show && this.isOpened) {
-					music.play();
+					this.music.play();
 					setTimeout(() => {
 						index++;
 						if (index > 4) {
@@ -51,7 +51,7 @@
 			this.show = false;
 			this.isOpened = false;
 			uni.stopAccelerometer();
-			music.destroy();
+			this.music.destroy();
 		}
 	}
 </script>
