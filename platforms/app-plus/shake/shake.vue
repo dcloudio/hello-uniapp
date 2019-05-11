@@ -9,6 +9,7 @@
 	</view>
 </template>
 <script>
+	let music = uni.createInnerAudioContext();
 	export default {
 		data() {
 			return {
@@ -18,7 +19,6 @@
 			}
 		},
 		onLoad: function () {
-			let music = uni.createInnerAudioContext();
 			music.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shake.wav';
 
 			let index = 1,
@@ -51,6 +51,7 @@
 			this.show = false;
 			this.isOpened = false;
 			uni.stopAccelerometer();
+			music.destroy();
 		}
 	}
 </script>
