@@ -84,6 +84,9 @@
 			tologin(provider) {
 				uni.login({
 					provider: provider.id,
+                    // #ifdef MP-ALIPAY
+                    scopes: 'auth_user',  //支付宝小程序需设置授权类型
+                    // #endif
 					success: (res) => {
 						console.log('login success:', res);
 						// 更新保存在 store 中的登录状态
