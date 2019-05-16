@@ -42,11 +42,9 @@
 </template>
 <script>
 import setTabBar from '@/components/api-set-tabbar.vue';
-import uLink from '@/components/uLink.vue';
 export default {
 	components: {
-		setTabBar,
-		uLink
+		setTabBar
 	},
 	data() {
 		// 暂时这么写，后面看怎么优化。

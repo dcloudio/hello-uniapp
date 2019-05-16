@@ -28,11 +28,7 @@
 	</view>
 </template>
 <script>
-	import uLink from "@/components/uLink.vue"
 	export default {
-		components: {
-			uLink
-		},
 		data() {
 			return {
 				lists: [{
@@ -42,7 +38,7 @@
 					// #ifdef APP-PLUS || H5
 					{
 						id: 'navbar',
-						name: '顶部导航标题栏',
+						name: '顶部原生导航标题栏',
 						open: false,
 						pages: [
 							

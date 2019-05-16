@@ -135,7 +135,10 @@
 		{
 			"path": "pages/component/input/input",
 			"style": {
-				"navigationBarTitleText": "input"
+				"navigationBarTitleText": "input",
+				"app-plus": {
+					"softinputNavBar": "none"
+				}
 			}
 		},
 		{
@@ -596,7 +599,17 @@
 				}, {
 					"path": "nav-bar/nav-bar",
 					"style": {
-						"navigationBarTitleText": "NavBar 导航栏"
+						"navigationBarTitleText": "NavBar 导航栏",
+						"navigationStyle": "custom",
+						"enablePullDownRefresh": true,
+						"app-plus": {
+							"titleNView": false,
+							"bounce": "none",
+							"pullToRefresh": {
+								"style": "circle",
+								"offset": "70px"
+							}
+						}
 					}
 				}, {
 					"path": "number-box/number-box",

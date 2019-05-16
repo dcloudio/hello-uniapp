@@ -158,10 +158,11 @@ export default {
 	onNavigationBarButtonTap() {
 		uni.showModal({
 			title: '提示',
-			content: '用户点击了功能按钮，这里仅做展示操作。',
+			content: '点击确定，修改输入框的内容为abc',
 			success: res => {
 				if (res.confirm) {
-					console.log('用户点击了确定');
+					const currentWebview = this.$mp.page.$getAppWebview();
+					currentWebview.setTitleNViewSearchInputText("abc");
 				}
 			}
 		});
