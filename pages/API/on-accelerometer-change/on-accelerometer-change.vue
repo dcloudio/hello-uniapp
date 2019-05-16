@@ -12,7 +12,7 @@
 				<button type="primary" @tap="stopAcce">停止监听设备的加速度变化</button>
 			</view>
 			<view class="uni-textarea uni-common-mt">
-				<textarea :value="value" />
+				<textarea :value="value" auto-height="true"/>
 			</view>
 		</view>
 	</view>
