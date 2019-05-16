@@ -195,5 +195,6 @@
 		line-height: 30px;
 		width: 94%;
 		padding: 0 3%;
+		background: rgba(0,0,0,0);
 	}
 </style>

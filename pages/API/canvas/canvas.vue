@@ -355,7 +355,11 @@
 
 	.canvas-button {
 		float: left;
-		line-height: 2;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 40px;
+		line-height: 1;
 		width: 300upx;
 		margin: 15upx 12upx;
 	}
