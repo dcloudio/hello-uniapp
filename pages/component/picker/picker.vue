@@ -119,8 +119,8 @@
 								this.multiArray[2] = ['伦敦', '曼彻斯特']
 								break
 						}
-						this.multiIndex[1] = 0
-						this.multiIndex[2] = 0
+						this.multiIndex.splice(1, 1, 0)
+						this.multiIndex.splice(2, 1, 0)
 						break
 					case 1: //拖动第2列
 						switch (this.multiIndex[0]) { //判断第一列是什么
@@ -145,7 +145,7 @@
 								}
 								break
 						}
-						this.multiIndex[2] = 0
+						this.multiIndex.splice(2, 1, 0)
 						break
 				}
 				this.$forceUpdate()
