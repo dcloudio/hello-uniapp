@@ -1,0 +1,113 @@
+<template>
+	<div class="wrapper">
+		<text class="title">{{title}}</text>
+		<scroller class="scroller">
+			<div>
+				<text class="content">{{content}}</text>
+			</div>
+			<div>
+				<text style="color: red; font-size: 44px;">以下为 Popup 内部滚动示例：</text>
+			</div>
+			<div class="cell" v-for="(item, index) in lists" @click="handle(item)" :key="index">
+				<text class="text">{{item}}</text>
+			</div>
+		</scroller>
+		<div class="message-wrapper">
+			<text class="send-message" @click="sendMessage">向页面发送消息</text>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				title: '',
+				content: '',
+				lists: [],
+			}
+		},
+		created() {
+			const vm = this;
+			for(let i = 1; i < 20; i++){
+				this.lists.push('item' + i);
+			}
+			const subNVue = uni.subNVue.getSubNVueById('popup')
+			subNVue.onMessage((data) => {
+				vm.title = data.data.title;
+				vm.content = data.data.content;
+			});
+			
+		},
+		methods: {
+			sendMessage() {
+				const subNVue = uni.subNVue.getSubNVueById('popup')
+				subNVue.postMessage({
+					title: '已读完!',
+				});
+			},
+			handle(item, index) {
+				const subNVue = uni.subNVue.getSubNVueById('popup')
+				subNVue.postMessage({
+					type: 'interactive',
+					info: item + ' 该元素被点击了!',
+				});
+			}
+		}
+	}
+</script>
+
+<style>
+	.wrapper {
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 10px 15px;
+		background-color: #F4F5F6;
+		border-radius: 4px;
+	}
+	.title {
+		height: 100px;
+		line-height: 100px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: #CBCBCB;
+		flex: none;
+		font-size: 40px;
+	}
+	.scroller {
+		flex: 1;
+		padding: 8px 15px;
+	}
+	.content {
+		color: #555555;
+		font-size: 32px;
+	}
+	.message-wrapper {
+		border-top-style: solid;
+		border-top-width: 1px;
+		border-top-color: #CBCBCB;
+		height: 80px; 
+		align-items: flex-end;
+	}
+	.send-message {
+		font-size: 35px;	
+		line-height: 80px;
+		color: #00CE47;
+		margin-left: 20px;
+	}
+	.cell {
+		margin: 10px;
+		padding: 20px 0;
+		top:10px;
+		align-items: center;
+		justify-content: center;
+		border: solid;
+		border-radius: 10px; 
+		background-color: #5989B9;
+	}
+	.text {
+		font-size: 40px; 
+		text-align: center;
+		color: white;
+	}
+</style>

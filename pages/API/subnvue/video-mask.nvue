@@ -1,0 +1,112 @@
+<template>
+	<div class="wrapper">
+		<list class="list">
+			<cell v-for="(item, index) in lists" :key="index" :ref="'item' + index" class="cell">
+				<text class="name">{{item.name}}:</text>
+				<text class="content">{{item.content}}</text>
+			</cell>
+		</list>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				lists: [],
+				interval: null,
+				yourTexts: [
+					{
+						name: '张三',
+						content: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架',
+					}, {
+						name: '周周',
+						content: '开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。',
+					}, {
+						name: '李四',
+						content: 'uni-app是对vue语法支持度最高的跨端框架。',
+					}, {
+						name: '王五',
+						content: 'uni-app App端内置 weex 引擎，提供了原生渲染能力。',
+					}, {
+						name: '刘六',
+						content: 'uni-app App 端内置 HTML5+ 引擎，让 js 可以直接调用丰富的原生能力。',
+					}
+				],
+			}
+		},
+		created() {
+			const subNVue = uni.subNVue.getSubNVueById('video_mask')
+			const vm = this;
+			subNVue.onMessage((data) => {
+				if(data.data.status === 'open'){
+					this.addItem();
+				}else{
+					this.closeItem();
+				}
+			});
+		},
+		beforeDestory(){
+			this.closeItem()
+		},
+		methods: {
+			addItem() {
+				const vm = this;
+				vm.lists = [{
+						name: '刘六',
+						content: 'uni-app App 端内置 HTML5+ 引擎，让 js 可以直接调用丰富的原生能力。',
+				}];
+				const dom = weex.requireModule('dom')
+				vm.interval = setInterval(() => {
+					if(vm.lists.length > 15) {
+						vm.lists.unshift();
+					}
+					vm.lists.push({
+						name: vm.yourTexts[vm.lists.length%4].name,
+						content: vm.yourTexts[vm.lists.length%4].content
+					});
+					vm.$nextTick(() => {
+						if(vm.$refs['item' + (vm.lists.length - 1)]){
+							dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);	
+						}
+					});
+				}, 3500);
+			},
+			closeItem() {
+				if(this.interval) clearInterval(this.interval);
+			}
+		}
+	}
+</script>
+
+<style>
+	.wrapper {
+		position: relative;
+		flex: 1;
+		background-color: transparent;
+	}
+	.list {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.cell {
+		padding: 10px 0;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	.name {
+		flex: none;
+		font-size: 30px;
+		margin-right: 20px;
+		color: #FF5A5F;
+	}
+	.content {
+		flex: 1;
+		font-size: 30px;
+		color: #F4F5F6;
+	}
+</style>

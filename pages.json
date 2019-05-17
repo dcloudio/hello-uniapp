@@ -255,6 +255,49 @@
 				"navigationBarTitleText": "授权登录"
 			}
 		},
+		// #ifdef APP-PLUS
+		{
+			"path": "pages/API/subnvue/subnvue",
+			"style": {
+				"navigationBarTitleText": "SubNvue",
+				"app-plus": {
+					"titleNView":false,
+					"subNVues": [{
+						"id": "drawer", 
+						"path": "pages/API/subnvue/drawer", 
+						"type": "popup",
+						"style": { 
+							"width": "50%"
+						}
+					}, {
+						"id": "popup",
+						"path": "pages/API/subnvue/popup",
+						"type": "popup",
+						"style": {
+							"margin":"auto",
+							"width": "80%",
+							"height": "300px"
+						}
+					}, {
+						"id": "video_mask",
+						"path": "pages/API/subnvue/video-mask",
+						"style": {
+							"position": "absolute",
+							"bottom": "10px",
+							"left": "0",
+							"width": "230px",
+							"height": "110px",
+							"background": "transparent"
+						}
+					}, {
+						"id": "nav",
+						"path": "pages/API/subnvue/nav",
+						"type": "navigationBar"
+					}]
+				}
+			}	
+		},
+		// #endif
 		{
 			"path": "pages/API/get-user-info/get-user-info",
 			"style": {

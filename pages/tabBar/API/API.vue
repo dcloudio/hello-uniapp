@@ -93,6 +93,12 @@ export default {
 						name: '设置导航条',
 						url: 'set-navigation-bar-title'
 					},
+					//#ifdef APP-PLUS
+					{
+						name: '原生子窗体',
+						url: 'subnvue'
+					},
+					//#endif
 					{
 						name: '页面跳转',
 						url: 'navigator'
