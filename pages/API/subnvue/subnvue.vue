@@ -29,7 +29,7 @@
 		},
 		onLoad() {
 			this.closeMask();
-			const popupNVue = uni.subNVue.getSubNVueById('popup');
+			const popupNVue = uni.getSubNVueById('popup');
 			popupNVue.onMessage((res) => {
 				let data = res.data;
 				switch(data.type){
@@ -49,10 +49,10 @@
 		},
 		methods: {
 			showDrawer() {
-				uni.subNVue.getSubNVueById('drawer').show('slide-in-left', 200);
+				uni.getSubNVueById('drawer').show('slide-in-left', 200);
 			},
 		    showPopup() {
-				const subNVue = uni.subNVue.getSubNVueById('popup')
+				const subNVue = uni.getSubNVueById('popup')
 				subNVue.postMessage({
 					title: '请阅读软件内容',
 					content: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。uni-app是对vue语法支持度最高的跨端框架。uni-app App端内置 weex 引擎，提供了原生渲染能力。uni-app App 端内置 HTML5+ 引擎，让 js 可以直接调用丰富的原生能力。'
@@ -66,7 +66,7 @@
 				})
 			},
 			playVideo() {
-				let subNVue = uni.subNVue.getSubNVueById('video_mask')
+				let subNVue = uni.getSubNVueById('video_mask')
 				subNVue.show('fade-in', 200, () => {
 					subNVue.postMessage({
 						status: 'open',
@@ -74,7 +74,7 @@
 				})
 			},
 			closeMask() {
-				let subNVue = uni.subNVue.getSubNVueById('video_mask')
+				let subNVue = uni.getSubNVueById('video_mask')
 				subNVue.postMessage({
 					status: 'close',
 				})

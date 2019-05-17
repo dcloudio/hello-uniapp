@@ -41,7 +41,7 @@
 		},
         methods: {
             hideDrawer() {
-                uni.subNVue.getSubNVueById('drawer').hide('auto')
+                uni.getSubNVueById('drawer').hide('auto')
             }
         }
     }

@@ -36,7 +36,7 @@
 			}
 		},
 		created() {
-			const subNVue = uni.subNVue.getSubNVueById('video_mask')
+			const subNVue = uni.getSubNVueById('video_mask')
 			const vm = this;
 			subNVue.onMessage((data) => {
 				if(data.data.status === 'open'){

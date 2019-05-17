@@ -32,7 +32,7 @@
 			for(let i = 1; i < 20; i++){
 				this.lists.push('item' + i);
 			}
-			const subNVue = uni.subNVue.getSubNVueById('popup')
+			const subNVue = uni.getSubNVueById('popup')
 			subNVue.onMessage((data) => {
 				vm.title = data.data.title;
 				vm.content = data.data.content;
@@ -41,13 +41,13 @@
 		},
 		methods: {
 			sendMessage() {
-				const subNVue = uni.subNVue.getSubNVueById('popup')
+				const subNVue = uni.getSubNVueById('popup')
 				subNVue.postMessage({
 					title: '已读完!',
 				});
 			},
 			handle(item, index) {
-				const subNVue = uni.subNVue.getSubNVueById('popup')
+				const subNVue = uni.getSubNVueById('popup')
 				subNVue.postMessage({
 					type: 'interactive',
 					info: item + ' 该元素被点击了!',
