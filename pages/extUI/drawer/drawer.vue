@@ -172,6 +172,10 @@
 		font-size: 16px;
 	}
 
+	.input-view .input {
+		background-color: transparent;
+	}
+
 	.close {
 		padding: 30upx;
 	}

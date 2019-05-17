@@ -249,6 +249,9 @@
 
 	.uni-indexed--alert {
 		position: absolute;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		z-index: 20;
 		width: 160upx;
 		height: 160upx;
@@ -258,7 +261,6 @@
 		margin-top: -80upx;
 		border-radius: 80upx;
 		text-align: center;
-		line-height: 160upx;
 		font-size: 70upx;
 		color: #fff;
 		background-color: rgba(0, 0, 0, .5)

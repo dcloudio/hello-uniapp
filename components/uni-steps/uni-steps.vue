@@ -193,7 +193,8 @@
 		left: -8px;
 		padding: 0 8px;
 		background-color: #fff;
-		z-index: 1
+		z-index: 1;
+		line-height: normal !important
 	}
 
 	.uni-steps-item-circle {
