@@ -3,7 +3,7 @@
 		<text style="color: #8f8f94; margin-bottom: 40px;">左侧列表</text>
 		<list style="height: 450px;">
 			<cell v-for="item in lists" :key="item.id">
-				<div class="text-wrapper">
+				<div class="text-wrapper" @click="clickitem(item.id)">
 					<text style="font-size: 30px; ">{{item.name}}</text>
 					<text class="icon">&#xe583;</text>
 				</div>
@@ -42,7 +42,11 @@
         methods: {
             hideDrawer() {
                 uni.getSubNVueById('drawer').hide('auto')
-            }
+            },
+			clickitem(e) {
+				const subNVue = uni.getSubNVueById('drawer')
+				subNVue.postMessage(e);
+			}
         }
     }
 </script>

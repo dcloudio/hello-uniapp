@@ -6,7 +6,7 @@
 				<text class="content">{{content}}</text>
 			</div>
 			<div>
-				<text style="color: red; font-size: 44px;">以下为 Popup 内部滚动示例：</text>
+				<text style="color: red; font-size: 30px;">以下为 Popup 内部滚动示例：</text>
 			</div>
 			<div class="cell" v-for="(item, index) in lists" @click="handle(item)" :key="index">
 				<text class="text">{{item}}</text>
@@ -72,7 +72,7 @@
 		border-bottom-width: 1px;
 		border-bottom-color: #CBCBCB;
 		flex: none;
-		font-size: 40px;
+		font-size: 30px;
 	}
 	.scroller {
 		flex: 1;
@@ -90,7 +90,7 @@
 		align-items: flex-end;
 	}
 	.send-message {
-		font-size: 35px;	
+		font-size: 30px;	
 		line-height: 80px;
 		color: #00CE47;
 		margin-left: 20px;
@@ -106,7 +106,7 @@
 		background-color: #5989B9;
 	}
 	.text {
-		font-size: 40px; 
+		font-size: 30px; 
 		text-align: center;
 		color: white;
 	}

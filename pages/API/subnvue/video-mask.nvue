@@ -17,20 +17,20 @@
 				interval: null,
 				yourTexts: [
 					{
-						name: '张三',
-						content: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架',
+						name: '学员A',
+						content: '老师讲的真好',
 					}, {
-						name: '周周',
-						content: '开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。',
+						name: '学员B',
+						content: 'uni-app值得学习',
 					}, {
-						name: '李四',
-						content: 'uni-app是对vue语法支持度最高的跨端框架。',
+						name: '学员C',
+						content: '老师，还有实战例子吗？',
 					}, {
-						name: '王五',
-						content: 'uni-app App端内置 weex 引擎，提供了原生渲染能力。',
+						name: '学员D',
+						content: '老师，请问是不是要先学会vue才能学uni-app？',
 					}, {
-						name: '刘六',
-						content: 'uni-app App 端内置 HTML5+ 引擎，让 js 可以直接调用丰富的原生能力。',
+						name: '学员E',
+						content: '受教了，uni-app太牛了',
 					}
 				],
 			}
@@ -53,8 +53,8 @@
 			addItem() {
 				const vm = this;
 				vm.lists = [{
-						name: '刘六',
-						content: 'uni-app App 端内置 HTML5+ 引擎，让 js 可以直接调用丰富的原生能力。',
+					name: '学员E',
+					content: '受教了，uni-app太牛了',
 				}];
 				const dom = weex.requireModule('dom')
 				vm.interval = setInterval(() => {
@@ -100,13 +100,13 @@
 	}
 	.name {
 		flex: none;
-		font-size: 30px;
+		font-size: 20px;
 		margin-right: 20px;
 		color: #FF5A5F;
 	}
 	.content {
 		flex: 1;
-		font-size: 30px;
+		font-size: 20px;
 		color: #F4F5F6;
 	}
 </style>

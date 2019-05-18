@@ -30,7 +30,7 @@
 
 <style>
 	.wrapper {
-		background-image: linear-gradient(to right, #e498e1, #e60000);
+		background-image: linear-gradient(to right, #a80077, #66ff00);
 		flex-direction: column;
 	}
 	.status-bar {
