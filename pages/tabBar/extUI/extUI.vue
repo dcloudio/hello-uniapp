@@ -37,12 +37,10 @@
 						name: "Card 卡片",
 						url: "card"
 					},
-					// #ifdef H5 || APP-PLUS || MP-WEIXIN 
 					{
 						name: "Collapse 折叠面板",
 						url: "collapse"
 					},
-					// #endif 
 					{
 						name: "CountDown 倒计时",
 						url: "count-down"
