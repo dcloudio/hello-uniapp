@@ -283,7 +283,7 @@
 						"path": "pages/API/subnvue/video-mask",
 						"style": {
 							"position": "absolute",
-							"bottom": "10px",
+							"bottom": "30px",
 							"left": "0",
 							"width": "230px",
 							"height": "110px",
