@@ -1,22 +1,18 @@
 <template>
 	<view>
 		<page-head title="swiper,可滑动视图"></page-head>
-		<view class="uni-padding-wrap">
-			<view class="page-section swiper">
-				<view class="page-section-spacing">
-					<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-						<swiper-item>
-							<view class="swiper-item uni-bg-red">A</view>
-						</swiper-item>
-						<swiper-item>
-							<view class="swiper-item uni-bg-green">B</view>
-						</swiper-item>
-						<swiper-item>
-							<view class="swiper-item uni-bg-blue">C</view>
-						</swiper-item>
-					</swiper>
-				</view>
-			</view>
+		<view class="uni-margin-wrap">
+			<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+				<swiper-item>
+					<view class="swiper-item uni-bg-red">A</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item uni-bg-green">B</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item uni-bg-blue">C</view>
+				</swiper-item>
+			</swiper>
 		</view>
 		
 		<view class="swiper-list">
@@ -73,6 +69,10 @@
 </script>
 
 <style>
+	.uni-margin-wrap {
+		width:690upx;
+		margin:0 30upx;
+	}
 	.swiper {
 		height: 300upx;
 	}
