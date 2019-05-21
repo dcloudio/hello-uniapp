@@ -86,6 +86,15 @@
 		},
 		"usingComponents": true
 	},
+	"mp-alipay": {
+		"usingComponents": true
+	},
+	"mp-baidu": {
+		"usingComponents": true
+	},
+	"mp-toutiao": {
+		"usingComponents": true
+	},
 	"h5": {
 		"template": "template.h5.html",
 		"router": {
