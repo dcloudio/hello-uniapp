@@ -594,6 +594,12 @@
 				"navigationBarTitleText": "指纹"
 			}
 		},
+		{
+			"path": "pages/API/ibeacon/ibeacon",
+			"style": {
+				"navigationBarTitleText": "iBeacon"
+			}
+		},
 		// #endif
 		{
 			"path": "pages/API/vibrate/vibrate",

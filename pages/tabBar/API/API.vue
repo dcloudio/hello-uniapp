@@ -201,6 +201,10 @@ export default {
 						name: '指纹',
 						url: 'fingerprint'
 					},
+					{
+						name: 'iBeacon',
+						url: 'ibeacon'
+					},
 					// #endif
 					{
 						name: '监听加速度传感器',
