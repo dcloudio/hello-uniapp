@@ -41,11 +41,10 @@
 		},
         methods: {
             hideDrawer() {
-                uni.getSubNVueById('drawer').hide('auto')
+                uni.getCurrentSubNVue().hide('auto')
             },
 			clickitem(e) {
-				const subNVue = uni.getSubNVueById('drawer')
-				subNVue.postMessage(e);
+				uni.getCurrentSubNVue().postMessage(e)
 			}
         }
     }

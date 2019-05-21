@@ -36,7 +36,7 @@
 			}
 		},
 		created() {
-			const subNVue = uni.getSubNVueById('video_mask')
+			const subNVue = uni.getCurrentSubNVue()
 			const vm = this;
 			subNVue.onMessage((data) => {
 				if(data.data.status === 'open'){
@@ -65,11 +65,13 @@
 						name: vm.yourTexts[vm.lists.length%4].name,
 						content: vm.yourTexts[vm.lists.length%4].content
 					});
-					vm.$nextTick(() => {
-						if(vm.$refs['item' + (vm.lists.length - 1)]){
-							dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);	
-						}
-					});
+					if(vm.lists.length > 5) {
+						vm.$nextTick(() => {
+							if(vm.$refs['item' + (vm.lists.length - 1)]){
+								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);	
+							}
+						});
+					}
 				}, 3500);
 			},
 			closeItem() {

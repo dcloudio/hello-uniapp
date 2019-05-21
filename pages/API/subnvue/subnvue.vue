@@ -10,7 +10,7 @@
 			<button @click="showPopup">显示 弹出层</button>
 		</view>
 		<view style="width: 100%;">
-			<video id="myVideo"
+			<video v-if="showVideo" id="video"
 			@play="playVideo"
 			@pause="closeMask"
 			:controls="false"
@@ -25,11 +25,14 @@
 		data() {
 			return {
 				title: 'SubNvue',
+				showVideo: false
 			};
 		},
 		onLoad() {
 			this.closeMask();
+			
 			const popupNVue = uni.getSubNVueById('popup');
+			// 向 popup 传递消息
 			popupNVue.onMessage((res) => {
 				let data = res.data;
 				switch(data.type){
@@ -47,6 +50,7 @@
 				}
 			});
 			const drawerNVue = uni.getSubNVueById('drawer');
+			// 监听 drawer 消息
 			drawerNVue.onMessage((res) => {
 				let data = res.data;
 				uni.showToast({
@@ -54,6 +58,9 @@
 					icon:"none"
 				});
 			});
+		},
+		onReady() {
+			this.showVideo = true
 		},
 		methods: {
 			showDrawer() {
