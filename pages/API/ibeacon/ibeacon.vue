@@ -5,7 +5,7 @@
 			<view class="uni-btn-v">
 				<button type="primary" :disabled="isOpen" @click="openBluetoothAdapter">打开蓝牙模块</button>
 				<button type="primary" :disabled="!isOpen" @click="closeBluetoothAdapter">关闭蓝牙模块</button>
-				<button type="primary" :disabled="!isOpen || isStarted" @click="startBeaconDiscovery">开始搜索附近的iBeacon设备</button>
+				<button type="primary" :disabled="!isOpen || isStarted" :loading="isStarted" @click="startBeaconDiscovery">开始搜索附近的iBeacon设备</button>
 				<button type="primary" :disabled="!isStarted" @click="stopBeaconDiscovery">停止搜索附近的iBeacon设备</button>
 			</view>
 		</view>
@@ -64,6 +64,7 @@
 				});
 			},
 			closeBluetoothAdapter(OBJECT) {
+				this.stopBeaconDiscovery();
 				uni.closeBluetoothAdapter({
 					success: (res) => {
 						this.isOpen = false;
