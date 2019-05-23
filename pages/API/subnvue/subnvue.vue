@@ -30,7 +30,6 @@
 		},
 		onLoad() {
 			this.closeMask();
-			
 			const popupNVue = uni.getSubNVueById('popup');
 			// 向 popup 传递消息
 			popupNVue.onMessage((res) => {
