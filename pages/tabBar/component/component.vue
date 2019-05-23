@@ -52,7 +52,10 @@
 						open: false,
 						pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
 							'slider',
-							'switch', 'textarea'
+							'switch', 'textarea',
+							// #ifdef APP-PLUS || MP-WEIXIN
+							'editor',
+							// #endif
 						]
 					}, {
 						id: 'nav',

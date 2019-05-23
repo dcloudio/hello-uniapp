@@ -183,6 +183,14 @@
 				"navigationBarTitleText": "textarea"
 			}
 		},
+		// #ifdef APP-PLUS || MP-WEIXIN
+		{
+			"path": "pages/component/editor/editor",
+			"style": {
+				"navigationBarTitleText": "editor"
+			}
+		},
+		// #endif
 		{
 			"path": "pages/component/navigator/navigator",
 			"style": {
