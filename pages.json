@@ -264,14 +264,14 @@
 					"titleNView":false,
 					"subNVues": [{
 						"id": "drawer", 
-						"path": "pages/API/subnvue/drawer", 
+						"path": "pages/API/subnvue/subnvue/drawer", 
 						"type": "popup",
 						"style": { 
 							"width": "50%"
 						}
 					}, {
 						"id": "popup",
-						"path": "pages/API/subnvue/popup",
+						"path": "pages/API/subnvue/subnvue/popup",
 						"type": "popup",
 						"style": {
 							"margin":"auto",
@@ -280,7 +280,7 @@
 						}
 					}, {
 						"id": "video_mask",
-						"path": "pages/API/subnvue/video-mask",
+						"path": "pages/API/subnvue/subnvue/video-mask",
 						"style": {
 							"position": "absolute",
 							"bottom": "30px",
@@ -291,7 +291,7 @@
 						}
 					}, {
 						"id": "nav",
-						"path": "pages/API/subnvue/nav",
+						"path": "pages/API/subnvue/subnvue/nav",
 						"type": "navigationBar"
 					}]
 				}
