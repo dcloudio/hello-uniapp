@@ -17,7 +17,7 @@
 			const domModule = weex.requireModule('dom')
 			domModule.addRule('fontFace', {
 				fontFamily: "unibtn",
-				'src': "url('../../../static/uni.ttf')"
+				'src': "url('../../../../static/uni.ttf')"
 			});
 		},
 		methods: {
