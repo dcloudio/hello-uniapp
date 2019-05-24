@@ -80,7 +80,7 @@
 			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			openDocument() {
 				uni.downloadFile({
-					url: 'https://raw.githubusercontent.com/mozilla/pdf.js/master/examples/learning/helloworld.pdf',
+					url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/helloworld.pdf',
 					success: (res) => {
 						uni.openDocument({
 							filePath: res.tempFilePath,
