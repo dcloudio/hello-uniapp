@@ -29,10 +29,10 @@ export default {
 				name: 'first',
 				path: '_doc/test.db',
 				success: function(e) {
-					plus.nativeUI.alert('打开数据库test.db: ' + JSON.stringify(e));
+					plus.nativeUI.alert('打开数据库test.db成功 ');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('打开数据库test.db: ' + JSON.stringify(e));
+					plus.nativeUI.alert('打开数据库test.db失败: ' + JSON.stringify(e));
 				}
 			});
 		},
@@ -46,15 +46,15 @@ export default {
 						name: 'first',
 						sql: "insert into database values('彦','女','7000')",
 						success: function(e) {
-							plus.nativeUI.alert('执行SQL语句: ' + JSON.stringify(e));
+							plus.nativeUI.alert('创建表table和插入数据成功');
 						},
 						fail: function(e) {
-							plus.nativeUI.alert('执行SQL语句: ' + JSON.stringify(e));
+							plus.nativeUI.alert('创建表table成功但插入数据失败: ' + JSON.stringify(e));
 						}
 					});
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('执行SQL语句: ' + JSON.stringify(e));
+					plus.nativeUI.alert('创建表table失败: ' + JSON.stringify(e));
 				}
 			});
 		},
@@ -64,10 +64,10 @@ export default {
 				name: 'first',
 				sql: 'select * from database',
 				success: function(e) {
-					plus.nativeUI.alert('查询SQL语句: ' + JSON.stringify(e));
+					plus.nativeUI.alert('查询SQL语句成功: ' + JSON.stringify(e));
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('查询SQL语句: ' + JSON.stringify(e));
+					plus.nativeUI.alert('查询SQL语句失败: ' + JSON.stringify(e));
 				}
 			});
 		},
@@ -77,10 +77,10 @@ export default {
 				name: 'first',
 				sql: 'drop table database',
 				success: function(e) {
-					plus.nativeUI.alert('删除表database: ' + JSON.stringify(e));
+					plus.nativeUI.alert('删除表database成功');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('删除表database: ' + JSON.stringify(e));
+					plus.nativeUI.alert('删除表database失败: ' + JSON.stringify(e));
 				}
 			});
 		},
@@ -89,10 +89,10 @@ export default {
 			plus.sqlite.closeDatabase({
 				name: 'first',
 				success: function(e) {
-					plus.nativeUI.alert('关闭数据库: ' + JSON.stringify(e));
+					plus.nativeUI.alert('关闭数据库成功');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('关闭数据库: ' + JSON.stringify(e));
+					plus.nativeUI.alert('关闭数据库失败: ' + JSON.stringify(e));
 				}
 			});
 		},
