@@ -30,10 +30,9 @@
 		},
 		onLoad() {
 			this.closeMask();
-			const popupNVue = uni.getSubNVueById('popup');
-			// 向 popup 传递消息
-			popupNVue.onMessage((res) => {
-				let data = res.data;
+			
+			// 接收 popup 的消息
+			uni.$on('popup-page', (data) => {
 				switch(data.type){
 					case 'interactive':
 						uni.showModal({
@@ -47,16 +46,14 @@
 						})
 						break;
 				}
-			});
-			const drawerNVue = uni.getSubNVueById('drawer');
+			})
 			// 监听 drawer 消息
-			drawerNVue.onMessage((res) => {
-				let data = res.data;
+			uni.$on('drawer-page', (data) => {
 				uni.showToast({
 					title: '点击了第' + data + '项',
 					icon:"none"
 				});
-			});
+			})
 		},
 		onReady() {
 			this.showVideo = true
@@ -66,11 +63,12 @@
 				uni.getSubNVueById('drawer').show('slide-in-left', 200);
 			},
 		    showPopup() {
-				const subNVue = uni.getSubNVueById('popup')
-				subNVue.postMessage({
+				// 向 popup 传递消息
+				uni.$emit('page-popup', {
 					title: '请阅读软件内容',
 					content: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。'
 				});
+				const subNVue = uni.getSubNVueById('popup')
 		        subNVue.show('slide-in-top', 250)
 		    },
 			videoErrorCallback: function(e) {
@@ -82,14 +80,14 @@
 			playVideo() {
 				let subNVue = uni.getSubNVueById('video_mask')
 				subNVue.show('fade-in', 200, () => {
-					subNVue.postMessage({
+					uni.$emit('play-video', {
 						status: 'open',
 					})
 				})
 			},
 			closeMask() {
 				let subNVue = uni.getSubNVueById('video_mask')
-				subNVue.postMessage({
+				uni.$emit('close-video', {
 					status: 'close',
 				})
 				subNVue.hide('fade-out', 200)

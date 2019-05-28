@@ -36,15 +36,14 @@
 			}
 		},
 		created() {
-			const subNVue = uni.getCurrentSubNVue()
 			const vm = this;
-			subNVue.onMessage((data) => {
-				if(data.data.status === 'open'){
+			uni.$on('play-video', (data) => {
+				if(data.status === 'open'){
 					this.addItem();
 				}else{
 					this.closeItem();
 				}
-			});
+			})
 		},
 		beforeDestory(){
 			this.closeItem()

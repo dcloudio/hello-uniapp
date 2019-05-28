@@ -44,7 +44,7 @@
                 uni.getCurrentSubNVue().hide('auto')
             },
 			clickitem(e) {
-				uni.getCurrentSubNVue().postMessage(e)
+				uni.$emit('drawer-page', e);
 			}
         }
     }
