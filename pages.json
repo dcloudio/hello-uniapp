@@ -258,284 +258,6 @@
 		},
 		// #endif
 		{
-			"path": "pages/API/login/login",
-			"style": {
-				"navigationBarTitleText": "授权登录"
-			}
-		},
-		// #ifdef APP-PLUS
-		{
-			"path": "pages/API/subnvue/subnvue",
-			"style": {
-				"navigationBarTitleText": "SubNvue",
-				"app-plus": {
-					"titleNView":false,
-					"subNVues": [{
-						"id": "drawer", 
-						"path": "pages/API/subnvue/subnvue/drawer", 
-						"type": "popup",
-						"style": { 
-							"width": "50%"
-						}
-					}, {
-						"id": "popup",
-						"path": "pages/API/subnvue/subnvue/popup",
-						"type": "popup",
-						"style": {
-							"margin":"auto",
-							"width": "80%",
-							"height": "300px"
-						}
-					}, {
-						"id": "video_mask",
-						"path": "pages/API/subnvue/subnvue/video-mask",
-						"style": {
-							"position": "absolute",
-							"bottom": "30px",
-							"left": "0",
-							"width": "230px",
-							"height": "110px",
-							"background": "transparent"
-						}
-					}, {
-						"id": "nav",
-						"path": "pages/API/subnvue/subnvue/nav",
-						"type": "navigationBar"
-					}]
-				}
-			}	
-		},
-		// #endif
-		{
-			"path": "pages/API/get-user-info/get-user-info",
-			"style": {
-				"navigationBarTitleText": "获取用户信息"
-			}
-		},
-		{
-			"path": "pages/API/request-payment/request-payment",
-			"style": {
-				"navigationBarTitleText": "发起支付"
-			}
-		},
-		{
-			"path": "pages/API/share/share",
-			"style": {
-				"navigationBarTitleText": "分享"
-			}
-		},
-		{
-			"path": "pages/API/set-navigation-bar-title/set-navigation-bar-title",
-			"style": {
-				"navigationBarTitleText": "设置界面标题"
-			}
-		},
-		{
-			"path": "pages/API/show-loading/show-loading",
-			"style": {
-				"navigationBarTitleText": "加载提示框"
-			}
-		},
-		{
-			"path": "pages/API/navigator/navigator",
-			"style": {
-				"navigationBarTitleText": "页面跳转"
-			}
-		},
-		{
-			"path": "pages/API/navigator/new-page/new-page",
-			"style": {
-				"navigationBarTitleText": "新页面"
-			}
-		},
-		{
-			"path": "pages/API/pull-down-refresh/pull-down-refresh",
-			"style": {
-				"navigationBarTitleText": "下拉刷新",
-				"enablePullDownRefresh": true
-			}
-		},
-		// #ifndef H5
-		{
-			"path": "pages/API/animation/animation",
-			"style": {
-				"navigationBarTitleText": "创建动画"
-			}
-		},
-		// #endif
-		{
-			"path": "pages/API/get-node-info/get-node-info",
-			"style": {
-				"navigationBarTitleText": "节点信息"
-			}
-		},
-		// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
-		{
-			"path": "pages/API/intersection-observer/intersection-observer",
-			"style": {
-				"navigationBarTitleText": "节点布局相交状态"
-			}
-		},
-		// #endif
-		{
-			"path": "pages/API/canvas/canvas",
-			"style": {
-				"navigationBarTitleText": "创建绘画"
-			}
-		},
-		{
-			"path": "pages/API/action-sheet/action-sheet",
-			"style": {
-				"navigationBarTitleText": "操作菜单"
-			}
-		},
-		{
-			"path": "pages/API/modal/modal",
-			"style": {
-				"navigationBarTitleText": "模态弹窗"
-			}
-		},
-		{
-			"path": "pages/API/toast/toast",
-			"style": {
-				"navigationBarTitleText": "消息提示框"
-			}
-		},
-		{
-			"path": "pages/API/get-network-type/get-network-type",
-			"style": {
-				"navigationBarTitleText": "获取手机网络状态"
-			}
-		},
-		{
-			"path": "pages/API/get-system-info/get-system-info",
-			"style": {
-				"navigationBarTitleText": "获取手机系统信息"
-			}
-		},
-		{
-			"path": "pages/API/add-phone-contact/add-phone-contact",
-			"style": {
-				"navigationBarTitleText": "添加手机联系人"
-			}
-		},
-		{
-			"path": "pages/API/on-accelerometer-change/on-accelerometer-change",
-			"style": {
-				"navigationBarTitleText": "监听加速度计数据"
-			}
-		},
-		{
-			"path": "platforms/app-plus/shake/shake",
-			"style": {
-				"navigationBarTitleText": "摇一摇"
-			}
-		},
-		{
-			"path": "pages/API/on-compass-change/on-compass-change",
-			"style": {
-				"navigationBarTitleText": "监听罗盘数据"
-			}
-		},
-		{
-			"path": "pages/API/make-phone-call/make-phone-call",
-			"style": {
-				"navigationBarTitleText": "打电话"
-			}
-		},
-		{
-			"path": "pages/API/scan-code/scan-code",
-			"style": {
-				"navigationBarTitleText": "扫码"
-			}
-		},
-		{
-			"path": "pages/API/clipboard/clipboard",
-			"style": {
-				"navigationBarTitleText": "剪贴板"
-			}
-		},
-		{
-			"path": "pages/API/request/request",
-			"style": {
-				"navigationBarTitleText": "网络请求"
-			}
-		},
-		{
-			"path": "pages/API/upload-file/upload-file",
-			"style": {
-				"navigationBarTitleText": "上传文件"
-			}
-		},
-		{
-			"path": "pages/API/download-file/download-file",
-			"style": {
-				"navigationBarTitleText": "下载文件"
-			}
-		},
-		{
-			"path": "pages/API/image/image",
-			"style": {
-				"navigationBarTitleText": "图片"
-			}
-		},
-		{
-			"path": "pages/API/voice/voice",
-			"style": {
-				"navigationBarTitleText": "录音"
-			}
-		},
-		{
-			"path": "pages/API/background-audio/background-audio",
-			"style": {
-				"navigationBarTitleText": "背景音频"
-			}
-		},
-		{
-			"path": "pages/API/video/video",
-			"style": {
-				"navigationBarTitleText": "视频"
-			}
-		},
-		{
-			"path": "pages/API/file/file",
-			"style": {
-				"navigationBarTitleText": "文件"
-			}
-		},
-		{
-			"path": "pages/API/get-location/get-location",
-			"style": {
-				"navigationBarTitleText": "获取位置"
-			}
-		},
-		{
-			"path": "pages/API/open-location/open-location",
-			"style": {
-				"navigationBarTitleText": "查看位置"
-			}
-		},
-		// #ifndef MP-TOUTIAO
-		{
-			"path": "pages/API/choose-location/choose-location",
-			"style": {
-				"navigationBarTitleText": "使用地图选择位置"
-			}
-		},
-		// #endif
-		{
-			"path": "pages/API/storage/storage",
-			"style": {
-				"navigationBarTitleText": "数据存储"
-			}
-		},
-		{
-			"path": "pages/API/sqlite/sqlite",
-			"style": {
-				"navigationBarTitleText": "SQLite"
-			}
-		},
-		{
 			"path": "platforms/app-plus/speech/speech",
 			"style": {
 				"navigationBarTitleText": "语音识别"
@@ -560,9 +282,9 @@
 			}
 		},
 		{
-			"path": "platforms/app-plus/feedback/feedback",
+			"path": "platforms/app-plus/shake/shake",
 			"style": {
-				"navigationBarTitleText": "问题反馈"
+				"navigationBarTitleText": "摇一摇"
 			}
 		},
 		// #ifdef H5 || APP-PLUS
@@ -573,548 +295,829 @@
 			}
 		},
 		// #endif
-		// #ifndef H5 
 		{
-			"path": "pages/API/brightness/brightness",
+			"path": "platforms/app-plus/feedback/feedback",
 			"style": {
-				"navigationBarTitleText": "屏幕亮度"
-			}
-		},
-		// #endif
-		// #ifndef H5 || MP-ALIPAY
-		{
-			"path": "pages/API/save-media/save-media",
-			"style": {
-				"navigationBarTitleText": "保存媒体到本地"
-			}
-		},
-		// #endif
-		// #ifdef APP-PLUS || MP-WEIXIN
-		{
-			"path": "pages/API/bluetooth/bluetooth",
-			"style": {
-				"navigationBarTitleText": "蓝牙"
-			}
-		},
-		{
-			"path": "pages/API/fingerprint/fingerprint",
-			"style": {
-				"navigationBarTitleText": "指纹"
-			}
-		},
-		{
-			"path": "pages/API/ibeacon/ibeacon",
-			"style": {
-				"navigationBarTitleText": "iBeacon"
-			}
-		},
-		// #endif
-		{
-			"path": "pages/API/vibrate/vibrate",
-			"style": {
-				"navigationBarTitleText": "震动"
+				"navigationBarTitleText": "问题反馈"
 			}
 		}
 	],
 	"subPackages": [{
-			"root": "pages/extUI",
-			"pages": [{
-					"path": "badge/badge",
-					"style": {
-						"navigationBarTitleText": "Badge 数字角标"
-					}
-				}, {
-					"path": "count-down/count-down",
-					"style": {
-						"navigationBarTitleText": "CountDown 倒计时"
-					}
-				}, {
-					"path": "drawer/drawer",
-					"style": {
-						"navigationBarTitleText": "Drawer 抽屉",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-									"text": "",
-									"fontSrc": "/static/uni.ttf",
-									"fontSize": "22px"
-								}]
-							},
-							"bounce": "none"
-						}
-					}
-				}, {
-					"path": "icon/icon",
-					"style": {
-						"navigationBarTitleText": "Icon 图标"
-					}
-				}, {
-					"path": "load-more/load-more",
-					"style": {
-						"navigationBarTitleText": "LoadMore 加载更多"
-					}
-				}, {
-					"path": "nav-bar/nav-bar",
-					"style": {
-						"navigationBarTitleText": "NavBar 导航栏",
-						"navigationStyle": "custom",
-						"enablePullDownRefresh": true,
-						"app-plus": {
-							"titleNView": false,
-							"bounce": "none",
-							"pullToRefresh": {
-								"style": "circle",
-								"offset": "70px"
-							}
-						}
-					}
-				}, {
-					"path": "number-box/number-box",
-					"style": {
-						"navigationBarTitleText": "NumberBox 数字输入框"
-					}
-				}, {
-					"path": "popup/popup",
-					"style": {
-						"navigationBarTitleText": "Popup 弹出层"
-					}
-				}, {
-					"path": "segmented-control/segmented-control",
-					"style": {
-						"navigationBarTitleText": "SegmentedControl 分段器"
-					}
-				}, {
-					"path": "tag/tag",
-					"style": {
-						"navigationBarTitleText": "Tag 标签"
-					}
-				}, {
-					"path": "list/list",
-					"style": {
-						"navigationBarTitleText": "List 列表"
-					}
-				}, {
-					"path": "card/card",
-					"style": {
-						"navigationBarTitleText": "Card 卡片"
-					}
-				},
-				// #ifdef H5 || APP-PLUS || MP-WEIXIN
-				{
-					"path": "collapse/collapse",
-					"style": {
-						"navigationBarTitleText": "Collapse 折叠面板"
-					}
-				},
-				// #endif
-				{
-					"path": "pagination/pagination",
-					"style": {
-						"navigationBarTitleText": "Pagination 分页器"
-					}
-				}, {
-					"path": "swiper-dot/swiper-dot",
-					"style": {
-						"navigationBarTitleText": "SwiperDot 轮播图指示点"
-					}
-				}, {
-					"path": "grid/grid",
-					"style": {
-						"navigationBarTitleText": "Grid 宫格"
-					}
-				}, {
-					"path": "rate/rate",
-					"style": {
-						"navigationBarTitleText": "Rate 评分"
-					}
-				}, {
-					"path": "steps/steps",
-					"style": {
-						"navigationBarTitleText": "Steps 步骤条"
-					}
-				}, {
-					"path": "notice-bar/notice-bar",
-					"style": {
-						"navigationBarTitleText": "NoticeBar 通告栏"
-					}
-				}, {
-					"path": "swipe-action/swipe-action",
-					"style": {
-						"navigationBarTitleText": "SwipeAction 滑动操作",
-						"disableScroll": true,
-						"app-plus": {
-							"bounce": "none"
-						}
-					}
-				}, {
-					"path": "calendar/calendar",
-					"style": {
-						"navigationBarTitleText": "Calendar 日历"
-					}
-				}, {
-					"path": "fab/fab",
-					"style": {
-						"navigationBarTitleText": "Fab 悬浮按钮"
-					}
-				}, {
-					"path": "indexed-list/indexed-list",
-					"style": {
-						"navigationBarTitleText": "IndexedList 索引列表",
-						"mp-weixin": {
-							"disableScroll": true
+		"root": "pages/extUI",
+		"pages": [{
+				"path": "badge/badge",
+				"style": {
+					"navigationBarTitleText": "Badge 数字角标"
+				}
+			}, {
+				"path": "count-down/count-down",
+				"style": {
+					"navigationBarTitleText": "CountDown 倒计时"
+				}
+			}, {
+				"path": "drawer/drawer",
+				"style": {
+					"navigationBarTitleText": "Drawer 抽屉",
+					"app-plus": {
+						"titleNView": {
+							"buttons": [{
+								"text": "",
+								"fontSrc": "/static/uni.ttf",
+								"fontSize": "22px"
+							}]
 						},
-						"app-plus": {
-							"bounce": "none"
-						},
-						"mp-alipay": {
-							"allowsBounceVertical": "NO"
+						"bounce": "none"
+					}
+				}
+			}, {
+				"path": "icon/icon",
+				"style": {
+					"navigationBarTitleText": "Icon 图标"
+				}
+			}, {
+				"path": "load-more/load-more",
+				"style": {
+					"navigationBarTitleText": "LoadMore 加载更多"
+				}
+			}, {
+				"path": "nav-bar/nav-bar",
+				"style": {
+					"navigationBarTitleText": "NavBar 导航栏",
+					"navigationStyle": "custom",
+					"enablePullDownRefresh": true,
+					"app-plus": {
+						"titleNView": false,
+						"bounce": "none",
+						"pullToRefresh": {
+							"style": "circle",
+							"offset": "70px"
 						}
 					}
 				}
-			]
-		},
-		{
-			"root": "pages/template",
-			"pages": [{
-					"path": "product-list/product-list",
-					"style": {
-						"navigationBarTitleText": "商品列表",
-						"enablePullDownRefresh": true,
-						"onReachBottomDistance": 20
+			}, {
+				"path": "number-box/number-box",
+				"style": {
+					"navigationBarTitleText": "NumberBox 数字输入框"
+				}
+			}, {
+				"path": "popup/popup",
+				"style": {
+					"navigationBarTitleText": "Popup 弹出层"
+				}
+			}, {
+				"path": "segmented-control/segmented-control",
+				"style": {
+					"navigationBarTitleText": "SegmentedControl 分段器"
+				}
+			}, {
+				"path": "tag/tag",
+				"style": {
+					"navigationBarTitleText": "Tag 标签"
+				}
+			}, {
+				"path": "list/list",
+				"style": {
+					"navigationBarTitleText": "List 列表"
+				}
+			}, {
+				"path": "card/card",
+				"style": {
+					"navigationBarTitleText": "Card 卡片"
+				}
+			},
+			// #ifdef H5 || APP-PLUS || MP-WEIXIN
+			{
+				"path": "collapse/collapse",
+				"style": {
+					"navigationBarTitleText": "Collapse 折叠面板"
+				}
+			},
+			// #endif
+			{
+				"path": "pagination/pagination",
+				"style": {
+					"navigationBarTitleText": "Pagination 分页器"
+				}
+			}, {
+				"path": "swiper-dot/swiper-dot",
+				"style": {
+					"navigationBarTitleText": "SwiperDot 轮播图指示点"
+				}
+			}, {
+				"path": "grid/grid",
+				"style": {
+					"navigationBarTitleText": "Grid 宫格"
+				}
+			}, {
+				"path": "rate/rate",
+				"style": {
+					"navigationBarTitleText": "Rate 评分"
+				}
+			}, {
+				"path": "steps/steps",
+				"style": {
+					"navigationBarTitleText": "Steps 步骤条"
+				}
+			}, {
+				"path": "notice-bar/notice-bar",
+				"style": {
+					"navigationBarTitleText": "NoticeBar 通告栏"
+				}
+			}, {
+				"path": "swipe-action/swipe-action",
+				"style": {
+					"navigationBarTitleText": "SwipeAction 滑动操作",
+					"disableScroll": true,
+					"app-plus": {
+						"bounce": "none"
 					}
-				},
-				// #ifdef APP-PLUS || MP-WEIXIN || H5
-				{
-					"path": "uparse-md/uparse-md",
-					"style": {
-						"navigationBarTitleText": "富文本渲染示例-markdown"
+				}
+			}, {
+				"path": "calendar/calendar",
+				"style": {
+					"navigationBarTitleText": "Calendar 日历"
+				}
+			}, {
+				"path": "fab/fab",
+				"style": {
+					"navigationBarTitleText": "Fab 悬浮按钮"
+				}
+			}, {
+				"path": "indexed-list/indexed-list",
+				"style": {
+					"navigationBarTitleText": "IndexedList 索引列表",
+					"mp-weixin": {
+						"disableScroll": true
+					},
+					"app-plus": {
+						"bounce": "none"
+					},
+					"mp-alipay": {
+						"allowsBounceVertical": "NO"
 					}
-				},
-				{
-					"path": "uparse-html/uparse-html",
-					"style": {
-						"navigationBarTitleText": "富文本渲染示例-html"
-					}
-				},
-				{
-					"path": "md-editor/md-editor",
-					"style": {
-						"navigationBarTitleText": "md富文本编辑器"
-					}
-				},
-				// #endif
-				// #ifndef MP-ALIPAY || MP-TOUTIAO
-				{
-					"path": "echarts/echarts",
-					"style": {
-						"navigationBarTitleText": "ECharts图表"
-					}
-				},
-				// #endif
-				// #ifdef APP-PLUS || H5 || MP-WEIXIN
-				{
-					"path": "gesture-lock/gesture-lock",
-					"style": {
-						"navigationBarTitleText": "手势图案锁屏"
-					}
-				},
-				// #endif
-				{
-					"path": "nav-default/nav-default",
-					"style": {
-						"navigationBarTitleText": "默认导航栏"
-					}
-				},
-				// #ifdef APP-PLUS || H5
-				{
-					"path": "nav-transparent/nav-transparent",
-					"style": {
-						"navigationBarTitleText": "透明渐变导航栏",
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent"
+				}
+			}
+		]
+	}, {
+		"root": "pages/API",
+		"pages": [
+			{
+				"path": "login/login",
+				"style": {
+					"navigationBarTitleText": "授权登录"
+				}
+			},
+			// #ifdef APP-PLUS
+			{
+				"path": "subnvue/subnvue",
+				"style": {
+					"navigationBarTitleText": "SubNvue",
+					"app-plus": {
+						"titleNView": false,
+						"subNVues": [{
+							"id": "drawer",
+							"path": "subnvue/subnvue/drawer",
+							"type": "popup",
+							"style": {
+								"width": "50%"
 							}
+						}, {
+							"id": "popup",
+							"path": "subnvue/subnvue/popup",
+							"type": "popup",
+							"style": {
+								"margin": "auto",
+								"width": "80%",
+								"height": "300px"
+							}
+						}, {
+							"id": "video_mask",
+							"path": "subnvue/subnvue/video-mask",
+							"style": {
+								"position": "absolute",
+								"bottom": "30px",
+								"left": "0",
+								"width": "230px",
+								"height": "110px",
+								"background": "transparent"
+							}
+						}, {
+							"id": "nav",
+							"path": "subnvue/subnvue/nav",
+							"type": "navigationBar"
+						}]
+					}
+				}
+			},
+			// #endif
+			{
+				"path": "get-user-info/get-user-info",
+				"style": {
+					"navigationBarTitleText": "获取用户信息"
+				}
+			},
+			{
+				"path": "request-payment/request-payment",
+				"style": {
+					"navigationBarTitleText": "发起支付"
+				}
+			},
+			{
+				"path": "share/share",
+				"style": {
+					"navigationBarTitleText": "分享"
+				}
+			},
+			{
+				"path": "set-navigation-bar-title/set-navigation-bar-title",
+				"style": {
+					"navigationBarTitleText": "设置界面标题"
+				}
+			},
+			{
+				"path": "show-loading/show-loading",
+				"style": {
+					"navigationBarTitleText": "加载提示框"
+				}
+			},
+			{
+				"path": "navigator/navigator",
+				"style": {
+					"navigationBarTitleText": "页面跳转"
+				}
+			},
+			{
+				"path": "navigator/new-page/new-page",
+				"style": {
+					"navigationBarTitleText": "新页面"
+				}
+			},
+			{
+				"path": "pull-down-refresh/pull-down-refresh",
+				"style": {
+					"navigationBarTitleText": "下拉刷新",
+					"enablePullDownRefresh": true
+				}
+			},
+			// #ifndef H5
+			{
+				"path": "animation/animation",
+				"style": {
+					"navigationBarTitleText": "创建动画"
+				}
+			},
+			// #endif
+			{
+				"path": "get-node-info/get-node-info",
+				"style": {
+					"navigationBarTitleText": "节点信息"
+				}
+			},
+			// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
+			{
+				"path": "intersection-observer/intersection-observer",
+				"style": {
+					"navigationBarTitleText": "节点布局相交状态"
+				}
+			},
+			// #endif
+			{
+				"path": "canvas/canvas",
+				"style": {
+					"navigationBarTitleText": "创建绘画"
+				}
+			},
+			{
+				"path": "action-sheet/action-sheet",
+				"style": {
+					"navigationBarTitleText": "操作菜单"
+				}
+			},
+			{
+				"path": "modal/modal",
+				"style": {
+					"navigationBarTitleText": "模态弹窗"
+				}
+			},
+			{
+				"path": "toast/toast",
+				"style": {
+					"navigationBarTitleText": "消息提示框"
+				}
+			},
+			{
+				"path": "get-network-type/get-network-type",
+				"style": {
+					"navigationBarTitleText": "获取手机网络状态"
+				}
+			},
+			{
+				"path": "get-system-info/get-system-info",
+				"style": {
+					"navigationBarTitleText": "获取手机系统信息"
+				}
+			},
+			{
+				"path": "add-phone-contact/add-phone-contact",
+				"style": {
+					"navigationBarTitleText": "添加手机联系人"
+				}
+			},
+			{
+				"path": "on-accelerometer-change/on-accelerometer-change",
+				"style": {
+					"navigationBarTitleText": "监听加速度计数据"
+				}
+			},
+			{
+				"path": "on-compass-change/on-compass-change",
+				"style": {
+					"navigationBarTitleText": "监听罗盘数据"
+				}
+			},
+			{
+				"path": "make-phone-call/make-phone-call",
+				"style": {
+					"navigationBarTitleText": "打电话"
+				}
+			},
+			{
+				"path": "scan-code/scan-code",
+				"style": {
+					"navigationBarTitleText": "扫码"
+				}
+			},
+			{
+				"path": "clipboard/clipboard",
+				"style": {
+					"navigationBarTitleText": "剪贴板"
+				}
+			},
+			{
+				"path": "request/request",
+				"style": {
+					"navigationBarTitleText": "网络请求"
+				}
+			},
+			{
+				"path": "upload-file/upload-file",
+				"style": {
+					"navigationBarTitleText": "上传文件"
+				}
+			},
+			{
+				"path": "download-file/download-file",
+				"style": {
+					"navigationBarTitleText": "下载文件"
+				}
+			},
+			{
+				"path": "image/image",
+				"style": {
+					"navigationBarTitleText": "图片"
+				}
+			},
+			{
+				"path": "voice/voice",
+				"style": {
+					"navigationBarTitleText": "录音"
+				}
+			},
+			{
+				"path": "background-audio/background-audio",
+				"style": {
+					"navigationBarTitleText": "背景音频"
+				}
+			},
+			{
+				"path": "video/video",
+				"style": {
+					"navigationBarTitleText": "视频"
+				}
+			},
+			{
+				"path": "file/file",
+				"style": {
+					"navigationBarTitleText": "文件"
+				}
+			},
+			{
+				"path": "get-location/get-location",
+				"style": {
+					"navigationBarTitleText": "获取位置"
+				}
+			},
+			{
+				"path": "open-location/open-location",
+				"style": {
+					"navigationBarTitleText": "查看位置"
+				}
+			},
+			// #ifndef MP-TOUTIAO
+			{
+				"path": "choose-location/choose-location",
+				"style": {
+					"navigationBarTitleText": "使用地图选择位置"
+				}
+			},
+			// #endif
+			{
+				"path": "storage/storage",
+				"style": {
+					"navigationBarTitleText": "数据存储"
+				}
+			},
+			{
+				"path": "sqlite/sqlite",
+				"style": {
+					"navigationBarTitleText": "SQLite"
+				}
+			},
+			// #ifndef H5 
+			{
+				"path": "brightness/brightness",
+				"style": {
+					"navigationBarTitleText": "屏幕亮度"
+				}
+			},
+			// #endif
+			// #ifndef H5 || MP-ALIPAY
+			{
+				"path": "save-media/save-media",
+				"style": {
+					"navigationBarTitleText": "保存媒体到本地"
+				}
+			},
+			// #endif
+			// #ifdef APP-PLUS || MP-WEIXIN
+			{
+				"path": "bluetooth/bluetooth",
+				"style": {
+					"navigationBarTitleText": "蓝牙"
+				}
+			},
+			{
+				"path": "fingerprint/fingerprint",
+				"style": {
+					"navigationBarTitleText": "指纹"
+				}
+			},
+			{
+				"path": "ibeacon/ibeacon",
+				"style": {
+					"navigationBarTitleText": "iBeacon"
+				}
+			},
+			// #endif
+			{
+				"path": "vibrate/vibrate",
+				"style": {
+					"navigationBarTitleText": "震动"
+				}
+			}
+		]
+	}, {
+		"root": "pages/template",
+		"pages": [{
+				"path": "product-list/product-list",
+				"style": {
+					"navigationBarTitleText": "商品列表",
+					"enablePullDownRefresh": true,
+					"onReachBottomDistance": 20
+				}
+			},
+			// #ifdef APP-PLUS || MP-WEIXIN || H5
+			{
+				"path": "uparse-md/uparse-md",
+				"style": {
+					"navigationBarTitleText": "富文本渲染示例-markdown"
+				}
+			},
+			{
+				"path": "uparse-html/uparse-html",
+				"style": {
+					"navigationBarTitleText": "富文本渲染示例-html"
+				}
+			},
+			{
+				"path": "md-editor/md-editor",
+				"style": {
+					"navigationBarTitleText": "md富文本编辑器"
+				}
+			},
+			// #endif
+			// #ifndef MP-ALIPAY || MP-TOUTIAO
+			{
+				"path": "echarts/echarts",
+				"style": {
+					"navigationBarTitleText": "ECharts图表"
+				}
+			},
+			// #endif
+			// #ifdef APP-PLUS || H5 || MP-WEIXIN
+			{
+				"path": "gesture-lock/gesture-lock",
+				"style": {
+					"navigationBarTitleText": "手势图案锁屏"
+				}
+			},
+			// #endif
+			{
+				"path": "nav-default/nav-default",
+				"style": {
+					"navigationBarTitleText": "默认导航栏"
+				}
+			},
+			// #ifdef APP-PLUS || H5
+			{
+				"path": "nav-transparent/nav-transparent",
+				"style": {
+					"navigationBarTitleText": "透明渐变导航栏",
+					"app-plus": {
+						"titleNView": {
+							"type": "transparent"
 						}
 					}
-				},
-				{
-					"path": "nav-button/nav-button",
-					"style": {
-						"navigationBarTitleText": "导航栏带自定义按钮",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-										"type": "share"
-									},
-									{
-										"type": "favorite"
-									}
-								]
-							}
-						}
-					}
-				},
-				// #endif
-				// #ifdef APP-PLUS
-				{
-					"path": "nav-image/nav-image",
-					"style": {
-						"app-plus": {
-							"titleNView": {
-								"titleText": "",
-								"tags": [{
-									"tag": "img",
-									"src": "/static/nav.png",
-									"position": {
-										"left": "auto",
-										"top": "auto",
-										"width": "110px",
-										"height": "26px"
-									}
-								}]
-							}
-						}
-					}
-				},
-				// #endif
-				// #ifdef APP-PLUS || H5
-				{
-					"path": "nav-city-dropdown/nav-city-dropdown",
-					"style": {
-						"navigationBarTitleText": "导航栏带城市选择",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-									"text": "北京市",
-									"fontSize": "14",
-									"select": true,
-									"width": "auto"
-								}]
-							}
-						}
-					}
-				},
-				{
-					"path": "nav-dot/nav-dot",
-					"style": {
-						"navigationBarTitleText": "导航栏带红点和角标",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-										"text": "消息",
-										"fontSize": "14",
-										"redDot": true
-									},
-									{
-										"text": "关注",
-										"fontSize": "14",
-										"badgeText": "12"
-									}
-								]
-							}
-						}
-					}
-				},
-				{
-					"path": "nav-search-input/nav-search-input",
-					"style": {
-						"navigationBarTitleText": "导航栏带搜索框",
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent",
-								"titleColor": "#fff",
-								"backgroundColor": "#007AFF",
-								"buttons": [{
-									"fontSrc": "/static/uni.ttf",
-									"text": "\ue537",
-									"width": "40px",
-									"fontSize": "28px",
-									"color": "#fff",
-									"background": "rgba(0,0,0,0)"
-								}],
-								"searchInput": {
-									"backgroundColor": "#fff",
-									"borderRadius": "6px",
-									"placeholder": "请输入地址 如：大钟寺",
-									"disabled": true
-								}
-							}
-						}
-					}
-				},
-				{
-					"path": "nav-search-input/detail/detail",
-					"style": {
-						"navigationBarTitleText": "搜索",
-						"app-plus": {
-							"titleNView": {
-								"titleColor": "#fff",
-								"backgroundColor": "#007AFF",
-								"buttons": [{
-									"fontSrc": "/static/uni.ttf",
-									"text": "\ue537",
-									"width": "auto",
-									"fontSize": "28px",
-									"color": "#fff"
-								}],
-								"searchInput": {
-									"backgroundColor": "#fff",
-									"borderRadius": "6px",
-									"placeholder": "请输入地址 如：大钟寺",
-									"autoFocus": true
-								}
-							}
-						}
-					}
-				},
-				// #endif
-				{
-					"path": "mpvue-picker/mpvue-picker",
-					"style": {
-						"navigationBarTitleText": "多列选择picker"
-					}
-				},
-				{
-					"path": "left-category/left-category",
-					"style": {
-						"navigationBarTitleText": "侧边分类导航"
-					}
-				},
-				{
-					"path": "list-triplex-row/list-triplex-row",
-					"style": {
-						"navigationBarTitleText": "三行列表"
-					}
-				},
-				{
-					"path": "list2detail-list/list2detail-list",
-					"style": {
-						"navigationBarTitleText": "列表到详情示例",
-						"enablePullDownRefresh": true
-					}
-				},
-				{
-					"path": "list2detail-detail/list2detail-detail",
-					"style": {
-						"navigationBarTitleText": "详情",
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent",
-								"buttons": [{
+				}
+			},
+			{
+				"path": "nav-button/nav-button",
+				"style": {
+					"navigationBarTitleText": "导航栏带自定义按钮",
+					"app-plus": {
+						"titleNView": {
+							"buttons": [{
 									"type": "share"
-								}]
-							}
-						},
-						"h5": {
-							"titleNView": {
-								"type": "transparent",
-								"buttons": []
-							}
-						}
-					}
-				},
-				{
-					"path": "tabbar/tabbar",
-					"style": {
-						"navigationBarTitleText": "可拖动顶部选项卡",
-						"app-plus": {
-							"titleNView": {
-								"titleText": "可拖动顶部选项卡（非原生）"
-							}
-						},
-						"h5": {
-							"titleNView": {
-								"titleText": "可拖动顶部选项卡"
-							}
-						}
-					}
-				},
-				// #ifdef APP-PLUS
-				{
-					"path": "tabbar-native/tabbar-native",
-					"style": {
-						"navigationBarTitleText": "可拖动顶部选项卡（原生）"
-					}
-				},
-				// #endif
-				{
-					"path": "tabbar/detail/detail",
-					"style": {
-						"navigationBarTitleText": "详情页面"
-					}
-				},
-				{
-					"path": "media-list/media-list",
-					"style": {
-						"navigationBarTitleText": "图文列表"
-					}
-				},
-				{
-					"path": "lazy-load/lazy-load",
-					"style": {
-						"navigationBarTitleText": "懒加载"
-					}
-				},
-				{
-					"path": "lazy-load-custom/lazy-load-custom",
-					"style": {
-						"navigationBarTitleText": "懒加载"
-					}
-				},
-				{
-					"path": "scheme/scheme",
-					"style": {
-						"navigationBarTitleText": "打开外部应用"
-					}
-				},
-				{
-					"path": "im-chat/im-chat",
-					"style": {
-						"navigationBarTitleText": "聊天窗口chat",
-						"app-plus": {
-							"softinputMode": "adjustResize",
-							"softinputNavBar": "none"
-						}
-					}
-				},
-				{
-					"path": "scrollmsg/scrollmsg",
-					"style": {
-						"navigationBarTitleText": "滚动公告"
-					}
-				},
-				{
-					"path": "comments/comments",
-					"style": {
-						"navigationBarTitleText": "评论界面"
-					}
-				},
-				{
-					"path": "timeline/timeline",
-					"style": {
-						"navigationBarTitleText": "时间轴 timeline"
-					}
-				},
-				{
-					"path": "datachecker/datachecker",
-					"style": {
-						"navigationBarTitleText": "表单校验"
-					}
-				}
-				// #ifdef APP-PLUS || MP-WEIXIN
-				, {
-					"path": "vant-button/vant-button",
-					"style": {
-						"navigationBarTitleText": "微信自定义组件示例",
-						"usingComponents": {
-							"van-button": "/wxcomponents/vant/button/index"
+								},
+								{
+									"type": "favorite"
+								}
+							]
 						}
 					}
 				}
-				// #endif
-			]
-		}
-	],
+			},
+			// #endif
+			// #ifdef APP-PLUS
+			{
+				"path": "nav-image/nav-image",
+				"style": {
+					"app-plus": {
+						"titleNView": {
+							"titleText": "",
+							"tags": [{
+								"tag": "img",
+								"src": "/static/nav.png",
+								"position": {
+									"left": "auto",
+									"top": "auto",
+									"width": "110px",
+									"height": "26px"
+								}
+							}]
+						}
+					}
+				}
+			},
+			// #endif
+			// #ifdef APP-PLUS || H5
+			{
+				"path": "nav-city-dropdown/nav-city-dropdown",
+				"style": {
+					"navigationBarTitleText": "导航栏带城市选择",
+					"app-plus": {
+						"titleNView": {
+							"buttons": [{
+								"text": "北京市",
+								"fontSize": "14",
+								"select": true,
+								"width": "auto"
+							}]
+						}
+					}
+				}
+			},
+			{
+				"path": "nav-dot/nav-dot",
+				"style": {
+					"navigationBarTitleText": "导航栏带红点和角标",
+					"app-plus": {
+						"titleNView": {
+							"buttons": [{
+									"text": "消息",
+									"fontSize": "14",
+									"redDot": true
+								},
+								{
+									"text": "关注",
+									"fontSize": "14",
+									"badgeText": "12"
+								}
+							]
+						}
+					}
+				}
+			},
+			{
+				"path": "nav-search-input/nav-search-input",
+				"style": {
+					"navigationBarTitleText": "导航栏带搜索框",
+					"app-plus": {
+						"titleNView": {
+							"type": "transparent",
+							"titleColor": "#fff",
+							"backgroundColor": "#007AFF",
+							"buttons": [{
+								"fontSrc": "/static/uni.ttf",
+								"text": "\ue537",
+								"width": "40px",
+								"fontSize": "28px",
+								"color": "#fff",
+								"background": "rgba(0,0,0,0)"
+							}],
+							"searchInput": {
+								"backgroundColor": "#fff",
+								"borderRadius": "6px",
+								"placeholder": "请输入地址 如：大钟寺",
+								"disabled": true
+							}
+						}
+					}
+				}
+			},
+			{
+				"path": "nav-search-input/detail/detail",
+				"style": {
+					"navigationBarTitleText": "搜索",
+					"app-plus": {
+						"titleNView": {
+							"titleColor": "#fff",
+							"backgroundColor": "#007AFF",
+							"buttons": [{
+								"fontSrc": "/static/uni.ttf",
+								"text": "\ue537",
+								"width": "auto",
+								"fontSize": "28px",
+								"color": "#fff"
+							}],
+							"searchInput": {
+								"backgroundColor": "#fff",
+								"borderRadius": "6px",
+								"placeholder": "请输入地址 如：大钟寺",
+								"autoFocus": true
+							}
+						}
+					}
+				}
+			},
+			// #endif
+			{
+				"path": "mpvue-picker/mpvue-picker",
+				"style": {
+					"navigationBarTitleText": "多列选择picker"
+				}
+			},
+			{
+				"path": "left-category/left-category",
+				"style": {
+					"navigationBarTitleText": "侧边分类导航"
+				}
+			},
+			{
+				"path": "list-triplex-row/list-triplex-row",
+				"style": {
+					"navigationBarTitleText": "三行列表"
+				}
+			},
+			{
+				"path": "list2detail-list/list2detail-list",
+				"style": {
+					"navigationBarTitleText": "列表到详情示例",
+					"enablePullDownRefresh": true
+				}
+			},
+			{
+				"path": "list2detail-detail/list2detail-detail",
+				"style": {
+					"navigationBarTitleText": "详情",
+					"app-plus": {
+						"titleNView": {
+							"type": "transparent",
+							"buttons": [{
+								"type": "share"
+							}]
+						}
+					},
+					"h5": {
+						"titleNView": {
+							"type": "transparent",
+							"buttons": []
+						}
+					}
+				}
+			},
+			{
+				"path": "tabbar/tabbar",
+				"style": {
+					"navigationBarTitleText": "可拖动顶部选项卡",
+					"app-plus": {
+						"titleNView": {
+							"titleText": "可拖动顶部选项卡（非原生）"
+						}
+					},
+					"h5": {
+						"titleNView": {
+							"titleText": "可拖动顶部选项卡"
+						}
+					}
+				}
+			},
+			// #ifdef APP-PLUS
+			{
+				"path": "tabbar-native/tabbar-native",
+				"style": {
+					"navigationBarTitleText": "可拖动顶部选项卡（原生）"
+				}
+			},
+			// #endif
+			{
+				"path": "tabbar/detail/detail",
+				"style": {
+					"navigationBarTitleText": "详情页面"
+				}
+			},
+			{
+				"path": "media-list/media-list",
+				"style": {
+					"navigationBarTitleText": "图文列表"
+				}
+			},
+			{
+				"path": "lazy-load/lazy-load",
+				"style": {
+					"navigationBarTitleText": "懒加载"
+				}
+			},
+			{
+				"path": "lazy-load-custom/lazy-load-custom",
+				"style": {
+					"navigationBarTitleText": "懒加载"
+				}
+			},
+			{
+				"path": "scheme/scheme",
+				"style": {
+					"navigationBarTitleText": "打开外部应用"
+				}
+			},
+			{
+				"path": "im-chat/im-chat",
+				"style": {
+					"navigationBarTitleText": "聊天窗口chat",
+					"app-plus": {
+						"softinputMode": "adjustResize",
+						"softinputNavBar": "none"
+					}
+				}
+			},
+			{
+				"path": "scrollmsg/scrollmsg",
+				"style": {
+					"navigationBarTitleText": "滚动公告"
+				}
+			},
+			{
+				"path": "comments/comments",
+				"style": {
+					"navigationBarTitleText": "评论界面"
+				}
+			},
+			{
+				"path": "timeline/timeline",
+				"style": {
+					"navigationBarTitleText": "时间轴 timeline"
+				}
+			},
+			// #ifdef APP-PLUS || MP-WEIXIN
+			{
+				"path": "vant-button/vant-button",
+				"style": {
+					"navigationBarTitleText": "微信自定义组件示例",
+					"usingComponents": {
+						"van-button": "/wxcomponents/vant/button/index"
+					}
+				}
+			},
+			// #endif
+			{
+				"path": "datachecker/datachecker",
+				"style": {
+					"navigationBarTitleText": "表单校验"
+				}
+			}
+
+		]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "Hello uniapp",
