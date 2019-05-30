@@ -15,6 +15,17 @@
 				</view>
 			</view>
 		</view>
+		<!-- #ifdef APP-PLUS || MP-WEIXIN -->
+		<view class="uni-title uni-common-mt uni-common-pl">摄像头位置</view>
+		<view class="uni-hello-text">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
+		<view class="uni-list">
+			<radio-group @change="radioChange">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in cameraList" :key="item.value">
+					<radio :value="item.value" :checked="index === cameraIndex">{{item.name}}</radio>
+				</label>
+			</radio-group>
+		</view>
+		<!-- #endif -->
 		<template v-if="!src">
 			<view class="uni-hello-addfile" @tap="chooseVideo">+ 添加视频</view>
 		</template>
@@ -35,20 +46,40 @@
 				title: 'chooseVideo',
 				sourceTypeIndex: 2,
 				sourceType: ['拍摄', '相册', '拍摄或相册'],
-				src: ''
+				src: '',
+				cameraList: [{
+						value: 'back',
+						name: '后置摄像头',
+						checked: 'true'
+					},
+					{
+						value: 'front',
+						name: '前置摄像头'
+					},
+				],
+				cameraIndex: 0
 			}
 		},
-		onUnload(){
+		onUnload() {
 			this.src = '',
-			this.sourceTypeIndex = 2,
-			this.sourceType=['拍摄', '相册', '拍摄或相册'];
+				this.sourceTypeIndex = 2,
+				this.sourceType = ['拍摄', '相册', '拍摄或相册'];
 		},
 		methods: {
-			sourceTypeChange: function (e) {
+			radioChange(evt) {
+				for (let i = 0; i < this.cameraList.length; i++) {
+					if (this.cameraList[i].value === evt.target.value) {
+						this.cameraIndex = i;
+						break;
+					}
+				}
+			},
+			sourceTypeChange: function(e) {
 				this.sourceTypeIndex = e.target.value
 			},
-			chooseVideo: function () {
+			chooseVideo: function() {
 				uni.chooseVideo({
+					camera: this.cameraList[this.cameraIndex].value,
 					sourceType: sourceType[this.sourceTypeIndex],
 					success: (res) => {
 						this.src = res.tempFilePath
@@ -60,5 +91,7 @@
 </script>
 
 <style>
-	.video{width:100%;}
+	.video {
+		width: 100%;
+	}
 </style>
