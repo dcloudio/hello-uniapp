@@ -103,7 +103,7 @@ export default {
 						name: '页面跳转',
 						url: 'navigator'
 					},
-					//#ifndef MP-ALIPAY || MP-TOUTIAO
+					//#ifndef MP-TOUTIAO
 					{
 						name: '设置TabBar',
 						url: 'set-tabbar'

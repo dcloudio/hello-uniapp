@@ -9,7 +9,7 @@
 				<button type="primary" :disabled="!isStarted" @click="stopBeaconDiscovery">停止搜索附近的iBeacon设备</button>
 			</view>
 		</view>
-		<scroll-view class="uni-scroll_box" scroll-y @touchmove.stop.prevent="moveHandle" @click.stop="moveHandle">
+		<scroll-view class="uni-scroll_box">
 			<view class="uni-title" v-if="isStarted || deviceList.length > 0">已经发现 {{ deviceList.length }} 台设备:</view>
 			<view class="uni-list-box" v-for="(item, index) in deviceList" :key="item.uuid">
 				<view>
@@ -25,8 +25,7 @@
 	</view>
 </template>
 <script>
-	// 必须符合 UUID 格式
-	const DEVICE_UUID = 'A1B85ED2-D76F-4AE4-8F5D-6CCF53E4E228';
+	const DEVICE_UUID_WEICHAT = 'FDA50693-A4E2-4FB1-AFCF-C6EB07647825';
 	export default {
 		data() {
 			return {
@@ -73,14 +72,14 @@
 				});
 			},
 			onBeaconUpdate() {
-				plus.ibeacon.onBeaconUpdate(res => {
+				uni.onBeaconUpdate(res => {
 					if (!this.isPageOpened || !this.isOpen || !this.isStarted) {
 						return;
 					}
-					if (res.code !== 0) {
-						console.log(res);
-						return;
-					}
+					console.log(res);
+					// if (res.code !== 0) {
+					// 	return;
+					// }
 					if (res.beacons && res.beacons.length > 0) {
 						this.getBeacons();
 					} else if (!res.connected) {
@@ -89,8 +88,8 @@
 				});
 			},
 			startBeaconDiscovery() {
-				plus.ibeacon.startBeaconDiscovery({
-					uuids: [],
+				uni.startBeaconDiscovery({
+					uuids: this.getUUIDList(),
 					success: (res) => {
 						this.isStarted = true;
 						console.log(res);
@@ -125,6 +124,23 @@
 						}
 					}
 				});
+			},
+			getUUIDList() {
+				// #ifdef APP-PLUS
+				const sysInfo = uni.getSystemInfoSync();
+				if (!sysInfo) {
+					return [];
+				}
+				let isIOS = sysInfo.platform ? (sysInfo.platform.toLowerCase() === "ios") : false;
+				if (isIOS) {
+					return [DEVICE_UUID_WEICHAT];
+				}
+				return [];
+				// #endif
+
+				// #ifndef APP-PLUS
+				return [DEVICE_UUID_WEICHAT];
+				// #endif
 			}
 		},
 		onUnload() {

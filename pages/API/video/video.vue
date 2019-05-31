@@ -17,7 +17,7 @@
 		</view>
 		<!-- #ifdef APP-PLUS || MP-WEIXIN -->
 		<view class="uni-title uni-common-mt uni-common-pl">摄像头位置</view>
-		<view class="uni-hello-text">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
+		<view class="uni-hello-text camera-tips">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
 				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in cameraList" :key="item.value">
@@ -93,5 +93,9 @@
 <style>
 	.video {
 		width: 100%;
+	}
+
+	.camera-tips {
+		padding: 10upx 30upx;
 	}
 </style>
