@@ -72,6 +72,12 @@
 				this.$emit('unmount')
 			},
 			setTabBarBadge() {
+				if(this.hasShownTabBarRedDot){
+					uni.hideTabBarRedDot({
+						index: 1
+					})
+					this.hasShownTabBarRedDot = !this.hasShownTabBarRedDot
+				}
 				if (!this.hasSetTabBarBadge) {
 					uni.setTabBarBadge({
 						index: 1,
@@ -85,6 +91,12 @@
 				this.hasSetTabBarBadge = !this.hasSetTabBarBadge
 			},
 			showTabBarRedDot() {
+				if(this.hasSetTabBarBadge) {
+					uni.removeTabBarBadge({
+						index: 1
+					})
+					this.hasSetTabBarBadge = !this.hasSetTabBarBadge
+				}
 				if (!this.hasShownTabBarRedDot) {
 					uni.showTabBarRedDot({
 						index: 1
