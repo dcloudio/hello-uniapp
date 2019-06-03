@@ -1,23 +1,23 @@
 <template>
 	<view class="uni-padding-wrap">
 		<page-head :title="title"></page-head>
-		<button @click="setTabBarBadge">
+		<button class="button" @click="setTabBarBadge">
 			{{ !hasSetTabBarBadge ? '设置tab徽标' : '移除tab徽标' }}
 		</button>
-		<button @click="showTabBarRedDot">
+		<button class="button" @click="showTabBarRedDot">
 			{{ !hasShownTabBarRedDot ?  '显示红点' : '移除红点'}}
 		</button>
-		<button @click="customStyle">
+		<button class="button" @click="customStyle">
 			{{ !hasCustomedStyle ? '自定义Tab样式' : '移除自定义样式'}}
 		</button>
-		<button @click="customItem">
+		<button class="button" @click="customItem">
 			{{ !hasCustomedItem ? '自定义Tab信息' : '移除自定义信息' }}
 		</button>
-		<button @click="hideTabBar">
+		<button class="button" @click="hideTabBar">
 			{{ !hasHiddenTabBar ? '隐藏TabBar' : '显示TabBar' }}
 		</button>
 		<view class="btn-area">
-			<button type="primary" @click="navigateBack">返回上一级</button>
+			<button class="button" type="primary" @click="navigateBack">返回上一级</button>
 		</view>
 	</view>
 </template>
@@ -154,7 +154,7 @@
 </script>
 
 <style>
-	button {
+	.button {
 		margin-top: 30upx;
 	}
 
