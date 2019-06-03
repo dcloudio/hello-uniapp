@@ -64,7 +64,7 @@
 			},
 			closeBluetoothAdapter(OBJECT) {
 				this.stopBeaconDiscovery();
-				uni.closeBluetoothAdapter({
+				wx.closeBluetoothAdapter({
 					success: (res) => {
 						this.isOpen = false;
 						console.log('断开蓝牙模块成功');
@@ -100,14 +100,16 @@
 				});
 			},
 			stopBeaconDiscovery(types) {
-				uni.stopBeaconDiscovery({
-					success: (res) => {
-						this.isStarted = false;
-					},
-					fail: (err) => {
-						console.error(err);
-					}
-				});
+				if(this.isStarted) {
+					uni.stopBeaconDiscovery({
+						success: (res) => {
+							this.isStarted = false;
+						},
+						fail: (err) => {
+							console.error(err);
+						}
+					});
+				}
 			},
 			getBeacons() {
 				uni.getBeacons({
