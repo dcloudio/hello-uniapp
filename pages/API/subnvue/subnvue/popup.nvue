@@ -37,6 +37,9 @@
 				vm.content = data.content;
 			})
 		},
+		beforeDestroy() {
+			uni.$off('drawer-page')
+		},
 		methods: {
 			sendMessage() {
 				const subNVue = uni.getCurrentSubNVue()

@@ -45,7 +45,8 @@
 				}
 			})
 		},
-		beforeDestory(){
+		beforeDestroy(){
+			uni.$off('play-video')
 			this.closeItem()
 		},
 		methods: {

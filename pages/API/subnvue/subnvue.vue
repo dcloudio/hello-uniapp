@@ -55,6 +55,10 @@
 				});
 			})
 		},
+		onUnload() {
+			uni.$off('popup-page')
+			uni.$off('drawer-page')
+		},
 		onReady() {
 			this.showVideo = true
 		},
