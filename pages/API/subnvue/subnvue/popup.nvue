@@ -33,7 +33,6 @@
 				this.lists.push('item' + i);
 			}
 			uni.$on('page-popup', (data) => {
-				console.log('sss');
 				vm.title = data.title;
 				vm.content = data.content;
 			})
