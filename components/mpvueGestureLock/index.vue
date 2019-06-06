@@ -9,11 +9,11 @@
 		</view>
 		<view>
 			<!-- 已激活锁之间的线段 -->
-			<view v-for="(item,i) in lineArray" :key="i" class="line" :style="{left:item.activeLeft,top:item.activeTop,width:item.activeWidth,transform:'rotate('+item.activeRotate+')'}">
+			<view v-for="(item,i) in lineArray" :key="i" class="line" :style="{left:item.activeLeft,top:item.activeTop,width:item.activeWidth,'-webkit-transform':'rotate('+item.activeRotate+')',transform:'rotate('+item.activeRotate+')'}">
 			</view>
 		</view>
 		<!-- 最后一个激活的锁与当前位置之间的线段 -->
-		<view class="line" :style="{left:activeLine.activeLeft,top:activeLine.activeTop,width:activeLine.activeWidth,transform:'rotate('+activeLine.activeRotate+')'}">
+		<view class="line" :style="{left:activeLine.activeLeft,top:activeLine.activeTop,width:activeLine.activeWidth,'-webkit-transform':'rotate('+activeLine.activeRotate+')',transform:'rotate('+activeLine.activeRotate+')'}">
 		</view>
 	</view>
 </template>
