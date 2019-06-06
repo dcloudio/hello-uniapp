@@ -27,16 +27,18 @@
 			</uni-popup>
 			<button type="button" data-position="bottom" @click="togglePopup('bottom-share')">底部弹出（分享界面）</button>
 			<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
-				<view class="bottom-title">分享到</view>
-				<view class="bottom-content">
-					<view v-for="(item, index) in bottomData" :key="index" class="bottom-content-box">
-						<view :class="item.name" class="bottom-content-image">
-							<text class="icon">{{ item.icon }}</text>
+				<view style="display: block;">
+					<view class="bottom-title">分享到</view>
+					<view class="bottom-content">
+						<view v-for="(item, index) in bottomData" :key="index" class="bottom-content-box">
+							<view :class="item.name" class="bottom-content-image">
+								<text class="icon">{{ item.icon }}</text>
+							</view>
+							<view class="bottom-content-text">{{ item.text }}</view>
 						</view>
-						<view class="bottom-content-text">{{ item.text }}</view>
 					</view>
+					<view class="bottom-btn" @click="togglePopup('')">取消分享</view>
 				</view>
-				<view class="bottom-btn" @click="togglePopup('')">取消分享</view>
 			</uni-popup>
 		</view>
 	</view>
