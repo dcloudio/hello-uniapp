@@ -116,12 +116,10 @@
 						name: '时间轴 timeline',
 						url: 'timeline'
 					},
-					// #ifndef MP-ALIPAY || MP-TOUTIAO
 					{
-						name: 'ECharts 图表',
-						url: 'echarts'
+						name: 'uCharts 图表',
+						url: 'ucharts'
 					},
-					// #endif
 					// #ifdef APP-PLUS || H5 || MP-WEIXIN
 					{
 						name: '手势图案锁屏',

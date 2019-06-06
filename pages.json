@@ -800,14 +800,12 @@
 				}
 			},
 			// #endif
-			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			{
-				"path": "echarts/echarts",
+				"path": "ucharts/ucharts",
 				"style": {
-					"navigationBarTitleText": "ECharts图表"
+					"navigationBarTitleText": "uCharts 图表"
 				}
 			},
-			// #endif
 			// #ifdef APP-PLUS || H5 || MP-WEIXIN
 			{
 				"path": "gesture-lock/gesture-lock",
