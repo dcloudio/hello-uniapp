@@ -149,10 +149,6 @@
 							url: 'uparse-html'
 						}]
 					},
-					{
-						name: 'markdown 富文本编辑器',
-						url: 'md-editor'
-					},
 					// #endif
 					{
 						name: '侧边分类导航',

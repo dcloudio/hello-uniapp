@@ -799,12 +799,6 @@
 					"navigationBarTitleText": "富文本渲染示例-html"
 				}
 			},
-			{
-				"path": "md-editor/md-editor",
-				"style": {
-					"navigationBarTitleText": "md富文本编辑器"
-				}
-			},
 			// #endif
 			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			{
