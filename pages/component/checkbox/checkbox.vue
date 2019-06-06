@@ -83,7 +83,7 @@
 					values = e.detail.value;
 				for (var i = 0, lenI = items.length; i < lenI; ++i) {
 					const item = items[i]
-					if(values.includes(item.value)){
+					if(values.indexOf(item.value) >= 0){
 						this.$set(item,'checked',true)
 					}else{
 						this.$set(item,'checked',false)
