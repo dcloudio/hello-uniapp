@@ -62,7 +62,7 @@
 					<view class="text" style="flex: 1;">自动占满</view>
 					<view class="text" style="width: 200upx;">固定宽度</view>
 				</view>
-				<view class="uni-flex uni-row" style="flex-wrap: wrap;">
+				<view class="uni-flex uni-row" style="-webkit-flex-wrap: wrap;flex-wrap: wrap;">
 					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
 					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
 					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
