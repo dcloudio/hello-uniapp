@@ -86,7 +86,7 @@
 				<text>\nflex布局演示</text>
 			</view>
 			<view class="uni-flex uni-row">
-				<view class="text" style="width: 200upx;height: 220upx;display: -webkit-flex;display: flex; -webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
+				<view class="text uni-flex" style="width: 200upx;height: 220upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
 					<image src="../../../static/plus.png" style="width: 150upx;height: 150upx;"></image>
 				</view>
 				<view class="uni-flex uni-column" style="-webkit-flex: 1;flex: 1;-webkit-justify-content: space-between;justify-content: space-between;">
