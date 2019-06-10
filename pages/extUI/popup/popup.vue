@@ -20,9 +20,7 @@
 			<button type="button" @click="togglePopup('middle-list')">居中弹出（滚动列表）</button>
 			<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
 				<scroll-view :scroll-y="true" class="uni-center center-box">
-					<view v-for="(item, index) in list" :key="index" class="uni-list-item">
-						滚动列表数据 {{ item }}
-					</view>
+					<view v-for="(item, index) in list" :key="index" class="uni-list-item">滚动列表数据 {{ item }}</view>
 				</scroll-view>
 			</uni-popup>
 			<button type="button" data-position="bottom" @click="togglePopup('bottom-share')">底部弹出（分享界面）</button>
@@ -86,20 +84,20 @@
 						name: 'more'
 					}
 				]
-			}
+			};
 		},
 		onBackPress() {
 			if (this.type !== '') {
-				this.type = ''
-				return true
+				this.type = '';
+				return true;
 			}
 		},
 		methods: {
 			togglePopup(type) {
-				this.type = type
+				this.type = type;
 			}
 		}
-	}
+	};
 </script>
 <style>
 	page {

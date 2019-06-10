@@ -7,7 +7,7 @@
 		<view class="example-title">图标样式</view>
 		<uni-pagination :show-icon="true" :total="20" title="标题文字" />
 		<view class="example-title">修改数据长度</view>
-		<uni-pagination :current="current" :total="total" title="标题文字" show-icon="true" @change="change" />
+		<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
 		<view class="btn-view">
 			<view>
 				当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}

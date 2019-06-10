@@ -2,25 +2,25 @@
 	<view class="uni-navbar">
 		<view :class="{'uni-navbar--fixed': fixed,'uni-navbar--shadow':border,'uni-navbar--border':border}" :style="{'background-color':backgroundColor}" class="uni-navbar__content">
 			<uni-status-bar v-if="statusBar" />
-			<view :style="{color:color}" class="uni-navbar__header">
-				<view class="uni-navbar__header-btns" @tap="onClickLeft">
-					<view v-if="leftIcon.length">
+			<view :style="{color:color}" class="uni-navbar__header uni-navbar__content_view">
+				<view class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickLeft">
+					<view v-if="leftIcon.length" class="uni-navbar__content_view">
 						<uni-icon :type="leftIcon" :color="color" size="24" />
 					</view>
-					<view v-if="leftText.length" :class="{'uni-navbar-btn-icon-left':!leftIcon.length}" class="uni-navbar-btn-text">{{ leftText }}</view>
+					<view v-if="leftText.length" :class="{'uni-navbar-btn-icon-left':!leftIcon.length}" class="uni-navbar-btn-text uni-navbar__content_view">{{ leftText }}</view>
 					<slot name="left" />
 				</view>
-				<view class="uni-navbar__header-container">
-					<view v-if="title.length" class="uni-navbar__header-container-inner">{{ title }}</view>
+				<view class="uni-navbar__header-container uni-navbar__content_view">
+					<view v-if="title.length" class="uni-navbar__header-container-inner uni-navbar__content_view">{{ title }}</view>
 					<!-- 标题插槽 -->
 					<slot />
 				</view>
-				<view class="uni-navbar__header-btns" @tap="onClickRight">
-					<view v-if="rightIcon.length">
+				<view class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickRight">
+					<view v-if="rightIcon.length" class="uni-navbar__content_view">
 						<uni-icon :type="rightIcon" :color="color" size="24" />
 					</view>
 					<!-- 优先显示图标 -->
-					<view v-if="rightText.length&&!rightIcon.length" class="uni-navbar-btn-text">{{ rightText }}</view>
+					<view v-if="rightText.length&&!rightIcon.length" class="uni-navbar-btn-text uni-navbar__content_view">{{ rightText }}</view>
 					<slot name="right" />
 				</view>
 			</view>
@@ -110,7 +110,7 @@
 		overflow: hidden
 	}
 
-	.uni-navbar__content view {
+	.uni-navbar__content .uni-navbar__content_view {
 		line-height: 44px
 	}
 

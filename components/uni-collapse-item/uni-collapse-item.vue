@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<view :class="{'uni-collapse-cell--animation':showAnimation===true}" :style="{height:isOpen ? height : '0px'}" class="uni-collapse-cell__content">
-			<view :id="elId">
+			<view class="view" :id="elId">
 				<slot />
 			</view>
 		</view>
@@ -185,6 +185,8 @@
 	.uni-collapse-cell__title-arrow {
 		width: 20px;
 		height: 20px;
+		display: flex;
+		align-items: center;
 		transform: rotate(0);
 		transform-origin: center center
 	}
@@ -216,7 +218,7 @@
 		background: #fff
 	}
 
-	.uni-collapse-cell__content view {
+	.uni-collapse-cell__content .view {
 		font-size: 28upx
 	}
 </style>
