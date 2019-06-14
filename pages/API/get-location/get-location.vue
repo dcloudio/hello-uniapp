@@ -19,30 +19,105 @@
 				<button @tap="clear">清空</button>
 			</view>
 		</view>
+		<uni-popup :show="type === 'showpopup'" mode="fixed" @hidePopup="togglePopup('')">
+			<view class="popup-view">
+				<text class="popup-title">需要用户授权位置权限</text>
+				<view class="uni-flex popup-buttons">
+					<button class="uni-flex-item" type="primary" open-type="openSetting" @tap="openSetting">设置</button>
+					<button class="uni-flex-item" @tap="togglePopup('')">取消</button>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	var util = require('../../../common/util.js');
 	var formatLocation = util.formatLocation;
 
 	export default {
+		components: {
+			uniPopup
+		},
 		data() {
 			return {
 				title: 'getLocation',
 				hasLocation: false,
-				location: {}
+				location: {},
+				type: ''
 			}
 		},
 		methods: {
-			getLocation: function () {
+			togglePopup(type) {
+				this.type = type;
+			},
+			showConfirm() {
+				this.type = 'showpopup';
+			},
+			hideConfirm() {
+				this.type = '';
+			},
+			async getLocation() {
+				// #ifdef MP-WEIXIN || MP-TOUTIAO
+				let status = await this.getSetting();
+				if (status === 2) {
+					this.showConfirm();
+					return;
+				}
+				// #endif
+
+				this.doGetLocation();
+			},
+			doGetLocation() {
 				uni.getLocation({
 					success: (res) => {
-						this.hasLocation = true,
-							this.location = formatLocation(res.longitude, res.latitude)
+						this.hasLocation = true;
+						this.location = formatLocation(res.longitude, res.latitude);
+					},
+					fail: (err) => {
+						// #ifdef MP-BAIDU
+						if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
+							this.showConfirm();
+						}
+						// #endif
+						// #ifndef MP-BAIDU
+						uni.showToast({
+							title: err.errMsg
+						})
+						// #endif
 					}
 				})
 			},
-			clear: function () {
+			getSetting: function() {
+				return new Promise((resolve, reject) => {
+					uni.getSetting({
+						success: (res) => {
+							console.log(res.authSetting);
+							if (res.authSetting['scope.userLocation'] === undefined) {
+								resolve(0);
+								return;
+							}
+							if (res.authSetting['scope.userLocation']) {
+								resolve(1);
+							} else {
+								resolve(2);
+							}
+						}
+					});
+				});
+			},
+			openSetting: function() {
+				this.hideConfirm();
+				uni.openSetting({
+					success: (res) => {
+						if (res.authSetting && res.authSetting['scope.userLocation']) {
+							this.doGetLocation();
+						}
+					},
+					fail: (err) => {}
+				})
+			},
+			clear: function() {
 				this.hasLocation = false
 			}
 		}
@@ -50,5 +125,20 @@
 </script>
 
 <style>
-	
+	.popup-view {
+		width: 500upx;
+	}
+
+	.popup-title {
+		display: block;
+		font-size: 16px;
+		line-height: 3;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+
+	.popup-buttons button {
+		margin-left: 4px;
+		margin-right: 4px;
+	}
 </style>
