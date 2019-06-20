@@ -81,9 +81,15 @@
 						}
 						// #endif
 						// #ifndef MP-BAIDU
-						uni.showToast({
-							title: err.errMsg
-						})
+						if (err.errMsg.indexOf("auth deny") >= 0) {
+							uni.showToast({
+								title: "访问位置被拒绝"
+							})
+						} else {
+							uni.showToast({
+								title: err.errMsg
+							})
+						}
 						// #endif
 					}
 				})
@@ -92,7 +98,6 @@
 				return new Promise((resolve, reject) => {
 					uni.getSetting({
 						success: (res) => {
-							console.log(res.authSetting);
 							if (res.authSetting['scope.userLocation'] === undefined) {
 								resolve(0);
 								return;
