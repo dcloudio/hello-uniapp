@@ -52,7 +52,6 @@
 
 <style>
 	.wrapper {
-		display: flex;
 		flex-direction: column;
 		text-align: center;
 		padding: 60px 0px 0px 20px;

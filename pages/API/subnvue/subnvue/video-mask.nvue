@@ -68,7 +68,7 @@
 					if(vm.lists.length > 5) {
 						vm.$nextTick(() => {
 							if(vm.$refs['item' + (vm.lists.length - 1)]){
-								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);	
+								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);
 							}
 						});
 					}
@@ -101,7 +101,7 @@
 		flex-wrap: nowrap;
 	}
 	.name {
-		flex: none;
+		flex: 0;
 		font-size: 20px;
 		margin-right: 20px;
 		color: #FF5A5F;

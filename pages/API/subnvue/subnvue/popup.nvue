@@ -72,7 +72,7 @@
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 		border-bottom-color: #CBCBCB;
-		flex: none;
+		flex: 0;
 		font-size: 30px;
 	}
 	.scroller {
@@ -87,11 +87,11 @@
 		border-top-style: solid;
 		border-top-width: 1px;
 		border-top-color: #CBCBCB;
-		height: 80px; 
+		height: 80px;
 		align-items: flex-end;
 	}
 	.send-message {
-		font-size: 30px;	
+		font-size: 30px;
 		line-height: 80px;
 		color: #00CE47;
 		margin-left: 20px;
@@ -102,12 +102,11 @@
 		top:10px;
 		align-items: center;
 		justify-content: center;
-		border: solid;
-		border-radius: 10px; 
+		border-radius: 10px;
 		background-color: #5989B9;
 	}
 	.text {
-		font-size: 30px; 
+		font-size: 30px;
 		text-align: center;
 		color: white;
 	}

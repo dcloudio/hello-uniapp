@@ -39,7 +39,7 @@
 	.nav {
 		position: relative;
 		height: 88px;
-		flex-shrink: 0;
+		flex: 0;
 		justify-content: center;
 		align-items: center;
 	}
