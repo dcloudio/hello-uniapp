@@ -6,7 +6,7 @@
 				<text class="content">{{content}}</text>
 			</div>
 			<div>
-				<text style="color: red; font-size: 30px;">以下为 Popup 内部滚动示例：</text>
+				<text style="color: red; font-size: 30upx;">以下为 Popup 内部滚动示例：</text>
 			</div>
 			<div class="cell" v-for="(item, index) in lists" @click="handle(item)" :key="index">
 				<text class="text">{{item}}</text>
@@ -29,7 +29,7 @@
 		},
 		created() {
 			const vm = this;
-			for(let i = 1; i < 20; i++){
+			for (let i = 1; i < 20; i++) {
 				this.lists.push('item' + i);
 			}
 			uni.$on('page-popup', (data) => {
@@ -62,51 +62,59 @@
 	.wrapper {
 		flex-direction: column;
 		justify-content: space-between;
-		padding: 10px 15px;
+		padding: 10upx 15upx;
 		background-color: #F4F5F6;
-		border-radius: 4px;
+		border-radius: 4upx;
 	}
+
 	.title {
-		height: 100px;
-		line-height: 100px;
+		height: 100upx;
+		line-height: 100upx;
 		border-bottom-style: solid;
-		border-bottom-width: 1px;
+		border-bottom-width: 1upx;
 		border-bottom-color: #CBCBCB;
 		flex: 0;
-		font-size: 30px;
+		font-size: 30upx;
 	}
+
 	.scroller {
-		flex: 1;
-		padding: 8px 15px;
+		height: 400upx;
+		padding: 8upx 15upx;
 	}
+
 	.content {
 		color: #555555;
-		font-size: 32px;
+		font-size: 32upx;
 	}
+
 	.message-wrapper {
+		flex: 0;
 		border-top-style: solid;
-		border-top-width: 1px;
+		border-top-width: 1upx;
 		border-top-color: #CBCBCB;
-		height: 80px;
+		height: 80upx;
 		align-items: flex-end;
 	}
+
 	.send-message {
-		font-size: 30px;
-		line-height: 80px;
+		font-size: 30upx;
+		line-height: 80upx;
 		color: #00CE47;
-		margin-left: 20px;
+		margin-left: 20upx;
 	}
+
 	.cell {
-		margin: 10px;
-		padding: 20px 0;
-		top:10px;
+		margin: 10upx;
+		padding: 20upx 0;
+		top: 10upx;
 		align-items: center;
 		justify-content: center;
-		border-radius: 10px;
+		border-radius: 10upx;
 		background-color: #5989B9;
 	}
+
 	.text {
-		font-size: 30px;
+		font-size: 30upx;
 		text-align: center;
 		color: white;
 	}

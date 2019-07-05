@@ -3,7 +3,7 @@
 		<div class="status-bar"></div>
 		<div class="nav" @click="back">
 			<text class="back">&#xe582;</text>
-			<text style="font-size: 32px;">nvue 渐变色标题栏</text>
+			<text class="title">nvue 渐变色标题栏</text>
 		</div>
     </div>
 </template>
@@ -43,11 +43,14 @@
 		justify-content: center;
 		align-items: center;
 	}
+    .title {
+        font-size: 36upx;
+    }
 	.back {
 		position: absolute;
 		left: 3px;
 		color: #000000;
 		font-family: unibtn;
-		font-size: 54px;
+		font-size: 54upx;
 	}
 </style>
