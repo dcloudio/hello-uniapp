@@ -150,11 +150,11 @@
 			},
 			async changeTab(e) {
 				let index = e.target.current;
+                this.tabIndex = index;
 				if (this.newsitems[index].data.length === 0) {
 					this.addData(index)
 				}
 				if (this.isClickChange) {
-					this.tabIndex = index;
 					this.isClickChange = false;
 					return;
 				}
@@ -176,7 +176,6 @@
 					this.scrollLeft = width;
 				}
 				this.isClickChange = false;
-				this.tabIndex = index; //一旦访问data就会出问题
 			},
 			getElSize(id) { //得到元素的size
 				return new Promise((res, rej) => {
