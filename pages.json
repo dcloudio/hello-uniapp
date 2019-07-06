@@ -816,7 +816,7 @@
 								"style": {
 									"margin": "auto",
 									"width": "80%",
-									"height": "300px"
+									"height": "600upx"
 								}
 							}, {
 								"id": "video_mask",
