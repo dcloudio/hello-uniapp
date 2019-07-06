@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-		<text style="color: #8f8f94; margin-bottom: 40upx;">左侧列表</text>
-		<list style="height: 450upx;">
+		<text class="nav-text">左侧列表</text>
+		<list class="list-wrapper">
 			<cell v-for="item in lists" :key="item.id">
 				<div class="text-wrapper" @click="clickitem(item.id)">
 					<text style="font-size: 30upx; ">{{item.name}}</text>
@@ -53,9 +53,27 @@
 <style>
 	.wrapper {
 		flex-direction: column;
+		flex: 1;
 		text-align: center;
 		padding: 60upx 0upx 0upx 20upx;
 		background-color: #F4F5F6;
+	}
+	.nav-text {
+		color: #8f8f94; 
+		/* #ifndef APP-PLUS-NVUE */
+		margin-bottom: 40px;
+		/* #endif */
+		/* #ifdef APP-PLUS-NVUE */
+		margin-bottom: 40upx;
+		/* #endif */
+	}
+	.list-wrapper {
+		/* #ifdef APP-PLUS-NVUE */
+		height: 450upx;
+		/* #endif */
+		/* #ifndef APP-PLUS-NVUE */
+		height: 450px;
+		/* #endif */
 	}
 	.text-wrapper {
 		justify-content: center;
