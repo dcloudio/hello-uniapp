@@ -1,7 +1,8 @@
 <template>
 	<view>
-		<view class="example">
-			<view class="example-title">基本用法</view>
+		<view class="example-info">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</view>
+		<view class="example-title">基本用法</view>
+		<view class="example-body">
 			<button type="button" @click="togglePopup('top')">顶部弹出 popup</button>
 			<uni-popup :show="type === 'top'" position="top" mode="fixed" msg="顶部弹出popup" @hidePopup="togglePopup('')" />
 			<button type="button" @click="togglePopup('middle')">居中弹出 popup</button>
@@ -9,8 +10,8 @@
 			<button type="button" @click="togglePopup('bottom')">底部部弹出 popup</button>
 			<uni-popup :show="type === 'bottom'" position="bottom" mode="fixed" msg="底部弹出popup" @hidePopup="togglePopup('')" />
 		</view>
-		<view class="example">
-			<view class="example-title">slot用法</view>
+		<view class="example-title">slot用法</view>
+		<view class="example-body">
 			<button type="button" @click="togglePopup('middle-img')">居中弹出（插屏广告）</button>
 			<uni-popup :show="type === 'middle-img'" position="middle" mode="insert" @hidePopup="togglePopup('')">
 				<view class="uni-center center-box">
@@ -25,7 +26,7 @@
 			</uni-popup>
 			<button type="button" data-position="bottom" @click="togglePopup('bottom-share')">底部弹出（分享界面）</button>
 			<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
-				<view style="display: block;">
+				<view style="display: block;width:100%;">
 					<view class="bottom-title">分享到</view>
 					<view class="bottom-content">
 						<view v-for="(item, index) in bottomData" :key="index" class="bottom-content-box">
@@ -84,27 +85,27 @@
 						name: 'more'
 					}
 				]
-			};
+			}
 		},
 		onBackPress() {
 			if (this.type !== '') {
-				this.type = '';
-				return true;
+				this.type = ''
+				return true
 			}
 		},
 		methods: {
 			togglePopup(type) {
-				this.type = type;
+				this.type = type
 			}
 		}
-	};
+	}
 </script>
 <style>
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -117,11 +118,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -129,11 +153,19 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
 	}
 
-	.uni-padding-wrap {
-		padding: 0 30upx;
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
+	}
+
+	.example-body {
+		padding: 10upx 30upx;
 	}
 
 	button {

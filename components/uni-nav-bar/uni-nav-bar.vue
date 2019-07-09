@@ -1,4 +1,5 @@
 <template>
+
 	<view class="uni-navbar">
 		<view :class="{'uni-navbar--fixed': fixed,'uni-navbar--shadow':border,'uni-navbar--border':border}" :style="{'background-color':backgroundColor}" class="uni-navbar__content">
 			<uni-status-bar v-if="statusBar" />
@@ -64,7 +65,7 @@
 				default: ''
 			},
 			fixed: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			color: {
@@ -76,15 +77,15 @@
 				default: '#FFFFFF'
 			},
 			statusBar: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			shadow: {
-				type: Boolean,
+				type: [String, Boolean],
 				default: true
 			},
 			border: {
-				type: Boolean,
+				type: [String, Boolean],
 				default: true
 			}
 		},
@@ -111,7 +112,8 @@
 	}
 
 	.uni-navbar__content .uni-navbar__content_view {
-		line-height: 44px
+		display: flex;
+		align-items: center
 	}
 
 	.uni-navbar__header {
@@ -145,8 +147,10 @@
 	}
 
 	.uni-navbar__header-container-inner {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 		font-size: 30upx;
-		text-align: center;
 		padding-right: 60upx
 	}
 

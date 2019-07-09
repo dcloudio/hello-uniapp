@@ -1,32 +1,43 @@
 <template>
-	<view class="calendar-content">
-		<!-- :start-date="'2019-2-10'"
-		:end-date="'2019-3-15'" -->
-		<text class="calendar-title">日历组件</text>
-		<view class="calendar-tags-group">
-			<view v-for="(item, index) in tags" :class="{ checked: item.checked }" :key="index" class="calendar-tags" @click="toggle(index, item)">
-				<view class="calendar-tags-item">{{ item.name }}</view>
+	<view :class="{ 'calendar-content-active ': infoShow }" class="calendar-content">
+		<view class="example-info">日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等。</view>
+		<view class="example-title">日历组件</view>
+
+		<view>
+			<!-- 插入模式 -->
+			<uni-calendar :insert="true" :lunar="tags[0].checked" :disable-before="tags[3].checked" :range="tags[5].checked" :start-date="startDate" :end-date="endDate" :date="date" :selected="selected" @change="change" />
+			<view class="calendar-tags-group example-body">
+				<view v-for="(item, index) in tags" :class="{ checked: item.checked }" :key="index" class="calendar-tags" @click="toggle(index, item)">
+					<view class="calendar-tags-item">{{ item.name }}</view>
+				</view>
+				<view class="calendar-tags" @click="open">
+					<view class="calendar-tags-item calendar-button">打开日历</view>
+				</view>
 			</view>
-		</view>
-		<button class="calendar-button" type="button" @click="open">打开日历</button>
-		<text v-if="timeData.lunar" class="calendar-title">已选日期</text>
-		<view v-if="timeData.lunar" class="calendar-info">
-			<view>当前选择时间 : {{ timeData.fulldate }}</view>
-			<view v-if="tags[0].checked">农历日期 : {{ timeData.year + '年' + timeData.month + '月' + timeData.date + '日 （' + timeData.lunar.astro + ')' }}</view>
-			<view v-if="tags[0].checked">
-				{{ timeData.lunar.gzYear + '年' + timeData.lunar.gzMonth + '月' + timeData.lunar.gzDay + '日 (' + timeData.lunar.Animal + '年)' }}
-				{{ timeData.lunar.IMonthCn + timeData.lunar.IDayCn }} {{ timeData.lunar.isTerm ? timeData.lunar.Term : '' }}
-			</view>
-		</view>
-		<view v-if="show" class="calendar-mask" @click="closeMask">
-			<view class="calendar-box" @click.stop="">
-				<uni-calendar :lunar="tags[0].checked" :fixed-heihgt="tags[1].checked" :slide="slide" :disable-before="tags[6].checked" :start-date="startDate" :end-date="endDate" :date="date" @change="change" @to-click="toClick" />
-				<view class="calendar-button-groups">
-					<button class="calendar-button-confirm" @click="closeMask">取消</button>
-					<button class="calendar-button-confirm" @click="confirm">确认</button>
+			<!-- <button class="calendar-button" type="button" @click="open">打开日历</button> -->
+			<view :class="{ 'calendar-active': infoShow }" class="calendar-box">
+				<view v-if="timeData.lunar" class="calendar-info-header">
+					<text class="calendar-title">已选日期详情</text>
+					<text @click="retract">{{ infoShow ? '收起' : '展开' }}</text>
+				</view>
+				<view v-if="timeData.lunar" class="calendar-info">
+					<view>当前选择时间 : {{ timeData.fulldate }}</view>
+					<view v-if="tags[0].checked">农历日期 : {{ timeData.year + '年' + timeData.month + '月' + timeData.date + '日 （' + timeData.lunar.astro + ')' }}</view>
+					<view v-if="tags[0].checked">
+						{{ timeData.lunar.gzYear + '年' + timeData.lunar.gzMonth + '月' + timeData.lunar.gzDay + '日 (' + timeData.lunar.Animal + '年)' }}
+						{{ timeData.lunar.IMonthCn + timeData.lunar.IDayCn }} {{ timeData.lunar.isTerm ? timeData.lunar.Term : '' }}
+					</view>
+					<view>是否打点 : {{ timeData.clockinfo.have ? '是' : '否' }}</view>
+					<view v-if="timeData.clockinfo.have">打点信息 : {{ timeData.clockinfo.info || '' }}</view>
+					<view v-if="timeData.clockinfo.have">打点额外信息 : {{ JSON.stringify(timeData.clockinfo.data) || '' }}</view>
+					<view v-if="tags[5].checked">范围选择开始时间 : {{ timeData.range.begin || '' }}</view>
+					<view v-if="tags[5].checked">范围选择结束时间 : {{ timeData.range.end || '' }}</view>
+					<view v-if="tags[5].checked">范围日期 : {{ JSON.stringify(timeData.range.data) || '' }}</view>
 				</view>
 			</view>
 		</view>
+
+		<uni-calendar ref="calendar" :lunar="tags[0].checked" :disable-before="tags[3].checked" :range="tags[5].checked" :start-date="startDate" :end-date="endDate" :date="date" :selected="selected" @confirm="confirm" @change="change" />
 	</view>
 </template>
 
@@ -41,12 +52,13 @@
 			/**
 			 * 时间计算
 			 */
-			function getDate(date, AddDayCount = 0) {
+			function getDate(date, AddMonthCount = 0, AddDayCount = 0) {
 				if (typeof date !== 'object') {
 					date = date.replace(/-/g, '/')
 				}
 				let dd = new Date(date)
-				dd.setMonth(dd.getMonth() + AddDayCount) // 获取AddDayCount天后的日期
+				dd.setMonth(dd.getMonth() + AddMonthCount) // 获取AddDayCount天后的日期
+				dd.setDate(dd.getDate() + AddDayCount) // 获取AddDayCount天后的日期
 				let y = dd.getFullYear()
 				let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1 // 获取当前月份的日期，不足10补0
 				let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate() // 获取当前几号，不足10补0
@@ -60,114 +72,124 @@
 				},
 				{
 					id: 1,
-					name: '固定高度',
-					checked: false,
-					attr: 'fixedHeihgt'
-				},
-				{
-					id: 2,
-					name: '垂直滚动',
-					checked: false,
-					attr: 'vertical'
-				},
-				{
-					id: 3,
-					name: '水平滚动',
-					checked: false,
-					attr: 'horizontal'
-				},
-				{
-					id: 4,
 					name: '开始日期(' + getDate(new Date(), -1) + ')',
 					checked: false,
 					value: getDate(new Date(), -1),
 					attr: 'startDate'
 				},
 				{
-					id: 5,
+					id: 2,
 					name: '结束日期(' + getDate(new Date(), 2) + ')',
 					value: getDate(new Date(), 2),
 					checked: false,
 					attr: 'endDate'
 				},
 				{
-					id: 6,
+					id: 3,
 					name: '禁用今天之前的日期',
 					checked: false,
 					attr: 'disableBefore'
 				},
 				{
-					id: 7,
+					id: 4,
 					name: '自定义当前日期(' + getDate(new Date(), 1) + ')',
 					value: getDate(new Date(), 1),
 					checked: false,
 					attr: 'date'
+				},
+				{
+					id: 5,
+					name: '范围选择',
+					checked: false,
+					attr: 'range'
+				},
+				{
+					id: 6,
+					name: '打点',
+					value: [{
+							date: getDate(new Date(), 0, -1),
+							info: '打卡'
+						},
+						{
+							date: getDate(new Date(), 0),
+							info: '签到',
+							data: {
+								custom: '自定义信息',
+								name: '自定义消息头'
+							}
+						},
+						{
+							date: getDate(new Date(), 0, 1),
+							info: '已打卡'
+						}
+					],
+					checked: false,
+					attr: 'selected'
 				}
 			]
 
 			return {
-				show: false,
 				tags,
-				slide: 'none',
 				date: '',
 				startDate: '',
 				endDate: '',
-				timeData: {}
+				timeData: {
+					clockinfo: '',
+					date: '',
+					fulldate: '',
+					lunar: '',
+					month: '',
+					range: '',
+					year: ''
+				},
+				selected: [],
+				infoShow: false
 			}
 		},
 		onLoad() {},
 		methods: {
-			closeMask() {
-				this.show = false
-			},
 			toggle(index, item) {
 				this.tags[index].checked = !item.checked
-				// item.checked = !item.checked;
-				console.log(index)
-				if (index === 2) {
-					this.tags[3].checked = false
-				}
-				if (index === 3) {
-					this.tags[2].checked = false
-				}
-				// this.attribute[item.attr] = !item.checked;
+				this.reckon()
 			},
 			open() {
-				if (this.tags[3].checked) {
-					this.slide = 'horizontal'
-				} else if (this.tags[2].checked) {
-					this.slide = 'vertical'
-				} else {
-					this.slide = 'none'
-				}
-				if (this.tags[4].checked) {
-					this.startDate = this.tags[4].value
+				this.reckon()
+				this.$refs.calendar.open()
+			},
+			reckon() {
+				if (this.tags[1].checked) {
+					this.startDate = this.tags[1].value
 				} else {
 					this.startDate = ''
 				}
-				if (this.tags[5].checked) {
-					this.endDate = this.tags[5].value
+				if (this.tags[2].checked) {
+					this.endDate = this.tags[2].value
 				} else {
 					this.endDate = ''
 				}
-				if (this.tags[7].checked) {
-					this.date = this.tags[7].value
+				if (this.tags[4].checked) {
+					this.date = this.tags[4].value
 				} else {
 					this.date = ''
 				}
-				this.show = true
-				console.log(this.date)
+				if (this.tags[6].checked) {
+					this.selected = this.tags[6].value
+				} else {
+					this.selected = []
+				}
 			},
 			change(e) {
-				console.log('change 返回:', e.fulldate)
+				console.log('change 返回:', e)
 				this.timeData = e
+				this.infoShow = true
 			},
-			toClick(e) {
-				console.log('点击事件', e.fulldate)
+			confirm(e) {
+				console.log('confirm 返回:', e)
 				this.timeData = e
+				this.infoShow = true
 			},
-			confirm() {
-				this.show = false
+			retract() {
+				this.infoShow = !this.infoShow
 			}
 		}
 	}
@@ -178,7 +200,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -191,11 +213,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -203,43 +248,40 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
 	}
 
-	page {
-		background: #fff;
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	.calendar-content {
-		padding: 20upx 0;
-		padding-bottom: 60upx;
+		padding-bottom: 100upx;
 		font-size: 26upx;
 	}
 
-	.calendar-content>.calendar-title {
-		line-height: 80upx;
-		/* font-weight: bold; */
-		color: #666;
-		font-size: 32upx;
-		/* border-left: 2px #0d9ebb solid; */
-		/* padding-left: 20upx; */
-		margin: 0 20upx;
+	.calendar-content-active {
+		padding-bottom: 450upx;
 	}
 
 	.calendar-tags-group {
 		display: flex;
+		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		margin: 0 10upx;
 	}
 
 	.calendar-tags {
-		width: 50%;
+		width: 100%;
 		box-sizing: border-box;
 	}
 
 	.calendar-tags-item {
-		padding: 10upx 20upx;
+		padding: 20upx 20upx;
 		border: 1px rgba(0, 0, 0, 0.2) solid;
 		color: #333;
 		border-radius: 10upx;
@@ -259,36 +301,8 @@
 	}
 
 	.calendar-button {
-		margin: 10upx 20upx;
-	}
-
-	.calendar-info {
-		padding: 0 20upx;
-	}
-
-	.calendar-mask {
-		position: fixed;
-		/* #ifdef H5 */
-		top: 45px;
-		/* #endif */
-		/* #ifndef H5 */
-		top: 0;
-		/* #endif */
-		bottom: 0;
-		display: flex;
-		align-items: center;
-		width: 100%;
-		background: rgba(0, 0, 0, 0.4);
-	}
-
-	.calendar-box {
-		/* margin: 20upx; */
-		border: 1px #f5f5f5 solid;
-		/* border-radius: 10upx; */
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		background: #fff;
+		font-weight: bold;
+		font-size: 32upx;
 	}
 
 	.calendar-button-groups {
@@ -307,5 +321,47 @@
 
 	.calendar-button-confirm:after {
 		border: none;
+	}
+
+	.calendar-box {
+		position: fixed;
+		bottom: 0;
+		background: #fff;
+		color: #444;
+		line-height: 1.5;
+		width: 100%;
+		transition: all 0.3s;
+		transform: translateY(320upx);
+		/* background: #f5f5f5; */
+	}
+
+	.calendar-active {
+		transform: translateY(0);
+	}
+
+	.calendar-info-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20upx 30upx;
+		padding-left: 0;
+		border-top: 1px #eee solid;
+		border-bottom: 1px #eee solid;
+	}
+
+	.calendar-title {
+		/* height: 80upx; */
+		font-weight: bold;
+		color: #666;
+		font-size: 32upx;
+		border-left: 2px #0d9ebb solid;
+		padding-left: 20upx;
+		margin: 0 20upx;
+	}
+
+	.calendar-info {
+		overflow-y: scroll;
+		height: 260upx;
+		padding: 30upx 30upx;
 	}
 </style>

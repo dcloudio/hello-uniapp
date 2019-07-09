@@ -49,14 +49,12 @@
 						name: "Drawer 抽屉",
 						url: "drawer"
 					},
-					{
-						name: "Fab 悬浮按钮",
-						url: "fab"
-					},
+					// #ifndef MP-ALIPAY 
 					{
 						name: "Grid 宫格",
 						url: "grid"
 					},
+					// #endif 
 					{
 						name: "Icon 图标",
 						url: "icon"

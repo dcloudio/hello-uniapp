@@ -350,7 +350,7 @@
 						"bounce": "none",
 						"pullToRefresh": {
 							"style": "circle",
-							"offset": "70px"
+							"offset": "50px"
 						}
 					}
 				}
@@ -434,11 +434,6 @@
 					"navigationBarTitleText": "Calendar 日历"
 				}
 			}, {
-				"path": "fab/fab",
-				"style": {
-					"navigationBarTitleText": "Fab 悬浮按钮"
-				}
-			}, {
 				"path": "indexed-list/indexed-list",
 				"style": {
 					"navigationBarTitleText": "IndexedList 索引列表",
@@ -451,6 +446,11 @@
 					"mp-alipay": {
 						"allowsBounceVertical": "NO"
 					}
+				}
+			}, {
+				"path": "fab/fab",
+				"style": {
+					"navigationBarTitleText": "Fab 悬浮按钮"
 				}
 			}]
 		},

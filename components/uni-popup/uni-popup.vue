@@ -7,7 +7,7 @@
 			<view v-if="position === 'middle' && mode === 'insert'" :class="{
           'uni-close-bottom': buttonMode === 'bottom',
           'uni-close-right': buttonMode === 'right'
-        }" class=" uni-icon uni-icon-close" @click="closeMask" />
+        }" class="uni-icon uni-icon-close" @click="closeMask" />
 		</view>
 	</view>
 </template>
@@ -108,7 +108,7 @@
 	}
 
 	.uni-popup {
-		position: fixed;
+		position: absolute;
 		z-index: 999;
 		background-color: #ffffff;
 	}
@@ -155,6 +155,8 @@
 		margin: auto;
 		left: 0;
 		right: 0;
+		width: 28px;
+		height: 28px;
 	}
 
 	.uni-close-right {
@@ -172,13 +174,6 @@
 		left: 50%;
 		transform: translate(-50%, -0%);
 		opacity: 0.8;
-	}
-
-	.uni-popup-top,
-	.uni-popup-bottom {
-		display: flex;
-		align-items: center;
-		justify-content: center;
 	}
 
 	.uni-popup-top {

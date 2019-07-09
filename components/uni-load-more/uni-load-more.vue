@@ -1,26 +1,28 @@
 <template>
 	<view class="uni-load-more">
 		<view v-show="status === 'loading' && showIcon" class="uni-load-more__img">
-			<view class="load1">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+			<view class="load1 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
-			<view class="load2">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+			<view class="load2 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
-			<view class="load3">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+			<view class="load3 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
 		</view>
-		<text :style="{color:color}" class="uni-load-more__text">{{ status === 'more' ? contentText.contentdown : (status === 'loading' ? contentText.contentrefresh : contentText.contentnomore) }}</text>
+		<text :style="{ color: color }" class="uni-load-more__text">
+			{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}
+		</text>
 	</view>
 </template>
 
@@ -80,11 +82,11 @@
 		margin-right: 10px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper {
+	.uni-load-more__img>.load {
 		position: absolute
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper {
+	.uni-load-more__img>.load .uni-load-view_wrapper {
 		width: 6px;
 		height: 2px;
 		border-top-left-radius: 1px;
@@ -96,25 +98,25 @@
 		animation: load 1.56s ease infinite
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(1) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(1) {
 		transform: rotate(90deg);
 		top: 2px;
 		left: 9px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(2) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(2) {
 		transform: rotate(180deg);
 		top: 11px;
 		right: 0
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(3) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(3) {
 		transform: rotate(270deg);
 		bottom: 2px;
 		left: 9px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(4) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(4) {
 		top: 11px;
 		left: 0
 	}
