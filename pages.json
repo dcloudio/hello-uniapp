@@ -350,7 +350,7 @@
 						"bounce": "none",
 						"pullToRefresh": {
 							"style": "circle",
-							"offset": "50px"
+							"offset": "70px"
 						}
 					}
 				}

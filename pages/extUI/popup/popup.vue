@@ -3,85 +3,96 @@
 		<view class="example-info">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</view>
 		<view class="example-title">基本用法</view>
 		<view class="example-body">
-			<button type="button" @click="togglePopup('top')">顶部弹出 popup</button>
-			<uni-popup :show="type === 'top'" position="top" mode="fixed" msg="顶部弹出popup" @hidePopup="togglePopup('')" />
-			<button type="button" @click="togglePopup('middle')">居中弹出 popup</button>
-			<uni-popup :show="type === 'middle'" position="middle" mode="fixed" msg="居中弹出popup" @hidePopup="togglePopup('')" />
-			<button type="button" @click="togglePopup('bottom')">底部部弹出 popup</button>
-			<uni-popup :show="type === 'bottom'" position="bottom" mode="fixed" msg="底部弹出popup" @hidePopup="togglePopup('')" />
+			<button class="button" type="button" @click="togglePopup('top', 'popup')">顶部弹出 popup</button>
+			<button class="button" type="button" @click="togglePopup('center', 'popup')">中间弹出 popup</button>
+			<button class="button" type="button" @click="togglePopup('bottom', 'popup')">底部弹出 popup</button>
 		</view>
-		<view class="example-title">slot用法</view>
+		<view class="example-title">自定义弹出层</view>
 		<view class="example-body">
-			<button type="button" @click="togglePopup('middle-img')">居中弹出（插屏广告）</button>
-			<uni-popup :show="type === 'middle-img'" position="middle" mode="insert" @hidePopup="togglePopup('')">
-				<view class="uni-center center-box">
-					<image class="image" src="/static/uni.png" />
-				</view>
-			</uni-popup>
-			<button type="button" @click="togglePopup('middle-list')">居中弹出（滚动列表）</button>
-			<uni-popup :show="type === 'middle-list'" position="middle" mode="fixed" @hidePopup="togglePopup('')">
-				<scroll-view :scroll-y="true" class="uni-center center-box">
-					<view v-for="(item, index) in list" :key="index" class="uni-list-item">滚动列表数据 {{ item }}</view>
-				</scroll-view>
-			</uni-popup>
-			<button type="button" data-position="bottom" @click="togglePopup('bottom-share')">底部弹出（分享界面）</button>
-			<uni-popup :show="type === 'bottom-share'" position="bottom" @hidePopup="togglePopup('')">
-				<view style="display: block;width:100%;">
-					<view class="bottom-title">分享到</view>
-					<view class="bottom-content">
-						<view v-for="(item, index) in bottomData" :key="index" class="bottom-content-box">
-							<view :class="item.name" class="bottom-content-image">
-								<text class="icon">{{ item.icon }}</text>
-							</view>
-							<view class="bottom-content-text">{{ item.text }}</view>
-						</view>
-					</view>
-					<view class="bottom-btn" @click="togglePopup('')">取消分享</view>
-				</view>
-			</uni-popup>
+			<button class="button" type="button" @click="togglePopup('center', 'tip')">提示框</button>
+			<button class="button" type="button" @click="togglePopup('center', 'image')">插屏广告</button>
+			<button class="button" type="button" @click="togglePopup('bottom', 'share')">底部分享</button>
 		</view>
+		<uni-popup ref="popup" :type="type">{{ content }}</uni-popup>
+		<uni-popup ref="tip" :type="type" :custom="true" :mask-click="false">
+			<view class="uni-tip">
+				<view class="uni-tip-title">警告</view>
+				<view class="uni-tip-content">这是一个通过自定义 popup，自由扩展的 警告弹窗。点击遮罩不会关闭弹窗。</view>
+				<view class="uni-tip-group-button">
+					<view class="uni-tip-button" @click="cancel">取消</view>
+					<view class="uni-tip-button" @click="cancel">确定</view>
+				</view>
+			</view>
+		</uni-popup>
+		<!-- 插屏弹窗 -->
+		<uni-popup ref="image" :type="type" :custom="true" :mask-click="false">
+			<view class="uni-image">
+				<view class="uni-image-close" @click="cancel">
+					<uni-icon type="clear" color="#fff" size="30" />
+				</view>
+				<image class="image" src="/static/uni.png" mode="" />
+			</view>
+		</uni-popup>
+		<!-- 底部分享弹窗 -->
+		<uni-popup ref="share" :type="type" :custom="true">
+			<view class="uni-share">
+				<view class="uni-share-title">分享到</view>
+				<view class="uni-share-content">
+					<view v-for="(item, index) in bottomData" :key="index" class="uni-share-content-box">
+						<view class="uni-share-content-image">
+							<image :src="item.icon" class="image" />
+						</view>
+						<view class="uni-share-content-text">{{ item.text }}</view>
+					</view>
+				</view>
+				<view class="uni-share-btn" @click="cancel">取消分享</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 
 	export default {
 		components: {
-			uniPopup
+			uniPopup,
+			uniIcon
 		},
 		data() {
 			return {
 				type: '',
 				list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+				content: '顶部弹 popup',
 				bottomData: [{
 						text: '微信',
-						icon: '\ue6a4',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
 						name: 'wx'
 					},
 					{
-						text: '朋友圈',
-						icon: '\ue646',
+						text: '支付宝',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-8.png',
 						name: 'wx'
 					},
 					{
 						text: 'QQ',
-						icon: '\ue66b',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png',
 						name: 'qq'
 					},
 					{
 						text: '新浪',
-						icon: '\ue600',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
 						name: 'sina'
 					},
 					{
-						text: '复制',
-						icon: '\ue632',
+						text: '百度',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-7.png',
 						name: 'copy'
 					},
 					{
-						text: '更多',
-						icon: '\ue618',
+						text: '其他',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
 						name: 'more'
 					}
 				]
@@ -94,8 +105,27 @@
 			}
 		},
 		methods: {
-			togglePopup(type) {
+			togglePopup(type, open) {
+				switch (type) {
+					case 'top':
+						this.content = '顶部弹出 popup'
+						break
+
+					case 'bottom':
+						this.content = '底部弹出 popup'
+						break
+					case 'center':
+						this.content = '居中弹出 popup'
+						break
+				}
 				this.type = type
+				this.$refs[open].open()
+			},
+			cancel() {
+				console.log(1111)
+				this.$refs.tip.close()
+				this.$refs.share.close()
+				this.$refs.image.close()
 			}
 		}
 	}
@@ -168,105 +198,116 @@
 		padding: 10upx 30upx;
 	}
 
-	button {
+	.button {
 		margin: 20upx 0;
 	}
 
-	.uni-helllo-text {
-		height: 100upx;
-		line-height: 100upx;
+	/* 提示窗口 */
+	.uni-tip {
+		padding: 15px;
+		width: 300px;
+		background: #fff;
+		box-sizing: border-box;
+		border-radius: 10px;
+	}
+
+	.uni-tip-title {
 		text-align: center;
+		font-weight: bold;
+		font-size: 16px;
+		color: #333;
 	}
 
-	.center-box {
-		width: 500upx;
-		height: 500upx;
+	.uni-tip-content {
+		padding: 15px;
+		font-size: 14px;
+		color: #666;
 	}
 
-	.uni-list-item {
-		text-align: left;
-		line-height: 80upx;
-		border-bottom: 1px #f5f5f5 solid;
+	.uni-tip-group-button {
+		margin-top: 10px;
+		display: flex;
 	}
 
-	.uni-list-item:last-child {
-		border: none;
+	.uni-tip-button {
+		width: 100%;
+		text-align: center;
+		font-size: 14px;
+		color: #3b4144;
 	}
 
-	.center-box .image {
+	/* 插屏广告 */
+	.uni-image {
+		position: relative;
+		width: 200px;
+		height: 200px;
+	}
+
+	.uni-image .image {
 		width: 100%;
 		height: 100%;
 	}
 
-	.bottom-title {
+	.uni-image-close {
+		position: absolute;
+		right: -30px;
+		top: -30px;
+		z-index: 2;
+	}
+
+	/* 底部分享 */
+	.uni-share {
+		background: #fff;
+	}
+
+	.uni-share-title {
 		line-height: 60upx;
 		font-size: 24upx;
 		padding: 15upx 0;
+		text-align: center;
 	}
 
-	.bottom-content {
+	.uni-share-content {
 		display: flex;
 		flex-wrap: wrap;
-		padding: 0 35upx;
+		padding: 15px;
 	}
 
-	.bottom-content-box {
+	.uni-share-content-box {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 15upx;
 		width: 25%;
 		box-sizing: border-box;
 	}
 
-	.bottom-content-image {
+	.uni-share-content-image {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 90upx;
-		height: 90upx;
+		width: 60upx;
+		height: 60upx;
 		overflow: hidden;
-		background: #007aff;
 		border-radius: 10upx;
 	}
 
-	.bottom-content-text {
-		font-size: 26upx;
-		color: #333;
-		margin-top: 10upx;
+	.uni-share-content-image .image {
+		width: 100%;
+		height: 100%;
 	}
 
-	.bottom-btn {
+	.uni-share-content-text {
+		font-size: 26upx;
+		color: #333;
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.uni-share-btn {
 		height: 90upx;
 		line-height: 90upx;
 		border-top: 1px #f5f5f5 solid;
-	}
-
-	.bottom-content-image.wx {
-		background: #00ce47;
-	}
-
-	.bottom-content-image.qq {
-		background: #00b6f6;
-	}
-
-	.bottom-content-image.sina {
-		background: #ff766a;
-	}
-
-	.bottom-content-image.copy {
-		background: #07ccd0;
-	}
-
-	@font-face {
-		font-family: 'iconfont';
-		/* project id 1028200 */
-		src: url('https://at.alicdn.com/t/font_1028200_47ewtwy4t04.ttf') format('truetype');
-	}
-
-	.icon {
-		font-family: 'iconfont';
-		font-size: 40upx;
-		color: #fff;
+		text-align: center;
+		color: #666;
 	}
 </style>

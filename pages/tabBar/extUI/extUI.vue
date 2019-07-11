@@ -49,12 +49,10 @@
 						name: "Drawer 抽屉",
 						url: "drawer"
 					},
-					// #ifndef MP-ALIPAY 
 					{
 						name: "Grid 宫格",
 						url: "grid"
 					},
-					// #endif 
 					{
 						name: "Icon 图标",
 						url: "icon"
