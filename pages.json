@@ -887,21 +887,19 @@
 						"enablePullDownRefresh": true
 					}
 				},
-				// #ifndef H5
 				{
 					"path": "animation/animation",
 					"style": {
 						"navigationBarTitleText": "创建动画"
 					}
 				},
-				// #endif
 				{
 					"path": "get-node-info/get-node-info",
 					"style": {
 						"navigationBarTitleText": "节点信息"
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5
 				{
 					"path": "intersection-observer/intersection-observer",
 					"style": {
@@ -1061,7 +1059,7 @@
 						"navigationBarTitleText": "SQLite"
 					}
 				},
-				// #ifndef H5 
+				// #ifndef H5
 				{
 					"path": "brightness/brightness",
 					"style": {
