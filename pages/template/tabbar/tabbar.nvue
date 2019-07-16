@@ -157,13 +157,13 @@
                 }
                 activeTab.data = activeTab.data.concat(list);
             },
-            goDetail(detail) {
+            goDetail(e) {
                 if (this.navigateFlag) {
                     return;
                 }
                 this.navigateFlag = true;
                 uni.navigateTo({
-                    url: '/pages/index/detail?title=' + e.title
+                    url: './detail/detail?title=' + e.title
                 });
                 setTimeout(() => {
                     this.navigateFlag = false;

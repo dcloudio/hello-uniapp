@@ -34,14 +34,14 @@
 				lists: [{
 						name: '多列选择 picker',
 						url: 'mpvue-picker'
-					}, 
+					},
 					// #ifdef APP-PLUS || H5
 					{
 						id: 'navbar',
 						name: '顶部原生导航标题栏',
 						open: false,
 						pages: [
-							
+
 							{
 								name: '透明渐变样式',
 								url: 'nav-transparent'
@@ -70,23 +70,10 @@
 						]
 					},
 					// #endif
-					// #ifndef MP-ALIPAY
 					{
-						id: 'tabbar',
 						name: '顶部选项卡',
-						url: 'tabbar',
-						// #ifdef APP-PLUS 
-						open: false,
-						pages: [{
-							name: '非原生',
-							url: 'tabbar'
-						}, {
-							name: '原生',
-							url: 'tabbar-native'
-						}]
-						// #endif
+						url: 'tabbar'
 					},
-					// #endif
 					{
 						name: '三行列表',
 						url: 'list-triplex-row'
@@ -161,7 +148,7 @@
 						name: '表单验证',
 						url: 'datachecker'
 					},
-					// #ifdef APP-PLUS 
+					// #ifdef APP-PLUS
 					{
 						name: '问题反馈',
 						url: '/platforms/app-plus/feedback/feedback'

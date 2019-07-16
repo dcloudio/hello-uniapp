@@ -689,27 +689,9 @@
 				{
 					"path": "tabbar/tabbar",
 					"style": {
-						"navigationBarTitleText": "可拖动顶部选项卡",
-						"app-plus": {
-							"titleNView": {
-								"titleText": "可拖动顶部选项卡（非原生）"
-							}
-						},
-						"h5": {
-							"titleNView": {
-								"titleText": "可拖动顶部选项卡"
-							}
-						}
+						"navigationBarTitleText": "可拖动顶部选项卡"
 					}
 				},
-				// #ifdef APP-PLUS
-				{
-					"path": "tabbar-native/tabbar-native",
-					"style": {
-						"navigationBarTitleText": "可拖动顶部选项卡（原生）"
-					}
-				},
-				// #endif
 				{
 					"path": "tabbar/detail/detail",
 					"style": {
