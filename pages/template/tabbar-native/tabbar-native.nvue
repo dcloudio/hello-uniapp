@@ -1,8 +1,7 @@
 <template>
     <view class="tabs">
         <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scrollInto">
-            <view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="tab.id" :data-current="index"
-                @click="ontabtap">
+            <view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="tab.id" :data-current="index" @click="ontabtap">
                 <text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
             </view>
         </scroll-view>
@@ -13,8 +12,7 @@
                     <!-- #ifdef APP-PLUS-NVUE -->
                     <refresh class="refresh" @refresh="onrefresh(index1)" @pullingdown="onpullingdown" :display="tab.refreshing ? 'show' : 'hide'">
                         <div class="refresh-view">
-                            <image class="refresh-icon" :src="refreshIcon" :style="{width: (tab.refreshing || pulling) ? 0: '32px'}"
-                                :class="{'refresh-icon-active': tab.refreshFlag}"></image>
+                            <image class="refresh-icon" :src="refreshIcon" :style="{width: (tab.refreshing || pulling) ? 0: '32px'}" :class="{'refresh-icon-active': tab.refreshFlag}"></image>
                             <image class="loading-icon" :src="loadingIcon" v-if="tab.refreshing"></image>
                             <text class="loading-text">{{tab.refreshText}}</text>
                         </div>
@@ -142,6 +140,7 @@
             this.tabBars.forEach((tabBar) => {
                 this.newsList.push({
                     data: [],
+                    refreshText: "",
                     loadingText: '加载更多...'
                 });
             });
@@ -171,14 +170,14 @@
                 }, 200)
             },
             close(index1, index2) {
-            	uni.showModal({
-            		content: '是否删除本条信息？',
-            		success: (res) => {
-            			if (res.confirm) {
-            				this.newsList[index1].data.splice(index2, 1);
-            			}
-            		}
-            	})
+                uni.showModal({
+                    content: '是否删除本条信息？',
+                    success: (res) => {
+                        if (res.confirm) {
+                            this.newsList[index1].data.splice(index2, 1);
+                        }
+                    }
+                })
             },
             loadMore(e) {
                 setTimeout(() => {
