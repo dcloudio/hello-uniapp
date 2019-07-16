@@ -113,12 +113,10 @@ export default {
 						name: '下拉刷新',
 						url: 'pull-down-refresh'
 					},
-					//#ifndef H5
 					{
 						name: '创建动画',
 						url: 'animation'
 					},
-					//#endif
 					{
 						name: '创建绘画',
 						url: 'canvas'
@@ -127,7 +125,7 @@ export default {
 						name: '节点信息',
 						url: 'get-node-info'
 					},
-					//#ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
+					//#ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5
 					{
 						name: '节点布局交互状态',
 						url: 'intersection-observer'
