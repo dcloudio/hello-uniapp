@@ -52,7 +52,7 @@
 	export default {
 		data() {
 			return {
-				title: 'list-triplex-row',
+				title: '',
 				banner: {},
 				htmlNodes: []
 			}
