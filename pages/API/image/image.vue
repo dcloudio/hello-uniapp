@@ -112,7 +112,8 @@
                 // #ifdef APP-PLUS
                 // TODO 选择相机或相册时 需要弹出actionsheet，目前无法获得是相机还是相册，在失败回调中处理
                 if (this.sourceTypeIndex !== 2) {
-                    if (this.checkPermission() === 0) {
+                    let status = await this.checkPermission();
+                    if (status !== 1) {
                         return;
                     }
                 }

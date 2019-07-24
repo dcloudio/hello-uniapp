@@ -110,7 +110,8 @@
                         pages: ['web-view']
                     },
                     // #endif
-                ]
+                ],
+                navigateFlag: false
             }
         },
         onShareAppMessage() {
@@ -139,16 +140,22 @@
                 }
             },
             goDetailPage(e) {
-                if (true)
-                    if (typeof e === 'string') {
-                        uni.navigateTo({
-                            url: '/pages/component/' + e + '/' + e
-                        })
-                    } else {
-                        uni.navigateTo({
-                            url: e.url
-                        })
-                    }
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
+                if (typeof e === 'string') {
+                    uni.navigateTo({
+                        url: '/pages/component/' + e + '/' + e
+                    })
+                } else {
+                    uni.navigateTo({
+                        url: e.url
+                    })
+                }
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
             }
         }
     }

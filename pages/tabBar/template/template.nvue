@@ -166,18 +166,13 @@
 						url: 'vant-button'
 					}
 					// #endif
-				]
+				],
+                navigateFlag: false
 			}
 		},
 		onLoad() {
-			// #ifdef APP-PLUS
-			plus.nativeUI.showWaiting('加载中……');
-			// #endif
 		},
 		onReady() {
-			// #ifdef APP-PLUS
-			plus.nativeUI.closeWaiting();
-			// #endif
 		},
 		onShareAppMessage() {
 			return {
@@ -205,11 +200,18 @@
 				}
 			},
 			goDetailPage(e) {
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
 				let path = e.url ? e.url : e;
 				let url = ~path.indexOf('platform') ? path : '/pages/template/' + path + '/' + path;
 				uni.navigateTo({
 					url: url
 				});
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
 				return false;
 			}
 		}

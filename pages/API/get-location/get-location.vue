@@ -60,7 +60,8 @@
             },
             async getLocation() {
                 // #ifdef APP-PLUS
-                if (this.checkPermission() !== 1) {
+                let status = await this.checkPermission();
+                if (status !== 1) {
                     return;
                 }
                 // #endif

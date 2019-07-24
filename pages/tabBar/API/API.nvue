@@ -29,7 +29,7 @@
 </template>
 <script>
     import uLink from '@/components/uLink.vue'
-    import setTabBar from '@/components/api-set-tabbar.vue';
+    import setTabBar from '@/components/api-set-tabbar.nvue';
     export default {
         components: {
             uLink,
@@ -328,7 +328,8 @@
             ];
             return {
                 showSetTabBarPage: false,
-                list: list
+                list: list,
+                navigateFlag: false
             };
         },
         onShareAppMessage() {
@@ -343,16 +344,11 @@
             });
         },
         onLoad() {
-            // #ifdef APP-PLUS
-            plus.nativeUI.showWaiting('加载中……');
-            // #endif
         },
         onReady() {
-            // #ifdef APP-PLUS
-            plus.nativeUI.closeWaiting();
-            // #endif
         },
         onShow() {
+            this.navigateFlag = false;
             this.leaveSetTabBarPage();
         },
         onHide() {
@@ -373,6 +369,10 @@
                 }
             },
             goDetailPage(e) {
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
                 if (e === 'set-tabbar') {
                     this.showSetTabBarPage = true;
                     return;
@@ -383,6 +383,9 @@
                 });
             },
             leaveSetTabBarPage() {
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
                 this.showSetTabBarPage = false;
             }
         }

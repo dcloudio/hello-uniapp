@@ -117,7 +117,8 @@
 						name: "Tag 标签",
 						url: "tag"
 					}
-				]
+				],
+                navigateFlag: false
 			};
 		},
 		onLoad() {
@@ -137,9 +138,16 @@
 		},
 		methods: {
 			goDetailPage(path) {
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
 				uni.navigateTo({
 					url: '/pages/extUI/' + path + '/' + path
 				});
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
 			}
 		}
 	}

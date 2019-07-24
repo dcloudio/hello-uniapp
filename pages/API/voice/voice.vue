@@ -94,6 +94,12 @@
             recorderManager = uni.getRecorderManager();
             recorderManager.onStart(() => {
                 console.log('recorder start');
+
+                this.recording = true;
+                recordTimeInterval = setInterval(() => {
+                    this.recordTime += 1;
+                    this.formatedRecordTime = util.formatTime(this.recordTime);
+                }, 1000)
             });
             recorderManager.onStop((res) => {
                 console.log('on stop');
@@ -102,21 +108,20 @@
                 this.hasRecord = true;
                 this.recording = false;
             });
+            recorderManager.onError(() => {
+                console.log('recorder onError');
+            });
         },
         methods: {
-            startRecord() { //开始录音
+            async startRecord() { //开始录音
                 // #ifdef APP-PLUS
-                if (this.checkPermission() !== 1) {
+                let status = await this.checkPermission();
+                if (status !== 1) {
                     return;
                 }
                 // #endif
 
-                this.recording = true;
-                recordTimeInterval = setInterval(() => {
-                    this.recordTime += 1;
-                    this.formatedRecordTime = util.formatTime(this.recordTime);
-                }, 1000)
-
+                // TODO ios 在没有请求过权限之前无法得知是否有相关权限，这种状态下需要直接调用录音，但没有状态或回调判断用户拒绝
                 recorderManager.start({
                     format: 'mp3'
                 });

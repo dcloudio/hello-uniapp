@@ -41,7 +41,7 @@ function location() {
         result = 2;
     } else if (status === 0) {
         result = null;
-    } else if (status === 3) {
+    } else if (status === 3 || status === 4) {
         result = 1;
     } else {
         result = 0;
