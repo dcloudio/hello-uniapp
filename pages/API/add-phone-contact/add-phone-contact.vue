@@ -29,6 +29,7 @@
     </view>
 </template>
 <script>
+    import permision from "@/common/permission.js"
     export default {
         data() {
             return {
@@ -45,23 +46,51 @@
                 this.phone = e.detail.value
             },
             add() {
+                // #ifdef APP-PLUS
+                if (this.checkPermission() !== 1) {
+                    return;
+                }
+                // #endif
+
                 uni.addPhoneContact({
                     firstName: this.name,
                     mobilePhoneNumber: this.phone,
                     success: function() {
                         uni.showModal({
-                        	content:'已成功添加联系人！',
-                            showCancel:false
+                            content: '已成功添加联系人！',
+                            showCancel: false
                         })
                     },
                     fail: function() {
                         uni.showModal({
-                        	content:'添加联系人失败！',
-                            showCancel:false
+                            content: '添加联系人失败！',
+                            showCancel: false
                         })
                     }
                 });
             }
+            // #ifdef APP-PLUS
+            ,
+            async checkPermission() {
+                let status = permision.isIOS ? await permision.requestIOS('contact') :
+                    await permision.requestAndroid('android.permission.WRITE_CONTACTS');
+
+                if (status === null || status === 1) {
+                    status = 1;
+                } else {
+                    uni.showModal({
+                        content: "需要联系人权限",
+                        confirmText: "设置",
+                        success: function(res) {
+                            if (res.confirm) {
+                                permision.gotoAppSetting();
+                            }
+                        }
+                    })
+                }
+                return status;
+            }
+            // #endif
         }
     }
 </script>
