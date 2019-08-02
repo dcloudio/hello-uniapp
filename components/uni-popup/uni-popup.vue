@@ -1,5 +1,5 @@
 <template>
-	<view v-if="show" class="uni-popup">
+	<view v-if="showPopup" class="uni-popup">
 		<view :class="[ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__mask" @click="close(true)" />
 		<view :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__wrapper" @click="close(true)">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
@@ -32,19 +32,35 @@
 			maskClick: {
 				type: Boolean,
 				default: true
+			},
+			show: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
 			return {
 				ani: '',
-				show: false
+				showPopup: false
+			}
+		},
+		watch: {
+			show(newValue) {
+				if (newValue) {
+					this.open()
+				} else {
+					this.close()
+				}
 			}
 		},
 		created() {},
 		methods: {
 			clear() {},
 			open() {
-				this.show = true
+				this.$emit('change', {
+					show: true
+				})
+				this.showPopup = true
 				this.$nextTick(() => {
 					setTimeout(() => {
 						this.ani = 'uni-' + this.type
@@ -53,10 +69,13 @@
 			},
 			close(type) {
 				if (!this.maskClick && type) return
+				this.$emit('change', {
+					show: false
+				})
 				this.ani = ''
 				this.$nextTick(() => {
 					setTimeout(() => {
-						this.show = false
+						this.showPopup = false
 					}, 300)
 				})
 			}
@@ -68,12 +87,12 @@
 
 	.uni-popup {
 		position: fixed;
-		top: 50px;
+		top: 0;
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		z-index: 999;
+		z-index: 99999;
 		overflow: hidden
 	}
 

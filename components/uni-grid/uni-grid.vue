@@ -84,11 +84,13 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-grid {
 		display: flex;
 		flex-wrap: wrap;
 		box-sizing: border-box;
-		border-left: 1px #d0dee5 solid;
+		border-left: 1px #d0dee5 solid
 	}
 </style>

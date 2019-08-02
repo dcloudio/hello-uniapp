@@ -1,19 +1,19 @@
 <template>
-    <view class="uni-container">
-        <view class="uni-header-logo">
-            <image class="uni-header-image" src="/static/extuiIndex.png"></image>
-        </view>
-        <view class="uni-hello-text">
-            <text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
-            <u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
-        </view>
-        <view class="uni-panel" v-for="item in list" :key="item.url">
-            <view class="uni-panel-h" @click="goDetailPage(item.url)">
-                <text class="uni-panel-text">{{item.name}}</text>
-                <text class="uni-panel-icon uni-icon">&#xe470;</text>
-            </view>
-        </view>
-    </view>
+	<view class="uni-container">
+		<view class="uni-header-logo">
+			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
+		</view>
+		<view class="uni-hello-text">
+			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
+			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
+		</view>
+		<view class="uni-panel" v-for="item in lists" :key="item.url">
+			<view class="uni-panel-h" @click="goDetailPage(item.url)">
+				<text class="uni-panel-text">{{item.name}}</text>
+				<text class="uni-panel-icon uni-icon">&#xe470;</text>
+			</view>
+		</view>
+	</view>
 </template>
 <script>
 	import uLink from "@/components/uLink.vue"
@@ -23,7 +23,8 @@
 		},
 		data() {
 			return {
-				list: [{
+				navigateFlag: false,
+				lists: [{
 						name: "Badge 数字角标",
 						url: "badge"
 					},
@@ -48,10 +49,6 @@
 						url: "drawer"
 					},
 					{
-						name: "Fab 悬浮按钮",
-						url: "fab"
-					},
-					{
 						name: "Grid 宫格",
 						url: "grid"
 					},
@@ -59,12 +56,12 @@
 						name: "Icon 图标",
 						url: "icon"
 					},
-					// #ifndef MP-BAIDU
+					// #ifndef MP-BAIDU 
 					{
 						name: "IndexedList 索引列表",
 						url: "indexed-list"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "List 列表",
 						url: "list"
@@ -116,15 +113,12 @@
 					{
 						name: "Tag 标签",
 						url: "tag"
-					}
-				],
-                navigateFlag: false
+					},
+				]
 			};
 		},
-		onLoad() {
-		},
-		onReady() {
-		},
+		onLoad() {},
+		onReady() {},
 		onShareAppMessage() {
 			return {
 				title: '欢迎体验uni-app',
@@ -138,16 +132,16 @@
 		},
 		methods: {
 			goDetailPage(path) {
-                if (this.navigateFlag) {
-                    return;
-                }
-                this.navigateFlag = true;
+				if (this.navigateFlag) {
+					return;
+				}
+				this.navigateFlag = true;
 				uni.navigateTo({
 					url: '/pages/extUI/' + path + '/' + path
 				});
-                setTimeout(() => {
-                    this.navigateFlag = false;
-                }, 200)
+				setTimeout(() => {
+					this.navigateFlag = false;
+				}, 200)
 			}
 		}
 	}
