@@ -10,40 +10,34 @@
 		<view class="example-title">图文卡片</view>
 		<view class="example-body">
 			<view class="example-box">
-				<uni-card :is-shadow="true" title="最美的风景" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg" extra="Dcloud 2019-05-20 12:32:19" note="true" @click="clickCard">
+				<uni-card :is-shadow="true" title="最美的风景" mode="style" thumbnail="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/run1x7.png" extra="DCloud 2019-05-20 12:32:19" note="true" @click="clickCard">
 					<view>
-						那是一个秋意盎然、金风送爽的日子，我和父母一起来到了位于上师大旁的康健园。一踏进公园，一股浓郁的桂香扑鼻而来，泌人心脾,让我心旷神怡，只见一朵朵开得正烈的金色桂花，迎风而立，仿佛在向我招手。我们追着这桂香，走进了清幽的公园。
+						uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。 即使不跨端，uni-app同时也是更好的小程序开发框架
 					</view>
 					<template v-slot:footer>
 						<view class="footer-box">
-							<view class="footer-box__item" @click.stop="footerClick('喜欢')">
-								<uni-icon type="like" color="#666" /><text> 喜欢</text></view>
-							<view class="footer-box__item" @click.stop="footerClick('评论')">
-								<uni-icon type="chat" color="#666" /><text> 评论</text></view>
-							<view class="footer-box__item" @click.stop="footerClick('分享')">
-								<uni-icon type="star" color="#666" /><text> 收藏</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('喜欢')"><text> 喜欢</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('评论')"><text> 评论</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('分享')"><text> 收藏</text></view>
 						</view>
 					</template>
 				</uni-card>
 			</view>
 			<view class="example-box">
-				<uni-card :is-shadow="true" title="Dcloud" mode="title" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg" extra="技术没有上限" note="true" @click="clickCard">
+				<uni-card :is-shadow="true" title="DCloud" mode="title" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="技术没有上限" note="true" @click="clickCard">
 					<view>
 						<view class="image-box">
-							<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg" />
+							<image class="image" mode="aspectFill" src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/run1x7.png" />
 						</view>
 						<view class="content-box">
-							那是一个秋意盎然、金风送爽的日子,我和父母一起来到了位于上师大旁的康健园.一踏进公园,一股浓郁的桂香扑鼻而来,泌人心脾,让我心旷神怡,只见一朵朵开得正烈的金色桂花,迎风而立,仿佛在向我招手.我们追着这桂香,走进了清幽的公园.
+							uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。 即使不跨端，uni-app同时也是更好的小程序开发框架。
 						</view>
 					</view>
 					<template v-slot:footer>
 						<view class="footer-box">
-							<view class="footer-box__item" @click.stop="footerClick('喜欢')">
-								<uni-icon type="like" color="#666" /><text> 喜欢</text></view>
-							<view class="footer-box__item" @click.stop="footerClick('评论')">
-								<uni-icon type="chat" color="#666" /><text> 评论</text></view>
-							<view class="footer-box__item" @click.stop="footerClick('分享')">
-								<uni-icon type="star" color="#666" /><text> 收藏</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('喜欢')"><text> 喜欢</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('评论')"><text> 评论</text></view>
+							<view class="footer-box__item" @click.stop="footerClick('分享')"><text> 收藏</text></view>
 						</view>
 					</template>
 				</uni-card>
@@ -54,12 +48,10 @@
 
 <script>
 	import uniCard from '@/components/uni-card/uni-card.vue'
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 
 	export default {
 		components: {
-			uniCard,
-			uniIcon
+			uniCard
 		},
 		data() {
 			return {
