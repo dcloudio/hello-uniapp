@@ -1,6 +1,6 @@
 /// null = 未请求，1 = 已允许，0 = 拒绝|受限, 2 = 系统未开启
 
-var isIos = (plus.os.name == "iOS")
+var isIOS
 
 function album() {
     var result = 0;
@@ -210,7 +210,7 @@ function requestAndroid(permissionID) {
 }
 
 function gotoAppPermissionSetting() {
-    if (isIos) {
+    if (permission.isIOS) {
         var UIApplication = plus.ios.import("UIApplication");
         var application2 = UIApplication.sharedApplication();
         var NSURL2 = plus.ios.import("NSURL");
@@ -244,10 +244,14 @@ function gotoiOSPermissionSetting() {
     plus.ios.deleteObject(application2);
 }
 
-module.exports = {
-    isIOS: isIos,
+const permission = {
+    get isIOS(){
+        return typeof isIOS === 'boolean' ? isIOS : (isIOS = uni.getSystemInfoSync().platform === 'ios')
+    },
     requestIOS: requestIOS,
     requestAndroid: requestAndroid,
     gotoAppSetting: gotoAppPermissionSetting,
     gotoiOSSetting: gotoiOSPermissionSetting
 }
+
+module.exports = permission
