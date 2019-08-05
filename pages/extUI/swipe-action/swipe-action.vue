@@ -108,60 +108,6 @@
 	}
 </script>
 
-<style lang="scss">
-	.cont {
-		height: 90upx;
-		line-height: 90upx;
-		padding: 0 30upx;
-		position: relative;
-	}
-
-	.cont::before {
-		position: absolute;
-		z-index: 3;
-		left: 0;
-		right: 0;
-		top: 0;
-		height: 1px;
-		content: '';
-		transform: scaleY(0.5);
-		background-color: $uni-border-color;
-	}
-
-	.cont::after {
-		position: absolute;
-		z-index: 3;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 1px;
-		content: '';
-		transform: scaleY(0.5);
-		background-color: $uni-border-color;
-	}
-
-	.example-body {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		padding: 20upx 0;
-	}
-
-	/* .button-view {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		padding: 20upx 0;
-		background: #fff;
-	} */
-
-	.button {
-		border: 1px solid #E7E7E7;
-		padding: 8upx 16upx;
-		border-radius: 8upx;
-	}
-</style>
-
 <style>
 	page {
 		display: flex;
@@ -224,5 +170,57 @@
 		padding: 30upx;
 		color: #3b4144;
 		background: #fff
+	}
+
+	.cont {
+		height: 90upx;
+		line-height: 90upx;
+		padding: 0 30upx;
+		position: relative;
+	}
+
+	.cont::before {
+		position: absolute;
+		z-index: 3;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 1px;
+		content: '';
+		transform: scaleY(0.5);
+		background-color: $uni-border-color;
+	}
+
+	.cont::after {
+		position: absolute;
+		z-index: 3;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 1px;
+		content: '';
+		transform: scaleY(0.5);
+		background-color: $uni-border-color;
+	}
+
+	.example-body {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		padding: 20upx 0;
+	}
+
+	/* .button-view {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		padding: 20upx 0;
+		background: #fff;
+	} */
+
+	.button {
+		border: 1px solid #E7E7E7;
+		padding: 8upx 16upx;
+		border-radius: 8upx;
 	}
 </style>
