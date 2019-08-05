@@ -2,7 +2,7 @@
 	<view class="uni-pagination">
 		<view class="uni-pagination__btns">
 			<view :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === 1}]" :hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickLeft">
-				<template v-if="showIcon">
+				<template v-if="showIcon===true || showIcon === 'true'">
 					<uni-icon color="#000" size="20" type="arrowleft" />
 				</template>
 				<template v-else>
@@ -10,7 +10,7 @@
 				</template>
 			</view>
 			<view :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === maxPage}]" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickRight">
-				<template v-if="showIcon">
+				<template v-if="showIcon===true || showIcon === 'true'">
 					<uni-icon color="#000" size="20" type="arrowright" />
 				</template>
 				<template v-else>
@@ -53,7 +53,7 @@
 				default: 10
 			},
 			showIcon: { // 是否以 icon 形式展示按钮
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			}
 		},

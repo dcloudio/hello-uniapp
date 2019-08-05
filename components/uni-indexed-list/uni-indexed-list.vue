@@ -24,7 +24,7 @@
 	</view>
 </template>
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue';
+	import uniIcon from '../uni-icon/uni-icon.vue'
 	export default {
 		name: 'UniIndexedList',
 		components: {
@@ -34,7 +34,7 @@
 			options: {
 				type: Array,
 				default () {
-					return [];
+					return []
 				}
 			},
 			showSelect: {
@@ -50,12 +50,12 @@
 				itemHeight: 0,
 				winHeight: 0,
 				scrollViewId: ''
-			};
+			}
 		},
 		created() {
-			let winHeight = uni.getSystemInfoSync().windowHeight;
-			this.itemHeight = winHeight / this.options.length;
-			this.winHeight = winHeight;
+			let winHeight = uni.getSystemInfoSync().windowHeight
+			this.itemHeight = winHeight / this.options.length
+			this.winHeight = winHeight
 
 			// if (!this.showSelect) {
 			// 	this.lists = this.options;
@@ -65,73 +65,73 @@
 			this.lists = this.options.map(value => {
 				// console.log(value)
 				let items = value.data.map(item => {
-					let obj = {};
+					let obj = {}
 					// for (let key in item) {
-					obj['key'] = value.letter;
+					obj['key'] = value.letter
 					obj['name'] = item
 					// }
-					obj.checked = item.checked ? item.checked : false;
-					return obj;
-				});
+					obj.checked = item.checked ? item.checked : false
+					return obj
+				})
 				return {
 					title: value.letter,
 					key: value.letter,
 					items: items
-				};
-			});
+				}
+			})
 			// console.log(this.lists)
 		},
 		methods: {
 			touchStart(e) {
-				this.touchmove = true;
-				let pageY = e.touches[0].pageY;
-				let index = Math.floor(pageY / this.itemHeight);
-				let item = this.lists[index];
+				this.touchmove = true
+				let pageY = e.touches[0].pageY
+				let index = Math.floor(pageY / this.itemHeight)
+				let item = this.lists[index]
 				if (item) {
-					this.scrollViewId = 'uni-indexed-list-' + item.key;
-					this.touchmoveIndex = index;
+					this.scrollViewId = 'uni-indexed-list-' + item.key
+					this.touchmoveIndex = index
 				}
 			},
 			touchMove(e) {
-				let pageY = e.touches[0].pageY;
-				let index = Math.floor(pageY / this.itemHeight);
-				let item = this.lists[index];
+				let pageY = e.touches[0].pageY
+				let index = Math.floor(pageY / this.itemHeight)
+				let item = this.lists[index]
 				if (item) {
-					this.scrollViewId = 'uni-indexed-list-' + item.key;
-					this.touchmoveIndex = index;
+					this.scrollViewId = 'uni-indexed-list-' + item.key
+					this.touchmoveIndex = index
 				}
 			},
 			touchEnd() {
-				this.touchmove = false;
-				this.touchmoveIndex = -1;
+				this.touchmove = false
+				this.touchmoveIndex = -1
 			},
 			onClick(idx, index) {
-				let obj = {};
+				let obj = {}
 				for (let key in this.lists[idx].items[index]) {
-					obj[key] = this.lists[idx].items[index][key];
+					obj[key] = this.lists[idx].items[index][key]
 				}
-				let select = [];
+				let select = []
 				if (this.showSelect) {
-					this.lists[idx].items[index].checked = !this.lists[idx].items[index].checked;
+					this.lists[idx].items[index].checked = !this.lists[idx].items[index].checked
 					this.lists.forEach((value, idx) => {
 						value.items.forEach((item, index) => {
 							if (item.checked) {
-								let obj = {};
+								let obj = {}
 								for (let key in this.lists[idx].items[index]) {
-									obj[key] = this.lists[idx].items[index][key];
+									obj[key] = this.lists[idx].items[index][key]
 								}
-								select.push(obj);
+								select.push(obj)
 							}
-						});
-					});
+						})
+					})
 				}
 				this.$emit('click', {
 					item: obj,
 					select: select
-				});
+				})
 			}
 		}
-	};
+	}
 </script>
 <style>
 	@charset "UTF-8";

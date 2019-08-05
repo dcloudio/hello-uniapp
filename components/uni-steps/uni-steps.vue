@@ -1,16 +1,16 @@
 <template>
 	<view class="uni-steps">
 		<view :class="'uni-steps-' + direction" class="uni-steps-items">
-			<view v-for="(item,index) in options" :key="index" :class="{'uni-steps-process':index === active,'uni-steps-finish':index < active}" class="uni-steps-item">
-				<view :style="{color:index === active ? activeColor : ''}" class="uni-steps-item-title-container">
+			<view v-for="(item, index) in options" :key="index" :class="{ 'uni-steps-process': index === active, 'uni-steps-finish': index < active }" class="uni-steps-item">
+				<view :style="{ color: index === active ? activeColor : '' }" class="uni-steps-item-title-container">
 					<view class="uni-steps-item-title">{{ item.title }}</view>
 					<view v-if="item.desc" class="uni-steps-item-desc">{{ item.desc }}</view>
 				</view>
 				<view class="uni-steps-item-circle-container">
-					<view v-if="index !== active" :style="{backgroundColor:index < active ? activeColor : ''}" class="uni-steps-item-circle" />
+					<view v-if="index !== active" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-circle" />
 					<uni-icon v-else :color="activeColor" type="checkbox-filled" size="14" />
 				</view>
-				<view v-if="index !== options.length-1" :style="{backgroundColor:index < active ? activeColor : ''}" class="uni-steps-item-line" />
+				<view v-if="index !== options.length - 1" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-line" />
 			</view>
 		</view>
 	</view>
@@ -24,15 +24,18 @@
 			uniIcon
 		},
 		props: {
-			direction: { // 排列方向 row column
+			direction: {
+				// 排列方向 row column
 				type: String,
 				default: 'row'
 			},
-			activeColor: { // 激活状态颜色
+			activeColor: {
+				// 激活状态颜色
 				type: String,
 				default: '#1aad19'
 			},
-			active: { // 当前步骤
+			active: {
+				// 当前步骤
 				type: Number,
 				default: 0
 			},
@@ -193,8 +196,7 @@
 		left: -8px;
 		padding: 0 8px;
 		background-color: #fff;
-		z-index: 1;
-		line-height: normal !important
+		z-index: 1
 	}
 
 	.uni-steps-item-circle {

@@ -6,10 +6,10 @@
 				<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 			</view>
 		</view>
-		<view class="uni-padding-wrap" style="margin-top:30upx;">这是抽屉式导航组件使用示例，可以指定菜单左侧或者右侧弹出（仅初始化生效），组件内部可以放置任何内容。点击页面按钮即可显示导航菜单。</view>
-		<view class="example">
+		<view class="uni-drawer-info">这是抽屉式导航组件使用示例，可以指定菜单左侧或者右侧弹出（仅初始化生效），组件内部可以放置任何内容。点击页面按钮即可显示导航菜单。</view>
+		<view>
 			<view class="example-title">左侧滑出</view>
-			<view>
+			<view class="example-body">
 				<button type="default" @click="show('left')">显示Drawer</button>
 				<uni-drawer :visible="showLeft" mode="left" @close="closeDrawer('left')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
@@ -26,13 +26,11 @@
 						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close">
-						<button type="default" @click="hide">关闭Drawer</button>
-					</view>
+					<view class="close"><button type="default" @click="hide">关闭Drawer</button></view>
 				</uni-drawer>
 			</view>
 			<view class="example-title">右侧滑出</view>
-			<view>
+			<view class="example-body">
 				<button type="default" @click="show('right')">显示Drawer</button>
 				<uni-drawer :visible="showRigth" mode="right" @close="closeDrawer('right')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
@@ -49,9 +47,7 @@
 						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close">
-						<button type="default" @click="hide">关闭Drawer</button>
-					</view>
+					<view class="close"><button type="default" @click="hide">关闭Drawer</button></view>
 				</uni-drawer>
 			</view>
 		</view>
@@ -94,7 +90,8 @@
 				} else {
 					this.showRigth = false
 				}
-			}
+			},
+			confirm() {}
 		},
 		onNavigationBarButtonTap(e) {
 			this.showRigth = !this.showRigth
@@ -113,7 +110,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -126,11 +123,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -138,7 +158,15 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	.header {
@@ -146,6 +174,8 @@
 		flex-direction: row;
 		padding: 10px 15px;
 		align-items: center;
+		border-top: 1px #f5f5f5 solid;
+		background: #fff;
 	}
 
 	.input-view {
@@ -157,6 +187,14 @@
 		border-radius: 15px;
 		padding: 0 10px;
 		flex: 1;
+		background: #f5f5f5;
+	}
+
+	.uni-drawer-info {
+		background: #fff;
+		padding: 30upx;
+		padding-top: 10upx;
+		color: #3b4144;
 	}
 
 	.uni-padding-wrap {
@@ -170,10 +208,6 @@
 		height: 24px;
 		line-height: 24px;
 		font-size: 16px;
-	}
-
-	.input-view .input {
-		background-color: transparent;
 	}
 
 	.close {

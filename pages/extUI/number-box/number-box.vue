@@ -1,18 +1,28 @@
 <template>
 	<view class="page">
-		<view class="example">
-			<view class="example-title">基本用法</view>
+		<view class="example-info">数字输入框组件多用于购物车加减商品等场景</view>
+		<view class="example-title">基本用法</view>
+		<view class="example-body">
 			<uni-number-box />
-			<view class="example-title">设置最小值和最大值</view>
-			<uni-number-box :min="2" :max="9" :value="5" />
-			<view class="example-title">设置步长（步长0.1）</view>
-			<uni-number-box :step="0.1" />
-			<view class="example-title">禁用状态</view>
-			<uni-number-box :disabled="true" />
-			<view class="example-title">获取输入的值 : {{ numberValue }}</view>
-			<uni-number-box :value="numberValue" @change="change" />
-			<view style="height: 30upx;" />
 		</view>
+		<view class="example-title">设置最小值和最大值</view>
+		<view class="example-body">
+			<uni-number-box :min="2" :max="9" :value="5" />
+		</view>
+		<view class="example-title">设置步长（步长0.1）</view>
+		<view class="example-body">
+			<uni-number-box :step="0.1" />
+		</view>
+		<view class="example-title">禁用状态</view>
+		<view class="example-body">
+			<uni-number-box :disabled="true" />
+		</view>
+		<view class="example-title">获取输入的值 : {{ numberValue }}</view>
+		<view class="example-body">
+			<uni-number-box :value="numberValue" @change="change" />
+		</view>
+
+		<!-- <view style="height: 30upx;"></view> -->
 	</view>
 </template>
 <script>
@@ -39,7 +49,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -52,11 +62,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -64,6 +97,14 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 </style>

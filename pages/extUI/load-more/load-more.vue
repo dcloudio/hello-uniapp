@@ -1,11 +1,12 @@
 <template>
 	<view>
-		<view>
-			<view class="example-title">基本用法</view>
+		<view class="example-info">加载更多组件用于页面加载更多数据时，页面底部显示内容等场景。</view>
+		<view class="example-title">基本用法</view>
+		<view class="example-body">
 			<uni-load-more :status="status" />
 		</view>
-		<view>
-			<view class="example-title">修改默认颜色及文字</view>
+		<view class="example-title">修改默认颜色及文字</view>
+		<view class="example-body">
 			<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
 		</view>
 
@@ -67,7 +68,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -80,11 +81,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -92,11 +116,27 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	uni-radio-group uni-label {
 		padding: 0;
+	}
+
+	.uni-list {
+		background: #fff;
+	}
+
+	.example-body {
+		padding: 10upx 30upx;
 	}
 
 	.uni-list-item__container {

@@ -5,6 +5,9 @@ import pageHead from './components/page-head.vue'
 import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
 import store from './store'
+// 添加统计
+// const Stat = require('./statistics/dcloud-stat');
+// Stat.init(Vue);
 
 Vue.config.productionTip = false
 

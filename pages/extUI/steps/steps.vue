@@ -1,9 +1,13 @@
 <template>
-	<view class="example">
+	<view>
 		<view class="example-title">基本用法</view>
-		<uni-steps :options="list1" :active="active" />
+		<view class="example-body">
+			<uni-steps :options="list1" :active="active" />
+		</view>
 		<view class="example-title">纵向排列</view>
-		<uni-steps :options="list2" :active="active" direction="column" />
+		<view class="example-body">
+			<uni-steps :options="list2" :active="active" direction="column" />
+		</view>
 		<button type="primary" @click="change">改变状态</button>
 	</view>
 </template>
@@ -59,7 +63,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -72,11 +76,34 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 10upx;
+		height: 40upx;
+		border-top-right-radius: 10upx;
+		border-bottom-right-radius: 10upx;
+		background-color: #031e3c
 	}
 
 	.example .example-title {
@@ -84,7 +111,15 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		border-top: 1px #f5f5f5 solid;
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	button {

@@ -1,18 +1,16 @@
 <template>
-	<view class="uni-padding-wrap uni-common-pb">
+	<view class="uni-container">
 		<view class="uni-header-logo">
-			<image src="/static/extuiIndex.png"></image>
+			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
 		</view>
-		<view class="uni-hello-text uni-common-pb">
-			以下是uni-app扩展组件示例，更多组件见插件市场：<u-link :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
+		<view class="uni-hello-text">
+			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
+			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
-		<view class="uni-card" v-for="(list,index) in lists" :key="index">
-			<view class="uni-list">
-				<view class="uni-list-cell uni-collapse">
-					<view class="uni-list-cell-navigate uni-navigate-right" hover-class="uni-list-cell-hover" @click="goDetailPage(list.url)">
-						{{list.name}}
-					</view>
-				</view>
+		<view class="uni-panel" v-for="item in lists" :key="item.url">
+			<view class="uni-panel-h" @click="goDetailPage(item.url)">
+				<text class="uni-panel-text">{{item.name}}</text>
+				<text class="uni-panel-icon uni-icon">&#xe470;</text>
 			</view>
 		</view>
 	</view>
@@ -25,6 +23,7 @@
 		},
 		data() {
 			return {
+				navigateFlag: false,
 				lists: [{
 						name: "Badge 数字角标",
 						url: "badge"
@@ -48,10 +47,6 @@
 					{
 						name: "Drawer 抽屉",
 						url: "drawer"
-					},
-					{
-						name: "Fab 悬浮按钮",
-						url: "fab"
 					},
 					{
 						name: "Grid 宫格",
@@ -122,16 +117,8 @@
 				]
 			};
 		},
-		onLoad() {
-			// #ifdef APP-PLUS
-			plus.nativeUI.showWaiting('加载中……');
-			// #endif
-		},
-		onReady() {
-			// #ifdef APP-PLUS
-			plus.nativeUI.closeWaiting();
-			// #endif
-		},
+		onLoad() {},
+		onReady() {},
 		onShareAppMessage() {
 			return {
 				title: '欢迎体验uni-app',
@@ -145,33 +132,21 @@
 		},
 		methods: {
 			goDetailPage(path) {
+				if (this.navigateFlag) {
+					return;
+				}
+				this.navigateFlag = true;
 				uni.navigateTo({
 					url: '/pages/extUI/' + path + '/' + path
 				});
+				setTimeout(() => {
+					this.navigateFlag = false;
+				}, 200)
 			}
 		}
 	}
 </script>
 
 <style>
-	page {
-		height: auto;
-		min-height: 100%;
-	}
-
-	.uni-card {
-		box-shadow: none;
-	}
-
-	.uni-list:after {
-		height: 0;
-	}
-
-	.uni-list:before {
-		height: 0;
-	}
-
-	.uni-hello-text {
-		word-break: break-all;
-	}
+	@import '../../../common/uni-nvue.css';
 </style>
