@@ -15,7 +15,7 @@
 				</view>
 			</view>
 		</view>
-		<!-- #ifdef APP-PLUS || MP-WEIXIN -->
+		<!-- #ifdef APP-PLUS || MP-WEIXIN || MP-QQ -->
 		<view class="uni-title uni-common-mt uni-common-pl">摄像头位置</view>
 		<view class="uni-hello-text camera-tips">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
 		<view class="uni-list">

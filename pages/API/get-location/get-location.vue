@@ -65,7 +65,7 @@
                     return;
                 }
                 // #endif
-                // #ifdef MP-WEIXIN || MP-TOUTIAO
+                // #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ
                 let status = await this.getSetting();
                 if (status === 2) {
                     this.showConfirm();

@@ -101,11 +101,13 @@
 						name: '时间轴 timeline',
 						url: 'timeline'
 					},
-					{
-						name: 'uCharts 图表',
-						url: 'ucharts'
-					},
-					// #ifdef APP-PLUS || H5 || MP-WEIXIN
+                    // #ifndef MP-QQ
+                    {
+                    	name: 'uCharts 图表',
+                    	url: 'ucharts'
+                    },
+                    // #endif
+					// #ifdef APP-PLUS || H5 || MP-WEIXIN  || MP-QQ
 					{
 						name: '手势图案锁屏',
 						url: 'gesture-lock'
@@ -119,7 +121,7 @@
 					// 	name: '二维码生成',
 					// 	url: 'qrcode'
 					// },
-					// #ifdef APP-PLUS || MP-WEIXIN || H5
+					// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-QQ
                     {
 						id: 'uparse',
 						name: '富文本渲染',
@@ -160,14 +162,14 @@
 						url: 'im-chat'
 					},
 					// #endif
-					// #ifdef APP-PLUS || MP-WEIXIN
+					// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 					{
 						name: '微信自定义组件示例（vant ui）',
 						url: 'vant-button'
 					}
 					// #endif
 				],
-                navigateFlag: false
+        navigateFlag: false
 			}
 		},
 		onLoad() {

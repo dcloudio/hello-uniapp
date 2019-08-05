@@ -41,7 +41,7 @@
                     name: '图片',
                     url: 'image'
                 },
-                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU
+                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
                 {
                     name: '录音',
                     url: 'voice'
@@ -111,7 +111,7 @@
                             name: '节点信息',
                             url: 'get-node-info'
                         },
-                        //#ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5
+                        //#ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5 || MP-QQ
                         {
                             name: '节点布局交互状态',
                             url: 'intersection-observer'
@@ -175,7 +175,7 @@
                             url: 'brightness'
                         },
                         // #endif
-                        // #ifdef APP-PLUS || MP-WEIXIN
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
                         {
                             name: '蓝牙',
                             url: 'bluetooth'
@@ -184,6 +184,8 @@
                             name: '指纹',
                             url: 'fingerprint'
                         },
+                        // #endif
+                        // #ifdef APP-PLUS || MP-WEIXIN
                         {
                             name: 'iBeacon',
                             url: 'ibeacon'

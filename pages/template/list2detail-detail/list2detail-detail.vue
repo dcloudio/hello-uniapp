@@ -12,7 +12,7 @@
 		<view class="article-content">
 			<rich-text :nodes="htmlNodes"></rich-text>
 		</view>
-		<!-- #ifdef MP-WEIXIN -->
+		<!-- #ifdef MP-WEIXIN || MP-QQ -->
 		<ad v-if="htmlNodes.length > 0" unit-id="adunit-01b7a010bf53d74e"></ad>
 		<!-- #endif -->
 	</view>

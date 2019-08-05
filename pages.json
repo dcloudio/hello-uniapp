@@ -464,7 +464,7 @@
 						"onReachBottomDistance": 20
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN || H5
+				// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-QQ
 				{
 					"path": "uparse-md/uparse-md",
 					"style": {
@@ -484,7 +484,7 @@
 						"navigationBarTitleText": "uCharts 图表"
 					}
 				},
-				// #ifdef APP-PLUS || H5 || MP-WEIXIN
+				// #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-QQ
 				{
 					"path": "gesture-lock/gesture-lock",
 					"style": {
@@ -750,7 +750,7 @@
 						"navigationBarTitleText": "时间轴 timeline"
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 				{
 					"path": "vant-button/vant-button",
 					"style": {
@@ -881,7 +881,7 @@
 						"navigationBarTitleText": "节点信息"
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5 || MP-QQ
 				{
 					"path": "intersection-observer/intersection-observer",
 					"style": {
@@ -1057,7 +1057,7 @@
 					}
 				},
 				// #endif
-				// #ifdef APP-PLUS || MP-WEIXIN
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 				{
 					"path": "bluetooth/bluetooth",
 					"style": {
@@ -1070,13 +1070,15 @@
 						"navigationBarTitleText": "指纹"
 					}
 				},
-				{
-					"path": "ibeacon/ibeacon",
-					"style": {
-						"navigationBarTitleText": "iBeacon"
-					}
-				},
 				// #endif
+        // #ifdef APP-PLUS || MP-WEIXIN 
+        {
+        	"path": "ibeacon/ibeacon",
+        	"style": {
+        		"navigationBarTitleText": "iBeacon"
+        	}
+        },
+        // #endif
 				{
 					"path": "vibrate/vibrate",
 					"style": {

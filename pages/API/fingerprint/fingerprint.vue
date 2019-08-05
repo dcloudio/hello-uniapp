@@ -33,11 +33,11 @@ export default {
 			this.disabled = false;
 		}
 		// #endif
-		// #ifdef MP-WEIXIN
+		// #ifdef MP-WEIXIN || MP-QQ
 		this.disabled = false;
 		this.result = '请在微信真机中使用，模拟器不支持';
 		// #endif
-		// #ifndef APP-PLUS || MP-WEIXIN
+		// #ifndef APP-PLUS || MP-WEIXIN ||  MP-QQ
 		this.result = '此平台不支持指纹识别';
 		// #endif
 	},
@@ -76,7 +76,7 @@ export default {
 			}
 			// #endif
 
-			// #ifdef MP-WEIXIN
+			// #ifdef MP-WEIXIN || MP-QQ
 			wx.startSoterAuthentication({
 				requestAuthModes: ['fingerPrint'],
 				challenge: '123456',
