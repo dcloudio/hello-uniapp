@@ -66,7 +66,9 @@
     </view>
 </template>
 <script>
+    // #ifdef APP-PLUS
     import permision from "@/common/permission.js"
+    // #endif
     var sourceType = [
         ['camera'],
         ['album'],
@@ -170,7 +172,7 @@
             },
             async checkPermission(code) {
                 let type = code ? code - 1 : this.sourceTypeIndex;
-                let status = permision.isIOS ? await permision.requestIOS(sourceType[type]) :
+                let status = permision.isIOS ? await permision.requestIOS(sourceType[type][0]) :
                     await permision.requestAndroid(type === 0 ? 'android.permission.CAMERA' :
                         'android.permission.READ_EXTERNAL_STORAGE');
 

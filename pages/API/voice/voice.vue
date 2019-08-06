@@ -58,8 +58,10 @@
     </view>
 </template>
 <script>
+	// #ifdef APP-PLUS
+	import permision from "@/common/permission.js"
+	// #endif
     var util = require('../../../common/util.js')
-    import permision from "@/common/permission.js"
     var playTimeInterval = null;
     var recordTimeInterval = null;
     var recorderManager = null;

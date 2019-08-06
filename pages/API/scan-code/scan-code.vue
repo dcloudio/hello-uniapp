@@ -13,58 +13,62 @@
 	</view>
 </template>
 <script>
-import permision from '@/common/permission.js';
-export default {
-	data() {
-		return {
-			title: 'scanCode',
-			result: ''
-		};
-	},
-	methods: {
-		async scan() {
-			// #ifdef APP-PLUS
-			let status = await this.checkPermission();
-			if (status !== 1) {
-				return;
-			}
-			// #endif
-			uni.scanCode({
-				success: res => {
-					this.result = res.result;
-				},
-				fail: err => {
-					console.log(err);
-				}
-			});
+	// #ifdef APP-PLUS
+	import permision from "@/common/permission.js"
+	// #endif
+	export default {
+		data() {
+			return {
+				title: 'scanCode',
+				result: ''
+			};
 		},
-		// #ifdef APP-PLUS
-		async checkPermission(code) {
-			let status = permision.isIOS ? await permision.requestIOS('camera') : await permision.requestAndroid('android.permission.CAMERA');
-
-			if (status === null || status === 1) {
-				status = 1;
-			} else {
-				uni.showModal({
-					content: '需要相机权限',
-					confirmText: '设置',
-					success: function(res) {
-						if (res.confirm) {
-							permision.gotoAppSetting();
-						}
+		methods: {
+			async scan() {
+				// #ifdef APP-PLUS
+				let status = await this.checkPermission();
+				if (status !== 1) {
+					return;
+				}
+				// #endif
+				uni.scanCode({
+					success: res => {
+						this.result = res.result;
+					},
+					fail: err => {
+						console.log(err);
 					}
 				});
 			}
-			return status;
+			// #ifdef APP-PLUS
+			,
+			async checkPermission(code) {
+				let status = permision.isIOS ? await permision.requestIOS('camera') : await permision.requestAndroid(
+					'android.permission.CAMERA');
+
+				if (status === null || status === 1) {
+					status = 1;
+				} else {
+					uni.showModal({
+						content: '需要相机权限',
+						confirmText: '设置',
+						success: function(res) {
+							if (res.confirm) {
+								permision.gotoAppSetting();
+							}
+						}
+					});
+				}
+				return status;
+			}
+			// #endif
 		}
-		// #endif
-	}
-};
+	};
 </script>
 
 <style>
-.scan-result {
-	min-height: 50upx;
-	line-height: 50upx;
-}
+	.scan-result {
+		min-height: 50upx;
+		line-height: 50upx;
+	}
 </style>

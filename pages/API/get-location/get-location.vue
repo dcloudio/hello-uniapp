@@ -32,9 +32,11 @@
 </template>
 <script>
     import uniPopup from '@/components/uni-popup/uni-popup.vue'
-    import permision from "@/common/permission.js"
     var util = require('../../../common/util.js');
     var formatLocation = util.formatLocation;
+    // #ifdef APP-PLUS
+    import permision from "@/common/permission.js"
+    // #endif
 
     export default {
         components: {
