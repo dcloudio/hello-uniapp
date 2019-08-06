@@ -147,6 +147,10 @@
                             }
                         }
                     })
+                } else if (status.code) {
+                    uni.showModal({
+                        content: status.message
+                    })
                 } else {
                     uni.showModal({
                         content: "需要定位权限",
