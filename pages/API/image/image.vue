@@ -102,7 +102,7 @@
         },
         methods: {
             sourceTypeChange: function(e) {
-                this.sourceTypeIndex = e.target.value
+                this.sourceTypeIndex = parseInt(e.target.value)
             },
             sizeTypeChange: function(e) {
                 this.sizeTypeIndex = e.target.value

@@ -200,6 +200,7 @@ function requestAndroid(permissionID) {
                 resolve(result);
             },
             function(error) {
+                console.log('result error: ' + error.message)
                 resolve({
                     code: error.code,
                     message: error.message
