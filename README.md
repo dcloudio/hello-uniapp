@@ -12,9 +12,3 @@
 
 更多uni-app的模板、示例详见[插件市场](https://ext.dcloud.net.cn/)
 
-扫码加入uni-app微信交流群：
-
-<p>
-    <img src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/wx-barcode.png" width="250"/>
-</p>
-
