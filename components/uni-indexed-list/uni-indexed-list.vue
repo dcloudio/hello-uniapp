@@ -52,36 +52,47 @@
 				scrollViewId: ''
 			}
 		},
+		watch: {
+			options: {
+				handler: function() {
+					this.setList()
+				},
+				deep: true
+			}
+		},
 		created() {
-			let winHeight = uni.getSystemInfoSync().windowHeight
-			this.itemHeight = winHeight / this.options.length
-			this.winHeight = winHeight
-
-			// if (!this.showSelect) {
-			// 	this.lists = this.options;
-			// 	return;
-			// }
-			// console.log(this.options)
-			this.lists = this.options.map(value => {
-				// console.log(value)
-				let items = value.data.map(item => {
-					let obj = {}
-					// for (let key in item) {
-					obj['key'] = value.letter
-					obj['name'] = item
-					// }
-					obj.checked = item.checked ? item.checked : false
-					return obj
-				})
-				return {
-					title: value.letter,
-					key: value.letter,
-					items: items
-				}
-			})
-			// console.log(this.lists)
+			this.setList()
 		},
 		methods: {
+			setList() {
+				let winHeight = uni.getSystemInfoSync().windowHeight
+				this.itemHeight = winHeight / this.options.length
+				this.winHeight = winHeight
+
+				// if (!this.showSelect) {
+				// 	this.lists = this.options;
+				// 	return;
+				// }
+				// console.log(this.options)
+				this.lists = this.options.map(value => {
+					// console.log(value)
+					let items = value.data.map(item => {
+						let obj = {}
+						// for (let key in item) {
+						obj['key'] = value.letter
+						obj['name'] = item
+						// }
+						obj.checked = item.checked ? item.checked : false
+						return obj
+					})
+					return {
+						title: value.letter,
+						key: value.letter,
+						items: items
+					}
+				})
+				// console.log(this.lists)
+			},
 			touchStart(e) {
 				this.touchmove = true
 				let pageY = e.touches[0].pageY

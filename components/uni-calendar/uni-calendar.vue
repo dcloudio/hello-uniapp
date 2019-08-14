@@ -554,7 +554,7 @@
 		background: rgba(0, 0, 0, .4);
 		transition: all .3s;
 		opacity: 0;
-		z-index: 9998
+		z-index: 998
 	}
 
 	.uni-calendar__mask.ani-mask-show {
@@ -568,14 +568,14 @@
 		position: relative;
 		height: 100upx;
 		background: #fff;
-		z-index: 10000;
+		z-index: 999;
 		font-size: 32upx
 	}
 
 	.uni-calendar__box {
 		position: fixed;
 		bottom: 0;
-		z-index: 9999;
+		z-index: 999;
 		width: 100%;
 		box-sizing: border-box;
 		transition: all .3s;
