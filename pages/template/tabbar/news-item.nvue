@@ -3,9 +3,11 @@
 	<!-- <view class="list-cell view" @click="click"></view> -->
 	<view class="media-item view" v-if="options.title" @click="click">
 		<!-- <view class="view" :style="options.article_type === 2 ? 'flex-direction: row';" :class="{'media-image-right': options.article_type === 2, 'media-image-left': options.article_type === 1}"> -->
+		<!-- TODO 在支付宝小程序下 需要用 style 覆盖标签的默认样式 -->
 		<view class="view" :style="{flexDirection: (options.article_type === 1 || options.article_type === 2)?(options.article_type === 2 ?'row':'row-reverse'):'column' }">
 			<text class="media-title" :class="{'media-title2': options.article_type === 1 || options.article_type === 2}">{{options.title}}</text>
-			<view v-if="options.image_list || options.image_url" class="image-section flex-row" :class="{'image-section-right': options.article_type === 2, 'image-section-left': options.article_type === 1}">
+			<view v-if="options.image_list || options.image_url" class="image-section flex-row" :class="{'image-section-right': options.article_type === 2, 'image-section-left': options.article_type === 1}"
+			 :style="{flexDirection: 'row' }">
 				<image class="image-list1" :class="{'image-list2': options.article_type === 1 || options.article_type === 2}" v-if="options.image_url"
 				 :src="options.image_url"></image>
 				<image class="image-list3" v-if="options.image_list" :src="source.url" v-for="(source, i) in options.image_list"
@@ -18,8 +20,9 @@
 				<text class="info-text">{{options.comment_count}}条评论</text>
 				<text class="info-text">{{options.datetime}}</text>
 			</view>
-			<view class="max-close-view flex-row" @click.stop="close" style="flex-direction: row;">
-				<text class="close">×</text>
+			<view class="max-close-view" @click.stop="close">
+				<view class="close-l close-h"></view>
+				<view class="close-l close-v"></view>
 			</view>
 		</view>
 		<view class="media-item-line" style="position: absolute;"></view>
@@ -103,7 +106,7 @@
 	.media-title {
 		lines: 3;
 		text-overflow: ellipsis;
-		font-size: 32upx;
+		font-size: 30upx;
 		color: #555555;
 	}
 
@@ -167,6 +170,7 @@
 	}
 
 	.max-close-view {
+		position: relative;
 		align-items: center;
 		flex-direction: row;
 		width: 40upx;
@@ -180,10 +184,18 @@
 		text-align: center;
 	}
 
-	.close {
-		color: #aaaaaa;
-		font-size: 26upx;
-		line-height: 26upx;
-		text-align: center;
+	.close-l {
+		position: absolute;
+		width: 18upx;
+		height: 1upx;
+		background-color: #aaaaaa;
+	}
+
+	.close-h {
+		transform: rotate(45deg);
+	}
+
+	.close-v {
+		transform: rotate(-45deg);
 	}
 </style>
