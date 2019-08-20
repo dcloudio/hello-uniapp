@@ -346,6 +346,7 @@
 
     .swiper-item {
         flex: 1;
+        flex-direction: row;
     }
 
     .scroll-v {
