@@ -221,6 +221,8 @@
 
 	.uni-steps-item.uni-steps-process .uni-steps-item-circle-container {
 		bottom: 3px;
+		height: 14px;
+		line-height: 14px;
 		display: flex
 	}
 </style>

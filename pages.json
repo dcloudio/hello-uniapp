@@ -1071,14 +1071,14 @@
 					}
 				},
 				// #endif
-        // #ifdef APP-PLUS || MP-WEIXIN 
-        {
-        	"path": "ibeacon/ibeacon",
-        	"style": {
-        		"navigationBarTitleText": "iBeacon"
-        	}
-        },
-        // #endif
+				// #ifdef APP-PLUS || MP-WEIXIN 
+				{
+					"path": "ibeacon/ibeacon",
+					"style": {
+						"navigationBarTitleText": "iBeacon"
+					}
+				},
+				// #endif
 				{
 					"path": "vibrate/vibrate",
 					"style": {

@@ -74,7 +74,7 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
 		background-color: #fdfdfd
@@ -88,15 +88,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
