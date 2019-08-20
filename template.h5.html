@@ -8,10 +8,7 @@
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
 		<script>
-			var UA = window.navigator.userAgent.toLowerCase();
-			var isAndroid = UA.indexOf('android') > 0;
-			var isIOS = /iphone|ipad|ipod|ios/.test(UA);
-			if (!(isAndroid || isIOS)) {
+			if (document.documentElement.clientWidth > 1024) {
 				// 正式发布的时候使用，开发期间不启用。
 				// window.location.href = '/h5/pcguide.html';
 			}

@@ -220,7 +220,7 @@
 
 	.uni-swipe-action--show {
 		position: relative;
-		z-index: 1000
+		z-index: 999
 	}
 
 	.uni-swipe-action--btn {
@@ -238,7 +238,7 @@
 		display: block;
 		opacity: 0;
 		position: fixed;
-		z-index: 999;
+		z-index: 998;
 		top: 0;
 		left: 0;
 		width: 100%;
