@@ -57,7 +57,7 @@ var dateUtils = {
 		var _format = function (number) {
 			return (number < 10 ? ('0' + number) : number);
 		};
-		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' +
+		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDate()) + '-' +
 			_format(date.getHours()) + ':' + _format(date.getMinutes());
 	},
 	parse: function (str) { //将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
