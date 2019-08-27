@@ -57,6 +57,18 @@
                     url: 'video'
                 },
                 // #endif
+                // #ifndef MP-QQ || MP-TOUTIAO
+                {
+                    name: '地图控制',
+                    url: 'map'
+                },
+                // #endif
+                // #ifdef APP-PLUS
+                {
+                    name: '地图搜索',
+                    url: 'map-search'
+                },
+                // #endif
                 // #ifndef H5
                 {
                     name: '文件',
