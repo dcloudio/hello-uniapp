@@ -1,7 +1,7 @@
 <template>
 	<!-- remove list-cell layer fix android 4.x overflow limit error: 28 layers! -->
 	<!-- <view class="list-cell view" @click="click"></view> -->
-	<view class="media-item view" v-if="options.title" @click="click">
+	<view class="media-item view" hover-class="media-item-hover" v-if="options.title" @click="click">
 		<!-- <view class="view" :style="options.article_type === 2 ? 'flex-direction: row';" :class="{'media-image-right': options.article_type === 2, 'media-image-left': options.article_type === 1}"> -->
 		<!-- TODO 在支付宝小程序下 需要用 style 覆盖标签的默认样式 -->
 		<view class="view" :style="{flexDirection: (options.article_type === 1 || options.article_type === 2)?(options.article_type === 2 ?'row':'row-reverse'):'column' }">
@@ -81,6 +81,10 @@
 		border-bottom-color: #ebebeb; */
 		padding: 20upx 30upx 21upx 30upx;
 	}
+
+    .media-item-hover{
+        background-color: #eee;
+    }
 
 	.media-item-line {
 		position: absolute;
