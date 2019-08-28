@@ -1,49 +1,66 @@
 <template>
-	<view>
-		<page-head :title="title"></page-head>
-		<view class="uni-padding-wrap uni-common-mt">
-			<view class="progress-box">
-				<progress percent="20" show-info stroke-width="3" />
-			</view>
-			<view class="progress-box">
-				<progress percent="40" active stroke-width="3" />
-				<uni-icon type="close" class="progress-cancel" color="#dd524d"></uni-icon>
-			</view>
-			<view class="progress-box">
-				<progress percent="60" active stroke-width="3" />
-			</view>
-			<view class="progress-box">
-				<progress percent="80" activeColor="#10AEFF" active stroke-width="3" />
-			</view>
-		</view>
-	</view>
+    <view>
+        <page-head :title="title"></page-head>
+        <view class="uni-padding-wrap uni-common-mt">
+            <view class="progress-box">
+                <progress :percent="pgList[0]" show-info stroke-width="3" />
+            </view>
+            <view class="progress-box">
+                <progress :percent="pgList[1]" active stroke-width="3" />
+                <uni-icon type="close" class="progress-cancel" color="#dd524d"></uni-icon>
+            </view>
+            <view class="progress-box">
+                <progress :percent="pgList[2]" active stroke-width="3" />
+            </view>
+            <view class="progress-box">
+                <progress :percent="pgList[3]" activeColor="#10AEFF" active stroke-width="3" />
+            </view>
+            <view class="progress-control">
+                <button type="primary" @click="setProgress">设置进度</button>
+                <button type="warn" @click="clearProgress">清除进度</button>
+            </view>
+        </view>
+    </view>
 </template>
 <script>
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
-	export default {
-		data() {
-			return {
-				title: 'progress'
-			}
-		},
-		components: {
-			uniIcon
-		},
-	}
+    import uniIcon from '@/components/uni-icon/uni-icon.vue'
+    export default {
+        data() {
+            return {
+                title: 'progress',
+                pgList: [0, 0, 0, 0]
+            }
+        },
+        components: {
+            uniIcon
+        },
+        methods: {
+            setProgress() {
+                this.pgList = [20, 40, 60, 80]
+            },
+            clearProgress() {
+                this.pgList = [0, 0, 0, 0]
+            }
+        }
+    }
 </script>
 
 <style>
-	.progress-box {
-		display: flex;
-		height: 50upx;
-		margin-bottom: 60upx;
-	}
+    .progress-box {
+        display: flex;
+        height: 50rpx;
+        margin-bottom: 60rpx;
+    }
 
-	.uni-icon {
-		line-height: 1.5;
-	}
+    .uni-icon {
+        line-height: 1.5;
+    }
 
-	.progress-cancel {
-		margin-left: 40upx;
-	}
+    .progress-cancel {
+        margin-left: 40rpx;
+    }
+    
+    .progress-control button{
+        margin-top: 20rpx;
+    }
 </style>
