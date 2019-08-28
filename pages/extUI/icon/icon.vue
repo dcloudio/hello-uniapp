@@ -3,8 +3,8 @@
 		<view class="example-info">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸</view>
 		<view class="example-title"><text>基础图标</text>
 			<view class="uni-right">
-				<text>显示{{checked?' unicode':'图标名'}}</text>
-				<switch class="switch" :checked="checked" @change="change" />
+				<text>显示{{ checked?' unicode':'图标名' }}</text>
+				<switch :checked="checked" class="switch" @change="change" />
 			</view>
 		</view>
 		<view class="example-body">
@@ -404,7 +404,8 @@
 		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -429,7 +430,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

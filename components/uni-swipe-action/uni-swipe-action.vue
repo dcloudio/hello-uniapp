@@ -1,20 +1,17 @@
 <template>
-	<view class="uni-swipe-action">
-		<view :class="{ 'uni-swipe-action--show': isShowBtn }" :style="{ transform: transformX, '-webkit-transform': transformX }" class="uni-swipe-action__container" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @touchcancel="touchEnd" @click="bindClickCont">
-			<view class="uni-swipe-action__content">
+	<view class="uni-swipe_content selector-query-hock">
+		<view :class="{'ani':uniShow}" :style="{transform:moveLeft}" class="uni-swipe_move-box" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
+			<view class="uni-swipe_box">
 				<slot />
 			</view>
-			<view :id="elId" class="uni-swipe-action__btn-group">
-				<div v-for="(item, index) in options" :key="index" :style="{
+			<view class="uni-swipe_button-group selector-query-hock">
+				<view v-for="(item,index) in options" :key="index" :style="{
             backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
             color: item.style && item.style.color ? item.style.color : '#FFFFFF',
-            fontSize: item.style && item.style.fontSize ? item.style.fontSize : '28upx'
-          }" class="uni-swipe-action--btn" @click="bindClickBtn(item, index)">
-					{{ item.text }}
-				</div>
+            fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
+          }" class="uni-swipe_button" @click.stop="onClick(index,item)">{{ item.text }}</view>
 			</view>
 		</view>
-		<view v-if="isShowBtn" class="uni-swipe-action__mask" @click="close" @touchmove.stop.prevent="close" />
 	</view>
 </template>
 
@@ -22,226 +19,222 @@
 	export default {
 		name: 'UniSwipeAction',
 		props: {
-			isDrag: {
-				type: Boolean,
-				default: false
-			},
-			isOpened: {
-				type: Boolean,
-				default: false
-			},
-			disabled: {
-				type: Boolean,
-				default: false
-			},
-			autoClose: {
-				type: Boolean,
-				default: true
-			},
+			/**
+			 * 按钮内容
+			 */
 			options: {
 				type: Array,
 				default () {
 					return []
 				}
+			},
+			/**
+			 * 禁用
+			 */
+			disabled: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			 * 变量控制开关
+			 */
+			show: {
+				type: Boolean,
+				default: false
+			},
+			/**
+			 * 是否自动关闭
+			 */
+			autoClose: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
-				elId: elId,
-				isShowBtn: false,
-				transformX: 'translateX(0px)'
+				left: 0,
+				uniShow: false
+			}
+		},
+		computed: {
+			moveLeft() {
+				return `translateX(${this.left}px)`
 			}
 		},
 		watch: {
-			isOpened(newValue, oldValue) {
-				this.isShowBtn = !!newValue
-				this.endMove()
+			show(newVal) {
+				if (this.autoClose) return
+				if (newVal) {
+					this.$emit('change', true)
+					this.open()
+				} else {
+					this.$emit('change', false)
+					this.close()
+				}
+				uni.$emit('__uni__swipe__event', this)
 			}
-		},
-		created() {
-			this.direction = ''
-			this.startX = 0
-			this.startY = 0
-			this.btnGroupWidth = 0
-			this.isMoving = false
-			this.startTime = 0
 		},
 		// #ifdef H5
 		mounted() {
-			this.getSize()
+			this.init()
+			this.getSelectorQuery()
 		},
 		// #endif
 		// #ifndef H5
 		onReady() {
-			this.getSize()
+			this.init()
+			this.getSelectorQuery()
 		},
 		// #endif
+		beforeDestoy() {
+			uni.$off('__uni__swipe__event')
+		},
 		methods: {
-			getSize() {
-				uni.createSelectorQuery()
-					.in(this)
-					.select(`#${this.elId}`)
-					.boundingClientRect()
-					.exec(ret => {
-						this.btnGroupWidth = ret[0].width
-					})
-				if (this.isOpened === true) {
-					this.isShowBtn = true
-					this.endMove()
-				}
-			},
-			bindClickBtn(item, index) {
-				this.$emit('click', {
-					text: item.text,
-					style: item.style,
-					index: index
+			init() {
+				uni.$on('__uni__swipe__event', (res) => {
+					if (res !== this && this.autoClose) {
+						if (this.left !== 0) {
+							this.close()
+						}
+					}
 				})
 			},
-			bindClickCont(e) {
-				if (this.isShowBtn && this.autoClose === true) {
-					this.isShowBtn = false
-					this.endMove()
+			onClick(index, item) {
+				this.$emit('click', {
+					content: item,
+					index
+				})
+			},
+			touchstart(e) {
+				const {
+					pageX
+				} = e.touches[0]
+				if (this.disabled) return
+				const left = this.position[0].left
+				uni.$emit('__uni__swipe__event', this)
+				this.width = pageX - left
+				if (this.isopen) return
+				if (this.uniShow) {
+					this.uniShow = false
+					this.isopen = true
+					this.openleft = this.left + this.position[1].width
 				}
 			},
-			touchStart(event) {
-				this.startTime = event.timeStamp
-				this.startX = event.touches[0].pageX
-				this.startY = event.touches[0].pageY
+			touchmove(e, index) {
+				if (this.disabled) return
+				const {
+					pageX
+				} = e.touches[0]
+				this.setPosition(pageX)
 			},
-			touchMove(event) {
-				if (this.direction === 'Y' || this.disabled === true) {
+			touchend() {
+				if (this.disabled) return
+				if (this.isopen) {
+					this.move(this.openleft, 0)
 					return
 				}
-				var moveY = event.touches[0].pageY - this.startY
-				var moveX = event.touches[0].pageX - this.startX
-				if (!this.isMoving && Math.abs(moveY) > Math.abs(moveX)) {
-					// 纵向滑动
-					this.direction = 'Y'
+				this.move(this.left, -40)
+			},
+			setPosition(x, y) {
+				if (!this.position[1].width) {
 					return
 				}
-				this.direction = moveX > 0 ? 'right' : 'left'
-				this.isMoving = true
-				if (this.isDrag) {
-					let movedLength = this.isShowBtn ? -this.btnGroupWidth : 0
-					if (movedLength + moveX >= 0) {
-						this.transformX = `translateX(0px)`
-						return
-					}
-					if (-movedLength - moveX >= this.btnGroupWidth) {
-						this.transformX = `translateX(${-this.btnGroupWidth}px)`
-						return
-					}
-					if (movedLength - moveX > 0) {
-						this.transformX = `translateX(${moveX}px)`
-					} else {
-						if (moveX >= -this.btnGroupWidth) {
-							this.transformX = `translateX(${moveX - this.btnGroupWidth}px)`
-						}
-					}
+				// const width = this.position[0].width
+				this.left = x - this.width
+				this.setValue(x - this.width)
+			},
+			setValue(value) {
+				// 设置最大最小值
+				this.left = Math.max(-this.position[1].width, Math.min(parseInt(value), 0))
+				this.position[0].left = this.left
+				if (this.isopen) {
+					this.openleft = this.left + this.position[1].width
 				}
 			},
-			touchEnd(event) {
-				this.isMoving = false
-				if (this.direction !== 'right' && this.direction !== 'left') {
-					this.direction = ''
-					return
-				}
-				if (this.isDrag) {
-					let movedLength = Math.abs(Number(this.transformX.slice(11, -3)))
-					let movedTime = event.timeStamp - this.startTime
-					this.isShowBtn = movedLength >= this.btnGroupWidth / 2
-					if (movedTime > 50 && movedTime < 300 && movedLength > 20) {
-						// 在这个时间里面，且滑动了一定的距离
-						if (this.direction === 'right') {
-							this.isShowBtn = false
-						} else {
-							this.isShowBtn = true
-						}
-					}
+			move(left, value) {
+				if (left >= value) {
+					this.$emit('change', false)
+					this.close()
 				} else {
-					if (this.direction === 'right') {
-						this.isShowBtn = false
-					} else {
-						this.isShowBtn = true
-					}
+					this.$emit('change', true)
+					this.open()
 				}
-
-				this.endMove()
 			},
-			endMove() {
-				if (this.direction === 'Y' || this.disabled === true) {
-					this.direction = ''
-					return
-				}
-				if (this.isShowBtn) {
-					this.transformX = `translateX(${-this.btnGroupWidth}px)`
-					this.$emit('opened')
-				} else {
-					this.transformX = 'translateX(0px)'
-					this.$emit('closed')
-				}
-				this.direction = ''
+			open() {
+				this.uniShow = true
+				this.left = -this.position[1].width
+				this.setValue(-this.position[1].width)
 			},
 			close() {
-				this.isShowBtn = false
-				this.endMove()
+				this.uniShow = true
+				this.setValue(0)
+				setTimeout(() => {
+					this.uniShow = false
+					this.isopen = false
+				}, 200)
+			},
+			getSelectorQuery() {
+				const views = uni.createSelectorQuery()
+					// #ifndef MP-ALIPAY
+					.in(this)
+				// #endif
+				views
+					.selectAll('.selector-query-hock')
+					.boundingClientRect(data => {
+						this.position = data
+						if (this.autoClose) return
+						if (this.show) {
+							this.open()
+						} else {
+							this.close()
+						}
+					})
+					.exec()
 			}
 		}
 	}
 </script>
 
 <style>
-	@charset "UTF-8";
-
-	.uni-swipe-action {
+	.uni-swipe_content {
 		width: 100%;
-		overflow: hidden
+		box-sizing: border-box;
+		overflow: hidden;
 	}
 
-	.uni-swipe-action__container {
-		position: relative;
-		background-color: #fff;
-		width: 200%;
+	.uni-swipe_move-box {
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		transition: transform 350ms cubic-bezier(.165, .84, .44, 1)
-	}
-
-	.uni-swipe-action__content {
-		width: 50%
-	}
-
-	.uni-swipe-action__btn-group {
-		display: flex;
-		flex-direction: row
-	}
-
-	.uni-swipe-action--show {
-		position: relative;
-		z-index: 999
-	}
-
-	.uni-swipe-action--btn {
-		padding: 0 32upx;
-		color: #fff;
-		background-color: #c7c6cd;
-		font-size: 28upx;
-		display: inline-flex;
-		text-align: center;
-		flex-direction: row;
-		align-items: center
-	}
-
-	.uni-swipe-action__mask {
-		display: block;
-		opacity: 0;
-		position: fixed;
-		z-index: 998;
-		top: 0;
-		left: 0;
 		width: 100%;
-		height: 100%
+		height: 100%;
+	}
+
+	.uni-swipe_box {
+		flex-shrink: 0;
+		width: 100%;
+		height: 100%;
+		font-size: 14px;
+		color: #333333;
+		/* padding: 15px 20px; */
+		box-sizing: border-box;
+	}
+
+	.uni-swipe_button-group {
+		display: flex;
+		flex-shrink: 0;
+	}
+
+	.uni-swipe_button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 20px;
+		/* width: 100px; */
+		height: 100%;
+		font-size: 14px;
+		box-sizing: border-box;
+	}
+
+	.ani {
+		transition: transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1);
 	}
 </style>

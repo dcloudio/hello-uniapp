@@ -1,6 +1,9 @@
 <template>
 	<view class="uni-load-more">
-		<view v-show="status === 'loading' && showIcon" class="uni-load-more__img">
+		<view v-if="platform === 'android'" v-show="status === 'loading' && showIcon" class="uni-load-more__img">
+			<view :style="{borderColor : color}" class="loader-android" />
+		</view>
+		<view v-else v-show="status === 'loading' && showIcon" class="uni-load-more__img">
 			<view class="load1 load">
 				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 				<view :style="{ background: color }" class="uni-load-view_wrapper" />
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+	const platform = uni.getSystemInfoSync().platform
 	export default {
 		name: 'UniLoadMore',
 		props: {
@@ -55,7 +59,9 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				platform: platform
+			}
 		}
 	}
 </script>
@@ -77,6 +83,7 @@
 	}
 
 	.uni-load-more__img {
+		position: relative;
 		height: 24px;
 		width: 24px;
 		margin-right: 10px
@@ -119,6 +126,19 @@
 	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(4) {
 		top: 11px;
 		left: 0
+	}
+
+	.uni-load-more__img>.loader-android {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		box-sizing: border-box;
+		border: solid 2px #777;
+		border-radius: 50%;
+		border-bottom-color: transparent !important;
+		animation: loader-android 2s 0s linear infinite
 	}
 
 	.load1,
@@ -191,6 +211,16 @@
 
 		100% {
 			opacity: .2
+		}
+	}
+
+	@-webkit-keyframes loader-android {
+		0% {
+			transform: rotate(0)
+		}
+
+		100% {
+			transform: rotate(360deg)
 		}
 	}
 </style>

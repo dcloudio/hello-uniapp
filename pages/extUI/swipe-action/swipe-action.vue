@@ -12,7 +12,7 @@
 		<view class="example-body">
 			<view class="button" @click="setOpened">当前状态：{{ isOpened ? '开' : '关' }}</view>
 		</view>
-		<uni-swipe-action :options="options2" :is-opened="isOpened" :auto-close="true" @opened="bindOpened" @closed="bindClosed">
+		<uni-swipe-action :options="options2" :show="isOpened" :auto-close="false" @change="change">
 			<view class="cont">使用变量控制SwipeAction的开启状态</view>
 		</uni-swipe-action>
 		<view class="example-title">与 List 组件一起使用</view>
@@ -58,7 +58,7 @@
 		},
 		data() {
 			return {
-				isOpened: false,
+				isOpened: true,
 				options1: [{
 					text: '取消置顶'
 				}],
@@ -89,20 +89,18 @@
 			}
 		},
 		methods: {
-			bindClick(value) {
+			bindClick(e) {
+				console.log(e)
 				uni.showToast({
-					title: `点击了${value.text}按钮`,
+					title: `点击了${e.content.text}按钮`,
 					icon: 'none'
 				})
 			},
 			setOpened() {
 				this.isOpened = !this.isOpened
 			},
-			bindOpened() {
-				this.isOpened = true
-			},
-			bindClosed() {
-				this.isOpened = false
+			change(e) {
+				this.isOpened = e
 			}
 		}
 	}
@@ -134,7 +132,8 @@
 		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -159,7 +158,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}
@@ -175,6 +173,7 @@
 		line-height: 90upx;
 		padding: 0 30upx;
 		position: relative;
+		background: #fff;
 	}
 
 	.cont::before {
