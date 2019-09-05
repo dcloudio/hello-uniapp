@@ -7,7 +7,7 @@
 					<view v-for="(item, index) in list.items" :key="index" class="uni-list-item" hover-class="uni-list-item--hover">
 						<view class="uni-list-item__container" @click="onClick(idx, index)">
 							<view v-if="showSelect" style="margin-right: 20upx;">
-								<uni-icon :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#aaa'" size="24" />
+								<uni-icons :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#aaa'" size="24" />
 							</view>
 							<view class="uni-list-item__content">{{ item.name }}</view>
 						</view>
@@ -24,11 +24,11 @@
 	</view>
 </template>
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniIndexedList',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			options: {

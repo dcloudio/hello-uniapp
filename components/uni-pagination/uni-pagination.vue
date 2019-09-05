@@ -3,7 +3,7 @@
 		<view class="uni-pagination__btns">
 			<view :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === 1}]" :hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickLeft">
 				<template v-if="showIcon===true || showIcon === 'true'">
-					<uni-icon color="#000" size="20" type="arrowleft" />
+					<uni-icons color="#000" size="20" type="arrowleft" />
 				</template>
 				<template v-else>
 					{{ prevText }}
@@ -11,7 +11,7 @@
 			</view>
 			<view :class="['uni-pagination__btn',{'uni-pagination--disabled':currentIndex === maxPage}]" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickRight">
 				<template v-if="showIcon===true || showIcon === 'true'">
-					<uni-icon color="#000" size="20" type="arrowright" />
+					<uni-icons color="#000" size="20" type="arrowright" />
 				</template>
 				<template v-else>
 					{{ nextText }}
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniPagination',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			prevText: {

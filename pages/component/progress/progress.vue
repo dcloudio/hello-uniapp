@@ -7,7 +7,7 @@
             </view>
             <view class="progress-box">
                 <progress :percent="pgList[1]" active stroke-width="3" />
-                <uni-icon type="close" class="progress-cancel" color="#dd524d"></uni-icon>
+                <uni-icons type="close" class="progress-cancel" color="#dd524d"></uni-icons>
             </view>
             <view class="progress-box">
                 <progress :percent="pgList[2]" active stroke-width="3" />
@@ -23,7 +23,7 @@
     </view>
 </template>
 <script>
-    import uniIcon from '@/components/uni-icon/uni-icon.vue'
+    import uniIcons from '@/components/uni-icons/uni-icons.vue'
     export default {
         data() {
             return {
@@ -32,7 +32,7 @@
             }
         },
         components: {
-            uniIcon
+            uniIcons
         },
         methods: {
             setProgress() {

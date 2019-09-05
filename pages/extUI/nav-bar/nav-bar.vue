@@ -19,11 +19,11 @@
 				<block slot="left">
 					<view class="city">
 						<view>{{ city }}</view>
-						<uni-icon type="arrowdown" color="#333333" size="22" />
+						<uni-icons type="arrowdown" color="#333333" size="22" />
 					</view>
 				</block>
 				<view class="input-view">
-					<uni-icon type="search" size="22" color="#666666" />
+					<uni-icons type="search" size="22" color="#666666" />
 					<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 				</view>
 			</uni-nav-bar>
@@ -33,12 +33,12 @@
 
 <script>
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 
 	export default {
 		components: {
 			uniNavBar,
-			uniIcon
+			uniIcons
 		},
 		data() {
 			return {

@@ -9,7 +9,7 @@
 		</view>
 		<view class="example-body">
 			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item">
-				<uni-icon :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" @click="switchActive(index)" />
+				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" @click="switchActive(index)" />
 				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}">{{ checked? item.unicode: item.name }}</text>
 			</view>
 		</view>
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 
 	export default {
 		components: {
-			uniIcon
+			uniIcons
 		},
 		data() {
 			return {
