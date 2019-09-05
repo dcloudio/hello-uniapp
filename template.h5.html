@@ -7,8 +7,10 @@
 		<title>
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
-		<!-- 正式发布的时候使用，开发期间不启用。 -->
-		<!-- <script>
+		<!-- 正式发布的时候使用，开发期间不启用。↓ -->
+        <!-- <script src="./touch-emulator.js"></script>
+		<script>
+            TouchEmulator();
 			if (document.documentElement.clientWidth > 1024) {
 				window.location.href = '/h5/pcguide.html#'+location.pathname;
 			}
@@ -18,6 +20,7 @@
                 display: none;
             }
         </style> -->
+        <!-- 正式发布的时候使用，开发期间不启用。↑ -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
 				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
