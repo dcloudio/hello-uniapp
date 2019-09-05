@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<page-head title="cover-view用于覆盖map、video等原生组件"></page-head>
-		<view class="cover-content">
+		<view class="cover-content" v-if="showMap">
 			<!-- TODO暂时条件编译解决支付宝小程序不能正常显示 cover-x -->
 			<!-- #ifdef APP-PLUS -->
 			<map>
@@ -21,8 +21,15 @@
 <script>
 	export default {
 		data() {
-			return {};
-		}
+			return {
+                showMap: false
+            };
+		},
+        onLoad() {
+            setTimeout(()=>{
+                this.showMap = true
+            },350)
+        }
 	}
 </script>
 
