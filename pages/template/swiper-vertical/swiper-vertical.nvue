@@ -69,7 +69,9 @@
             },
             getData(e) {
                 this.videoDataList = videoData;
-                this.updateVideo(true);
+                setTimeout(() => {
+                    this.updateVideo(true);
+                }, 200)
             },
             onSwiperChange(e) {
                 let currentIndex = e.detail.current;
