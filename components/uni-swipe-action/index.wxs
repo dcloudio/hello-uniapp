@@ -1,9 +1,8 @@
 function change(newValue, oldValue, ownerInstance, instance) {
   var state = instance.getState()
-  console.log('----');
   state.position = JSON.parse(instance.getDataset().position)
   if (state.position.length === 0) return
-  if (state.isMove) return
+  // if (state.isMove) return
   var show = state.position[0].show
   state.left = state.left || state.position[0].left;
   if (show) {
@@ -15,9 +14,13 @@ function change(newValue, oldValue, ownerInstance, instance) {
 
 function touchstart(e, ins) {
   var instance = e.instance;
-  console.log(instance.getState());
   var state = instance.getState();
   var pageX = e.touches[0].pageX;
+  instance.removeClass('ani');
+  var owner = ins.selectAllComponents('.button-hock')
+  for (var i = 0; i < owner.length; i++) {
+    owner[i].removeClass('ani');
+  }
   state.position = JSON.parse(instance.getDataset().position);
   state.left = state.left || state.position[0].left;
   state.width = pageX - state.left;
@@ -49,7 +52,8 @@ function setValue(value, instance, ownerInstance) {
   var x = Math.max(-state.position[1].width, Math.min((value), 0));
   state.left = x;
   instance.setStyle({
-    transform: 'translateX(' + x + 'px)'
+    transform: 'translateX(' + x + 'px)',
+    '-webkit-transform': 'translateX(' + x + 'px)'
   })
   setFold(x, instance, ownerInstance)
 }
@@ -85,14 +89,15 @@ function setFold(value, instance, ownerInstance) {
   var arr = [];
   var w = 0;
   for (var i = 0; i < ins.length; i++) {
-    if(!ins[i].getDataset().button) return
+    if (!ins[i].getDataset().button) return
     var btnData = JSON.parse(ins[i].getDataset().button)
     var button = btnData[i] && btnData[i].width || 0
     w += button
     arr.push(-w)
     if (i != 0) {
       ins[i].setStyle({
-        transform: 'translateX(' + (arr[i - 1] + value * (arr[i - 1] / position[1].width)) + 'px)'
+        transform: 'translateX(' + (arr[i - 1] + value * (arr[i - 1] / position[1].width)) + 'px)',
+        '-webkit-transform': 'translateX(' + (arr[i - 1] + value * (arr[i - 1] / position[1].width)) + 'px)'
       })
     }
   }
@@ -107,20 +112,15 @@ function open(ins, ownerInstance) {
   ownerInstance.callMethod('change', {
     open: true
   })
-
-  function animate() {
-    var step = (position[1].width + state.left) / 4;
-    step = step > 1 ? step : 2;
-    state.left -= step
-    setValue(state.left, ins, ownerInstance)
-    if (state.left <= -position[1].width) {
-      setValue(-position[1].width, ins, ownerInstance)
-      state.isMove = false
-      return
-    }
-    ins.requestAnimationFrame(animate)
+  ins.addClass('ani');
+  var owner = ownerInstance.selectAllComponents('.button-hock')
+  for (var i = 0; i < owner.length; i++) {
+    owner[i].addClass('ani');
   }
-  animate()
+  
+  state.isMove = false
+  setValue(-position[1].width, ins, ownerInstance)
+  setFold(-position[1].width,ins, ownerInstance)
 }
 
 function close(ins, ownerInstance) {
@@ -132,20 +132,13 @@ function close(ins, ownerInstance) {
     open: false
   })
 
-  function animate() {
-    var step = (-state.left) / 4;
-    step = step > 0.1 ? step : 0.5;
-    state.left += step
-    setValue(state.left, ins, ownerInstance)
-    if (state.left >= 0) {
-
-      setValue(0, ins, ownerInstance)
-      state.isMove = false
-      return
-    }
-    ins.requestAnimationFrame(animate)
+  ins.addClass('ani');
+  var owner = ownerInstance.selectAllComponents('.button-hock')
+  for (var i = 0; i < owner.length; i++) {
+    owner[i].addClass('ani');
   }
-  animate()
+  setValue(0, ins, ownerInstance)
+  state.isMove = false
 }
 
 

@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-load-more">
-		<view v-if="platform === 'android'" v-show="status === 'loading' && showIcon" class="uni-load-more__img">
+		<view v-if="iconType==='circle' || iconType==='auto' && platform === 'android'" v-show="status === 'loading' && showIcon" class="uni-load-more__img">
 			<view :style="{borderColor : color}" class="loader-android" />
 		</view>
 		<view v-else v-show="status === 'loading' && showIcon" class="uni-load-more__img">
@@ -42,6 +42,10 @@
 			showIcon: {
 				type: Boolean,
 				default: true
+			},
+			iconType: {
+				type: String,
+				default: 'auto'
 			},
 			color: {
 				type: String,
@@ -138,7 +142,7 @@
 		border: solid 2px #777;
 		border-radius: 50%;
 		border-bottom-color: transparent !important;
-		animation: loader-android 2s 0s linear infinite
+		animation: loader-android 1s 0s linear infinite
 	}
 
 	.load1,

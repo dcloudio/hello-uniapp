@@ -32,7 +32,6 @@
 		},
 		data() {
 			return {
-				check_1: false,
 				checkList: [false, false, false, false, false, false],
 				contentText: {
 					contentDefault: '追番',

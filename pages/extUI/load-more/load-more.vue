@@ -9,6 +9,12 @@
 		<view class="example-body">
 			<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
 		</view>
+		<view class="example-title">指定加载图标样式</view>
+		<view class="example-body">
+			<uni-load-more iconType="circle" :status="status" />
+			<uni-load-more iconType="auto" :status="status" />
+			<uni-load-more iconType="spinner" :status="status" />
+		</view>
 
 		<view class="example-title">改变组件状态</view>
 		<radio-group class="uni-list" @change="onChange">
