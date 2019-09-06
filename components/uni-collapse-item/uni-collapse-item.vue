@@ -97,6 +97,7 @@
 				}
 				this.isOpen = !this.isOpen
 				this.collapse.onChange && this.collapse.onChange()
+				this.$forceUpdate()
 			}
 		}
 	}

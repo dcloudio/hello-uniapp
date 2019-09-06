@@ -55,6 +55,17 @@
 				}
 			}
 		},
+		watch: {
+			checked() {
+				if (uni.report) {
+					if (this.checked) {
+						uni.report("收藏", "收藏")
+					} else {
+						uni.report("取消收藏", "取消收藏")
+					}
+				}
+			}
+		},
 		methods: {
 			onClick() {
 				this.$emit('click')
