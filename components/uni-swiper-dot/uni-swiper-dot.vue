@@ -3,15 +3,11 @@
 		<slot />
 		<view v-if="mode === 'default'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :style="{
-        'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.height/4 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-bar" />
+        'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.height/4 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border-radius':'0px'}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-bar" />
 		</view>
 		<view v-if="mode === 'round'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :style="{
         'width': dots.width + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item" />
-		</view>
-		<view v-if="mode === 'long'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
-			<view v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
-        'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item " />
 		</view>
 		<view v-if="mode === 'nav'" :style="{'background-color':dotsStyles.backgroundColor}" class="uni-swiper__dots-box uni-swiper__dots-nav">
 			<view :style="{'color':dotsStyles.color}" class="uni-swiper__dots-nav-item">{{ (current+1)+"/"+info.length }}
