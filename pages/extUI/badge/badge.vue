@@ -30,7 +30,6 @@
 
 <script>
 	import uniBadge from '@/components/uni-badge/uni-badge.vue'
-
 	export default {
 		components: {
 			uniBadge

@@ -33,12 +33,6 @@
 					}
 				})
 				this.$emit('change', activeItem)
-			},
-			resize() {
-				this.childrens.forEach(vue => {
-					console.log('更新')
-					vue._getSize()
-				})
 			}
 		}
 	}
@@ -64,7 +58,7 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 
 	.uni-collapse:before {
@@ -77,6 +71,6 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 </style>

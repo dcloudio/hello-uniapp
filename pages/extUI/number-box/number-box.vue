@@ -21,13 +21,11 @@
 		<view class="example-body">
 			<uni-number-box :value="numberValue" @change="change" />
 		</view>
-
 		<!-- <view style="height: 30upx;"></view> -->
 	</view>
 </template>
 <script>
 	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
-
 	export default {
 		components: {
 			uniNumberBox

@@ -32,13 +32,12 @@
 </template>
 
 <script>
-	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
-
+	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 	export default {
 		components: {
-			uniNavBar,
-			uniIcons
+			uniIcons,
+			uniNavBar
 		},
 		data() {
 			return {

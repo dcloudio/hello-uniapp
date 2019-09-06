@@ -149,7 +149,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		border: 1px solid #c8c7cc;
+		border: 1px solid #e5e5e5;
 		transform: scale(.5);
 		transform-origin: 0 0;
 		box-sizing: border-box;

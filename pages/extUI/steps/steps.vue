@@ -14,7 +14,6 @@
 
 <script>
 	import uniSteps from '@/components/uni-steps/uni-steps.vue'
-
 	export default {
 		components: {
 			uniSteps

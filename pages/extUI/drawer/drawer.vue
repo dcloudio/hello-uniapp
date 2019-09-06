@@ -2,7 +2,7 @@
 	<view>
 		<view class="header">
 			<view class="input-view">
-				<uni-icons type="search" size="22" color="#666666" />
+				<uni-icon type="search" size="22" color="#666666" />
 				<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 			</view>
 		</view>
@@ -54,14 +54,11 @@
 	</view>
 </template>
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-
 	export default {
 		components: {
-			uniIcons,
 			uniDrawer,
 			uniList,
 			uniListItem

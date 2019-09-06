@@ -1,0 +1,157 @@
+function change(newValue, oldValue, ownerInstance, instance) {
+  var state = instance.getState()
+  console.log('----');
+  state.position = JSON.parse(instance.getDataset().position)
+  if (state.position.length === 0) return
+  if (state.isMove) return
+  var show = state.position[0].show
+  state.left = state.left || state.position[0].left;
+  if (show) {
+    open(instance, ownerInstance)
+  } else {
+    close(instance, ownerInstance)
+  }
+}
+
+function touchstart(e, ins) {
+  var instance = e.instance;
+  console.log(instance.getState());
+  var state = instance.getState();
+  var pageX = e.touches[0].pageX;
+  state.position = JSON.parse(instance.getDataset().position);
+  state.left = state.left || state.position[0].left;
+  state.width = pageX - state.left;
+  ins.callMethod('openSwipe')
+}
+
+function touchmove(e, ownerInstance) {
+  var instance = e.instance;
+  var disabled = instance.getDataset().disabled
+  var state = instance.getState()
+  if (disabled) return
+  if (state.isMove) return
+  var pageX = e.touches[0].pageX;
+  setValue(pageX - state.width, instance, ownerInstance)
+
+}
+
+function touchend(e, ownerInstance) {
+  var instance = e.instance;
+  var disabled = instance.getDataset().disabled
+  var state = instance.getState()
+  if (disabled) return
+  move(state.left, -40, instance, ownerInstance)
+
+}
+
+function setValue(value, instance, ownerInstance) {
+  var state = instance.getState()
+  var x = Math.max(-state.position[1].width, Math.min((value), 0));
+  state.left = x;
+  instance.setStyle({
+    transform: 'translateX(' + x + 'px)'
+  })
+  setFold(x, instance, ownerInstance)
+}
+
+function move(left, value, ins, ownerInstance) {
+  var state = ins.getState()
+  var position = state.position
+  var isopen = state.isopen
+  if (!position[1].width) {
+    close(ins, ownerInstance)
+    return
+  }
+  if (isopen) {
+    if (-left <= position[1].width) {
+      close(ins, ownerInstance)
+    } else {
+      open(ins, ownerInstance)
+    }
+    return
+  }
+
+  if (left <= value) {
+    open(ins, ownerInstance)
+  } else {
+    close(ins, ownerInstance)
+  }
+}
+
+function setFold(value, instance, ownerInstance) {
+  var ins = ownerInstance.selectAllComponents('.button-hock');
+  var state = instance.getState();
+  var position = state.position;
+  var arr = [];
+  var w = 0;
+  for (var i = 0; i < ins.length; i++) {
+    if(!ins[i].getDataset().button) return
+    var btnData = JSON.parse(ins[i].getDataset().button)
+    var button = btnData[i] && btnData[i].width || 0
+    w += button
+    arr.push(-w)
+    if (i != 0) {
+      ins[i].setStyle({
+        transform: 'translateX(' + (arr[i - 1] + value * (arr[i - 1] / position[1].width)) + 'px)'
+      })
+    }
+  }
+}
+
+function open(ins, ownerInstance) {
+  var state = ins.getState()
+  var position = state.position
+  state.isopen = true
+  state.isMove = true
+
+  ownerInstance.callMethod('change', {
+    open: true
+  })
+
+  function animate() {
+    var step = (position[1].width + state.left) / 4;
+    step = step > 1 ? step : 2;
+    state.left -= step
+    setValue(state.left, ins, ownerInstance)
+    if (state.left <= -position[1].width) {
+      setValue(-position[1].width, ins, ownerInstance)
+      state.isMove = false
+      return
+    }
+    ins.requestAnimationFrame(animate)
+  }
+  animate()
+}
+
+function close(ins, ownerInstance) {
+  var state = ins.getState()
+  var position = state.position
+  state.isopen = false
+  state.isMove = true
+  ownerInstance.callMethod('change', {
+    open: false
+  })
+
+  function animate() {
+    var step = (-state.left) / 4;
+    step = step > 0.1 ? step : 0.5;
+    state.left += step
+    setValue(state.left, ins, ownerInstance)
+    if (state.left >= 0) {
+
+      setValue(0, ins, ownerInstance)
+      state.isMove = false
+      return
+    }
+    ins.requestAnimationFrame(animate)
+  }
+  animate()
+}
+
+
+module.exports = {
+  change: change,
+  touchstart: touchstart,
+  touchmove: touchmove,
+  touchend: touchend
+}

@@ -49,6 +49,14 @@
 						url: "drawer"
 					},
 					{
+						name: "Fav 收藏按钮",
+						url: "fav"
+					},
+					{
+						name: "GoodsNav 商品导航",
+						url: "goods-nav"
+					},
+					{
 						name: "Grid 宫格",
 						url: "grid"
 					},
@@ -95,6 +103,10 @@
 						url: "rate"
 					},
 					{
+						name: "SearchBar 搜索栏",
+						url: "search-bar"
+					},
+					{
 						name: "SegmentedControl 分段器",
 						url: "segmented-control"
 					},
@@ -113,6 +125,10 @@
 					{
 						name: "Tag 标签",
 						url: "tag"
+					},
+					{
+						name: "Title 标题栏",
+						url: "title"
 					},
 				]
 			};

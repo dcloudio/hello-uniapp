@@ -44,7 +44,6 @@
 
 <script>
 	import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue'
-
 	export default {
 		components: {
 			uniSegmentedControl

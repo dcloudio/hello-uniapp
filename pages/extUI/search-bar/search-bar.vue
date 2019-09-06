@@ -1,41 +1,51 @@
 <template>
 	<view>
-		<view class="example-info">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</view>
-		<view class="example-title">一般用法</view>
+		<view class="example-title">基本用法</view>
 		<view class="example-body">
-			<uni-count-down :day="1" :hour="1" :minute="12" :second="40" />
+			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
+			<view class="" style="margin-bottom: 20px;text-align: center;">
+				当前输入为：{{ searchVal }}
+			</view>
 		</view>
-		<view class="example-title">不显示天数</view>
+		<view class="example-title">自定义样式</view>
 		<view class="example-body">
-			<uni-count-down :show-day="false" :hour="12" :minute="12" :second="12" />
+			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
+			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
 		</view>
-		<view class="example-title">文字分隔符</view>
+		<view class="example-title">控制清除按钮</view>
 		<view class="example-body">
-			<uni-count-down :minute="30" :second="0" :show-colon="false" />
-		</view>
-		<view class="example-title">修改颜色</view>
-		<view class="example-body">
-			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#00B26A" border-color="#00B26A" />
-		</view>
-		<view class="example-title">倒计时回调事件</view>
-		<view class="example-body">
-			<uni-count-down :show-day="false" :second="10" @timeup="timeup" />
+			<uni-search-bar radius="100" clearButton="always" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="auto" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
 		</view>
 	</view>
 </template>
+
 <script>
-	import uniCountDown from '@/components/uni-count-down/uni-count-down.vue'
+	import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
 	export default {
 		components: {
-			uniCountDown
+			uniSearchBar
 		},
 		data() {
-			return {}
+			return {
+				searchVal: ''
+			}
 		},
 		methods: {
-			timeup() {
-				uni.showToast({
-					title: '时间到'
+			search(res) {
+				uni.showModal({
+					content: '搜索：' + res.value,
+					showCancel: false
+				})
+			},
+			input(res) {
+				this.searchVal = res.value
+			},
+			cancel(res) {
+				uni.showModal({
+					content: '点击取消，输入值为：' + res.value,
+					showCancel: false
 				})
 			}
 		}
@@ -104,7 +114,7 @@
 		background: #fff
 	}
 
-	.title {
-		margin: 80upx 0 20upx 0;
+	.search-result {
+		margin-top: 10px;
 	}
 </style>

@@ -28,7 +28,7 @@
 		<uni-popup ref="image" :type="type" :custom="true" :mask-click="false" @change="change">
 			<view class="uni-image">
 				<view class="uni-image-close" @click="cancel('image')">
-					<uni-icons type="clear" color="#fff" size="30" />
+					<uni-icon type="clear" color="#fff" size="30" />
 				</view>
 				<image class="image" src="/static/uni.png" mode="" />
 			</view>
@@ -53,12 +53,9 @@
 
 <script>
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
-
 	export default {
 		components: {
-			uniPopup,
-			uniIcons
+			uniPopup
 		},
 		data() {
 			return {

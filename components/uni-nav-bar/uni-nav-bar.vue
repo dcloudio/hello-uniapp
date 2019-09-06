@@ -16,7 +16,7 @@
 					<!-- 标题插槽 -->
 					<slot />
 				</view>
-				<view class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickRight">
+				<view :class="title.length?'uni-navbar__header-btns-right':''" class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickRight">
 					<view v-if="rightIcon.length" class="uni-navbar__content_view">
 						<uni-icons :type="rightIcon" :color="color" size="24" />
 					</view>
@@ -141,6 +141,12 @@
 		width: 60upx
 	}
 
+	.uni-navbar__header-btns-right:last-child {
+		width: 120rpx;
+		text-align: right;
+		flex-direction: row-reverse
+	}
+
 	.uni-navbar__header-container {
 		width: 100%;
 		margin: 0 10upx
@@ -150,8 +156,7 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		font-size: 30upx;
-		padding-right: 60upx
+		font-size: 30upx
 	}
 
 	.uni-navbar__placeholder-view {
@@ -177,6 +182,6 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 </style>

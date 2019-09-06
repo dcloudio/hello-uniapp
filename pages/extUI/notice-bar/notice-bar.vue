@@ -41,7 +41,6 @@
 
 <script>
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
-
 	export default {
 		components: {
 			uniNoticeBar

@@ -5,7 +5,6 @@
 <script>
 	import airport from '@/common/airport.js'
 	import uniIndexedList from '@/components/uni-indexed-list/uni-indexed-list.vue'
-
 	export default {
 		components: {
 			uniIndexedList

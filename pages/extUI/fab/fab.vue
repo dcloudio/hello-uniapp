@@ -13,7 +13,6 @@
 
 <script>
 	import uniFab from '@/components/uni-fab/uni-fab.vue'
-
 	export default {
 		components: {
 			uniFab

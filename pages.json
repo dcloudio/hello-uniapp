@@ -429,6 +429,11 @@
 					}
 				}
 			}, {
+				"path": "search-bar/search-bar",
+				"style": {
+					"navigationBarTitleText": "SearchBar 搜索栏"
+				}
+			}, {
 				"path": "calendar/calendar",
 				"style": {
 					"navigationBarTitleText": "Calendar 日历"
@@ -451,6 +456,21 @@
 				"path": "fab/fab",
 				"style": {
 					"navigationBarTitleText": "Fab 悬浮按钮"
+				}
+			}, {
+				"path": "fav/fav",
+				"style": {
+					"navigationBarTitleText": "Fav 收藏按钮"
+				}
+			}, {
+				"path": "goods-nav/goods-nav",
+				"style": {
+					"navigationBarTitleText": "GoodsNav 商品导航"
+				}
+			}, {
+				"path": "title/title",
+				"style": {
+					"navigationBarTitleText": "Title 标题栏"
 				}
 			}]
 		},

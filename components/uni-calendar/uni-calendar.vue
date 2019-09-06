@@ -42,7 +42,7 @@
 
 <script>
 	import CALENDAR from './calendar.js'
-	import uniCalendarItem from './uni-calendar-item'
+	import uniCalendarItem from './uni-calendar-item.vue'
 	export default {
 		name: 'UniCalendar',
 		components: {
@@ -152,6 +152,7 @@
 			}
 		},
 		created() {
+			this.isLunar = this.lunar
 			this.init()
 		},
 		methods: {
@@ -283,8 +284,10 @@
 				// 多选判断
 
 				const canlender = this.canlender
-				const month = canlender.weeks[week][index].month < 10 ? '0' + canlender.weeks[week][index].month : canlender.weeks[week][index].month
-				const date = canlender.weeks[week][index].date < 10 ? '0' + canlender.weeks[week][index].date : canlender.weeks[week][index].date
+				const month = canlender.weeks[week][index].month < 10 ? '0' + canlender.weeks[week][index].month : canlender.weeks[
+					week][index].month
+				const date = canlender.weeks[week][index].date < 10 ? '0' + canlender.weeks[week][index].date : canlender.weeks[
+					week][index].date
 				const time = canlender.year + '-' + month + '-' + date
 				this.isClick = true
 				// this.multiple = this.multiple === 0 ? 1 : 0;
@@ -359,7 +362,8 @@
 					for (let j = 0; j < selected.length; j++) {
 						const selDate = selected[j].date.split('-')
 
-						if (Number(year) === Number(selDate[0]) && Number(month) === Number(selDate[1]) && Number(i) === Number(selDate[2])) {
+						if (Number(year) === Number(selDate[0]) && Number(month) === Number(selDate[1]) && Number(i) === Number(
+								selDate[2])) {
 							have = true
 							clockinfoTemp.have = true
 							clockinfoTemp.date = selected[j].date
@@ -369,7 +373,8 @@
 							if (JSON.stringify(selected[j].data) === '{}' || selected[j].data !== undefined) {
 								clockinfoTemp.data = selected[j].data
 							}
-							if (Number(year) === Number(selDate[0]) && Number(month) === Number(selDate[1]) && Number(date) === Number(selDate[2])) {
+							if (Number(year) === Number(selDate[0]) && Number(month) === Number(selDate[1]) && Number(date) ===
+								Number(selDate[2])) {
 								clockinfo = clockinfoTemp
 							}
 						}

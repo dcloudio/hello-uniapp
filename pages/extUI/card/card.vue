@@ -48,7 +48,6 @@
 
 <script>
 	import uniCard from '@/components/uni-card/uni-card.vue'
-
 	export default {
 		components: {
 			uniCard

@@ -18,7 +18,6 @@
 
 <script>
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
-
 	export default {
 		components: {
 			uniIcons

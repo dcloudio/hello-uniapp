@@ -35,7 +35,6 @@
 
 <script>
 	import uniRate from '@/components/uni-rate/uni-rate.vue'
-
 	export default {
 		components: {
 			uniRate
