@@ -106,7 +106,7 @@
 		position: absolute;
 		opacity: .2;
 		transform-origin: 50%;
-		animation: load .72s ease infinite
+		animation: load .96s ease infinite
 	}
 
 	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(1) {
@@ -165,47 +165,47 @@
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: 60ms
+		animation-delay: 80ms
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: .12s
+		animation-delay: .16s
 	}
 
 	.load1 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .18s
-	}
-
-	.load2 .uni-load-view_wrapper:nth-child(2) {
 		animation-delay: .24s
 	}
 
+	.load2 .uni-load-view_wrapper:nth-child(2) {
+		animation-delay: .32s
+	}
+
 	.load3 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .3s
+		animation-delay: .4s
 	}
 
 	.load1 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .36s
-	}
-
-	.load2 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .42s
-	}
-
-	.load3 .uni-load-view_wrapper:nth-child(3) {
 		animation-delay: .48s
 	}
 
+	.load2 .uni-load-view_wrapper:nth-child(3) {
+		animation-delay: .56s
+	}
+
+	.load3 .uni-load-view_wrapper:nth-child(3) {
+		animation-delay: .64s
+	}
+
 	.load1 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .54s
+		animation-delay: .72s
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .6s
+		animation-delay: .8s
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .66s
+		animation-delay: .88s
 	}
 
 	@-webkit-keyframes load {
