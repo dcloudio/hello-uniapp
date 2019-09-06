@@ -126,10 +126,6 @@
 						name: "Tag 标签",
 						url: "tag"
 					},
-					{
-						name: "Title 标题栏",
-						url: "title"
-					},
 				]
 			};
 		},
