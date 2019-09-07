@@ -87,10 +87,10 @@
 				}]
 			}
 		},
-		onLoad() {
-			setTimeout(() => {
+		onReady() {
+			this.$nextTick(() => {
 				this.isOpened = true
-			}, 350)
+			})
 		},
 		methods: {
 			bindClick(e) {
