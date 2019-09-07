@@ -87,9 +87,9 @@
 	.uni-searchbar-form__box {
 		display: flex;
 		flex: 1;
+		align-items: center;
 		width: 100%;
 		height: 64rpx;
-		line-height: 64rpx;
 		color: #c8c7cc;
 		background: #fff;
 		border: solid 1px #c8c7cc;
@@ -97,9 +97,8 @@
 	}
 
 	.uni-searchbar-form__box .icon-search {
-		text-align: right;
 		color: #c8c7cc;
-		line-height: 64rpx;
+		line-height: 24px;
 		padding: 0rpx 10rpx 0rpx 15rpx
 	}
 
@@ -113,13 +112,14 @@
 
 	.uni-searchbar-form__box .icon-clear {
 		color: #c8c7cc;
-		line-height: 64rpx;
+		line-height: 20px;
 		padding: 0rpx 15rpx 0rpx 10rpx
 	}
 
 	.uni-searchbar-form__text {
 		display: flex;
 		flex: 1;
+		align-items: center;
 		width: 100%;
 		height: 64rpx;
 		line-height: 64rpx;
@@ -146,7 +146,8 @@
 	.uni-searchbar-form__cancel {
 		padding-left: 20rpx;
 		line-height: 64rpx;
-		color: #333
+		color: #333;
+		white-space: nowrap
 	}
 
 	.uni-searchbar-form.hide .uni-searchbar-form__box {
