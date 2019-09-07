@@ -12,9 +12,10 @@
 		<view class="example-title">模式选择</view>
 		<view class="example-body">
 			<view :class="{ active: modeIndex === 0 }" class="example-body-item" @click="selectMode('default', 0)">default</view>
-			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('round', 1)">round</view>
-			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('nav', 2)">nav</view>
-			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('indexes', 3)">indexes</view>
+			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('dot', 1)">dot</view>
+			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('round', 2)">round</view>
+			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('nav', 3)">nav</view>
+			<view :class="{ active: modeIndex === 4 }" class="example-body-item" @click="selectMode('indexes', 4)">indexes</view>
 		</view>
 		<view class="example-title">颜色样式选择</view>
 		<view class="example-body">
