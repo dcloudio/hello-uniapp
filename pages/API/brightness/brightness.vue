@@ -2,8 +2,10 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
+			<!-- #ifndef MP-TOUTIAO -->
 			<view class="text-box">亮度 : {{ screen }}</view>
 			<view class="uni-slider"><slider :value="screen" @changing="sliderChange" step="1" /></view>
+			<!-- #endif -->
 			<button type="primary" @click="keep">
 				{{ keepScreenOn ? '保持常亮状态' : '关闭常亮状态' }}
 			</button>
