@@ -78,14 +78,16 @@
 	@charset "UTF-8";
 
 	.uni-fav {
-		display: inline-block;
+		display: inline-flex;
 		width: 120rpx;
 		height: 50rpx;
 		line-height: 50rpx;
 		text-align: center;
 		font-size: 28rpx;
 		box-sizing: border-box;
-		border-radius: 6rpx
+		border-radius: 6rpx;
+		align-items: center;
+		justify-content: center
 	}
 
 	.uni-fav--circle {
