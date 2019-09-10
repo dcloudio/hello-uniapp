@@ -9,6 +9,12 @@
 		<view class="example-body">
 			<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
 		</view>
+		<view class="example-title">指定加载图标样式</view>
+		<view class="example-body">
+			<uni-load-more iconType="circle" :status="status" />
+			<uni-load-more iconType="auto" :status="status" />
+			<uni-load-more iconType="spinner" :status="status" />
+		</view>
 
 		<view class="example-title">改变组件状态</view>
 		<radio-group class="uni-list" @change="onChange">
@@ -27,7 +33,6 @@
 </template>
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
-
 	export default {
 		components: {
 			uniLoadMore
@@ -86,10 +91,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -100,15 +106,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -116,7 +120,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

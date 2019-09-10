@@ -12,7 +12,7 @@
 		<view class="example-body">
 			<view class="button" @click="setOpened">当前状态：{{ isOpened ? '开' : '关' }}</view>
 		</view>
-		<uni-swipe-action :options="options2" :is-opened="isOpened" :auto-close="true" @opened="bindOpened" @closed="bindClosed">
+		<uni-swipe-action :options="options2" :show="isOpened" :auto-close="false" @change="change">
 			<view class="cont">使用变量控制SwipeAction的开启状态</view>
 		</uni-swipe-action>
 		<view class="example-title">与 List 组件一起使用</view>
@@ -49,7 +49,6 @@
 	import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-
 	export default {
 		components: {
 			uniSwipeAction,
@@ -88,21 +87,24 @@
 				}]
 			}
 		},
+		onReady() {
+			this.$nextTick(() => {
+				this.isOpened = true
+			})
+		},
 		methods: {
-			bindClick(value) {
+			bindClick(e) {
+				console.log(e)
 				uni.showToast({
-					title: `点击了${value.text}按钮`,
+					title: `点击了${e.content.text}按钮`,
 					icon: 'none'
 				})
 			},
 			setOpened() {
 				this.isOpened = !this.isOpened
 			},
-			bindOpened() {
-				this.isOpened = true
-			},
-			bindClosed() {
-				this.isOpened = false
+			change(e) {
+				this.isOpened = e
 			}
 		}
 	}
@@ -131,10 +133,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -145,15 +148,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -161,7 +162,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}
@@ -177,6 +177,7 @@
 		line-height: 90upx;
 		padding: 0 30upx;
 		position: relative;
+		background: #fff;
 	}
 
 	.cont::before {

@@ -19,11 +19,11 @@
 				<block slot="left">
 					<view class="city">
 						<view>{{ city }}</view>
-						<uni-icon type="arrowdown" color="#333333" size="22" />
+						<uni-icons type="arrowdown" color="#333333" size="22" />
 					</view>
 				</block>
 				<view class="input-view">
-					<uni-icon type="search" size="22" color="#666666" />
+					<uni-icons type="search" size="22" color="#666666" />
 					<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 				</view>
 			</uni-nav-bar>
@@ -32,13 +32,12 @@
 </template>
 
 <script>
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
-
 	export default {
 		components: {
-			uniNavBar,
-			uniIcon
+			uniIcons,
+			uniNavBar
 		},
 		data() {
 			return {
@@ -115,10 +114,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -129,15 +129,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -145,7 +143,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

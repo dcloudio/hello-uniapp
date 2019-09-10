@@ -8,11 +8,11 @@
 				<view class="uni-collapse-cell__title-text">{{ title }}</view>
 			</view>
 			<view :class="{ 'uni-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
-				<uni-icon color="#bbb" size="20" type="arrowdown" />
+				<uni-icons color="#bbb" size="20" type="arrowdown" />
 			</view>
 		</view>
-		<view :class="{ 'uni-collapse-cell--animation': showAnimation === true }" :style="{ height: isOpen ? height : '0px' }" class="uni-collapse-cell__content">
-			<view :id="elId">
+		<view :style="{ height: isOpen ? 'auto' : '0px' }" class="uni-collapse-cell__content">
+			<view :class="{ 'uni-collapse-cell--animation': showAnimation === true }" :style="{ transform: isOpen ? 'translateY(0px)' : 'translateY(-50%)','-webkit-transform' : isOpen ? 'translateY(0px)' : 'translateY(-50%)' }">
 				<slot />
 			</view>
 		</view>
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniCollapseItem',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			title: {
@@ -59,11 +59,8 @@
 			}
 		},
 		data() {
-			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
-				isOpen: false,
-				height: 'auto',
-				elId: elId
+				isOpen: false
 			}
 		},
 		watch: {
@@ -85,29 +82,7 @@
 				}
 			}
 		},
-		// #ifdef H5
-		mounted() {
-			this._getSize()
-		},
-		// #endif
-		// #ifndef H5
-		onReady() {
-			this._getSize()
-		},
-		// #endif
 		methods: {
-			_getSize() {
-				if (this.showAnimation) {
-					uni.createSelectorQuery()
-						.in(this)
-						.select(`#${this.elId}`)
-						.boundingClientRect()
-						.exec(ret => {
-							this.height = ret[0].height + 'px'
-							console.log(this.height)
-						})
-				}
-			},
 			onClick() {
 				if (this.disabled) {
 					return
@@ -122,6 +97,7 @@
 				}
 				this.isOpen = !this.isOpen
 				this.collapse.onChange && this.collapse.onChange()
+				this.$forceUpdate()
 			}
 		}
 	}
@@ -160,7 +136,7 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 
 	.uni-collapse-cell__title {
@@ -196,7 +172,7 @@
 	}
 
 	.uni-collapse-cell__title-arrow.uni-active {
-		transform: rotate(-180deg)
+		transform: rotate(180deg)
 	}
 
 	.uni-collapse-cell__title-inner {
@@ -218,8 +194,7 @@
 	.uni-collapse-cell__content {
 		position: relative;
 		width: 100%;
-		overflow: hidden;
-		background: #fff
+		overflow: hidden
 	}
 
 	.uni-collapse-cell__content .view {

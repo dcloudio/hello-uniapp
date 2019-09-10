@@ -5,7 +5,7 @@
 			<image class="img" v-if="imageSrc" :src="imageSrc" mode="center" />
 			<block v-else>
 				<view class="uni-hello-text">
-					点击按钮下载服务端示例图片
+					点击按钮下载服务端示例图片（下载网络文件到本地临时目录）
 				</view>
 				<view class="uni-btn-v">
 					<button type="primary" @tap="downloadImage">下载</button>

@@ -25,7 +25,6 @@
 </template>
 <script>
 	import uniCountDown from '@/components/uni-count-down/uni-count-down.vue'
-
 	export default {
 		components: {
 			uniCountDown
@@ -66,10 +65,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -80,15 +80,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -96,7 +94,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

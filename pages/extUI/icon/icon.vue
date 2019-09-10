@@ -3,13 +3,13 @@
 		<view class="example-info">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸</view>
 		<view class="example-title"><text>基础图标</text>
 			<view class="uni-right">
-				<text>显示{{checked?' unicode':'图标名'}}</text>
-				<switch class="switch" :checked="checked" @change="change" />
+				<text>显示{{ checked?' unicode':'图标名' }}</text>
+				<switch :checked="checked" class="switch" @change="change" />
 			</view>
 		</view>
 		<view class="example-body">
 			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item">
-				<uni-icon :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" @click="switchActive(index)" />
+				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" @click="switchActive(index)" />
 				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}">{{ checked? item.unicode: item.name }}</text>
 			</view>
 		</view>
@@ -17,11 +17,10 @@
 </template>
 
 <script>
-	import uniIcon from '@/components/uni-icon/uni-icon.vue'
-
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
-			uniIcon
+			uniIcons
 		},
 		data() {
 			return {
@@ -401,10 +400,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -415,15 +415,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -431,7 +429,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

@@ -1,29 +1,29 @@
 <template>
 	<view v-if="show" :style="{ backgroundColor: backgroundColor, color: color }" class="uni-noticebar" @click="onClick">
 		<view v-if="showClose === 'true' || showClose === true" class="uni-noticebar__close">
-			<uni-icon type="closefill" size="12" />
+			<uni-icons type="closefill" size="12" />
 		</view>
 		<view :class="{ 'uni-noticebar--flex': scrollable || single || moreText }" class="uni-noticebar__content">
 			<view v-if="showIcon === 'true' || showIcon === true" :style="{ backgroundColor: backgroundColor, color: color }" class="uni-noticebar__content-icon">
-				<uni-icon :color="color" type="sound" size="14" />
+				<uni-icons :color="color" type="sound" size="14" />
 			</view>
 			<view :class="{ 'uni-noticebar--scrollable': scrollable, 'uni-noticebar--single': !scrollable && (single || moreText) }" class="uni-noticebar__content-text">
 				<view :id="elId" :style="{ animation: animation, '-webkit-animation': animation }" class="uni-noticebar__content-inner">{{ text }}</view>
 			</view>
 			<view v-if="showGetMore === 'true' || showGetMore === true" :style="{ width: moreText ? '180upx' : '20px' }" class="uni-noticebar__content-more" @click="clickMore">
 				<view v-if="moreText" class="uni-noticebar__content-more-text">{{ moreText }}</view>
-				<uni-icon type="arrowright" size="14" />
+				<uni-icons type="arrowright" size="14" />
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniNoticeBar',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			text: {

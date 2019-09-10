@@ -8,7 +8,7 @@
 				</view>
 				<view class="uni-steps-item-circle-container">
 					<view v-if="index !== active" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-circle" />
-					<uni-icon v-else :color="activeColor" type="checkbox-filled" size="14" />
+					<uni-icons v-else :color="activeColor" type="checkbox-filled" size="14" />
 				</view>
 				<view v-if="index !== options.length - 1" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-line" />
 			</view>
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniSteps',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			direction: {
@@ -221,6 +221,8 @@
 
 	.uni-steps-item.uni-steps-process .uni-steps-item-circle-container {
 		bottom: 3px;
+		height: 14px;
+		line-height: 14px;
 		display: flex
 	}
 </style>

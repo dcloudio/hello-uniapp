@@ -7,12 +7,20 @@
 		<title>
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
+		<!-- 正式发布的时候使用，开发期间不启用。↓ -->
+        <!-- <script src="/h5/touch-emulator.js"></script>
 		<script>
+            TouchEmulator();
 			if (document.documentElement.clientWidth > 1024) {
-				// 正式发布的时候使用，开发期间不启用。
-				// window.location.href = '/h5/pcguide.html';
+				window.location.href = '/h5/pcguide.html#'+location.pathname+location.search;
 			}
 		</script>
+        <style>
+            ::-webkit-scrollbar{
+                display: none;
+            }
+        </style> -->
+        <!-- 正式发布的时候使用，开发期间不启用。↑ -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
 				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'

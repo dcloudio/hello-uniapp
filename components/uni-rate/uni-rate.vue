@@ -1,20 +1,20 @@
 <template>
 	<view class="uni-rate">
 		<view v-for="(star, index) in stars" :key="index" :style="{ marginLeft: margin + 'px' }" class="uni-rate-icon" @click="_onClick(index)">
-			<uni-icon :size="size" :color="color" :type="isFill ? 'star-filled' : 'star'" />
+			<uni-icons :size="size" :color="color" :type="isFill ? 'star-filled' : 'star'" />
 			<view :style="{ width: star.activeWitch }" class="uni-rate-icon-on">
-				<uni-icon :size="size" :color="activeColor" type="star-filled" />
+				<uni-icons :size="size" :color="activeColor" type="star-filled" />
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniRate',
 		components: {
-			uniIcon
+			uniIcons
 		},
 		props: {
 			isFill: {

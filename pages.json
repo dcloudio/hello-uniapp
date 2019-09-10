@@ -429,6 +429,11 @@
 					}
 				}
 			}, {
+				"path": "search-bar/search-bar",
+				"style": {
+					"navigationBarTitleText": "SearchBar 搜索栏"
+				}
+			}, {
 				"path": "calendar/calendar",
 				"style": {
 					"navigationBarTitleText": "Calendar 日历"
@@ -451,6 +456,21 @@
 				"path": "fab/fab",
 				"style": {
 					"navigationBarTitleText": "Fab 悬浮按钮"
+				}
+			}, {
+				"path": "fav/fav",
+				"style": {
+					"navigationBarTitleText": "Fav 收藏按钮"
+				}
+			}, {
+				"path": "goods-nav/goods-nav",
+				"style": {
+					"navigationBarTitleText": "GoodsNav 商品导航"
+				}
+			}, {
+				"path": "title/title",
+				"style": {
+					"navigationBarTitleText": "Title 标题栏"
 				}
 			}]
 		},
@@ -698,6 +718,17 @@
 						"navigationBarTitleText": "详情页面"
 					}
 				},
+				// #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-QQ
+				{
+					"path": "swiper-vertical/swiper-vertical",
+					"style": {
+						"navigationBarTitleText": "上下滑动切换视频",
+						"app-plus": {
+							"titleNView": false
+						}
+					}
+				},
+				// #endif
 				{
 					"path": "media-list/media-list",
 					"style": {
@@ -1009,6 +1040,22 @@
 						"navigationBarTitleText": "文件"
 					}
 				},
+				// #ifndef MP-QQ || MP-TOUTIAO
+				{
+					"path": "map/map",
+					"style": {
+						"navigationBarTitleText": "map"
+					}
+				},
+				// #endif
+				// #ifdef APP-PLUS
+				{
+					"path": "map-search/map-search",
+					"style": {
+						"navigationBarTitleText": "map search"
+					}
+				},
+				// #endif
 				{
 					"path": "get-location/get-location",
 					"style": {
@@ -1071,14 +1118,14 @@
 					}
 				},
 				// #endif
-        // #ifdef APP-PLUS || MP-WEIXIN 
-        {
-        	"path": "ibeacon/ibeacon",
-        	"style": {
-        		"navigationBarTitleText": "iBeacon"
-        	}
-        },
-        // #endif
+				// #ifdef APP-PLUS || MP-WEIXIN
+				{
+					"path": "ibeacon/ibeacon",
+					"style": {
+						"navigationBarTitleText": "iBeacon"
+					}
+				},
+				// #endif
 				{
 					"path": "vibrate/vibrate",
 					"style": {

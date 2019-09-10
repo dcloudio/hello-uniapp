@@ -12,9 +12,10 @@
 		<view class="example-title">模式选择</view>
 		<view class="example-body">
 			<view :class="{ active: modeIndex === 0 }" class="example-body-item" @click="selectMode('default', 0)">default</view>
-			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('long', 1)">long</view>
-			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('nav', 2)">nav</view>
-			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('indexes', 3)">indexes</view>
+			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('dot', 1)">dot</view>
+			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('round', 2)">round</view>
+			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('nav', 3)">nav</view>
+			<view :class="{ active: modeIndex === 4 }" class="example-body-item" @click="selectMode('indexes', 4)">indexes</view>
 		</view>
 		<view class="example-title">颜色样式选择</view>
 		<view class="example-body">
@@ -36,7 +37,6 @@
 
 <script>
 	import uniSwiperDot from '@/components/uni-swiper-dot/uni-swiper-dot.vue'
-
 	export default {
 		components: {
 			uniSwiperDot
@@ -130,10 +130,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -144,15 +145,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -160,7 +159,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

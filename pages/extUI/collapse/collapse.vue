@@ -16,7 +16,6 @@
 				</uni-collapse-item>
 			</uni-collapse>
 		</view>
-		<button class="button" @click="onClick">动态添加一组数据，并更新高度</button>
 		<view class="example-title">手风琴效果</view>
 		<uni-collapse :accordion="true">
 			<uni-collapse-item v-for="item in accordion" :key="item.id" :title="item.title" :show-animation="item.animation">
@@ -54,7 +53,8 @@
 					data: [{
 							type: false,
 							subName: '默认开启',
-							open: true,
+							open: false,
+							openPre: true,
 							content: '折叠内容主体，可自定义内容及样式'
 						},
 						{
@@ -99,6 +99,8 @@
 					data: [{
 							type: false,
 							subName: '默认开启',
+							open: false,
+							openPre: true,
 							showAnimation: true,
 							content: '折叠内容主体，可自定义内容及样式'
 						},
@@ -159,18 +161,20 @@
 				id: 2
 			}
 		},
+		onLoad() {
+			setTimeout(() => {
+				this.list.map(function(item) {
+					item.data.map(function(collapseItem) {
+						if (collapseItem.openPre) {
+							collapseItem.open = collapseItem.openPre
+						}
+					})
+				})
+			}, 350)
+		},
 		methods: {
-			onClick() {
-				this.list[1].data[1].subList.push({
-					title: '新增',
-					thumb: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
-				})
-				this.$nextTick(() => {
-					this.$refs.add[1].resize()
-				})
-			},
 			change(e) {
-				console.log(e)
+				//console.log(e)
 			}
 		}
 	}
@@ -199,10 +203,11 @@
 		align-items: center;
 		font-size: 32upx;
 		color: #464e52;
-		padding: 30upx;
+		padding: 30upx 30upx 30upx 50upx;
 		margin-top: 20upx;
 		position: relative;
-		background-color: #fdfdfd
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
 	.example-title__after {
@@ -213,15 +218,13 @@
 	.example-title:after {
 		content: '';
 		position: absolute;
-		left: 0;
+		left: 30upx;
 		margin: auto;
 		top: 0;
 		bottom: 0;
-		width: 10upx;
-		height: 40upx;
-		border-top-right-radius: 10upx;
-		border-bottom-right-radius: 10upx;
-		background-color: #031e3c
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -229,7 +232,6 @@
 	}
 
 	.example-body {
-		border-top: 1px #f5f5f5 solid;
 		padding: 30upx;
 		background: #fff
 	}

@@ -4,7 +4,7 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title">
 				<!-- #ifndef H5 -->
-				<uni-icon size="16" type="info"></uni-icon>
+				<uni-icons size="16" type="info"></uni-icons>
 				<!-- #endif -->
 				说明 :
 			</view>

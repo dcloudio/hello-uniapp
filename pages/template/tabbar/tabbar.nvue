@@ -146,15 +146,17 @@
             }
         },
         onLoad() {
-            this.tabBars.forEach((tabBar) => {
-                this.newsList.push({
-                    data: [],
-					isLoading: false,
-                    refreshText: "",
-                    loadingText: '加载更多...'
-                });
-            });
-            this.getList(0);
+            setTimeout(()=>{
+              this.tabBars.forEach((tabBar) => {
+                  this.newsList.push({
+                      data: [],
+                      isLoading: false,
+                      refreshText: "",
+                      loadingText: '加载更多...'
+                  });
+              });
+              this.getList(0);
+            },350)
         },
         methods: {
             getList(index) {

@@ -62,11 +62,28 @@
 						if (~content.indexOf('uni.login')) {
 							content = '请在登录页面完成登录操作';
 						}
-						uni.showModal({
-							title: '获取用户信息失败',
-							content: '错误原因' + content,
-							showCancel: false
-						});
+						uni.getSetting({
+							success: (res) => {
+								let authStatus = res.authSetting['scope.userInfo'];
+								if (!authStatus) {
+									uni.showModal({
+										title: '授权失败',
+										content: 'Hello uni-app需要获取您的用户信息，请在设置界面打开相关权限',
+										success: (res) => {
+											if (res.confirm) {
+												uni.openSetting()
+											}
+										}
+									})
+								} else {
+									uni.showModal({
+										title: '获取用户信息失败',
+										content: '错误原因' + content,
+										showCancel: false
+									});
+								}
+							}
+						})
 					}
 				});
 			},

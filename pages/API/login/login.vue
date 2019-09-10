@@ -17,7 +17,14 @@
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">{{value.name}}</button>
+                <!-- #ifdef MP-TOUTIAO -->
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">
+                    登录
+                </button>
+                <!-- #endif -->
+                <!-- #ifndef MP-TOUTIAO -->
+                <button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">{{value.name}}</button>
+                <!-- #endif -->
 			</view>
 		</view>
 	</view>
