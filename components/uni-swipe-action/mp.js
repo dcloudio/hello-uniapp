@@ -1,45 +1,43 @@
 export default {
-  data() {
+  data () {
     return {
       position: [],
       button: []
     }
   },
   computed: {
-    pos() {
+    pos () {
       return JSON.stringify(this.position)
     },
-    btn() {
+    btn () {
       return JSON.stringify(this.button)
     }
   },
   watch: {
-    show(newVal) {
+    show (newVal) {
       if (this.autoClose) return
       let valueObj = this.position[0]
-      if (!valueObj) {
-        valueObj = []
-      }
+      if (!valueObj) return
       valueObj.show = newVal
       this.$set(this.position, 0, valueObj)
     }
   },
   // #ifdef H5
-  mounted() {
+  mounted () {
     this.init()
     this.getSize()
     this.getBUttonSize()
   },
   // #endif
   // #ifndef H5
-  onReady() {
+  onReady () {
     this.init()
     this.getSize()
     this.getBUttonSize()
   },
   // #endif
   methods: {
-    init() {
+    init () {
       uni.$on('__uni__swipe__event', (res) => {
         if (res !== this && this.autoClose) {
           let valueObj = this.position[0]
@@ -48,23 +46,23 @@ export default {
         }
       })
     },
-    openSwipe() {
+    openSwipe () {
       uni.$emit('__uni__swipe__event', this)
     },
-    change(e) {
+    change (e) {
       this.$emit('change', e.open)
       let valueObj = this.position[0]
       valueObj.show = e.open
       this.$set(this.position, 0, valueObj)
       // console.log('改变', e);
     },
-    onClick(index, item) {
+    onClick (index, item) {
       this.$emit('click', {
         content: item,
         index
       })
     },
-    getSize() {
+    getSize () {
       const views = uni.createSelectorQuery().in(this)
       views
         .selectAll('.selector-query-hock')
@@ -78,7 +76,7 @@ export default {
         })
         .exec()
     },
-    getBUttonSize() {
+    getBUttonSize () {
       const views = uni.createSelectorQuery().in(this)
       views
         .selectAll('.button-hock')
