@@ -10,7 +10,7 @@
 		<view class="example-title">图文卡片</view>
 		<view class="example-body">
 			<view class="example-box">
-				<uni-card :is-shadow="true" title="最美的风景" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni0124.png" extra="DCloud 2019-05-20 12:32:19" note="true" @click="clickCard">
+				<uni-card :is-shadow="true" title="最美的风景" mode="style" thumbnail="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/run1x7.png" extra="DCloud 2019-05-20 12:32:19" note="true" @click="clickCard">
 					<view>
 						uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。 即使不跨端，uni-app同时也是更好的小程序开发框架
 					</view>
@@ -27,7 +27,7 @@
 				<uni-card :is-shadow="true" title="DCloud" mode="title" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="技术没有上限" note="true" @click="clickCard">
 					<view>
 						<view class="image-box">
-							<image class="image" mode="aspectFill" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni0124.png" />
+							<image class="image" mode="aspectFill" src="http://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/run1x7.png" />
 						</view>
 						<view class="content-box">
 							uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。 即使不跨端，uni-app同时也是更好的小程序开发框架。
