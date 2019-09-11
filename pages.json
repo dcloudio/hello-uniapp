@@ -777,7 +777,6 @@
                     "path": "swipe-action/swipe-action",
                     "style": {
                         "navigationBarTitleText": "SwipeAction 滑动操作",
-                        "disableScroll": true,
                         "app-plus": {
                             "bounce": "none"
                         }
