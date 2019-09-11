@@ -1,5 +1,5 @@
 <template>
-	<view :class="{ 'calendar-content-active ': infoShow }" class="calendar-content">
+	<view :class="{ 'calendar-content-active ': infoShow }" class="calendar-content" v-if="showCalendar">
 		<view class="example-info">日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等。</view>
 		<view class="example-title">日历组件</view>
 
@@ -142,10 +142,15 @@
 					year: ''
 				},
 				selected: [],
-				infoShow: false
+				infoShow: false,
+				showCalendar: false
 			}
 		},
-		onLoad() {},
+		onReady() {
+			this.$nextTick(() => {
+				this.showCalendar = true
+			})
+		},
 		methods: {
 			toggle(index, item) {
 				this.tags[index].checked = !item.checked
