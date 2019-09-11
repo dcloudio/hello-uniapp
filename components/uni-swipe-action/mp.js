@@ -26,14 +26,14 @@ export default {
   mounted () {
     this.init()
     this.getSize()
-    this.getBUttonSize()
+    this.getButtonSize()
   },
   // #endif
   // #ifndef H5
   onReady () {
     this.init()
     this.getSize()
-    this.getBUttonSize()
+    this.getButtonSize()
   },
   // #endif
   methods: {
@@ -76,7 +76,7 @@ export default {
         })
         .exec()
     },
-    getBUttonSize () {
+    getButtonSize () {
       const views = uni.createSelectorQuery().in(this)
       views
         .selectAll('.button-hock')

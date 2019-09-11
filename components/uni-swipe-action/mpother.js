@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     init () {
-      console.log('混入', this.moveLeft)
       uni.$on('__uni__swipe__event', (res) => {
         if (res !== this && this.autoClose) {
           if (this.left !== 0) {
@@ -51,7 +50,6 @@ export default {
       const {
         pageX
       } = e.touches[0]
-      console.log('touchstart')
       if (this.disabled) return
       const left = this.position[0].left
       uni.$emit('__uni__swipe__event', this)
@@ -65,14 +63,12 @@ export default {
     },
     touchmove (e, index) {
       if (this.disabled) return
-      console.log('touchmove')
       const {
         pageX
       } = e.touches[0]
       this.setPosition(pageX)
     },
     touchend () {
-      console.log('touchend')
       if (this.disabled) return
       if (this.isopen) {
         this.move(this.openleft, 0)
@@ -81,14 +77,11 @@ export default {
       this.move(this.left, -40)
     },
     setPosition (x, y) {
-      console.log(!this.position[1].width, this.position[1].width)
       if (!this.position[1].width) {
         return
       }
-      console.log(x, '--')
       // const width = this.position[0].width
       this.left = x - this.width
-      console.log(this.left)
       this.setValue(x - this.width)
     },
     setValue (value) {
@@ -128,7 +121,6 @@ export default {
         .selectAll('.selector-query-hock')
         .boundingClientRect(data => {
           this.position = data
-          console.log(data)
           if (this.autoClose) return
           if (this.show) {
             this.open()
