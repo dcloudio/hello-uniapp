@@ -273,14 +273,7 @@
         },
         onLoad() {},
         onReady () {
-            // TODO下版处理 uni.createMapContext
-
-            // #ifdef APP-PLUS
-            this.map = this.$refs["map1"];
-            // #endif
-            // #ifndef APP-PLUS
             this.map = uni.createMapContext("map1", this);
-            // #endif
         },
         methods: {
             changeScale() {
