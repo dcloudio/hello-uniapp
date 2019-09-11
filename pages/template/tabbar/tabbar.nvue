@@ -18,7 +18,7 @@
 						</div>
 					</refresh>
 					<cell v-for="(newsitem,index2) in tab.data" :key="newsitem.id">
-						<media-item :options="newsitem" @close="dislike(index1,index2)" @click="goDetail(newsitem)"></media-item>
+						<media-item :options="newsitem" @close="close(index1,index2)" @click="goDetail(newsitem)"></media-item>
 					</cell>
 					<cell class="loading-more" v-if="tab.isLoading || tab.data.length > 4">
 						<text class="loading-more-text">{{tab.loadingText}}</text>
