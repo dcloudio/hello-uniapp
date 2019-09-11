@@ -62,8 +62,7 @@
                 this._videoIndex = 0;
                 this._videoContextList = [];
                 for (var i = 0; i < this.videoList.length; i++) {
-                    //this._videoContextList.push(uni.createVideoContext('video' + i, this));
-                    this._videoContextList.push(this.$refs['video' + i][0]);
+                    this._videoContextList.push(uni.createVideoContext('video' + i, this));
                 }
                 this._videoDataIndex = 0;
             },
