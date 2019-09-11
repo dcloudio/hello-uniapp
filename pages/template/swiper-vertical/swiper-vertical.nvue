@@ -144,6 +144,14 @@
 </script>
 
 <style>
+    /* #ifndef APP-PLUS */
+    page {
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+    }
+    /* #endif */
+
     .page {
         flex: 1;
         width: 750upx;
@@ -160,5 +168,6 @@
 
     .video {
         flex: 1;
+        width: 100%;
     }
 </style>
