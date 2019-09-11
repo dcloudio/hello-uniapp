@@ -154,7 +154,7 @@
 
     .page {
         flex: 1;
-        width: 750upx;
+        width: 750rpx;
     }
 
     .swiper {
@@ -168,6 +168,8 @@
 
     .video {
         flex: 1;
+        /* #ifndef APP-PLUS */
         width: 100%;
+        /* #endif */
     }
 </style>
