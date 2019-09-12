@@ -12,7 +12,7 @@
                             "text": "\ue534",
                             "fontSrc": "/static/uni.ttf",
                             "fontSize": "22px",
-                            "color": "#999999"
+                            "color": "#FFFFFF"
                         }]
                     }
                 }
@@ -28,7 +28,7 @@
                             "text": "\ue534",
                             "fontSrc": "/static/uni.ttf",
                             "fontSize": "22px",
-                            "color": "#999999"
+                            "color": "#FFFFFF"
                         }]
                     }
                 }
@@ -44,7 +44,7 @@
                             "text": "\ue534",
                             "fontSrc": "/static/uni.ttf",
                             "fontSize": "22px",
-                            "color": "#999999"
+                            "color": "#FFFFFF"
                         }]
                     }
                 }
@@ -60,7 +60,7 @@
                             "text": "\ue534",
                             "fontSrc": "/static/uni.ttf",
                             "fontSize": "22px",
-                            "color": "#999999"
+                            "color": "#FFFFFF"
                         }]
                     }
                 }
@@ -1164,9 +1164,9 @@
         }
     ],
     "globalStyle": {
-        "navigationBarTextStyle": "black",
+        "navigationBarTextStyle": "white",
         "navigationBarTitleText": "Hello uniapp",
-        "navigationBarBackgroundColor": "#F8F8F8",
+        "navigationBarBackgroundColor": "#007AFF",
         "backgroundColor": "#F8F8F8",
         "backgroundColorTop": "#F4F5F6",
         "backgroundColorBottom": "#F4F5F6",
