@@ -25,7 +25,7 @@
 			</view>
 		</uni-popup>
 		<!-- 插屏弹窗 -->
-		<uni-popup ref="image" :type="type" :custom="true" :mask-click="false" @change="change">
+		<uni-popup ref="image" :type="type" :custom="true" :mask-click="true" @change="change">
 			<view class="uni-image">
 				<view class="uni-image-close" @click="cancel('image')">
 					<uni-icon type="clear" color="#fff" size="30" />
