@@ -6,14 +6,14 @@
                 <progress :percent="pgList[0]" show-info stroke-width="3" />
             </view>
             <view class="progress-box">
-                <progress :percent="pgList[1]" active stroke-width="3" />
+                <progress :percent="pgList[1]" stroke-width="3" />
                 <uni-icons type="close" class="progress-cancel" color="#dd524d"></uni-icons>
             </view>
             <view class="progress-box">
-                <progress :percent="pgList[2]" active stroke-width="3" />
+                <progress :percent="pgList[2]" stroke-width="3" />
             </view>
             <view class="progress-box">
-                <progress :percent="pgList[3]" activeColor="#10AEFF" active stroke-width="3" />
+                <progress :percent="pgList[3]" activeColor="#10AEFF" stroke-width="3" />
             </view>
             <view class="progress-control">
                 <button type="primary" @click="setProgress">设置进度</button>

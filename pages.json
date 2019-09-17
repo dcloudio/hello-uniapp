@@ -1175,8 +1175,8 @@
         "backgroundColor": "#F8F8F8",
         "backgroundColorTop": "#F4F5F6",
         "backgroundColorBottom": "#F4F5F6",
-        "mp-alipay": {
-            "titleBarColor": "#FFFFFF"
+        "app-plus": {
+          "animationType": "pop-in"
         }
     },
     "tabBar": {
