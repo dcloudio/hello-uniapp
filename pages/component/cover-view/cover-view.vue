@@ -37,9 +37,14 @@
 			};
 		},
 		onLoad() {
+      // #ifdef APP-PLUS || MP-BAIDU
 			setTimeout(()=>{
 				this.showMap = true
 			},350)
+      // #endif
+      // #ifndef APP-PLUS || MP-BAIDU
+			this.showMap = true
+      // #endif
 		}
 	}
 </script>
