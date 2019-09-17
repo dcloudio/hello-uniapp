@@ -154,6 +154,9 @@
                     }, {
                         name: '表单验证',
                         url: 'datachecker'
+                    }, {
+                        name: 'GlobalData和vuex',
+                        url: 'global'
                     },
                     // #ifdef APP-PLUS
                     {

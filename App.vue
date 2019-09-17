@@ -43,7 +43,10 @@
         },
         onHide: function() {
             console.log('App Hide')
-        }
+        },
+		globalData: {
+			test: ''
+		}
     }
 </script>
 
