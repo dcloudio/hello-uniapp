@@ -68,17 +68,17 @@
 				list: [{
 						title: "幸福",
 						content: "能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？",
-						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg?imageView2/3/w/200/h/100/q/90"
+						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png"
 					},
 					{
 						title: "木屋",
 						content: "想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖。",
-						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg?imageView2/3/w/200/h/100/q/90"
+						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png"
 					},
 					{
 						title: "CBD",
 						content: "烤炉模式的城，到黄昏，如同打翻的调色盘一般。",
-						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg?imageView2/3/w/200/h/100/q/90"
+						img: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png"
 					}
 				]
 			}
