@@ -1,7 +1,7 @@
 <template>
     <view>
         <video ref="video" id="myVideo" class="video" :src="src" controls="true">
-            <cover-view class="coverview">
+            <cover-view class="coverview" style="overflow-y: scroll;">
                 <text class="text">{{ '\uEA06\uEA0E\uEA0C\uEA0A 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view' }}</text>
             </cover-view>
         </video>
@@ -59,6 +59,5 @@
         height: 150rpx;
         border-width: 10rpx;
         border-color: #4CD964;
-        overflow-y: scroll;
     }
 </style>
