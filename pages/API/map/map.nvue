@@ -4,7 +4,8 @@
             :show-location="showLocation" :enable-3D="enable3D" :rotate="rotate" :skew="skew" :show-compass="showCompass"
             :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom" :enable-scroll="enableScroll"
             :enable-rotate="enableRotate" :enable-satellite="enableSatellite" :enable-traffic="enableTraffic" :markers="markers"
-            :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"></map>
+            :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"
+            @tap="maptap" @controltap="oncontroltap" @markertap="onmarkertap" @callouttap="oncallouttap" @poitap="onpoitap" @updated="onupdated" @regionchange="onregionchange"></map>
         <scroll-view class="scrollview" scroll-y="true">
             <!-- <view class="list-item">
                 <text class="list-text">显示3D楼块</text>
@@ -355,37 +356,33 @@
                     })
                 });
             },
-            bindtap(e) {
+            maptap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
                 })
             },
-            bindmarkertap(e) {
+            onmarkertap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
                 })
             },
-            bindcontroltap(e) {
+            oncontroltap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
                 })
             },
-            bindcallouttap(e) {
+            oncallouttap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
                 })
             },
-            bindupdated(e) {
-                uni.showModal({
-                    content: JSON.stringify(e)
-                })
+            onupdated(e) {
+                console.log(JSON.stringify(e))
             },
-            bindregionchange(e) {
-                uni.showModal({
-                    content: JSON.stringify(e)
-                })
+            onregionchange(e) {
+                console.log(JSON.stringify(e));
             },
-            bindpoitap(e) {
+            onpoitap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
                 })
