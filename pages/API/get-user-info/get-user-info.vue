@@ -62,6 +62,7 @@
 						if (~content.indexOf('uni.login')) {
 							content = '请在登录页面完成登录操作';
 						}
+                        // #ifndef APP-PLUS
 						uni.getSetting({
 							success: (res) => {
 								let authStatus = res.authSetting['scope.userInfo'];
@@ -84,6 +85,14 @@
 								}
 							}
 						})
+                        // #endif
+                        // #ifdef APP-PLUS
+                        uni.showModal({
+                        	title: '获取用户信息失败',
+                        	content: '错误原因' + content,
+                        	showCancel: false
+                        });
+                        // #endif
 					}
 				});
 			},
