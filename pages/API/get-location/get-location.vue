@@ -140,11 +140,9 @@
                 } else if (status === 2) {
                     uni.showModal({
                         content: "系统定位已关闭",
-                        confirmText: "设置",
+                        confirmText: "确定",
+                        showCancel: false,
                         success: function(res) {
-                            if (res.confirm) {
-                                permision.gotoiOSSetting();
-                            }
                         }
                     })
                 } else if (status.code) {
