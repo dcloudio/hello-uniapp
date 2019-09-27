@@ -15,7 +15,7 @@
 		</view>
 		<uni-title title="修改颜色" type="line"></uni-title>
 		<view class="example-body">
-			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#00B26A" border-color="#00B26A" />
+			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
 		</view>
 		<uni-title title="倒计时回调事件" type="line"></uni-title>
 		<view class="example-body">
@@ -117,8 +117,7 @@
 		background-color: #ffffff;
 	}
 
-
 	.title {
-		margin: 80upx 0 20upx 0;
+		margin: 80rpx 0 20rpx 0;
 	}
 </style>

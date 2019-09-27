@@ -124,7 +124,6 @@
 	}
 
 
-
 	/* #ifdef MP-ALIPAY */
 	.uni-fav {
 		margin-left: 20rpx;

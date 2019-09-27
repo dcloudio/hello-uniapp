@@ -149,8 +149,8 @@
 		display: flex;
 		/* #endif */
 		flex-wrap: nowrap;
-		width: 120upx;
-		padding: 0 12upx;
+		width: 120rpx;
+		padding: 0 12rpx;
 		justify-content: center;
 		align-items: center;
 	}
@@ -159,7 +159,7 @@
 		/* #ifndef APP-PLUS-NVUE */
 		display: flex;
 		/* #endif */
-		width: 150upx;
+		width: 150rpx;
 		justify-content: flex-start;
 	}
 
@@ -167,7 +167,7 @@
 		/* #ifndef APP-PLUS-NVUE */
 		display: flex;
 		/* #endif */
-		width: 150upx;
+		width: 150rpx;
 		padding-right: 30rpx;
 		justify-content: flex-end;
 	}
@@ -183,7 +183,7 @@
 		flex: 1;
 		align-items: center;
 		justify-content: center;
-		font-size: 30upx;
+		font-size: 30rpx;
 	}
 
 	.uni-navbar__placeholder {}

@@ -1,11 +1,11 @@
 <template>
-	<view>
+	<view class="uni-fab-box">
 		<view class="uni-padding-wrap">
-			<button class="btn" type="primary" @click="switchBtn(0)">切换菜单({{ directionStr }}显示)</button>
-			<button class="btn" type="primary" @click="switchBtn('left', 'bottom')">左下角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('right', 'bottom')">右下角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('right', 'top')">右上角显示</button>
+			<button class="btn" @click="switchBtn(0)">切换菜单({{ directionStr }}显示)</button>
+			<button class="btn" @click="switchBtn('left', 'bottom')">左下角显示</button>
+			<button class="btn" @click="switchBtn('right', 'bottom')">右下角显示</button>
+			<button class="btn" @click="switchBtn('left', 'top')">左上角显示</button>
+			<button class="btn" @click="switchBtn('right', 'top')">右上角显示</button>
 		</view>
 		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" />
 	</view>
@@ -89,11 +89,21 @@
 </script>
 
 <style>
+	.uni-fab-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		justify-content: center;
+	}
+
 	.uni-padding-wrap {
 		padding-top: 100px;
 	}
 
 	.btn {
 		margin: 15px;
+		background-color: #007AFF;
+		color: white;
 	}
 </style>

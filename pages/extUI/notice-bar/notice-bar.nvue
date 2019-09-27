@@ -134,10 +134,9 @@
 		background-color: #ffffff;
 	}
 
-
 	.example-body {
-		padding: 5upx 0;
-		padding-top: 20upx;
+		padding: 5rpx 0;
+		padding-top: 20rpx;
 		flex-direction: column;
 		/* #ifndef APP-NVUE */
 		display: block;

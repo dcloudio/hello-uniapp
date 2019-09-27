@@ -2,11 +2,11 @@
 	<view>
 		<uni-title title="基本用法" type="line"></uni-title>
 		<view class="example-body">
-			<uni-steps :options="list1" :active="active" />
+			<uni-steps :options="list1" active-color="#007AFF" :active="active" />
 		</view>
 		<uni-title title="纵向排列" type="line"></uni-title>
 		<view class="example-body">
-			<uni-steps :options="list2" :active="active" direction="column" />
+			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
 		</view>
 		<button class="status-btn" type="primary" @click="change">改变状态</button>
 	</view>
@@ -132,9 +132,10 @@
 		background-color: #ffffff;
 	}
 
-
 	.status-btn {
 		margin: 30rpx;
+		background-color: #007AFF;
+		color: white;
 	}
 
 	.example-body {

@@ -127,7 +127,7 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: flex-start;
-		padding: 2upx 0;
+		padding: 2rpx 0;
 	}
 
 	.uni-countdown__splitor {
@@ -135,8 +135,8 @@
 		display: flex;
 		/* #endif */
 		justify-content: center;
-		line-height: 48upx;
-		padding: 5upx;
+		line-height: 48rpx;
+		padding: 5rpx;
 		font-size: 24rpx;
 	}
 
@@ -146,11 +146,11 @@
 		/* #endif */
 		justify-content: center;
 		align-items: center;
-		width: 52upx;
-		height: 48upx;
-		line-height: 48upx;
+		width: 52rpx;
+		height: 48rpx;
+		line-height: 48rpx;
 		border-radius: 6rpx;
-		margin: 5upx;
+		margin: 5rpx;
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #000000;

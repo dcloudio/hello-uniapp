@@ -211,6 +211,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		height: 50px;
 		padding: 30rpx;
 		padding-left: 0;
 		border-bottom-style: solid;

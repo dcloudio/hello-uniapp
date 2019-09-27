@@ -21,7 +21,7 @@
 		<view class="example-body">
 			<uni-number-box :value="numberValue" @change="change" />
 		</view>
-		<!-- <view style="height: 30upx;"></view> -->
+		<!-- <view style="height: 30rpx;"></view> -->
 	</view>
 </template>
 <script>

@@ -10,7 +10,7 @@
 		<view>
 			<uni-title title="左侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<button class="drawer-control-button" type="primary" @click="show('left')">显示Drawer</button>
+				<button class="drawer-control-button" @click="show('left')">显示Drawer</button>
 				<uni-drawer :visible="showLeft" mode="left" @close="closeDrawer('left')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -26,12 +26,12 @@
 						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close"><button type="primary" @click="hide">关闭Drawer</button></view>
+					<view class="close"><button class="drawer-btn-primary" @click="hide">关闭Drawer</button></view>
 				</uni-drawer>
 			</view>
 			<uni-title title="右侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<button class="drawer-control-button" type="primary" @click="show('right')">显示Drawer</button>
+				<button class="drawer-control-button" @click="show('right')">显示Drawer</button>
 				<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -47,7 +47,7 @@
 						<uni-list-item class="last-list-item" :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close"><button type="primary" @click="hide">关闭Drawer</button></view>
+					<view class="close"><button class="drawer-btn-primary" @click="hide">关闭Drawer</button></view>
 				</uni-drawer>
 			</view>
 		</view>
@@ -180,7 +180,6 @@
 	}
 
 
-
 	.header {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -242,5 +241,12 @@
 
 	.drawer-control-button {
 		flex: 1;
+		background-color: #007AFF;
+		color: white;
+	}
+
+	.drawer-btn-primary {
+		background-color: #007AFF;
+		color: white;
 	}
 </style>

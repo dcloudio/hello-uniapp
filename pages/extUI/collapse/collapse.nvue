@@ -232,7 +232,6 @@
 		background-color: #ffffff;
 	}
 
-
 	.example-body {
 		flex-direction: column;
 		flex: 1;
@@ -247,7 +246,7 @@
 	}
 
 	.button {
-		font-size: 26upx;
-		line-height: 90upx;
+		font-size: 26rpx;
+		line-height: 90rpx;
 	}
 </style>

@@ -170,7 +170,6 @@
 		background-color: #ffffff;
 	}
 
-
 	.cont {
 		height: 90rpx;
 		line-height: 90rpx;

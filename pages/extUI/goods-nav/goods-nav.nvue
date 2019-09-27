@@ -141,7 +141,6 @@
 		background-color: #ffffff;
 	}
 
-
 	.example-body {
 		padding: 0;
 		/* #ifndef APP-NVUE */

@@ -213,7 +213,6 @@
 		background-color: #ffffff;
 	}
 
-
 	.example-body {
 		/* #ifndef APP-PLUS-NVUE */
 		display: flex;
@@ -228,7 +227,7 @@
 		display: flex;
 		/* #endif */
 		flex-direction: column;
-		margin: 10upx 15upx;
+		margin: 10rpx 15rpx;
 		justify-content: center;
 	}
 </style>

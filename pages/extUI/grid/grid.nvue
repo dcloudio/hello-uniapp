@@ -208,15 +208,14 @@
 	}
 
 
-
 	.image {
-		width: 50upx;
-		height: 50upx;
+		width: 50rpx;
+		height: 50rpx;
 	}
 
 	.text {
-		font-size: 26upx;
-		margin-top: 10upx;
+		font-size: 26rpx;
+		margin-top: 10rpx;
 	}
 
 	.example-body {
