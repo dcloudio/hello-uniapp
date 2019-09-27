@@ -1,7 +1,7 @@
 <template>
 	<view class="warp">
-		<view class="example-info">宫格组件主要使用场景如：商品推荐列表、热门内容等</view>
-		<view class="example-title">默认样式（3列）</view>
+		<text class="example-info">宫格组件主要使用场景如：商品推荐列表、热门内容等</text>
+		<uni-title title="默认样式（3列）" type="line"></uni-title>
 		<view class="example-body">
 			<uni-grid :column="3" :highlight="true" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :key="index">
@@ -10,35 +10,14 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view>
-		<view class="example-title">带红点角标（4列）</view>
-		<view class="example-body">
-			<uni-grid :column="4" :show-border="true" :square="true" :hor="35" :ver="-45" @change="change">
-				<uni-grid-item marker="dot">
-					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png" mode="aspectFill" />
-					<text class="text">新浪</text>
-				</uni-grid-item>
-				<uni-grid-item marker="badge" text="99" type="success">
-					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png" mode="aspectFill" />
-					<text class="text">微信</text>
-				</uni-grid-item>
-				<uni-grid-item marker="badge" type="error" text="热">
-					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png" mode="aspectFill" />
-					<text class="text">QQ</text>
-				</uni-grid-item>
-				<uni-grid-item :hor="35" :ver="-45" :img-width="25" marker="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/recommend.png">
-					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-6.png" mode="aspectFill" />
-					<text class="text">抖音</text>
-				</uni-grid-item>
-			</uni-grid>
-		</view>
-		<view class="example-title">无边框（3列）</view>
+		<uni-title title="无边框（3列）" type="line"></uni-title>
 		<view class="example-body">
 			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
-				<uni-grid-item :hor="35" :ver="-45" marker="badge" type="error" text="12">
+				<uni-grid-item :hor="0" :ver="0" marker="badge" type="error" text="12">
 					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png" mode="aspectFill" />
 					<text class="text">新浪</text>
 				</uni-grid-item>
-				<uni-grid-item :hor="40" :ver="-55" :img-width="30" marker="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/recommend.png">
+				<uni-grid-item :hor="0" :ver="0" :img-width="30" marker="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/recommend.png">
 					<image class="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png" mode="aspectFill" />
 					<text class="text">微信</text>
 				</uni-grid-item>
@@ -60,8 +39,7 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view>
-
-		<view class="example-title">矩形宫格（3列）</view>
+		<uni-title title="矩形宫格（3列）" type="line"></uni-title>
 		<view class="example-body">
 			<uni-grid :column="3" :square="false" :highlight="false" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :key="index">
@@ -70,7 +48,7 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view>
-		<view class="example-title">边框颜色（4列）</view>
+		<uni-title title="边框颜色（4列）" type="line"></uni-title>
 		<view class="example-body">
 			<uni-grid :column="4" border-color="#03a9f4" @change="change">
 				<uni-grid-item>
@@ -95,10 +73,12 @@
 </template>
 
 <script>
+	import uniTitle from '@/components/uni-title/uni-title.vue'
 	import uniGrid from '@/components/uni-grid/uni-grid.vue'
 	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
 	export default {
 		components: {
+			uniTitle,
 			uniGrid,
 			uniGridItem
 		},
@@ -155,66 +135,79 @@
 </script>
 
 <style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/common/uniicons.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
 	}
 
 	view {
-		font-size: 28upx;
-		line-height: inherit
+		font-size: 28rpx;
+		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30upx 30upx
-	}
-
-	.example-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 32upx;
-		color: #464e52;
-		padding: 30upx 30upx 30upx 50upx;
-		margin-top: 20upx;
-		position: relative;
-		background-color: #fdfdfd;
-		border-bottom: 1px #f5f5f5 solid
-	}
-
-	.example-title__after {
-		position: relative;
-		color: #031e3c
-	}
-
-	.example-title:after {
-		content: '';
-		position: absolute;
-		left: 30upx;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		width: 6upx;
-		height: 32upx;
-		background-color: #ccc
-	}
-
-	.example .example-title {
-		margin: 40upx 0
-	}
-
-	.example-body {
-		padding: 30upx;
-		background: #fff
+		padding: 0 30rpx 30rpx;
 	}
 
 	.example-info {
-		padding: 30upx;
+		padding: 30rpx;
 		color: #3b4144;
-		background: #fff
+		background: #ffffff;
 	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+
 
 	.image {
 		width: 50upx;
@@ -224,5 +217,11 @@
 	.text {
 		font-size: 26upx;
 		margin-top: 10upx;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 	}
 </style>

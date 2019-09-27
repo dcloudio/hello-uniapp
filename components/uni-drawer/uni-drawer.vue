@@ -1,7 +1,7 @@
 <template>
-	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer, 'uni-drawer--right': rightMode }" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
-		<view class="uni-drawer__mask" @tap="close" />
-		<view class="uni-drawer__content">
+	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer }" class="uni-drawer">
+		<view class="uni-drawer__mask" :class="{ 'uni-drawer__mask--visible': showDrawer && mask }" @tap="close" />
+		<view class="uni-drawer__content" :class="{'uni-drawer--right': rightMode,'uni-drawer--left': !rightMode, 'uni-drawer__content--visible': showDrawer}">
 			<slot />
 		</view>
 	</view>
@@ -74,68 +74,70 @@
 					this.visibleSync = false
 					this.$emit('close')
 				}, 200)
-			},
-			moveHandle() {}
+			}
 		}
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-drawer {
+		/* #ifndef APP-NVUE */
 		display: block;
+		/* #endif */
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		visibility: hidden;
 		z-index: 999;
-		height: 100%
 	}
 
-	.uni-drawer.uni-drawer--right .uni-drawer__content {
-		left: auto;
-		right: 0;
-		transform: translatex(100%)
-	}
-
-	.uni-drawer.uni-drawer--visible {
-		visibility: visible
-	}
-
-	.uni-drawer.uni-drawer--visible .uni-drawer__content {
-		transform: translatex(0)
-	}
-
-	.uni-drawer.uni-drawer--visible .uni-drawer__mask {
+	.uni-drawer__content {
+		/* #ifndef APP-NVUE */
 		display: block;
-		opacity: 1
+		/* #endif */
+		position: absolute;
+		top: 0;
+		width: 220px;
+		bottom: 0;
+		background-color: #ffffff;
+		transition: transform 0.3s ease-out;
 	}
+
+	.uni-drawer--left {
+		left: 0;
+		transform: translateX(-100%);
+	}
+
+	.uni-drawer--right {
+		right: 0;
+		transform: translateX(100%);
+	}
+
+	.uni-drawer__content--visible {
+		transform: translateX(0);
+	}
+
 
 	.uni-drawer__mask {
+		/* #ifndef APP-NVUE */
 		display: block;
+		/* #endif */
 		opacity: 0;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, .4);
-		transition: opacity .3s
+		bottom: 0;
+		right: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		transition: opacity 0.3s;
 	}
 
-	.uni-drawer__content {
+	.uni-drawer__mask--visible {
+		/* #ifndef APP-NVUE */
 		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 61.8%;
-		height: 100%;
-		background: #fff;
-		transition: all .3s ease-out;
-		transform: translatex(-100%)
+		/* #endif */
+		opacity: 1;
 	}
 </style>

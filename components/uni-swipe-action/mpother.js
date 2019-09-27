@@ -1,17 +1,21 @@
+// #ifdef APP-NVUE
+const dom = weex.requireModule('dom');
+// #endif
 export default {
-  data () {
+  data() {
     return {
       uniShow: false,
       left: 0
     }
   },
   computed: {
-    moveLeft () {
+    moveLeft() {
       return `translateX(${this.left}px)`
     }
   },
   watch: {
-    show (newVal) {
+    show(newVal) {
+      if (!this.position || JSON.stringify(this.position) === '{}') return;
       if (this.autoClose) return
       if (newVal) {
         this.$emit('change', true)
@@ -23,15 +27,16 @@ export default {
       uni.$emit('__uni__swipe__event', this)
     }
   },
-  onReady () {
+  mounted() {
+    this.position = {}
     this.init()
     this.getSelectorQuery()
   },
-  beforeDestoy () {
+  beforeDestoy() {
     uni.$off('__uni__swipe__event')
   },
   methods: {
-    init () {
+    init() {
       uni.$on('__uni__swipe__event', (res) => {
         if (res !== this && this.autoClose) {
           if (this.left !== 0) {
@@ -40,35 +45,35 @@ export default {
         }
       })
     },
-    onClick (index, item) {
+    onClick(index, item) {
       this.$emit('click', {
         content: item,
         index
       })
     },
-    touchstart (e) {
+    touchstart(e) {
       const {
         pageX
       } = e.touches[0]
       if (this.disabled) return
-      const left = this.position[0].left
+      const left = this.position.content.left
       uni.$emit('__uni__swipe__event', this)
       this.width = pageX - left
       if (this.isopen) return
       if (this.uniShow) {
         this.uniShow = false
         this.isopen = true
-        this.openleft = this.left + this.position[1].width
+        this.openleft = this.left + this.position.button.width
       }
     },
-    touchmove (e, index) {
+    touchmove(e, index) {
       if (this.disabled) return
       const {
         pageX
       } = e.touches[0]
       this.setPosition(pageX)
     },
-    touchend () {
+    touchend() {
       if (this.disabled) return
       if (this.isopen) {
         this.move(this.openleft, 0)
@@ -76,23 +81,22 @@ export default {
       }
       this.move(this.left, -40)
     },
-    setPosition (x, y) {
-      if (!this.position[1].width) {
+    setPosition(x, y) {
+      if (!this.position.button.width) {
         return
       }
-      // const width = this.position[0].width
-      this.left = x - this.width
+      // this.left = x - this.width
       this.setValue(x - this.width)
     },
-    setValue (value) {
+    setValue(value) {
       // 设置最大最小值
-      this.left = Math.max(-this.position[1].width, Math.min(parseInt(value), 0))
-      this.position[0].left = this.left
+      this.left = Math.max(-this.position.button.width, Math.min(parseInt(value), 0))
+      this.position.content.left = this.left
       if (this.isopen) {
-        this.openleft = this.left + this.position[1].width
+        this.openleft = this.left + this.position.button.width
       }
     },
-    move (left, value) {
+    move(left, value) {
       if (left >= value) {
         this.$emit('change', false)
         this.close()
@@ -101,26 +105,28 @@ export default {
         this.open()
       }
     },
-    open () {
+    open() {
       this.uniShow = true
-      this.left = -this.position[1].width
-      this.setValue(-this.position[1].width)
+      this.left = -this.position.button.width
+      this.setValue(-this.position.button.width)
     },
-    close () {
+    close() {
       this.uniShow = true
       this.setValue(0)
       setTimeout(() => {
         this.uniShow = false
         this.isopen = false
-      }, 200)
+      }, 300)
     },
-    getSelectorQuery () {
+    getSelectorQuery() {
+      // #ifndef APP-NVUE
       const views = uni.createSelectorQuery()
         .in(this)
       views
         .selectAll('.selector-query-hock')
         .boundingClientRect(data => {
-          this.position = data
+          this.position.content = data[1]
+          this.position.button = data[0]
           if (this.autoClose) return
           if (this.show) {
             this.open()
@@ -129,6 +135,35 @@ export default {
           }
         })
         .exec()
+      // #endif
+      // #ifdef APP-NVUE
+      dom.getComponentRect(this.$refs['selector-content-hock'], (data) => {
+        if (data.size.width === 0) {
+          setTimeout(() => {
+            this.getSelectorQuery()
+          }, 50)
+          return
+        }
+        if (this.position.content) return
+        this.position.content = data.size
+      })
+      dom.getComponentRect(this.$refs['selector-button-hock'], (data) => {
+        if (data.size.width === 0) {
+          setTimeout(() => {
+            this.getSelectorQuery()
+          }, 50)
+          return
+        }
+        if (this.position.button) return
+        this.position.button = data.size
+        if (this.autoClose) return
+        if (this.show) {
+          this.open()
+        } else {
+          this.close()
+        }
+      })
+      // #endif
     }
   }
 }

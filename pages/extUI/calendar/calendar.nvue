@@ -1,39 +1,36 @@
 <template>
-	<view :class="{ 'calendar-content-active ': infoShow }" class="calendar-content">
-		<view class="example-info">日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等。</view>
-		<view class="example-title">日历组件</view>
-
-		<view v-if="showCalendar">
+	<view class="calendar-content" v-if="showCalendar">
+		<text class="example-info">日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等。</text>
+		<uni-title title="日历组件" type="line"></uni-title>
+		<view>
 			<!-- 插入模式 -->
 			<uni-calendar :insert="true" :lunar="tags[0].checked" :disable-before="tags[3].checked" :range="tags[5].checked" :start-date="startDate" :end-date="endDate" :date="date" :selected="selected" @change="change" />
 			<view class="calendar-tags-group example-body">
-				<view v-for="(item, index) in tags" :class="{ checked: item.checked }" :key="index" class="calendar-tags" @click="toggle(index, item)">
-					<view class="calendar-tags-item">{{ item.name }}</view>
+				<view v-for="(item, index) in tags" :key="index" class="calendar-tags" @click="toggle(index, item)">
+					<text class="calendar-tags-item" :class="{ checked: item.checked }">{{ item.name }}</text>
 				</view>
 				<view class="calendar-tags" @click="open">
-					<view class="calendar-tags-item calendar-button">打开日历</view>
+					<text class="calendar-tags-item calendar-button">打开日历</text>
 				</view>
 			</view>
+			<view :class="[infoShow?'calendar-content-active':'calendar-content-no']"></view>
 			<!-- <button class="calendar-button" type="button" @click="open">打开日历</button> -->
 			<view :class="{ 'calendar-active': infoShow }" class="calendar-box">
 				<view v-if="timeData.lunar" class="calendar-info-header">
 					<text class="calendar-title">已选日期详情</text>
-					<text @click="retract">{{ infoShow ? '收起' : '展开' }}</text>
+					<text class="info-header-right" @click="retract">{{ infoShow ? '收起' : '展开' }}</text>
 				</view>
-				<view v-if="timeData.lunar" class="calendar-info">
-					<view>当前选择时间 : {{ timeData.fulldate }}</view>
-					<view v-if="tags[0].checked">农历日期 : {{ timeData.year + '年' + timeData.month + '月' + timeData.date + '日 （' + timeData.lunar.astro + ')' }}</view>
-					<view v-if="tags[0].checked">
-						{{ timeData.lunar.gzYear + '年' + timeData.lunar.gzMonth + '月' + timeData.lunar.gzDay + '日 (' + timeData.lunar.Animal + '年)' }}
-						{{ timeData.lunar.IMonthCn + timeData.lunar.IDayCn }} {{ timeData.lunar.isTerm ? timeData.lunar.Term : '' }}
-					</view>
-					<view>是否打点 : {{ timeData.clockinfo.have ? '是' : '否' }}</view>
-					<view v-if="timeData.clockinfo.have">打点信息 : {{ timeData.clockinfo.info || '' }}</view>
-					<view v-if="timeData.clockinfo.have">打点额外信息 : {{ JSON.stringify(timeData.clockinfo.data) || '' }}</view>
-					<view v-if="tags[5].checked">范围选择开始时间 : {{ timeData.range.begin || '' }}</view>
-					<view v-if="tags[5].checked">范围选择结束时间 : {{ timeData.range.end || '' }}</view>
-					<view v-if="tags[5].checked">范围日期 : {{ JSON.stringify(timeData.range.data) || '' }}</view>
-				</view>
+				<scroll-view scroll-y v-if="timeData.lunar" class="calendar-info">
+					<view><text class="calendar-info-text">当前选择时间 : {{ timeData.fulldate }}</text></view>
+					<view><text v-if="tags[0].checked" class="calendar-info-text">农历日期 : {{ timeData.year + '年' + timeData.month + '月' + timeData.date + '日 （' + timeData.lunar.astro + ')' }}</text></view>
+					<view><text v-if="tags[0].checked" class="calendar-info-text">{{ timeData.lunar.gzYear + '年' + timeData.lunar.gzMonth + '月' + timeData.lunar.gzDay + '日 (' + timeData.lunar.Animal + '年)' + timeData.lunar.IMonthCn + timeData.lunar.IDayCn + ( timeData.lunar.isTerm ? timeData.lunar.Term : '')}}</text></view>
+					<view> <text class="calendar-info-text">是否打点 : {{ timeData.clockinfo.have ? '是' : '否' }}</text></view>
+					<view><text v-if="timeData.clockinfo.have" class="calendar-info-text">打点信息 : {{ timeData.clockinfo.info || '' }}</text></view>
+					<view><text v-if="timeData.clockinfo.have" class="calendar-info-text">打点额外信息 : {{ JSON.stringify(timeData.clockinfo.data) || '' }}</text></view>
+					<view><text v-if="tags[5].checked" class="calendar-info-text">范围选择开始时间 : {{ timeData.range.begin || '' }}</text></view>
+					<view><text v-if="tags[5].checked" class="calendar-info-text">范围选择结束时间 : {{ timeData.range.end || '' }}</text></view>
+					<view><text v-if="tags[5].checked" class="calendar-info-text">范围日期 : {{ JSON.stringify(timeData.range.data) || '' }}</text></view>
+				</scroll-view>
 			</view>
 		</view>
 
@@ -42,9 +39,11 @@
 </template>
 
 <script>
+	import uniTitle from '@/components/uni-title/uni-title.vue'
 	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue'
 	export default {
 		components: {
+			uniTitle,
 			uniCalendar
 		},
 		data() {
@@ -146,10 +145,10 @@
 				showCalendar: false
 			}
 		},
-		onLoad() {
-			setTimeout(() => {
+		onReady() {
+			this.$nextTick(() => {
 				this.showCalendar = true
-			}, 350)
+			})
 		},
 		methods: {
 			toggle(index, item) {
@@ -200,141 +199,169 @@
 </script>
 
 <style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/common/uniicons.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
 	}
 
 	view {
-		font-size: 28upx;
-		line-height: inherit
+		font-size: 28rpx;
+		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30upx 30upx
-	}
-
-	.example-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 32upx;
-		color: #464e52;
-		padding: 30upx 30upx 30upx 50upx;
-		margin-top: 20upx;
-		position: relative;
-		background-color: #fdfdfd;
-		border-bottom: 1px #f5f5f5 solid
-	}
-
-	.example-title__after {
-		position: relative;
-		color: #031e3c
-	}
-
-	.example-title:after {
-		content: '';
-		position: absolute;
-		left: 30upx;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		width: 6upx;
-		height: 32upx;
-		background-color: #ccc
-	}
-
-	.example .example-title {
-		margin: 40upx 0
-	}
-
-	.example-body {
-		padding: 30upx;
-		background: #fff
+		padding: 0 30rpx 30rpx;
 	}
 
 	.example-info {
-		padding: 30upx;
+		padding: 30rpx;
 		color: #3b4144;
-		background: #fff
+		background: #ffffff;
 	}
 
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+
+
 	.calendar-content {
-		padding-bottom: 100upx;
-		font-size: 26upx;
+		font-size: 26rpx;
 	}
 
 	.calendar-content-active {
-		padding-bottom: 450upx;
+		height: 240px;
+	}
+
+	.calendar-content-no {
+		height: 50px;
 	}
 
 	.calendar-tags-group {
-		display: flex;
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 		flex-direction: column;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
 
 	.calendar-tags {
-		width: 100%;
-		box-sizing: border-box;
+		flex: 1;
 	}
 
 	.calendar-tags-item {
-		padding: 20upx 20upx;
-		border: 1px rgba(0, 0, 0, 0.2) solid;
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 20rpx 20rpx;
+		border-color: rgba(0, 0, 0, 0.2);
+		border-style: solid;
+		border-width: 1px;
 		color: #333;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 		text-align: center;
-		margin: 10upx;
-		background: #f8f8f8;
+		margin: 10rpx;
+		background-color: #f8f8f8;
+		font-size: 28rpx;
 	}
 
 	.calendar-tags-item:active {
-		background: #f8f8f8;
+		background-color: #f8f8f8;
+		color: #333;
 	}
 
-	.checked .calendar-tags-item {
-		background: rgb(0, 122, 255);
+	.checked {
+		background-color: rgb(0, 122, 255);
 		color: #fff;
-		border: 1px rgba(0, 0, 0, 0.1) solid;
+		border-color: rgba(0, 0, 0, 0.1);
+		border-style: solid;
+		border-width: 1px;
+
 	}
 
 	.calendar-button {
+		flex: 1;
 		font-weight: bold;
-		font-size: 32upx;
+		font-size: 32rpx;
 	}
 
 	.calendar-button-groups {
-		position: absolute;
-		width: 100%;
-		bottom: 0;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
+		position: absolute;
+		bottom: 0;
 	}
 
 	.calendar-button-confirm {
 		width: 50%;
-		margin: 10upx;
-		border: 1px #eee solid;
-		font-size: 32upx;
-	}
-
-	.calendar-button-confirm:after {
-		border: none;
+		margin: 10rpx;
+		font-size: 32rpx;
+		border-color: #eee;
+		border-style: solid;
+		border-width: 1px;
 	}
 
 	.calendar-box {
 		position: fixed;
 		bottom: 0;
-		background: #fff;
-		color: #444;
-		line-height: 1.5;
-		width: 100%;
-		transition: all 0.3s;
-		transform: translateY(320upx);
-		/* background: #f5f5f5; */
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		transition-property: transform;
+		transition-duration: 0.3s;
+		transform: translateY(160px);
 	}
 
 	.calendar-active {
@@ -342,28 +369,51 @@
 	}
 
 	.calendar-info-header {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding: 20upx 30upx;
+		padding: 20rpx 30rpx;
 		padding-left: 0;
-		border-top: 1px #eee solid;
-		border-bottom: 1px #eee solid;
+		border-color: #eee;
+		border-style: solid;
+		border-top-width: 1px;
+		border-bottom-width: 1px;
+
 	}
 
 	.calendar-title {
-		/* height: 80upx; */
+		/* height: 80rpx; */
 		font-weight: bold;
 		color: #666;
-		font-size: 32upx;
-		border-left: 2px #0d9ebb solid;
-		padding-left: 20upx;
-		margin: 0 20upx;
+		font-size: 32rpx;
+		border-left-style: solid;
+		border-left-color: #0d9ebb;
+		border-left-width: 2px;
+		padding-left: 20rpx;
+		margin: 0 20rpx;
+	}
+
+	.info-header-right {
+		color: #444;
+		font-size: 32rpx;
 	}
 
 	.calendar-info {
-		overflow-y: scroll;
-		height: 260upx;
-		padding: 30upx 30upx;
+		border-color: #fff;
+		border-style: solid;
+		border-width: 1px;
+		height: 160px;
+		padding: 30rpx 30rpx;
+		/* #ifndef APP-NVUE */
+		box-sizing: border-box;
+		/* #endif */
+	}
+
+	.calendar-info-text {
+		font-size: 30rpx;
 	}
 </style>

@@ -2,7 +2,7 @@
 	<view class="uni-wrap">
 		<scroll-view class="scroll" scroll-y>
 			<view class="example-info">
-				uni-title 组件主要用于文章、列表详情的等标题展示
+				<text class="example-info-text"> uni-title 组件主要用于文章、列表详情的等标题展示 </text>
 			</view>
 			<uni-title class="uni-title" title="基础用法" sub-title="离开页面修改导航栏标题"></uni-title>
 			<view class="example-body">
@@ -61,26 +61,27 @@
 			}
 		},
 		onReady() {
-			const systeminfo = uni.getSystemInfoSync()
-			observer = uni.createIntersectionObserver(this);
-			observer.relativeTo('.scroll', {
-				top: -systeminfo.windowTop
-			}).observe('.uni-title', (res) => {
-				if (res.intersectionRatio > 0 && !this.appear) {
-					uni.setNavigationBarTitle({
-						title: 'Title 标题栏'
-					})
-				} else {
-					uni.setNavigationBarTitle({
-						title: '修改后的标题'
-					})
-				}
-			})
+			// const systeminfo = uni.getSystemInfoSync()
+			// observer = uni.createIntersectionObserver(this);
+			// observer.relativeTo('.scroll', {
+			//   top: -systeminfo.windowTop
+			// }).observe('.uni-title', (res) => {
+			//   console.log(res);
+			//   if (res.intersectionRatio > 0 && !this.appear) {
+			//     uni.setNavigationBarTitle({
+			//       title: 'Title 标题栏'
+			//     })
+			//   } else {
+			//     uni.setNavigationBarTitle({
+			//       title: '修改后的标题'
+			//     })
+			//   }
+			// })
 		},
 		onUnload() {
-			if (observer) {
-				observer.disconnect()
-			}
+			// if (observer) {
+			//   observer.disconnect()
+			// }
 		},
 		methods: {
 
@@ -89,113 +90,100 @@
 </script>
 
 <style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/common/uniicons.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
 	}
 
 	view {
-		font-size: 28upx;
-		line-height: inherit
+		font-size: 28rpx;
+		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30upx 30upx
-	}
-
-	.example-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 32upx;
-		color: #464e52;
-		padding: 30upx 30upx 30upx 50upx;
-		margin-top: 20upx;
-		position: relative;
-		background-color: #fdfdfd;
-		border-bottom: 1px #f5f5f5 solid
-	}
-
-	.example-title__after {
-		position: relative;
-		color: #031e3c
-	}
-
-	.example-title:after {
-		content: '';
-		position: absolute;
-		left: 30upx;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		width: 6upx;
-		height: 32upx;
-		background-color: #ccc
-	}
-
-	.example .example-title {
-		margin: 40upx 0
-	}
-
-	.example-body {
-		padding: 30upx;
-		background: #fff
+		padding: 0 30rpx 30rpx;
 	}
 
 	.example-info {
-		padding: 30upx;
+		padding: 30rpx;
 		color: #3b4144;
-		background: #fff
+		background: #ffffff;
 	}
 
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+
+
 	.uni-wrap {
+		flex-direction: column;
 		/* #ifdef H5 */
 		height: calc(100vh - 44px);
 		/* #endif */
 		/* #ifndef H5 */
 		height: 100vh;
 		/* #endif */
+		flex: 1;
 	}
 
 	.scroll {
-		height: 100%;
+		flex-direction: column;
+		flex: 1;
 	}
 
 	.example-body {
 		padding: 0;
-	}
-
-	.seat {
-		height: 500px;
-		border: 1px red solid;
-	}
-
-
-	.scroll-view {
-		height: 400upx;
-		background: #fff;
-		border: 1px solid #ccc;
-		box-sizing: border-box;
-	}
-
-	.scroll-area {
-		height: 1300upx;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.notice {
-		margin-top: 150upx;
-		margin: 150upx 0 400upx 0;
-	}
-
-	.ball {
-		width: 200upx;
-		height: 200upx;
-		background: #4cd964;
-		border-radius: 50%;
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 	}
 </style>

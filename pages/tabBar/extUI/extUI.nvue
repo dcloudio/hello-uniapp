@@ -49,6 +49,10 @@
 						url: "drawer"
 					},
 					{
+						name: "Fab 悬浮按钮",
+						url: "fab"
+					},
+					{
 						name: "Fav 收藏按钮",
 						url: "fav"
 					},
@@ -61,8 +65,8 @@
 						url: "grid"
 					},
 					{
-						name: "Icon 图标",
-						url: "icon"
+						name: "Icons 图标",
+						url: "icons"
 					},
 					// #ifndef MP-BAIDU 
 					{

@@ -1,16 +1,18 @@
 <template>
 	<view :class="{ 'uni-card--full': isFull === true || isFull === 'true', 'uni-card--shadow': isShadow === true || isShadow === 'true' }" class="uni-card" @click="onClick">
 		<view v-if="mode === 'style'" class="uni-card__thumbnailimage">
-			<image :src="thumbnail" mode="aspectFill" />
-			<view v-if="title" class="uni-card__thumbnailimage-title">{{ title }}</view>
+			<view class="uni-card__thumbnailimage-box">
+				<image class="uni-card__thumbnailimage-image" :src="thumbnail" mode="aspectFill" />
+			</view>
+			<view v-if="title" class="uni-card__thumbnailimage-title"><text class="uni-card__thumbnailimage-title-text">{{ title }}</text></view>
 		</view>
 		<view v-if="mode === 'title'" class="uni-card__title">
 			<view class="uni-card__title-header">
-				<image :src="thumbnail" mode="aspectFill" />
+				<image class="uni-card__title-header-image" :src="thumbnail" mode="scaleToFill" />
 			</view>
 			<view class="uni-card__title-content">
-				<view class="uni-card__title-content-title">{{ title }}</view>
-				<view class="uni-card__title-content-extra">{{ extra }}</view>
+				<text class="uni-card__title-content-title">{{ title }}</text>
+				<text class="uni-card__title-content-extra">{{ extra }}</text>
 			</view>
 		</view>
 		<!-- 标题 -->
@@ -18,18 +20,18 @@
 			<view v-if="thumbnail" class="uni-card__header-extra-img-view">
 				<image :src="thumbnail" class="uni-card__header-extra-img" />
 			</view>
-			<view class="uni-card__header-title-text">{{ title }}</view>
-			<view v-if="extra" class="uni-card__header-extra-text">{{ extra }}</view>
+			<text class="uni-card__header-title-text">{{ title }}</text>
+			<text v-if="extra" class="uni-card__header-extra-text">{{ extra }}</text>
 		</view>
 		<!-- 内容 -->
 		<view class="uni-card__content uni-card__content--pd">
-			<view v-if="mode === 'style' && extra" class="uni-card__content-extra">{{ extra }}</view>
+			<view v-if="mode === 'style' && extra" class=""><text class="uni-card__content-extra">{{ extra }}</text></view>
 			<slot />
 		</view>
 		<!-- 底部 -->
 		<view v-if="note" class="uni-card__footer">
 			<slot name="footer">
-				<text>{{ note }}</text>
+				<text class="uni-card__footer-text">{{ note }}</text>
 			</slot>
 		</view>
 	</view>
@@ -79,176 +81,210 @@
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-card {
-		margin-left: 24upx;
-		margin-right: 24upx;
-		background: #fff;
-		box-shadow: none;
-		position: relative;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		flex: 1;
+		/* #endif */
+		margin-left: 24rpx;
+		margin-right: 24rpx;
+		background-color: #ffffff;
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		position: relative;
 		flex-direction: column;
-		border: 1px #ddd solid;
-		border-radius: 6upx;
-		overflow: hidden
+		border-color: #ddd;
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 6rpx;
+		overflow: hidden;
+
 	}
 
 	.uni-card__thumbnailimage {
 		position: relative;
-		height: 300upx
+		flex-direction: column;
+		justify-content: center;
+		height: 300rpx;
+		overflow: hidden;
 	}
 
-	.uni-card__thumbnailimage image {
-		width: 100%;
-		height: 100%
+	.uni-card__thumbnailimage-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
+		overflow: hidden;
+	}
+
+	.uni-card__thumbnailimage-image {
+		flex: 1;
 	}
 
 	.uni-card__thumbnailimage-title {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		position: absolute;
 		bottom: 0;
-		padding: 15upx 20upx;
-		font-size: 32upx;
-		width: 100%;
-		color: #fff
+		left: 0;
+		right: 0;
+		flex-direction: row;
+		padding: 16rpx 24rpx;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	.uni-card__thumbnailimage-title-text {
+		flex: 1;
+		font-size: 32rpx;
+		color: #fff;
 	}
 
 	.uni-card__title {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		padding: 20upx;
-		border-bottom: 1px #f5f5f5 solid
+		/* #endif */
+		flex-direction: row;
+		padding: 20rpx;
+		border-bottom-color: #F5F5F5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
 	}
 
 	.uni-card__title-header {
-		flex-shrink: 0;
-		width: 80upx;
-		height: 80upx;
+		width: 80rpx;
+		height: 80rpx;
 		overflow: hidden;
-		border-radius: 10upx
+		border-radius: 10rpx;
+		/* image {
+ */
+		/*   width: 100%;
+ */
+		/*   height: 100%;
+ */
+		/* }
+ */
 	}
 
-	.uni-card__title-header image {
-		width: 100%;
-		height: 100%
+	.uni-card__title-header-image {
+		width: 80rpx;
+		height: 80rpx;
 	}
 
 	.uni-card__title-content {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: column;
 		justify-content: space-between;
-		padding-left: 20upx;
-		height: 80upx;
-		overflow: hidden
+		padding-left: 20rpx;
+		height: 80rpx;
+		overflow: hidden;
+
+
 	}
 
 	.uni-card__title-content-title {
-		font-size: 30upx;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap
+		font-size: 30rpx;
+		lines: 1;
 	}
 
 	.uni-card__title-content-extra {
-		font-size: 26upx;
+		font-size: 26rpx;
 		color: #999;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap
 	}
 
 	.uni-card__header {
-		position: relative;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		position: relative;
 		flex-direction: row;
-		padding: 16upx;
-		align-items: center
+		padding: 24rpx;
+		align-items: center;
+		border-bottom-color: #F5F5F5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
 	}
 
-	.uni-card__header:after {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		height: 1px;
-		content: '';
-		-webkit-transform: scaleY(.5);
-		transform: scaleY(.5);
-		background-color: #e5e5e5
-	}
+	.uni-card__header {}
 
 	.uni-card__header-title {
-		flex: 1;
-		margin-right: 16upx;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
+		margin-right: 16rpx;
 		justify-content: flex-start;
-		align-items: center
+		align-items: center;
 	}
 
 	.uni-card__header-title-text {
-		font-size: 32upx;
+		font-size: 32rpx;
 		flex: 1;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden
+		lines: 1;
 	}
 
-	.uni-card__header-extra-img-view {
-		display: flex
-	}
+	.uni-card__header-extra {}
+
+	.uni-card__header-extra-img-view {}
 
 	.uni-card__header-extra-img {
-		height: 40upx;
-		width: 40upx;
-		margin-right: 16upx
+		height: 40rpx;
+		width: 40rpx;
+		margin-right: 16rpx;
 	}
 
 	.uni-card__header-extra-text {
-		flex: 0 0 auto;
+		flex: 1;
 		width: 30%;
-		margin-left: 16upx;
-		font-size: 28upx;
+		margin-left: 16rpx;
+		font-size: 28rpx;
 		text-align: right;
 		color: #666;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden
+		lines: 1;
+
 	}
 
 	.uni-card__content {
-		color: #555
+		color: #555;
 	}
 
 	.uni-card__content--pd {
-		padding: 16upx
+		padding: 24rpx;
 	}
 
 	.uni-card__content-extra {
-		padding-bottom: 20upx;
-		color: #999
+		font-size: 28rpx;
+		padding-bottom: 20rpx;
+		color: #999;
 	}
 
 	.uni-card__footer {
-		padding: 20upx;
+		justify-content: space-between;
+		padding: 20rpx;
+		border-top-color: #F5F5F5;
+		border-top-style: solid;
+		border-top-width: 1px;
+	}
+
+	.uni-card__footer-text {
 		color: #999;
-		font-size: 24upx;
-		border-top: 1px #f5f5f5 solid
+		font-size: 28rpx;
 	}
 
 	.uni-card--shadow {
-		border: 1px #ddd solid;
-		box-shadow: 0 1px 2px rgba(0, 0, 0, .2)
-	}
-
-	.uni-card--shadow:after {
-		border: none
+		border-color: #ddd;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 	}
 
 	.uni-card--full {
 		margin: 0;
-		border-left: none;
-		border-right: none;
-		border-radius: 0
+
+		border-radius: 0;
+
 	}
 </style>

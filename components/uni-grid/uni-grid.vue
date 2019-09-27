@@ -1,12 +1,15 @@
 <template>
-	<view>
-		<view :id="elId" :class="{ border: showBorder }" :style="{ 'border-left': showBorder ? '1px ' + borderColor + ' solid' : 'none' }" class="uni-grid">
+	<view class="uni-grid-wrap">
+		<view :id="elId" ref="uni-grid" class="uni-grid" :class="{ 'uni-grid--border': showBorder }" :style="{ 'border-left-style':'solid','border-left-color':borderColor, 'border-left-width':showBorder?'1px':0 }">
 			<slot />
 		</view>
 	</view>
 </template>
 
 <script>
+	// #ifdef APP-NVUE
+	const dom = weex.requireModule('dom');
+	// #endif
 	export default {
 		name: 'UniGrid',
 		props: {
@@ -54,7 +57,8 @@
 			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
 				index: 0,
-				elId
+				elId,
+				width: 0
 			}
 		},
 		created() {
@@ -62,35 +66,71 @@
 			this.childrens = []
 			this.pIndex = this.pIndex ? this.pIndex++ : 0
 		},
+		mounted() {
+			// this._getSize()
+		},
 		methods: {
 			change(e) {
 				this.$emit('change', e)
 			},
 			_getSize(fn) {
+				// #ifndef APP-NVUE
 				uni.createSelectorQuery()
 					.in(this)
 					.select(`#${this.elId}`)
 					.boundingClientRect()
 					.exec(ret => {
 						if (!ret[0]) {
-							setTimeout(this._getSize(fn))
+							setTimeout(() => {
+								this._getSize(fn)
+							}, 50)
 							return
 						}
 						let width = parseInt(ret[0].width / this.column) - 1 + 'px'
 						typeof fn === 'function' && fn(width)
 					})
+				// #endif
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['uni-grid'], (ret) => {
+					if (ret.size.width === 0) {
+						setTimeout(() => {
+							this._getSize(fn)
+						}, 50)
+						return
+					}
+					let width = parseInt(ret.size.width / this.column) - 1 + 'px'
+					typeof fn === 'function' && fn(width)
+				})
+				// #endif
 			}
 		}
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
+<style scoped>
+	.uni-grid-wrap {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: column;
+		/* #ifdef H5 */
+		width: 100%;
+		/* #endif */
+	}
 
 	.uni-grid {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
 		flex-wrap: wrap;
-		box-sizing: border-box;
-		border-left: 1px #d0dee5 solid
+	}
+
+	.uni-grid--border {
+		border-left-color: #d0dee5;
+		border-left-style: solid;
+		border-left-width: 1px;
 	}
 </style>

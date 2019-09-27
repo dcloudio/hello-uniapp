@@ -1,14 +1,7 @@
 <template>
 	<view v-if="width" :style="{ width: width }" class="uni-grid-item">
-		<view :class="{ border: showBorder, 'uni-grid-item__box-square': square, 'border-top': showBorder && index < column, 'uni-highlight': highlight }" :style="{ 'border-color': borderColor }" class="uni-grid-item__box" @click="_onClick">
-			<view v-if="marker === 'dot'" :style="{ left: top + 'px', top: left + 'px' }" class="uni-grid-item__box-dot" />
-			<view v-if="marker === 'badge'" :style="{ left: top + 'px', top: left + 'px' }" class="uni-grid-item__box-badge">
-				<uni-badge :text="text" :type="type" :size="size" :inverted="inverted" />
-			</view>
-			<view v-if="marker === 'image'" :style="{ left: top + 'px', top: left + 'px' }" class="uni-grid-item__box-image">
-				<image :style="{ width: imgWidth + 'px' }" :src="src" class="box-image" mode="widthFix" />
-			</view>
-			<view class="uni-grid-item__box-item">
+		<view :class="{ 'uni-grid-item--border': showBorder, 'uni-grid-item__box-square': square, 'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }" :style="{ 'border-color': borderColor }" class="uni-grid-item__box" @click="_onClick">
+			<view class="uni-grid-item__box-item" :class="{'uni-grid-item__box-item-square': square}">
 				<slot />
 			</view>
 		</view>
@@ -16,58 +9,11 @@
 </template>
 
 <script>
-	import uniBadge from '../uni-badge/uni-badge.vue'
+	import uniBadge from '@/components/uni-badge/uni-badge.vue'
 	export default {
 		name: 'UniGridItem',
 		components: {
 			uniBadge
-		},
-		props: {
-			// 类型：可选值，dot：圆点；badge：角标；image：图片
-			marker: {
-				type: String,
-				default: ''
-			},
-			// 水平方向
-			hor: {
-				type: Number,
-				default: 0
-			},
-			// 垂直方向
-			ver: {
-				type: Number,
-				default: 0
-			},
-			// badge 下颜色类型，可选值：default（灰色）、primary（蓝色）、success（绿色）、warning(黄色)、error(红色)
-			type: {
-				type: String,
-				default: ''
-			},
-			// badge 下显示内容，汉字最多为1个
-			text: {
-				type: String,
-				default: ''
-			},
-			// badge 下 Badge 大小
-			size: {
-				type: String,
-				default: 'normal'
-			},
-			// badge 下 是否无需背景颜色
-			inverted: {
-				type: Boolean,
-				default: false
-			},
-			// image 下图片路径
-			src: {
-				type: String,
-				default: ''
-			},
-			// image 下图片宽度 ，最大 为 100 。 默认为 30
-			imgWidth: {
-				type: Number,
-				default: 30
-			}
 		},
 		inject: ['grid'],
 		data() {
@@ -94,20 +40,11 @@
 			this.borderColor = this.grid.borderColor
 			this.index = this.grid.index++
 		},
-		// #ifdef H5
 		mounted() {
 			this.grid._getSize(width => {
 				this.width = width
 			})
 		},
-		// #endif
-		// #ifndef H5
-		onReady() {
-			this.grid._getSize(width => {
-				this.width = width
-			})
-		},
-		// #endif
 		methods: {
 			_onClick() {
 				// console.log('点击', this.index);
@@ -121,103 +58,117 @@
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-grid-item {
-		box-sizing: border-box
+		/* #ifndef APP-NVUE */
+		height: 100%;
+		/* #endif */
 	}
 
 	.uni-grid-item__box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
 		position: relative;
-		width: 100%
+		flex-direction: row;
+		align-items: center;
+		/* #ifdef APP-NVUE */
+		justify-content: center;
+		/* #endif */
 	}
 
 	.uni-grid-item__box-item {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		width: 100%;
+		/* #endif */
+		position: relative;
+		flex: 1;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
-		width: 100%;
-		height: 100%;
-		font-size: 32upx;
-		color: #666;
-		padding: 20upx 0;
-		box-sizing: border-box
+		padding: 30rpx 0;
 	}
 
-	.uni-grid-item__box-item .image {
-		width: 50upx;
-		height: 50upx
-	}
-
-	.uni-grid-item__box-item .text {
-		font-size: 26upx;
-		margin-top: 10upx
-	}
-
-	.uni-grid-item__box.uni-grid-item__box-square {
-		height: 0;
-		padding-top: 100%
-	}
-
-	.uni-grid-item__box.uni-grid-item__box-square .uni-grid-item__box-item {
+	.uni-grid-item__box-item-square {
 		position: absolute;
-		top: 0
+		top: 0;
+		bottom: 0;
 	}
 
-	.uni-grid-item__box.border {
+	.uni-grid-item--image {
+		width: 50rpx;
+		height: 50rpx;
+	}
+
+	.uni-grid-item--text {
+		font-size: 26rpx;
+		margin-top: 10rpx;
+	}
+
+	.uni-grid-item__box-square {
+		height: 0;
+		padding-top: 100%;
+	}
+
+	.uni-grid-item--border {
 		position: relative;
+		border-bottom-color: #d0dee5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-right-color: #d0dee5;
+		border-right-style: solid;
+		border-right-width: 1px;
+	}
+
+	.uni-grid-item--border-top {
+		border-top-color: #d0dee5;
+		border-top-style: solid;
+		border-top-width: 1px;
+		/* #ifndef APP-NVUE */
+		height: 100%;
 		box-sizing: border-box;
-		border-bottom: 1px #d0dee5 solid;
-		border-right: 1px #d0dee5 solid
+		/* #endif */
 	}
 
-	.uni-grid-item__box.border-top {
-		border-top: 1px #d0dee5 solid
+	.uni-highlight:active {
+		background-color: #eee;
 	}
 
-	.uni-grid-item__box.uni-highlight:active {
-		background-color: #eee
+	.uni-grid-item__box-dot {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 20rpx;
+		height: 20rpx;
+		background-color: #ff5a5f;
+		border-radius: 50rpx;
 	}
 
-	.uni-grid-item__box-badge,
-	.uni-grid-item__box-dot,
+	.uni-grid-item__box-badge {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 10;
+		justify-content: center;
+		align-items: center;
+		width: 0;
+		height: 0;
+	}
+
 	.uni-grid-item__box-image {
 		position: absolute;
 		top: 0;
 		right: 0;
-		left: 0;
-		bottom: 0;
-		margin: auto;
-		z-index: 10
-	}
-
-	.uni-grid-item__box-dot {
-		width: 20upx;
-		height: 20upx;
-		background: #ff5a5f;
-		border-radius: 50%
-	}
-
-	.uni-grid-item__box-badge {
-		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 0;
-		height: 0
+		width: 100rpx;
+		height: 100rpx;
+		overflow: hidden;
 	}
 
-	.uni-grid-item__box-image {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100upx;
-		height: 100upx;
-		overflow: hidden
-	}
-
-	.uni-grid-item__box-image .box-image {
-		width: 90upx
+	.box-image {
+		width: 90rpx;
 	}
 </style>
