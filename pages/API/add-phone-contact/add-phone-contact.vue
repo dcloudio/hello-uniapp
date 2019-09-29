@@ -47,10 +47,11 @@
 			phoneChange: function(e) {
 				this.phone = e.detail.value
 			},
-			add() {
+			async add() {
 				// #ifdef APP-PLUS
-				if (this.checkPermission() !== 1) {
-					return;
+				let status = await this.checkPermission();
+				if (status !== 1) {
+				    return;
 				}
 				// #endif
 
