@@ -10,7 +10,7 @@
 		<view>
 			<uni-title title="左侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="show('left')"><text class="word-btn-white">显示Drawer</text></view>
+				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="show('left')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showLeft" mode="left" @close="closeDrawer('left')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -27,13 +27,13 @@
 					</view>
 					<!-- #endif -->
 					<view class="close">
-						<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
+						<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
 					</view>
 				</uni-drawer>
 			</view>
 			<uni-title title="右侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="show('right')"><text class="word-btn-white">显示Drawer</text></view>
+				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="show('right')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -50,7 +50,7 @@
 					</view>
 					<!-- #endif -->
 					<view class="close">
-						<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
+						<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
 					</view>
 				</uni-drawer>
 			</view>

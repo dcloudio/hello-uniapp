@@ -8,7 +8,7 @@
 		<view class="example-body">
 			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
 		</view>
-		<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="change"><text class="word-btn-white">改变状态</text></view>
+		<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="change"><text class="word-btn-white">改变状态</text></view>
 	</view>
 </template>
 
