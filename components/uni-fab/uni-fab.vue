@@ -241,7 +241,9 @@
 		height: 55px;
 		background-color: #3c3e49;
 		border-radius: 50%;
+		/* #ifndef APP-NVUE */
 		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+		/* #endif */
 		z-index: 11;
 	}
 
@@ -263,6 +265,7 @@
 
 	.uni-fab__plus {
 		font-size: 40px;
+		line-height: 40px;
 		transform: rotate(0deg);
 		transition: transform 0.3s;
 		font-weight: bold;
@@ -280,12 +283,12 @@
 		flex-direction: row;
 		border-radius: 50px;
 		overflow: hidden;
-		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 		/* #ifdef APP-NVUE */
-		transition: width, height 0.2s;
+		transition: width 0.2s;
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		transition: all 0.2s;
+		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 		/* #endif */
 		width: 55px;
 	}
@@ -301,6 +304,9 @@
 	.uni-fab__content--flexDirection {
 		flex-direction: column;
 		justify-content: flex-end;
+		/* #ifdef APP-NVUE */
+		transition: height 0.2s;
+		/* #endif */
 	}
 
 	.uni-fab__content--flexDirectionStart {

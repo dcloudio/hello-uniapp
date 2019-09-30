@@ -93,14 +93,14 @@
 	};
 </script>
 <style scoped>
-	/* #ifdef APP-PLUS-NVUE */
+	/* #ifdef APP-NVUE */
 	/* #endif */
 	/* #ifdef APP-PLUS */
 
 	/* #endif */
 
 	.uni-numbox {
-		/* #ifndef APP-PLUS-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;

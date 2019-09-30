@@ -1,9 +1,7 @@
 <template>
 	<view>
 		<uni-nav-bar color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft" left-text="返回" title="标题" @clickLeft="back" />
-		<view class="example-info">
-			<text class="example-title-text">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
-		</view>
+		<text class="example-info">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
 		<uni-title title="基本用法" type="line"></uni-title>
 		<view class="example-body">
 			<uni-nav-bar left-icon="arrowleft" title="标题" @clickLeft="back" />
@@ -105,7 +103,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -169,6 +167,27 @@
 		flex-direction: column;
 		padding: 30rpx;
 		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
 	}
 
 	.uni-nav-bar-text {

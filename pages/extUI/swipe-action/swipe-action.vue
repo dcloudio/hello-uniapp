@@ -104,7 +104,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -168,6 +168,27 @@
 		flex-direction: column;
 		padding: 30rpx;
 		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
 	}
 
 	.cont {

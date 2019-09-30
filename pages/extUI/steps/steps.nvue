@@ -8,7 +8,7 @@
 		<view class="example-body">
 			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
 		</view>
-		<button class="status-btn" type="primary" @click="change">改变状态</button>
+		<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="change"><text class="word-btn-white">改变状态</text></view>
 	</view>
 </template>
 
@@ -66,7 +66,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -132,10 +132,37 @@
 		background-color: #ffffff;
 	}
 
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
 	.status-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 92rpx;
 		margin: 30rpx;
 		background-color: #007AFF;
-		color: white;
 	}
 
 	.example-body {

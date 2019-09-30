@@ -15,7 +15,7 @@
 		</view>
 		<uni-popup ref="popup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
 
-		<uni-popup :show="show" :type="type" :custom="true" :mask-click="false" @change="change">
+		<uni-popup :show="show" :type="type" :mask-click="false" @change="change">
 			<view class="uni-tip">
 				<text class="uni-tip-title">警告</text>
 				<text class="uni-tip-content">这是一个通过自定义 popup，自由扩展的 警告弹窗。点击遮罩不会关闭弹窗。</text>
@@ -26,7 +26,7 @@
 			</view>
 		</uni-popup>
 		<!-- 插屏弹窗 -->
-		<uni-popup ref="image" :type="type" :mask-click="false" :custom="true" @change="change">
+		<uni-popup ref="image" :type="type" :mask-click="false" @change="change">
 			<view class="uni-image">
 				<view class="uni-image-close" @click="cancel('image')">
 					<uni-icons type="clear" color="#fff" size="30" />
@@ -35,7 +35,7 @@
 			</view>
 		</uni-popup>
 		<!-- 底部分享弹窗 -->
-		<uni-popup ref="share" :type="type" :custom="true" @change="change">
+		<uni-popup ref="share" :type="type" @change="change">
 			<view class="uni-share">
 				<text class="uni-share-title">分享到</text>
 				<view class="uni-share-content">
@@ -147,7 +147,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -213,6 +213,26 @@
 		background-color: #ffffff;
 	}
 
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
 
 	.example-body {
 		/* #ifndef APP-NVUE */

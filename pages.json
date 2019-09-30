@@ -747,7 +747,10 @@
 				{
 					"path": "swiper-dot/swiper-dot",
 					"style": {
-						"navigationBarTitleText": "SwiperDot 轮播图指示点"
+						"navigationBarTitleText": "SwiperDot 轮播图指示点",
+						"mp-baidu": {
+							"disableSwipeBack": true
+						}
 					}
 				},
 				{
@@ -807,6 +810,9 @@
 						},
 						"mp-alipay": {
 							"allowsBounceVertical": "NO"
+						},
+						"mp-baidu": {
+							"disableScroll": true
 						}
 					}
 				},

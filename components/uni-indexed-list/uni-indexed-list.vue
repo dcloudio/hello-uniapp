@@ -30,6 +30,18 @@
 	</view>
 </template>
 <script>
+	function throttle(func, delay) {
+		var prev = Date.now();
+		return function() {
+			var context = this;
+			var args = arguments;
+			var now = Date.now();
+			if (now - prev >= delay) {
+				func.apply(context, args);
+				prev = Date.now();
+			}
+		}
+	}
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniIndexedList',
@@ -120,18 +132,13 @@
 				}
 			},
 			touchMove(e) {
-				if (this.touchmoveTimeout) {
-					clearTimeout(this.touchmoveTimeout)
+				let pageY = e.touches[0].pageY
+				let index = Math.floor(pageY / this.itemHeight)
+				let item = this.lists[index]
+				if (item) {
+					this.scrollViewId = 'uni-indexed-list-' + item.key
+					this.touchmoveIndex = index
 				}
-				this.touchmoveTimeout = setTimeout(() => {
-					let pageY = e.touches[0].pageY
-					let index = Math.floor(pageY / this.itemHeight)
-					let item = this.lists[index]
-					if (item) {
-						this.scrollViewId = 'uni-indexed-list-' + item.key
-						this.touchmoveIndex = index
-					}
-				}, 10)
 			},
 			touchEnd() {
 				this.touchmove = false

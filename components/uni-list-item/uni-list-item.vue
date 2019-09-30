@@ -164,7 +164,6 @@
 
 	.uni-list-item__content-title {
 		font-size: 32rpx;
-		line-height: 1.5;
 		color: #3b4144;
 		overflow: hidden;
 	}
@@ -174,7 +173,6 @@
 		color: #999;
 		font-size: 28rpx;
 		overflow: hidden;
-		line-height: 1;
 	}
 
 	.uni-list-item__extra {

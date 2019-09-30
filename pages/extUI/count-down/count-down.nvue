@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="example-info"><text class="example-info-text">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text></view>
+		<text class="example-info">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text>
 		<uni-title title="一般用法" type="line"></uni-title>
 		<view class="example-body">
 			<uni-count-down :day="1" :hour="1" :minute="12" :second="40" />
@@ -51,7 +51,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -115,6 +115,27 @@
 		flex-direction: column;
 		padding: 30rpx;
 		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
 	}
 
 	.title {

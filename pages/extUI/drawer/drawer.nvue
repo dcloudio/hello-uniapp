@@ -2,7 +2,7 @@
 	<view>
 		<view class="header">
 			<view class="input-view">
-				<uni-icon type="search" size="22" color="#666666" />
+				<uni-icons type="search" size="22" color="#666666" />
 				<input confirm-type="search" class="input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 			</view>
 		</view>
@@ -10,7 +10,7 @@
 		<view>
 			<uni-title title="左侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<button class="drawer-control-button" @click="show('left')">显示Drawer</button>
+				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="show('left')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showLeft" mode="left" @close="closeDrawer('left')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -26,12 +26,14 @@
 						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close"><button class="drawer-btn-primary" @click="hide">关闭Drawer</button></view>
+					<view class="close">
+						<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
+					</view>
 				</uni-drawer>
 			</view>
 			<uni-title title="右侧滑出" type="line"></uni-title>
 			<view class="example-body">
-				<button class="drawer-control-button" @click="show('right')">显示Drawer</button>
+				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="show('right')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
 					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
 					<uni-list>
@@ -47,7 +49,9 @@
 						<uni-list-item class="last-list-item" :show-badge="true" title="Item3" badge-text="12" />
 					</view>
 					<!-- #endif -->
-					<view class="close"><button class="drawer-btn-primary" @click="hide">关闭Drawer</button></view>
+					<view class="close">
+						<view class="word-btn" hover-class="word-btn--hover" hover-start-time="20" hover-stay-time="70" @click="hide"><text class="word-btn-white">关闭Drawer</text></view>
+					</view>
 				</uni-drawer>
 			</view>
 		</view>
@@ -58,8 +62,10 @@
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
+			uniIcons,
 			uniDrawer,
 			uniList,
 			uniListItem,
@@ -113,7 +119,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -179,6 +185,26 @@
 		background-color: #ffffff;
 	}
 
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
 
 	.header {
 		/* #ifndef APP-NVUE */
@@ -239,14 +265,7 @@
 		flex-direction: row;
 	}
 
-	.drawer-control-button {
+	.draw-cotrol-btn {
 		flex: 1;
-		background-color: #007AFF;
-		color: white;
-	}
-
-	.drawer-btn-primary {
-		background-color: #007AFF;
-		color: white;
 	}
 </style>

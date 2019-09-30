@@ -19,7 +19,11 @@
 		</view>
 		<uni-title title="指定加载图标样式 - 雪花" type="line"></uni-title>
 		<view class="example-body">
-			<uni-load-more iconType="spinner" :status="status" />
+			<uni-load-more iconType="snow" :status="status" />
+		</view>
+		<uni-title title="点击事件" type="line"></uni-title>
+		<view class="example-body">
+			<uni-load-more :status="status" @clickLoadMore="clickLoadMore" />
 		</view>
 		<uni-title title="改变组件状态" type="line"></uni-title>
 		<radio-group class="uni-list" @change="onChange">
@@ -70,6 +74,12 @@
 		methods: {
 			onChange(e) {
 				this.status = e.detail.value
+			},
+			clickLoadMore(e) {
+				uni.showToast({
+					icon: 'none',
+					title: "当前状态：" + e.detail.status
+				})
 			}
 		}
 	}
@@ -82,7 +92,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -148,6 +158,26 @@
 		background-color: #ffffff;
 	}
 
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
 
 	.uni-list {
 		background-color: #fff;

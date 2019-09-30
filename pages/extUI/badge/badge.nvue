@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view class="example-info"><text class="example-info-text">数字角标通用来标记重点信息使用，如接受到新消息、有未读消息等</text></view>
+		<text class="example-info">数字角标通用来标记重点信息使用，如接受到新消息、有未读消息等</text>
 		<uni-title title="有底色" type="line"></uni-title>
 		<view class="example-body">
 			<uni-badge class="uni-badge-left-margin" text="1" />
@@ -49,7 +49,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -113,6 +113,27 @@
 		flex-direction: column;
 		padding: 30rpx;
 		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
 	}
 
 	/* #ifdef MP-ALIPAY */

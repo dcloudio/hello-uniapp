@@ -23,11 +23,6 @@
 				type: String,
 				default: 'center'
 			},
-			// 是否开启自定义
-			custom: {
-				type: Boolean,
-				default: false
-			},
 			// maskClick
 			maskClick: {
 				type: Boolean,

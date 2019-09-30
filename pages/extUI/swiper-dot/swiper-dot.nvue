@@ -116,7 +116,7 @@
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/common/uniicons.ttf') format('truetype');
+		src: url('~@/static/uni.ttf') format('truetype');
 	}
 
 	/* #endif */
@@ -182,6 +182,26 @@
 		background-color: #ffffff;
 	}
 
+	.word-btn-white {
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
 
 	.swiper-box {
 		height: 400rpx;
@@ -234,6 +254,7 @@
 		display: flex;
 		padding: 0 15rpx;
 		/* #endif */
+		flex: 1;
 		border-color: #EEEEEE;
 		border-style: solid;
 		border-width: 1px;

@@ -86,11 +86,10 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		flex: 1;
-		/* #endif */
-		margin-left: 24rpx;
-		margin-right: 24rpx;
-		background-color: #ffffff;
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		/* #endif */
+		margin: 24rpx;
+		background-color: #ffffff;
 		position: relative;
 		flex-direction: column;
 		border-color: #ddd;
@@ -177,7 +176,7 @@
 		display: flex;
 		/* #endif */
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: center;
 		padding-left: 20rpx;
 		height: 80rpx;
 		overflow: hidden;
@@ -187,11 +186,13 @@
 
 	.uni-card__title-content-title {
 		font-size: 30rpx;
+		line-height: 45rpx;
 		lines: 1;
 	}
 
 	.uni-card__title-content-extra {
 		font-size: 26rpx;
+		line-height: 35rpx;
 		color: #999;
 	}
 
@@ -223,7 +224,14 @@
 	.uni-card__header-title-text {
 		font-size: 32rpx;
 		flex: 1;
+		/* #ifndef APP-NVUE */
+		white-space: nowrap;
+		/* #endif */
+		/* #ifdef APP-NVUE */
 		lines: 1;
+		/* #endif */
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.uni-card__header-extra {}
@@ -243,7 +251,6 @@
 		font-size: 28rpx;
 		text-align: right;
 		color: #666;
-		lines: 1;
 
 	}
 
@@ -278,7 +285,9 @@
 		border-color: #ddd;
 		border-style: solid;
 		border-width: 1px;
+		/* #ifndef APP-NVUE */
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+		/* #endif */
 	}
 
 	.uni-card--full {

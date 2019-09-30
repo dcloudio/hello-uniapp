@@ -11,12 +11,12 @@
 				</view>
 				<!-- #endif -->
 				<input :focus="show" :placeholder="placeholder" @confirm="confirm" class="uni-searchbar__box-search-input" confirm-type="search" placeholder-style="color:#cccccc" type="text" v-model="searchVal" />
-				<!-- #ifndef APP-PLUS-NVUE -->
+				<!-- #ifndef APP-NVUE -->
 				<view class="uni-searchbar__box-icon-clear" @click="clear">
 					<uni-icons :color="'#999999'" class="uni-searchbar__box-icon-clear" size="24" type="clear" v-if="clearButton==='always'||clearButton==='auto'&&searchVal!==''" />
 				</view>
 				<!-- #endif -->
-				<!-- #ifdef APP-PLUS-NVUE -->
+				<!-- #ifdef APP-NVUE -->
 				<uni-icons :color="'#999999'" @click="clear" class="uni-searchbar__box-icon-clear" size="24" type="clear" v-if="clearButton==='always'||clearButton==='auto'&&searchVal!==''" />
 				<!-- #endif -->
 			</view>
@@ -93,7 +93,7 @@
 
 <style scoped>
 	.uni-searchbar {
-		/* #ifndef APP-PLUS-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
@@ -103,7 +103,7 @@
 	}
 
 	.uni-searchbar__box {
-		/* #ifndef APP-PLUS-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		overflow: hidden;
@@ -139,7 +139,7 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		/* #endif */
-		/* #ifdef APP-PLUS-NVUE */
+		/* #ifdef APP-NVUE */
 		height: 52rpx;
 		line-height: 52rpx;
 		width: 600rpx;
@@ -167,7 +167,7 @@
 	}
 
 	.uni-searchbar__text {
-		/* #ifndef APP-PLUS-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
