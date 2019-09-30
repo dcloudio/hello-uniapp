@@ -102,7 +102,7 @@
 		width: 220px;
 		bottom: 0;
 		background-color: #ffffff;
-		transition: transform 0.3s ease-out;
+		transition: transform 0.3s ease;
 	}
 
 	.uni-drawer--left {
