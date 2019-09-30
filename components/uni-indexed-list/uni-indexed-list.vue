@@ -1,48 +1,30 @@
 <template>
-	<view class="uni-indexed-list">
-		<scroll-view :scroll-into-view="scrollViewId" :style="{ height: winHeight + 'px' }" class="uni-indexed-list__scroll" scroll-y>
-			<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + list.key">
-				<view v-if="loaded || list.itemIndex < 15" class="uni-indexed-list__title-wrapper">
-					<text v-if="list.items && list.items.length > 0" class="uni-indexed-list__title">{{ list.key }}</text>
-				</view>
-				<view v-if="(loaded || list.itemIndex < 15) && list.items && list.items.length > 0" class="uni-indexed-list__list">
-					<view v-for="(item, index) in list.items" :key="index" class="uni-indexed-list__item" hover-class="uni-indexed-list__item--hover">
-						<view v-if="loaded || item.itemIndex < 15" class="uni-indexed-list__item-container" @click="onClick(idx, index)">
-							<view class="uni-indexed-list__item-border" :class="{'uni-indexed-list__item-border--last':index===list.items.length-1}">
-								<view v-if="showSelect" style="margin-right: 20rpx;">
-									<uni-icons :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#aaa'" size="24" />
-								</view>
-								<text class="uni-indexed-list__item-content">{{ item.name }}</text>
+	<view class="uni-indexed">
+		<scroll-view :scroll-into-view="scrollViewId" :style="{ height: winHeight + 'px' }" class="uni-indexed__list" scroll-y>
+			<block v-for="(list, idx) in lists" :key="idx">
+				<view v-if="list.items && list.items.length > 0" :id="'uni-indexed-list-' + list.key" class="uni-indexed__list-title">{{ list.key }}</view>
+				<view v-if="list.items && list.items.length > 0" class="uni-list">
+					<view v-for="(item, index) in list.items" :key="index" class="uni-list-item" hover-class="uni-list-item--hover">
+						<view class="uni-list-item__container" @click="onClick(idx, index)">
+							<view v-if="showSelect" style="margin-right: 20upx;">
+								<uni-icons :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#aaa'" size="24" />
 							</view>
+							<view class="uni-list-item__content">{{ item.name }}</view>
 						</view>
 					</view>
 				</view>
-			</view>
+			</block>
 		</scroll-view>
-		<view :class="touchmove ? 'uni-indexed-list__menu--active' : ''" :style="{ height: winHeight + 'px' }" class="uni-indexed-list__menu" @touchstart="touchStart" @touchmove.stop.prevent="touchMove" @touchend="touchEnd">
-			<view v-for="(list, key) in lists" :key="key" class="uni-indexed-list__menu-item">
-				<text class="uni-indexed-list__menu-text" :class="touchmoveIndex == key ? 'uni-indexed-list__menu-text--active' : ''">{{ list.key }}</text>
-			</view>
+		<view :class="touchmove ? 'active' : ''" :style="{ height: winHeight + 'px' }" class="uni-indexed__menu" @touchstart="touchStart" @touchmove.stop.prevent="touchMove" @touchend="touchEnd">
+			<text v-for="(list, key) in lists" :key="key" :class="touchmoveIndex == key ? 'active' : ''" :style="{ height: itemHeight + 'px', lineHeight: itemHeight + 'px' }" class="uni-indexed__menu-item">
+				{{ list.key }}
+			</text>
 		</view>
-		<view v-if="touchmove" class="uni-indexed-list__alert-wrapper">
-			<text class="uni-indexed-list__alert">{{ lists[touchmoveIndex].key }}</text>
-		</view>
+		<view v-if="touchmove" class="uni-indexed--alert">{{ lists[touchmoveIndex].key }}</view>
 	</view>
 </template>
 <script>
-	function throttle(func, delay) {
-		var prev = Date.now();
-		return function() {
-			var context = this;
-			var args = arguments;
-			var now = Date.now();
-			if (now - prev >= delay) {
-				func.apply(context, args);
-				prev = Date.now();
-			}
-		}
-	}
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniIndexedList',
 		components: {
@@ -67,9 +49,7 @@
 				touchmoveIndex: -1,
 				itemHeight: 0,
 				winHeight: 0,
-				scrollViewId: '',
-				touchmoveTimeout: '',
-				loaded: false
+				scrollViewId: ''
 			}
 		},
 		watch: {
@@ -80,11 +60,8 @@
 				deep: true
 			}
 		},
-		mounted() {
+		created() {
 			this.setList()
-			setTimeout(() => {
-				this.loaded = true
-			}, 300);
 		},
 		methods: {
 			setList() {
@@ -97,17 +74,13 @@
 				// 	return;
 				// }
 				// console.log(this.options)
-				let index = 0;
 				this.lists = this.options.map(value => {
 					// console.log(value)
-					let indexBefore = index
 					let items = value.data.map(item => {
 						let obj = {}
 						// for (let key in item) {
 						obj['key'] = value.letter
 						obj['name'] = item
-						obj['itemIndex'] = index
-						index++
 						// }
 						obj.checked = item.checked ? item.checked : false
 						return obj
@@ -115,8 +88,7 @@
 					return {
 						title: value.letter,
 						key: value.letter,
-						items: items,
-						itemIndex: indexBefore
+						items: items
 					}
 				})
 				// console.log(this.lists)
@@ -172,149 +144,136 @@
 		}
 	}
 </script>
-<style scoped>
-	.uni-indexed-list__list {
-		background-color: #ffffff;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		border-top-style: solid;
-		border-top-width: 1px;
-		border-top-color: #e5e5e5;
-	}
+<style>
+	@charset "UTF-8";
 
-	.uni-indexed-list__item {
-		font-size: 32rpx;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.uni-indexed-list__item-container {
-		padding-left: 30rpx;
-		flex: 1;
+	.uni-list {
+		background-color: #fff;
 		position: relative;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		box-sizing: border-box;
-		/* #endif */
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.uni-indexed-list__item-border {
-		flex: 1;
-		position: relative;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		box-sizing: border-box;
-		/* #endif */
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 50px;
-		padding: 30rpx;
-		padding-left: 0;
-		border-bottom-style: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: #e5e5e5;
-	}
-
-	.uni-indexed-list__item-border--last {
-		border-bottom-width: 0px;
-	}
-
-	.uni-indexed-list__item-content {
-		flex: 1;
-		font-size: 14px;
-	}
-
-	.uni-indexed-list {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-	}
-
-	.uni-indexed-list__scroll {
-		flex: 1;
-	}
-
-	.uni-indexed-list__title-wrapper {
-		/* #ifndef APP-NVUE */
-		display: flex;
 		width: 100%;
-		/* #endif */
-		background-color: #f7f7f7;
-	}
-
-	.uni-indexed-list__title {
-		padding: 6px 12px;
-		line-height: 24px;
-		font-size: 24rpx;
-	}
-
-	.uni-indexed-list__menu {
-		width: 24px;
-		background-color: lightgrey;
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex-direction: column;
+		flex-direction: column
 	}
 
-	.uni-indexed-list__menu-item {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.uni-indexed-list__menu-text {
-		line-height: 20px;
-		font-size: 12px;
-		text-align: center;
-		color: #aaa;
-	}
-
-	.uni-indexed-list__menu--active {
-		background-color: rgb(200, 200, 200);
-	}
-
-	.uni-indexed-list__menu-text--active {
-		color: #007aff;
-	}
-
-	.uni-indexed-list__alert-wrapper {
+	.uni-list::after {
 		position: absolute;
-		left: 0;
-		top: 0;
+		z-index: 10;
 		right: 0;
 		bottom: 0;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
 	}
 
-	.uni-indexed-list__alert {
-		width: 80px;
-		height: 80px;
-		border-radius: 80px;
+	.uni-list::before {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		top: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+
+	.uni-list-item {
+		font-size: 32upx;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center
+	}
+
+	.uni-list-item__container {
+		padding: 24upx 30upx;
+		width: 100%;
+		box-sizing: border-box;
+		flex: 1;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center
+	}
+
+	.uni-list-item__container:after {
+		position: absolute;
+		z-index: 3;
+		right: 0;
+		bottom: 0;
+		left: 30upx;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+
+	.uni-indexed {
+		display: flex;
+		flex-direction: row
+	}
+
+	.uni-indexed__list {
+		flex: 1;
+		height: 100vh
+	}
+
+	.uni-indexed__list-title {
+		padding: 10upx 24upx;
+		line-height: 1.5;
+		background-color: #f7f7f7;
+		font-size: 24upx
+	}
+
+	.uni-indexed__menu {
+		width: 46upx;
+		height: 100vh;
+		background-color: #d3d3d3;
+		display: flex;
+		flex-direction: column
+	}
+
+	.uni-indexed__menu.active {
+		background-color: #c8c8c8
+	}
+
+	.uni-indexed__menu.active .uni-indexed__menu-item {
+		color: #333
+	}
+
+	.uni-indexed__menu.active .uni-indexed__menu-item.active {
+		color: #007aff
+	}
+
+	.uni-indexed__menu-item {
+		color: #aaa;
+		font-size: 22upx;
+		text-align: center
+	}
+
+	.uni-indexed--alert {
+		position: absolute;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 20;
+		width: 160upx;
+		height: 160upx;
+		left: 50%;
+		top: 50%;
+		margin-left: -80upx;
+		margin-top: -80upx;
+		border-radius: 80upx;
 		text-align: center;
-		line-height: 80px;
-		font-size: 35px;
+		font-size: 70upx;
 		color: #fff;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, .5)
 	}
 </style>

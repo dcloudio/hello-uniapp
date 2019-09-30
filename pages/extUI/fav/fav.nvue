@@ -170,6 +170,7 @@
 	}
 
 	.favBtn-nav {
-		/* left:-50rpx; */
+		/* left:-50rpx;
+ */
 	}
 </style>

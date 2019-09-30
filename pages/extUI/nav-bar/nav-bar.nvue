@@ -201,7 +201,8 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
-		/* width: 160rpx; */
+		/* width: 160rpx;
+ */
 		margin-left: 8rpx;
 	}
 
@@ -210,7 +211,8 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		/* width: 500rpx; */
+		/* width: 500rpx;
+ */
 		flex: 1;
 		background-color: #e7e7e7;
 		height: 60rpx;
@@ -223,8 +225,10 @@
 
 	.input-uni-icon {
 		line-height: 60rpx;
-		/* justify-content: center; */
-		/* align-items: center; */
+		/* justify-content: center;
+ */
+		/* align-items: center;
+ */
 	}
 
 	.nav-bar-input {
