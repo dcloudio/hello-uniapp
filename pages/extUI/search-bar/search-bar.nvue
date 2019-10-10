@@ -1,49 +1,59 @@
 <template>
-	<view class="page">
-		<text class="example-info">数字输入框组件多用于购物车加减商品等场景</text>
+	<view>
 		<uni-title title="基本用法" type="line"></uni-title>
 		<view class="example-body">
-			<uni-number-box />
+			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
+			<view class="search-result">
+				<text class="search-result-text">当前输入为：{{ searchVal }}</text>
+			</view>
 		</view>
-		<uni-title title="设置最小值和最大值" type="line"></uni-title>
+		<uni-title title="自定义样式" type="line"></uni-title>
 		<view class="example-body">
-			<uni-number-box :min="2" :max="9" :value="5" />
+			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
+			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
 		</view>
-		<uni-title title="设置步长（步长0.1)" type="line"></uni-title>
+		<uni-title title="控制清除按钮" type="line"></uni-title>
 		<view class="example-body">
-			<uni-number-box :step="0.1" />
+			<uni-search-bar radius="100" clearButton="always" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="auto" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
 		</view>
-		<uni-title title="禁用状态" type="line"></uni-title>
-		<view class="example-body">
-			<uni-number-box :disabled="true" />
-		</view>
-		<uni-title :title="'获取输入的值 : '+numberValue" type="line"></uni-title>
-		<view class="example-body">
-			<uni-number-box :value="numberValue" @change="change" />
-		</view>
-		<!-- <view style="height: 30rpx;"></view> -->
 	</view>
 </template>
+
 <script>
-	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
+	import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
 	import uniTitle from '@/components/uni-title/uni-title.vue'
 	export default {
 		components: {
-			uniNumberBox,
+			uniSearchBar,
 			uniTitle
 		},
 		data() {
 			return {
-				numberValue: 0
+				searchVal: ''
 			}
 		},
 		methods: {
-			change(value) {
-				this.numberValue = value
+			search(res) {
+				uni.showModal({
+					content: '搜索：' + res.value,
+					showCancel: false
+				})
+			},
+			input(res) {
+				this.searchVal = res.value
+			},
+			cancel(res) {
+				uni.showModal({
+					content: '点击取消，输入值为：' + res.value,
+					showCancel: false
+				})
 			}
 		}
 	}
 </script>
+
 <style>
 	/* 头条小程序组件内不能引入字体 */
 	/* #ifdef MP-TOUTIAO */
@@ -137,5 +147,24 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+
+
+	.search-result {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.search-result-text {
+		text-align: center;
+		font-size: 14px;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 	}
 </style>

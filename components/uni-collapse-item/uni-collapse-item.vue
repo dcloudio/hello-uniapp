@@ -3,7 +3,14 @@
 		<view class="uni-collapse-cell__title" @click="onClick">
 			<image v-if="thumb" :src="thumb" class="uni-collapse-cell__title-img" />
 			<text class="uni-collapse-cell__title-text">{{ title }}</text>
+			<!-- #ifdef MP-ALIPAY -->
+			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
+				<uni-icons color="#bbb" size="20" type="arrowdown" />
+			</view>
+			<!-- #endif -->
+			<!-- #ifndef MP-ALIPAY -->
 			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
+			<!-- #endif -->
 		</view>
 		<view :class="{'uni-collapse-cell__content--hide':!isOpen}" class="uni-collapse-cell__content">
 			<view :class="{ 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__wrapper" :style="{'transform':isOpen?'translateY(0)':'translateY(-50%)','-webkit-transform':isOpen?'translateY(0)':'translateY(-50%)'}">
@@ -125,7 +132,10 @@
 	}
 
 	.uni-collapse-cell--animation {
-		transition: transform 0.3s ease;
+		/* transition: transform 0.3s ease; */
+		transition-property: transform;
+		transition-duration: 0.3s;
+		transition-timing-function: ease;
 	}
 
 	.uni-collapse-cell__title {

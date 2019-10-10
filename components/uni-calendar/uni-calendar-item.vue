@@ -2,26 +2,46 @@
 	<view>
 		<block v-for="(weeks, week) in canlender.weeks" :key="week">
 			<view class="uni-calender__body-date-week">
-				<block v-for="(day, index) in weeks" :key="index">
-					<view :class="{
+				<view v-for="(day, index) in weeks" :key="index" class="uni-calender__date" :class="{
               'uni-calender__disable': canlender.month !== day.month || day.disable,
               'uni-calender__date-current':
                 ((day.date == canlender.date && !day.checked) || day.multipleBegin || day.multipleEnd) && canlender.month == day.month && !day.disable,
-              'uni-calender__lunar': lunar,
+              'uni-calender__date-lunar': lunar,
               'uni-calender__active': !day.isDay,
-              'uni-calender__is-day': day.isDay,
-              'uni-calender__multiple': day.multipleBegin || day.multipleEnd,
-              'uni-calender__multiple-box': day.checked
-            }" class="uni-calender__date" @tap="selectDays(week, index, canlender.month === day.month, day.disable, canlender.lunar)">
-						<view class="uni-calender__circle-box">
-							{{ day.date }}
-							<view v-if="lunar" class="uni-calender__lunar">{{ day.lunar }}</view>
-							<view v-if="day.have" class="uni-calender__data-circle" />
-							<view v-if="day.have && !lunar" class="uni-calender__lunar">{{ day.clockinfo.info }}</view>
-						</view>
-						<view :class="{ 'uni-calender_check': day.checked, 'calender_check-begin': day.multipleBegin, 'calender_check-end': day.multipleEnd }" class="uni-calender_check-bg" />
+            }" @tap="selectDays(week, index, canlender.month === day.month, day.disable, canlender.lunar)">
+					<view v-if="day.checked" :class="{ 'uni-calender_check': day.checked }" class="uni-calender_check-bg" :key="index">
+						<view class="calender_check-bg" :class="{'calender_check-end': day.multipleBegin}"></view>
+						<view class="calender_check-bg" :class="{'calender_check-begin': day.multipleEnd}"></view>
 					</view>
-				</block>
+					<view class="uni-calender__circle-box" :class="{
+              'uni-calender__circle-box-current':
+                ((day.date == canlender.date && !day.checked) || day.multipleBegin || day.multipleEnd) && canlender.month == day.month && !day.disable,
+                'uni-calender__multiple': day.multipleBegin || day.multipleEnd,
+            }">
+						<text class="uni-calender__circle-box-text" :class="{
+              'uni-calender__disable': canlender.month !== day.month || day.disable,
+              'uni-calender__is-day': day.isDay,
+              'uni-calender__date-current':
+                ((day.date == canlender.date && !day.checked) || day.multipleBegin || day.multipleEnd) && canlender.month == day.month && !day.disable,
+                'uni-calender__multiple-box': day.checked
+            }">{{ day.date }}</text>
+						<text v-if="lunar" class="uni-calender__lunar" :class="{
+              'uni-calender__lunar-disable': canlender.month !== day.month || day.disable,
+              'uni-calender__lunar-is-day': day.isDay,
+              'uni-calender__lunar-date-current':
+                ((day.date == canlender.date && !day.checked) || day.multipleBegin || day.multipleEnd) && canlender.month == day.month && !day.disable,
+                'uni-calender__lunar-multiple-box': day.checked
+            }">{{ day.lunar }}</text>
+						<text v-if="day.have" class="uni-calender__data-circle" />
+						<text v-if="day.have && !lunar" class="uni-calender__lunar" :class="{
+              'uni-calender__lunar-disable': canlender.month !== day.month || day.disable,
+              'uni-calender__lunar-is-day': day.isDay,
+              'uni-calender__lunar-date-current':
+                ((day.date == canlender.date && !day.checked) || day.multipleBegin || day.multipleEnd) && canlender.month == day.month && !day.disable,
+                'uni-calender__lunar-multiple-box': day.checked
+            }">{{ day.clockinfo.info }}</text>
+					</view>
+				</view>
 			</view>
 		</block>
 	</view>
@@ -63,136 +83,145 @@
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-calender__body-date-week {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		width: 100%;
-		border-bottom: 1px #f5f5f5 solid
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
+		border-bottom-color: #F5F5F5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		justify-content: space-around;
 	}
 
-	.uni-calender__body-date-week:last-child {
-		border: none
-	}
-
-	.uni-calender__body-date-week .uni-calender__date {
+	/* 日期的样式
+ */
+	.uni-calender__date {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: column;
 		position: relative;
-		width: 100%;
 		text-align: center;
-		display: flex;
 		justify-content: center;
 		align-items: center;
 		color: #000;
-		background: #fff;
-		box-sizing: border-box;
-		padding: 10upx 0;
-		line-height: 1.5;
-		z-index: 2
+		background-color: #fff;
+		padding: 10rpx 0;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender__lunar {
-		font-size: 20upx;
+	.uni-calender__lunar {
+		font-size: 20rpx;
 		color: #000;
-		line-height: 1.2
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender__circle-box {
+	.uni-calender__circle-box {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		z-index: 1;
+		/* #endif */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 80upx;
-		height: 80upx;
-		flex-shrink: 0;
-		border-radius: 10upx;
-		line-height: 1.2
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 10rpx;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__disable {
-		color: #f1f1f1
+	.uni-calender__circle-box-text {
+		font-size: 30rpx;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__disable .uni-calender__lunar {
-		color: #f1f1f1
+	/* 本月禁止的样式
+ */
+	.uni-calender__disable {
+		color: #f1f1f1;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__is-day {
-		color: #fd2e32
+	.uni-calender__lunar-disable {
+		color: #f1f1f1;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__is-day .uni-calender__lunar {
-		color: #fd2e32
+	.uni-calender__is-day {
+		color: #fd2e32;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current {
+	.uni-calender__lunar-is-day {
+		color: #fd2e32;
+	}
+
+	/* 当前选中
+ */
+	.uni-calender__date-current {
 		color: #fff;
-		box-sizing: border-box
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current .uni-calender__circle-box {
-		background: #fd2e32
+	.uni-calender__lunar-date-current {
+		color: #fff;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current.uni-calender__active {
-		color: #fff
+	.uni-calender__circle-box-current {
+		background-color: #fd2e32;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current.uni-calender__active .uni-calender__circle-box {
-		background: #000
+	.uni-calender__multiple {
+		/* #ifndef APP-NVUE */
+		z-index: 1;
+		/* #endif */
+		border-radius: 50px;
+		background-color: #fd2e32;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current.uni-calender__multiple .uni-calender__circle-box {
-		border-radius: 50%;
-		background: #fd2e32
+	.uni-calender__multiple-box {
+		color: #fff;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__date-current .uni-calender__lunar {
-		color: #fff
+	.uni-calender__lunar-multiple-box {
+		color: #fff;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__multiple-box {
-		color: #fff
-	}
-
-	.uni-calender__body-date-week .uni-calender__date.uni-calender__multiple-box .uni-calender__lunar {
-		color: #fff
-	}
-
-	.uni-calender__body-date-week .uni-calender__date .uni-calender__data-circle {
+	.uni-calender__data-circle {
 		position: absolute;
-		top: 5upx;
-		right: 5upx;
+		top: 5rpx;
+		right: 5rpx;
 		width: 10rpx;
 		height: 10rpx;
 		border-radius: 50%;
-		background: #ff5a5f;
-		border: 1px #fff solid;
-		z-index: 2
+		background-color: #ff5a5f;
+		border-color: #fff;
+		border-style: solid;
+		border-width: 1px;
+		z-index: 2;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender_check-bg {
+	.uni-calender_check-bg {
 		position: absolute;
-		top: 10upx;
-		bottom: 10upx;
-		left: 0;
-		right: 0;
-		z-index: -1
+		top: 10rpx;
+		bottom: 10rpx;
+		left: 0px;
+		right: 0px;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender_check-bg.uni-calender_check {
-		background: #ffd3d3
+	.uni-calender_check {
+		/* #ifndef APP-PLUS */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender_check-bg.calender_check-begin {
-		left: 20upx;
-		border-top-left-radius: 100upx;
-		border-bottom-left-radius: 100upx
+	.calender_check-bg {
+		flex: 1;
+		background-color: #ffd3d3;
 	}
 
-	.uni-calender__body-date-week .uni-calender__date .uni-calender_check-bg.calender_check-end {
-		right: 20upx;
-		border-top-right-radius: 100upx;
-		border-bottom-right-radius: 100upx
+	.calender_check-begin {
+		background-color: #fff;
+	}
+
+	.calender_check-end {
+		background-color: #fff;
 	}
 </style>

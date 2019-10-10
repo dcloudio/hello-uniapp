@@ -103,7 +103,7 @@
 		/* transition: all 0.3s;
  */
 		transition-property: opacity;
-		transition-duration: 0.3s;
+		transition-duration: 0.2s;
 	}
 
 	.uni-top-mask {
@@ -129,14 +129,14 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		transform: translateY(-100%);
+		transform: translateY(-500px);
 	}
 
 	.bottom {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		transform: translateY(100%);
+		transform: translateY(500px);
 	}
 
 	.center {
@@ -165,7 +165,7 @@
 		/* transition: transform 0.3s;
  */
 		transition-property: transform, opacity;
-		transition-duration: 0.3s;
+		transition-duration: 0.2s;
 	}
 
 

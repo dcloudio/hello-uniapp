@@ -38,25 +38,15 @@
 				visibleSync: false,
 				showDrawer: false,
 				rightMode: false,
-				closeTimer: null,
 				watchTimer: null
 			}
 		},
 		watch: {
 			visible(val) {
-				clearTimeout(this.watchTimer)
-				setTimeout(() => {
-					this.showDrawer = val
-				}, 100)
-				if (this.visibleSync) {
-					clearTimeout(this.closeTimer)
-				}
 				if (val) {
-					this.visibleSync = val
+					this.open()
 				} else {
-					this.watchTimer = setTimeout(() => {
-						this.visibleSync = val
-					}, 300)
+					this.close()
 				}
 			}
 		},
@@ -69,17 +59,29 @@
 		},
 		methods: {
 			close() {
-				this.showDrawer = false
-				this.closeTimer = setTimeout(() => {
-					this.visibleSync = false
-					this.$emit('close')
-				}, 200)
+				this._change('showDrawer', 'visibleSync', false)
+			},
+			open() {
+				this._change('visibleSync', 'showDrawer', true)
+			},
+			_change(param1, param2, status) {
+				this[param1] = status
+				if (this.watchTimer) {
+					clearTimeout(this.watchTimer)
+				}
+				this.watchTimer = setTimeout(() => {
+					this[param2] = status
+					this.$emit(status ? 'open' : 'close')
+				}, status ? 50 : 300)
 			}
 		}
 	}
 </script>
 
 <style scoped>
+	/* 抽屉宽度
+ */
+
 	.uni-drawer {
 		/* #ifndef APP-NVUE */
 		display: block;
@@ -107,16 +109,16 @@
 
 	.uni-drawer--left {
 		left: 0;
-		transform: translateX(-100%);
+		transform: translateX(-220px);
 	}
 
 	.uni-drawer--right {
 		right: 0;
-		transform: translateX(100%);
+		transform: translateX(220px);
 	}
 
 	.uni-drawer__content--visible {
-		transform: translateX(0);
+		transform: translateX(0px);
 	}
 
 

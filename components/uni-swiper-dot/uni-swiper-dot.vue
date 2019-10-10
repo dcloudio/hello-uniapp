@@ -123,7 +123,7 @@
 		border-radius: 100px;
 		margin-left: 12rpx;
 		background-color: rgba(0, 0, 0, .3);
-		/* transition: width 0.2s linear; */
+		transition: width 0.2s linear;
 	}
 
 	.uni-swiper__dots-item:first-child {

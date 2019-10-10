@@ -163,6 +163,7 @@
 	}
 
 	.word-btn-white {
+		font-size: 18px;
 		color: #FFFFFF;
 	}
 
@@ -182,6 +183,7 @@
 	.word-btn--hover {
 		background-color: #4ca2ff;
 	}
+
 
 	.uni-wrap {
 		flex-direction: column;

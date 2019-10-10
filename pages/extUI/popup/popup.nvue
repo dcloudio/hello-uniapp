@@ -13,9 +13,9 @@
 			<button class="button" type="button" @click="togglePopup('center', 'image')">插屏广告</button>
 			<button class="button" type="button" @click="togglePopup('bottom', 'share')">底部分享</button>
 		</view>
-		<uni-popup ref="popup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
+		<uni-popup :show="showpopup" ref="popup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
 
-		<uni-popup :show="show" :type="type" :mask-click="false" @change="change">
+		<uni-popup :show="showtip" :type="type" :mask-click="false" @change="change">
 			<view class="uni-tip">
 				<text class="uni-tip-title">警告</text>
 				<text class="uni-tip-content">这是一个通过自定义 popup，自由扩展的 警告弹窗。点击遮罩不会关闭弹窗。</text>
@@ -26,16 +26,16 @@
 			</view>
 		</uni-popup>
 		<!-- 插屏弹窗 -->
-		<uni-popup ref="image" :type="type" :mask-click="true" @change="change">
+		<uni-popup :show="showimage" :type="type" :mask-click="true" @change="change">
 			<view class="uni-image">
+				<image class="image" src="/static/uni.png" mode="" />
 				<view class="uni-image-close" @click="cancel('image')">
 					<uni-icons type="clear" color="#fff" size="30" />
 				</view>
-				<image class="image" src="/static/uni.png" mode="" />
 			</view>
 		</uni-popup>
 		<!-- 底部分享弹窗 -->
-		<uni-popup ref="share" :type="type" @change="change">
+		<uni-popup :show="showshare" :type="type" @change="change">
 			<view class="uni-share">
 				<text class="uni-share-title">分享到</text>
 				<view class="uni-share-content">
@@ -64,7 +64,10 @@
 		},
 		data() {
 			return {
-				show: false,
+				showpopup: false,
+				showtip: false,
+				showimage: false,
+				showshare: false,
 				type: '',
 				list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
 				content: '顶部弹 popup',
@@ -119,23 +122,44 @@
 						break
 				}
 				this.type = type
-				if (open === 'tip') {
-					this.show = true
-				} else {
-					this.$nextTick(() => {
-						this.$refs[open].open()
-					})
-				}
+				this['show' + open] = true
+				// if (open === 'tip') {
+				//   this.show = true
+				// } else {
+				//   this.$nextTick(() => {
+				//     this.$refs[open].open()
+				//   })
+				// }
 			},
 			cancel(type) {
-				if (type === 'tip') {
-					this.show = false
-					return
-				}
-				this.$refs[type].close()
+				// if (type === 'tip') {
+				//   this.show = false
+				//   return
+				// }
+				// this.$refs[type].close()
+				this['show' + type] = false
 			},
 			change(e) {
 				console.log('是否打开:' + e.show)
+				if (!e.show) {
+					this.showpopup = false
+					this.showtip = false
+					this.showimage = false
+					this.showshare = false
+				}
+			}
+		},
+		onBackPress() {
+			console.log('showpopup', this.showpopup)
+			console.log('showtip', this.showtip);
+			console.log('showimage', this.showimage);
+			console.log('showshare', this.showshare);
+			if (this.showpopup || this.showtip || this.showimage || this.showshare) {
+				this.showpopup = false
+				this.showtip = false
+				this.showimage = false
+				this.showshare = false
+				return true
 			}
 		}
 	}
@@ -214,6 +238,7 @@
 	}
 
 	.word-btn-white {
+		font-size: 18px;
 		color: #FFFFFF;
 	}
 
@@ -233,6 +258,7 @@
 	.word-btn--hover {
 		background-color: #4ca2ff;
 	}
+
 
 	.example-body {
 		/* #ifndef APP-NVUE */
@@ -315,10 +341,8 @@
 	}
 
 	.uni-image-close {
-		position: absolute;
-		right: -30px;
-		top: -30px;
-		z-index: 2;
+		margin-top: 20px;
+		text-align: center;
 	}
 
 	/* 底部分享 */

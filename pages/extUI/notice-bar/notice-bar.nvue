@@ -11,14 +11,14 @@
 			<uni-notice-bar :single="true" :show-icon="true" text="uni-app行业峰会频频亮相，开发者反响热烈!" />
 			<uni-notice-bar :show-icon="true" text="8月12日DCloud受邀参加iWEB峰会后，9月19日DCloud CEO 王安在千人小程序峰会——见实大会，做了主题为《App和小程序，鱼与熊掌如何兼得？》的分享。" />
 		</view>
-        <!-- #ifndef MP -->
+		<!-- #ifndef MP -->
 		<uni-title title="文字滚动" type="line"></uni-title>
 		<view class="example-body">
 			<uni-notice-bar :scrollable="true" :single="true" text="uni-app行业峰会频频亮相，开发者反响热烈!" />
 			<uni-notice-bar :show-icon="true" :scrollable="true" :single="true" text="uni-app 1.6版正式发布，开发一次，同时发布iOS、Android、H5、微信小程序、支付宝小程序、百度小程序、头条小程序等7大平台。" />
 			<uni-notice-bar :scrollable="true" text="8月12日DCloud受邀参加iWEB峰会后，9月19日DCloud CEO 王安在千人小程序峰会——见实大会，做了主题为《App和小程序，鱼与熊掌如何兼得？》的分享。" />
 		</view>
-        <!-- #endif -->
+		<!-- #endif -->
 		<uni-title title="查看更多" type="line"></uni-title>
 		<view class="example-body">
 			<uni-notice-bar :show-get-more="true" :single="true" text="年末大礼：uni-app1.4 新增百度、支付宝小程序。插件市场重磅上线！" @getmore="getMore" />
@@ -137,6 +137,7 @@
 	}
 
 	.word-btn-white {
+		font-size: 18px;
 		color: #FFFFFF;
 	}
 
@@ -156,6 +157,7 @@
 	.word-btn--hover {
 		background-color: #4ca2ff;
 	}
+
 
 	.example-body {
 		padding: 5rpx 0;
