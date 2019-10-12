@@ -1,11 +1,12 @@
 <template>
     <view class="content">
-        <map class="map" id="map1" ref="map1" :controls="controls" :scale="scale" :longitude="location.longitude" :latitude="location.latitude"
-            :show-location="showLocation" :enable-3D="enable3D" :rotate="rotate" :skew="skew" :show-compass="showCompass"
-            :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom" :enable-scroll="enableScroll"
-            :enable-rotate="enableRotate" :enable-satellite="enableSatellite" :enable-traffic="enableTraffic" :markers="markers"
-            :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"
-            @tap="maptap" @controltap="oncontroltap" @markertap="onmarkertap" @callouttap="oncallouttap" @poitap="onpoitap" @updated="onupdated" @regionchange="onregionchange"></map>
+        <map class="map" id="map1" ref="map1" :controls="controls" :scale="scale" :longitude="location.longitude"
+            :latitude="location.latitude" :show-location="showLocation" :enable-3D="enable3D" :rotate="rotate" :skew="skew"
+            :show-compass="showCompass" :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom"
+            :enable-scroll="enableScroll" :enable-rotate="enableRotate" :enable-satellite="enableSatellite"
+            :enable-traffic="enableTraffic" :markers="markers" :polyline="polyline" :circles="circles" :polygons="polygons"
+            :include-points="includePoints" @tap="maptap" @controltap="oncontroltap" @markertap="onmarkertap"
+            @callouttap="oncallouttap" @poitap="onpoitap" @updated="onupdated" @regionchange="onregionchange"></map>
         <scroll-view class="scrollview" scroll-y="true">
             <!-- <view class="list-item">
                 <text class="list-text">显示3D楼块</text>
@@ -273,7 +274,7 @@
             }
         },
         onLoad() {},
-        onReady () {
+        onReady() {
             this.map = uni.createMapContext("map1", this);
         },
         methods: {
@@ -326,19 +327,23 @@
                 this.includePoints = testIncludePoints;
             },
             getCenterLocation() {
-                this.map.getCenterLocation(ret => {
-                    console.log(JSON.stringify(ret));
-                    uni.showModal({
-                        content: JSON.stringify(ret)
-                    })
+                this.map.getCenterLocation({
+                    success: ret => {
+                        console.log(JSON.stringify(ret));
+                        uni.showModal({
+                            content: JSON.stringify(ret)
+                        })
+                    }
                 })
             },
             getRegion() {
-                this.map.getRegion(ret => {
-                    console.log(JSON.stringify(ret));
-                    uni.showModal({
-                        content: JSON.stringify(ret)
-                    })
+                this.map.getRegion({
+                    success: ret => {
+                        console.log(JSON.stringify(ret));
+                        uni.showModal({
+                            content: JSON.stringify(ret)
+                        })
+                    }
                 })
             },
             translateMarker() {
