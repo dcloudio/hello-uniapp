@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
-		<uni-title title="基础用法" type="line"></uni-title>
+		<uni-section title="基础用法" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item :show-arrow="false" title="列表文字" />
 			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
 			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
 		</uni-list>
-		<uni-title title="菜单列表" type="line"></uni-title>
+		<uni-section title="菜单列表" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item title="列表右侧带箭头" />
 			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
@@ -21,12 +21,12 @@
 </template>
 
 <script>
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniList,
 			uniListItem
 		},

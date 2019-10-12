@@ -3,12 +3,12 @@
 		<view class="example-info">
 			<text class="example-info-text">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸</text>
 		</view>
-		<uni-title title="基础图标" type="line">
+		<uni-section title="基础图标" type="line">
 			<view class="uni-right">
 				<text class="uni-right-text">显示{{ checked?' unicode':'图标名' }}</text>
 				<switch :checked="checked" class="switch" @change="change" />
 			</view>
-		</uni-title>
+		</uni-section>
 		<view class="example-body">
 			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
 				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" />
@@ -20,11 +20,11 @@
 
 <script>
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniIcons,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {

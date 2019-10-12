@@ -1,12 +1,12 @@
 <template>
 	<view>
 		<text class="example-info"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
-		<uni-title title="基础用法" type="line"></uni-title>
+		<uni-section title="基础用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-goods-nav />
 		</view>
 
-		<uni-title title="自定义用法" type="line"></uni-title>
+		<uni-section title="自定义用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
 		</view>
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniGoodsNav from '@/components/uni-goods-nav/uni-goods-nav.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniGoodsNav
 		},
 		data() {

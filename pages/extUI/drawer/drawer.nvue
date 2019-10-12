@@ -8,7 +8,7 @@
 		</view>
 		<text class="example-info">这是抽屉式导航组件使用示例，可以指定菜单左侧或者右侧弹出（仅初始化生效），组件内部可以放置任何内容。点击页面按钮即可显示导航菜单。</text>
 		<view>
-			<uni-title title="左侧滑出" type="line"></uni-title>
+			<uni-section title="左侧滑出" type="line"></uni-section>
 			<view class="example-body">
 				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="show('left')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showLeft" mode="left" @close="closeDrawer('left')">
@@ -31,7 +31,7 @@
 					</view>
 				</uni-drawer>
 			</view>
-			<uni-title title="右侧滑出" type="line"></uni-title>
+			<uni-section title="右侧滑出" type="line"></uni-section>
 			<view class="example-body">
 				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="show('right')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer :visible="showRight" mode="right" @close="closeDrawer('right')">
@@ -61,7 +61,7 @@
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
@@ -69,7 +69,7 @@
 			uniDrawer,
 			uniList,
 			uniListItem,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {

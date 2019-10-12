@@ -8,7 +8,7 @@
 			<view v-if="current === 1"><text class="content-text">选项卡2的内容</text></view>
 			<view v-if="current === 2"><text class="content-text">选项卡3的内容</text></view>
 		</view>
-		<uni-title title="Style" type="line"></uni-title>
+		<uni-section title="Style" type="line"></uni-section>
 		<view class="example-body">
 			<radio-group class="uni-list " @change="styleChange">
 				<view v-for="(item, index) in styles" :key="index" class="uni-list-item">
@@ -23,7 +23,7 @@
 				</view>
 			</radio-group>
 		</view>
-		<uni-title title="Color" type="line"></uni-title>
+		<uni-section title="Color" type="line"></uni-section>
 		<view class="example-body">
 			<radio-group class="uni-list" @change="colorChange">
 				<view v-for="(item, index) in colors" :key="index" class="uni-list-item">
@@ -43,10 +43,10 @@
 
 <script>
 	import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniSegmentedControl
 		},
 		data() {

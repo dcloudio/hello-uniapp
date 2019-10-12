@@ -1,18 +1,18 @@
 <template>
 	<view>
-		<uni-title title="基本用法" type="line"></uni-title>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
 			<view class="search-result">
 				<text class="search-result-text">当前输入为：{{ searchVal }}</text>
 			</view>
 		</view>
-		<uni-title title="自定义样式" type="line"></uni-title>
+		<uni-section title="自定义样式" type="line"></uni-section>
 		<view class="example-body">
 			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
 			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
 		</view>
-		<uni-title title="控制清除按钮" type="line"></uni-title>
+		<uni-section title="控制清除按钮" type="line"></uni-section>
 		<view class="example-body">
 			<uni-search-bar radius="100" clearButton="always" @confirm="search" />
 			<uni-search-bar radius="100" clearButton="auto" @confirm="search" />
@@ -23,11 +23,11 @@
 
 <script>
 	import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniSearchBar,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {
@@ -50,6 +50,9 @@
 					showCancel: false
 				})
 			}
+		},
+		onBackPress() {
+			plus.key.hideSoftKeybord();
 		}
 	}
 </script>

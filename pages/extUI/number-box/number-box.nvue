@@ -1,23 +1,23 @@
 <template>
 	<view class="page">
 		<text class="example-info">数字输入框组件多用于购物车加减商品等场景</text>
-		<uni-title title="基本用法" type="line"></uni-title>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box />
 		</view>
-		<uni-title title="设置最小值和最大值" type="line"></uni-title>
+		<uni-section title="设置最小值和最大值" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :min="2" :max="9" :value="5" />
 		</view>
-		<uni-title title="设置步长（步长0.1)" type="line"></uni-title>
+		<uni-section title="设置步长（步长0.1)" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :step="0.1" />
 		</view>
-		<uni-title title="禁用状态" type="line"></uni-title>
+		<uni-section title="禁用状态" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :disabled="true" />
 		</view>
-		<uni-title :title="'获取输入的值 : '+numberValue" type="line"></uni-title>
+		<uni-section :title="'获取输入的值 : '+numberValue" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :value="numberValue" @change="change" />
 		</view>
@@ -26,11 +26,11 @@
 </template>
 <script>
 	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniNumberBox,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {

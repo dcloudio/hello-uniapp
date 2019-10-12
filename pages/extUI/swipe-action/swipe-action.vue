@@ -1,22 +1,21 @@
 <template>
 	<view>
-		<view class="example-title">基本用法</view>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<uni-swipe-action :options="options2" @click="bindClick">
-			<view class="cont">SwipeAction 基础使用场景</view>
+			<text class="cont">SwipeAction 基础使用场景</text>
 		</uni-swipe-action>
-		<view class="example-title">禁止滑动</view>
+		<uni-section title="禁止滑动" type="line"></uni-section>
 		<uni-swipe-action :disabled="true">
-			<view class="cont">SwipeAction 禁止滑动展示</view>
+			<text class="cont">SwipeAction 禁止滑动展示</text>
 		</uni-swipe-action>
-		<view class="example-title">使用变量控制开关</view>
+		<uni-section title="使用变量控制开关" type="line"></uni-section>
 		<view class="example-body">
-			<view class="button" @click="setOpened">当前状态：{{ isOpened ? '开' : '关' }}</view>
+			<view class="button" @click="setOpened"><text class="button-text">当前状态：{{ isOpened ? '开' : '关' }}</text></view>
 		</view>
 		<uni-swipe-action :options="options2" :show="isOpened" :auto-close="false" @change="change">
-			<view class="cont">使用变量控制SwipeAction的开启状态</view>
+			<text class="cont">使用变量控制SwipeAction的开启状态</text>
 		</uni-swipe-action>
-		<view class="example-title">与 List 组件一起使用</view>
-		<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
+		<uni-section title="与 List 组件一起使用" type="line"></uni-section>
 		<uni-list>
 			<uni-swipe-action :options="options1">
 				<uni-list-item :show-arrow="false" title="item1" />
@@ -28,29 +27,17 @@
 				<uni-list-item :show-arrow="false" title="item3" />
 			</uni-swipe-action>
 		</uni-list>
-		<!-- #endif -->
-		<!-- #ifdef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
-		<view class="uni-list">
-			<uni-swipe-action :options="options1">
-				<uni-list-item :show-arrow="false" title="item1" />
-			</uni-swipe-action>
-			<uni-swipe-action :options="options2">
-				<uni-list-item :show-arrow="false" title="item2" />
-			</uni-swipe-action>
-			<uni-swipe-action :options="options3">
-				<uni-list-item :show-arrow="false" title="item3" />
-			</uni-swipe-action>
-		</view>
-		<!-- #endif -->
 	</view>
 </template>
 
 <script>
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
+			uniSection,
 			uniSwipeAction,
 			uniList,
 			uniListItem
@@ -111,117 +98,128 @@
 </script>
 
 <style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
 	}
 
 	view {
-		font-size: 28upx;
-		line-height: inherit
+		font-size: 28rpx;
+		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30upx 30upx
-	}
-
-	.example-title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 32upx;
-		color: #464e52;
-		padding: 30upx 30upx 30upx 50upx;
-		margin-top: 20upx;
-		position: relative;
-		background-color: #fdfdfd;
-		border-bottom: 1px #f5f5f5 solid
-	}
-
-	.example-title__after {
-		position: relative;
-		color: #031e3c
-	}
-
-	.example-title:after {
-		content: '';
-		position: absolute;
-		left: 30upx;
-		margin: auto;
-		top: 0;
-		bottom: 0;
-		width: 6upx;
-		height: 32upx;
-		background-color: #ccc
-	}
-
-	.example .example-title {
-		margin: 40upx 0
-	}
-
-	.example-body {
-		padding: 30upx;
-		background: #fff
+		padding: 0 30rpx 30rpx;
 	}
 
 	.example-info {
-		padding: 30upx;
+		padding: 30rpx;
 		color: #3b4144;
-		background: #fff
-	}
-
-	.cont {
-		height: 90upx;
-		line-height: 90upx;
-		padding: 0 30upx;
-		position: relative;
-		background: #fff;
-	}
-
-	.cont::before {
-		position: absolute;
-		z-index: 3;
-		left: 0;
-		right: 0;
-		top: 0;
-		height: 1px;
-		content: '';
-		transform: scaleY(0.5);
-		background-color: $uni-border-color;
-	}
-
-	.cont::after {
-		position: absolute;
-		z-index: 3;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 1px;
-		content: '';
-		transform: scaleY(0.5);
-		background-color: $uni-border-color;
+		background: #ffffff;
 	}
 
 	.example-body {
-		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		justify-content: center;
-		padding: 20upx 0;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
 	}
 
-	/* .button-view {
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.cont {
+		height: 90rpx;
+		line-height: 90rpx;
+		padding: 0 30rpx;
+		position: relative;
+		background-color: #fff;
+		font-size: 30rpx;
+	}
+
+	.example-body {
+		/* #ifndef APP-NUVE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		justify-content: center;
-		padding: 20upx 0;
-		background: #fff;
-	} */
+		padding: 20rpx 0;
+	}
 
 	.button {
-		border: 1px solid #E7E7E7;
-		padding: 8upx 16upx;
-		border-radius: 8upx;
+		border-color: #E7E7E7;
+		border-style: solid;
+		border-width: 1px;
+		padding: 8rpx 16rpx;
+		border-radius: 8rpx;
+	}
+
+	.button-text {
+		font-size: 30rpx;
 	}
 </style>

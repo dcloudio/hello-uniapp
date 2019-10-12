@@ -2,23 +2,23 @@
 	<view class="uni-wrap">
 		<scroll-view class="scroll" scroll-y>
 			<view class="example-info">
-				<text class="example-info-text"> uni-title 组件主要用于文章、列表详情的等标题展示 </text>
+				<text class="example-info-text"> uni-section 组件主要用于文章、列表详情的等标题展示 </text>
 			</view>
-			<uni-title class="uni-title" title="基础用法" sub-title="离开页面修改导航栏标题"></uni-title>
+			<uni-section class="uni-section" title="基础用法" sub-title="副标题"></uni-section>
 			<view class="example-body">
 				<uni-list>
 					<uni-list-item title="item" />
 					<uni-list-item title="item" />
 				</uni-list>
 			</view>
-			<uni-title title="竖线装饰" sub-title="副标题" type="line"></uni-title>
+			<uni-section title="竖线装饰" sub-title="副标题" type="line"></uni-section>
 			<view class="example-body">
 				<uni-list>
 					<uni-list-item title="item" />
 					<uni-list-item title="item" />
 				</uni-list>
 			</view>
-			<uni-title title="圆形装饰" sub-title="副标题" type="circle"></uni-title>
+			<uni-section title="圆形装饰" sub-title="副标题" type="circle"></uni-section>
 			<view class="example-body">
 				<uni-list>
 					<uni-list-item title="item" />
@@ -46,12 +46,12 @@
 
 <script>
 	let observer = null;
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniList,
 			uniListItem
 		},
@@ -65,7 +65,7 @@
 			// observer = uni.createIntersectionObserver(this);
 			// observer.relativeTo('.scroll', {
 			//   top: -systeminfo.windowTop
-			// }).observe('.uni-title', (res) => {
+			// }).observe('.uni-section', (res) => {
 			//   console.log(res);
 			//   if (res.intersectionRatio > 0 && !this.appear) {
 			//     uni.setNavigationBarTitle({

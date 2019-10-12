@@ -835,9 +835,9 @@
 					}
 				},
 				{
-					"path": "title/title",
+					"path": "section/section",
 					"style": {
-						"navigationBarTitleText": "Title 标题栏"
+						"navigationBarTitleText": "Section 章节标题"
 					}
 				}
 			]

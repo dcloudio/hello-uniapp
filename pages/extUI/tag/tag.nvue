@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<text class="example-info">标签组件多用于商品分类、重点内容显示等场景。</text>
-		<uni-title title="实心标签" type="line"></uni-title>
+		<uni-section title="实心标签" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag text="标签" />
@@ -19,7 +19,7 @@
 				<uni-tag text="标签" type="error" />
 			</view>
 		</view>
-		<uni-title title="空心标签" type="line"></uni-title>
+		<uni-section title="空心标签" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag :inverted="true" text="标签" />
@@ -37,7 +37,7 @@
 				<uni-tag :inverted="true" text="标签" type="error" />
 			</view>
 		</view>
-		<uni-title title="圆角样式" type="line"></uni-title>
+		<uni-section title="圆角样式" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag :circle="true" text="标签" type="primary" size="small" />
@@ -52,7 +52,7 @@
 				<uni-tag :inverted="true" :circle="true" text="标签" type="error" />
 			</view>
 		</view>
-		<uni-title title="标记样式" type="line"></uni-title>
+		<uni-section title="标记样式" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag :mark="true" text="标签" type="primary" size="small" />
@@ -67,7 +67,7 @@
 				<uni-tag :mark="true" :circle="true" text="标签" type="error" />
 			</view>
 		</view>
-		<uni-title title="点击事件" type="line"></uni-title>
+		<uni-section title="点击事件" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag :type="type" text="标签" @click="setType" />
@@ -77,7 +77,7 @@
 			</view>
 		</view>
 
-		<uni-title title="小标签" type="line"></uni-title>
+		<uni-section title="小标签" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag text="标签" size="small" />
@@ -96,7 +96,7 @@
 			</view>
 		</view>
 
-		<uni-title title="不可点击状态" type="line"></uni-title>
+		<uni-section title="不可点击状态" type="line"></uni-section>
 		<view class="example-body">
 			<view class="tag-view">
 				<uni-tag :disabled="true" text="标签" />
@@ -113,11 +113,11 @@
 
 <script>
 	import uniTag from '@/components/uni-tag/uni-tag.vue';
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniTag,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {

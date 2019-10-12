@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<text class="example-info">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</text>
-		<uni-title title="基本用法" type="line"></uni-title>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<button class="button" type="button" @click="togglePopup('top', 'popup')">顶部弹出 popup</button>
 			<button class="button" type="button" @click="togglePopup('center', 'popup')">中间弹出 popup</button>
 			<button class="button" type="button" @click="togglePopup('bottom', 'popup')">底部弹出 popup</button>
 		</view>
-		<uni-title title="自定义弹出层" type="line"></uni-title>
+		<uni-section title="自定义弹出层" type="line"></uni-section>
 		<view class="example-body">
 			<button class="button" type="button" @click="togglePopup('center', 'tip')">提示框</button>
 			<button class="button" type="button" @click="togglePopup('center', 'image')">插屏广告</button>
@@ -28,7 +28,7 @@
 		<!-- 插屏弹窗 -->
 		<uni-popup :show="showimage" :type="type" :mask-click="true" @change="change">
 			<view class="uni-image">
-				<image class="image" src="/static/uni.png" mode="" />
+				<image class="image" src="/static/uni.png" mode="scaleToFill" />
 				<view class="uni-image-close" @click="cancel('image')">
 					<uni-icons type="clear" color="#fff" size="30" />
 				</view>
@@ -53,12 +53,12 @@
 </template>
 
 <script>
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniPopup,
 			uniIcons
 		},
@@ -334,10 +334,6 @@
 	.image {
 		width: 200px;
 		height: 200px;
-		/* width: 100%;
- */
-		/* height: 100%;
- */
 	}
 
 	.uni-image-close {

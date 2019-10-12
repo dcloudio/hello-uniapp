@@ -1,24 +1,24 @@
 <template>
 	<view>
-		<uni-title title="默认样式" type="line"></uni-title>
+		<uni-section title="默认样式" type="line"></uni-section>
 		<view class="example-body">
 			<uni-pagination :total="50" title="标题文字" />
 		</view>
-		<uni-title title="修改按钮文字" type="line"></uni-title>
+		<uni-section title="修改按钮文字" type="line"></uni-section>
 		<view class="example-body">
 			<uni-pagination :total="50" title="标题文字" prev-text="前一页" next-text="后一页" />
 		</view>
-		<uni-title title="图标样式" type="line"></uni-title>
+		<uni-section title="图标样式" type="line"></uni-section>
 		<view class="example-body">
 			<uni-pagination :show-icon="true" :total="50" title="标题文字" />
 		</view>
-		<uni-title title="修改数据长度" type="line"></uni-title>
+		<uni-section title="修改数据长度" type="line"></uni-section>
 		<view class="example-body">
 			<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
 		</view>
 		<view class="btn-view">
 			<view>
-				当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}
+				<text class="example-info">当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>
 			</view>
 			<view class="button word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="add"><text class="word-btn-white">增加10条数据</text></view>
 			<button class="button" type="default" @click="reset">重置数据</button>
@@ -30,13 +30,13 @@
 	import uniPagination from '@/components/uni-pagination/uni-pagination.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniPagination,
 			uniList,
 			uniListItem,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {

@@ -12,10 +12,10 @@
           bottom: vertical === 'bottom' && direction === 'vertical',
           right: horizontal === 'right' && direction === 'horizontal'
         }" :style="{ 'background-color': styles.buttonColor }" class="fab-circle" @click="_onClick">
-                <view class="fab-circle-box" :class="{ active: isShow }">
-                    <view class="fab-circle-v"></view>
-                    <view class="fab-circle-h"></view>
-                </view>
+				<view class="fab-circle-box" :class="{ active: isShow }">
+					<view class="fab-circle-v"></view>
+					<view class="fab-circle-h"></view>
+				</view>
 			</view>
 			<view :class="{
           left: horizontal === 'left',
@@ -41,9 +41,9 @@
 	import uniIcons from "@/components/uni-icons/uni-icons.vue";
 	export default {
 		name: 'UniFab',
-        components:{
-            uniIcons
-        },
+		components: {
+			uniIcons
+		},
 		props: {
 			pattern: {
 				type: Object,
@@ -182,7 +182,6 @@
 </script>
 
 <style scoped>
-
 	.uni-icon {
 		font-family: uniicons;
 		font-size: 30px;
@@ -267,34 +266,34 @@
 		z-index: 11;
 	}
 
-    .fab-circle-box {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
+	.fab-circle-box {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
 		transition: all 0.3s;
-    }
+	}
 
-    .fab-circle-v {
-        position: absolute;
-        width: 8rpx;
-        height: 60rpx;
-        left: 50%;
-        top: 50%;
-        margin: -30rpx 0 0 -4rpx;
-        background-color: white;
-    }
+	.fab-circle-v {
+		position: absolute;
+		width: 8rpx;
+		height: 60rpx;
+		left: 50%;
+		top: 50%;
+		margin: -30rpx 0 0 -4rpx;
+		background-color: white;
+	}
 
-    .fab-circle-h {
-        position: absolute;
-        width: 60rpx;
-        height: 8rpx;
-        left: 50%;
-        top: 50%;
-        margin: -4rpx 0 0 -30rpx;
-        background-color: white;
-    }
+	.fab-circle-h {
+		position: absolute;
+		width: 60rpx;
+		height: 8rpx;
+		left: 50%;
+		top: 50%;
+		margin: -4rpx 0 0 -30rpx;
+		background-color: white;
+	}
 
 	.fab-circle.left {
 		left: 0;

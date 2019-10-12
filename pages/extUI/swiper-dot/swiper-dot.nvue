@@ -9,7 +9,7 @@
 				</swiper-item>
 			</swiper>
 		</uni-swiper-dot>
-		<uni-title title="模式选择" type="line"></uni-title>
+		<uni-section title="模式选择" type="line"></uni-section>
 		<view class="example-body">
 			<view :class="{ active: modeIndex === 0 }" class="example-body-item" @click="selectMode('default', 0)"><text class="example-body-item-text">default</text></view>
 			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('dot', 1)"><text class="example-body-item-text">dot</text></view>
@@ -17,7 +17,7 @@
 			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('nav', 3)"><text class="example-body-item-text">nav</text></view>
 			<view :class="{ active: modeIndex === 4 }" class="example-body-item" @click="selectMode('indexes', 4)"><text class="example-body-item-text">indexes</text></view>
 		</view>
-		<uni-title title="颜色样式选择" type="line"></uni-title>
+		<uni-section title="颜色样式选择" type="line"></uni-section>
 		<view class="example-body">
 			<template v-if="mode !== 'nav'">
 				<view v-for="(item, index) in dotStyle" :class="{ active: styleIndex === index }" :key="index" class="example-body-item" @click="selectStyle(index)">
@@ -36,11 +36,11 @@
 </template>
 
 <script>
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniSwiperDot from '@/components/uni-swiper-dot/uni-swiper-dot.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniSwiperDot
 		},
 		data() {

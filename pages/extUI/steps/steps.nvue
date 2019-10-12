@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<uni-title title="基本用法" type="line"></uni-title>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-steps :options="list1" active-color="#007AFF" :active="active" />
 		</view>
-		<uni-title title="纵向排列" type="line"></uni-title>
+		<uni-section title="纵向排列" type="line"></uni-section>
 		<view class="example-body">
 			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
 		</view>
@@ -14,10 +14,10 @@
 
 <script>
 	import uniSteps from '@/components/uni-steps/uni-steps.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
-			uniTitle,
+			uniSection,
 			uniSteps
 		},
 		data() {

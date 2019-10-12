@@ -1,23 +1,23 @@
 <template>
 	<view>
 		<text class="example-info">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text>
-		<uni-title title="一般用法" type="line"></uni-title>
+		<uni-section title="一般用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-count-down :day="1" :hour="1" :minute="12" :second="40" />
 		</view>
-		<uni-title title="不显示天数" type="line"></uni-title>
+		<uni-section title="不显示天数" type="line"></uni-section>
 		<view class="example-body">
 			<uni-count-down :show-day="false" :hour="12" :minute="12" :second="12" />
 		</view>
-		<uni-title title="文字分隔符" type="line"></uni-title>
+		<uni-section title="文字分隔符" type="line"></uni-section>
 		<view class="example-body">
 			<uni-count-down :minute="30" :second="0" :show-colon="false" />
 		</view>
-		<uni-title title="修改颜色" type="line"></uni-title>
+		<uni-section title="修改颜色" type="line"></uni-section>
 		<view class="example-body">
 			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
 		</view>
-		<uni-title title="倒计时回调事件" type="line"></uni-title>
+		<uni-section title="倒计时回调事件" type="line"></uni-section>
 		<view class="example-body">
 			<uni-count-down :show-day="false" :second="10" @timeup="timeup" />
 		</view>
@@ -25,11 +25,11 @@
 </template>
 <script>
 	import uniCountDown from '@/components/uni-count-down/uni-count-down.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
 			uniCountDown,
-			uniTitle
+			uniSection
 		},
 		data() {
 			return {}

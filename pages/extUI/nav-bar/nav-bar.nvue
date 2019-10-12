@@ -2,16 +2,16 @@
 	<view>
 		<uni-nav-bar color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft" left-text="返回" title="标题" @clickLeft="back" />
 		<text class="example-info">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
-		<uni-title title="基本用法" type="line"></uni-title>
+		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-nav-bar left-icon="arrowleft" title="标题" @clickLeft="back" />
 		</view>
 
-		<uni-title title="左右显示文字" type="line"></uni-title>
+		<uni-section title="左右显示文字" type="line"></uni-section>
 		<view class="example-body">
 			<uni-nav-bar left-icon="arrowleft" right-text="菜单" left-text="返回" title="标题" @clickLeft="back" />
 		</view>
-		<uni-title title="插入slot" type="line"></uni-title>
+		<uni-section title="插入slot" type="line"></uni-section>
 		<view class="example-body">
 			<uni-nav-bar :fixed="false" color="#333333" background-color="#FFFFFF" right-icon="scan" @clickLeft="showCity" @clickRight="scan">
 				<block slot="left">
@@ -33,13 +33,13 @@
 	// console.log(uni.getSystemInfoSync());
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniStatusBar from '@/components/uni-status-bar/uni-status-bar.vue';
 	export default {
 		components: {
 			uniIcons,
 			uniNavBar,
-			uniTitle,
+			uniSection,
 			uniStatusBar
 		},
 		data() {
