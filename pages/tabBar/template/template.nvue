@@ -34,17 +34,18 @@
                         name: '多列选择 picker',
                         url: 'mpvue-picker'
                     },
-                    // #ifdef APP-PLUS || H5
+                    // #ifdef APP-PLUS || H5 || MP-ALIPAY
                     {
                         id: 'navbar',
                         name: '顶部原生导航标题栏',
                         open: false,
                         pages: [
-
+                            // #ifdef APP-PLUS || H5
                             {
                                 name: '透明渐变样式',
                                 url: 'nav-transparent'
-                            }, {
+                            },
+                            {
                                 name: '导航栏带自定义按钮',
                                 url: 'nav-button'
                             },
@@ -60,7 +61,8 @@
                                 name: '导航栏带搜索框',
                                 url: 'nav-search-input'
                             },
-                            // #ifdef APP-PLUS
+                            // #endif
+                            // #ifdef APP-PLUS || H5 || MP-ALIPAY
                             {
                                 name: '导航栏带图片',
                                 url: 'nav-image'

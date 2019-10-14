@@ -891,13 +891,15 @@
 					"path": "nav-transparent/nav-transparent",
 					"style": {
 						"navigationBarTitleText": "透明渐变导航栏",
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent"
-							}
-						}
+                        "app-plus": {
+                            "titleNView": {
+                                "type": "transparent"
+                            }
+                        }
 					}
 				},
+				// #endif
+				// #ifdef APP-PLUS || H5
 				{
 					"path": "nav-button/nav-button",
 					"style": {
@@ -916,25 +918,13 @@
 					}
 				},
 				// #endif
-				// #ifdef APP-PLUS
+				// #ifdef APP-PLUS || H5 || MP-ALIPAY
 				{
 					"path": "nav-image/nav-image",
 					"style": {
-						"app-plus": {
-							"titleNView": {
-								"titleText": "",
-								"tags": [{
-									"tag": "img",
-									"src": "/static/nav.png",
-									"position": {
-										"left": "auto",
-										"top": "auto",
-										"width": "110px",
-										"height": "26px"
-									}
-								}]
-							}
-						}
+						"navigationBarBackgroundColor": "#FFFFFF",
+                        "navigationBarTextStyle": "black",
+						"titleImage": "https://img-cdn-qiniu.dcloud.net.cn/static/images/logo1@2x.png"
 					}
 				},
 				// #endif
