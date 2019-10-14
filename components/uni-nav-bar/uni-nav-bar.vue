@@ -107,7 +107,12 @@
 
 <style scoped>
 	.uni-nav-bar-text {
-		font-size: 32rpx;
+		/* #ifdef APP-PLUS */
+		font-size: 17px;
+		/* #endif */
+		/* #ifndef APP-PLUS */
+		font-size: 16px;
+		/* #endif */
 	}
 
 	.uni-navbar {

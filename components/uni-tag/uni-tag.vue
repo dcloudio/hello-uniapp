@@ -16,7 +16,7 @@
 		name: "UniTag",
 		props: {
 			type: {
-				// 标签类型default、primary、success、warning、danger、royal
+				// 标签类型default、primary、success、warning、error、royal
 				type: String,
 				default: "default"
 			},
