@@ -123,7 +123,8 @@
 		border-radius: 100px;
 		margin-left: 12rpx;
 		background-color: rgba(0, 0, 0, .3);
-		transition: width 0.2s linear;
+		/* transition: width 0.2s linear;  不要取消注释，不然会不能变色
+ */
 	}
 
 	.uni-swiper__dots-item:first-child {

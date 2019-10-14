@@ -17,7 +17,7 @@
 					<image class="image" src="/static/c1.png" mode="aspectFill" />
 					<text class="text">Grid 1</text>
 				</uni-grid-item>
-				<uni-grid-item :hor="0" :ver="0" :img-width="30" marker="image" src="https://img-cdn-qiniu.dcloud.net.cn/uni-ui/recommend.png">
+				<uni-grid-item :hor="0" :ver="0" :img-width="30" marker="image">
 					<image class="image" src="/static/c2.png" mode="aspectFill" />
 					<text class="text">Grid 2</text>
 				</uni-grid-item>
