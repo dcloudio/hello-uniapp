@@ -1020,12 +1020,6 @@
 				},
 				// #endif
 				{
-					"path": "mpvue-picker/mpvue-picker",
-					"style": {
-						"navigationBarTitleText": "多列选择picker"
-					}
-				},
-				{
 					"path": "left-category/left-category",
 					"style": {
 						"navigationBarTitleText": "侧边分类导航"

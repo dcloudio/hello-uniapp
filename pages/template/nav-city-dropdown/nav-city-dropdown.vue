@@ -31,7 +31,6 @@
 // https://github.com/zhetengbiji/mpvue-picker
 import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
 // https://github.com/zhetengbiji/mpvue-citypicker
-import cityData from '../../../common/city.data.js';
 
 export default {
 	components: {
@@ -40,29 +39,28 @@ export default {
 	data() {
 		return {
 			title: 'nav-city-dropdown',
-			pickerSingleArray: [
+			pickerValueArray: [
 				{
-					label: '中国',
-					value: 1
+					label: '北京市',
+					value: 110000
 				},
 				{
-					label: '俄罗斯',
-					value: 2
+					label: '天津市',
+					value: 120000
 				},
 				{
-					label: '美国',
-					value: 3
+					label: '广州市',
+					value: 440100
 				},
 				{
-					label: '日本',
-					value: 4
+					label: '深圳市',
+					value: 440300
 				}
 			],
 			themeColor: '#007AFF',
 			mode: '',
 			deepLength: 1,
-			pickerValueDefault: [0],
-			pickerValueArray: []
+			pickerValueDefault: [0]
 		};
 	},
 	onReady() {
@@ -74,7 +72,6 @@ export default {
 		},
 		// 单列
 		showSinglePicker() {
-			this.pickerValueArray = cityData;
 			this.mode = 'selector';
 			this.deepLength = 1;
 			this.pickerValueDefault = [0];
