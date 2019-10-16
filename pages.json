@@ -392,9 +392,27 @@
 					}
 				},
 				{
-					"path": "navigator/new-page/new-page",
+					"path": "navigator/new-page/new-vue-page-1",
 					"style": {
-						"navigationBarTitleText": "新页面"
+						"navigationBarTitleText": "新VUE页面1"
+					}
+				},
+				{
+					"path": "navigator/new-page/new-vue-page-2",
+					"style": {
+						"navigationBarTitleText": "新VUE页面2"
+					}
+				},
+				{
+					"path": "navigator/new-page/new-nvue-page-1",
+					"style": {
+						"navigationBarTitleText": "新NVUE页面1"
+					}
+				},
+				{
+					"path": "navigator/new-page/new-nvue-page-2",
+					"style": {
+						"navigationBarTitleText": "新NVUE页面2"
 					}
 				},
 				{
