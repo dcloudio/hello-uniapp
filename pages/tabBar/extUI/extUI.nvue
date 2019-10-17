@@ -49,10 +49,6 @@
 						url: "drawer"
 					},
 					{
-						name: "Fab 悬浮按钮",
-						url: "fab"
-					},
-					{
 						name: "Fav 收藏按钮",
 						url: "fav"
 					},
