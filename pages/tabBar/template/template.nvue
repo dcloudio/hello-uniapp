@@ -72,45 +72,10 @@
                         name: '顶部选项卡',
                         url: 'tabbar'
                     },
-                    {
-                        name: '三行列表',
-                        url: 'list-triplex-row'
-                    },
-                    {
-                        name: '图文列表',
-                        url: 'media-list'
-                    }, {
-                        name: '商品列表',
-                        url: 'product-list'
-                    }, {
-                        name: '懒加载 lazy-load',
-                        open: false,
-                        // #ifndef MP-ALIPAY
-                        pages: [{
-                            name: '默认',
-                            url: 'lazy-load'
-                        }, {
-                            name: '自定义',
-                            url: 'lazy-load-custom'
-                        }],
-                        // #endif
-                        // #ifdef MP-ALIPAY
-                        url: 'lazy-load',
-                        // #endif
-                    }, {
-                        name: '时间轴 timeline',
-                        url: 'timeline'
-                    },
                     // #ifndef MP-QQ
                     {
                         name: 'uCharts 图表',
                         url: 'ucharts'
-                    },
-                    // #endif
-                    // #ifdef APP-PLUS || H5 || MP-WEIXIN  || MP-QQ
-                    {
-                        name: '手势图案锁屏',
-                        url: 'gesture-lock'
                     },
                     // #endif
                     {
@@ -123,37 +88,7 @@
                         url: 'swiper-vertical'
                     },
                     // #endif
-                    // {
-                    // 	name: '二维码生成',
-                    // 	url: 'qrcode'
-                    // },
-                    // #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-QQ
                     {
-                        id: 'uparse',
-                        name: '富文本渲染',
-                        open: false,
-                        pages: [{
-                            name: 'uParse 富文本渲染示例 - markdown',
-                            url: 'uparse-md'
-                        }, {
-                            name: 'uParse 富文本渲染示例 - html',
-                            url: 'uparse-html'
-                        }]
-                    },
-                    // #endif
-                    {
-                        name: '侧边分类导航',
-                        url: 'left-category'
-                    }, {
-                        name: '评论列表',
-                        url: 'comments'
-                    }, {
-                        name: '滚动公告',
-                        url: 'scrollmsg'
-                    }, {
-                        name: '表单验证',
-                        url: 'datachecker'
-                    }, {
                         name: 'GlobalData和vuex',
                         url: 'global'
                     },

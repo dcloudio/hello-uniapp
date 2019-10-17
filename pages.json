@@ -862,42 +862,13 @@
 		},
 		{
 			"root": "pages/template",
-			"pages": [{
-					"path": "product-list/product-list",
-					"style": {
-						"navigationBarTitleText": "商品列表",
-						"enablePullDownRefresh": true,
-						"onReachBottomDistance": 20
-					}
-				},
-				// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-QQ
-				{
-					"path": "uparse-md/uparse-md",
-					"style": {
-						"navigationBarTitleText": "富文本渲染示例-markdown"
-					}
-				},
-				{
-					"path": "uparse-html/uparse-html",
-					"style": {
-						"navigationBarTitleText": "富文本渲染示例-html"
-					}
-				},
-				// #endif
+			"pages": [
 				{
 					"path": "ucharts/ucharts",
 					"style": {
 						"navigationBarTitleText": "uCharts 图表"
 					}
 				},
-				// #ifdef APP-PLUS || H5 || MP-WEIXIN || MP-QQ
-				{
-					"path": "gesture-lock/gesture-lock",
-					"style": {
-						"navigationBarTitleText": "手势图案锁屏"
-					}
-				},
-				// #endif
 				{
 					"path": "nav-default/nav-default",
 					"style": {
@@ -1038,18 +1009,6 @@
 				},
 				// #endif
 				{
-					"path": "left-category/left-category",
-					"style": {
-						"navigationBarTitleText": "侧边分类导航"
-					}
-				},
-				{
-					"path": "list-triplex-row/list-triplex-row",
-					"style": {
-						"navigationBarTitleText": "三行列表"
-					}
-				},
-				{
 					"path": "list2detail-list/list2detail-list",
 					"style": {
 						"navigationBarTitleText": "列表到详情示例",
@@ -1100,24 +1059,6 @@
 				},
 				// #endif
 				{
-					"path": "media-list/media-list",
-					"style": {
-						"navigationBarTitleText": "图文列表"
-					}
-				},
-				{
-					"path": "lazy-load/lazy-load",
-					"style": {
-						"navigationBarTitleText": "懒加载"
-					}
-				},
-				{
-					"path": "lazy-load-custom/lazy-load-custom",
-					"style": {
-						"navigationBarTitleText": "懒加载"
-					}
-				},
-				{
 					"path": "scheme/scheme",
 					"style": {
 						"navigationBarTitleText": "打开外部应用"
@@ -1133,24 +1074,6 @@
 						}
 					}
 				},
-				{
-					"path": "scrollmsg/scrollmsg",
-					"style": {
-						"navigationBarTitleText": "滚动公告"
-					}
-				},
-				{
-					"path": "comments/comments",
-					"style": {
-						"navigationBarTitleText": "评论界面"
-					}
-				},
-				{
-					"path": "timeline/timeline",
-					"style": {
-						"navigationBarTitleText": "时间轴 timeline"
-					}
-				},
 				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 				{
 					"path": "vant-button/vant-button",
@@ -1163,11 +1086,6 @@
 				},
 				// #endif
 				{
-					"path": "datachecker/datachecker",
-					"style": {
-						"navigationBarTitleText": "表单校验"
-					}
-				}, {
 					"path": "global/global",
 					"style": {
 						"navigationBarTitleText": "GlobalData和vuex"
