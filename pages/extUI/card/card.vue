@@ -1,0 +1,265 @@
+<template>
+	<view>
+		<text class="example-info">卡片组件通用来显示完整独立的一段信息，同时让用户理解他的作用。例如一篇文章的预览图、作者信息、时间等，卡片通常是更复杂和更详细信息的入口点。</text>
+		<!-- <view class="example-title">基础卡片</view> -->
+		<uni-section title="基础卡片" type="line"></uni-section>
+		<view class="example-body">
+			<view v-for="item in list" :key="item.id" class="example-box">
+				<uni-card :title="item.title" :is-shadow="item.shadow" :note="item.note" :extra="item.extra" :thumbnail="item.thumbnail" @click="clickCard"><text class="content-box-text">{{ item.content }}</text></uni-card>
+			</view>
+		</view>
+		<!-- <view class="example-title">图文卡片</view> -->
+		<uni-section title="图文卡片" type="line"></uni-section>
+		<view class="example-body">
+			<view class="example-box">
+				<uni-card :is-shadow="true" title="uni-app 框架" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" extra="DCloud 2019-05-20 12:32:19" note="true" @click="clickCard">
+					<text class="content-box-text">
+						uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。 即使不跨端，uni-app同时也是更好的小程序开发框架
+					</text>
+					<block slot="footer">
+						<view class="footer-box">
+							<view class="" @click.stop="footerClick('喜欢')"><text class="footer-box__item"> 喜欢</text></view>
+							<view class="" @click.stop="footerClick('评论')"><text class="footer-box__item"> 评论</text></view>
+							<view class="" @click.stop="footerClick('分享')"><text class="footer-box__item"> 收藏</text></view>
+						</view>
+					</block>
+				</uni-card>
+			</view>
+			<view class="example-box">
+				<uni-card :is-shadow="true" title="DCloud" mode="title" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="技术没有上限" note="true" @click="clickCard">
+					<view>
+						<view class="image-box">
+							<image class="image" mode="aspectFill" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" />
+						</view>
+						<view class="content-box">
+							<text class="content-box-text">
+								uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可编译到iOS、Android、H5、以及各种小程序等多个平台。
+								即使不跨端，uni-app同时也是更好的小程序开发框架。
+							</text>
+						</view>
+					</view>
+					<template slot="footer">
+						<view class="footer-box">
+							<view @click.stop="footerClick('喜欢')"><text class="footer-box__item"> 喜欢</text></view>
+							<view @click.stop="footerClick('评论')"><text class="footer-box__item"> 评论</text></view>
+							<view @click.stop="footerClick('分享')"><text class="footer-box__item"> 收藏</text></view>
+						</view>
+					</template>
+				</uni-card>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	import uniCard from '@/components/uni-card/uni-card.vue'
+	export default {
+		components: {
+			uniSection,
+			uniCard
+		},
+		data() {
+			return {
+				list: [{
+					id: 0,
+					title: '',
+					content: '这是一个基础卡片示例，内容较少，此示例不带边框阴影。',
+					shadow: false,
+					note: '',
+					extra: '',
+					thumbnail: ''
+
+				}, {
+					id: 1,
+					title: '标题文字',
+					content: '这是一个基础卡片示例，内容比较多，内容样式可自定义，卡片视图常用来显示完整独立的一段信息，比如一篇文章的预览图、作者信息、时间等，此示例带边框阴影。',
+					shadow: true,
+					note: '',
+					extra: '额外信息',
+					thumbnail: ''
+				}, {
+					id: 2,
+					title: '标题文字',
+					content: '这是一个带标题，带底部选项按钮的基础卡片示例，内容样式可自定义。',
+					shadow: true,
+					note: 'Tips',
+					extra: '额外信息',
+					thumbnail: ''
+				}, {
+					id: 3,
+					title: '标题文字',
+					content: '这是一个完整配置的基础卡片示例。内容样式可自定义。',
+					shadow: true,
+					note: 'Tips',
+					extra: '额外信息',
+					thumbnail: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
+				}],
+				Tips: ['喜欢', '评论', '分享']
+			}
+		},
+		methods: {
+			clickCard() {
+				uni.showToast({
+					title: '点击卡片',
+					icon: 'none'
+				})
+			},
+			footerClick(types) {
+				uni.showToast({
+					title: types,
+					icon: 'none'
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.example-body {
+		padding: 20rpx 0;
+		padding-bottom: 0;
+
+	}
+
+	.example-box {
+		/* margin-bottom: 30rpx;
+ */
+	}
+
+	.image-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		height: 350rpx;
+		overflow: hidden;
+	}
+
+	.image {
+		/* #ifndef APP-NVUE */
+		width: 100%;
+		height: 100%;
+		/* #endif */
+		flex: 1;
+	}
+
+	.content-box {
+		padding-top: 20rpx;
+	}
+
+	.content-box-text {
+		font-size: 30rpx;
+	}
+
+	.footer-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		justify-content: space-between;
+		flex-direction: row;
+
+	}
+
+	.footer-box__item {
+		align-items: center;
+		padding: 10rpx 0;
+		font-size: 30rpx;
+		color: #666;
+	}
+</style>
