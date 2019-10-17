@@ -1,28 +1,23 @@
 <template>
 	<view class="uni-steps">
-		<view :class="[direction==='column'?'uni-steps__column':'uni-steps__row']">
-			<view :class="[direction==='column'?'uni-steps__column-text-container':'uni-steps__row-text-container']">
-				<view v-for="(item,index) in options" :key="index" :class="[direction==='column'?'uni-steps__column-text':'uni-steps__row-text']">
-					<text :style="{color:index<=active?activeColor:deactiveColor}" :class="[direction==='column'?'uni-steps__column-title':'uni-steps__row-title']">{{item.title}}</text>
-					<text :style="{color:index<=active?activeColor:deactiveColor}" :class="[direction==='column'?'uni-steps__column-desc':'uni-steps__row-desc']">{{item.desc}}</text>
+		<view :class="'uni-steps-' + direction" class="uni-steps-items">
+			<view v-for="(item, index) in options" :key="index" :class="{ 'uni-steps-process': index === active, 'uni-steps-finish': index < active }" class="uni-steps-item">
+				<view :style="{ color: index === active ? activeColor : '' }" class="uni-steps-item-title-container">
+					<view class="uni-steps-item-title">{{ item.title }}</view>
+					<view v-if="item.desc" class="uni-steps-item-desc">{{ item.desc }}</view>
 				</view>
-			</view>
-			<view :class="[direction==='column'?'uni-steps__column-container':'uni-steps__row-container']">
-				<view :class="[direction==='column'?'uni-steps__column-line-item':'uni-steps__row-line-item']" v-for="(item,index) in options" :key="index">
-					<view :class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--before':'uni-steps__row-line--before']" :style="{backgroundColor:index<=active&&index!==0?activeColor:index===0?'transparent':deactiveColor}"></view>
-					<view :class="[direction==='column'?'uni-steps__column-check':'uni-steps__row-check']" v-if="index === active">
-						<uni-icons :color="activeColor" type="checkbox-filled" size="14"></uni-icons>
-					</view>
-					<view :class="[direction==='column'?'uni-steps__column-circle':'uni-steps__row-circle']" v-else :style="{backgroundColor:index<active?activeColor:deactiveColor}"></view>
-					<view :class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--after':'uni-steps__row-line--after']" :style="{backgroundColor:index<active&&index!==options.length-1?activeColor:index===options.length-1?'transparent':deactiveColor}"></view>
+				<view class="uni-steps-item-circle-container">
+					<view v-if="index !== active" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-circle" />
+					<uni-icons v-else :color="activeColor" type="checkbox-filled" size="14" />
 				</view>
+				<view v-if="index !== options.length - 1" :style="{ backgroundColor: index < active ? activeColor : '' }" class="uni-steps-item-line" />
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniSteps',
 		components: {
@@ -38,11 +33,6 @@
 				// 激活状态颜色
 				type: String,
 				default: '#1aad19'
-			},
-			deactiveColor: {
-				// 未激活状态颜色
-				type: String,
-				default: '#999999'
 			},
 			active: {
 				// 当前步骤
@@ -62,179 +52,177 @@
 	}
 </script>
 
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-steps {
-		/* #ifndef APP-NVUE */
-		display: flex;
 		width: 100%;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		flex: 1;
-		/* #endif */
+		box-sizing: border-box;
+		display: flex;
 		flex-direction: column;
+		overflow: hidden;
+		position: relative
 	}
 
-	.uni-steps__row {
-		/* #ifndef APP-NVUE */
+	.uni-steps-items {
+		position: relative;
 		display: flex;
-		/* #endif */
-		flex-direction: column;
-	}
-
-	.uni-steps__column {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row-reverse;
-	}
-
-	.uni-steps__row-text-container {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
 		flex-direction: row;
+		margin: 10px;
+		box-sizing: border-box;
+		overflow: hidden
 	}
 
-	.uni-steps__column-text-container {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		flex: 1;
+	.uni-steps-items.uni-steps-column {
+		margin: 10px 0;
+		padding-left: 31px;
+		flex-direction: column
 	}
 
-	.uni-steps__row-text {
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: column;
-	}
-
-	.uni-steps__column-text {
-		padding: 6px 0px;
-		border-bottom-style: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: #e5e5e5;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-	}
-
-	.uni-steps__row-title {
-		font-size: 14px;
-		line-height: 16px;
-		text-align: center;
-	}
-
-	.uni-steps__column-title {
-		font-size: 14px;
-		text-align: left;
-		line-height: 18px;
-	}
-
-	.uni-steps__row-desc {
-		font-size: 12px;
-		line-height: 14px;
-		text-align: center;
-	}
-
-	.uni-steps__column-desc {
-		font-size: 12px;
-		text-align: left;
-		line-height: 18px;
-	}
-
-	.uni-steps__row-container {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-	}
-
-	.uni-steps__column-container {
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		/* #endif */
-		width: 30px;
-		flex-direction: column;
-	}
-
-	.uni-steps__row-line-item {
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		/* #endif */
-		flex-direction: row;
-		flex: 1;
-		height: 14px;
-		line-height: 14px;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.uni-steps__column-line-item {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		flex: 1;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.uni-steps__row-line {
-		flex: 1;
+	.uni-steps-items.uni-steps-column .uni-steps-item:after {
+		content: ' ';
+		position: absolute;
 		height: 1px;
-		background-color: #999;
+		width: 100%;
+		bottom: 9px;
+		left: 0;
+		background-color: #ebedf0;
+		transform: scaleY(.5)
 	}
 
-	.uni-steps__column-line {
+	.uni-steps-items.uni-steps-column .uni-steps-item:last-child {
+		position: relative
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item:last-child:after {
+		height: 0
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item:last-child .uni-steps-item-title-container {
+		text-align: left
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item:last-child .uni-steps-item-circle-container {
+		left: -17px;
+		right: auto
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item-title-container {
+		transform: none;
+		display: block;
+		line-height: 36upx
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item-title {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item-desc {
+		white-space: normal;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item-circle-container {
+		left: -17px;
+		top: -1px;
+		bottom: auto;
+		padding: 8px 0;
+		z-index: 1
+	}
+
+	.uni-steps-items.uni-steps-column .uni-steps-item-line {
+		height: 100%;
 		width: 1px;
-		background-color: #999;
+		left: -15px;
+		top: -1px;
+		bottom: auto
 	}
 
-	.uni-steps__row-line--after {
-		transform: translateX(1px);
+	.uni-steps-items.uni-steps-column .uni-steps-item.uni-steps-process .uni-steps-item-circle-container {
+		bottom: auto;
+		left: -21px
 	}
 
-	.uni-steps__column-line--after {
+	.uni-steps-item {
 		flex: 1;
-		transform: translate(0px, 1px);
+		position: relative;
+		padding-bottom: 18px
 	}
 
-	.uni-steps__row-line--before {
-		transform: translateX(-1px);
+	.uni-steps-item-title-container {
+		text-align: left;
+		margin-left: 3px;
+		display: inline-block;
+		transform: translateX(-50%);
+		color: #999
 	}
 
-	.uni-steps__column-line--before {
-		height: 6px;
-		transform: translate(0px, -1px);
+	.uni-steps-item-title {
+		font-size: 28upx
 	}
 
-	.uni-steps__row-circle {
+	.uni-steps-item-desc {
+		font-size: 24upx
+	}
+
+	.uni-steps-item:first-child .uni-steps-item-title-container {
+		transform: none;
+		margin-left: 0
+	}
+
+	.uni-steps-item:last-child {
+		position: absolute;
+		right: 0
+	}
+
+	.uni-steps-item:last-child .uni-steps-item-title-container {
+		transform: none;
+		text-align: right
+	}
+
+	.uni-steps-item:last-child .uni-steps-item-circle-container {
+		left: auto;
+		right: -8px
+	}
+
+	.uni-steps-item-circle-container {
+		position: absolute;
+		bottom: 8px;
+		left: -8px;
+		padding: 0 8px;
+		background-color: #fff;
+		z-index: 1
+	}
+
+	.uni-steps-item-circle {
 		width: 5px;
 		height: 5px;
-		border-radius: 100px;
 		background-color: #999;
-		margin: 0px 3px;
+		border-radius: 50%
 	}
 
-	.uni-steps__column-circle {
-		width: 5px;
-		height: 5px;
-		border-radius: 100px;
-		background-color: #999;
-		margin: 4px 0px 5px 0px;
+	.uni-steps-item-line {
+		background-color: #ebedf0;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		width: 100%;
+		height: 1px
 	}
 
-	.uni-steps__row-check {
-		margin: 0px 6px;
+	.uni-steps-item.uni-steps-finish .uni-steps-item-title-container {
+		color: #333
 	}
 
-	.uni-steps__column-check {
+	.uni-steps-item.uni-steps-process .uni-steps-item-circle-container {
+		bottom: 3px;
 		height: 14px;
 		line-height: 14px;
-		margin: 2px 0px;
+		display: flex
 	}
 </style>

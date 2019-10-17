@@ -1,24 +1,25 @@
 <template>
 	<view class="uni-swiper__warp">
 		<slot />
-		<view v-if="mode === 'default'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='default'>
+		<view v-if="mode === 'default'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :style="{
         'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.width/3 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border-radius':'0px'}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-bar" />
 		</view>
-		<view v-if="mode === 'dot'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='dot'>
+		<view v-if="mode === 'dot'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :style="{
         'width': dots.width + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item" />
 		</view>
-		<view v-if="mode === 'round'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='round'>
+		<view v-if="mode === 'round'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :class="[index === current&&'uni-swiper__dots-long']" :style="{
 		    'width':(index === current? dots.width*3:dots.width ) + 'px','height':dots.height +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item " />
 		</view>
-		<view v-if="mode === 'nav'" key='nav' :style="{'background-color':dotsStyles.backgroundColor,'bottom':'0'}" class="uni-swiper__dots-box uni-swiper__dots-nav">
-			<text :style="{'color':dotsStyles.color}" class="uni-swiper__dots-nav-item">{{ (current+1)+"/"+info.length +' ' +info[current][field] }}</text>
+		<view v-if="mode === 'nav'" :style="{'background-color':dotsStyles.backgroundColor}" class="uni-swiper__dots-box uni-swiper__dots-nav">
+			<view :style="{'color':dotsStyles.color}" class="uni-swiper__dots-nav-item">{{ (current+1)+"/"+info.length }}
+				{{ info[current][field] }}</view>
 		</view>
-		<view v-if="mode === 'indexes'" key='indexes' :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
+		<view v-if="mode === 'indexes'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box">
 			<view v-for="(item,index) in info" :style="{
-        'width':dots.width + 'px','height':dots.height +'px' ,'color':index === current?dots.selectedColor:dots.color,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-indexes"><text class="uni-swiper__dots-indexes-text">{{ index+1 }}</text></view>
+        'width':dots.width + 'px','height':dots.height +'px' ,'color':index === current?dots.selectedColor:dots.color,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border':index !==current ? dots.border:dots.selectedBorder}" :key="index" class="uni-swiper__dots-item uni-swiper__dots-indexes">{{ index+1 }}</view>
 		</view>
 	</view>
 </template>
@@ -93,38 +94,31 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.uni-swiper__warp {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: column;
 		position: relative;
+		width: 100%;
+		box-sizing: border-box;
 		overflow: hidden;
 	}
 
 	.uni-swiper__dots-box {
 		position: absolute;
 		bottom: 20rpx;
-		left: 0;
-		right: 0;
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: row;
 		justify-content: center;
 		align-items: center;
+		box-sizing: box-sizing;
+		width: 100%;
 	}
 
 	.uni-swiper__dots-item {
+		flex-shrink: 0;
 		width: 16rpx;
-		border-radius: 100px;
+		border-radius: 50%;
 		margin-left: 12rpx;
-		background-color: rgba(0, 0, 0, .3);
-		/* transition: width 0.2s linear;  不要取消注释，不然会不能变色
- */
+		background: rgba(0, 0, 0, .3);
+		transition: all 0.2s linear;
 	}
 
 	.uni-swiper__dots-item:first-child {
@@ -132,7 +126,7 @@
 	}
 
 	.uni-swiper__dots-default {
-		border-radius: 100px;
+		border-radius: 50%;
 	}
 
 	.uni-swiper__dots-long {
@@ -144,38 +138,28 @@
 	}
 
 	.uni-swiper__dots-nav {
-		bottom: 0px;
+		bottom: 0;
 		height: 80rpx;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: row;
 		justify-content: flex-start;
-		align-items: center;
-		background-color: rgba(0, 0, 0, 0.2);
+		background: rgba(0, 0, 0, 0.2);
+		box-sizing: box-sizing;
+		overflow: hidden;
 	}
 
 	.uni-swiper__dots-nav-item {
-		/* overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; */
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		font-size: 28rpx;
 		color: #fff;
+		box-sizing: box-sizing;
 		margin: 0 30rpx;
 	}
 
 	.uni-swiper__dots-indexes {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		/* flex: 1;
- */
 		justify-content: center;
 		align-items: center;
-	}
-
-	.uni-swiper__dots-indexes-text {
 		color: #fff;
 		font-size: 24rpx;
 	}

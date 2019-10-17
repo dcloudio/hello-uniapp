@@ -1,21 +1,18 @@
 <template>
-	<view :class="[circle === true || circle === 'true' ? 'uni-fav--circle' : '']" :style="[{ backgroundColor: checked ? bgColorChecked : bgColor }]" @click="onClick" class="uni-fav">
-		<!-- #ifdef MP-ALIPAY -->
-		<view class="uni-fav-star" v-if="!checked && (star === true || star === 'true')">
-			<uni-icons :color="fgColor" :style="{color: checked ? fgColorChecked : fgColor}" size="14" type="star-filled" />
-		</view>
-		<!-- #endif -->
-		<!-- #ifndef MP-ALIPAY -->
-		<uni-icons :color="fgColor" :style="{color: checked ? fgColorChecked : fgColor}" class="uni-fav-star" size="14" type="star-filled" v-if="!checked && (star === true || star === 'true')" />
-		<!-- #endif -->
-		<text :style="{color: checked ? fgColorChecked : fgColor}" class="uni-fav-text">{{ checked ? contentText.contentFav : contentText.contentDefault }}</text>
+	<view :style="{backgroundColor:checked?bgColorChecked:bgColor,color:checked?fgColorChecked:fgColor}" :class="[
+      circle === true || circle === 'true' ? 'uni-fav--circle' : '',
+    ]" class="uni-fav" @click="onClick">
+		<uni-icons v-if="!checked&&(star===true||star==='true')" :color="fgColor" class="uni-fav-star" type="star-filled" size="16" />
+		<text class="uni-fav-text">
+			{{ checked ? contentText.contentFav : contentText.contentDefault }}
+		</text>
 	</view>
 </template>
 
 <script>
-	import uniIcons from "@/components/uni-icons/uni-icons.vue";
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
-		name: "UniFav",
+		name: 'UniFav',
 		components: {
 			uniIcons
 		},
@@ -26,19 +23,19 @@
 			},
 			bgColor: {
 				type: String,
-				default: "#eeeeee"
+				default: '#eeeeee'
 			},
 			fgColor: {
 				type: String,
-				default: "#666666"
+				default: '#666666'
 			},
 			bgColorChecked: {
 				type: String,
-				default: "#007aff"
+				default: '#007aff'
 			},
 			fgColorChecked: {
 				type: String,
-				default: "#FFFFFF"
+				default: '#FFFFFF'
 			},
 			circle: {
 				type: [Boolean, String],
@@ -52,9 +49,9 @@
 				type: Object,
 				default () {
 					return {
-						contentDefault: "收藏",
-						contentFav: "已收藏"
-					};
+						contentDefault: '收藏',
+						contentFav: '已收藏'
+					}
 				}
 			}
 		},
@@ -62,59 +59,52 @@
 			checked() {
 				if (uni.report) {
 					if (this.checked) {
-						uni.report("收藏", "收藏");
+						uni.report("收藏", "收藏")
 					} else {
-						uni.report("取消收藏", "取消收藏");
+						uni.report("取消收藏", "取消收藏")
 					}
 				}
 			}
 		},
 		methods: {
 			onClick() {
-				this.$emit("click");
+				this.$emit('click')
 			}
 		}
-	};
+	}
 </script>
 
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-fav {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
+		display: inline-flex;
 		width: 120rpx;
 		height: 50rpx;
 		line-height: 50rpx;
 		text-align: center;
+		font-size: 28rpx;
+		box-sizing: border-box;
 		border-radius: 6rpx;
+		align-items: center;
+		justify-content: center
 	}
 
 	.uni-fav--circle {
-		border-radius: 60rpx;
+		border-radius: 60rpx
 	}
 
 	.uni-fav-star {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
 		height: 50rpx;
-		line-height: 48rpx;
+		line-height: 50rpx;
 		margin-right: 5rpx;
-		align-items: center;
-		justify-content: center;
+		vertical-align: middle
 	}
 
 	.uni-fav-text {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		display: inline-block;
 		height: 50rpx;
 		line-height: 50rpx;
-		align-items: center;
-		justify-content: center;
-		font-size: 28rpx;
+		vertical-align: middle
 	}
 </style>

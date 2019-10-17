@@ -1,7 +1,7 @@
 <template>
-	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer }" class="uni-drawer">
-		<view class="uni-drawer__mask" :class="{ 'uni-drawer__mask--visible': showDrawer && mask }" @tap="close" />
-		<view class="uni-drawer__content" :class="{'uni-drawer--right': rightMode,'uni-drawer--left': !rightMode, 'uni-drawer__content--visible': showDrawer}">
+	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer, 'uni-drawer--right': rightMode }" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
+		<view class="uni-drawer__mask" @tap="close" />
+		<view class="uni-drawer__content">
 			<slot />
 		</view>
 	</view>
@@ -38,15 +38,25 @@
 				visibleSync: false,
 				showDrawer: false,
 				rightMode: false,
+				closeTimer: null,
 				watchTimer: null
 			}
 		},
 		watch: {
 			visible(val) {
+				clearTimeout(this.watchTimer)
+				setTimeout(() => {
+					this.showDrawer = val
+				}, 100)
+				if (this.visibleSync) {
+					clearTimeout(this.closeTimer)
+				}
 				if (val) {
-					this.open()
+					this.visibleSync = val
 				} else {
-					this.close()
+					this.watchTimer = setTimeout(() => {
+						this.visibleSync = val
+					}, 300)
 				}
 			}
 		},
@@ -59,87 +69,73 @@
 		},
 		methods: {
 			close() {
-				this._change('showDrawer', 'visibleSync', false)
+				this.showDrawer = false
+				this.closeTimer = setTimeout(() => {
+					this.visibleSync = false
+					this.$emit('close')
+				}, 200)
 			},
-			open() {
-				this._change('visibleSync', 'showDrawer', true)
-			},
-			_change(param1, param2, status) {
-				this[param1] = status
-				if (this.watchTimer) {
-					clearTimeout(this.watchTimer)
-				}
-				this.watchTimer = setTimeout(() => {
-					this[param2] = status
-					this.$emit(status ? 'open' : 'close')
-				}, status ? 50 : 300)
-			}
+			moveHandle() {}
 		}
 	}
 </script>
 
-<style scoped>
-	/* 抽屉宽度
- */
+<style>
+	@charset "UTF-8";
 
 	.uni-drawer {
-		/* #ifndef APP-NVUE */
 		display: block;
-		/* #endif */
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
+		visibility: hidden;
 		z-index: 999;
+		height: 100%
 	}
 
-	.uni-drawer__content {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		position: absolute;
-		top: 0;
-		width: 220px;
-		bottom: 0;
-		background-color: #ffffff;
-		transition: transform 0.3s ease;
-	}
-
-	.uni-drawer--left {
-		left: 0;
-		transform: translateX(-220px);
-	}
-
-	.uni-drawer--right {
+	.uni-drawer.uni-drawer--right .uni-drawer__content {
+		left: auto;
 		right: 0;
-		transform: translateX(220px);
+		transform: translatex(100%)
 	}
 
-	.uni-drawer__content--visible {
-		transform: translateX(0px);
+	.uni-drawer.uni-drawer--visible {
+		visibility: visible
 	}
 
+	.uni-drawer.uni-drawer--visible .uni-drawer__content {
+		transform: translatex(0)
+	}
+
+	.uni-drawer.uni-drawer--visible .uni-drawer__mask {
+		display: block;
+		opacity: 1
+	}
 
 	.uni-drawer__mask {
-		/* #ifndef APP-NVUE */
 		display: block;
-		/* #endif */
 		opacity: 0;
 		position: absolute;
 		top: 0;
 		left: 0;
-		bottom: 0;
-		right: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		transition: opacity 0.3s;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, .4);
+		transition: opacity .3s
 	}
 
-	.uni-drawer__mask--visible {
-		/* #ifndef APP-NVUE */
+	.uni-drawer__content {
 		display: block;
-		/* #endif */
-		opacity: 1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 61.8%;
+		height: 100%;
+		background: #fff;
+		transition: all .3s ease-out;
+		transform: translatex(-100%)
 	}
 </style>

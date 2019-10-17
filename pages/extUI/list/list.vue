@@ -1,15 +1,20 @@
 <template>
 	<view>
-		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
-		<uni-section title="基础用法" type="line"></uni-section>
+		<view class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</view>
+		<view class="example-title">基础列表</view>
 		<uni-list>
 			<uni-list-item :show-arrow="false" title="列表文字" />
 			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
 			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
 		</uni-list>
-		<uni-section title="菜单列表" type="line"></uni-section>
+		<view class="example-title">菜单列表</view>
 		<uni-list>
 			<uni-list-item title="列表右侧带箭头" />
+			<uni-list-item title="列表右侧自定义内容">
+				<template v-slot:right>
+					<text style="color: #999999;">提示</text>
+				</template>
+			</uni-list-item>
 			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
 			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
 			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
@@ -21,12 +26,10 @@
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniSection,
 			uniList,
 			uniListItem
 		},
@@ -56,97 +59,64 @@
 </script>
 
 <style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
-	}
-
-	/* #endif */
-
-	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
+		background-color: #efeff4
 	}
 
 	view {
-		font-size: 28rpx;
-		line-height: inherit;
+		font-size: 28upx;
+		line-height: inherit
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 30upx 30upx
 	}
 
-	.example-info {
-		padding: 30rpx;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14rpx;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 30rpx;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 30rpx;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 30rpx;
-	}
-
-	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
-	}
-
-
-	.example-body {
-		flex-direction: column;
-		padding: 30rpx;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
+	.example-title {
 		display: flex;
-		/* #endif */
-		flex-direction: row;
+		justify-content: space-between;
 		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
+		font-size: 32upx;
+		color: #464e52;
+		padding: 30upx 30upx 30upx 50upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
-	.word-btn--hover {
-		background-color: #4ca2ff;
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 30upx;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
+	}
+
+	.example .example-title {
+		margin: 40upx 0
+	}
+
+	.example-body {
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 </style>

@@ -37,16 +37,40 @@
 		}
 	}
 </script>
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-collapse {
-		/* #ifndef APP-NVUE */
+		background-color: #fff;
+		position: relative;
 		width: 100%;
 		display: flex;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		flex: 1;
-		/* #endif */
-		flex-direction: column;
-		background-color: #ffffff;
+		flex-direction: column
+	}
+
+	.uni-collapse:after {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
+	}
+
+	.uni-collapse:before {
+		position: absolute;
+		z-index: 10;
+		right: 0;
+		top: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
 	}
 </style>

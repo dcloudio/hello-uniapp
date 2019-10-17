@@ -1,19 +1,18 @@
 <template>
-	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }" class="uni-collapse-cell">
-		<view class="uni-collapse-cell__title" @click="onClick">
-			<image v-if="thumb" :src="thumb" class="uni-collapse-cell__title-img" />
-			<text class="uni-collapse-cell__title-text">{{ title }}</text>
-			<!-- #ifdef MP-ALIPAY -->
-			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
+	<view :class="['uni-collapse-cell', { 'uni-collapse-cell--disabled': disabled, 'uni-collapse-cell--open': isOpen }]" :hover-class="disabled ? '' : 'uni-collapse-cell--hover'">
+		<view class="uni-collapse-cell__title header" @click="onClick">
+			<view v-if="thumb" class="uni-collapse-cell__title-extra">
+				<image :src="thumb" class="uni-collapse-cell__title-img" />
+			</view>
+			<view class="uni-collapse-cell__title-inner">
+				<view class="uni-collapse-cell__title-text">{{ title }}</view>
+			</view>
+			<view :class="{ 'uni-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
 				<uni-icons color="#bbb" size="20" type="arrowdown" />
 			</view>
-			<!-- #endif -->
-			<!-- #ifndef MP-ALIPAY -->
-			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
-			<!-- #endif -->
 		</view>
-		<view :class="{'uni-collapse-cell__content--hide':!isOpen}" class="uni-collapse-cell__content">
-			<view :class="{ 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__wrapper" :style="{'transform':isOpen?'translateY(0)':'translateY(-50%)','-webkit-transform':isOpen?'translateY(0)':'translateY(-50%)'}">
+		<view :style="{ height: isOpen ? 'auto' : '0px' }" class="uni-collapse-cell__content">
+			<view :class="{ 'uni-collapse-cell--animation': showAnimation === true }" :style="{ transform: isOpen ? 'translateY(0px)' : 'translateY(-50%)','-webkit-transform' : isOpen ? 'translateY(0px)' : 'translateY(-50%)' }">
 				<slot />
 			</view>
 		</view>
@@ -21,7 +20,7 @@
 </template>
 
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniCollapseItem',
 		components: {
@@ -40,7 +39,7 @@
 			},
 			disabled: {
 				// 是否禁用
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			showAnimation: {
@@ -50,7 +49,7 @@
 			},
 			open: {
 				// 是否展开
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			thumb: {
@@ -85,7 +84,6 @@
 		},
 		methods: {
 			onClick() {
-				console.log(this.disabled);
 				if (this.disabled) {
 					return
 				}
@@ -105,103 +103,101 @@
 	}
 </script>
 
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-collapse-cell {
-		flex-direction: column;
-		border-color: #e5e5e5;
-		border-bottom-width: 1px;
-		border-bottom-style: solid;
+		position: relative
 	}
 
-
 	.uni-collapse-cell--hover {
-		background-color: #f5f5f5;
+		background-color: #f5f5f5
 	}
 
 	.uni-collapse-cell--open {
-		background-color: #f5f5f5;
+		background-color: #f5f5f5
 	}
 
 	.uni-collapse-cell--disabled {
-		opacity: 0.3;
-	}
-
-
-	.uni-collapse-cell--hide {
-		height: 48px;
+		opacity: .3
 	}
 
 	.uni-collapse-cell--animation {
-		/* transition: transform 0.3s ease; */
-		transition-property: transform;
-		transition-duration: 0.3s;
-		transition-timing-function: ease;
+		transition: all .3s
+	}
+
+	.uni-collapse-cell:after {
+		position: absolute;
+		z-index: 3;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		content: '';
+		-webkit-transform: scaleY(.5);
+		transform: scaleY(.5);
+		background-color: #e5e5e5
 	}
 
 	.uni-collapse-cell__title {
-		padding: 12px 12px;
-		position: relative;
-		/* #ifndef APP-NVUE */
-		display: flex;
+		padding: 24upx 30upx;
 		width: 100%;
 		box-sizing: border-box;
-		/* #endif */
-		height: 48px;
-		line-height: 24px;
+		flex: 1;
+		position: relative;
+		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		align-items: center;
+		align-items: center
 	}
 
-	.uni-collapse-cell__title:active {
-		background-color: #f5f5f5;
+	.uni-collapse-cell__title-extra {
+		margin-right: 18upx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center
 	}
 
 	.uni-collapse-cell__title-img {
-		height: 52rpx;
-		width: 52rpx;
-		margin-right: 10px;
+		height: 52upx;
+		width: 52upx
 	}
 
 	.uni-collapse-cell__title-arrow {
 		width: 20px;
 		height: 20px;
-		transform: rotate(0deg);
-		transform-origin: center center;
-
+		transform: rotate(0);
+		transform-origin: center center
 	}
 
-	.uni-collapse-cell__title-arrow-active {
-		transform: rotate(180deg);
+	.uni-collapse-cell__title-arrow.uni-active {
+		transform: rotate(180deg)
+	}
+
+	.uni-collapse-cell__title-inner {
+		flex: 1;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column
 	}
 
 	.uni-collapse-cell__title-text {
-		flex: 1;
-		font-size: 32rpx;
-		/* #ifndef APP-NVUE */
+		font-size: 32upx;
+		text-overflow: ellipsis;
 		white-space: nowrap;
 		color: inherit;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		lines: 1;
-		/* #endif */
-		overflow: hidden;
-		text-overflow: ellipsis;
+		line-height: 1.5;
+		overflow: hidden
 	}
 
 	.uni-collapse-cell__content {
-		overflow: hidden;
+		position: relative;
+		width: 100%;
+		overflow: hidden
 	}
 
-	.uni-collapse-cell__wrapper {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-	}
-
-	.uni-collapse-cell__content--hide {
-		height: 0px;
-		line-height: 0px;
+	.uni-collapse-cell__content .view {
+		font-size: 28upx
 	}
 </style>

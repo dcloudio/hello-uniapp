@@ -12,10 +12,7 @@
           bottom: vertical === 'bottom' && direction === 'vertical',
           right: horizontal === 'right' && direction === 'horizontal'
         }" :style="{ 'background-color': styles.buttonColor }" class="fab-circle" @click="_onClick">
-				<view class="fab-circle-box" :class="{ active: isShow }">
-					<view class="fab-circle-v"></view>
-					<view class="fab-circle-h"></view>
-				</view>
+				<text :class="{ active: isShow }" class="uni-icon uni-icon-plusempty" />
 			</view>
 			<view :class="{
           left: horizontal === 'left',
@@ -38,12 +35,8 @@
 </template>
 
 <script>
-	import uniIcons from "@/components/uni-icons/uni-icons.vue";
 	export default {
 		name: 'UniFab',
-		components: {
-			uniIcons
-		},
 		props: {
 			pattern: {
 				type: Object,
@@ -182,9 +175,16 @@
 </script>
 
 <style scoped>
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('https://img-cdn-qiniu.dcloud.net.cn/fonts/uni.ttf') format('truetype');
+	}
+
 	.uni-icon {
 		font-family: uniicons;
-		font-size: 30px;
+		font-size: 24px;
 		font-weight: normal;
 		font-style: normal;
 		line-height: 1;
@@ -193,9 +193,9 @@
 		-webkit-font-smoothing: antialiased;
 	}
 
-	/* .uni-icon-plusempty:before {
+	.uni-icon-plusempty:before {
 		content: '\e468';
-	} */
+	}
 
 	.fab-box {
 		position: fixed;
@@ -206,13 +206,13 @@
 	}
 
 	.fab-box.top {
-		width: 60rpx;
-		height: 60rpx;
-		right: 30rpx;
-		bottom: 60rpx;
+		width: 60upx;
+		height: 60upx;
+		right: 30upx;
+		bottom: 60upx;
 		border: 1px #5989b9 solid;
 		background: #6699cc;
-		border-radius: 10rpx;
+		border-radius: 10upx;
 		color: #fff;
 		transition: all 0.3;
 		opacity: 0;
@@ -227,28 +227,28 @@
 	}
 
 	.fab-box.fab.leftBottom {
-		left: 30rpx;
-		bottom: 60rpx;
+		left: 30upx;
+		bottom: 60upx;
 	}
 
 	.fab-box.fab.leftTop {
-		left: 30rpx;
-		top: 80rpx;
+		left: 30upx;
+		top: 80upx;
 		/* #ifdef H5 */
-		top: calc(80rpx + var(--window-top));
+		top: calc(80upx + var(--window-top));
 		/* #endif */
 	}
 
 	.fab-box.fab.rightBottom {
-		right: 30rpx;
-		bottom: 60rpx;
+		right: 30upx;
+		bottom: 60upx;
 	}
 
 	.fab-box.fab.rightTop {
-		right: 30rpx;
-		top: 80rpx;
+		right: 30upx;
+		top: 80upx;
 		/* #ifdef H5 */
-		top: calc(80rpx + var(--window-top));
+		top: calc(80upx + var(--window-top));
 		/* #endif */
 	}
 
@@ -257,42 +257,13 @@
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		width: 110rpx;
-		height: 110rpx;
+		width: 110upx;
+		height: 110upx;
 		background: #3c3e49;
 		/* background: #5989b9; */
 		border-radius: 50%;
 		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
 		z-index: 11;
-	}
-
-	.fab-circle-box {
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		transition: all 0.3s;
-	}
-
-	.fab-circle-v {
-		position: absolute;
-		width: 8rpx;
-		height: 60rpx;
-		left: 50%;
-		top: 50%;
-		margin: -30rpx 0 0 -4rpx;
-		background-color: white;
-	}
-
-	.fab-circle-h {
-		position: absolute;
-		width: 60rpx;
-		height: 8rpx;
-		left: 50%;
-		top: 50%;
-		margin: -4rpx 0 0 -30rpx;
-		background-color: white;
 	}
 
 	.fab-circle.left {
@@ -313,25 +284,25 @@
 
 	.fab-circle .uni-icon-plusempty {
 		color: #ffffff;
-		font-size: 80rpx;
+		font-size: 80upx;
 		transition: all 0.3s;
 		font-weight: bold;
 	}
 
-	.fab-circle-box.active {
+	.fab-circle .uni-icon-plusempty.active {
 		transform: rotate(135deg);
-		font-size: 80rpx;
+		font-size: 80upx;
 	}
 
 	.fab-content {
 		background: #6699cc;
 		box-sizing: border-box;
 		display: flex;
-		border-radius: 100rpx;
+		border-radius: 100upx;
 		overflow: hidden;
 		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 		transition: all 0.2s;
-		width: 110rpx;
+		width: 110upx;
 	}
 
 	.fab-content.left {
@@ -362,9 +333,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 110rpx;
-		height: 110rpx;
-		font-size: 24rpx;
+		width: 110upx;
+		height: 110upx;
+		font-size: 24upx;
 		color: #fff;
 		opacity: 0;
 		transition: opacity 0.2s;
@@ -375,12 +346,12 @@
 	}
 
 	.fab-content .fab-item .content-image {
-		width: 50rpx;
-		height: 50rpx;
-		margin-bottom: 5rpx;
+		width: 50upx;
+		height: 50upx;
+		margin-bottom: 5upx;
 	}
 
 	.fab-content .fab-item.first {
-		width: 110rpx;
+		width: 110upx;
 	}
 </style>

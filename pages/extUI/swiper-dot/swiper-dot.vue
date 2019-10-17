@@ -4,20 +4,20 @@
 			<swiper class="swiper-box" @change="change">
 				<swiper-item v-for="(item, index) in info" :key="index">
 					<view :class="item.colorClass" class="swiper-item">
-						<image class="image" :src="item.url" mode="aspectFill" />
+						<image :src="item.url" mode="aspectFill" />
 					</view>
 				</swiper-item>
 			</swiper>
 		</uni-swiper-dot>
-		<uni-section title="模式选择" type="line"></uni-section>
+		<view class="example-title">模式选择</view>
 		<view class="example-body">
-			<view :class="{ active: modeIndex === 0 }" class="example-body-item" @click="selectMode('default', 0)"><text class="example-body-item-text">default</text></view>
-			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('dot', 1)"><text class="example-body-item-text">dot</text></view>
-			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('round', 2)"><text class="example-body-item-text">round</text></view>
-			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('nav', 3)"><text class="example-body-item-text">nav</text></view>
-			<view :class="{ active: modeIndex === 4 }" class="example-body-item" @click="selectMode('indexes', 4)"><text class="example-body-item-text">indexes</text></view>
+			<view :class="{ active: modeIndex === 0 }" class="example-body-item" @click="selectMode('default', 0)">default</view>
+			<view :class="{ active: modeIndex === 1 }" class="example-body-item" @click="selectMode('dot', 1)">dot</view>
+			<view :class="{ active: modeIndex === 2 }" class="example-body-item" @click="selectMode('round', 2)">round</view>
+			<view :class="{ active: modeIndex === 3 }" class="example-body-item" @click="selectMode('nav', 3)">nav</view>
+			<view :class="{ active: modeIndex === 4 }" class="example-body-item" @click="selectMode('indexes', 4)">indexes</view>
 		</view>
-		<uni-section title="颜色样式选择" type="line"></uni-section>
+		<view class="example-title">颜色样式选择</view>
 		<view class="example-body">
 			<template v-if="mode !== 'nav'">
 				<view v-for="(item, index) in dotStyle" :class="{ active: styleIndex === index }" :key="index" class="example-body-item" @click="selectStyle(index)">
@@ -28,7 +28,7 @@
 			</template>
 			<template v-if="mode === 'nav'">
 				<view v-for="(item, index) in dotStyle" :class="{ active: styleIndex === index }" :key="index" :style="{ 'background-color': item.selectedBackgroundColor }" class="example-body-item" @click="selectStyle(index)">
-					<text class="example-body-item-text" :style="{ color: item.color }">内容</text>
+					<text :style="{ color: item.color }">内容</text>
 				</view>
 			</template>
 		</view>
@@ -36,11 +36,9 @@
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniSwiperDot from '@/components/uni-swiper-dot/uni-swiper-dot.vue'
 	export default {
 		components: {
-			uniSection,
 			uniSwiperDot
 		},
 		data() {
@@ -110,175 +108,129 @@
 </script>
 
 <style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
-	}
-
-	/* #endif */
-
-	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
+		background-color: #efeff4
 	}
 
 	view {
-		font-size: 28rpx;
-		line-height: inherit;
+		font-size: 28upx;
+		line-height: inherit
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 30upx 30upx
 	}
 
-	.example-info {
-		padding: 30rpx;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14rpx;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 30rpx;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 30rpx;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 30rpx;
-	}
-
-	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
-	}
-
-
-	.example-body {
-		flex-direction: column;
-		padding: 30rpx;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
+	.example-title {
 		display: flex;
-		/* #endif */
-		flex-direction: row;
+		justify-content: space-between;
 		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
+		font-size: 32upx;
+		color: #464e52;
+		padding: 30upx 30upx 30upx 50upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
 	}
 
-	.word-btn--hover {
-		background-color: #4ca2ff;
+	.example-title__after {
+		position: relative;
+		color: #031e3c
 	}
 
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 30upx;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
+	}
+
+	.example .example-title {
+		margin: 40upx 0
+	}
+
+	.example-body {
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
+	}
 
 	.swiper-box {
-		height: 400rpx;
+		height: 400upx;
 	}
 
 	.swiper-item {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: #eee;
+		height: 100%;
+		background: #eee;
 		color: #fff;
 	}
 
-	.image {
-		width: 750rpx;
+	.swiper-item image {
+		width: 100%;
+		height: 100%;
 	}
 
 	.uni-bg-red {
-		background-color: #ff5a5f;
+		background: #ff5a5f;
 	}
 
 	.uni-bg-green {
-		background-color: #09bb07;
+		background: #09bb07;
 	}
 
 	.uni-bg-blue {
-		background-color: #007aff;
+		background: #007aff;
 	}
 
 	.example-body {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex-direction: row;
-		padding: 20rpx;
+		padding: 20upx;
 	}
 
 	.example-body-item {
-
-		flex-direction: row;
+		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 15rpx;
-		padding: 15rpx;
-		height: 60rpx;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		padding: 0 15rpx;
-		/* #endif */
-		flex: 1;
-		border-color: #EEEEEE;
-		border-style: solid;
-		border-width: 1px;
-		border-radius: 10rpx;
-	}
-
-	.example-body-item-text {
-		font-size: 28rpx;
+		margin: 15upx;
+		height: 60upx;
+		width: 100%;
+		font-size: 28upx;
 		color: #333;
+		border: 1px #eee solid;
+		border-radius: 10upx;
 	}
 
 	.example-body-dots {
-		width: 16rpx;
-		height: 16rpx;
-		border-radius: 50px;
-		background-color: #333333;
-		margin-left: 10rpx;
+		width: 16upx;
+		height: 16upx;
+		border-radius: 50%;
+		background: #333333;
+		margin-left: 10upx;
+		box-sizing: border-box;
+	}
+
+	.example-body-dots:first-child {
+		margin: 0;
 	}
 
 	.active {
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
+		border: 1px #000 solid;
 	}
 </style>

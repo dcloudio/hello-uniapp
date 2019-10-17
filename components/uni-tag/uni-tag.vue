@@ -1,34 +1,34 @@
 <template>
-	<view :class="[
-      'uni-tag--' + type,
+	<view v-if="text" :class="[
       disabled === true || disabled === 'true' ? 'uni-tag--disabled' : '',
-      inverted === true || inverted === 'true' ? type + '-uni-tag--inverted' : '',
+      inverted === true || inverted === 'true' ? 'uni-tag--inverted' : '',
       circle === true || circle === 'true' ? 'uni-tag--circle' : '',
       mark === true || mark === 'true' ? 'uni-tag--mark' : '',
-      'uni-tag--' + size
-    ]" @click="onClick()" class="uni-tag" v-if="text">
-		<text :class="[type === 'default' ? 'uni-tag--default':'uni-tag-text',inverted === true || inverted === 'true' ? 'uni-tag-text--'+type : '',size === 'small' ? 'uni-tag-text--small':'' ]">{{ text }}</text>
+      'uni-tag--' + size,
+      'uni-tag--' + type
+    ]" class="uni-tag" @click="onClick()">
+		{{ text }}
 	</view>
 </template>
 
 <script>
 	export default {
-		name: "UniTag",
+		name: 'UniTag',
 		props: {
 			type: {
 				// 标签类型default、primary、success、warning、error、royal
 				type: String,
-				default: "default"
+				default: 'default'
 			},
 			size: {
 				// 标签大小 normal, small
 				type: String,
-				default: "normal"
+				default: 'normal'
 			},
 			// 标签内容
 			text: {
 				type: String,
-				default: ""
+				default: ''
 			},
 			disabled: {
 				// 是否为禁用状态
@@ -53,158 +53,102 @@
 		},
 		methods: {
 			onClick() {
-				if (this.disabled === true || this.disabled === "true") {
-					return;
+				if (this.disabled === true || this.disabled === 'true') {
+					return
 				}
-				this.$emit("click");
+				this.$emit('click')
 			}
 		}
-	};
+	}
 </script>
 
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-tag {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		padding: 0px 32rpx;
-		height: 60rpx;
-		line-height: 60rpx;
-		justify-content: center;
+		box-sizing: border-box;
+		padding: 0 32upx;
+		height: 60upx;
+		line-height: calc(60upx - 2px);
+		font-size: 28upx;
+		display: inline-flex;
+		align-items: center;
 		color: #333;
-		border-radius: 6rpx;
+		border-radius: 6upx;
 		background-color: #f8f8f8;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #f8f8f8;
+		border: 1px solid #f8f8f8
 	}
 
 	.uni-tag--circle {
-		border-radius: 30rpx;
+		border-radius: 30upx
 	}
 
 	.uni-tag--mark {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
+		border-radius: 0 30upx 30upx 0
 	}
 
 	.uni-tag--disabled {
-		opacity: 0.5;
+		opacity: .5
 	}
 
 	.uni-tag--small {
-		height: 40rpx;
-		padding: 0px 16rpx;
-		line-height: 40rpx;
-		font-size: 24rpx;
-	}
-
-	.uni-tag--default {
-		color: #333;
-		font-size: 28rpx;
-	}
-
-	.uni-tag-text--small {
-		font-size: 24rpx !important;
-	}
-
-	.uni-tag-text {
-		color: #fff;
-		font-size: 28rpx;
-	}
-
-	.uni-tag--default {
-		color: #333;
-		font-size: 28rpx;
-	}
-
-	.uni-tag-text--primary {
-		color: #007aff !important;
-	}
-
-	.uni-tag-text--success {
-		color: #4cd964 !important;
-	}
-
-	.uni-tag-text--warning {
-		color: #f0ad4e !important;
-	}
-
-	.uni-tag-text--error {
-		color: #dd524d !important;
+		height: 40upx;
+		padding: 0 16upx;
+		line-height: calc(40upx - 2px);
+		font-size: 24upx
 	}
 
 	.uni-tag--primary {
 		color: #fff;
 		background-color: #007aff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #007aff;
+		border: 1px solid #007aff
 	}
 
-	.primary-uni-tag--inverted {
+	.uni-tag--primary.uni-tag--inverted {
 		color: #007aff;
-		background-color: #ffffff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #007aff;
+		background-color: #fff;
+		border: 1px solid #007aff
 	}
 
 	.uni-tag--success {
 		color: #fff;
 		background-color: #4cd964;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #4cd964;
+		border: 1px solid #4cd964
 	}
 
-	.success-uni-tag--inverted {
+	.uni-tag--success.uni-tag--inverted {
 		color: #4cd964;
-		background-color: #ffffff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #4cd964;
+		background-color: #fff;
+		border: 1px solid #4cd964
 	}
 
 	.uni-tag--warning {
 		color: #fff;
 		background-color: #f0ad4e;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #f0ad4e;
+		border: 1px solid #f0ad4e
 	}
 
-	.warning-uni-tag--inverted {
+	.uni-tag--warning.uni-tag--inverted {
 		color: #f0ad4e;
-		background-color: #ffffff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #f0ad4e;
+		background-color: #fff;
+		border: 1px solid #f0ad4e
 	}
 
 	.uni-tag--error {
 		color: #fff;
 		background-color: #dd524d;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #dd524d;
+		border: 1px solid #dd524d
 	}
 
-	.error-uni-tag--inverted {
+	.uni-tag--error.uni-tag--inverted {
 		color: #dd524d;
-		background-color: #ffffff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #dd524d;
+		background-color: #fff;
+		border: 1px solid #dd524d
 	}
 
 	.uni-tag--inverted {
 		color: #333;
-		background-color: #ffffff;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #f8f8f8;
+		background-color: #fff;
+		border: 1px solid #f8f8f8
 	}
 </style>

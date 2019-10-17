@@ -1,13 +1,13 @@
 <template>
 	<view class="uni-countdown">
-		<text v-if="showDay" :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ d }}</text>
-		<text v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">天</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ h }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ i }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ s }}</text>
-		<text v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">秒</text>
+		<view v-if="showDay" :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ d }}</view>
+		<view v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">天</view>
+		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ h }}</view>
+		<view :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</view>
+		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ i }}</view>
+		<view :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</view>
+		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ s }}</view>
+		<view v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">秒</view>
 	</view>
 </template>
 <script>
@@ -120,41 +120,32 @@
 		}
 	}
 </script>
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-countdown {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		justify-content: flex-start;
-		padding: 2rpx 0;
+		padding: 2upx 0;
+		display: inline-flex;
+		flex-wrap: nowrap;
+		justify-content: center
 	}
 
 	.uni-countdown__splitor {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
 		justify-content: center;
-		line-height: 48rpx;
-		padding: 5rpx;
-		font-size: 24rpx;
+		line-height: 44upx;
+		padding: 0 5upx;
+		font-size: 28upx
 	}
 
 	.uni-countdown__number {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
+		line-height: 44upx;
 		justify-content: center;
-		align-items: center;
-		width: 52rpx;
-		height: 48rpx;
-		line-height: 48rpx;
-		border-radius: 6rpx;
-		margin: 5rpx;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #000000;
-		text-align: center;
-		font-size: 24rpx;
+		height: 44upx;
+		border-radius: 6upx;
+		margin: 0 5upx;
+		font-size: 28upx;
+		border: 1px solid #000;
+		font-size: 24upx;
+		padding: 0 10upx
 	}
 </style>

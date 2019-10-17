@@ -1,7 +1,7 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" @touchmove.stop.prevent="clear">
-		<view class="uni-popup__mask" :class="[ani+'-mask', animation ? 'mask-ani' : '']" @click="close(true)" />
-		<view class="uni-popup__wrapper" :class="[type,ani+'-content', animation ? 'content-ani' : '']" @click="close(true)">
+		<view :class="[ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__mask" @click="close(true)" />
+		<view :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__wrapper" @click="close(true)">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
 			</view>
@@ -22,6 +22,11 @@
 			type: {
 				type: String,
 				default: 'center'
+			},
+			// 是否开启自定义
+			custom: {
+				type: Boolean,
+				default: false
 			},
 			// maskClick
 			maskClick: {
@@ -48,9 +53,7 @@
 				}
 			}
 		},
-		created() {
-			// this.open()
-		},
+		created() {},
 		methods: {
 			clear() {},
 			open() {
@@ -61,7 +64,7 @@
 				this.$nextTick(() => {
 					setTimeout(() => {
 						this.ani = 'uni-' + this.type
-					}, 100)
+					}, 30)
 				})
 			},
 			close(type) {
@@ -79,14 +82,18 @@
 		}
 	}
 </script>
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.uni-popup {
 		position: fixed;
-		top: var(--window-top);
+		top: 0;
+		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		overflow: hidden;
+		z-index: 998;
+		overflow: hidden
 	}
 
 	.uni-popup__mask {
@@ -95,90 +102,86 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		opacity: 0;
+		z-index: 998;
+		background: rgba(0, 0, 0, .4);
+		opacity: 0
 	}
 
-	.mask-ani {
-		/* transition: all 0.3s;
- */
-		transition-property: opacity;
-		transition-duration: 0.2s;
+	.uni-popup__mask.ani {
+		transition: all .3s
 	}
 
-	.uni-top-mask {
-		opacity: 1;
-	}
-
-	.uni-bottom-mask {
-		opacity: 1;
-	}
-
-	.uni-center-mask {
-		opacity: 1;
+	.uni-popup__mask.uni-bottom,
+	.uni-popup__mask.uni-center,
+	.uni-popup__mask.uni-top {
+		opacity: 1
 	}
 
 	.uni-popup__wrapper {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
 		position: absolute;
+		z-index: 999;
+		box-sizing: border-box
 	}
 
-	.top {
+	.uni-popup__wrapper.ani {
+		transition: all .3s
+	}
+
+	.uni-popup__wrapper.top {
 		top: 0;
 		left: 0;
-		right: 0;
-		transform: translateY(-500px);
+		width: 100%;
+		transform: translateY(-100%)
 	}
 
-	.bottom {
+	.uni-popup__wrapper.bottom {
 		bottom: 0;
 		left: 0;
-		right: 0;
-		transform: translateY(500px);
+		width: 100%;
+		transform: translateY(100%)
 	}
 
-	.center {
-		/* #ifndef APP-NVUE */
+	.uni-popup__wrapper.center {
+		width: 100%;
+		height: 100%;
 		display: flex;
-		flex-direction: column;
-		/* #endif */
-		bottom: 0;
-		left: 0;
-		right: 0;
-		top: 0;
 		justify-content: center;
 		align-items: center;
 		transform: scale(1.2);
-		opacity: 0;
+		opacity: 0
 	}
 
 	.uni-popup__wrapper-box {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
 		position: relative;
+		box-sizing: border-box
 	}
 
-	.content-ani {
-		/* transition: transform 0.3s;
- */
-		transition-property: transform, opacity;
-		transition-duration: 0.2s;
+	.uni-popup__wrapper.uni-custom .uni-popup__wrapper-box {
+		padding: 30upx;
+		background: #fff
 	}
 
-
-	.uni-top-content {
-		transform: translateY(0);
+	.uni-popup__wrapper.uni-custom.center .uni-popup__wrapper-box {
+		position: relative;
+		max-width: 80%;
+		max-height: 80%;
+		overflow-y: scroll
 	}
 
-	.uni-bottom-content {
-		transform: translateY(0);
+	.uni-popup__wrapper.uni-custom.bottom .uni-popup__wrapper-box,
+	.uni-popup__wrapper.uni-custom.top .uni-popup__wrapper-box {
+		width: 100%;
+		max-height: 500px;
+		overflow-y: scroll
 	}
 
-	.uni-center-content {
+	.uni-popup__wrapper.uni-bottom,
+	.uni-popup__wrapper.uni-top {
+		transform: translateY(0)
+	}
+
+	.uni-popup__wrapper.uni-center {
 		transform: scale(1);
-		opacity: 1;
+		opacity: 1
 	}
 </style>

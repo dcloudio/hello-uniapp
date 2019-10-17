@@ -1,21 +1,24 @@
 <template>
-	<view class="uni-goods-nav">
+	<view>
 		<!-- 底部占位 -->
 		<view class="uni-tab__seat" />
 		<view class="uni-tab__cart-box flex">
 			<view class="flex uni-tab__cart-sub-box">
 				<view v-for="(item,index) in options" :key="index" class="flex uni-tab__cart-button-left uni-tab__shop-cart" @click="onClick(index,item)">
 					<view class="uni-tab__icon">
-						<image class="image" :src="item.icon" mode="widthFix" />
+						<image :src="item.icon" mode="widthFix" />
 					</view>
 					<text class="uni-tab__text">{{ item.text }}</text>
 					<view class="flex uni-tab__dot-box">
-						<text v-if="item.info" :class="{ 'uni-tab__dots': item.info > 9 }" class="uni-tab__dot ">{{ item.info }}</text>
+						<view v-if="item.info" :class="{ 'uni-tab__dots': item.info > 9 }" class="uni-tab__dot ">
+							{{ item.info }}
+						</view>
 					</view>
 				</view>
 			</view>
 			<view :class="{'uni-tab__right':fill}" class="flex uni-tab__cart-sub-box ">
-				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}" class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)"><text class="uni-tab__cart-button-right-text">{{ item.text }}</text></view>
+				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}" class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)">{{ item.text }}</view>
+
 				<!-- <view class="flex uni-tab__cart-button-right uni-tab__color-y ">立即购买</view> -->
 			</view>
 		</view>
@@ -79,31 +82,21 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.flex {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex-direction: row;
-	}
-
-	.uni-goods-nav {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
-		flex-direction: row;
 	}
 
 	.uni-tab__cart-box {
-		flex: 1;
+		width: 100%;
 		height: 100rpx;
-		background-color: #fff;
+		background: #fff;
 		z-index: 900;
 	}
 
 	.uni-tab__cart-sub-box {
-		flex: 1;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.uni-tab__right {
@@ -114,14 +107,12 @@
 	}
 
 	.uni-tab__cart-button-left {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex: 1;
 		position: relative;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		width: 100%;
+		font-size: 24rpx;
 	}
 
 	.uni-tab__icon {
@@ -129,28 +120,21 @@
 		height: 40rpx;
 	}
 
-	.image {
-		width: 20px;
-		height: 20px;
+	.uni-tab__icon image {
+		width: 100%;
+		height: 100%;
 	}
 
-	.uni-tab__text {
+	.uni-tab__cart-button-left .uni-tab__text {
 		margin-top: 5rpx;
 		font-size: 24rpx;
 		color: #666;
 	}
 
 	.uni-tab__cart-button-right {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		flex-direction: column;
-		/* #endif */
-		flex: 1;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.uni-tab__cart-button-right-text {
+		width: 100%;
 		font-size: 24rpx;
 		color: #fff;
 	}
@@ -159,48 +143,39 @@
 		opacity: 0.7;
 	}
 
-	.uni-tab__dot-box {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		flex-direction: column;
-		/* #endif */
+	.uni-tab__cart-button-left .uni-tab__dot-box {
 		position: absolute;
-		right: 25rpx;
-		top: 5rpx;
+		right: 40rpx;
+		top: 20rpx;
 		justify-content: center;
 		align-items: center;
-		/* width: 0;
- */
-		/* height: 0;
- */
+		width: 0;
+		height: 0;
 	}
 
-	.uni-tab__dot {
-		/* width: 30rpx;
- */
-		/* height: 30rpx;
- */
-		padding: 0 8rpx;
+	.uni-tab__dot-box .uni-tab__dot {
+		flex-shrink: 0;
+		width: 30rpx;
+		height: 30rpx;
 		line-height: 30rpx;
 		color: #ffffff;
 		text-align: center;
 		font-size: 12px;
-		background-color: #ff0000;
-		border-radius: 30rpx;
+		background: #ff0000;
+		border-radius: 50%;
 	}
 
-	.uni-tab__dots {
+	.uni-tab__dot-box .uni-tab__dot.uni-tab__dots {
 		padding: 0 8rpx;
-		/* width: auto;
- */
+		width: auto;
 		border-radius: 30rpx;
 	}
 
 	.uni-tab__color-y {
-		background-color: #ffa200;
+		background: #ffa200;
 	}
 
 	.uni-tab__color-r {
-		background-color: #ff0000;
+		background: #ff0000;
 	}
 </style>

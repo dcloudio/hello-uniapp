@@ -1,16 +1,17 @@
 <template>
-	<view :class="[styleType === 'text'?'segmented-control--text' : 'segmented-control--button' ]" :style="{ borderColor: styleType === 'text' ? '' : activeColor }" class="segmented-control">
-		<view v-for="(item, index) in values" :class="[ styleType === 'text'?'segmented-control__item--text': 'segmented-control__item--button' , index === currentIndex&&styleType === 'button'?'segmented-control__item--button--active': '' , index === 0&&styleType === 'button'?'segmented-control__item--button--first': '',index === values.length - 1&&styleType === 'button'?'segmented-control__item--button--last': '' ]" :key="index" :style="{
-        backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : '',borderColor: index === currentIndex&&styleType === 'text'||styleType === 'button'?activeColor:'transparent'
-      }" class="segmented-control__item" @click="_onClick(index)">
-			<text :style="{color:
+	<view :class="{ text: styleType === 'text' }" :style="{ borderColor: styleType === 'text' ? '' : activeColor }" class="segmented-control">
+		<view v-for="(item, index) in values" :class="[{ text: styleType === 'text' }, { active: index === currentIndex }]" :key="index" :style="{
+        color:
           index === currentIndex
             ? styleType === 'text'
               ? activeColor
               : '#fff'
             : styleType === 'text'
               ? '#000'
-              : activeColor}" class="segmented-control__text">{{ item }}</text>
+              : activeColor,
+        backgroundColor: index === currentIndex && styleType === 'button' ? activeColor : ''
+      }" class="segmented-control-item" @click="_onClick(index)">
+			{{ item }}
 		</view>
 	</view>
 </template>
@@ -64,55 +65,49 @@
 	}
 </script>
 
-<style scoped>
+<style>
+	@charset "UTF-8";
+
 	.segmented-control {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		box-sizing: border-box;
-		/* #endif */
 		flex-direction: row;
-		height: 36px;
-		overflow: hidden;
-	}
-
-	.segmented-control__item {
-		/* #ifndef APP-NVUE */
-		display: inline-flex;
-		box-sizing: border-box;
-		/* #endif */
-		position: relative;
-		flex: 1;
 		justify-content: center;
-		align-items: center;
+		width: 75%;
+		font-size: 28upx;
+		box-sizing: border-box;
+		margin: 0 auto;
+		overflow: hidden;
+		border: 1px solid;
+		border-radius: 10upx
 	}
 
-	.segmented-control__item--button {
-		border-style: solid;
-		border-top-width: 1px;
-		border-bottom-width: 1px;
-		border-right-width: 1px;
-		border-left-width: 0;
+	.segmented-control.text {
+		border: 0;
+		border-radius: 0
 	}
 
-	.segmented-control__item--button--first {
-		border-left-width: 1px;
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
-	}
-
-	.segmented-control__item--button--last {
-		border-top-right-radius: 5px;
-		border-bottom-right-radius: 5px;
-	}
-
-	.segmented-control__item--text {
-		border-bottom-style: solid;
-		border-bottom-width: 3px;
-	}
-
-	.segmented-control__text {
-		font-size: 16px;
-		line-height: 20px;
+	.segmented-control-item {
+		flex: 1;
 		text-align: center;
+		line-height: 60upx;
+		box-sizing: border-box;
+		border-left: 1px solid
+	}
+
+	.segmented-control-item.active {
+		color: #fff
+	}
+
+	.segmented-control-item.text {
+		border-left: 0;
+		color: #000
+	}
+
+	.segmented-control-item.text.active {
+		border-bottom-style: solid
+	}
+
+	.segmented-control-item:first-child {
+		border-left-width: 0
 	}
 </style>
