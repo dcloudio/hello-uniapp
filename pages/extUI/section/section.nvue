@@ -1,0 +1,210 @@
+<template>
+	<view class="uni-wrap">
+		<scroll-view class="scroll" scroll-y>
+			<view class="example-info">
+				<text class="example-info-text"> uni-section 组件主要用于文章、列表详情的等标题展示 </text>
+			</view>
+			<uni-section class="uni-section" title="基础用法" sub-title="副标题"></uni-section>
+			<view class="example-body">
+				<uni-list>
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+				</uni-list>
+			</view>
+			<uni-section title="竖线装饰" sub-title="副标题" type="line"></uni-section>
+			<view class="example-body">
+				<uni-list>
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+				</uni-list>
+			</view>
+			<uni-section title="圆形装饰" sub-title="副标题" type="circle"></uni-section>
+			<view class="example-body">
+				<uni-list>
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+					<uni-list-item title="item" />
+				</uni-list>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+
+<script>
+	let observer = null;
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	import uniList from '@/components/uni-list/uni-list.vue'
+	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+	export default {
+		components: {
+			uniSection,
+			uniList,
+			uniListItem
+		},
+		data() {
+			return {
+				appear: false,
+			}
+		},
+		onReady() {
+			// const systeminfo = uni.getSystemInfoSync()
+			// observer = uni.createIntersectionObserver(this);
+			// observer.relativeTo('.scroll', {
+			//   top: -systeminfo.windowTop
+			// }).observe('.uni-section', (res) => {
+			//   console.log(res);
+			//   if (res.intersectionRatio > 0 && !this.appear) {
+			//     uni.setNavigationBarTitle({
+			//       title: 'Title 标题栏'
+			//     })
+			//   } else {
+			//     uni.setNavigationBarTitle({
+			//       title: '修改后的标题'
+			//     })
+			//   }
+			// })
+		},
+		onUnload() {
+			// if (observer) {
+			//   observer.disconnect()
+			// }
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.uni-wrap {
+		flex-direction: column;
+		/* #ifdef H5 */
+		height: calc(100vh - 44px);
+		/* #endif */
+		/* #ifndef H5 */
+		height: 100vh;
+		/* #endif */
+		flex: 1;
+	}
+
+	.scroll {
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.example-body {
+		padding: 0;
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+	}
+</style>

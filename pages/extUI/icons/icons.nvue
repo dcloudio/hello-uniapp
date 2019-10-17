@@ -1,0 +1,520 @@
+<template>
+	<view class="page">
+		<view class="example-info">
+			<text class="example-info-text">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸</text>
+		</view>
+		<uni-section title="基础图标" type="line">
+			<view class="uni-right">
+				<text class="uni-right-text">显示{{ checked?' unicode':'图标名' }}</text>
+				<switch :checked="checked" class="switch" @change="change" />
+			</view>
+		</uni-section>
+		<view class="example-body">
+			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
+				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="40" />
+				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.unicode: item.name }}</text>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	export default {
+		components: {
+			uniIcons,
+			uniSection
+		},
+		data() {
+			return {
+				iconClassList: [{
+						name: 'contact',
+						unicode: 'e100'
+					}, {
+						name: 'person',
+						unicode: 'e101'
+					}, {
+						name: 'personadd',
+						unicode: 'e102'
+					}, {
+						name: 'contact-filled',
+						unicode: 'e130'
+					}, {
+						name: 'person-filled',
+						unicode: 'e131'
+					}, {
+						name: 'personadd-filled',
+						unicode: 'e132'
+					}, {
+						name: 'phone',
+						unicode: 'e200'
+					}, {
+						name: 'email',
+						unicode: 'e201'
+					}, {
+						name: 'chatbubble',
+						unicode: 'e202'
+					}, {
+						name: 'chatboxes',
+						unicode: 'e203'
+					}, {
+						name: 'phone-filled',
+						unicode: 'e230'
+					}, {
+						name: 'email-filled',
+						unicode: 'e231'
+					}, {
+						name: 'chatbubble-filled',
+						unicode: 'e232'
+					}, {
+						name: 'chatboxes-filled',
+						unicode: 'e233'
+					}, {
+						name: 'weibo',
+						unicode: 'e260'
+					}, {
+						name: 'weixin',
+						unicode: 'e261'
+					}, {
+						name: 'pengyouquan',
+						unicode: 'e262'
+					}, {
+						name: 'chat',
+						unicode: 'e263'
+					}, {
+						name: 'qq',
+						unicode: 'e264'
+					}, {
+						name: 'videocam',
+						unicode: 'e300'
+					},
+					{
+						name: 'camera',
+						unicode: 'e301'
+					},
+					{
+						name: 'mic',
+						unicode: 'e302'
+					},
+					{
+						name: 'location',
+						unicode: 'e303'
+					},
+					{
+						name: 'mic-filled',
+						unicode: 'e332'
+					},
+					{
+						name: 'location-filled',
+						unicode: 'e333'
+					},
+					{
+						name: 'micoff',
+						unicode: 'e360'
+					},
+					{
+						name: 'image',
+						unicode: 'e363'
+					},
+					{
+						name: 'map',
+						unicode: 'e364'
+					},
+					{
+						name: 'compose',
+						unicode: 'e400'
+					},
+					{
+						name: 'trash',
+						unicode: 'e401'
+					},
+					{
+						name: 'upload',
+						unicode: 'e402'
+					},
+					{
+						name: 'download',
+						unicode: 'e403'
+					},
+					{
+						name: 'close',
+						unicode: 'e404'
+					},
+					{
+						name: 'redo',
+						unicode: 'e405'
+					},
+					{
+						name: 'undo',
+						unicode: 'e406'
+					},
+					{
+						name: 'refresh',
+						unicode: 'e407'
+					},
+					{
+						name: 'star',
+						unicode: 'e408'
+					},
+					{
+						name: 'plus',
+						unicode: 'e409'
+					},
+					{
+						name: 'minus',
+						unicode: 'e410'
+					},
+					{
+						name: 'circle',
+						unicode: 'e411'
+					},
+					{
+						name: 'clear',
+						unicode: 'e434'
+					},
+					{
+						name: 'refresh-filled',
+						unicode: 'e437'
+					},
+					{
+						name: 'star-filled',
+						unicode: 'e438'
+					},
+					{
+						name: 'plus-filled',
+						unicode: 'e439'
+					},
+					{
+						name: 'minus-filled',
+						unicode: 'e440'
+					},
+					{
+						name: 'circle-filled',
+						unicode: 'e441'
+					},
+					{
+						name: 'checkbox-filled',
+						unicode: 'e442'
+					},
+					{
+						name: 'closeempty',
+						unicode: 'e460'
+					},
+					{
+						name: 'refreshempty',
+						unicode: 'e461'
+					},
+					{
+						name: 'reload',
+						unicode: 'e462'
+					},
+					{
+						name: 'starhalf',
+						unicode: 'e463'
+					},
+					{
+						name: 'spinner',
+						unicode: 'e464'
+					},
+					{
+						name: 'spinner-cycle',
+						unicode: 'e465'
+					},
+					{
+						name: 'search',
+						unicode: 'e466'
+					},
+					{
+						name: 'plusempty',
+						unicode: 'e468'
+					},
+					{
+						name: 'forward',
+						unicode: 'e470'
+					},
+					{
+						name: 'back',
+						unicode: 'e471'
+					},
+					{
+						name: 'checkmarkempty',
+						unicode: 'e472'
+					},
+					{
+						name: 'home',
+						unicode: 'e500'
+					},
+					{
+						name: 'navigate',
+						unicode: 'e501'
+					},
+					{
+						name: 'gear',
+						unicode: 'e502'
+					},
+					{
+						name: 'paperplane',
+						unicode: 'e503'
+					},
+					{
+						name: 'info',
+						unicode: 'e504'
+					},
+					{
+						name: 'help',
+						unicode: 'e505'
+					},
+					{
+						name: 'locked',
+						unicode: 'e506'
+					},
+					{
+						name: 'more',
+						unicode: 'e507'
+					},
+					{
+						name: 'flag',
+						unicode: 'e508'
+					},
+					{
+						name: 'home-filled',
+						unicode: 'e530'
+					},
+					{
+						name: 'gear-filled',
+						unicode: 'e532'
+					},
+					{
+						name: 'info-filled',
+						unicode: 'e534'
+					},
+					{
+						name: 'help-filled',
+						unicode: 'e535'
+					},
+					{
+						name: 'more-filled',
+						unicode: 'e537'
+					},
+					{
+						name: 'settings',
+						unicode: 'e560'
+					},
+					{
+						name: 'list',
+						unicode: 'e562'
+					},
+					{
+						name: 'bars',
+						unicode: 'e563'
+					},
+					{
+						name: 'loop',
+						unicode: 'e565'
+					},
+					{
+						name: 'paperclip',
+						unicode: 'e567'
+					},
+					{
+						name: 'eye',
+						unicode: 'e568'
+					},
+					{
+						name: 'arrowup',
+						unicode: 'e580'
+					},
+					{
+						name: 'arrowdown',
+						unicode: 'e581'
+					},
+					{
+						name: 'arrowleft',
+						unicode: 'e582'
+					},
+					{
+						name: 'arrowright',
+						unicode: 'e583'
+					},
+					{
+						name: 'arrowthinup',
+						unicode: 'e584'
+					},
+					{
+						name: 'arrowthindown',
+						unicode: 'e585'
+					},
+					{
+						name: 'arrowthinleft',
+						unicode: 'e586'
+					},
+					{
+						name: 'arrowthinright',
+						unicode: 'e587'
+					},
+					{
+						name: 'pulldown',
+						unicode: 'e588'
+					},
+					{
+						name: 'scan',
+						unicode: 'e612'
+					},
+					{
+						name: 'sound',
+						unicode: 'e590'
+					}
+				],
+				activeIndex: -1,
+				checked: false
+			}
+		},
+		methods: {
+			change(e) {
+				// e.detail.value在安卓手机上可能是String类型，后续修复后要修改
+				this.checked = e.detail.value === 'false' || !e.detail.value ? false : true
+			},
+			switchActive(index) {
+				this.activeIndex = index
+			}
+		}
+	}
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.example-body {
+		padding: 0;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.uni-right {
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+		color: #666;
+	}
+
+	.uni-right-text {
+		font-size: 28rpx;
+	}
+
+	.switch {
+		transform: scale(0.8);
+		margin-left: 5px;
+	}
+
+	.icon-item {
+		/* #ifndef APP-NVUE */
+		display: inline-flex;
+		box-sizing: border-box;
+		/* #endif */
+		width: 180rpx;
+		padding: 30rpx 10rpx;
+		text-align: center;
+		flex-direction: column;
+	}
+
+	.icon-item-text {
+		font-size: 24rpx;
+		text-align: center;
+	}
+</style>
