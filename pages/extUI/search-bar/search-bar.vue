@@ -34,18 +34,18 @@
 		},
 		methods: {
 			search(res) {
-				uni.showModal({
-					content: '搜索：' + res.value,
-					showCancel: false
+				uni.showToast({
+				    icon:"none",
+                    title:'搜索：' + res.value
 				})
 			},
 			input(res) {
 				this.searchVal = res.value
 			},
 			cancel(res) {
-				uni.showModal({
-					content: '点击取消，输入值为：' + res.value,
-					showCancel: false
+				uni.showToast({
+				    icon:"none",
+                    title:'点击取消，输入值为：' + res.value
 				})
 			}
 		}

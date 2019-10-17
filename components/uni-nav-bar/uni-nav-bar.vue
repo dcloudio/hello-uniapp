@@ -89,6 +89,11 @@
 				default: true
 			}
 		},
+        mounted() {
+          if(uni.report && this.title !== '') {
+              uni.report('title', this.title)
+          }  
+        },
 		methods: {
 			onClickLeft() {
 				this.$emit('click-left')

@@ -851,12 +851,6 @@
 					"style": {
 						"navigationBarTitleText": "GoodsNav 商品导航"
 					}
-				},
-				{
-					"path": "section/section",
-					"style": {
-						"navigationBarTitleText": "Section 章节标题"
-					}
 				}
 			]
 		},

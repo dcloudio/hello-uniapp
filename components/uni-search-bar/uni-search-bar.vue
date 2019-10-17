@@ -63,6 +63,12 @@
 				})
 				this.searchVal = ''
 				this.show = false
+                // #ifdef APP-PLUS
+                plus.key.hideSoftKeybord()
+                // #endif
+                // #ifndef APP-PLUS
+                uni.hideKeyboard()
+                // #endif
 			},
 			confirm() {
 				this.$emit('confirm', {
