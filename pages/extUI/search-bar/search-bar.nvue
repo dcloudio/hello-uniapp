@@ -1,56 +1,60 @@
 <template>
 	<view>
-		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
-		<uni-section title="基础用法" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item :show-arrow="false" title="列表文字" />
-			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
-			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
-		</uni-list>
-		<uni-section title="菜单列表" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item title="列表右侧带箭头" />
-			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
-			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" :show-switch="true" title="列表右侧带 switch" @switchChange="switchChange" />
-			<uni-list-item :disabled="true" :show-extra-icon="true" :extra-icon="extraIcon2" :show-switch="true" :switch-checked="true" title="禁用状态" @switchChange="switchChange" />
-		</uni-list>
-
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
+			<view class="search-result">
+				<text class="search-result-text">当前输入为：{{ searchVal }}</text>
+			</view>
+		</view>
+		<uni-section title="自定义样式" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
+			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
+		</view>
+		<uni-section title="控制清除按钮" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar radius="100" clearButton="always" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="auto" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
+		</view>
 	</view>
 </template>
 
 <script>
+	import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniSection,
-			uniList,
-			uniListItem
+			uniSearchBar,
+			uniSection
 		},
 		data() {
 			return {
-				extraIcon1: {
-					color: '#007aff',
-					size: '22',
-					type: 'gear-filled'
-				},
-				extraIcon2: {
-					color: '#4cd964',
-					size: '22',
-					type: 'image'
-				}
+				searchVal: ''
 			}
 		},
 		methods: {
-			switchChange(e) {
+			search(res) {
 				uni.showToast({
-					title: 'change:' + e.value,
+					title: '搜索：' + res.value,
+					icon: 'none'
+				})
+			},
+			input(res) {
+				this.searchVal = res.value
+			},
+			cancel(res) {
+				uni.showToast({
+					title: '点击取消，输入值为：' + res.value,
 					icon: 'none'
 				})
 			}
+		},
+		onBackPress() {
+			// #ifdef APP-PLUS
+			plus.key.hideSoftKeybord();
+			// #endif
 		}
 	}
 </script>
@@ -148,5 +152,24 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+
+
+	.search-result {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.search-result-text {
+		text-align: center;
+		font-size: 14px;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 	}
 </style>

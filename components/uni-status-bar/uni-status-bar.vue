@@ -16,11 +16,11 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.uni-status-bar {
-		display: block;
-		width: 100%;
+		width: 750rpx;
 		height: 20px;
-		height: var(--status-bar-height);
+		/* height: var(--status-bar-height);
+ */
 	}
 </style>

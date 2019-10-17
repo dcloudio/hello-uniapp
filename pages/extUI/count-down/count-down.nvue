@@ -1,54 +1,43 @@
 <template>
 	<view>
-		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
-		<uni-section title="基础用法" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item :show-arrow="false" title="列表文字" />
-			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
-			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
-		</uni-list>
-		<uni-section title="菜单列表" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item title="列表右侧带箭头" />
-			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
-			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" :show-switch="true" title="列表右侧带 switch" @switchChange="switchChange" />
-			<uni-list-item :disabled="true" :show-extra-icon="true" :extra-icon="extraIcon2" :show-switch="true" :switch-checked="true" title="禁用状态" @switchChange="switchChange" />
-		</uni-list>
-
+		<text class="example-info">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text>
+		<uni-section title="一般用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-count-down :day="1" :hour="1" :minute="12" :second="40" />
+		</view>
+		<uni-section title="不显示天数" type="line"></uni-section>
+		<view class="example-body">
+			<uni-count-down :show-day="false" :hour="12" :minute="12" :second="12" />
+		</view>
+		<uni-section title="文字分隔符" type="line"></uni-section>
+		<view class="example-body">
+			<uni-count-down :minute="30" :second="0" :show-colon="false" />
+		</view>
+		<uni-section title="修改颜色" type="line"></uni-section>
+		<view class="example-body">
+			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
+		</view>
+		<uni-section title="倒计时回调事件" type="line"></uni-section>
+		<view class="example-body">
+			<uni-count-down :show-day="false" :second="10" @timeup="timeup" />
+		</view>
 	</view>
 </template>
-
 <script>
+	import uniCountDown from '@/components/uni-count-down/uni-count-down.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniSection,
-			uniList,
-			uniListItem
+			uniCountDown,
+			uniSection
 		},
 		data() {
-			return {
-				extraIcon1: {
-					color: '#007aff',
-					size: '22',
-					type: 'gear-filled'
-				},
-				extraIcon2: {
-					color: '#4cd964',
-					size: '22',
-					type: 'image'
-				}
-			}
+			return {}
 		},
 		methods: {
-			switchChange(e) {
+			timeup() {
 				uni.showToast({
-					title: 'change:' + e.value,
-					icon: 'none'
+					title: '时间到'
 				})
 			}
 		}
@@ -148,5 +137,10 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+
+	.title {
+		margin: 80rpx 0 20rpx 0;
 	}
 </style>

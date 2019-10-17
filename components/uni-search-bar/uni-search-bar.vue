@@ -1,164 +1,159 @@
 <template>
 	<view class="uni-searchbar">
-		<view :class="show?'':'hide'" class="uni-searchbar-form">
-			<view :style="{borderRadius:radius+'rpx'}" class="uni-searchbar-form__box">
-				<uni-icons :color="'#999999'" class="icon-search" type="search" size="18" />
-				<input :placeholder="placeholder" :focus="show" v-model="searchVal" class="search-input" type="text" placeholder-style="color:#cccccc" confirm-type="search" @confirm="confirm">
-				<uni-icons :color="'#999999'" v-if="clearButton==='always'||clearButton==='auto'&&searchVal!==''" class="icon-clear" type="clear" size="24" @click="clear" />
+		<view :style="{borderRadius:radius+'px'}" class="uni-searchbar__box" @click="searchClick">
+			<!-- #ifdef MP-ALIPAY -->
+			<view class="uni-searchbar__box-icon-search">
+				<uni-icons color="#999999" size="18" type="search" />
 			</view>
-			<view :style="{borderRadius:radius+'rpx'}" class="uni-searchbar-form__text" @click="searchClick">
-				<uni-icons color="#999999" class="icon-search" type="search" size="18" />
-				<text class="placeholder">{{ placeholder }}</text>
+			<!-- #endif -->
+			<!-- #ifndef MP-ALIPAY -->
+			<uni-icons color="#999999" class="uni-searchbar__box-icon-search" size="18" type="search" />
+			<!-- #endif -->
+			<input v-if="show" :focus="showSync" :placeholder="placeholder" @confirm="confirm" class="uni-searchbar__box-search-input" confirm-type="search" placeholder-style="color:#cccccc" type="text" v-model="searchVal" />
+			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
+			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear">
+				<uni-icons color="#999999" class="" size="24" type="clear" />
 			</view>
-			<text class="uni-searchbar-form__cancel" @click="cancel">取消</text>
 		</view>
+		<text @click="cancel" class="uni-searchbar__cancel" v-if="show">取消</text>
 	</view>
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
+	import uniIcons from "@/components/uni-icons/uni-icons.vue";
 	export default {
-		name: 'UniSearchBar',
+		name: "UniSearchBar",
 		components: {
 			uniIcons
 		},
 		props: {
 			placeholder: {
 				type: String,
-				default: '搜索'
+				default: "搜索"
 			},
 			radius: {
 				type: [Number, String],
-				default: 10
+				default: 5
 			},
 			clearButton: {
 				type: String,
-				default: 'auto'
+				default: "auto"
 			}
 		},
 		data() {
 			return {
 				show: false,
-				searchVal: ''
+				showSync: false,
+				searchVal: ""
 			}
 		},
 		watch: {
 			searchVal() {
-				this.$emit('input', {
+				this.$emit("input", {
 					value: this.searchVal
 				})
 			}
 		},
 		methods: {
 			searchClick() {
-				this.searchVal = ''
-				this.show = true
+				this.searchVal = ""
+				this.show = true;
+				this.$nextTick(() => {
+					this.showSync = true;
+				})
 			},
 			clear() {
-				this.searchVal = ''
+				this.searchVal = ""
 			},
 			cancel() {
-				this.$emit('cancel', {
+				this.$emit("cancel", {
 					value: this.searchVal
-				})
-				this.searchVal = ''
+				});
+				this.searchVal = ""
 				this.show = false
+				this.showSync = false
+				// #ifndef APP-PLUS
+				uni.hideKeyboard()
+				// #endif
+				// #ifdef APP-PLUS
+				plus.key.hideSoftKeybord()
+				// #endif
 			},
 			confirm() {
-				this.$emit('confirm', {
+				// #ifndef APP-PLUS
+				uni.hideKeyboard();
+				// #endif
+				// #ifdef APP-PLUS
+				plus.key.hideSoftKeybord()
+				// #endif
+				this.$emit("confirm", {
 					value: this.searchVal
 				})
 			}
 		}
-	}
+	};
 </script>
 
-<style>
-	@charset "UTF-8";
-
-	.uni-searchbar-form {
+<style scoped>
+	.uni-searchbar {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
 		position: relative;
-		display: flex;
-		padding: 15rpx;
-		width: 100%;
-		box-sizing: border-box
+		padding: 8px 0;
 	}
 
-	.uni-searchbar-form__box {
+	.uni-searchbar__box {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		overflow: hidden;
+		position: relative;
 		flex: 1;
+		justify-content: center;
+		flex-direction: row;
 		align-items: center;
-		width: 100%;
-		height: 64rpx;
-		color: #c8c7cc;
-		background: #fff;
-		border: solid 1px #c8c7cc;
-		border-radius: 10rpx
+		height: 32px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #c8c7cc;
+		border-radius: 5px;
 	}
 
-	.uni-searchbar-form__box .icon-search {
+	.uni-searchbar__box-icon-search {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		width: 32px;
+		justify-content: center;
+		align-items: center;
 		color: #c8c7cc;
+	}
+
+	.uni-searchbar__box-search-input {
+		flex: 1;
+		font-size: 14px;
+		color: #333333;
+	}
+
+	.uni-searchbar__box-icon-clear {
+		align-items: center;
 		line-height: 24px;
-		padding: 0rpx 10rpx 0rpx 15rpx
+		padding: 0px 5px 0px 5px;
 	}
 
-	.uni-searchbar-form__box .search-input {
-		flex: 1;
-		font-size: 28rpx;
-		height: 64rpx;
-		line-height: 64rpx;
-		color: #333
+	.uni-searchbar__text-placeholder {
+		font-size: 14px;
+		color: #cccccc;
+		margin-left: 5px;
 	}
 
-	.uni-searchbar-form__box .icon-clear {
-		color: #c8c7cc;
-		line-height: 20px;
-		padding: 0rpx 15rpx 0rpx 10rpx
-	}
-
-	.uni-searchbar-form__text {
-		display: flex;
-		flex: 1;
-		align-items: center;
-		width: 100%;
-		height: 64rpx;
-		line-height: 64rpx;
-		text-align: center;
-		color: #c8c7cc;
-		background: #fff;
-		border: solid 1px #c8c7cc;
-		border-radius: 10rpx;
-		display: none
-	}
-
-	.uni-searchbar-form__text .icon-search {
-		height: 64rpx;
-		line-height: 64rpx
-	}
-
-	.uni-searchbar-form__text .placeholder {
-		display: inline-block;
-		font-size: 28rpx;
-		color: #ccc;
-		margin-left: 10rpx
-	}
-
-	.uni-searchbar-form__cancel {
-		padding-left: 20rpx;
-		line-height: 64rpx;
+	.uni-searchbar__cancel {
+		padding-left: 10px;
+		line-height: 32px;
+		font-size: 14px;
 		color: #333;
-		white-space: nowrap
-	}
-
-	.uni-searchbar-form.hide .uni-searchbar-form__box {
-		display: none
-	}
-
-	.uni-searchbar-form.hide .uni-searchbar-form__text {
-		display: block
-	}
-
-	.uni-searchbar-form.hide .uni-searchbar-form__cancel {
-		display: none
 	}
 </style>

@@ -1,55 +1,59 @@
 <template>
 	<view>
-		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
-		<uni-section title="基础用法" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item :show-arrow="false" title="列表文字" />
-			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
-			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
-		</uni-list>
-		<uni-section title="菜单列表" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item title="列表右侧带箭头" />
-			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
-			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" :show-switch="true" title="列表右侧带 switch" @switchChange="switchChange" />
-			<uni-list-item :disabled="true" :show-extra-icon="true" :extra-icon="extraIcon2" :show-switch="true" :switch-checked="true" title="禁用状态" @switchChange="switchChange" />
-		</uni-list>
-
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-steps :options="list1" active-color="#007AFF" :active="active" />
+		</view>
+		<uni-section title="纵向排列" type="line"></uni-section>
+		<view class="example-body">
+			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
+		</view>
+		<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="change"><text class="word-btn-white">改变状态</text></view>
 	</view>
 </template>
 
 <script>
+	import uniSteps from '@/components/uni-steps/uni-steps.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
 			uniSection,
-			uniList,
-			uniListItem
+			uniSteps
 		},
 		data() {
 			return {
-				extraIcon1: {
-					color: '#007aff',
-					size: '22',
-					type: 'gear-filled'
-				},
-				extraIcon2: {
-					color: '#4cd964',
-					size: '22',
-					type: 'image'
-				}
+				active: 1,
+				list1: [{
+					title: '事件一'
+				}, {
+					title: '事件二'
+				}, {
+					title: '事件三'
+				}, {
+					title: '事件四'
+				}],
+				list2: [{
+					title: '买家下单',
+					desc: '2018-11-11'
+				}, {
+					title: '卖家发货',
+					desc: '2018-11-12'
+				}, {
+					title: '买家签收',
+					desc: '2018-11-13'
+				}, {
+					title: '交易完成',
+					desc: '2018-11-14'
+				}]
 			}
 		},
 		methods: {
-			switchChange(e) {
-				uni.showToast({
-					title: 'change:' + e.value,
-					icon: 'none'
-				})
+			change() {
+				if (this.active < this.list1.length - 1) {
+					this.active += 1
+				} else {
+					this.active = 0
+				}
 			}
 		}
 	}
@@ -148,5 +152,26 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+
+	.status-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 92rpx;
+		margin: 30rpx;
+		background-color: #007AFF;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 15px;
+		flex-direction: row;
 	}
 </style>

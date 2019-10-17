@@ -1,18 +1,25 @@
 <template>
 	<view class="uni-rate">
-		<view v-for="(star, index) in stars" :key="index" :style="{ marginLeft: margin + 'px' }" class="uni-rate-icon" @click="_onClick(index)">
-			<uni-icons :size="size" :color="color" :type="isFill ? 'star-filled' : 'star'" />
-			<view :style="{ width: star.activeWitch }" class="uni-rate-icon-on">
-				<uni-icons :size="size" :color="activeColor" type="star-filled" />
+		<view :key="index" :style="{ marginLeft: margin + 'px' }" @click="_onClick(index)" class="uni-rate__icon" v-for="(star, index) in stars">
+			<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
+			<!-- #ifdef APP-NVUE -->
+			<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
+				<uni-icons :color="activeColor" :size="size" type="star-filled" />
 			</view>
+			<!-- #endif -->
+			<!-- #ifndef APP-NVUE -->
+			<view :style="{ width: star.activeWitch,top:-size/2+'px' }" class="uni-rate__icon-on">
+				<uni-icons :color="activeColor" :size="size" type="star-filled" />
+			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
+	import uniIcons from "@/components/uni-icons/uni-icons.vue";
 	export default {
-		name: 'UniRate',
+		name: "UniRate",
 		components: {
 			uniIcons
 		},
@@ -25,12 +32,12 @@
 			color: {
 				// 星星的颜色
 				type: String,
-				default: '#ececec'
+				default: "#ececec"
 			},
 			activeColor: {
 				// 星星选中状态颜色
 				type: String,
-				default: '#ffca3e'
+				default: "#ffca3e"
 			},
 			size: {
 				// 星星的大小
@@ -60,72 +67,74 @@
 		},
 		data() {
 			return {
-				valueSync: ''
-			}
+				valueSync: ""
+			};
 		},
 		computed: {
 			stars() {
-				const value = Number(this.valueSync) ? Number(this.valueSync) : 0
-				const starList = []
-				const floorValue = Math.floor(value)
-				const ceilValue = Math.ceil(value)
+				const value = this.valueSync ? this.valueSync : 0;
+				const starList = [];
+				const floorValue = Math.floor(value);
+				const ceilValue = Math.ceil(value);
+				// console.log("ceilValue: " + ceilValue);
+				// console.log("floorValue: " + floorValue);
 				for (let i = 0; i < this.max; i++) {
 					if (floorValue > i) {
 						starList.push({
-							activeWitch: '100%'
-						})
+							activeWitch: "100%"
+						});
 					} else if (ceilValue - 1 === i) {
 						starList.push({
-							activeWitch: (value - floorValue) * 100 + '%'
-						})
+							activeWitch: (value - floorValue) * 100 + "%"
+						});
 					} else {
 						starList.push({
-							activeWitch: '0'
-						})
+							activeWitch: "0"
+						});
 					}
 				}
-				return starList
+				console.log("starList[4]: " + starList[4].activeWitch);
+				return starList;
 			}
 		},
 		created() {
-			this.valueSync = this.value
+			this.valueSync = Number(this.value);
 		},
 		methods: {
 			_onClick(index) {
 				if (this.disabled) {
-					return
+					return;
 				}
-				this.valueSync = index + 1
-				this.$emit('change', {
+				this.valueSync = index + 1;
+				this.$emit("change", {
 					value: this.valueSync
-				})
+				});
 			}
 		}
-	}
+	};
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-rate {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		line-height: 0;
 		font-size: 0;
-		display: flex;
-		flex-direction: row
+		flex-direction: row;
 	}
 
-	.uni-rate-icon {
+	.uni-rate__icon {
 		position: relative;
 		line-height: 0;
 		font-size: 0;
-		display: inline-block
 	}
 
-	.uni-rate-icon-on {
+	.uni-rate__icon-on {
 		line-height: 1;
 		position: absolute;
 		top: 0;
 		left: 0;
-		overflow: hidden
+		overflow: hidden;
 	}
 </style>

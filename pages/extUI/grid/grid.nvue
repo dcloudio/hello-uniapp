@@ -1,0 +1,249 @@
+<template>
+	<view class="warp">
+		<text class="example-info">宫格组件主要使用场景如：商品推荐列表、热门内容等</text>
+		<uni-section title="默认样式（3列）" type="line"></uni-section>
+		<view class="example-body">
+			<uni-grid :column="3" :highlight="true" @change="change">
+				<uni-grid-item v-for="(item, index) in list" :key="index">
+					<image :src="item.url" class="image" mode="aspectFill" />
+					<text class="text">{{ item.text }}</text>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		<uni-section title="无边框（3列）" type="line"></uni-section>
+		<view class="example-body">
+			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
+				<uni-grid-item :hor="0" :ver="0" marker="badge" type="error" text="12">
+					<image class="image" src="/static/c1.png" mode="aspectFill" />
+					<text class="text">Grid 1</text>
+				</uni-grid-item>
+				<uni-grid-item :hor="0" :ver="0" :img-width="30" marker="image">
+					<image class="image" src="/static/c2.png" mode="aspectFill" />
+					<text class="text">Grid 2</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c3.png" mode="aspectFill" />
+					<text class="text">Grid 3</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c4.png" mode="aspectFill" />
+					<text class="text">Grid 4</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c5.png" mode="aspectFill" />
+					<text class="text">Grid 5</text>
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c6.png" mode="aspectFill" />
+					<text class="text">Grid 6</text>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		<uni-section title="矩形宫格（3列）" type="line"></uni-section>
+		<view class="example-body">
+			<uni-grid :column="3" :square="false" :highlight="false" @change="change">
+				<uni-grid-item v-for="(item, index) in list" :key="index">
+					<image :src="item.url" class="image" mode="aspectFill" />
+					<text class="text">{{ item.text }}</text>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		<uni-section title="边框颜色（4列 无文字）" type="line"></uni-section>
+		<view class="example-body">
+			<uni-grid :column="4" border-color="#03a9f4" @change="change">
+				<uni-grid-item>
+					<image class="image" src="/static/c1.png" mode="aspectFill" />
+					<!-- <text class="text">Grid 1</text> -->
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c2.png" mode="aspectFill" />
+					<!-- <text class="text">Grid 2</text> -->
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c3.png" mode="aspectFill" />
+					<!-- <text class="text">Grid 3</text> -->
+				</uni-grid-item>
+				<uni-grid-item>
+					<image class="image" src="/static/c4.png" mode="aspectFill" />
+					<!-- <text class="text">Grid 4</text> -->
+				</uni-grid-item>
+
+			</uni-grid>
+		</view>
+	</view>
+</template>
+
+<script>
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	import uniGrid from '@/components/uni-grid/uni-grid.vue'
+	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
+	export default {
+		components: {
+			uniSection,
+			uniGrid,
+			uniGridItem
+		},
+		data() {
+			return {
+				list: [{
+						url: '/static/c1.png',
+						text: 'Grid 1'
+					},
+					{
+						url: '/static/c2.png',
+						text: 'Grid 2'
+					},
+					{
+						url: '/static/c3.png',
+						text: 'Grid 3'
+					},
+					{
+						url: '/static/c4.png',
+						text: 'Grid 4'
+					},
+					{
+						url: '/static/c5.png',
+						text: 'Grid 5'
+					},
+					{
+						url: '/static/c6.png',
+						text: 'Grid 6'
+					},
+					{
+						url: '/static/c7.png',
+						text: 'Grid 7'
+					},
+					{
+						url: '/static/c8.png',
+						text: 'Grid 8'
+					},
+					{
+						url: '/static/c9.png',
+						text: 'Grid 9'
+					}
+				]
+			}
+		},
+		methods: {
+			change(e) {
+				let {
+					index
+				} = e.detail
+				console.log(index)
+			}
+		}
+	}
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.image {
+		width: 50rpx;
+		height: 50rpx;
+	}
+
+	.text {
+		font-size: 26rpx;
+		margin-top: 10rpx;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+	}
+</style>

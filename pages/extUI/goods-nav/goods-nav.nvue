@@ -1,55 +1,68 @@
 <template>
 	<view>
-		<text class="example-info">列表组件可以在其中使用图标、略缩图或放置任何你想放的元素，使用场景如：导航菜单、列表、设置中心排版等</text>
+		<text class="example-info"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
 		<uni-section title="基础用法" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item :show-arrow="false" title="列表文字" />
-			<uni-list-item :show-arrow="false" title="列表文字" note="列表描述信息" />
-			<uni-list-item :disabled="true" :show-arrow="false" title="列表禁用状态" />
-		</uni-list>
-		<uni-section title="菜单列表" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item title="列表右侧带箭头" />
-			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
-			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
-			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" :show-switch="true" title="列表右侧带 switch" @switchChange="switchChange" />
-			<uni-list-item :disabled="true" :show-extra-icon="true" :extra-icon="extraIcon2" :show-switch="true" :switch-checked="true" title="禁用状态" @switchChange="switchChange" />
-		</uni-list>
+		<view class="example-body">
+			<uni-goods-nav />
+		</view>
+
+		<uni-section title="自定义用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
+		</view>
+		<view class="goods-carts">
+			<uni-goods-nav :options="options" :button-group="buttonGroup" />
+		</view>
 
 	</view>
 </template>
 
 <script>
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+	import uniGoodsNav from '@/components/uni-goods-nav/uni-goods-nav.vue'
 	export default {
 		components: {
 			uniSection,
-			uniList,
-			uniListItem
+			uniGoodsNav
 		},
 		data() {
 			return {
-				extraIcon1: {
-					color: '#007aff',
-					size: '22',
-					type: 'gear-filled'
-				},
-				extraIcon2: {
-					color: '#4cd964',
-					size: '22',
-					type: 'image'
-				}
+				options: [{
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/kefu.png',
+					text: '客服'
+				}, {
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/dianpu.png',
+					text: '店铺'
+				}, {
+					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/carts.png',
+					text: '购物车',
+					info: 2
+				}],
+				buttonGroup: [{
+						text: '加入购物车',
+						backgroundColor: '#ff0000',
+						color: '#fff'
+					},
+					{
+						text: '立即购买',
+						backgroundColor: '#ffa200',
+						color: '#fff'
+					}
+				]
 			}
 		},
+		onLoad() {},
 		methods: {
-			switchChange(e) {
+			onClick(e) {
 				uni.showToast({
-					title: 'change:' + e.value,
+					title: `点击${e.content.text}`,
 					icon: 'none'
 				})
+			},
+			buttonClick(e) {
+				console.log(e)
+
+				this.options[2].info++
 			}
 		}
 	}
@@ -148,5 +161,24 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+
+	.example-body {
+		padding: 0;
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+	}
+
+	.goods-carts {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 </style>
