@@ -39,10 +39,6 @@
                         pages: [
                             // #ifdef APP-PLUS || H5
                             {
-                                name: '透明渐变样式',
-                                url: 'nav-transparent'
-                            },
-                            {
                                 name: '导航栏带自定义按钮',
                                 url: 'nav-button'
                             },
@@ -60,6 +56,10 @@
                             },
                             // #endif
                             // #ifdef APP-PLUS || H5 || MP-ALIPAY
+                            {
+                                name: '透明渐变样式',
+                                url: 'nav-transparent'
+                            },
                             {
                                 name: '导航栏带图片',
                                 url: 'nav-image'

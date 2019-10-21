@@ -875,16 +875,12 @@
 						"navigationBarTitleText": "默认导航栏"
 					}
 				},
-				// #ifdef APP-PLUS || H5
+				// #ifdef APP-PLUS || H5 || MP-ALIPAY
 				{
 					"path": "nav-transparent/nav-transparent",
 					"style": {
 						"navigationBarTitleText": "透明渐变导航栏",
-                        "app-plus": {
-                            "titleNView": {
-                                "type": "transparent"
-                            }
-                        }
+                        "transparentTitle": "auto"
 					}
 				},
 				// #endif
