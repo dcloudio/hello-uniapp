@@ -17,16 +17,14 @@
 			<view class="uni-form-item uni-column">
 				<view class="title">label用for标识表单组件</view>
 				<radio-group class="uni-list" @change="radioChange">
-					<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItems" :key="index">
+					<view class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItems" :key="index">
 						<view>
 							<radio :id="item.name" :value="item.name" :checked="item.checked"></radio>
 						</view>
-						<view>
-							<label class="label-2-text" :for="item.name">
-								<text>{{item.value}}</text>
-							</label>
-						</view>
-					</label>
+                        <label class="label-2-text" :for="item.name">
+                            <text>{{item.value}}</text>
+                        </label>
+					</view>
 				</radio-group>
 			</view>
 
@@ -98,4 +96,8 @@
 	.uni-list .label-3 {
 		padding: 0;
 	}
+    
+    .label-2-text {
+        flex: 1;
+    }
 </style>
