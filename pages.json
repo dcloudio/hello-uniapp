@@ -303,7 +303,7 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
-	],
+    ],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
@@ -874,6 +874,12 @@
 					"style": {
 						"navigationBarTitleText": "默认导航栏"
 					}
+				},
+				{
+					"path" : "component-communication/component-communication",
+					"style" : {
+                        "navigationBarTitleText": "组件通讯"
+                    }
 				},
 				// #ifdef APP-PLUS || H5 || MP-ALIPAY
 				{
