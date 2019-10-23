@@ -2,9 +2,11 @@
 	<view>
         <page-head title="组件通讯示例"></page-head>
         <view class="uni-padding-wrap">
-            <reciver></reciver>
-            <sender></sender>
-            <sender-bus></sender-bus>
+            <view class="uni-btn-v">
+                <reciver></reciver>
+                <sender></sender>
+                <sender-bus></sender-bus>
+            </view>
         </view>
 	</view>
 </template>
@@ -31,8 +33,4 @@
 </script>
 
 <style>
-    .uni-padding-wrap{
-        width: auto;
-        padding: 20px 30px;
-    }
 </style>
