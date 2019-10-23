@@ -653,7 +653,21 @@
 					"style": {
 						"navigationBarTitleText": "震动"
 					}
-				}
+				},
+                // #ifndef MP-ALIPAY
+                {
+                    "path" : "websocket-socketTask/websocket-socketTask",
+                    "style" : {
+                        "navigationBarTitleText": "websocket-socketTask"
+                    }
+                },
+                // #endif
+                {
+                    "path" : "websocket-global/websocket-global",
+                    "style" : {
+                        "navigationBarTitleText": "websocket-global"
+                    }
+                }
 			]
 		},
 		{

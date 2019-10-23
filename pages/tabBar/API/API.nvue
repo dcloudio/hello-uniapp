@@ -230,6 +230,23 @@
                     ]
                 },
                 {
+                    id: 'websocket',
+                    name: 'websocket',
+                    open: false,
+                    pages: [
+                        // #ifndef MP-ALIPAY
+                        {
+                            name: 'socketTask',
+                            url: 'websocket-socketTask'
+                        },
+                        // #endif
+                        {
+                            name: '全局websocket',
+                            url: 'websocket-global'
+                        }
+                    ]
+                },
+                {
                     id: 'media',
                     name: '媒体',
                     open: false,
