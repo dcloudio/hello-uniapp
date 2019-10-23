@@ -634,9 +634,9 @@
 					}
 				},
 				{
-					"path": "fingerprint/fingerprint",
+					"path": "soter/soter",
 					"style": {
-						"navigationBarTitleText": "指纹"
+						"navigationBarTitleText": "生物认证"
 					}
 				},
 				// #endif

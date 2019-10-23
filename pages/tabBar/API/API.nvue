@@ -181,8 +181,8 @@
                             url: 'bluetooth'
                         },
                         {
-                            name: '指纹',
-                            url: 'fingerprint'
+                            name: '生物认证',
+                            url: 'soter'
                         },
                         // #endif
                         // #ifdef APP-PLUS || MP-WEIXIN
