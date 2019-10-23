@@ -7,7 +7,7 @@
  */
 function sizeReady(newValue, oldValue, ownerInstance, instance) {
   var state = instance.getState()
-  state.position = JSON.parse(newValue)
+  state.position = JSON.parse(instance.getDataset().position)
   if (state.position.length === 0) return
   var show = state.position[0].show
   state.left = state.left || state.position[0].left;
@@ -34,7 +34,7 @@ function touchstart(e, ins) {
   for (var i = 0; i < owner.length; i++) {
     owner[i].removeClass('ani');
   }
-  // state.position = JSON.parse(instance.getDataset().position);
+  state.position = JSON.parse(instance.getDataset().position);
   state.left = state.left || state.position[0].left;
   // 获取最终按钮组的宽度
   state.width = pageX - state.left;

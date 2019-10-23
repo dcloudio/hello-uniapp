@@ -74,7 +74,7 @@
 		position: relative;
 		width: 100%;
 		box-sizing: border-box;
-		/* overflow: hidden; */
+		overflow: hidden;
 	}
 
 	.uni-swipe_move-box {
