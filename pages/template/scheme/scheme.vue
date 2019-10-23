@@ -51,10 +51,10 @@ export default {
 		openMarket(marketPackageName) {
 			var appurl;
 			if (plus.os.name=="Android") {
-				appurl = "market://details?id=io.dcloud.HelloH5"; //由于hello uni-app没有上Android应用商店，所以此处打开了另一个示例应用
+				appurl = "market://details?id=io.dcloud.hellouniapp";//可能部分应用商店没有收录
 			}
 			else{
-				appurl = "itms-apps://itunes.apple.com/cn/app/hello-uni-app/id1417078253?mt=8";
+				appurl = "itms-apps://itunes.apple.com/cn/app/hello-uni-app/id1417078253";
 			}
 			if (typeof(marketPackageName)=="undefined") {
 				plus.runtime.openURL(appurl, function(res) {
