@@ -5,7 +5,7 @@
         rightBottom: rightBottom,
         leftTop: leftTop,
         rightTop: rightTop
-      }" class="fab-box fab">
+      }" v-if="leftBottom||rightBottom||leftTop||rightTop" class="fab-box fab">
 			<view :class="{
           left: horizontal === 'left' && direction === 'horizontal',
           top: vertical === 'top' && direction === 'vertical',

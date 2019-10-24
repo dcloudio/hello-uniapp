@@ -58,6 +58,7 @@
 		data() {
 			return {
 				timer: null,
+				syncFlag: false,
 				d: '00',
 				h: '00',
 				i: '00',
@@ -66,17 +67,22 @@
 				seconds: 0
 			}
 		},
+		watch: {
+			day(val) {
+				this.changeFlag()
+			},
+			hour(val) {
+				this.changeFlag()
+			},
+			minute(val) {
+				this.changeFlag()
+			},
+			second(val) {
+				this.changeFlag()
+			}
+		},
 		created: function(e) {
-			this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
-			this.countDown()
-			this.timer = setInterval(() => {
-				this.seconds--
-				if (this.seconds < 0) {
-					this.timeUp()
-					return
-				}
-				this.countDown()
-			}, 1000)
+			this.startData();
 		},
 		beforeDestroy() {
 			clearInterval(this.timer)
@@ -94,9 +100,9 @@
 				let [day, hour, minute, second] = [0, 0, 0, 0]
 				if (seconds > 0) {
 					day = Math.floor(seconds / (60 * 60 * 24))
-					hour = Math.floor(seconds / (60 * 60)) - day * 24
-					minute = Math.floor(seconds / 60) - day * 24 * 60 - hour * 60
-					second = Math.floor(seconds) - day * 24 * 60 * 60 - hour * 60 * 60 - minute * 60
+					hour = Math.floor(seconds / (60 * 60)) - (day * 24)
+					minute = Math.floor(seconds / 60) - (day * 24 * 60) - (hour * 60)
+					second = Math.floor(seconds) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60)
 				} else {
 					this.timeUp()
 				}
@@ -116,6 +122,28 @@
 				this.h = hour
 				this.i = minute
 				this.s = second
+			},
+			startData() {
+				this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+				if (this.seconds <= 0) {
+					return
+				}
+				this.countDown()
+				this.timer = setInterval(() => {
+					this.seconds--
+					if (this.seconds < 0) {
+						this.timeUp()
+						return
+					}
+					this.countDown()
+				}, 1000)
+			},
+			changeFlag() {
+				if (!this.syncFlag) {
+					this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+					this.startData();
+					this.syncFlag = true;
+				}
 			}
 		}
 	}
@@ -149,11 +177,7 @@
 		width: 52rpx;
 		height: 48rpx;
 		line-height: 48rpx;
-		border-radius: 6rpx;
 		margin: 5rpx;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: #000000;
 		text-align: center;
 		font-size: 24rpx;
 	}

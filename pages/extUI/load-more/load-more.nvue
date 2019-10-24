@@ -9,12 +9,10 @@
 		<view class="example-body">
 			<uni-load-more :status="status" :content-text="contentText" />
 		</view>
-		<!-- #ifdef APP-NVUE -->
 		<uni-section title="改变颜色" type="line"></uni-section>
 		<view class="example-body">
 			<uni-load-more color="#007AFF" :status="status" />
 		</view>
-		<!-- #endif -->
 		<!-- #ifndef APP-NVUE -->
 		<uni-section title="指定加载图标样式 - 按平台自动选择样式" type="line"></uni-section>
 		<view class="example-body">

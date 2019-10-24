@@ -303,7 +303,7 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
-    ],
+	],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
@@ -654,20 +654,20 @@
 						"navigationBarTitleText": "震动"
 					}
 				},
-                // #ifndef MP-ALIPAY
-                {
-                    "path" : "websocket-socketTask/websocket-socketTask",
-                    "style" : {
-                        "navigationBarTitleText": "websocket-socketTask"
-                    }
-                },
-                // #endif
-                {
-                    "path" : "websocket-global/websocket-global",
-                    "style" : {
-                        "navigationBarTitleText": "websocket-global"
-                    }
-                }
+				// #ifndef MP-ALIPAY
+				{
+					"path": "websocket-socketTask/websocket-socketTask",
+					"style": {
+						"navigationBarTitleText": "websocket-socketTask"
+					}
+				},
+				// #endif
+				{
+					"path": "websocket-global/websocket-global",
+					"style": {
+						"navigationBarTitleText": "websocket-global"
+					}
+				}
 			]
 		},
 		{
@@ -876,8 +876,7 @@
 		},
 		{
 			"root": "pages/template",
-			"pages": [
-				{
+			"pages": [{
 					"path": "ucharts/ucharts",
 					"style": {
 						"navigationBarTitleText": "uCharts 图表"
@@ -890,17 +889,17 @@
 					}
 				},
 				{
-					"path" : "component-communication/component-communication",
-					"style" : {
-                        "navigationBarTitleText": "组件通讯"
-                    }
+					"path": "component-communication/component-communication",
+					"style": {
+						"navigationBarTitleText": "组件通讯"
+					}
 				},
 				// #ifdef APP-PLUS || H5 || MP-ALIPAY
 				{
 					"path": "nav-transparent/nav-transparent",
 					"style": {
 						"navigationBarTitleText": "透明渐变导航栏",
-                        "transparentTitle": "auto"
+						"transparentTitle": "auto"
 					}
 				},
 				// #endif
@@ -928,7 +927,7 @@
 					"path": "nav-image/nav-image",
 					"style": {
 						"navigationBarBackgroundColor": "#FFFFFF",
-                        "navigationBarTextStyle": "black",
+						"navigationBarTextStyle": "black",
 						"titleImage": "https://img-cdn-qiniu.dcloud.net.cn/static/images/logo1@2x.png"
 					}
 				},

@@ -39,11 +39,7 @@
 			this.left = this.ver === 0 ? this.grid.ver : this.ver
 			this.borderColor = this.grid.borderColor
 			this.index = this.grid.index++
-		},
-		mounted() {
-			this.grid._getSize(width => {
-				this.width = width
-			})
+			this.grid.children.push(this)
 		},
 		methods: {
 			_onClick() {

@@ -4,7 +4,7 @@
 			<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
 			<!-- #ifdef APP-NVUE -->
 			<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
-				<uni-icons :color="activeColor" :size="size" type="star-filled" />
+				<uni-icons style="text-align: left;" :color="activeColor" :size="size" type="star-filled" />
 			</view>
 			<!-- #endif -->
 			<!-- #ifndef APP-NVUE -->
@@ -131,10 +131,11 @@
 	}
 
 	.uni-rate__icon-on {
-		line-height: 1;
+		overflow: hidden;
 		position: absolute;
 		top: 0;
 		left: 0;
-		overflow: hidden;
+		line-height: 1;
+		text-align: left;
 	}
 </style>
