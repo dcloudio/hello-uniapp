@@ -1,11 +1,12 @@
 <template>
+
 	<view class="uni-navbar">
 		<view :class="{'uni-navbar--fixed': fixed,'uni-navbar--shadow':border,'uni-navbar--border':border}" :style="{'background-color':backgroundColor}" class="uni-navbar__content">
 			<uni-status-bar v-if="statusBar" />
 			<view :style="{color:color}" class="uni-navbar__header uni-navbar__content_view">
 				<view class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickLeft">
 					<view v-if="leftIcon.length" class="uni-navbar__content_view">
-						<uni-icon :type="leftIcon" :color="color" size="24" />
+						<uni-icons :type="leftIcon" :color="color" size="24" />
 					</view>
 					<view v-if="leftText.length" :class="{'uni-navbar-btn-icon-left':!leftIcon.length}" class="uni-navbar-btn-text uni-navbar__content_view">{{ leftText }}</view>
 					<slot name="left" />
@@ -15,9 +16,9 @@
 					<!-- 标题插槽 -->
 					<slot />
 				</view>
-				<view class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickRight">
+				<view :class="title.length?'uni-navbar__header-btns-right':''" class="uni-navbar__header-btns uni-navbar__content_view" @tap="onClickRight">
 					<view v-if="rightIcon.length" class="uni-navbar__content_view">
-						<uni-icon :type="rightIcon" :color="color" size="24" />
+						<uni-icons :type="rightIcon" :color="color" size="24" />
 					</view>
 					<!-- 优先显示图标 -->
 					<view v-if="rightText.length&&!rightIcon.length" class="uni-navbar-btn-text uni-navbar__content_view">{{ rightText }}</view>
@@ -34,13 +35,13 @@
 
 <script>
 	import uniStatusBar from '../uni-status-bar/uni-status-bar.vue'
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 
 	export default {
 		name: 'UniNavBar',
 		components: {
 			uniStatusBar,
-			uniIcon
+			uniIcons
 		},
 		props: {
 			title: {
@@ -64,7 +65,7 @@
 				default: ''
 			},
 			fixed: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			color: {
@@ -76,15 +77,15 @@
 				default: '#FFFFFF'
 			},
 			statusBar: {
-				type: Boolean,
+				type: [Boolean, String],
 				default: false
 			},
 			shadow: {
-				type: Boolean,
+				type: [String, Boolean],
 				default: true
 			},
 			border: {
-				type: Boolean,
+				type: [String, Boolean],
 				default: true
 			}
 		},
@@ -111,7 +112,8 @@
 	}
 
 	.uni-navbar__content .uni-navbar__content_view {
-		line-height: 44px
+		display: flex;
+		align-items: center
 	}
 
 	.uni-navbar__header {
@@ -139,15 +141,22 @@
 		width: 60upx
 	}
 
+	.uni-navbar__header-btns-right:last-child {
+		width: 120rpx;
+		text-align: right;
+		flex-direction: row-reverse
+	}
+
 	.uni-navbar__header-container {
 		width: 100%;
 		margin: 0 10upx
 	}
 
 	.uni-navbar__header-container-inner {
-		font-size: 30upx;
-		text-align: center;
-		padding-right: 60upx
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		font-size: 30upx
 	}
 
 	.uni-navbar__placeholder-view {
@@ -173,6 +182,6 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 </style>

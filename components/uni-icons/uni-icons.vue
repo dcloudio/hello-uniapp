@@ -4,7 +4,7 @@
 
 <script>
 	export default {
-		name: 'UniIcon',
+		name: 'UniIcons',
 		props: {
 			type: {
 				type: String,

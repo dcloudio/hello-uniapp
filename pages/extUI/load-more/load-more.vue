@@ -1,12 +1,19 @@
 <template>
 	<view>
-		<view>
-			<view class="example-title">基本用法</view>
+		<view class="example-info">加载更多组件用于页面加载更多数据时，页面底部显示内容等场景。</view>
+		<view class="example-title">基本用法</view>
+		<view class="example-body">
 			<uni-load-more :status="status" />
 		</view>
-		<view>
-			<view class="example-title">修改默认颜色及文字</view>
+		<view class="example-title">修改默认颜色及文字</view>
+		<view class="example-body">
 			<uni-load-more :status="status" :content-text="contentText" color="#007aff" />
+		</view>
+		<view class="example-title">指定加载图标样式</view>
+		<view class="example-body">
+			<uni-load-more iconType="circle" :status="status" />
+			<uni-load-more iconType="auto" :status="status" />
+			<uni-load-more iconType="spinner" :status="status" />
 		</view>
 
 		<view class="example-title">改变组件状态</view>
@@ -26,7 +33,6 @@
 </template>
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
-
 	export default {
 		components: {
 			uniLoadMore
@@ -67,7 +73,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -80,11 +86,33 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx 30upx 30upx 50upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 30upx;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -92,11 +120,26 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	uni-radio-group uni-label {
 		padding: 0;
+	}
+
+	.uni-list {
+		background: #fff;
+	}
+
+	.example-body {
+		padding: 10upx 30upx;
 	}
 
 	.uni-list-item__container {

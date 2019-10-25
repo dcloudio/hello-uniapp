@@ -1,13 +1,21 @@
 <template>
 	<view>
 		<view class="example-title">默认样式</view>
-		<uni-pagination :total="20" title="标题文字" />
+		<view class="example-body">
+			<uni-pagination :total="50" title="标题文字" />
+		</view>
 		<view class="example-title">修改按钮文字</view>
-		<uni-pagination :total="20" title="标题文字" prev-text="前一页" next-text="后一页" />
+		<view class="example-body">
+			<uni-pagination :total="50" title="标题文字" prev-text="前一页" next-text="后一页" />
+		</view>
 		<view class="example-title">图标样式</view>
-		<uni-pagination :show-icon="true" :total="20" title="标题文字" />
+		<view class="example-body">
+			<uni-pagination :show-icon="true" :total="50" title="标题文字" />
+		</view>
 		<view class="example-title">修改数据长度</view>
-		<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
+		<view class="example-body">
+			<uni-pagination :current="current" :total="total" title="标题文字" show-icon="true" @change="change" />
+		</view>
 		<view class="btn-view">
 			<view>
 				当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}
@@ -20,10 +28,13 @@
 
 <script>
 	import uniPagination from '@/components/uni-pagination/uni-pagination.vue'
-
+	import uniList from '@/components/uni-list/uni-list.vue'
+	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
 		components: {
-			uniPagination
+			uniPagination,
+			uniList,
+			uniListItem
 		},
 		data() {
 			return {
@@ -53,7 +64,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -66,11 +77,33 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx 30upx 30upx 50upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 30upx;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -78,12 +111,20 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
 	}
 
 	.btn-view {
-		margin: 30upx 30upx 0;
+		padding: 30upx;
 		text-align: center;
+		background: #fff;
 	}
 
 	button {

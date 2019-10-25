@@ -19,7 +19,7 @@
 				<!-- #ifdef APP-PLUS || MP-ALIPAY || MP-TOUTIAO -->
 				<button type="primary" @click="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-WEIXIN || MP-BAIDU -->
+				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-QQ -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
 				<!-- #endif -->
 				<button @click="clear">清空</button>
@@ -62,11 +62,37 @@
 						if (~content.indexOf('uni.login')) {
 							content = '请在登录页面完成登录操作';
 						}
-						uni.showModal({
-							title: '获取用户信息失败',
-							content: '错误原因' + content,
-							showCancel: false
-						});
+                        // #ifndef APP-PLUS
+						uni.getSetting({
+							success: (res) => {
+								let authStatus = res.authSetting['scope.userInfo'];
+								if (!authStatus) {
+									uni.showModal({
+										title: '授权失败',
+										content: 'Hello uni-app需要获取您的用户信息，请在设置界面打开相关权限',
+										success: (res) => {
+											if (res.confirm) {
+												uni.openSetting()
+											}
+										}
+									})
+								} else {
+									uni.showModal({
+										title: '获取用户信息失败',
+										content: '错误原因' + content,
+										showCancel: false
+									});
+								}
+							}
+						})
+                        // #endif
+                        // #ifdef APP-PLUS
+                        uni.showModal({
+                        	title: '获取用户信息失败',
+                        	content: '错误原因' + content,
+                        	showCancel: false
+                        });
+                        // #endif
 					}
 				});
 			},

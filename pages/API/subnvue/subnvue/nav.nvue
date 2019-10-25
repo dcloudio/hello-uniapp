@@ -1,9 +1,9 @@
 <template>
     <div class="wrapper">
 		<div class="status-bar"></div>
-		<div class="nav" @click="back">
-			<text class="back">&#xe582;</text>
-			<text style="font-size: 32px;">nvue 渐变色标题栏</text>
+		<div class="nav">
+			<text class="back" @click="back">&#xe582;</text>
+			<text class="title">nvue 渐变色标题栏</text>
 		</div>
     </div>
 </template>
@@ -30,6 +30,7 @@
 
 <style>
 	.wrapper {
+		flex: 1;
 		background-image: linear-gradient(to right, #a80077, #66ff00);
 		flex-direction: column;
 	}
@@ -38,16 +39,19 @@
 	}
 	.nav {
 		position: relative;
-		height: 88px;
-		flex-shrink: 0;
+		height: 44px;
+		flex: 0;
 		justify-content: center;
 		align-items: center;
+	}
+	.title {
+			font-size: 36upx;
 	}
 	.back {
 		position: absolute;
 		left: 3px;
 		color: #000000;
 		font-family: unibtn;
-		font-size: 54px;
+		font-size: 54upx;
 	}
 </style>

@@ -75,7 +75,7 @@
 				}
 			},
 			sourceTypeChange: function(e) {
-				this.sourceTypeIndex = e.target.value
+				this.sourceTypeIndex = parseInt(e.target.value)
 			},
 			chooseVideo: function() {
 				uni.chooseVideo({
@@ -83,6 +83,39 @@
 					sourceType: sourceType[this.sourceTypeIndex],
 					success: (res) => {
 						this.src = res.tempFilePath
+					},
+					fail: (err) => {
+						// #ifdef MP
+						uni.getSetting({
+							success: (res) => {
+								let authStatus = false;
+								switch (this.sourceTypeIndex) {
+									case 0:
+										authStatus = res.authSetting['scope.camera'];
+										break;
+									case 1:
+										authStatus = res.authSetting['scope.album'];
+										break;
+									case 2:
+										authStatus = res.authSetting['scope.album'] && res.authSetting['scope.camera'];
+										break;
+									default:
+										break;
+								}
+								if (!authStatus) {
+									uni.showModal({
+										title: '授权失败',
+										content: 'Hello uni-app需要从您的相机或相册获取视频，请在设置界面打开相关权限',
+										success: (res) => {
+											if (res.confirm) {
+												uni.openSetting()
+											}
+										}
+									})
+								}
+							}
+						})
+						// #endif
 					}
 				})
 			}

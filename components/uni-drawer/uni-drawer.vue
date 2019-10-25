@@ -1,6 +1,6 @@
 <template>
-	<view v-if="visibleSync" :class="{'uni-drawer--visible':showDrawer,'uni-drawer--right':rightMode}" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
-		<view class="uni-drawer__mask" @click="close" />
+	<view v-if="visibleSync" :class="{ 'uni-drawer--visible': showDrawer, 'uni-drawer--right': rightMode }" class="uni-drawer" @touchmove.stop.prevent="moveHandle">
+		<view class="uni-drawer__mask" @tap="close" />
 		<view class="uni-drawer__content">
 			<slot />
 		</view>
@@ -37,7 +37,9 @@
 			return {
 				visibleSync: false,
 				showDrawer: false,
-				rightMode: false
+				rightMode: false,
+				closeTimer: null,
+				watchTimer: null
 			}
 		},
 		watch: {
@@ -90,7 +92,7 @@
 		bottom: 0;
 		overflow: hidden;
 		visibility: hidden;
-		z-index: 10001;
+		z-index: 999;
 		height: 100%
 	}
 

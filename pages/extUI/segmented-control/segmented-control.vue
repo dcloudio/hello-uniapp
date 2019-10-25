@@ -4,74 +4,64 @@
 			<uni-segmented-control :current="current" :values="items" :style-type="styleType" :active-color="activeColor" @clickItem="onClickItem" />
 		</view>
 		<view class="content">
-			<view v-show="current === 0">
-				选项卡1的内容
-			</view>
-			<view v-show="current === 1">
-				选项卡2的内容
-			</view>
-			<view v-show="current === 2">
-				选项卡3的内容
-			</view>
+			<view v-show="current === 0">选项卡1的内容</view>
+			<view v-show="current === 1">选项卡2的内容</view>
+			<view v-show="current === 2">选项卡3的内容</view>
 		</view>
 
 		<view class="example-title">Style</view>
-		<radio-group class="uni-list" @change="styleChange">
-			<label v-for="(item, index) in styles" :key="index" class="uni-list-item">
-				<view class="uni-list-item__container">
-					<view class="uni-list-item__content">
-						<view class="uni-list-item__content-title">{{ item.text }}</view>
+		<view class="example-body">
+			<radio-group class="uni-list " @change="styleChange">
+				<label v-for="(item, index) in styles" :key="index" class="uni-list-item">
+					<view class="uni-list-item__container">
+						<view class="uni-list-item__content">
+							<view class="uni-list-item__content-title">{{ item.text }}</view>
+						</view>
+						<view class="uni-list-item__extra">
+							<radio :value="item.value" :checked="item.checked" />
+						</view>
 					</view>
-					<view class="uni-list-item__extra">
-						<radio :value="item.value" :checked="item.checked" />
-					</view>
-				</view>
-			</label>
-		</radio-group>
-
+				</label>
+			</radio-group>
+		</view>
 		<view class="example-title">Color</view>
-		<radio-group class="uni-list" @change="colorChange">
-			<label v-for="(item, index) in colors" :key="index" class="uni-list-item">
-				<view class="uni-list-item__container">
-					<view class="uni-list-item__content">
-						<view :style="{backgroundColor: item}" class="color-tag" />
+		<view class="example-body">
+			<radio-group class="uni-list" @change="colorChange">
+				<label v-for="(item, index) in colors" :key="index" class="uni-list-item">
+					<view class="uni-list-item__container">
+						<view class="uni-list-item__content">
+							<view :style="{ backgroundColor: item }" class="color-tag" />
+						</view>
+						<view class="uni-list-item__extra">
+							<radio :value="item" :checked="index === colorIndex" />
+						</view>
 					</view>
-					<view class="uni-list-item__extra">
-						<radio :value="item" :checked="index === colorIndex" />
-					</view>
-				</view>
-			</label>
-		</radio-group>
+				</label>
+			</radio-group>
+		</view>
 	</view>
 </template>
 
 <script>
 	import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue'
-
 	export default {
 		components: {
 			uniSegmentedControl
 		},
 		data() {
 			return {
-				items: [
-					'选项卡1',
-					'选项卡2',
-					'选项卡3'
-				],
+				items: ['选项卡1', '选项卡2', '选项卡3'],
 				styles: [{
-					value: 'button',
-					text: '按钮',
-					checked: true
-				}, {
-					value: 'text',
-					text: '文字'
-				}],
-				colors: [
-					'#007aff',
-					'#4cd964',
-					'#dd524d'
+						value: 'button',
+						text: '按钮',
+						checked: true
+					},
+					{
+						value: 'text',
+						text: '文字'
+					}
 				],
+				colors: ['#007aff', '#4cd964', '#dd524d'],
 				current: 0,
 				colorIndex: 0,
 				activeColor: '#007aff',
@@ -103,7 +93,7 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		background-color: #fff
+		background-color: #efeff4
 	}
 
 	view {
@@ -116,11 +106,33 @@
 	}
 
 	.example-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 		font-size: 32upx;
-		line-height: 32upx;
-		color: #777;
-		margin: 40upx 25upx;
-		position: relative
+		color: #464e52;
+		padding: 30upx 30upx 30upx 50upx;
+		margin-top: 20upx;
+		position: relative;
+		background-color: #fdfdfd;
+		border-bottom: 1px #f5f5f5 solid
+	}
+
+	.example-title__after {
+		position: relative;
+		color: #031e3c
+	}
+
+	.example-title:after {
+		content: '';
+		position: absolute;
+		left: 30upx;
+		margin: auto;
+		top: 0;
+		bottom: 0;
+		width: 6upx;
+		height: 32upx;
+		background-color: #ccc
 	}
 
 	.example .example-title {
@@ -128,7 +140,18 @@
 	}
 
 	.example-body {
-		padding: 0 40upx
+		padding: 30upx;
+		background: #fff
+	}
+
+	.example-info {
+		padding: 30upx;
+		color: #3b4144;
+		background: #fff
+	}
+
+	.uni-common-mt {
+		margin-top: 20upx;
 	}
 
 	.content {
@@ -168,8 +191,14 @@
 		left: 30upx;
 		height: 1px;
 		content: '';
-		-webkit-transform: scaleY(.5);
-		transform: scaleY(.5);
+		-webkit-transform: scaleY(0.5);
+		transform: scaleY(0.5);
 		background-color: #c8c7cc;
 	}
+
+	.example-body {
+		padding: 0;
+	}
+
+	.uni-list .uni-list-item:last-child {}
 </style>

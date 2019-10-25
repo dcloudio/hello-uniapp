@@ -1,0 +1,102 @@
+<template>
+    <view class="content">
+        <map class="map" ref="dcmap" :markers="markers" @tap="selectPoint"></map>
+        <scroll-view class="scrollview" scroll-y="true">
+            <button class="button" @click="reverseGeocode">reverseGeocode</button>
+            <button class="button" @click="poiSearchNearBy">poiSearchNearBy</button>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+    // 116.397477,39.908692
+    let mapSearch = weex.requireModule('mapSearch')
+    module.exports = {
+        data() {
+            return {
+                markers: [{
+                    id: '1',
+                    latitude: 39.9086920000,
+                    longitude: 116.3974770000,
+                    title: '天安门',
+                    zIndex: '1',
+                    iconPath: '/static/gps.png',
+                    width: 20,
+                    height: 20,
+                    anchor: {
+                        x: 0.5,
+                        y: 1
+                    },
+                    callout: {
+                        content: '首都北京\n天安门',
+                        color: '#00BFFF',
+                        fontSize: 12,
+                        borderRadius: 2,
+                        borderWidth: 0,
+                        borderColor: '#333300',
+                        bgColor: '#CCFF11',
+                        padding: '1',
+                        display: 'ALWAYS'
+                    }
+                }]
+            }
+        },
+        methods: {
+            selectPoint(e) {
+                console.log(e);
+            },
+            reverseGeocode() {
+                var point = this.markers[0]
+                mapSearch.reverseGeocode({
+                    point: {
+                        latitude: point.latitude,
+                        longitude: point.longitude
+                    }
+                }, ret => {
+                    console.log(JSON.stringify(ret));
+                    uni.showModal({
+                        content: JSON.stringify(ret)
+                    })
+                })
+            },
+            poiSearchNearBy() {
+                var point = this.markers[0]
+                mapSearch.poiSearchNearBy({
+                    point: {
+                        latitude: point.latitude,
+                        longitude: point.longitude
+                    },
+                    key: '停车场',
+                    radius: 1000
+                }, ret => {
+                    console.log(ret);
+                    uni.showModal({
+                        content: JSON.stringify(ret)
+                    })
+                })
+
+            }
+        }
+    }
+</script>
+
+<style>
+    .content {
+        flex: 1;
+    }
+
+    .map {
+        width: 750rpx;
+        height: 500rpx;
+        background-color: black;
+    }
+
+    .scrollview {
+        flex: 1;
+    }
+
+    .button {
+        margin-top: 30rpx;
+        margin-bottom: 20rpx;
+    }
+</style>

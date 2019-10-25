@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-title"> <uni-icon size="16" type="info"></uni-icon>说明 : </view>
+			<view class="uni-title"> <uni-icons size="16" type="info"></uni-icons>说明 : </view>
 			<view class="uni-helllo-text">
 				<view
 					>在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听红点按钮的点击事件。</view
@@ -12,7 +12,7 @@
 	</view>
 </template>
 <script>
-import uniIcon from '@/components/uni-icon/uni-icon.vue';
+import uniIcons from '@/components/uni-icons/uni-icons.vue';
 export default {
 	data() {
 		return {
@@ -62,7 +62,7 @@ export default {
 		this.setStyle(e.index,false);
 	},
 	components: {
-		uniIcon
+		uniIcons
 	}
 };
 </script>

@@ -1,43 +1,59 @@
 <template>
-	<view v-if="text" :class="[disabled ? 'uni-tag--disabled' : '',inverted ? 'uni-tag--inverted' : '',circle ? 'uni-tag--circle' : '', mark ? 'uni-tag--mark' : '', 'uni-tag--' + size, 'uni-tag--' + type]" class="uni-tag" @click="_onClick">{{ text }}</view>
+	<view v-if="text" :class="[
+      disabled === true || disabled === 'true' ? 'uni-tag--disabled' : '',
+      inverted === true || inverted === 'true' ? 'uni-tag--inverted' : '',
+      circle === true || circle === 'true' ? 'uni-tag--circle' : '',
+      mark === true || mark === 'true' ? 'uni-tag--mark' : '',
+      'uni-tag--' + size,
+      'uni-tag--' + type
+    ]" class="uni-tag" @click="onClick()">
+		{{ text }}
+	</view>
 </template>
 
 <script>
 	export default {
 		name: 'UniTag',
 		props: {
-			type: { // 标签类型default、primary、success、warning、danger、royal
+			type: {
+				// 标签类型default、primary、success、warning、danger、royal
 				type: String,
 				default: 'default'
 			},
-			size: { // 标签大小 normal, small
+			size: {
+				// 标签大小 normal, small
 				type: String,
 				default: 'normal'
 			},
+			// 标签内容
 			text: {
 				type: String,
 				default: ''
-			}, // 标签内容
-			disabled: { // 是否为禁用状态
-				type: Boolean,
-				default: false
 			},
-			inverted: { // 是否为空心
-				type: Boolean,
-				default: false
+			disabled: {
+				// 是否为禁用状态
+				type: [String, Boolean],
+				defalut: false
 			},
-			circle: { // 是否为圆角样式
-				type: Boolean,
-				default: false
+			inverted: {
+				// 是否为空心
+				type: [String, Boolean],
+				defalut: false
 			},
-			mark: { // 是否为标记样式
-				type: Boolean,
-				default: false
+			circle: {
+				// 是否为圆角样式
+				type: [String, Boolean],
+				defalut: false
+			},
+			mark: {
+				// 是否为标记样式
+				type: [String, Boolean],
+				defalut: false
 			}
 		},
 		methods: {
-			_onClick() {
-				if (this.disabled) {
+			onClick() {
+				if (this.disabled === true || this.disabled === 'true') {
 					return
 				}
 				this.$emit('click')

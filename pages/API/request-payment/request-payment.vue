@@ -10,7 +10,7 @@
                 </view>
             </view>
             <view class="uni-btn-v uni-common-mt">
-                <!-- #ifdef MP-WEIXIN -->
+                <!-- #ifdef MP-WEIXIN || MP-QQ -->
                 <button type="primary" @click="weixinPay" :loading="loading">微信支付</button>
                 <!-- #endif -->
                 <!-- #ifdef APP-PLUS -->

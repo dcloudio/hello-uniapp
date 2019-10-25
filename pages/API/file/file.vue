@@ -41,6 +41,26 @@
 					count: 1,
 					success: (res) => {
 						this.tempFilePath = res.tempFilePaths[0];
+					},
+					fail: (err) => {
+						// #ifdef MP
+						uni.getSetting({
+							success: (res) => {
+								let authStatus = res.authSetting['scope.album'] && res.authSetting['scope.camera'];
+								if (!authStatus) {
+									uni.showModal({
+										title: '授权失败',
+										content: 'Hello uni-app需要从您的相机或相册获取图片，请在设置界面打开相关权限',
+										success: (res) => {
+											if (res.confirm) {
+												uni.openSetting()
+											}
+										}
+									})
+								}
+							}
+						})
+						// #endif
 					}
 				});
 			},

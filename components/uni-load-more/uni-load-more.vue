@@ -1,30 +1,36 @@
 <template>
 	<view class="uni-load-more">
-		<view v-show="status === 'loading' && showIcon" class="uni-load-more__img">
-			<view class="load1">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+		<view v-if="iconType==='circle' || iconType==='auto' && platform === 'android'" v-show="status === 'loading' && showIcon" class="uni-load-more__img">
+			<view :style="{borderColor : color}" class="loader-android" />
+		</view>
+		<view v-else v-show="status === 'loading' && showIcon" class="uni-load-more__img">
+			<view class="load1 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
-			<view class="load2">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+			<view class="load2 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
-			<view class="load3">
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
-				<view class="uni-load-view_wrapper" :style="{background:color}" />
+			<view class="load3 load">
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
+				<view :style="{ background: color }" class="uni-load-view_wrapper" />
 			</view>
 		</view>
-		<text :style="{color:color}" class="uni-load-more__text">{{ status === 'more' ? contentText.contentdown : (status === 'loading' ? contentText.contentrefresh : contentText.contentnomore) }}</text>
+		<text :style="{ color: color }" class="uni-load-more__text">
+			{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}
+		</text>
 	</view>
 </template>
 
 <script>
+	const platform = uni.getSystemInfoSync().platform
 	export default {
 		name: 'UniLoadMore',
 		props: {
@@ -36,6 +42,10 @@
 			showIcon: {
 				type: Boolean,
 				default: true
+			},
+			iconType: {
+				type: String,
+				default: 'auto'
 			},
 			color: {
 				type: String,
@@ -53,7 +63,9 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				platform: platform
+			}
 		}
 	}
 </script>
@@ -75,16 +87,17 @@
 	}
 
 	.uni-load-more__img {
+		position: relative;
 		height: 24px;
 		width: 24px;
 		margin-right: 10px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper {
+	.uni-load-more__img>.load {
 		position: absolute
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper {
+	.uni-load-more__img>.load .uni-load-view_wrapper {
 		width: 6px;
 		height: 2px;
 		border-top-left-radius: 1px;
@@ -93,30 +106,43 @@
 		position: absolute;
 		opacity: .2;
 		transform-origin: 50%;
-		animation: load 1.56s ease infinite
+		animation: load .96s ease infinite
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(1) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(1) {
 		transform: rotate(90deg);
 		top: 2px;
 		left: 9px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(2) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(2) {
 		transform: rotate(180deg);
 		top: 11px;
 		right: 0
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(3) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(3) {
 		transform: rotate(270deg);
 		bottom: 2px;
 		left: 9px
 	}
 
-	.uni-load-more__img>.uni-load-view_wrapper .uni-load-view_wrapper:nth-child(4) {
+	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(4) {
 		top: 11px;
 		left: 0
+	}
+
+	.uni-load-more__img>.loader-android {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		box-sizing: border-box;
+		border: solid 2px #777;
+		border-radius: 50%;
+		border-bottom-color: transparent !important;
+		animation: loader-android 1s 0s linear infinite
 	}
 
 	.load1,
@@ -139,47 +165,47 @@
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: .13s
+		animation-delay: 80ms
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: .26s
+		animation-delay: .16s
 	}
 
 	.load1 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .39s
+		animation-delay: .24s
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .52s
+		animation-delay: .32s
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .65s
+		animation-delay: .4s
 	}
 
 	.load1 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .78s
+		animation-delay: .48s
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .91s
+		animation-delay: .56s
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: 1.04s
+		animation-delay: .64s
 	}
 
 	.load1 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: 1.17s
+		animation-delay: .72s
 	}
 
 	.load2 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: 1.3s
+		animation-delay: .8s
 	}
 
 	.load3 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: 1.43s
+		animation-delay: .88s
 	}
 
 	@-webkit-keyframes load {
@@ -189,6 +215,16 @@
 
 		100% {
 			opacity: .2
+		}
+	}
+
+	@-webkit-keyframes loader-android {
+		0% {
+			transform: rotate(0)
+		}
+
+		100% {
+			transform: rotate(360deg)
 		}
 	}
 </style>

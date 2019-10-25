@@ -5,7 +5,7 @@
 				<image :src="thumb" class="uni-list-item__icon-img" />
 			</view>
 			<view v-else-if="showExtraIcon" class="uni-list-item__icon">
-				<uni-icon class="uni-icon-wrapper" :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" />
+				<uni-icons :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" class="uni-icon-wrapper" />
 			</view>
 			<view class="uni-list-item__content">
 				<view class="uni-list-item__content-title">{{ title }}</view>
@@ -14,19 +14,19 @@
 			<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
 				<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
 				<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
-				<uni-icon class="uni-icon-wrapper" v-if="showArrow" :size="20" color="#bbb" type="arrowright" />
+				<uni-icons v-if="showArrow" :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcon from '../uni-icon/uni-icon.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	import uniBadge from '../uni-badge/uni-badge.vue'
 	export default {
 		name: 'UniListItem',
 		components: {
-			uniIcon,
+			uniIcons,
 			uniBadge
 		},
 		props: {
@@ -38,40 +38,49 @@
 				type: String,
 				default: ''
 			}, // 列表描述
-			disabled: { // 是否禁用
-				type: Boolean,
+			disabled: {
+				// 是否禁用
+				type: [Boolean, String],
 				default: false
 			},
-			showArrow: { // 是否显示箭头
-				type: Boolean,
+			showArrow: {
+				// 是否显示箭头
+				type: [Boolean, String],
 				default: true
 			},
-			showBadge: { // 是否显示数字角标
-				type: Boolean,
+			showBadge: {
+				// 是否显示数字角标
+				type: [Boolean, String],
 				default: false
 			},
-			showSwitch: { // 是否显示Switch
-				type: Boolean,
+			showSwitch: {
+				// 是否显示Switch
+				type: [Boolean, String],
 				default: false
 			},
-			switchChecked: { // Switch是否被选中
-				type: Boolean,
+			switchChecked: {
+				// Switch是否被选中
+				type: [Boolean, String],
 				default: false
 			},
 			badgeText: {
-				type: [String, Number],
+				// badge内容
+				type: String,
 				default: ''
-			}, // badge内容
-			badgeType: { // badge类型
+			},
+			badgeType: {
+				// badge类型
 				type: String,
 				default: 'success'
 			},
 			thumb: {
+				// 缩略图
 				type: String,
 				default: ''
-			}, // 缩略图
-			showExtraIcon: { // 是否显示扩展图标
-				type: Boolean,
+			},
+			showExtraIcon: {
+				// 是否显示扩展图标
+				type: [Boolean, String],
 				default: false
 			},
 			extraIcon: {
@@ -86,9 +95,7 @@
 			}
 		},
 		data() {
-			return {
-
-			}
+			return {}
 		},
 		methods: {
 			onClick() {
@@ -143,14 +150,15 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 
 	.uni-list-item__content {
 		flex: 1;
 		overflow: hidden;
 		display: flex;
-		flex-direction: column
+		flex-direction: column;
+		color: #3b4144
 	}
 
 	.uni-list-item__content-title {
@@ -163,6 +171,7 @@
 	}
 
 	.uni-list-item__content-note {
+		margin-top: 6upx;
 		color: #999;
 		font-size: 28upx;
 		white-space: normal;

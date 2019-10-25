@@ -12,7 +12,7 @@
 				<button type="primary" @tap="stopAcce">停止监听设备的加速度变化</button>
 			</view>
 			<view class="uni-textarea uni-common-mt">
-				<textarea :value="value" auto-height="true"/>
+				<textarea class="acc-show" :value="value" />
 			</view>
 		</view>
 	</view>
@@ -55,5 +55,8 @@
 		background-color: #FFCC33;
 		color: #ffffff;
 		margin-bottom: 50upx;
+	}
+	.uni-textarea .acc-show{
+		height: 240upx;
 	}
 </style>

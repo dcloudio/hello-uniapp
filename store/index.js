@@ -7,7 +7,8 @@ const store = new Vuex.Store({
 	state: {
 		hasLogin: false,
 		loginProvider: "",
-		openid: null
+		openid: null,
+		testvuex:false
 	},
 	mutations: {
 		login(state, provider) {
@@ -20,6 +21,12 @@ const store = new Vuex.Store({
 		},
 		setOpenid(state, openid) {
 			state.openid = openid
+		},
+		setTestTrue(state){
+			state.testvuex = true
+		},
+		setTestFalse(state){
+			state.testvuex = false
 		}
 	},
 	actions: {

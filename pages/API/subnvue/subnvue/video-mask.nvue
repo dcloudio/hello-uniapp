@@ -68,7 +68,7 @@
 					if(vm.lists.length > 5) {
 						vm.$nextTick(() => {
 							if(vm.$refs['item' + (vm.lists.length - 1)]){
-								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);	
+								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);
 							}
 						});
 					}
@@ -96,19 +96,19 @@
 		background-color: rgba(0, 0, 0, 0.7);
 	}
 	.cell {
-		padding: 10px 0;
+		padding: 10upx 0;
 		flex-direction: row;
 		flex-wrap: nowrap;
 	}
 	.name {
-		flex: none;
-		font-size: 20px;
-		margin-right: 20px;
+		flex: 0;
+		font-size: 20upx;
+		margin-right: 20upx;
 		color: #FF5A5F;
 	}
 	.content {
 		flex: 1;
-		font-size: 20px;
+		font-size: 20upx;
 		color: #F4F5F6;
 	}
 </style>

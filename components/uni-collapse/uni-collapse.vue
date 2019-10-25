@@ -7,8 +7,9 @@
 	export default {
 		name: 'UniCollapse',
 		props: {
-			accordion: { // 是否开启手风琴效果
-				type: Boolean,
+			accordion: {
+				// 是否开启手风琴效果
+				type: [Boolean, String],
 				default: false
 			}
 		},
@@ -57,7 +58,7 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 
 	.uni-collapse:before {
@@ -70,6 +71,6 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #c8c7cc
+		background-color: #e5e5e5
 	}
 </style>

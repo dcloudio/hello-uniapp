@@ -1,5 +1,5 @@
 <template>
-	<view style="text-decoration:underline" :href="href" @click="openURL" :inWhiteList="inWhiteList">{{text}}</view>
+	<text style="text-decoration:underline" :href="href" @click="openURL" :inWhiteList="inWhiteList">{{text}}</text>
 </template>
 
 <script>

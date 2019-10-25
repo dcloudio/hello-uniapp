@@ -112,7 +112,7 @@
 		left: -50%;
 		right: -50%;
 		bottom: -50%;
-		border: 1px solid #c8c7cc;
+		border: 1px solid #e5e5e5;
 		border-radius: 12upx;
 		transform: scale(.5)
 	}
@@ -153,7 +153,7 @@
 		right: -50%;
 		bottom: -50%;
 		border-style: solid;
-		border-color: #c8c7cc;
+		border-color: #e5e5e5;
 		border-left-width: 1px;
 		border-right-width: 1px;
 		border-top-width: 0;
