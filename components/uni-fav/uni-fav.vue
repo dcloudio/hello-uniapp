@@ -85,24 +85,24 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 120rpx;
-		height: 50rpx;
-		line-height: 50rpx;
+		width: 60px;
+		height: 25px;
+		line-height: 25px;
 		text-align: center;
-		border-radius: 6rpx;
+		border-radius: 3px;
 	}
 
 	.uni-fav--circle {
-		border-radius: 60rpx;
+		border-radius: 30px;
 	}
 
 	.uni-fav-star {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		height: 50rpx;
-		line-height: 48rpx;
-		margin-right: 5rpx;
+		height: 25px;
+		line-height: 24px;
+		margin-right: 3px;
 		align-items: center;
 		justify-content: center;
 	}
@@ -111,8 +111,8 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		height: 50rpx;
-		line-height: 50rpx;
+		height: 25px;
+		line-height: 25px;
 		align-items: center;
 		justify-content: center;
 		font-size: 28rpx;

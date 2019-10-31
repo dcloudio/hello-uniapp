@@ -14,8 +14,8 @@
 		</view>
 		<uni-section title="控制清除按钮" type="line"></uni-section>
 		<view class="example-body">
-			<uni-search-bar radius="100" clearButton="always" @confirm="search" />
-			<uni-search-bar radius="100" clearButton="auto" @confirm="search" />
+			<uni-search-bar radius="2" clearButton="always" @confirm="search" />
+			<uni-search-bar radius="2" clearButton="auto" @confirm="search" />
 			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
 		</view>
 	</view>

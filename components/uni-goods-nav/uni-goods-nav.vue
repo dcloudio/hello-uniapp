@@ -125,8 +125,8 @@
 	}
 
 	.uni-tab__icon {
-		width: 40rpx;
-		height: 40rpx;
+		width: 20px;
+		height: 20px;
 	}
 
 	.image {
@@ -135,7 +135,7 @@
 	}
 
 	.uni-tab__text {
-		margin-top: 5rpx;
+		margin-top: 3px;
 		font-size: 24rpx;
 		color: #666;
 	}
@@ -151,7 +151,7 @@
 	}
 
 	.uni-tab__cart-button-right-text {
-		font-size: 24rpx;
+		font-size: 28rpx;
 		color: #fff;
 	}
 
@@ -165,8 +165,8 @@
 		flex-direction: column;
 		/* #endif */
 		position: absolute;
-		right: 25rpx;
-		top: 5rpx;
+		right: 12px;
+		top: 4px;
 		justify-content: center;
 		align-items: center;
 		/* width: 0;
@@ -180,20 +180,20 @@
  */
 		/* height: 30rpx;
  */
-		padding: 0 8rpx;
-		line-height: 30rpx;
+		padding: 0 4px;
+		line-height: 15px;
 		color: #ffffff;
 		text-align: center;
 		font-size: 12px;
 		background-color: #ff0000;
-		border-radius: 30rpx;
+		border-radius: 15px;
 	}
 
 	.uni-tab__dots {
-		padding: 0 8rpx;
+		padding: 0 4px;
 		/* width: auto;
  */
-		border-radius: 30rpx;
+		border-radius: 15px;
 	}
 
 	.uni-tab__color-y {

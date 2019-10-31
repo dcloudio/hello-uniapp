@@ -193,10 +193,6 @@
 		-webkit-font-smoothing: antialiased;
 	}
 
-	/* .uni-icon-plusempty:before {
-		content: '\e468';
-	} */
-
 	.fab-box {
 		position: fixed;
 		display: flex;

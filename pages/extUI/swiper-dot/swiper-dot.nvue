@@ -206,7 +206,7 @@
 
 
 	.swiper-box {
-		height: 400rpx;
+		height: 200px;
 	}
 
 	.swiper-item {
@@ -216,7 +216,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background-color: #eee;
+		background-color: #999;
 		color: #fff;
 	}
 
@@ -257,10 +257,10 @@
 		padding: 0 15rpx;
 		/* #endif */
 		flex: 1;
-		border-color: #EEEEEE;
+		border-color: #e5e5e5;
 		border-style: solid;
 		border-width: 1px;
-		border-radius: 10rpx;
+		border-radius: 5px;
 	}
 
 	.example-body-item-text {
@@ -278,7 +278,7 @@
 
 	.active {
 		border-style: solid;
-		border-color: #000000;
+		border-color: #007aff;
 		border-width: 1px;
 	}
 </style>

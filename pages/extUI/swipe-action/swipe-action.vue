@@ -194,12 +194,12 @@
 
 
 	.cont {
-		height: 90rpx;
-		line-height: 90rpx;
-		padding: 0 30rpx;
+		height: 45px;
+		line-height: 45px;
+		padding: 0 15px;
 		position: relative;
 		background-color: #fff;
-		font-size: 30rpx;
+		font-size: 15px;
 	}
 
 	.example-body {
@@ -208,18 +208,18 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: center;
-		padding: 20rpx 0;
+		padding: 10px 0;
 	}
 
 	.button {
-		border-color: #E7E7E7;
+		border-color: #e5e5e5;
 		border-style: solid;
 		border-width: 1px;
-		padding: 8rpx 16rpx;
-		border-radius: 8rpx;
+		padding: 4px 8px;
+		border-radius: 4px;
 	}
 
 	.button-text {
-		font-size: 30rpx;
+		font-size: 15px;
 	}
 </style>

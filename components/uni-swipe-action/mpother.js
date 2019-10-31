@@ -30,7 +30,10 @@ export default {
 	mounted() {
 		this.position = {}
 		this.init()
-		this.getSelectorQuery()
+
+		setTimeout(()=>{
+			this.getSelectorQuery()
+		},100)
 	},
 	beforeDestoy() {
 		uni.$off('__uni__swipe__event')
@@ -138,22 +141,10 @@ export default {
 			// #endif
 			// #ifdef APP-NVUE
 			dom.getComponentRect(this.$refs['selector-content-hock'], (data) => {
-				if (data.size.width === 0) {
-					setTimeout(() => {
-						this.getSelectorQuery()
-					}, 50)
-					return
-				}
 				if (this.position.content) return
 				this.position.content = data.size
 			})
 			dom.getComponentRect(this.$refs['selector-button-hock'], (data) => {
-				if (data.size.width === 0) {
-					setTimeout(() => {
-						this.getSelectorQuery()
-					}, 50)
-					return
-				}
 				if (this.position.button) return
 				this.position.button = data.size
 				if (this.autoClose) return

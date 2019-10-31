@@ -1,11 +1,11 @@
 <template>
-	<view :class="{sticky:sticky}" :style="{top:stickyTop+'px'}" class="uni-title">
-		<view v-if="type" class="uni-title__head">
-			<view :class="type" class="uni-title__head-tag" />
+	<view class="uni-section">
+		<view v-if="type" class="uni-section__head">
+			<view :class="type" class="uni-section__head-tag" />
 		</view>
-		<view class="uni-title__content">
-			<text :class="{'distraction':!subTitle}" class="uni-title__content-title">{{ title }}</text>
-			<text v-if="subTitle" class="uni-title__content-sub">{{ subTitle }}</text>
+		<view class="uni-section__content">
+			<text :class="{'distraction':!subTitle}" class="uni-section__content-title">{{ title }}</text>
+			<text v-if="subTitle" class="uni-section__content-sub">{{ subTitle }}</text>
 		</view>
 		<slot />
 	</view>
@@ -26,14 +26,6 @@
 			subTitle: {
 				type: String,
 				default: ''
-			},
-			sticky: {
-				type: Boolean,
-				default: false
-			},
-			stickyTop: {
-				type: Number,
-				default: 0
 			}
 		},
 		data() {
@@ -54,40 +46,32 @@
 	}
 </script>
 <style scoped>
-	.uni-title {
+	.uni-section {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		margin-top: 10px;
 		flex-direction: row;
 		align-items: center;
-		padding: 5px 10px;
+		padding: 0 10px;
 		height: 50px;
-		background-color: #fdfdfd;
-		border-bottom-color: #f5f5f5;
+		background-color: #f8f8f8;
+		border-bottom-color: #e5e5e5;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 		font-weight: normal;
 	}
 
-	.sticky {
-		position: sticky;
-		/* top: 44px;
- */
-	}
-
-	.uni-title__head {
+	.uni-section__head {
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 		margin-right: 10px;
 	}
 
-	.uni-title__head-tag {}
-
 	.line {
 		height: 15px;
-		background-color: #ccc;
+		background-color: #c0c0c0;
 		border-radius: 5px;
 		width: 3px;
 	}
@@ -95,23 +79,21 @@
 	.circle {
 		width: 8px;
 		height: 8px;
-		/* border-radius: 50px;
- */
 		border-top-right-radius: 50px;
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 		border-bottom-right-radius: 50px;
-		background-color: #ccc;
+		background-color: #c0c0c0;
 	}
 
-	.uni-title__content {
+	.uni-section__content {
 		flex: 1;
-		color: #464e52;
+		color: #333;
 	}
 
-	.uni-title__content-title {
-		font-size: 15px;
-		color: #464e52;
+	.uni-section__content-title {
+		font-size: 28rpx;
+		color: #333;
 	}
 
 	.distraction {
@@ -119,8 +101,8 @@
 		align-items: center;
 	}
 
-	.uni-title__content-sub {
-		font-size: 12px;
+	.uni-section__content-sub {
+		font-size: 24rpx;
 		color: #999;
 	}
 </style>

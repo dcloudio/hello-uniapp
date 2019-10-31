@@ -117,24 +117,12 @@
 		},
 		methods: {
 			setList() {
-				// #ifndef APP-NVUE
-				uni.createSelectorQuery()
-					.in(this)
-					.select('#list')
-					.boundingClientRect()
-					.exec(ret => {
-						this.winHeight = ret[0].height
-						this.itemHeight = this.winHeight / this.options.length
-					})
-				// #endif
-				// #ifdef APP-NVUE
-				dom.getComponentRect(this.$refs['list'], (res) => {
-					this.winHeight = res.size.height
-					this.itemHeight = this.winHeight / this.options.length
-				})
-				// #endif
 				let index = 0;
-				this.lists = this.options.map(value => {
+				this.lists = []
+				this.options.forEach((value, index) => {
+					if (value.data.length === 0) {
+						return
+					}
 					// console.log(value)
 					let indexBefore = index
 					let items = value.data.map(item => {
@@ -148,14 +136,30 @@
 						obj.checked = item.checked ? item.checked : false
 						return obj
 					})
-					return {
+					this.lists.push({
 						title: value.letter,
 						key: value.letter,
 						items: items,
 						itemIndex: indexBefore
-					}
+					})
 				})
 				// console.log(this.lists)
+				// #ifndef APP-NVUE
+				uni.createSelectorQuery()
+					.in(this)
+					.select('#list')
+					.boundingClientRect()
+					.exec(ret => {
+						this.winHeight = ret[0].height
+						this.itemHeight = this.winHeight / this.lists.length
+					})
+				// #endif
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['list'], (res) => {
+					this.winHeight = res.size.height
+					this.itemHeight = this.winHeight / this.lists.length
+				})
+				// #endif
 			},
 			touchStart(e) {
 				this.touchmove = true

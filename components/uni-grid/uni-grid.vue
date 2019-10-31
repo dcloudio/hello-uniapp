@@ -23,10 +23,10 @@
 				type: Boolean,
 				default: true
 			},
-			// 是否显示边框
+			// 边框颜色
 			borderColor: {
 				type: String,
-				default: '#d0dee5'
+				default: '#e5e5e5'
 			},
 			// 全局标记水平方向移动距离 ，起点为中心，负数为左移动，正数为右移动
 			hor: {
@@ -122,7 +122,7 @@
 	}
 
 	.uni-grid--border {
-		border-left-color: #d0dee5;
+		border-left-color: #e5e5e5;
 		border-left-style: solid;
 		border-left-width: 1px;
 	}

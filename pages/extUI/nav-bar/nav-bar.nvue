@@ -192,7 +192,7 @@
 	}
 
 	.uni-nav-bar-text {
-		font-size: 32rpx;
+		font-size: 28rpx;
 	}
 
 	.city {
@@ -204,7 +204,7 @@
 		justify-content: flex-start;
 		/* width: 160rpx;
  */
-		margin-left: 8rpx;
+		margin-left: 4px;
 	}
 
 	.input-view {
@@ -215,32 +215,28 @@
 		/* width: 500rpx;
  */
 		flex: 1;
-		background-color: #e7e7e7;
-		height: 60rpx;
+		background-color: #f8f8f8;
+		height: 30px;
 		border-radius: 15px;
-		padding: 0 30rpx;
+		padding: 0 15px;
 		flex-wrap: nowrap;
 		margin: 7px 0;
-		line-height: 60rpx;
+		line-height: 30px;
 	}
 
 	.input-uni-icon {
-		line-height: 60rpx;
-		/* justify-content: center;
- */
-		/* align-items: center;
- */
+		line-height: 30px;
 	}
 
 	.nav-bar-input {
-		height: 60rpx;
-		line-height: 60rpx;
+		height: 30px;
+		line-height: 30px;
 		/* #ifdef APP-PLUS-NVUE */
 		width: 370rpx;
 		/* #endif */
-		padding: 0 10rpx;
-		font-size: 32rpx;
-		background-color: #e7e7e7;
+		padding: 0 5px;
+		font-size: 28rpx;
+		background-color: #f8f8f8;
 	}
 
 	.example-body {

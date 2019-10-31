@@ -85,7 +85,6 @@
 		},
 		methods: {
 			onClick() {
-				console.log(this.disabled);
 				if (this.disabled) {
 					return
 				}
@@ -115,15 +114,17 @@
 
 
 	.uni-collapse-cell--hover {
-		background-color: #f5f5f5;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell--open {
-		background-color: #f5f5f5;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell--disabled {
-		opacity: 0.3;
+		background-color: #f1f1f1;
+		/* opacity: 0.3;
+ */
 	}
 
 
@@ -154,7 +155,7 @@
 	}
 
 	.uni-collapse-cell__title:active {
-		background-color: #f5f5f5;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell__title-img {
@@ -177,7 +178,7 @@
 
 	.uni-collapse-cell__title-text {
 		flex: 1;
-		font-size: 32rpx;
+		font-size: 28rpx;
 		/* #ifndef APP-NVUE */
 		white-space: nowrap;
 		color: inherit;

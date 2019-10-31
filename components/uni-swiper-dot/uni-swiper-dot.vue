@@ -106,7 +106,7 @@
 
 	.uni-swiper__dots-box {
 		position: absolute;
-		bottom: 20rpx;
+		bottom: 10px;
 		left: 0;
 		right: 0;
 		/* #ifndef APP-NVUE */
@@ -119,10 +119,10 @@
 	}
 
 	.uni-swiper__dots-item {
-		width: 16rpx;
+		width: 8px;
 		border-radius: 100px;
-		margin-left: 12rpx;
-		background-color: rgba(0, 0, 0, .3);
+		margin-left: 6px;
+		background-color: rgba(0, 0, 0, 0.4);
 		/* transition: width 0.2s linear;  不要取消注释，不然会不能变色
  */
 	}
@@ -136,16 +136,16 @@
 	}
 
 	.uni-swiper__dots-long {
-		border-radius: 100rpx;
+		border-radius: 50px;
 	}
 
 	.uni-swiper__dots-bar {
-		border-radius: 100rpx;
+		border-radius: 50px;
 	}
 
 	.uni-swiper__dots-nav {
 		bottom: 0px;
-		height: 80rpx;
+		height: 40px;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -162,7 +162,7 @@
     white-space: nowrap; */
 		font-size: 28rpx;
 		color: #fff;
-		margin: 0 30rpx;
+		margin: 0 15px;
 	}
 
 	.uni-swiper__dots-indexes {

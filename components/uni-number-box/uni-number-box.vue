@@ -1,8 +1,12 @@
 <template>
 	<view class="uni-numbox">
-		<text :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }" @click="_calcValue('minus')" class="uni-numbox__minus">-</text>
+		<view @click="_calcValue('minus')" class="uni-numbox__minus">
+			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
+		</view>
 		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
-		<text :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }" @click="_calcValue('plus')" class="uni-numbox__plus">+</text>
+		<view @click="_calcValue('plus')" class="uni-numbox__plus">
+			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
+		</view>
 	</view>
 </template>
 <script>
@@ -95,24 +99,21 @@
 <style scoped>
 	/* #ifdef APP-NVUE */
 	/* #endif */
-	/* #ifdef APP-PLUS */
-
-	/* #endif */
 
 	.uni-numbox {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		height: 70rpx;
-		line-height: 70rpx;
-		width: 240rpx;
+		height: 35px;
+		line-height: 35px;
+		width: 120px;
 	}
 
 	.uni-numbox__value {
 		background-color: #ffffff;
-		width: 80rpx;
-		height: 70rpx;
+		width: 40px;
+		height: 35px;
 		text-align: center;
 		font-size: 32rpx;
 		border-width: 1rpx;
@@ -123,11 +124,19 @@
 	}
 
 	.uni-numbox__minus {
-		width: 70rpx;
-		height: 70rpx;
-		line-height: 62rpx;
-		text-align: center;
-		font-size: 40rpx;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 35px;
+		height: 35px;
+		/* line-height: $box-line-height;
+ */
+		/* text-align: center;
+ */
+		font-size: 20px;
 		color: #333;
 		background-color: #f8f8f8;
 		border-width: 1rpx;
@@ -139,12 +148,14 @@
 	}
 
 	.uni-numbox__plus {
-		width: 70rpx;
-		height: 70rpx;
-		line-height: 62rpx;
-		text-align: center;
-		font-size: 40rpx;
-		color: #333;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 35px;
+		height: 35px;
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #e5e5e5;
@@ -152,6 +163,11 @@
 		border-bottom-right-radius: 6rpx;
 		background-color: #f8f8f8;
 		border-left-width: 0;
+	}
+
+	.uni-numbox--text {
+		font-size: 40rpx;
+		color: #333;
 	}
 
 	.uni-numbox--disabled {

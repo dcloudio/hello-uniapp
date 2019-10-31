@@ -162,7 +162,7 @@
 		display: flex;
 		flex-direction: column;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		text-align: center;
 		background-color: #fff;
 		justify-content: center;
@@ -170,7 +170,7 @@
 	}
 
 	.button {
-		margin-top: 30rpx;
-		width: 700rpx;
+		margin-bottom: 20px;
+		width: 350px;
 	}
 </style>

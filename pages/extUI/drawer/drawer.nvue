@@ -252,7 +252,7 @@
 		padding: 0 5px;
 		height: 24px;
 		line-height: 24px;
-		font-size: 16px;
+		font-size: 28rpx;
 		background-color: transparent;
 	}
 
@@ -265,6 +265,7 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		padding: 0;
 	}
 
 	.draw-cotrol-btn {

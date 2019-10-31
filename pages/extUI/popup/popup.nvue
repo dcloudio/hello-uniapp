@@ -3,17 +3,17 @@
 		<text class="example-info">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</text>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
-			<button class="button" type="button" @click="togglePopup('top', 'popup')">顶部弹出 popup</button>
-			<button class="button" type="button" @click="togglePopup('center', 'popup')">中间弹出 popup</button>
-			<button class="button" type="button" @click="togglePopup('bottom', 'popup')">底部弹出 popup</button>
+			<button class="button" type="primary" @click="togglePopup('top', 'popup')">顶部弹出 popup</button>
+			<button class="button" type="primary" @click="togglePopup('center', 'popup')">中间弹出 popup</button>
+			<button class="button" type="primary" @click="togglePopup('bottom', 'popup')">底部弹出 popup</button>
 		</view>
 		<uni-section title="自定义弹出层" type="line"></uni-section>
 		<view class="example-body">
-			<button class="button" type="button" @click="togglePopup('center', 'tip')">提示框</button>
-			<button class="button" type="button" @click="togglePopup('center', 'image')">插屏广告</button>
-			<button class="button" type="button" @click="togglePopup('bottom', 'share')">底部分享</button>
+			<button class="button" type="primary" @click="togglePopup('center', 'tip')">提示框</button>
+			<button class="button" type="primary" @click="togglePopup('center', 'image')">插屏广告</button>
+			<button class="button" type="primary" @click="togglePopup('bottom', 'share')">底部分享</button>
 		</view>
-		<uni-popup :show="showpopup" ref="popup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
+		<uni-popup :show="showpopup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
 
 		<uni-popup :show="showtip" :type="type" :mask-click="false" @change="change">
 			<view class="uni-tip">
@@ -104,9 +104,6 @@
 				]
 			}
 		},
-		created() {
-			// this.$refs.popup.open()
-		},
 		methods: {
 			togglePopup(type, open) {
 				switch (type) {
@@ -123,20 +120,8 @@
 				}
 				this.type = type
 				this['show' + open] = true
-				// if (open === 'tip') {
-				//   this.show = true
-				// } else {
-				//   this.$nextTick(() => {
-				//     this.$refs[open].open()
-				//   })
-				// }
 			},
 			cancel(type) {
-				// if (type === 'tip') {
-				//   this.show = false
-				//   return
-				// }
-				// this.$refs[type].close()
 				this['show' + type] = false
 			},
 			change(e) {
@@ -264,12 +249,12 @@
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 10rpx 30rpx;
+		padding: 5px 15px;
 	}
 
 	.button {
 		flex: 1;
-		margin: 20rpx 0;
+		margin: 10px 0;
 	}
 
 	.popup-content {
@@ -325,10 +310,6 @@
 	/* 插屏广告 */
 	.uni-image {
 		position: relative;
-		/* width: 200px;
- */
-		/* height: 200px;
- */
 	}
 
 	.image {
@@ -374,8 +355,6 @@
 		flex-direction: column;
 		align-items: center;
 		width: 200rpx;
-		/* flex: 1;
- */
 	}
 
 	.uni-share-content-image {

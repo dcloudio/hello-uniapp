@@ -88,14 +88,14 @@
 		flex: 1;
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 		/* #endif */
-		margin: 24rpx;
+		margin: 12px;
 		background-color: #ffffff;
 		position: relative;
 		flex-direction: column;
-		border-color: #ddd;
+		border-color: #e5e5e5;
 		border-style: solid;
 		border-width: 1px;
-		border-radius: 6rpx;
+		border-radius: 3px;
 		overflow: hidden;
 
 	}
@@ -104,7 +104,7 @@
 		position: relative;
 		flex-direction: column;
 		justify-content: center;
-		height: 300rpx;
+		height: 150px;
 		overflow: hidden;
 	}
 
@@ -136,7 +136,7 @@
 
 	.uni-card__thumbnailimage-title-text {
 		flex: 1;
-		font-size: 32rpx;
+		font-size: 28rpx;
 		color: #fff;
 	}
 
@@ -145,30 +145,22 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		padding: 20rpx;
+		padding: 10px;
 		border-bottom-color: #F5F5F5;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 	}
 
 	.uni-card__title-header {
-		width: 80rpx;
-		height: 80rpx;
+		width: 40px;
+		height: 40px;
 		overflow: hidden;
-		border-radius: 10rpx;
-		/* image {
- */
-		/*   width: 100%;
- */
-		/*   height: 100%;
- */
-		/* }
- */
+		border-radius: 5px;
 	}
 
 	.uni-card__title-header-image {
-		width: 80rpx;
-		height: 80rpx;
+		width: 40px;
+		height: 40px;
 	}
 
 	.uni-card__title-content {
@@ -177,16 +169,16 @@
 		/* #endif */
 		flex-direction: column;
 		justify-content: center;
-		padding-left: 20rpx;
-		height: 80rpx;
+		padding-left: 10px;
+		height: 40px;
 		overflow: hidden;
 
 
 	}
 
 	.uni-card__title-content-title {
-		font-size: 30rpx;
-		line-height: 45rpx;
+		font-size: 28rpx;
+		line-height: 22px;
 		lines: 1;
 	}
 
@@ -204,12 +196,10 @@
 		flex-direction: row;
 		padding: 24rpx;
 		align-items: center;
-		border-bottom-color: #F5F5F5;
+		border-bottom-color: #e5e5e5;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 	}
-
-	.uni-card__header {}
 
 	.uni-card__header-title {
 		/* #ifndef APP-NVUE */
@@ -234,10 +224,6 @@
 		text-overflow: ellipsis;
 	}
 
-	.uni-card__header-extra {}
-
-	.uni-card__header-extra-img-view {}
-
 	.uni-card__header-extra-img {
 		height: 40rpx;
 		width: 40rpx;
@@ -246,16 +232,14 @@
 
 	.uni-card__header-extra-text {
 		flex: 1;
-		width: 30%;
 		margin-left: 16rpx;
 		font-size: 28rpx;
 		text-align: right;
-		color: #666;
-
+		color: #999;
 	}
 
 	.uni-card__content {
-		color: #555;
+		color: #333;
 	}
 
 	.uni-card__content--pd {
@@ -264,14 +248,14 @@
 
 	.uni-card__content-extra {
 		font-size: 28rpx;
-		padding-bottom: 20rpx;
+		padding-bottom: 10px;
 		color: #999;
 	}
 
 	.uni-card__footer {
 		justify-content: space-between;
-		padding: 20rpx;
-		border-top-color: #F5F5F5;
+		padding: 10px;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
@@ -282,7 +266,7 @@
 	}
 
 	.uni-card--shadow {
-		border-color: #ddd;
+		border-color: #e5e5e5;
 		border-style: solid;
 		border-width: 1px;
 		/* #ifndef APP-NVUE */
@@ -292,8 +276,6 @@
 
 	.uni-card--full {
 		margin: 0;
-
 		border-radius: 0;
-
 	}
 </style>

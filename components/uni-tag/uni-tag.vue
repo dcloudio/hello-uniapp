@@ -67,9 +67,9 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		padding: 0px 32rpx;
-		height: 60rpx;
-		line-height: 60rpx;
+		padding: 0px 16px;
+		height: 30px;
+		line-height: 30px;
 		justify-content: center;
 		color: #333;
 		border-radius: 6rpx;
@@ -80,14 +80,14 @@
 	}
 
 	.uni-tag--circle {
-		border-radius: 30rpx;
+		border-radius: 15px;
 	}
 
 	.uni-tag--mark {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
-		border-top-right-radius: 30rpx;
-		border-bottom-right-radius: 30rpx;
+		border-top-right-radius: 15px;
+		border-bottom-right-radius: 15px;
 	}
 
 	.uni-tag--disabled {
@@ -95,9 +95,9 @@
 	}
 
 	.uni-tag--small {
-		height: 40rpx;
-		padding: 0px 16rpx;
-		line-height: 40rpx;
+		height: 20px;
+		padding: 0px 8px;
+		line-height: 20px;
 		font-size: 24rpx;
 	}
 

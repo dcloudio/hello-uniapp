@@ -57,7 +57,9 @@
 			_onClick(index) {
 				if (this.currentIndex !== index) {
 					this.currentIndex = index
-					this.$emit('clickItem', index)
+					this.$emit('clickItem', {
+						currentIndex: index
+					})
 				}
 			}
 		}

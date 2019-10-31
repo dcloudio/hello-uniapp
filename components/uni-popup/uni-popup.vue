@@ -100,8 +100,6 @@
 	}
 
 	.mask-ani {
-		/* transition: all 0.3s;
- */
 		transition-property: opacity;
 		transition-duration: 0.2s;
 	}

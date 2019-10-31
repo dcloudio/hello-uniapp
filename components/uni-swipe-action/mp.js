@@ -22,20 +22,14 @@ export default {
 			this.$set(this.position, 0, valueObj)
 		}
 	},
-	// #ifdef H5
 	mounted() {
 		this.init()
-		this.getSize()
-		this.getButtonSize()
+		setTimeout(()=>{
+			this.getSize()
+			this.getButtonSize()
+		},50)
+	
 	},
-	// #endif
-	// #ifndef H5
-	onReady() {
-		this.init()
-		this.getSize()
-		this.getButtonSize()
-	},
-	// #endif
 	methods: {
 		init() {
 			uni.$on('__uni__swipe__event', (res) => {
