@@ -1,0 +1,395 @@
+<template>
+	<view>
+		<text class="example-info">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</text>
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example-body">
+			<button class="button" type="primary" @click="togglePopup('top', 'popup')">顶部弹出 popup</button>
+			<button class="button" type="primary" @click="togglePopup('center', 'popup')">中间弹出 popup</button>
+			<button class="button" type="primary" @click="togglePopup('bottom', 'popup')">底部弹出 popup</button>
+		</view>
+		<uni-section title="自定义弹出层" type="line"></uni-section>
+		<view class="example-body">
+			<button class="button" type="primary" @click="togglePopup('center', 'tip')">提示框</button>
+			<button class="button" type="primary" @click="togglePopup('center', 'image')">插屏广告</button>
+			<button class="button" type="primary" @click="togglePopup('bottom', 'share')">底部分享</button>
+		</view>
+		<uni-popup :show="showpopup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
+
+		<uni-popup :show="showtip" :type="type" :mask-click="false" @change="change">
+			<view class="uni-tip">
+				<text class="uni-tip-title">警告</text>
+				<text class="uni-tip-content">这是一个通过自定义 popup，自由扩展的 警告弹窗。点击遮罩不会关闭弹窗。</text>
+				<view class="uni-tip-group-button">
+					<text class="uni-tip-button" @click="cancel('tip')">取消</text>
+					<text class="uni-tip-button" @click="cancel('tip')">确定</text>
+				</view>
+			</view>
+		</uni-popup>
+		<!-- 插屏弹窗 -->
+		<uni-popup :show="showimage" :type="type" :mask-click="true" @change="change">
+			<view class="uni-image">
+				<image class="image" src="/static/uni.png" mode="scaleToFill" />
+				<view class="uni-image-close" @click="cancel('image')">
+					<uni-icons type="clear" color="#fff" size="30" />
+				</view>
+			</view>
+		</uni-popup>
+		<!-- 底部分享弹窗 -->
+		<uni-popup :show="showshare" :type="type" @change="change">
+			<view class="uni-share">
+				<text class="uni-share-title">分享到</text>
+				<view class="uni-share-content">
+					<view v-for="(item, index) in bottomData" :key="index" class="uni-share-content-box">
+						<view class="uni-share-content-image">
+							<image :src="item.icon" class="content-image" mode="widthFix" />
+						</view>
+						<text class="uni-share-content-text">{{ item.text }}</text>
+					</view>
+				</view>
+				<text class="uni-share-btn" @click="cancel('share')">取消分享</text>
+			</view>
+		</uni-popup>
+	</view>
+</template>
+
+<script>
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	export default {
+		components: {
+			uniSection,
+			uniPopup,
+			uniIcons
+		},
+		data() {
+			return {
+				showpopup: false,
+				showtip: false,
+				showimage: false,
+				showshare: false,
+				type: '',
+				list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+				content: '顶部弹 popup',
+				bottomData: [{
+						text: '微信',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
+						name: 'wx'
+					},
+					{
+						text: '支付宝',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-8.png',
+						name: 'wx'
+					},
+					{
+						text: 'QQ',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png',
+						name: 'qq'
+					},
+					{
+						text: '新浪',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
+						name: 'sina'
+					},
+					{
+						text: '百度',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-7.png',
+						name: 'copy'
+					},
+					{
+						text: '其他',
+						icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
+						name: 'more'
+					}
+				]
+			}
+		},
+		methods: {
+			togglePopup(type, open) {
+				switch (type) {
+					case 'top':
+						this.content = '顶部弹出 popup'
+						break
+
+					case 'bottom':
+						this.content = '底部弹出 popup'
+						break
+					case 'center':
+						this.content = '居中弹出 popup'
+						break
+				}
+				this.type = type
+				this['show' + open] = true
+			},
+			cancel(type) {
+				this['show' + type] = false
+			},
+			change(e) {
+				console.log('是否打开:' + e.show)
+				if (!e.show) {
+					this.showpopup = false
+					this.showtip = false
+					this.showimage = false
+					this.showshare = false
+				}
+			}
+		},
+		onBackPress() {
+			console.log('showpopup', this.showpopup)
+			console.log('showtip', this.showtip);
+			console.log('showimage', this.showimage);
+			console.log('showshare', this.showshare);
+			if (this.showpopup || this.showtip || this.showimage || this.showshare) {
+				this.showpopup = false
+				this.showtip = false
+				this.showimage = false
+				this.showshare = false
+				return true
+			}
+		}
+	}
+</script>
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 5px 15px;
+	}
+
+	.button {
+		flex: 1;
+		margin: 10px 0;
+	}
+
+	.popup-content {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		background-color: #fff;
+		padding: 15px;
+		font-size: 14px;
+	}
+
+	/* 提示窗口 */
+	.uni-tip {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		padding: 15px;
+		width: 300px;
+		background-color: #fff;
+		border-radius: 10px;
+	}
+
+	.uni-tip-title {
+		text-align: center;
+		font-weight: bold;
+		font-size: 16px;
+		color: #333;
+	}
+
+	.uni-tip-content {
+		/* padding: 15px;
+ */
+		font-size: 14px;
+		color: #666;
+	}
+
+	.uni-tip-group-button {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		margin-top: 20px;
+	}
+
+	.uni-tip-button {
+		flex: 1;
+		text-align: center;
+		font-size: 14px;
+		color: #3b4144;
+	}
+
+	/* 插屏广告 */
+	.uni-image {
+		position: relative;
+	}
+
+	.image {
+		width: 200px;
+		height: 200px;
+	}
+
+	.uni-image-close {
+		margin-top: 20px;
+		text-align: center;
+	}
+
+	/* 底部分享 */
+	.uni-share {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		background-color: #fff;
+	}
+
+	.uni-share-title {
+		line-height: 60rpx;
+		font-size: 24rpx;
+		padding: 15rpx 0;
+		text-align: center;
+	}
+
+	.uni-share-content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 15px;
+	}
+
+	.uni-share-content-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		align-items: center;
+		width: 200rpx;
+	}
+
+	.uni-share-content-image {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 60rpx;
+		height: 60rpx;
+		overflow: hidden;
+		border-radius: 10rpx;
+	}
+
+	.content-image {
+		width: 60rpx;
+		height: 60rpx;
+	}
+
+	.uni-share-content-text {
+		font-size: 26rpx;
+		color: #333;
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.uni-share-btn {
+		height: 90rpx;
+		line-height: 90rpx;
+		font-size: 14px;
+		border-top-color: #f5f5f5;
+		border-top-width: 1px;
+		border-top-style: solid;
+		text-align: center;
+		color: #666;
+	}
+</style>

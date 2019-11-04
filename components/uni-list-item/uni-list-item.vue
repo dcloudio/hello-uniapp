@@ -1,6 +1,6 @@
 <template>
 	<view :class="disabled ? 'uni-list-item--disabled' : ''" :hover-class="disabled || showSwitch ? '' : 'uni-list-item--hover'" class="uni-list-item" @click="onClick">
-		<view class="uni-list-item__container">
+		<view class="uni-list-item__container" :class="{'uni-list-item--first':isFirstChild}">
 			<view v-if="thumb" class="uni-list-item__icon">
 				<image :src="thumb" class="uni-list-item__icon-img" />
 			</view>
@@ -8,8 +8,8 @@
 				<uni-icons :color="extraIcon.color" :size="extraIcon.size" :type="extraIcon.type" class="uni-icon-wrapper" />
 			</view>
 			<view class="uni-list-item__content">
-				<view class="uni-list-item__content-title">{{ title }}</view>
-				<view v-if="note" class="uni-list-item__content-note">{{ note }}</view>
+				<text class="uni-list-item__content-title">{{ title }}</text>
+				<text v-if="note" class="uni-list-item__content-note">{{ note }}</text>
 			</view>
 			<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
 				<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
-	import uniBadge from '../uni-badge/uni-badge.vue'
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniBadge from '@/components/uni-badge/uni-badge.vue'
 	export default {
 		name: 'UniListItem',
 		components: {
@@ -94,8 +94,17 @@
 				}
 			}
 		},
+		inject: ['list'],
 		data() {
-			return {}
+			return {
+				isFirstChild: false
+			}
+		},
+		mounted() {
+			if (!this.list.firstChildAppend) {
+				this.list.firstChildAppend = true
+				this.isFirstChild = true
+			}
 		},
 		methods: {
 			onClick() {
@@ -108,101 +117,86 @@
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-list-item {
-		font-size: 32upx;
+		font-size: 32rpx;
 		position: relative;
-		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		align-items: center
+		padding-left: 30rpx;
 	}
 
 	.uni-list-item--disabled {
-		opacity: .3
+		opacity: 0.3;
 	}
 
 	.uni-list-item--hover {
-		background-color: #f1f1f1
+		background-color: #f1f1f1;
 	}
 
 	.uni-list-item__container {
-		padding: 24upx 30upx;
-		width: 100%;
-		box-sizing: border-box;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		padding: 24rpx 30rpx;
+		padding-left: 0;
 		flex: 1;
 		position: relative;
-		display: flex;
-		flex-direction: row;
 		justify-content: space-between;
-		align-items: center
+		align-items: center;
+		border-top-color: #e5e5e5;
+		border-top-style: solid;
+		border-top-width: 1px;
 	}
 
-	.uni-list-item__container:after {
-		position: absolute;
-		z-index: 3;
-		right: 0;
-		bottom: 0;
-		left: 30upx;
-		height: 1px;
-		content: '';
-		-webkit-transform: scaleY(.5);
-		transform: scaleY(.5);
-		background-color: #e5e5e5
+	.uni-list-item--first {
+		border-top-width: 0px;
 	}
 
 	.uni-list-item__content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex: 1;
 		overflow: hidden;
-		display: flex;
 		flex-direction: column;
-		color: #3b4144
+		color: #3b4144;
+
 	}
 
 	.uni-list-item__content-title {
-		font-size: 32upx;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		color: inherit;
-		line-height: 1.5;
-		overflow: hidden
+		font-size: 28rpx;
+		color: #3b4144;
+		overflow: hidden;
 	}
 
 	.uni-list-item__content-note {
-		margin-top: 6upx;
+		margin-top: 6rpx;
 		color: #999;
-		font-size: 28upx;
-		white-space: normal;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden
+		font-size: 24rpx;
+		overflow: hidden;
 	}
 
 	.uni-list-item__extra {
-		width: 25%;
+		/* width: 25%; */
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
 		justify-content: flex-end;
-		align-items: center
+		align-items: center;
 	}
 
 	.uni-list-item__icon {
-		margin-right: 18upx;
-		display: flex;
+		margin-right: 18rpx;
 		flex-direction: row;
 		justify-content: center;
-		align-items: center
+		align-items: center;
 	}
 
 	.uni-list-item__icon-img {
-		height: 52upx;
-		width: 52upx
-	}
-
-	.uni-list>.uni-list-item:last-child .uni-list-item-container:after {
-		height: 0
+		height: 52rpx;
+		width: 52rpx;
 	}
 </style>

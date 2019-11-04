@@ -1,13 +1,13 @@
 <template>
 	<view class="uni-countdown">
-		<view v-if="showDay" :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ d }}</view>
-		<view v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">天</view>
-		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ h }}</view>
-		<view :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</view>
-		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ i }}</view>
-		<view :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</view>
-		<view :style="{ borderColor: borderColor, color: color, background: backgroundColor }" class="uni-countdown__number">{{ s }}</view>
-		<view v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">秒</view>
+		<text v-if="showDay" :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ d }}</text>
+		<text v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">天</text>
+		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ h }}</text>
+		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</text>
+		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ i }}</text>
+		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</text>
+		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ s }}</text>
+		<text v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">秒</text>
 	</view>
 </template>
 <script>
@@ -58,6 +58,7 @@
 		data() {
 			return {
 				timer: null,
+				syncFlag: false,
 				d: '00',
 				h: '00',
 				i: '00',
@@ -66,17 +67,22 @@
 				seconds: 0
 			}
 		},
+		watch: {
+			day(val) {
+				this.changeFlag()
+			},
+			hour(val) {
+				this.changeFlag()
+			},
+			minute(val) {
+				this.changeFlag()
+			},
+			second(val) {
+				this.changeFlag()
+			}
+		},
 		created: function(e) {
-			this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
-			this.countDown()
-			this.timer = setInterval(() => {
-				this.seconds--
-				if (this.seconds < 0) {
-					this.timeUp()
-					return
-				}
-				this.countDown()
-			}, 1000)
+			this.startData();
 		},
 		beforeDestroy() {
 			clearInterval(this.timer)
@@ -94,9 +100,9 @@
 				let [day, hour, minute, second] = [0, 0, 0, 0]
 				if (seconds > 0) {
 					day = Math.floor(seconds / (60 * 60 * 24))
-					hour = Math.floor(seconds / (60 * 60)) - day * 24
-					minute = Math.floor(seconds / 60) - day * 24 * 60 - hour * 60
-					second = Math.floor(seconds) - day * 24 * 60 * 60 - hour * 60 * 60 - minute * 60
+					hour = Math.floor(seconds / (60 * 60)) - (day * 24)
+					minute = Math.floor(seconds / 60) - (day * 24 * 60) - (hour * 60)
+					second = Math.floor(seconds) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60)
 				} else {
 					this.timeUp()
 				}
@@ -116,36 +122,63 @@
 				this.h = hour
 				this.i = minute
 				this.s = second
+			},
+			startData() {
+				this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+				if (this.seconds <= 0) {
+					return
+				}
+				this.countDown()
+				this.timer = setInterval(() => {
+					this.seconds--
+					if (this.seconds < 0) {
+						this.timeUp()
+						return
+					}
+					this.countDown()
+				}, 1000)
+			},
+			changeFlag() {
+				if (!this.syncFlag) {
+					this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+					this.startData();
+					this.syncFlag = true;
+				}
 			}
 		}
 	}
 </script>
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-countdown {
-		padding: 2upx 0;
-		display: inline-flex;
-		flex-wrap: nowrap;
-		justify-content: center
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		justify-content: flex-start;
+		padding: 2rpx 0;
 	}
 
 	.uni-countdown__splitor {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		justify-content: center;
-		line-height: 44upx;
-		padding: 0 5upx;
-		font-size: 28upx
+		line-height: 48rpx;
+		padding: 5rpx;
+		font-size: 24rpx;
 	}
 
 	.uni-countdown__number {
-		line-height: 44upx;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		justify-content: center;
-		height: 44upx;
-		border-radius: 6upx;
-		margin: 0 5upx;
-		font-size: 28upx;
-		border: 1px solid #000;
-		font-size: 24upx;
-		padding: 0 10upx
+		align-items: center;
+		width: 52rpx;
+		height: 48rpx;
+		line-height: 48rpx;
+		margin: 5rpx;
+		text-align: center;
+		font-size: 24rpx;
 	}
 </style>

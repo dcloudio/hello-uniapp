@@ -1,0 +1,141 @@
+<template>
+	<view class="page">
+		<text class="example-info">数字输入框组件多用于购物车加减商品等场景</text>
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box />
+		</view>
+		<uni-section title="设置最小值和最大值" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box :min="2" :max="9" :value="5" />
+		</view>
+		<uni-section title="设置步长（步长0.1)" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box :step="0.1" />
+		</view>
+		<uni-section title="禁用状态" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box :disabled="true" />
+		</view>
+		<uni-section :title="'获取输入的值 : '+numberValue" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box :value="numberValue" @change="change" />
+		</view>
+		<!-- <view style="height: 30rpx;"></view> -->
+	</view>
+</template>
+<script>
+	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	export default {
+		components: {
+			uniNumberBox,
+			uniSection
+		},
+		data() {
+			return {
+				numberValue: 0
+			}
+		},
+		methods: {
+			change(value) {
+				this.numberValue = value
+			}
+		}
+	}
+</script>
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+</style>

@@ -7,9 +7,9 @@ page {
 
 /* 解决头条小程序字体图标不显示问题，因为头条运行时自动插入了span标签，且有全局字体 */
 /* #ifdef MP-TOUTIAO */
-text :not(view) {
+/* text :not(view) {
     font-family: uniicons;
-}
+} */
 /* #endif */
 
 .uni-icon {

@@ -181,8 +181,8 @@
                             url: 'bluetooth'
                         },
                         {
-                            name: '指纹',
-                            url: 'fingerprint'
+                            name: '生物认证',
+                            url: 'soter'
                         },
                         // #endif
                         // #ifdef APP-PLUS || MP-WEIXIN
@@ -226,6 +226,23 @@
                         {
                             name: '下载文件',
                             url: 'download-file'
+                        }
+                    ]
+                },
+                {
+                    id: 'websocket',
+                    name: 'websocket',
+                    open: false,
+                    pages: [
+                        // #ifndef MP-ALIPAY
+                        {
+                            name: 'socketTask',
+                            url: 'websocket-socketTask'
+                        },
+                        // #endif
+                        {
+                            name: '全局websocket',
+                            url: 'websocket-global'
                         }
                     ]
                 },

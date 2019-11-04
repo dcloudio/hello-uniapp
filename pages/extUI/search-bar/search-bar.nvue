@@ -1,0 +1,175 @@
+<template>
+	<view>
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
+			<view class="search-result">
+				<text class="search-result-text">当前输入为：{{ searchVal }}</text>
+			</view>
+		</view>
+		<uni-section title="自定义样式" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
+			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
+		</view>
+		<uni-section title="控制清除按钮" type="line"></uni-section>
+		<view class="example-body">
+			<uni-search-bar radius="2" clearButton="always" @confirm="search" />
+			<uni-search-bar radius="2" clearButton="auto" @confirm="search" />
+			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
+		</view>
+	</view>
+</template>
+
+<script>
+	import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
+	import uniSection from '@/components/uni-section/uni-section.vue'
+	export default {
+		components: {
+			uniSearchBar,
+			uniSection
+		},
+		data() {
+			return {
+				searchVal: ''
+			}
+		},
+		methods: {
+			search(res) {
+				uni.showToast({
+					title: '搜索：' + res.value,
+					icon: 'none'
+				})
+			},
+			input(res) {
+				this.searchVal = res.value
+			},
+			cancel(res) {
+				uni.showToast({
+					title: '点击取消，输入值为：' + res.value,
+					icon: 'none'
+				})
+			}
+		},
+		onBackPress() {
+			// #ifdef APP-PLUS
+			plus.key.hideSoftKeybord();
+			// #endif
+		}
+	}
+</script>
+
+<style>
+	/* 头条小程序组件内不能引入字体 */
+	/* #ifdef MP-TOUTIAO */
+	@font-face {
+		font-family: uniicons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('~@/static/uni.ttf') format('truetype');
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE */
+	page {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		background-color: #efeff4;
+		min-height: 100%;
+		height: auto;
+	}
+
+	view {
+		font-size: 28rpx;
+		line-height: inherit;
+	}
+
+	.example {
+		padding: 0 30rpx 30rpx;
+	}
+
+	.example-info {
+		padding: 30rpx;
+		color: #3b4144;
+		background: #ffffff;
+	}
+
+	.example-body {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0;
+		font-size: 14rpx;
+		background-color: #ffffff;
+	}
+
+	/* #endif */
+	.example {
+		padding: 0 30rpx;
+	}
+
+	.example-info {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		padding: 30rpx;
+		color: #3b4144;
+		background-color: #ffffff;
+		font-size: 30rpx;
+	}
+
+	.example-info-text {
+		font-size: 28rpx;
+		line-height: 36rpx;
+	}
+
+
+	.example-body {
+		flex-direction: column;
+		padding: 30rpx;
+		background-color: #ffffff;
+	}
+
+	.word-btn-white {
+		font-size: 18px;
+		color: #FFFFFF;
+	}
+
+	.word-btn {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
+		height: 48px;
+		margin: 15px;
+		background-color: #007AFF;
+	}
+
+	.word-btn--hover {
+		background-color: #4ca2ff;
+	}
+
+
+
+	.search-result {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.search-result-text {
+		text-align: center;
+		font-size: 14px;
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+	}
+</style>

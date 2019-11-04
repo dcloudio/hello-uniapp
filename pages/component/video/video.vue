@@ -50,9 +50,14 @@
 			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			this.videoContext = uni.createVideoContext('myVideo')
 			// #endif
-			setTimeout(()=>{
-				this.showVideo = true
-			},350)
+      // #ifdef APP-PLUS || MP-BAIDU
+      setTimeout(()=>{
+      	this.showVideo = true
+      },350)
+      // #endif
+      // #ifndef APP-PLUS || MP-BAIDU
+      this.showVideo = true
+      // #endif
 		},
 		methods: {
 			sendDanmu: function() {

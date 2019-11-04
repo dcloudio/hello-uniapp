@@ -1,24 +1,21 @@
 <template>
-	<view>
+	<view class="uni-goods-nav">
 		<!-- 底部占位 -->
 		<view class="uni-tab__seat" />
 		<view class="uni-tab__cart-box flex">
 			<view class="flex uni-tab__cart-sub-box">
 				<view v-for="(item,index) in options" :key="index" class="flex uni-tab__cart-button-left uni-tab__shop-cart" @click="onClick(index,item)">
 					<view class="uni-tab__icon">
-						<image :src="item.icon" mode="widthFix" />
+						<image class="image" :src="item.icon" mode="widthFix" />
 					</view>
 					<text class="uni-tab__text">{{ item.text }}</text>
 					<view class="flex uni-tab__dot-box">
-						<view v-if="item.info" :class="{ 'uni-tab__dots': item.info > 9 }" class="uni-tab__dot ">
-							{{ item.info }}
-						</view>
+						<text v-if="item.info" :class="{ 'uni-tab__dots': item.info > 9 }" class="uni-tab__dot ">{{ item.info }}</text>
 					</view>
 				</view>
 			</view>
 			<view :class="{'uni-tab__right':fill}" class="flex uni-tab__cart-sub-box ">
-				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}" class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)">{{ item.text }}</view>
-
+				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}" class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)"><text class="uni-tab__cart-button-right-text">{{ item.text }}</text></view>
 				<!-- <view class="flex uni-tab__cart-button-right uni-tab__color-y ">立即购买</view> -->
 			</view>
 		</view>
@@ -82,21 +79,31 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.flex {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
+		flex-direction: row;
+	}
+
+	.uni-goods-nav {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
+		flex-direction: row;
 	}
 
 	.uni-tab__cart-box {
-		width: 100%;
+		flex: 1;
 		height: 100rpx;
-		background: #fff;
+		background-color: #fff;
 		z-index: 900;
 	}
 
 	.uni-tab__cart-sub-box {
-		width: 100%;
-		box-sizing: border-box;
+		flex: 1;
 	}
 
 	.uni-tab__right {
@@ -107,35 +114,44 @@
 	}
 
 	.uni-tab__cart-button-left {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex: 1;
 		position: relative;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		width: 100%;
-		font-size: 24rpx;
 	}
 
 	.uni-tab__icon {
-		width: 40rpx;
-		height: 40rpx;
+		width: 20px;
+		height: 20px;
 	}
 
-	.uni-tab__icon image {
-		width: 100%;
-		height: 100%;
+	.image {
+		width: 20px;
+		height: 20px;
 	}
 
-	.uni-tab__cart-button-left .uni-tab__text {
-		margin-top: 5rpx;
+	.uni-tab__text {
+		margin-top: 3px;
 		font-size: 24rpx;
 		color: #666;
 	}
 
 	.uni-tab__cart-button-right {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		flex: 1;
 		justify-content: center;
 		align-items: center;
-		width: 100%;
-		font-size: 24rpx;
+	}
+
+	.uni-tab__cart-button-right-text {
+		font-size: 28rpx;
 		color: #fff;
 	}
 
@@ -143,39 +159,48 @@
 		opacity: 0.7;
 	}
 
-	.uni-tab__cart-button-left .uni-tab__dot-box {
+	.uni-tab__dot-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
 		position: absolute;
-		right: 40rpx;
-		top: 20rpx;
+		right: 12px;
+		top: 4px;
 		justify-content: center;
 		align-items: center;
-		width: 0;
-		height: 0;
+		/* width: 0;
+ */
+		/* height: 0;
+ */
 	}
 
-	.uni-tab__dot-box .uni-tab__dot {
-		flex-shrink: 0;
-		width: 30rpx;
-		height: 30rpx;
-		line-height: 30rpx;
+	.uni-tab__dot {
+		/* width: 30rpx;
+ */
+		/* height: 30rpx;
+ */
+		padding: 0 4px;
+		line-height: 15px;
 		color: #ffffff;
 		text-align: center;
 		font-size: 12px;
-		background: #ff0000;
-		border-radius: 50%;
+		background-color: #ff0000;
+		border-radius: 15px;
 	}
 
-	.uni-tab__dot-box .uni-tab__dot.uni-tab__dots {
-		padding: 0 8rpx;
-		width: auto;
-		border-radius: 30rpx;
+	.uni-tab__dots {
+		padding: 0 4px;
+		/* width: auto;
+ */
+		border-radius: 15px;
 	}
 
 	.uni-tab__color-y {
-		background: #ffa200;
+		background-color: #ffa200;
 	}
 
 	.uni-tab__color-r {
-		background: #ff0000;
+		background-color: #ff0000;
 	}
 </style>

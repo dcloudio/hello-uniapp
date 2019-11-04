@@ -35,7 +35,7 @@
 			}
 			this.showLoadMore = true;
 			setTimeout(() => {
-				this.setDate();
+				this.setListData();
 			}, 300);
 		},
 		onPullDownRefresh() {
@@ -56,7 +56,7 @@
 					uni.stopPullDownRefresh();
 				}, 300);
 			},
-			setDate() {
+			setListData() {
 				let data = [];
 				this.max += 10;
 				for (var i = this.max - 9; i < this.max + 1; i++) {

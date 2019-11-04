@@ -5,14 +5,17 @@
         rightBottom: rightBottom,
         leftTop: leftTop,
         rightTop: rightTop
-      }" class="fab-box fab">
+      }" v-if="leftBottom||rightBottom||leftTop||rightTop" class="fab-box fab">
 			<view :class="{
           left: horizontal === 'left' && direction === 'horizontal',
           top: vertical === 'top' && direction === 'vertical',
           bottom: vertical === 'bottom' && direction === 'vertical',
           right: horizontal === 'right' && direction === 'horizontal'
         }" :style="{ 'background-color': styles.buttonColor }" class="fab-circle" @click="_onClick">
-				<text :class="{ active: isShow }" class="uni-icon uni-icon-plusempty" />
+				<view class="fab-circle-box" :class="{ active: isShow }">
+					<view class="fab-circle-v"></view>
+					<view class="fab-circle-h"></view>
+				</view>
 			</view>
 			<view :class="{
           left: horizontal === 'left',
@@ -35,8 +38,12 @@
 </template>
 
 <script>
+	import uniIcons from "@/components/uni-icons/uni-icons.vue";
 	export default {
 		name: 'UniFab',
+		components: {
+			uniIcons
+		},
 		props: {
 			pattern: {
 				type: Object,
@@ -175,26 +182,15 @@
 </script>
 
 <style scoped>
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url('https://img-cdn-qiniu.dcloud.net.cn/fonts/uni.ttf') format('truetype');
-	}
-
 	.uni-icon {
 		font-family: uniicons;
-		font-size: 24px;
+		font-size: 30px;
 		font-weight: normal;
 		font-style: normal;
 		line-height: 1;
 		display: inline-block;
 		text-decoration: none;
 		-webkit-font-smoothing: antialiased;
-	}
-
-	.uni-icon-plusempty:before {
-		content: '\e468';
 	}
 
 	.fab-box {
@@ -206,13 +202,13 @@
 	}
 
 	.fab-box.top {
-		width: 60upx;
-		height: 60upx;
-		right: 30upx;
-		bottom: 60upx;
+		width: 60rpx;
+		height: 60rpx;
+		right: 30rpx;
+		bottom: 60rpx;
 		border: 1px #5989b9 solid;
 		background: #6699cc;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 		color: #fff;
 		transition: all 0.3;
 		opacity: 0;
@@ -227,28 +223,28 @@
 	}
 
 	.fab-box.fab.leftBottom {
-		left: 30upx;
-		bottom: 60upx;
+		left: 30rpx;
+		bottom: 60rpx;
 	}
 
 	.fab-box.fab.leftTop {
-		left: 30upx;
-		top: 80upx;
+		left: 30rpx;
+		top: 80rpx;
 		/* #ifdef H5 */
-		top: calc(80upx + var(--window-top));
+		top: calc(80rpx + var(--window-top));
 		/* #endif */
 	}
 
 	.fab-box.fab.rightBottom {
-		right: 30upx;
-		bottom: 60upx;
+		right: 30rpx;
+		bottom: 60rpx;
 	}
 
 	.fab-box.fab.rightTop {
-		right: 30upx;
-		top: 80upx;
+		right: 30rpx;
+		top: 80rpx;
 		/* #ifdef H5 */
-		top: calc(80upx + var(--window-top));
+		top: calc(80rpx + var(--window-top));
 		/* #endif */
 	}
 
@@ -257,13 +253,42 @@
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		width: 110upx;
-		height: 110upx;
+		width: 110rpx;
+		height: 110rpx;
 		background: #3c3e49;
 		/* background: #5989b9; */
 		border-radius: 50%;
 		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
 		z-index: 11;
+	}
+
+	.fab-circle-box {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		transition: all 0.3s;
+	}
+
+	.fab-circle-v {
+		position: absolute;
+		width: 8rpx;
+		height: 60rpx;
+		left: 50%;
+		top: 50%;
+		margin: -30rpx 0 0 -4rpx;
+		background-color: white;
+	}
+
+	.fab-circle-h {
+		position: absolute;
+		width: 60rpx;
+		height: 8rpx;
+		left: 50%;
+		top: 50%;
+		margin: -4rpx 0 0 -30rpx;
+		background-color: white;
 	}
 
 	.fab-circle.left {
@@ -284,25 +309,25 @@
 
 	.fab-circle .uni-icon-plusempty {
 		color: #ffffff;
-		font-size: 80upx;
+		font-size: 80rpx;
 		transition: all 0.3s;
 		font-weight: bold;
 	}
 
-	.fab-circle .uni-icon-plusempty.active {
+	.fab-circle-box.active {
 		transform: rotate(135deg);
-		font-size: 80upx;
+		font-size: 80rpx;
 	}
 
 	.fab-content {
 		background: #6699cc;
 		box-sizing: border-box;
 		display: flex;
-		border-radius: 100upx;
+		border-radius: 100rpx;
 		overflow: hidden;
 		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 		transition: all 0.2s;
-		width: 110upx;
+		width: 110rpx;
 	}
 
 	.fab-content.left {
@@ -333,9 +358,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 110upx;
-		height: 110upx;
-		font-size: 24upx;
+		width: 110rpx;
+		height: 110rpx;
+		font-size: 24rpx;
 		color: #fff;
 		opacity: 0;
 		transition: opacity 0.2s;
@@ -346,12 +371,12 @@
 	}
 
 	.fab-content .fab-item .content-image {
-		width: 50upx;
-		height: 50upx;
-		margin-bottom: 5upx;
+		width: 50rpx;
+		height: 50rpx;
+		margin-bottom: 5rpx;
 	}
 
 	.fab-content .fab-item.first {
-		width: 110upx;
+		width: 110rpx;
 	}
 </style>

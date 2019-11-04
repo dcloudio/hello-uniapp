@@ -8,7 +8,9 @@ const store = new Vuex.Store({
 		hasLogin: false,
 		loginProvider: "",
 		openid: null,
-		testvuex:false
+		testvuex:false,
+        colorIndex: 0,
+        colorList: ['#FF0000','#00FF00','#0000FF']
 	},
 	mutations: {
 		login(state, provider) {
@@ -27,8 +29,16 @@ const store = new Vuex.Store({
 		},
 		setTestFalse(state){
 			state.testvuex = false
-		}
+		},
+        setColorIndex(state,index){
+            state.colorIndex = index
+        }
 	},
+    getters:{
+        currentColor(state){
+            return state.colorList[state.colorIndex]
+        }
+    },
 	actions: {
 		// lazy loading openid
 		getUserOpenId: async function ({

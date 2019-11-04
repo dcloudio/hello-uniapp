@@ -1,31 +1,49 @@
 <template>
-	<view class="uni-load-more">
-		<view v-if="iconType==='circle' || iconType==='auto' && platform === 'android'" v-show="status === 'loading' && showIcon" class="uni-load-more__img">
-			<view :style="{borderColor : color}" class="loader-android" />
+	<view class="uni-load-more" @click="onClick">
+		<!-- #ifdef APP-NVUE -->
+		<loading-indicator v-if="status === 'loading' && showIcon" :style="{color: color}" :animating="true" class="uni-load-more__img uni-load-more__img--nvue"></loading-indicator>
+		<!-- #endif -->
+		<!-- #ifdef H5 -->
+		<svg width="24" height="24" viewBox="25 25 50 50" v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--android-H5">
+			<circle cx="50" cy="50" r="20" fill="none" :style="{color:color}" stroke-width="3"></circle>
+		</svg>
+		<view v-else-if="status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--ios-H5">
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
 		</view>
-		<view v-else v-show="status === 'loading' && showIcon" class="uni-load-more__img">
-			<view class="load1 load">
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-			</view>
-			<view class="load2 load">
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-			</view>
-			<view class="load3 load">
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-				<view :style="{ background: color }" class="uni-load-view_wrapper" />
-			</view>
+		<!-- #endif -->
+		<!-- #ifndef APP-NVUE || H5 -->
+		<view v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--android-MP">
+			<view :style="{borderTopColor:color}"></view>
+			<view :style="{borderTopColor:color}"></view>
+			<view :style="{borderTopColor:color}"></view>
 		</view>
-		<text :style="{ color: color }" class="uni-load-more__text">
-			{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}
-		</text>
+		<view v-else-if="status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--ios-H5">
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+			<view :style="{backgroundColor:color}"></view>
+		</view>
+		<!-- #endif -->
+		<text class="uni-load-more__text" :style="{color: color}">{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}</text>
 	</view>
 </template>
 
@@ -66,165 +84,328 @@
 			return {
 				platform: platform
 			}
+		},
+		methods: {
+			onClick() {
+				this.$emit('clickLoadMore', {
+					detail: {
+						status: this.status,
+					}
+				})
+			}
 		}
 	}
 </script>
 
-<style>
-	@charset "UTF-8";
-
+<style scoped>
 	.uni-load-more {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
-		height: 80upx;
+		height: 40px;
 		align-items: center;
-		justify-content: center
+		justify-content: center;
 	}
 
 	.uni-load-more__text {
-		font-size: 28upx;
-		color: #999
+		font-size: 15px;
 	}
 
 	.uni-load-more__img {
-		position: relative;
-		height: 24px;
 		width: 24px;
-		margin-right: 10px
-	}
-
-	.uni-load-more__img>.load {
-		position: absolute
-	}
-
-	.uni-load-more__img>.load .uni-load-view_wrapper {
-		width: 6px;
-		height: 2px;
-		border-top-left-radius: 1px;
-		border-bottom-left-radius: 1px;
-		background: #999;
-		position: absolute;
-		opacity: .2;
-		transform-origin: 50%;
-		animation: load .96s ease infinite
-	}
-
-	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(1) {
-		transform: rotate(90deg);
-		top: 2px;
-		left: 9px
-	}
-
-	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(2) {
-		transform: rotate(180deg);
-		top: 11px;
-		right: 0
-	}
-
-	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(3) {
-		transform: rotate(270deg);
-		bottom: 2px;
-		left: 9px
-	}
-
-	.uni-load-more__img>.load .uni-load-view_wrapper:nth-child(4) {
-		top: 11px;
-		left: 0
-	}
-
-	.uni-load-more__img>.loader-android {
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		box-sizing: border-box;
-		border: solid 2px #777;
-		border-radius: 50%;
-		border-bottom-color: transparent !important;
-		animation: loader-android 1s 0s linear infinite
-	}
-
-	.load1,
-	.load2,
-	.load3 {
 		height: 24px;
-		width: 24px
+		margin-right: 8px;
 	}
 
-	.load2 {
-		transform: rotate(30deg)
+	.uni-load-more__img--nvue {
+		color: #666666;
 	}
 
-	.load3 {
-		transform: rotate(60deg)
+	.uni-load-more__img--android,
+	.uni-load-more__img--ios {
+		width: 24px;
+		height: 24px;
+		transform: rotate(0deg);
 	}
 
-	.load1 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: 0s
+	/* #ifndef APP-NVUE */
+	.uni-load-more__img--android {
+		animation: loading-ios 1s 0s linear infinite;
 	}
 
-	.load2 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: 80ms
-	}
-
-	.load3 .uni-load-view_wrapper:nth-child(1) {
-		animation-delay: .16s
-	}
-
-	.load1 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .24s
-	}
-
-	.load2 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .32s
-	}
-
-	.load3 .uni-load-view_wrapper:nth-child(2) {
-		animation-delay: .4s
-	}
-
-	.load1 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .48s
-	}
-
-	.load2 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .56s
-	}
-
-	.load3 .uni-load-view_wrapper:nth-child(3) {
-		animation-delay: .64s
-	}
-
-	.load1 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .72s
-	}
-
-	.load2 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .8s
-	}
-
-	.load3 .uni-load-view_wrapper:nth-child(4) {
-		animation-delay: .88s
-	}
-
-	@-webkit-keyframes load {
+	@keyframes loading-android {
 		0% {
-			opacity: 1
+			transform: rotate(0deg);
 		}
 
 		100% {
-			opacity: .2
+			transform: rotate(360deg);
 		}
 	}
 
-	@-webkit-keyframes loader-android {
+	.uni-load-more__img--ios-H5 {
+		position: relative;
+		animation: loading-ios-H5 1s 0s step-end infinite;
+	}
+
+	.uni-load-more__img--ios-H5>view {
+		position: absolute;
+		height: 6px;
+		width: 2px;
+		left: 11px;
+		top: 0;
+		transform-origin: 1px 12px;
+	}
+
+	/* @for $i from 1 through 12 { */
+	/* 	.uni-load-more__img--ios-H5>view:nth-child(#{$i}) { */
+	/* 		transform: rotate(360deg - ($i - 1) * 30deg); */
+	/* 		opacity: 1 - $i * 0.08; */
+	/* 	} */
+	/* } */
+
+	.uni-load-more__img--ios-H5>view:nth-child(1) {
+		transform: rotate(360deg);
+		opacity: 0.92;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(2) {
+		transform: rotate(330deg);
+		opacity: 0.84;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(3) {
+		transform: rotate(300deg);
+		opacity: 0.76;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(4) {
+		transform: rotate(270deg);
+		opacity: 0.68;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(5) {
+		transform: rotate(240deg);
+		opacity: 0.6;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(6) {
+		transform: rotate(210deg);
+		opacity: 0.52;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(7) {
+		transform: rotate(180deg);
+		opacity: 0.44;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(8) {
+		transform: rotate(150deg);
+		opacity: 0.36;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(9) {
+		transform: rotate(120deg);
+		opacity: 0.28;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(10) {
+		transform: rotate(90deg);
+		opacity: 0.2;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(11) {
+		transform: rotate(60deg);
+		opacity: 0.12;
+	}
+
+	.uni-load-more__img--ios-H5>view:nth-child(12) {
+		transform: rotate(30deg);
+		opacity: 0.04;
+	}
+
+	@keyframes loading-ios-H5 {
 		0% {
-			transform: rotate(0)
+			transform: rotate(0deg);
+		}
+
+		8% {
+			transform: rotate(30deg);
+		}
+
+		16% {
+			transform: rotate(60deg);
+		}
+
+		24% {
+			transform: rotate(90deg);
+		}
+
+		32% {
+			transform: rotate(120deg);
+		}
+
+		40% {
+			transform: rotate(150deg);
+		}
+
+		48% {
+			transform: rotate(180deg);
+		}
+
+		56% {
+			transform: rotate(210deg);
+		}
+
+		64% {
+			transform: rotate(240deg);
+		}
+
+		73% {
+			transform: rotate(270deg);
+		}
+
+		82% {
+			transform: rotate(300deg);
+		}
+
+		91% {
+			transform: rotate(330deg);
 		}
 
 		100% {
-			transform: rotate(360deg)
+			transform: rotate(360deg);
 		}
 	}
+
+	/* #endif */
+
+	/* #ifdef H5 */
+	.uni-load-more__img--android-H5 {
+		animation: loading-android-H5-rotate 2s linear infinite;
+		transform-origin: center center;
+	}
+
+	.uni-load-more__img--android-H5>circle {
+		display: inline-block;
+		animation: loading-android-H5-dash 1.5s ease-in-out infinite;
+		stroke: currentColor;
+		stroke-linecap: round;
+	}
+
+	@keyframes loading-android-H5-rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes loading-android-H5-dash {
+		0% {
+			stroke-dasharray: 1, 200;
+			stroke-dashoffset: 0;
+		}
+
+		50% {
+			stroke-dasharray: 90, 150;
+			stroke-dashoffset: -40;
+		}
+
+		100% {
+			stroke-dasharray: 90, 150;
+			stroke-dashoffset: -120;
+		}
+	}
+
+	/* #endif */
+
+	/* #ifndef APP-NVUE || H5 */
+	.uni-load-more__img--android-MP {
+		position: relative;
+		width: 24px;
+		height: 24px;
+		transform: rotate(0deg);
+		animation: loading-ios 1s 0s ease infinite;
+	}
+
+	.uni-load-more__img--android-MP>view {
+		position: absolute;
+		box-sizing: border-box;
+		width: 24px;
+		height: 24px;
+		border-radius: 24px;
+		border: solid 2px transparent;
+		border-top: solid 2px #777777;
+		transform-origin: center;
+	}
+
+	.uni-load-more__img--android-MP>view:nth-child(1) {
+		animation: loading-android-MP-1 1s 0s linear infinite;
+	}
+
+	.uni-load-more__img--android-MP>view:nth-child(2) {
+		animation: loading-android-MP-2 1s 0s linear infinite;
+	}
+
+	.uni-load-more__img--android-MP>view:nth-child(3) {
+		animation: loading-android-MP-3 1s 0s linear infinite;
+	}
+
+	@keyframes loading-android {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes loading-android-MP-1 {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		50% {
+			transform: rotate(90deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes loading-android-MP-2 {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		50% {
+			transform: rotate(180deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes loading-android-MP-3 {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		50% {
+			transform: rotate(270deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* #endif */
 </style>
