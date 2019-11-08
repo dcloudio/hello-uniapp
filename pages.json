@@ -1079,16 +1079,6 @@
 						"navigationBarTitleText": "打开外部应用"
 					}
 				},
-				{
-					"path": "im-chat/im-chat",
-					"style": {
-						"navigationBarTitleText": "聊天窗口chat",
-						"app-plus": {
-							"softinputMode": "adjustResize",
-							"softinputNavBar": "none"
-						}
-					}
-				},
 				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 				{
 					"path": "vant-button/vant-button",
