@@ -71,6 +71,7 @@
 		},
 		methods: {
 			onClickItem(index) {
+                console.log(index);
 				if (this.current !== index) {
 					this.current = index
 				}
