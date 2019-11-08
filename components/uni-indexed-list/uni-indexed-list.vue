@@ -28,7 +28,7 @@
 	</view>
 </template>
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	import uniIndexedListItem from './uni-indexed-list-item.vue'
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');

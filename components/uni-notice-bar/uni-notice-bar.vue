@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
 	const animation = weex.requireModule('animation');

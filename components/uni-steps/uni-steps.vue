@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniSteps',
 		components: {
