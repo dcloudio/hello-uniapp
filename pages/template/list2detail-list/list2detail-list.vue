@@ -18,7 +18,7 @@
 				</view>
 			</view>
 		</view>
-		<uni-load-more :status="status" :content-text="contentText" />
+		<uni-load-more :status="status" :size="16" :content-text="contentText" />
 	</view>
 </template>
 
