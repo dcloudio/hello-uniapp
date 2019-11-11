@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<uni-section title="基本用法" type="line"></uni-section>
-		<uni-swipe-action :options="options2" @click="bindClick">
+		<uni-swipe-action :options="options1" @click="bindClick">
 			<text class="cont">SwipeAction 基础使用场景</text>
 		</uni-swipe-action>
 		<uni-section title="禁止滑动" type="line"></uni-section>
@@ -15,18 +15,18 @@
 		<uni-swipe-action :options="options2" :show="isOpened" :auto-close="false" @change="change">
 			<text class="cont">使用变量控制SwipeAction的开启状态</text>
 		</uni-swipe-action>
-		<uni-section title="与 List 组件一起使用" type="line"></uni-section>
-		<uni-list>
+		<uni-section title="swipe-action 列表" type="line"></uni-section>
+		<view>
 			<uni-swipe-action :options="options1">
-				<uni-list-item :show-arrow="false" title="item1" />
+				<text class="cont">item1</text>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options2">
-				<uni-list-item :show-arrow="false" title="item2" />
+				<text class="cont">item2</text>
 			</uni-swipe-action>
 			<uni-swipe-action :options="options3">
-				<uni-list-item :show-arrow="false" title="item3" />
+				<text class="cont">item3</text>
 			</uni-swipe-action>
-		</uni-list>
+		</view>
 	</view>
 </template>
 
@@ -192,7 +192,6 @@
 		background-color: #4ca2ff;
 	}
 
-
 	.cont {
 		height: 45px;
 		line-height: 45px;
@@ -200,15 +199,19 @@
 		position: relative;
 		background-color: #fff;
 		font-size: 15px;
+		border-bottom-color: #F5F5F5;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
 	}
 
 	.example-body {
-		/* #ifndef APP-NUVE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
 		justify-content: center;
 		padding: 10px 0;
+		background-color: #fff;
 	}
 
 	.button {
