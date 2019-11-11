@@ -246,7 +246,7 @@
                     id: 1,
                     position: {
                         left: 5,
-                        top: 5,
+                        top: 180,
                         width: 30,
                         height: 30
                     },
@@ -404,7 +404,7 @@
 
     .map {
         width: 750rpx;
-        height: 500rpx;
+        height: 250px;
         background-color: #666666;
     }
 
