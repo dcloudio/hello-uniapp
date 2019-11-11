@@ -159,7 +159,7 @@
 					success: (e) => {
 						console.log('success', e);
 						uni.showModal({
-							content: '分享成功',
+							content: '已分享',
 							showCancel:false
 						})
 					},
