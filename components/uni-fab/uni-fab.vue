@@ -29,22 +29,19 @@
 		  'uni-fab__plus--active': isShow,
 		  'uni-fab__content--other-platform': !isAndroidNvue
         }" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
-				<uni-icons type="plusempty" color="#FFFFFF" size="48"></uni-icons>
+				<view class="fab-circle-v"></view>
+				<view class="fab-circle-h"></view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
 	let platform = 'other'
 	// #ifdef APP-NVUE
 	platform = uni.getSystemInfoSync().platform
 	// #endif
 	export default {
-		components: {
-			uniIcons
-		},
 		name: 'UniFab',
 		props: {
 			pattern: {
@@ -139,7 +136,6 @@
 			}
 		},
 		created() {
-			console.log(platform)
 			this.isShow = this.show
 			if (this.top === 0) {
 				this.fabShow = true
@@ -269,8 +265,6 @@
 	}
 
 	.uni-fab__plus {
-		font-size: 40px;
-		line-height: 40px;
 		transform: rotate(0deg);
 		transition: transform 0.3s;
 		font-weight: bold;
@@ -278,6 +272,24 @@
 
 	.uni-fab__plus--active {
 		transform: rotate(135deg);
+	}
+
+	.fab-circle-v {
+		position: absolute;
+		width: 3px;
+		height: 31px;
+		left: 26px;
+		top: 12px;
+		background-color: white;
+	}
+
+	.fab-circle-h {
+		position: absolute;
+		width: 31px;
+		height: 3px;
+		left: 12px;
+		top: 26px;
+		background-color: white;
 	}
 
 	.uni-fab__content {
