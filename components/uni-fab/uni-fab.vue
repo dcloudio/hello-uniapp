@@ -1,49 +1,48 @@
 <template>
 	<view>
-		<view :class="{
-        leftBottom: leftBottom,
-        rightBottom: rightBottom,
-        leftTop: leftTop,
-        rightTop: rightTop
-      }" v-if="leftBottom||rightBottom||leftTop||rightTop" class="fab-box fab">
+		<view v-if="leftBottom||rightBottom||leftTop||rightTop" :class="{
+        'uni-fab--leftBottom': leftBottom,
+        'uni-fab--rightBottom': rightBottom,
+        'uni-fab--leftTop': leftTop,
+        'uni-fab--rightTop': rightTop
+      }" class="uni-fab">
 			<view :class="{
-          left: horizontal === 'left' && direction === 'horizontal',
-          top: vertical === 'top' && direction === 'vertical',
-          bottom: vertical === 'bottom' && direction === 'vertical',
-          right: horizontal === 'right' && direction === 'horizontal'
-        }" :style="{ 'background-color': styles.buttonColor }" class="fab-circle" @click="_onClick">
-				<view class="fab-circle-box" :class="{ active: isShow }">
-					<view class="fab-circle-v"></view>
-					<view class="fab-circle-h"></view>
+          'uni-fab__content--left': horizontal === 'left',
+          'uni-fab__content--right': horizontal === 'right',
+          'uni-fab__content--flexDirection': direction === 'vertical',
+          'uni-fab__content--flexDirectionStart': flexDirectionStart,
+          'uni-fab__content--flexDirectionEnd': flexDirectionEnd,
+		  'uni-fab__content--other-platform': !isAndroidNvue
+        }" :style="{ width: boxWidth, height: boxHeight, backgroundColor: styles.backgroundColor }" class="uni-fab__content">
+				<view v-if="flexDirectionStart || horizontalLeft" class="uni-fab__item uni-fab__item--first" />
+				<view v-for="(item, index) in content" :key="index" :class="{ 'uni-fab__item--active': isShow }" class="uni-fab__item" @click="_onItemClick(index, item)">
+					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="uni-fab__item-image" mode="widthFix" />
+					<text class="uni-fab__item-text" :style="{ color: item.active ? styles.selectedColor : styles.color }">{{ item.text }}</text>
 				</view>
+				<view v-if="flexDirectionEnd || horizontalRight" class="uni-fab__item uni-fab__item--first" />
 			</view>
 			<view :class="{
-          left: horizontal === 'left',
-          right: horizontal === 'right',
-          flexDirection: direction === 'vertical',
-          flexDirectionStart: flexDirectionStart,
-          flexDirectionEnd: flexDirectionEnd
-        }" :style="{ width: boxWidth, height: boxHeight, background: styles.backgroundColor }" class="fab-content">
-				<view v-if="flexDirectionStart || horizontalLeft" class="fab-item first" />
-				<view v-for="(item, index) in content" :key="index" :class="{ active: isShow }" :style="{
-            color: item.active ? styles.selectedColor : styles.color
-          }" class="fab-item" @click="_onItemClick(index, item)">
-					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="content-image" mode="widthFix" />
-					<text class="text">{{ item.text }}</text>
-				</view>
-				<view v-if="flexDirectionEnd || horizontalRight" class="fab-item first" />
+          'uni-fab__circle--left': horizontal === 'left' && direction === 'horizontal',
+          'uni-fab__circle--top': vertical === 'top' && direction === 'vertical',
+          'uni-fab__circle--bottom': vertical === 'bottom' && direction === 'vertical',
+          'uni-fab__circle--right': horizontal === 'right' && direction === 'horizontal',
+		  'uni-fab__plus--active': isShow,
+		  'uni-fab__content--other-platform': !isAndroidNvue
+        }" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
+				<view class="fab-circle-v"></view>
+				<view class="fab-circle-h"></view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniIcons from "@/components/uni-icons/uni-icons.vue";
+	let platform = 'other'
+	// #ifdef APP-NVUE
+	platform = uni.getSystemInfoSync().platform
+	// #endif
 	export default {
 		name: 'UniFab',
-		components: {
-			uniIcons
-		},
 		props: {
 			pattern: {
 				type: Object,
@@ -77,8 +76,8 @@
 		data() {
 			return {
 				fabShow: false,
-				flug: true,
 				isShow: false,
+				isAndroidNvue: platform === 'android',
 				styles: {
 					color: '#3c3e49',
 					selectedColor: '#007AFF',
@@ -89,10 +88,10 @@
 		},
 		computed: {
 			contentWidth(e) {
-				return uni.upx2px((this.content.length + 1) * 110 + 20) + 'px'
+				return (this.content.length + 1) * 55 + 10 + 'px'
 			},
 			contentWidthMin() {
-				return uni.upx2px(110) + 'px'
+				return 55 + 'px'
 			},
 			// 动态计算宽度
 			boxWidth() {
@@ -182,201 +181,190 @@
 </script>
 
 <style scoped>
-	.uni-icon {
-		font-family: uniicons;
-		font-size: 30px;
-		font-weight: normal;
-		font-style: normal;
-		line-height: 1;
-		display: inline-block;
-		text-decoration: none;
-		-webkit-font-smoothing: antialiased;
-	}
-
-	.fab-box {
+	.uni-fab {
 		position: fixed;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
-		z-index: 2;
-	}
-
-	.fab-box.top {
-		width: 60rpx;
-		height: 60rpx;
-		right: 30rpx;
-		bottom: 60rpx;
-		border: 1px #5989b9 solid;
-		background: #6699cc;
-		border-radius: 10rpx;
-		color: #fff;
-		transition: all 0.3;
-		opacity: 0;
-	}
-
-	.fab-box.active {
-		opacity: 1;
-	}
-
-	.fab-box.fab {
 		z-index: 10;
 	}
 
-	.fab-box.fab.leftBottom {
-		left: 30rpx;
-		bottom: 60rpx;
+	.uni-fab--top {
+		width: 30px;
+		height: 30px;
+		right: 15px;
+		bottom: 30px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #5989b9;
+		border-radius: 5px;
+		transition: opacity 0.3;
+		opacity: 0;
 	}
 
-	.fab-box.fab.leftTop {
-		left: 30rpx;
-		top: 80rpx;
+	.uni-fab--active {
+		opacity: 1;
+	}
+
+	.uni-fab--leftBottom {
+		left: 15px;
+		bottom: 30px;
+	}
+
+	.uni-fab--leftTop {
+		left: 15px;
+		top: 40px;
 		/* #ifdef H5 */
-		top: calc(80rpx + var(--window-top));
+		top: calc(40px + var(--window-top));
 		/* #endif */
 	}
 
-	.fab-box.fab.rightBottom {
-		right: 30rpx;
-		bottom: 60rpx;
+	.uni-fab--rightBottom {
+		right: 15px;
+		bottom: 30px;
 	}
 
-	.fab-box.fab.rightTop {
-		right: 30rpx;
-		top: 80rpx;
+	.uni-fab--rightTop {
+		right: 15px;
+		top: 40px;
 		/* #ifdef H5 */
-		top: calc(80rpx + var(--window-top));
+		top: calc(40px + var(--window-top));
 		/* #endif */
 	}
 
-	.fab-circle {
+	.uni-fab__circle {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		width: 110rpx;
-		height: 110rpx;
-		background: #3c3e49;
-		/* background: #5989b9; */
-		border-radius: 50%;
-		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+		width: 55px;
+		height: 55px;
+		background-color: #3c3e49;
+		border-radius: 55px;
 		z-index: 11;
 	}
 
-	.fab-circle-box {
-		position: absolute;
+	.uni-fab__circle--left {
 		left: 0;
-		top: 0;
+	}
+
+	.uni-fab__circle--right {
 		right: 0;
+	}
+
+	.uni-fab__circle--top {
+		top: 0;
+	}
+
+	.uni-fab__circle--bottom {
 		bottom: 0;
-		transition: all 0.3s;
+	}
+
+	.uni-fab__plus {
+		transform: rotate(0deg);
+		transition: transform 0.3s;
+		font-weight: bold;
+	}
+
+	.uni-fab__plus--active {
+		transform: rotate(135deg);
 	}
 
 	.fab-circle-v {
 		position: absolute;
-		width: 8rpx;
-		height: 60rpx;
-		left: 50%;
-		top: 50%;
-		margin: -30rpx 0 0 -4rpx;
+		width: 3px;
+		height: 31px;
+		left: 26px;
+		top: 12px;
 		background-color: white;
 	}
 
 	.fab-circle-h {
 		position: absolute;
-		width: 60rpx;
-		height: 8rpx;
-		left: 50%;
-		top: 50%;
-		margin: -4rpx 0 0 -30rpx;
+		width: 31px;
+		height: 3px;
+		left: 12px;
+		top: 26px;
 		background-color: white;
 	}
 
-	.fab-circle.left {
-		left: 0;
-	}
-
-	.fab-circle.right {
-		right: 0;
-	}
-
-	.fab-circle.top {
-		top: 0;
-	}
-
-	.fab-circle.bottom {
-		bottom: 0;
-	}
-
-	.fab-circle .uni-icon-plusempty {
-		color: #ffffff;
-		font-size: 80rpx;
-		transition: all 0.3s;
-		font-weight: bold;
-	}
-
-	.fab-circle-box.active {
-		transform: rotate(135deg);
-		font-size: 80rpx;
-	}
-
-	.fab-content {
-		background: #6699cc;
+	.uni-fab__content {
+		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		display: flex;
-		border-radius: 100rpx;
+		/* #endif */
+		flex-direction: row;
+		border-radius: 55px;
 		overflow: hidden;
-		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
-		transition: all 0.2s;
-		width: 110rpx;
+		transition-property: width, height;
+		transition-duration: 0.2s;
+		width: 55px;
+		border-color: #DDDDDD;
+		border-width: 1rpx;
+		border-style: solid;
 	}
 
-	.fab-content.left {
+	.uni-fab__content--other-platform {
+		border-width: 0px;
+		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	.uni-fab__content--left {
 		justify-content: flex-start;
 	}
 
-	.fab-content.right {
+	.uni-fab__content--right {
 		justify-content: flex-end;
 	}
 
-	.fab-content.flexDirection {
+	.uni-fab__content--flexDirection {
 		flex-direction: column;
 		justify-content: flex-end;
 	}
 
-	.fab-content.flexDirectionStart {
+	.uni-fab__content--flexDirectionStart {
 		flex-direction: column;
 		justify-content: flex-start;
 	}
 
-	.fab-content.flexDirectionEnd {
+	.uni-fab__content--flexDirectionEnd {
 		flex-direction: column;
 		justify-content: flex-end;
 	}
 
-	.fab-content .fab-item {
+	.uni-fab__item {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 110rpx;
-		height: 110rpx;
-		font-size: 24rpx;
-		color: #fff;
+		width: 55px;
+		height: 55px;
 		opacity: 0;
 		transition: opacity 0.2s;
 	}
 
-	.fab-content .fab-item.active {
+	.uni-fab__item--active {
 		opacity: 1;
 	}
 
-	.fab-content .fab-item .content-image {
-		width: 50rpx;
-		height: 50rpx;
-		margin-bottom: 5rpx;
+	.uni-fab__item-image {
+		width: 25px;
+		height: 25px;
+		margin-bottom: 3px;
 	}
 
-	.fab-content .fab-item.first {
-		width: 110rpx;
+	.uni-fab__item-text {
+		color: #FFFFFF;
+		font-size: 12px;
+	}
+
+	.uni-fab__item--first {
+		width: 55px;
 	}
 </style>

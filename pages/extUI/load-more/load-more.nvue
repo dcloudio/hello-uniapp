@@ -27,6 +27,10 @@
 			<uni-load-more iconType="snow" :status="status" />
 		</view>
 		<!-- #endif -->
+		<uni-section title="指定加载图标大小" type="line"></uni-section>
+		<view class="example-body">
+			<uni-load-more iconType="snow" :iconSize="36" :status="status" />
+		</view>
 		<uni-section title="点击事件" type="line"></uni-section>
 		<view class="example-body">
 			<uni-load-more :status="status" @clickLoadMore="clickLoadMore" />

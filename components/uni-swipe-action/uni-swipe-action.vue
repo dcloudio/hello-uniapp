@@ -1,51 +1,78 @@
 <template>
 	<view class="uni-swipe">
+		<!-- #ifndef APP-PLUS || MP-WEIXIN || H5 -->
 		<view class="uni-swipe_content">
-			<!-- #ifndef APP-VUE|| MP-WEIXIN||H5 -->
 			<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
 				<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
 		    backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 		    fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
 		  }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
 			</view>
-			<!-- #endif -->
-			<!-- #ifdef APP-VUE|| MP-WEIXIN||H5 -->
-			<view :data-disabled="disabled" :data-position="pos" :change:prop="swipe.sizeReady" :prop="pos" class="uni-swipe_move-box selector-query-hock move-hock" @touchstart="swipe.touchstart" @touchmove="swipe.touchmove" @touchend="swipe.touchend" @change="change">
-				<!-- #endif -->
-				<!-- #ifndef APP-VUE|| MP-WEIXIN||H5 -->
-				<view ref='selector-content-hock' class="selector-query-hock" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
-					<view class="uni-swipe_move-box" :class="{'ani':uniShow}" :style="{transform:moveLeft}">
-						<!-- #endif -->
-						<view class="uni-swipe_box">
-							<slot />
-						</view>
-						<!-- #ifdef APP-VUE|| MP-WEIXIN||H5 -->
-						<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
-							<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
-		          backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
-		          fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-		        }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
-						</view>
-						<!-- #endif -->
-						<!-- #ifndef APP-VUE|| MP-WEIXIN||H5 -->
+			<view ref='selector-content-hock' class="selector-query-hock" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
+				<view class="uni-swipe_move-box" :class="{'ani':uniShow}" :style="{transform:moveLeft}">
+					<view class="uni-swipe_box">
+						<slot />
 					</view>
-					<!-- #endif -->
 				</view>
 			</view>
 		</view>
+		<!-- #endif -->
+		<!-- #ifdef APP-VUE|| MP-WEIXIN||H5 -->
+		<view class="uni-swipe_content">
+			<view :data-disabled="disabled" :data-position="pos" :change:prop="swipe.sizeReady" :prop="pos" class="uni-swipe_move-box selector-query-hock move-hock" @touchstart="swipe.touchstart" @touchmove="swipe.touchmove" @touchend="swipe.touchend" @change="change">
+				<view class="uni-swipe_box">
+					<slot />
+				</view>
+				<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
+					<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
+		          backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
+		          fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
+		        }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+				</view>
+			</view>
+		</view>
+		<!-- #endif -->
+		<!-- #ifdef APP-NVUE -->
+		<view ref="selector-box-hock" class="uni-swipe_content" @horizontalpan="touchstart" @touchend="touchend">
+			<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock" :style="{width:right+'px'}">
+				<view ref="button-hock" v-for="(item,index) in options" :key="index" :style="{
+		  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
+		  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px',left: right+'px'
+		}" class="uni-swipe_button " @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+			</view>
+			<view ref='selector-content-hock' class="uni-swipe_move-box selector-query-hock">
+				<view class="uni-swipe_box">
+					<slot />
+				</view>
+			</view>
+
+		</view>
+		<!-- #endif -->
+
+	</view>
 </template>
 <script src="./index.wxs" module="swipe" lang="wxs"></script>
 <script>
+	// #ifndef APP-PLUS|| MP-WEIXIN || H5
 	import mixins from './mpother'
+	// #endif
+	// #ifdef APP-VUE|| MP-WEIXIN||H5
 	import mp from './mp'
-
+	// #endif
+	// #ifdef APP-NVUE
+	import bindingx from './bindingx.js'
+	// #endif
 	export default {
 		// #ifdef APP-VUE|| MP-WEIXIN||H5
 		mixins: [mp],
 		// #endif
-		// #ifndef APP-VUE|| MP-WEIXIN||H5
+		// #ifdef APP-NVUE
+		mixins: [bindingx],
+		// #endif
+		// #ifndef APP-PLUS|| MP-WEIXIN || H5
 		mixins: [mixins],
 		// #endif
+
 		props: {
 			/**
 			 * 按钮内容
@@ -91,7 +118,7 @@
 	}
 
 	.uni-swipe_move-box {
-		/* #ifndef APP-NUVE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		position: relative;
@@ -118,7 +145,7 @@
 		bottom: 0;
 		z-index: 0;
 		/* #endif */
-		/* #ifndef APP-NUVE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		flex-shrink: 0;
 		/* #endif */
@@ -126,7 +153,13 @@
 	}
 
 	.uni-swipe_button {
-		/* #ifndef APP-NUVE */
+		/* #ifdef APP-NVUE */
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		/* #endif */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;

@@ -1,11 +1,34 @@
 <template>
+	<!-- #ifndef APP-NVUE -->
 	<view class="uni-list">
 		<slot />
 	</view>
+	<!-- #endif -->
+	<!-- #ifdef APP-NVUE -->
+	<list class="uni-list" :enableBackToTop="enableBackToTop" loadmoreoffset="15" :scroll-y="scrollY" @loadmore="loadMore">
+		<slot />
+	</list>
+	<!-- #endif -->
 </template>
+
 <script>
 	export default {
 		name: 'UniList',
+		'mp-weixin': {
+			options: {
+				multipleSlots: false
+			}
+		},
+		props: {
+			enableBackToTop: {
+				type: [Boolean, String],
+				default: false
+			},
+			scrollY: {
+				type: [Boolean, String],
+				default: false
+			}
+		},
 		provide() {
 			return {
 				list: this
@@ -13,6 +36,11 @@
 		},
 		created() {
 			this.firstChildAppend = false
+		},
+		methods: {
+			loadMore(e) {
+				this.$emit("scrolltolower");
+			}
 		}
 	}
 </script>
@@ -24,12 +52,9 @@
 		background-color: #ffffff;
 		position: relative;
 		flex-direction: column;
-		/* border-bottom-color: $uni-border-color;
- */
-		/* border-bottom-style: solid;
- */
-		/* border-bottom-width: 1px;
- */
+		/* border-bottom-color: $uni-border-color; */
+		/* border-bottom-style: solid; */
+		/* border-bottom-width: 1px; */
 	}
 
 	/* #ifndef APP-NVUE */

@@ -1079,16 +1079,6 @@
 						"navigationBarTitleText": "打开外部应用"
 					}
 				},
-				{
-					"path": "im-chat/im-chat",
-					"style": {
-						"navigationBarTitleText": "聊天窗口chat",
-						"app-plus": {
-							"softinputMode": "adjustResize",
-							"softinputNavBar": "none"
-						}
-					}
-				},
 				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
 				{
 					"path": "vant-button/vant-button",
@@ -1115,7 +1105,10 @@
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
-		"backgroundColorBottom": "#F4F5F6"
+		"backgroundColorBottom": "#F4F5F6",
+        "app-plus":{
+            "background": "#F4F5F6"
+        }
 	},
 	"tabBar": {
 		"color": "#7A7E83",

@@ -1,24 +1,20 @@
 <template>
-	<view>
-		<text class="example-info">fab 悬浮按钮组件，可以方便用户快速创建一个收起的悬浮按钮组。</text>
-		<uni-section title="基本功能" type="line"></uni-section>
-		<view class="example-body">
-			<button class="btn" type="primary" @click="switchBtn(0)">切换菜单({{ directionStr }}显示)</button>
-			<button class="btn" type="primary" @click="switchBtn('left', 'bottom')">左下角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('right', 'bottom')">右下角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
-			<button class="btn" type="primary" @click="switchBtn('right', 'top')">右上角显示</button>
+	<view class="uni-fab-box">
+		<view class="uni-padding-wrap">
+			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn(0)"><text class="word-btn-white">切换菜单({{ directionStr }}显示)</text></view>
+			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'bottom')"><text class="word-btn-white">左下角显示</text></view>
+			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'bottom')"><text class="word-btn-white">右下角显示</text></view>
+			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'top')"><text class="word-btn-white">左上角显示</text></view>
+			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'top')"><text class="word-btn-white">右上角显示</text></view>
 		</view>
 		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" />
 	</view>
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniFab from '@/components/uni-fab/uni-fab.vue'
 	export default {
 		components: {
-			uniSection,
 			uniFab
 		},
 		data() {
@@ -188,7 +184,37 @@
 	}
 
 
-	.btn {
-		margin: 30upx;
+
+	/* #ifndef APP-NVUE */
+	page {
+		height: 100vh;
+	}
+
+	/* #endif */
+
+	.uni-fab-box {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		justify-content: center;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.uni-padding-wrap {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.word-btn {
+		width: 250px;
 	}
 </style>

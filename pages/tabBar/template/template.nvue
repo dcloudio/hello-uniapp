@@ -105,10 +105,6 @@
                         name: '打开外部应用',
                         url: 'scheme'
                     },
-                    {
-                        name: '聊天窗口 chat',
-                        url: 'im-chat'
-                    },
                     // #endif
                     // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
                     {

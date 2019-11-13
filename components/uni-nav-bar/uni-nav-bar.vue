@@ -39,8 +39,8 @@
 </template>
 
 <script>
-	import uniStatusBar from "@/components/uni-status-bar/uni-status-bar.vue";
-	import uniIcons from "@/components/uni-icons/uni-icons.vue";
+	import uniStatusBar from "../uni-status-bar/uni-status-bar.vue";
+	import uniIcons from "../uni-icons/uni-icons.vue";
 
 	export default {
 		name: "UniNavBar",

@@ -70,20 +70,20 @@
 			}
 		},
 		methods: {
-			onClickItem(index) {
-				if (this.current !== index) {
-					this.current = index
+			onClickItem(e) {
+				if (this.current !== e.currentIndex) {
+					this.current = e.currentIndex
 				}
 			},
-			styleChange(evt) {
-				if (this.styleType !== evt.detail.value) {
-					this.styleType = evt.detail.value
+			styleChange(e) {
+				if (this.styleType !== e.detail.value) {
+					this.styleType = e.detail.value
 				}
 			},
-			colorChange(evt) {
-				if (this.styleType !== evt.detail.value) {
-					console.log(evt.detail.value);
-					this.activeColor = evt.detail.value
+			colorChange(e) {
+				if (this.styleType !== e.detail.value) {
+					console.log(e.detail.value);
+					this.activeColor = e.detail.value
 				}
 			}
 		}

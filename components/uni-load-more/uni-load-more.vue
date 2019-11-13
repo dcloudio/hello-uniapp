@@ -1,46 +1,23 @@
 <template>
 	<view class="uni-load-more" @click="onClick">
 		<!-- #ifdef APP-NVUE -->
-		<loading-indicator v-if="status === 'loading' && showIcon" :style="{color: color}" :animating="true" class="uni-load-more__img uni-load-more__img--nvue"></loading-indicator>
+		<loading-indicator v-if="status === 'loading' && showIcon" :style="{color: color,width:iconSize+'px',height:iconSize+'px'}" :animating="true" class="uni-load-more__img uni-load-more__img--nvue"></loading-indicator>
 		<!-- #endif -->
 		<!-- #ifdef H5 -->
-		<svg width="24" height="24" viewBox="25 25 50 50" v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--android-H5">
+		<svg width="24" height="24" viewBox="25 25 50 50" v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--android-H5">
 			<circle cx="50" cy="50" r="20" fill="none" :style="{color:color}" stroke-width="3"></circle>
 		</svg>
-		<view v-else-if="status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--ios-H5">
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-		</view>
 		<!-- #endif -->
 		<!-- #ifndef APP-NVUE || H5 -->
-		<view v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--android-MP">
+		<view v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--android-MP">
 			<view :style="{borderTopColor:color}"></view>
 			<view :style="{borderTopColor:color}"></view>
 			<view :style="{borderTopColor:color}"></view>
 		</view>
-		<view v-else-if="status === 'loading' && showIcon" class="uni-load-more__img uni-load-more__img--ios-H5">
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
-			<view :style="{backgroundColor:color}"></view>
+		<!-- #endif -->
+		<!-- #ifndef APP-NVUE -->
+		<view v-else-if="status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--ios-H5">
+			<view v-for="i in 12" :key="i" :style="{backgroundColor:color,height:iconSize/4+'px',transformOrigin:'1px '+iconSize/2+'px','-webkit-TransformOrigin':'1px '+iconSize/2+'px'}"></view>
 		</view>
 		<!-- #endif -->
 		<text class="uni-load-more__text" :style="{color: color}">{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}</text>
@@ -64,6 +41,10 @@
 			iconType: {
 				type: String,
 				default: 'auto'
+			},
+			iconSize: {
+				type: Number,
+				default: 24
 			},
 			color: {
 				type: String,
@@ -153,8 +134,9 @@
 		position: absolute;
 		height: 6px;
 		width: 2px;
-		left: 11px;
+		left: 50%;
 		top: 0;
+		margin-left: -1px;
 		transform-origin: 1px 12px;
 	}
 
