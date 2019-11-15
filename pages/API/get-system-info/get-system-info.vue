@@ -99,6 +99,14 @@
 						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.pixelRatio"></input>
 					</view>
 				</view>
+				<view class="uni-list-cell">
+					<view class="uni-pd">
+						<view class="uni-label" style="width:180px;">基础库版本</view>
+					</view>
+					<view class="uni-list-cell-db">
+						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.SDKVersion"></input>
+					</view>
+				</view>
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
