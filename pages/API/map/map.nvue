@@ -405,7 +405,7 @@
     .map {
         width: 750rpx;
         height: 250px;
-        background-color: #666666;
+        background-color: #f0f0f0;
     }
 
     .scrollview {
