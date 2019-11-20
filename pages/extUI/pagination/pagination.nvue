@@ -84,16 +84,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -103,34 +103,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 

@@ -679,9 +679,9 @@
 					}
 				},
 				{
-					"path": "count-down/count-down",
+					"path": "countdown/countdown",
 					"style": {
-						"navigationBarTitleText": "CountDown 倒计时"
+						"navigationBarTitleText": "Countdown 倒计时"
 					}
 				},
 				{
@@ -737,7 +737,8 @@
 				{
 					"path": "popup/popup",
 					"style": {
-						"navigationBarTitleText": "Popup 弹出层"
+						"navigationBarTitleText": "Popup 弹出层",
+						"softinputMode": "adjustResize"
 					}
 				},
 				{
@@ -871,6 +872,10 @@
 					"style": {
 						"navigationBarTitleText": "Section 章节标题"
 					}
+				},
+				{
+					"path": "transition/transition",
+					"style": {}
 				}
 			]
 		},
@@ -1106,9 +1111,9 @@
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
 		"backgroundColorBottom": "#F4F5F6",
-        "app-plus":{
-            "background": "#F4F5F6"
-        }
+		"app-plus": {
+			"background": "#F4F5F6"
+		}
 	},
 	"tabBar": {
 		"color": "#7A7E83",

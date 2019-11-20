@@ -5,19 +5,19 @@
 		<!-- #endif -->
 		<!-- #ifdef H5 -->
 		<svg width="24" height="24" viewBox="25 25 50 50" v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--android-H5">
-			<circle cx="50" cy="50" r="20" fill="none" :style="{color:color}" stroke-width="3"></circle>
+			<circle cx="50" cy="50" r="20" fill="none" :style="{color:color}" :stroke-width="3"></circle>
 		</svg>
 		<!-- #endif -->
 		<!-- #ifndef APP-NVUE || H5 -->
 		<view v-if="(iconType==='circle' || iconType==='auto' && platform === 'android') && status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--android-MP">
-			<view :style="{borderTopColor:color}"></view>
-			<view :style="{borderTopColor:color}"></view>
-			<view :style="{borderTopColor:color}"></view>
+			<view :style="{borderTopColor:color,borderTopWidth:iconSize/12}"></view>
+			<view :style="{borderTopColor:color,borderTopWidth:iconSize/12}"></view>
+			<view :style="{borderTopColor:color,borderTopWidth:iconSize/12}"></view>
 		</view>
 		<!-- #endif -->
 		<!-- #ifndef APP-NVUE -->
 		<view v-else-if="status === 'loading' && showIcon" :style="{width:iconSize+'px',height:iconSize+'px'}" class="uni-load-more__img uni-load-more__img--ios-H5">
-			<view v-for="i in 12" :key="i" :style="{backgroundColor:color,height:iconSize/4+'px',transformOrigin:'1px '+iconSize/2+'px','-webkit-TransformOrigin':'1px '+iconSize/2+'px'}"></view>
+			<view v-for="i in 12" :key="i" :style="{backgroundColor:color,width:iconSnowWidth+'px',height:iconSize/4+'px',transformOrigin:iconSnowWidth/2+'px '+iconSize/2+'px','-webkit-TransformOrigin':iconSnowWidth/2+'px '+iconSize/2+'px'}"></view>
 		</view>
 		<!-- #endif -->
 		<text class="uni-load-more__text" :style="{color: color}">{{ status === 'more' ? contentText.contentdown : status === 'loading' ? contentText.contentrefresh : contentText.contentnomore }}</text>
@@ -66,6 +66,14 @@
 				platform: platform
 			}
 		},
+		// #ifndef APP-NVUE
+		computed: {
+			iconSnowWidth() {
+				console.log((Math.floor(this.iconSize / 24) || 1) * 2);
+				return (Math.floor(this.iconSize / 24) || 1) * 2
+			}
+		},
+		// #endif
 		methods: {
 			onClick() {
 				this.$emit('clickLoadMore', {

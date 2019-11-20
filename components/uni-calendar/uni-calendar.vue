@@ -103,6 +103,12 @@
 				aniMaskShow: false
 			}
 		},
+		watch: {
+			selected(newVal) {
+				this.cale.setSelectInfo(this.nowDate.fullDate, newVal)
+				this.weeks = this.cale.weeks
+			}
+		},
 		created() {
 			// 获取日历方法实例
 			this.cale = new Calendar({
@@ -143,6 +149,16 @@
 				if (!this.insert) return
 				this.setEmit('change')
 			},
+			monthSwitch() {
+				let {
+					year,
+					month
+				} = this.nowDate
+				this.$emit('monthSwitch', {
+					year,
+					month: Number(month)
+				})
+			},
 			setEmit(name) {
 				let {
 					year,
@@ -179,11 +195,13 @@
 			pre() {
 				const preDate = this.cale.getDate(this.nowDate.fullDate, -1, 'month').fullDate
 				this.setDate(preDate)
+				this.monthSwitch()
 
 			},
 			next() {
 				const nextDate = this.cale.getDate(this.nowDate.fullDate, +1, 'month').fullDate
 				this.setDate(nextDate)
+				this.monthSwitch()
 			},
 			setDate(date) {
 				this.cale.setDate(date)
@@ -361,5 +379,6 @@
 		color: #999;
 		opacity: 0.1;
 		text-align: center;
+		line-height: 1;
 	}
 </style>

@@ -17,15 +17,15 @@ class Calendar {
 		// 范围结束
 		this.endDate = endDate
 		this.range = range
-		// 多选状态 
+		// 多选状态
 		this.multipleStatus = {
 			before: '',
 			after: '',
 			data: []
 		}
 		// 每周日期
-		this.weeks = {} 
-		
+		this.weeks = {}
+
 		this._getWeek(this.date.fullDate)
 	}
 
@@ -104,7 +104,7 @@ class Calendar {
 				}
 			})
 
-			// 日期禁用 
+			// 日期禁用
 			let disableBefore = true
 			let disableAfter = true
 			if (this.startDate) {
@@ -244,8 +244,9 @@ class Calendar {
 	/**
 	 * 设置打点
 	 */
-	setSelectInfo(data) {
-		// console.log(data);
+	setSelectInfo(data, value) {
+		this.selected = value
+		this._getWeek(data)
 	}
 
 	/**
