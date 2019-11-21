@@ -1122,7 +1122,7 @@
 		"selectedColor": "#007AFF",
 		"borderStyle": "black",
 		// "backgroundColor": "#F8F8F8",
-		"blurEffect":"light",
+		"blurEffect": "light",
 		"list": [{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",

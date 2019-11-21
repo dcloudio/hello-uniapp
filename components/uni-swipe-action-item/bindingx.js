@@ -1,6 +1,6 @@
-const BindingX = uni.requireNativePlugin('bindingx')
-const dom = uni.requireNativePlugin('dom')
-const animation = uni.requireNativePlugin('animation')
+const BindingX = uni.requireNativePlugin('bindingx');
+const dom = uni.requireNativePlugin('dom');
+const animation = uni.requireNativePlugin('animation');
 
 export default {
 	data() {
