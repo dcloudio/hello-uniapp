@@ -30,12 +30,6 @@
                     }
                 }
             })
-
-            var domModule = weex.requireModule('dom');
-            domModule.addRule('fontFace', {
-                'fontFamily': "uniicons",
-                'src': "url('./static/uni.ttf')"
-            });
             // #endif
         },
         onShow: function() {
