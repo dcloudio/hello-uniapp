@@ -738,7 +738,9 @@
 					"path": "popup/popup",
 					"style": {
 						"navigationBarTitleText": "Popup 弹出层",
-						"softinputMode": "adjustResize"
+						"app-plus": {
+							"softinputMode": "adjustResize"
+						}
 					}
 				},
 				{

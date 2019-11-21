@@ -47,6 +47,7 @@
 </script>
 <style scoped>
 	.uni-section {
+		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
