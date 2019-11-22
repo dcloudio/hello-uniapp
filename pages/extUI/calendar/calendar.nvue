@@ -4,13 +4,13 @@
 		<uni-section title="插入模式" type="line"></uni-section>
 		<view>
 			<!-- 插入模式 -->
-			<uni-calendar @change="change" />
+			<uni-calendar :selected="info.selected" @change="change" @monthSwitch="monthSwitch" />
 		</view>
 		<uni-section title="弹出模式" type="line"></uni-section>
 		<view class="example-body">
 			<button class="calendar-button" type="button" @click="open">打开日历</button>
 		</view>
-		<uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate" :endDate="info.endDate" :range="info.range" :selected="info.selected" @confirm="confirm" />
+		<uni-calendar ref="calendar" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate" :endDate="info.endDate" :range="info.range" @confirm="confirm" />
 	</view>
 </template>
 
@@ -32,23 +32,7 @@
 					lunar: true,
 					range: true,
 					insert: false,
-					selected: [{
-							date: '2019-08-20',
-							info: '打卡'
-						},
-						{
-							date: '2019-08-21',
-							info: '签到',
-							data: {
-								custom: '自定义信息',
-								name: '自定义消息头'
-							}
-						},
-						{
-							date: '2019-08-22',
-							info: '已打卡'
-						}
-					]
+					selected: []
 				}
 			}
 		},
@@ -56,6 +40,26 @@
 			this.$nextTick(() => {
 				this.showCalendar = true
 			})
+			// TODO 模拟请求异步同步数据
+			setTimeout(() => {
+				this.info.selected = [{
+						date: '2019-08-20',
+						info: '打卡'
+					},
+					{
+						date: '2019-08-21',
+						info: '签到',
+						data: {
+							custom: '自定义信息',
+							name: '自定义消息头'
+						}
+					},
+					{
+						date: '2019-08-22',
+						info: '已打卡'
+					}
+				]
+			}, 500)
 		},
 		methods: {
 			open() {
@@ -63,9 +67,18 @@
 			},
 			change(e) {
 				console.log('change 返回:', e)
+				// 模拟动态打卡
+				if (this.info.selected.length > 5) return
+				this.info.selected.push({
+					date: e.fulldate,
+					info: '打卡'
+				})
 			},
 			confirm(e) {
 				console.log('confirm 返回:', e)
+			},
+			monthSwitch(e) {
+				console.log('monthSwitchs 返回:', e)
 			}
 		}
 	}
@@ -94,16 +107,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -113,34 +126,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 

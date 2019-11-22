@@ -1,46 +1,45 @@
 <template>
 	<view>
 		<uni-section title="基本用法" type="line"></uni-section>
-		<uni-swipe-action :options="options1" @click="bindClick">
-			<text class="cont">SwipeAction 基础使用场景</text>
+		<uni-swipe-action>
+			<uni-swipe-action-item :options="options1" @click="bindClick">
+				<text class="cont">SwipeAction 基础使用场景</text>
+			</uni-swipe-action-item>
 		</uni-swipe-action>
 		<uni-section title="禁止滑动" type="line"></uni-section>
-		<uni-swipe-action :disabled="true">
-			<text class="cont">SwipeAction 禁止滑动展示</text>
+		<uni-swipe-action>
+			<uni-swipe-action-item :disabled="true">
+				<text class="cont">SwipeAction 禁止滑动展示</text>
+			</uni-swipe-action-item>
 		</uni-swipe-action>
 		<uni-section title="使用变量控制开关" type="line"></uni-section>
 		<view class="example-body">
 			<view class="button" @click="setOpened"><text class="button-text">当前状态：{{ isOpened ? '开' : '关' }}</text></view>
 		</view>
-		<uni-swipe-action :options="options2" :show="isOpened" :auto-close="false" @change="change">
-			<text class="cont">使用变量控制SwipeAction的开启状态</text>
+		<uni-swipe-action>
+			<uni-swipe-action-item :options="options2" :show="isOpened" :auto-close="false" @change="change" @click="bindClick">
+				<text class="cont">使用变量控制SwipeAction的开启状态</text>
+			</uni-swipe-action-item>
 		</uni-swipe-action>
+
 		<uni-section title="swipe-action 列表" type="line"></uni-section>
-		<view>
-			<uni-swipe-action :options="options1">
-				<text class="cont">item1</text>
-			</uni-swipe-action>
-			<uni-swipe-action :options="options2">
-				<text class="cont">item2</text>
-			</uni-swipe-action>
-			<uni-swipe-action :options="options3">
-				<text class="cont">item3</text>
-			</uni-swipe-action>
-		</view>
+		<uni-swipe-action>
+			<uni-swipe-action-item v-for="(item,index) in swipeList" :show="isOpened" :options="item.options" :key="item.id" @change="swipeChange" @click="swipeClick($event,index)">
+				<text class="cont">{{item.content}}</text>
+			</uni-swipe-action-item>
+		</uni-swipe-action>
 	</view>
 </template>
 
 <script>
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+	import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue'
 	export default {
 		components: {
 			uniSection,
 			uniSwipeAction,
-			uniList,
-			uniListItem
+			uniSwipeActionItem
 		},
 		data() {
 			return {
@@ -59,19 +58,56 @@
 						backgroundColor: '#dd524d'
 					}
 				}],
-				options3: [{
-					text: '置顶'
+				swipeList: [{
+					options: [{
+						text: '添加',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					id: 0,
+					content: 'item1'
 				}, {
-					text: '标记为已读',
-					style: {
-						backgroundColor: 'rgb(254,156,1)'
-					}
+					id: 1,
+					options: [{
+						text: '置顶'
+					}, {
+						text: '删除',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					content: 'item2'
 				}, {
-					text: '删除',
-					style: {
-						backgroundColor: 'rgb(255,58,49)'
-					}
+					id: 2,
+					options: [{
+						text: '置顶'
+					}, {
+						text: '标记为已读',
+						style: {
+							backgroundColor: 'rgb(254,156,1)'
+						}
+					}, {
+						text: '删除',
+						style: {
+							backgroundColor: 'rgb(255,58,49)'
+						}
+					}],
+					content: 'item3'
 				}]
+				// options3: [{
+				// 	text: '置顶'
+				// }, {
+				// 	text: '标记为已读',
+				// 	style: {
+				// 		backgroundColor: 'rgb(254,156,1)'
+				// 	}
+				// }, {
+				// 	text: '删除',
+				// 	style: {
+				// 		backgroundColor: 'rgb(255,58,49)'
+				// 	}
+				// }]
 			}
 		},
 		onReady() {
@@ -81,7 +117,6 @@
 		},
 		methods: {
 			bindClick(e) {
-				console.log(e)
 				uni.showToast({
 					title: `点击了${e.content.text}按钮`,
 					icon: 'none'
@@ -92,6 +127,64 @@
 			},
 			change(e) {
 				this.isOpened = e
+				console.log('...返回：', e);
+			},
+			swipeChange(e) {
+				console.log('...返回：', e);
+			},
+			swipeClick(e, index) {
+				let {
+					content
+				} = e
+				if (content.text === '删除') {
+					console.log(content.text, index);
+					uni.showModal({
+						title: '提示',
+						content: '是否删除',
+						success: (res) => {
+							if (res.confirm) {
+								this.swipeList.splice(index, 1)
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else if (content.text === '添加') {
+					if (this.swipeList.length < 10) {
+						this.swipeList.push({
+							id: new Date().getTime(),
+							options: [{
+								text: '置顶'
+							}, {
+								text: '标记为已读',
+								style: {
+									backgroundColor: 'rgb(254,156,1)'
+								}
+							}, {
+								text: '删除',
+								style: {
+									backgroundColor: 'rgb(255,58,49)'
+								}
+							}],
+							content: '新增'
+						})
+						uni.showToast({
+							title: `添加了一条数据`,
+							icon: 'none'
+						})
+					} else {
+						uni.showToast({
+							title: `最多添加十条数据`,
+							icon: 'none'
+						})
+					}
+				} else {
+					uni.showToast({
+						title: `点击了${e.content.text}按钮`,
+						icon: 'none'
+					})
+				}
+
 			}
 		}
 	}
@@ -120,16 +213,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -139,34 +232,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 
@@ -192,7 +287,9 @@
 		background-color: #4ca2ff;
 	}
 
+
 	.cont {
+		flex: 1;
 		height: 45px;
 		line-height: 45px;
 		padding: 0 15px;

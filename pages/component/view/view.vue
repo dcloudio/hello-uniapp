@@ -4,7 +4,7 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-hello-text">
 				Flex是Flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性。当设置display: flex后，继续给view等容器组件设置flex-direction:
-				row或column，就可以在该容器内按行或列排布子组件。uni-app默认全局使用flex布局(在App.vue里预设了)。因为flex布局有利于跨更多平台，尤其是采用原生渲染的平台。
+				row或column，就可以在该容器内按行或列排布子组件。uni-app推荐使用flex布局。因为flex布局有利于跨更多平台，尤其是采用原生渲染的平台。
 			</view>
 
 			<view class="uni-title uni-common-mt">
@@ -33,7 +33,7 @@
 			</view>
 			<view>
 				<view class="text">纵向布局-自动宽度</view>
-				<view class="text" style="width: 300upx;">纵向布局-固定宽度</view>
+				<view class="text" style="width: 300rpx;">纵向布局-固定宽度</view>
 				<view class="uni-flex uni-row">
 					<view class="text">横向布局-自动宽度</view>
 					<view class="text">横向布局-自动宽度</view>
@@ -55,27 +55,27 @@
 					<view class="text">横向布局-两端对齐</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text" style="width: 200upx;">固定宽度</view>
+					<view class="text" style="width: 200rpx;">固定宽度</view>
 					<view class="text" style="-webkit-flex: 1;flex: 1;">自动占满余量</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text" style="width: 200upx;">固定宽度</view>
+					<view class="text" style="width: 200rpx;">固定宽度</view>
 					<view class="text" style="-webkit-flex: 1;flex: 1;">自动占满</view>
-					<view class="text" style="width: 200upx;">固定宽度</view>
+					<view class="text" style="width: 200rpx;">固定宽度</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-flex-wrap: wrap;flex-wrap: wrap;">
-					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
-					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
-					<view class="text" style="width: 280upx;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;">
+					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;">
 						<text>垂直居顶</text>
 					</view>
-					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
+					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
 						<text>垂直居中</text>
 					</view>
-					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-end;align-items: flex-end;">
+					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-end;align-items: flex-end;">
 						<text>垂直居底</text>
 					</view>
 				</view>
@@ -86,11 +86,11 @@
 				<text>\nflex布局演示</text>
 			</view>
 			<view class="uni-flex uni-row">
-				<view class="text uni-flex" style="width: 200upx;height: 220upx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
-					<image src="../../../static/plus.png" style="width: 150upx;height: 150upx;"></image>
+				<view class="text uni-flex" style="width: 200rpx;height: 220rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
+					<image src="../../../static/plus.png" style="width: 150rpx;height: 150rpx;"></image>
 				</view>
 				<view class="uni-flex uni-column" style="-webkit-flex: 1;flex: 1;-webkit-justify-content: space-between;justify-content: space-between;">
-					<view class="text" style="height: 120upx;text-align: left;padding-left: 20upx;padding-top: 10upx;">
+					<view class="text" style="height: 120rpx;text-align: left;padding-left: 20rpx;padding-top: 10rpx;">
 						文字居左，留出左间距
 					</view>
 					<view class="uni-flex uni-row">
@@ -113,30 +113,30 @@
 <style>
 	.flex-item {
 		width: 33.3%;
-		height: 200upx;
+		height: 200rpx;
 		text-align: center;
-		line-height: 200upx;
+		line-height: 200rpx;
 	}
 
 	.flex-item-V {
 		width: 100%;
-		height: 150upx;
+		height: 150rpx;
 		text-align: center;
-		line-height: 150upx;
+		line-height: 150rpx;
 	}
 
 	.text {
-		margin: 15upx 10upx;
-		padding: 0 20upx;
+		margin: 15rpx 10rpx;
+		padding: 0 20rpx;
 		background-color: #ebebeb;
-		height: 70upx;
-		line-height: 70upx;
+		height: 70rpx;
+		line-height: 70rpx;
 		text-align: center;
 		color: #777;
-		font-size: 26upx;
+		font-size: 26rpx;
 	}
 
 	.desc {
-		/* text-indent: 40upx; */
+		/* text-indent: 40rpx; */
 	}
 </style>

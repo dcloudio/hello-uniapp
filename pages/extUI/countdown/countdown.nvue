@@ -3,36 +3,36 @@
 		<text class="example-info">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text>
 		<uni-section title="一般用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :day="1" :hour="1" :minute="12" :second="40" />
+			<uni-countdown :day="1" :hour="1" :minute="12" :second="40" />
 		</view>
 		<uni-section title="不显示天数" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :show-day="false" :hour="12" :minute="12" :second="12" />
+			<uni-countdown :show-day="false" :hour="12" :minute="12" :second="12" />
 		</view>
 		<uni-section title="文字分隔符" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :minute="30" :second="0" :show-colon="false" />
+			<uni-countdown :minute="30" :second="0" :show-colon="false" />
 		</view>
 		<uni-section title="修改颜色" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
+			<uni-countdown :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" border-color="#007AFF" />
 		</view>
 		<uni-section title="倒计时回调事件" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :show-day="false" :second="10" @timeup="timeup" />
+			<uni-countdown :show-day="false" :second="10" @timeup="timeup" />
 		</view>
 		<uni-section title="动态赋值" type="line"></uni-section>
 		<view class="example-body">
-			<uni-count-down :show-day="false" :hour="testHour" :minute="testMinute" :second="testSecond" />
+			<uni-countdown :show-day="false" :hour="testHour" :minute="testMinute" :second="testSecond" />
 		</view>
 	</view>
 </template>
 <script>
-	import uniCountDown from '@/components/uni-count-down/uni-count-down.vue'
+	import uniCountdown from '@/components/uni-countdown/uni-countdown.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
 		components: {
-			uniCountDown,
+			uniCountdown,
 			uniSection
 		},
 		data() {
@@ -82,16 +82,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -101,34 +101,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 

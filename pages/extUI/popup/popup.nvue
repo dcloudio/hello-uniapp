@@ -13,9 +13,10 @@
 			<button class="button" type="primary" @click="togglePopup('center', 'image')">插屏广告</button>
 			<button class="button" type="primary" @click="togglePopup('bottom', 'share')">底部分享</button>
 		</view>
-		<uni-popup :show="showpopup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
+		<view style="height: 400px;"></view>
+		<uni-popup ref="showpopup" :type="type" @change="change"><text class="popup-content">{{ content }}</text></uni-popup>
 
-		<uni-popup :show="showtip" :type="type" :mask-click="false" @change="change">
+		<uni-popup ref="showtip" :type="type" :mask-click="false" @change="change">
 			<view class="uni-tip">
 				<text class="uni-tip-title">警告</text>
 				<text class="uni-tip-content">这是一个通过自定义 popup，自由扩展的 警告弹窗。点击遮罩不会关闭弹窗。</text>
@@ -26,7 +27,7 @@
 			</view>
 		</uni-popup>
 		<!-- 插屏弹窗 -->
-		<uni-popup :show="showimage" :type="type" :mask-click="true" @change="change">
+		<uni-popup ref="showimage" :type="type" :mask-click="true" @change="change">
 			<view class="uni-image">
 				<image class="image" src="/static/uni.png" mode="scaleToFill" />
 				<view class="uni-image-close" @click="cancel('image')">
@@ -35,7 +36,7 @@
 			</view>
 		</uni-popup>
 		<!-- 底部分享弹窗 -->
-		<uni-popup :show="showshare" :type="type" @change="change">
+		<uni-popup ref="showshare" :type="type" @change="change">
 			<view class="uni-share">
 				<text class="uni-share-title">分享到</text>
 				<view class="uni-share-content">
@@ -55,19 +56,13 @@
 <script>
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniPopup from '@/components/uni-popup/uni-popup.vue'
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
 			uniSection,
-			uniPopup,
-			uniIcons
+			uniPopup
 		},
 		data() {
 			return {
-				showpopup: false,
-				showtip: false,
-				showimage: false,
-				showshare: false,
 				type: '',
 				list: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
 				content: '顶部弹 popup',
@@ -119,33 +114,22 @@
 						break
 				}
 				this.type = type
-				this['show' + open] = true
+				this.$nextTick(() => {
+					this.$refs['show' + open].open()
+				})
 			},
 			cancel(type) {
-				this['show' + type] = false
+				this.$refs['show' + type].close()
 			},
 			change(e) {
 				console.log('是否打开:' + e.show)
-				if (!e.show) {
-					this.showpopup = false
-					this.showtip = false
-					this.showimage = false
-					this.showshare = false
-				}
 			}
 		},
 		onBackPress() {
-			console.log('showpopup', this.showpopup)
-			console.log('showtip', this.showtip);
-			console.log('showimage', this.showimage);
-			console.log('showshare', this.showshare);
-			if (this.showpopup || this.showtip || this.showimage || this.showshare) {
-				this.showpopup = false
-				this.showtip = false
-				this.showimage = false
-				this.showshare = false
-				return true
-			}
+			this.$refs['showpopup'].close()
+			this.$refs['showtip'].close()
+			this.$refs['showimage'].close()
+			this.$refs['showshare'].close()
 		}
 	}
 </script>
@@ -172,16 +156,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -191,34 +175,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 
@@ -279,6 +265,7 @@
 	}
 
 	.uni-tip-title {
+		margin-bottom: 10px;
 		text-align: center;
 		font-weight: bold;
 		font-size: 16px;

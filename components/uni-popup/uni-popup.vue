@@ -1,17 +1,21 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" @touchmove.stop.prevent="clear">
-		<view class="uni-popup__mask" :class="[ani+'-mask', animation ? 'mask-ani' : '']" @click="close(true)" />
-		<view class="uni-popup__wrapper" :class="[type,ani+'-content', animation ? 'content-ani' : '']" @click="close(true)">
+		<uni-transition :mode-class="['fade']" :styles="maskClass" :show="showTrans" @click="onTap" />
+		<uni-transition :mode-class="ani" :styles="transClass" :show="showTrans" @click="onTap">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
 			</view>
-		</view>
+		</uni-transition>
 	</view>
 </template>
 
 <script>
+	import uniTransition from '../uni-transition/uni-transition.vue'
 	export default {
 		name: 'UniPopup',
+		components: {
+			uniTransition
+		},
 		props: {
 			// 开启动画
 			animation: {
@@ -27,54 +31,103 @@
 			maskClick: {
 				type: Boolean,
 				default: true
-			},
-			show: {
-				type: Boolean,
-				default: true
 			}
 		},
 		data() {
 			return {
-				ani: '',
-				showPopup: false
-			}
-		},
-		watch: {
-			show(newValue) {
-				if (newValue) {
-					this.open()
-				} else {
-					this.close()
+				ani: [],
+				showPopup: false,
+				showTrans: false,
+				maskClass: {
+					'position': 'fixed',
+					'bottom': 0,
+					'top': 0,
+					'left': 0,
+					'right': 0,
+					'backgroundColor': 'rgba(0, 0, 0, 0.4)'
+				},
+				transClass: {
+					'position': 'fixed',
+					'left': 0,
+					'right': 0,
 				}
 			}
 		},
-		created() {
-			// this.open()
+		watch: {
+			type: {
+				handler: function(newVal) {
+					switch (this.type) {
+						case 'top':
+							this.ani = ['slide-top']
+							this.transClass = {
+								'position': 'fixed',
+								'left': 0,
+								'right': 0,
+							}
+							break
+						case 'bottom':
+							this.ani = ['slide-bottom']
+							this.transClass = {
+								'position': 'fixed',
+								'left': 0,
+								'right': 0,
+								'bottom': 0
+							}
+							break
+						case 'center':
+							this.ani = ['zoom-out', 'fade']
+							this.transClass = {
+								'position': 'fixed',
+								/* #ifndef APP-NVUE */
+								'display': 'flex',
+								'flexDirection': 'column',
+								/* #endif */
+								'bottom': 0,
+								'left': 0,
+								'right': 0,
+								'top': 0,
+								'justifyContent': 'center',
+								'alignItems': 'center'
+							}
+
+							break
+					}
+				},
+				immediate: true
+			}
 		},
+		created() {},
 		methods: {
-			clear() {},
+			clear(e) {
+				// TODO nvue 取消冒泡
+				e.stopPropagation()
+			},
 			open() {
-				this.$emit('change', {
-					show: true
-				})
 				this.showPopup = true
 				this.$nextTick(() => {
 					setTimeout(() => {
-						this.ani = 'uni-' + this.type
-					}, 100)
+						this.showTrans = true
+					}, 50);
+				})
+				this.$emit('change', {
+					show: true
 				})
 			},
 			close(type) {
-				if (!this.maskClick && type) return
-				this.$emit('change', {
-					show: false
-				})
-				this.ani = ''
+				this.showTrans = false
 				this.$nextTick(() => {
-					setTimeout(() => {
+					clearTimeout(this.timer)
+					this.timer = setTimeout(() => {
+						this.$emit('change', {
+							show: false
+						})
 						this.showPopup = false
 					}, 300)
 				})
+			},
+			onTap() {
+				if (!this.maskClick) return
+				this.close()
 			}
 		}
 	}
@@ -91,7 +144,9 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		overflow: hidden;
+		/* #ifndef APP-NVUE */
+		z-index: 99;
+		/* #endif */
 	}
 
 	.uni-popup__mask {

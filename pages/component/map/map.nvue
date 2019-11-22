@@ -5,45 +5,23 @@
             :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom" :enable-scroll="enableScroll"
             :enable-rotate="enableRotate" :enable-satellite="enableSatellite" :enable-traffic="enableTraffic" :markers="markers"
             :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"></map>
-        <scroll-view class="scrollview" scroll-y="true">
-            <view class="list-item">
-                <text class="list-text">显示3D楼块</text>
-                <switch :checked="enable3D" @change="enableThreeD" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">显示指南针</text>
-                <switch :checked="showCompass" @change="changeShowCompass" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">开启俯视</text>
-                <switch :checked="enableOverlooking" @change="changeEnableOverlooking" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">是否支持缩放</text>
-                <switch :checked="enableZoom" @change="changeEnableZoom" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">是否支持拖动</text>
-                <switch :checked="enableScroll" @change="changeEnableScroll" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">是否支持旋转</text>
-                <switch :checked="enableRotate" @change="changeEnableRotate" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">是否开启卫星图</text>
-                <switch :checked="enableSatellite" @change="changeEnableSatellite" />
-            </view>
-            <view class="list-item">
-                <text class="list-text">是否开启实时路况</text>
-                <switch :checked="enableTraffic" @change="changeEnableTraffic" />
-            </view>
-        </scroll-view>
+        <view class="line"></view>
+        <uni-list class="scrollview">
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enable3D" title="显示3D楼块" @switchChange="enableThreeD" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showCompass" title="显示指南针" @switchChange="changeShowCompass" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="开启俯视" @switchChange="changeEnableOverlooking" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableZoom" title="是否支持缩放" @switchChange="changeEnableZoom" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableScroll" title="是否支持拖动" @switchChange="changeEnableScroll" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="是否支持旋转" @switchChange="changeEnableRotate" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableSatellite" title="是否开启卫星图" @switchChange="changeEnableSatellite" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableTraffic" title="是否开启实时路况" @switchChange="changeEnableTraffic" />
+        </uni-list>
     </view>
 </template>
 
 <script>
-
+    import uniList from '@/components/uni-list/uni-list.vue'
+    import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
     const testMarkers = [{
             id: 0,
             latitude: 39.989631,
@@ -224,6 +202,10 @@
         }
     ];
     module.exports = {
+        components: {
+            uniList,
+            uniListItem
+        },
         data() {
             return {
                 location: {
@@ -273,28 +255,28 @@
                 this.skew = this.skew == 30 ? 0 : 30;
             },
             enableThreeD(e) {
-                this.enable3D = e.detail.value;
+                this.enable3D = e.value;
             },
             changeShowCompass(e) {
-                this.showCompass = e.detail.value;
+                this.showCompass = e.value;
             },
             changeEnableOverlooking(e) {
-                this.enableOverlooking = e.detail.value;
+                this.enableOverlooking = e.value;
             },
             changeEnableZoom(e) {
-                this.enableZoom = e.detail.value;
+                this.enableZoom = e.value;
             },
             changeEnableScroll(e) {
-                this.enableScroll = e.detail.value;
+                this.enableScroll = e.value;
             },
             changeEnableRotate(e) {
-                this.enableRotate = e.detail.value;
+                this.enableRotate = e.value;
             },
             changeEnableSatellite(e) {
-                this.enableSatellite = e.detail.value;
+                this.enableSatellite = e.value;
             },
             changeEnableTraffic(e) {
-                this.enableTraffic = e.detail.value;
+                this.enableTraffic = e.value;
             }
         }
     }
@@ -303,7 +285,6 @@
 <style>
     .content {
         flex: 1;
-        ;
     }
 
     .map {
@@ -312,24 +293,11 @@
         background-color: #f0f0f0;
     }
 
+    .line {
+        height: 4px;
+    }
+
     .scrollview {
         flex: 1;
-        padding: 10px;
-    }
-
-    .list-item {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        padding: 5px 0px;
-    }
-
-    .list-text {
-        flex: 1;
-    }
-
-    .button {
-        margin-top: 5px;
-        margin-bottom: 5px;
     }
 </style>

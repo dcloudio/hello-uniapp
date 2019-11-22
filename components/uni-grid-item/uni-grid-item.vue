@@ -1,20 +1,14 @@
 <template>
-	<view v-if="width" :style="{ width: width }" class="uni-grid-item">
-		<view :class="{ 'uni-grid-item--border': showBorder, 'uni-grid-item__box-square': square, 'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }" :style="{  'border-right-color': borderColor ,'border-bottom-color': borderColor ,'border-top-color': borderColor }" class="uni-grid-item__box" @click="_onClick">
-			<view class="uni-grid-item__box-item" :class="{'uni-grid-item__box-item-square': square}">
-				<slot />
-			</view>
+	<view v-if="width" :style="'width:'+width+';'+(square?'height:'+width:'')" class="uni-grid-item">
+		<view :class="{ 'uni-grid-item--border': showBorder,  'uni-grid-item--border-top': showBorder && index < column, 'uni-highlight': highlight }" :style="{  'border-right-color': borderColor ,'border-bottom-color': borderColor ,'border-top-color': borderColor }" class="uni-grid-item__box" @click="_onClick">
+			<slot />
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniBadge from '../uni-badge/uni-badge.vue'
 	export default {
 		name: 'UniGridItem',
-		components: {
-			uniBadge
-		},
 		inject: ['grid'],
 		data() {
 			return {
@@ -40,6 +34,8 @@
 			this.borderColor = this.grid.borderColor
 			this.index = this.grid.index++
 			this.grid.children.push(this)
+			// this.grid.init()
+			this.width = this.grid.width
 		},
 		methods: {
 			_onClick() {
@@ -58,54 +54,21 @@
 	.uni-grid-item {
 		/* #ifndef APP-NVUE */
 		height: 100%;
+		display: flex;
 		/* #endif */
 	}
 
 	.uni-grid-item__box {
 		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
-		flex: 1;
-		position: relative;
-		flex-direction: row;
-		align-items: center;
-		/* #ifdef APP-NVUE */
-		justify-content: center;
-		/* #endif */
-	}
-
-	.uni-grid-item__box-item {
-		/* #ifndef APP-NVUE */
-		display: flex;
 		width: 100%;
 		/* #endif */
 		position: relative;
 		flex: 1;
-		justify-content: center;
 		flex-direction: column;
-		align-items: center;
-		padding: 15px 0;
-	}
-
-	.uni-grid-item__box-item-square {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-	}
-
-	.uni-grid-item--image {
-		width: 25px;
-		height: 25px;
-	}
-
-	.uni-grid-item--text {
-		font-size: 24rpx;
-		margin-top: 5px;
-	}
-
-	.uni-grid-item__box-square {
-		height: 0;
-		padding-top: 100%;
+		/* justify-content: center; */
+		/* align-items: center;
+ */
 	}
 
 	.uni-grid-item--border {

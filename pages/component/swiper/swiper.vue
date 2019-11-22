@@ -14,7 +14,7 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		
+
 		<view class="swiper-list">
 			<view class="uni-list-cell uni-list-cell-pd">
 				<view class="uni-list-cell-db">指示点</view>
@@ -70,31 +70,36 @@
 
 <style>
 	.uni-margin-wrap {
-		width:690upx;
-		margin:0 30upx;
+		width:690rpx;
+		margin:0 30rpx;
 	}
 	.swiper {
-		height: 300upx;
+		height: 300rpx;
 	}
 	.swiper-item {
 		display: block;
-		height: 300upx;
-		line-height: 300upx;
+		height: 300rpx;
+		line-height: 300rpx;
 		text-align: center;
 	}
 
 	.swiper-list {
-		margin-top: 40upx;
+		margin-top: 40rpx;
 		margin-bottom: 0;
 	}
-	
+
 	.uni-common-mt{
-		margin-top:60upx;
+		margin-top:60rpx;
 		position:relative;
 	}
-	
+
 	.info {
 		position: absolute;
-		right:20upx;
+		right:20rpx;
 	}
+
+    .uni-padding-wrap {
+        width:550rpx;
+        padding:0 100rpx;
+    }
 </style>

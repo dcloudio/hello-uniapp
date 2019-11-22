@@ -21,17 +21,16 @@
 				</view>
 				<view v-if="flexDirectionEnd || horizontalRight" class="uni-fab__item uni-fab__item--first" />
 			</view>
-			<view :class="{
-          'uni-fab__circle--left': horizontal === 'left' && direction === 'horizontal',
-          'uni-fab__circle--top': vertical === 'top' && direction === 'vertical',
-          'uni-fab__circle--bottom': vertical === 'bottom' && direction === 'vertical',
-          'uni-fab__circle--right': horizontal === 'right' && direction === 'horizontal',
-		  'uni-fab__plus--active': isShow,
+		</view>
+		<view :class="{
+		  'uni-fab--leftBottom': leftBottom,
+		  'uni-fab--rightBottom': rightBottom,
+		  'uni-fab--leftTop': leftTop,
+		  'uni-fab--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-        }" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
-				<view class="fab-circle-v"></view>
-				<view class="fab-circle-h"></view>
-			</view>
+		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
+			<view class="fab-circle-v" :class="{'uni-fab__plus--active': isShow}"></view>
+			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow}"></view>
 		</view>
 	</view>
 </template>
@@ -235,12 +234,12 @@
 	}
 
 	.uni-fab__circle {
+		position: fixed;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		justify-content: center;
 		align-items: center;
-		position: absolute;
 		width: 55px;
 		height: 55px;
 		background-color: #3c3e49;
@@ -265,13 +264,7 @@
 	}
 
 	.uni-fab__plus {
-		transform: rotate(0deg);
-		transition: transform 0.3s;
 		font-weight: bold;
-	}
-
-	.uni-fab__plus--active {
-		transform: rotate(135deg);
 	}
 
 	.fab-circle-v {
@@ -281,6 +274,8 @@
 		left: 26px;
 		top: 12px;
 		background-color: white;
+		transform: rotate(0deg);
+		transition: transform 0.3s;
 	}
 
 	.fab-circle-h {
@@ -290,6 +285,12 @@
 		left: 12px;
 		top: 26px;
 		background-color: white;
+		transform: rotate(0deg);
+		transition: transform 0.3s;
+	}
+
+	.uni-fab__plus--active {
+		transform: rotate(135deg);
 	}
 
 	.uni-fab__content {

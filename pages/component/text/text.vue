@@ -18,13 +18,13 @@
 			return {
 				title: 'text',
 				texts: [
-					'HBuilder，200万开发者选择的IDE',
+					'HBuilder，400万开发者选择的IDE',
 					'MUI，轻巧、漂亮的前端开源框架',
 					'wap2app，M站快速转换原生体验的App',
 					'5+Runtime，为HTML5插上原生的翅膀',
 					'HBuilderX，轻巧、极速，极客编辑器',
 					'uni-app，终极跨平台方案',
-					'HBuilder，200万开发者选择的IDE',
+					'HBuilder，400万开发者选择的IDE',
 					'MUI，轻巧、漂亮的前端开源框架',
 					'wap2app，M站快速转换原生体验的App',
 					'5+Runtime，为HTML5插上原生的翅膀',

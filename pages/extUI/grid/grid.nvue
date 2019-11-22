@@ -5,37 +5,38 @@
 		<view class="example-body">
 			<uni-grid :column="3" :highlight="true" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :key="index">
-					<image :src="item.url" class="image" mode="aspectFill" />
-					<text class="text">{{ item.text }}</text>
+					<view class="grid-item-box">
+						<image :src="item.url" class="image" mode="aspectFill" />
+						<text class="text">{{ item.text }}</text>
+					</view>
 				</uni-grid-item>
 			</uni-grid>
 		</view>
-		<uni-section title="无边框（3列）" type="line"></uni-section>
+		<uni-section title="动态加载" type="line"></uni-section>
+		<view class="example-body">
+			<view v-if="dynamicList.length!==0" class="grid-dynamic-box">
+				<uni-grid :column="3" :highlight="true" @change="change">
+					<uni-grid-item v-for="(item, index) in dynamicList" :key="index">
+						<view class="grid-item-box" :style="{'backgroundColor':item.color}">
+							<image :src="item.url" class="image" mode="aspectFill" />
+							<text class="text">{{ item.text }}</text>
+						</view>
+					</uni-grid-item>
+				</uni-grid>
+			</view>
+			<button type="primary" @click="add">点击添加一个宫格</button>
+		</view>
+		<uni-section title="无边框带角标（3列）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
-				<uni-grid-item :hor="0" :ver="0" marker="badge" type="error" text="12">
-					<image class="image" src="/static/c1.png" mode="aspectFill" />
-					<text class="text">Grid 1</text>
-				</uni-grid-item>
-				<uni-grid-item :hor="0" :ver="0" :img-width="30" marker="image">
-					<image class="image" src="/static/c2.png" mode="aspectFill" />
-					<text class="text">Grid 2</text>
-				</uni-grid-item>
-				<uni-grid-item>
-					<image class="image" src="/static/c3.png" mode="aspectFill" />
-					<text class="text">Grid 3</text>
-				</uni-grid-item>
-				<uni-grid-item>
-					<image class="image" src="/static/c4.png" mode="aspectFill" />
-					<text class="text">Grid 4</text>
-				</uni-grid-item>
-				<uni-grid-item>
-					<image class="image" src="/static/c5.png" mode="aspectFill" />
-					<text class="text">Grid 5</text>
-				</uni-grid-item>
-				<uni-grid-item>
-					<image class="image" src="/static/c6.png" mode="aspectFill" />
-					<text class="text">Grid 6</text>
+				<uni-grid-item v-if="index <6" v-for="(item ,index) in list" :key="index">
+					<view class="grid-item-box">
+						<image class="image" :src="item.url" mode="aspectFill" />
+						<text class="text">{{item.text}}</text>
+						<view v-if="item.badge" class="grid-dot">
+							<uni-badge :text="item.badge" :type="item.type" />
+						</view>
+					</view>
 				</uni-grid-item>
 			</uni-grid>
 		</view>
@@ -43,8 +44,10 @@
 		<view class="example-body">
 			<uni-grid :column="3" :square="false" :highlight="false" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :key="index">
-					<image :src="item.url" class="image" mode="aspectFill" />
-					<text class="text">{{ item.text }}</text>
+					<view class="grid-item-box">
+						<image :src="item.url" class="image" mode="aspectFill" />
+						<text class="text">{{ item.text }}</text>
+					</view>
 				</uni-grid-item>
 			</uni-grid>
 		</view>
@@ -52,20 +55,24 @@
 		<view class="example-body">
 			<uni-grid :column="4" border-color="#03a9f4" @change="change">
 				<uni-grid-item>
-					<image class="image" src="/static/c1.png" mode="aspectFill" />
-					<!-- <text class="text">Grid 1</text> -->
+					<view class="grid-item-box">
+						<image class="image" src="/static/c1.png" mode="aspectFill" />
+					</view>
 				</uni-grid-item>
 				<uni-grid-item>
-					<image class="image" src="/static/c2.png" mode="aspectFill" />
-					<!-- <text class="text">Grid 2</text> -->
+					<view class="grid-item-box">
+						<image class="image" src="/static/c2.png" mode="aspectFill" />
+					</view>
 				</uni-grid-item>
 				<uni-grid-item>
-					<image class="image" src="/static/c3.png" mode="aspectFill" />
-					<!-- <text class="text">Grid 3</text> -->
+					<view class="grid-item-box">
+						<image class="image" src="/static/c3.png" mode="aspectFill" />
+					</view>
 				</uni-grid-item>
 				<uni-grid-item>
-					<image class="image" src="/static/c4.png" mode="aspectFill" />
-					<!-- <text class="text">Grid 4</text> -->
+					<view class="grid-item-box">
+						<image class="image" src="/static/c4.png" mode="aspectFill" />
+					</view>
 				</uni-grid-item>
 
 			</uni-grid>
@@ -77,29 +84,40 @@
 	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniGrid from '@/components/uni-grid/uni-grid.vue'
 	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
+	import uniBadge from '@/components/uni-badge/uni-badge.vue'
 	export default {
 		components: {
 			uniSection,
 			uniGrid,
-			uniGridItem
+			uniGridItem,
+			uniBadge
 		},
 		data() {
 			return {
+				dynamicList: [],
 				list: [{
 						url: '/static/c1.png',
-						text: 'Grid 1'
+						text: 'Grid 1',
+						badge: '0',
+						type: "primary"
 					},
 					{
 						url: '/static/c2.png',
-						text: 'Grid 2'
+						text: 'Grid 2',
+						badge: '1',
+						type: "success"
 					},
 					{
 						url: '/static/c3.png',
-						text: 'Grid 3'
+						text: 'Grid 3',
+						badge: '99',
+						type: "warning"
 					},
 					{
 						url: '/static/c4.png',
-						text: 'Grid 4'
+						text: 'Grid 4',
+						badge: '2',
+						type: "error"
 					},
 					{
 						url: '/static/c5.png',
@@ -129,7 +147,26 @@
 				let {
 					index
 				} = e.detail
-				console.log(index)
+				this.list[index].badge && this.list[index].badge++
+
+				uni.showToast({
+					title: `点击第${index+1}个宫格`,
+					icon: 'none'
+				})
+			},
+			add() {
+				if (this.dynamicList.length < 9) {
+					this.dynamicList.push({
+						url: `/static/c${this.dynamicList.length+1}.png`,
+						text: `Grid ${this.dynamicList.length+1}`,
+						color: this.dynamicList.length % 2 === 0 ? '#f5f5f5' : "#fff"
+					})
+				} else {
+					uni.showToast({
+						title: '最多添加9个',
+						icon: 'none'
+					});
+				}
 			}
 		}
 	}
@@ -158,16 +195,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -177,34 +214,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 
@@ -245,5 +284,28 @@
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
+	}
+
+	.grid-dynamic-box {
+		margin-bottom: 15px;
+	}
+
+	.grid-item-box {
+		flex: 1;
+		/* position: relative;
+ */
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 15px 0;
+	}
+
+	.grid-dot {
+		position: absolute;
+		top: 5px;
+		right: 15px;
 	}
 </style>

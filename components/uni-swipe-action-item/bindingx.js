@@ -1,6 +1,6 @@
-const BindingX = weex.requireModule('bindingx');
-const dom = weex.requireModule('dom');
-const animation = weex.requireModule('animation');
+const BindingX = uni.requireNativePlugin('bindingx');
+const dom = uni.requireNativePlugin('dom');
+const animation = uni.requireNativePlugin('animation');
 
 export default {
 	data() {
@@ -10,26 +10,7 @@ export default {
 			preventGesture: false
 		}
 	},
-	mounted() {
-		this.boxSelector = this.getEl(this.$refs['selector-box-hock']);
-		this.selector = this.getEl(this.$refs['selector-content-hock']);
-		this.buttonSelector = this.getEl(this.$refs['selector-button-hock']);
-		this.position = {}
-		this.x = 0
-		setTimeout(() => {
-			this.getSelectorQuery()
-		}, 200)
-	},
-	beforeDestoy() {
-		BindingX.unbind({
-			token: this.timing.token,
-			eventType: 'timing'
-		})
-		BindingX.unbind({
-			token: this.pan.token,
-			eventType: 'pan'
-		})
-	},
+
 	watch: {
 		show(newVal) {
 			if (!this.position || JSON.stringify(this.position) === '{}') return;
@@ -42,6 +23,40 @@ export default {
 			}
 		},
 	},
+	created() {
+		if (this.swipeaction.children !== undefined) {
+			this.swipeaction.children.push(this)
+		}
+	},
+	mounted() {
+		this.boxSelector = this.getEl(this.$refs['selector-box-hock']);
+		this.selector = this.getEl(this.$refs['selector-content-hock']);
+		this.buttonSelector = this.getEl(this.$refs['selector-button-hock']);
+		this.position = {}
+		this.x = 0
+		setTimeout(() => {
+			this.getSelectorQuery()
+		}, 200)
+	},
+	beforeDestroy() {
+		if (this.timing) {
+			BindingX.unbind({
+				token: this.timing.token,
+				eventType: 'timing'
+			})
+		}
+		if (this.eventpan) {
+			BindingX.unbind({
+				token: this.eventpan.token,
+				eventType: 'pan'
+			})
+		} 
+		this.swipeaction.children.forEach((item, index) => {
+			if (item === this) {
+				this.swipeaction.children.splice(index, 1)
+			}
+		})
+	},
 	methods: {
 		onClick(index, item) {
 			this.$emit('click', {
@@ -53,6 +68,9 @@ export default {
 			if (this.isInAnimation) return
 			if (this.stop) return
 			this.stop = true
+			if (this.autoClose) {
+				this.swipeaction.closeOther(this)
+			}
 			let endWidth = this.right
 			let boxStep = `(x+${this.x})`
 			let pageX = `${boxStep}> ${-endWidth} && ${boxStep} < 0?${boxStep}:(x+${this.x} < 0? ${-endWidth}:0)`
@@ -168,9 +186,13 @@ export default {
 				if (e.state === 'end' || e.state === 'exit') {
 					this.x = type ? -endWidth : 0
 					this.isInAnimation = false;
+
+					this.isopen = this.isopen || false
+					if (this.isopen !== type) {
+						this.$emit('change', type)
+					}
 					this.isopen = type
 					this.isDrag = false
-					this.$emit('change', type)
 				}
 			});
 		},

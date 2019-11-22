@@ -41,8 +41,8 @@
 						url: "collapse"
 					},
 					{
-						name: "CountDown 倒计时",
-						url: "count-down"
+						name: "Countdown 倒计时",
+						url: "countdown"
 					},
 					{
 						name: "Drawer 抽屉",
@@ -127,6 +127,10 @@
 					{
 						name: "Tag 标签",
 						url: "tag"
+					},
+					{
+						name: "Transition 过渡动画",
+						url: "transition"
 					},
 				]
 			};

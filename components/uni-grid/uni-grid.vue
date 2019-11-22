@@ -8,7 +8,7 @@
 
 <script>
 	// #ifdef APP-NVUE
-	const dom = weex.requireModule('dom');
+	const dom = uni.requireNativePlugin('dom');
 	// #endif
 	export default {
 		name: 'UniGrid',
@@ -27,16 +27,6 @@
 			borderColor: {
 				type: String,
 				default: '#e5e5e5'
-			},
-			// 全局标记水平方向移动距离 ，起点为中心，负数为左移动，正数为右移动
-			hor: {
-				type: Number,
-				default: 0
-			},
-			// 全局标记垂直方向移动距离 ，起点为中心，负数为上移动，正数为下移动
-			ver: {
-				type: Number,
-				default: 0
 			},
 			// 是否正方形显示,默认为 true
 			square: {
@@ -66,15 +56,18 @@
 			this.index = 0
 		},
 		mounted() {
-			setTimeout(() => {
-				this._getSize((width) => {
-					this.children.forEach((item, index) => {
-						item.width = width
-					})
-				})
-			}, 50)
+			this.init()
 		},
 		methods: {
+			init() {
+				setTimeout(() => {
+					this._getSize((width) => {
+						this.children.forEach((item, index) => {
+							item.width = width
+						})
+					})
+				}, 50)
+			},
 			change(e) {
 				this.$emit('change', e)
 			},

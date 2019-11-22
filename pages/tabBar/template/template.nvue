@@ -107,10 +107,11 @@
                     },
                     // #endif
                     // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-                    {
-                        name: '微信自定义组件示例（vant ui）',
-                        url: 'vant-button'
-                    }
+                    // v3 暂不支持小程序原生组件 
+                    // {
+                    //     name: '微信自定义组件示例（vant ui）',
+                    //     url: 'vant-button'
+                    // }
                     // #endif
                 ],
                 navigateFlag: false

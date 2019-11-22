@@ -17,38 +17,50 @@ export default {
 		show(newVal) {
 			if (this.autoClose) return
 			let valueObj = this.position[0]
-			if (!valueObj) return
+			if (!valueObj) {
+				this.init()
+				return
+			}
 			valueObj.show = newVal
 			this.$set(this.position, 0, valueObj)
 		}
 	},
+	created() {
+		if (this.swipeaction.children !== undefined) {
+			this.swipeaction.children.push(this)
+		}
+	},
 	mounted() {
 		this.init()
-		setTimeout(()=>{
-			this.getSize()
-			this.getButtonSize()
-		},50)
-	
+
+	},
+	beforeDestroy() {
+		this.swipeaction.children.forEach((item, index) => {
+			if (item === this) {
+				this.swipeaction.children.splice(index, 1)
+			}
+		})
 	},
 	methods: {
 		init() {
-			uni.$on('__uni__swipe__event', (res) => {
-				if (res !== this && this.autoClose) {
-					let valueObj = this.position[0]
-					valueObj.show = false
-					this.$set(this.position, 0, valueObj)
-				}
-			})
+			
+			setTimeout(() => {
+				this.getSize()
+				this.getButtonSize()
+			}, 50)
 		},
-		openSwipe() {
-			uni.$emit('__uni__swipe__event', this)
+		closeSwipe(e) {
+			if (!this.autoClose) return
+			this.swipeaction.closeOther(this)
 		},
+		
 		change(e) {
 			this.$emit('change', e.open)
 			let valueObj = this.position[0]
-			valueObj.show = e.open
-			this.$set(this.position, 0, valueObj)
-			// console.log('改变', e);
+			if (valueObj.show !== e.open) {
+				valueObj.show = e.open
+				this.$set(this.position, 0, valueObj)
+			}
 		},
 		onClick(index, item) {
 			this.$emit('click', {

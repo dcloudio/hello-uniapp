@@ -5,14 +5,7 @@
 			<uni-section :title="item.name" type="line"></uni-section>
 			<uni-collapse ref="add" class="warp" @change="change">
 				<uni-collapse-item v-for="(sub, key) in item.data" :key="key" :open="sub.open" :show-animation="sub.showAnimation" :disabled="sub.disabled" :title="sub.subName">
-					<template v-if="!sub.type">
-						<text class="content">{{ sub.content }}</text>
-					</template>
-					<template v-else>
-						<uni-list>
-							<uni-list-item v-for="(list, listIndex) in sub.subList" :key="listIndex" :title="list.title" :note="list.note" :thumb="list.thumb" :show-extra-icon="list.showExtraIcon" :extra-icon="list.extraIcon" :show-switch="list.showSwitch" @switchChange="change" />
-						</uni-list>
-					</template>
+					<text class="content">{{ sub.content }}</text>
 				</uni-collapse-item>
 			</uni-collapse>
 		</view>
@@ -37,17 +30,13 @@
 <script>
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
 	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
 
 	export default {
 		components: {
 			uniSection,
 			uniCollapse,
-			uniCollapseItem,
-			uniList,
-			uniListItem
+			uniCollapseItem
 		},
 		data() {
 			const listData = [{
@@ -64,30 +53,6 @@
 							content: '折叠列表内容，这是一段比较长内容。默认折叠主要内容，只显示当前项标题。点击标题展开，才能看到这段问题。再次点击标题，折叠内容。'
 						},
 						{
-							type: true,
-							subName: '折叠列表',
-							subList: [{
-									title: '标题文字',
-									thumb: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
-								},
-								{
-									title: '标题文字',
-									note: '描述信息',
-									thumb: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
-								},
-								{
-									title: '标题文字',
-									showExtraIcon: true,
-									extraIcon: {
-										color: '#4cd964',
-										size: '26',
-										type: 'image'
-									},
-									showSwitch: true
-								}
-							]
-						},
-						{
 							type: false,
 							subName: '禁用状态',
 							disabled: true,
@@ -101,26 +66,7 @@
 						type: true,
 						subName: '折叠列表',
 						showAnimation: true,
-						subList: [{
-								title: '标题文字',
-								thumb: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
-							},
-							{
-								title: '标题文字',
-								note: '描述信息',
-								thumb: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
-							},
-							{
-								title: '标题文字',
-								showExtraIcon: true,
-								extraIcon: {
-									color: '#4cd964',
-									size: '26',
-									type: 'image'
-								},
-								showSwitch: true
-							}
-						]
+						content: '折叠列表内容，这是一段比较长内容。默认折叠主要内容，只显示当前项标题。点击标题展开，才能看到这段问题。再次点击标题，折叠内容。'
 					}]
 				}
 			]
@@ -182,16 +128,16 @@
 	}
 
 	view {
-		font-size: 28rpx;
+		font-size: 14px;
 		line-height: inherit;
 	}
 
 	.example {
-		padding: 0 30rpx 30rpx;
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background: #ffffff;
 	}
@@ -201,34 +147,36 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
-		font-size: 14rpx;
+		font-size: 14px;
 		background-color: #ffffff;
 	}
 
 	/* #endif */
 	.example {
-		padding: 0 30rpx;
+		padding: 0 15px;
 	}
 
 	.example-info {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		padding: 30rpx;
+		padding: 15px;
 		color: #3b4144;
 		background-color: #ffffff;
-		font-size: 30rpx;
+		font-size: 14px;
+		line-height: 20px;
 	}
 
 	.example-info-text {
-		font-size: 28rpx;
-		line-height: 36rpx;
+		font-size: 14px;
+		line-height: 20px;
+		color: #3b4144;
 	}
 
 
 	.example-body {
 		flex-direction: column;
-		padding: 30rpx;
+		padding: 15px;
 		background-color: #ffffff;
 	}
 

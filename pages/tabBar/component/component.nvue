@@ -23,6 +23,15 @@
     </view>
 </template>
 <script>
+    // TODO 修复Android v3 加载过慢问题
+    // #ifdef APP-PLUS
+    var domModule = weex.requireModule('dom');
+    domModule.addRule('fontFace', {
+        'fontFamily': "uniicons",
+        'src': "url('/static/uni.ttf')"
+    });
+    // #endif
+
     import uLink from '@/components/uLink.vue'
     export default {
         components: {
@@ -57,7 +66,7 @@
                             'slider',
                             'switch', 'textarea',
                             // #ifdef APP-PLUS || MP-WEIXIN
-                            'editor',
+                            // 'editor', v3 暂不支持该组件
                             // #endif
                         ]
                     }, {

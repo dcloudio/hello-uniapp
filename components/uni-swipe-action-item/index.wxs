@@ -38,7 +38,7 @@ function touchstart(e, ins) {
 	state.left = state.left || state.position[0].left;
 	// 获取最终按钮组的宽度
 	state.width = pageX - state.left;
-	ins.callMethod('openSwipe')
+	ins.callMethod('closeSwipe')
 }
 
 /**
@@ -157,13 +157,21 @@ function buttonFold(value, instance, ownerInstance) {
 function openState(type, ins, ownerInstance) {
 	var state = ins.getState()
 	var position = state.position
+	if (state.isopen === undefined) {
+		state.isopen = false
+	}
+	// console.log(state.isopen , type);
+	// 只有状态有改变才会通知页面改变状态
+	if (state.isopen !== type) {
+		// 通知页面,已经打开
+		ownerInstance.callMethod('change', {
+			open: type
+		})
+	}
 	// 设置打开和移动状态
 	state.isopen = type
 
-	// 通知页面,已经打开
-	ownerInstance.callMethod('change', {
-		open: type
-	})
+
 	// 添加动画类
 	ins.addClass('ani');
 	var owner = ownerInstance.selectAllComponents('.button-hock')
