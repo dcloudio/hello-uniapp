@@ -98,6 +98,10 @@
                 console.log('recorder start');
 
                 this.recording = true;
+                recordTimeInterval = setInterval(() => {
+                    this.recordTime += 1;
+                    this.formatedRecordTime = util.formatTime(this.recordTime);
+                }, 1000)
             });
             recorderManager.onStop((res) => {
                 console.log('on stop');
@@ -119,11 +123,6 @@
                 }
                 // #endif
 
-                recordTimeInterval = setInterval(() => {
-                    this.recordTime += 1;
-                    this.formatedRecordTime = util.formatTime(this.recordTime);
-                }, 1000)
-
                 // TODO ios 在没有请求过权限之前无法得知是否有相关权限，这种状态下需要直接调用录音，但没有状态或回调判断用户拒绝
                 recorderManager.start({
                     format: 'mp3'
@@ -135,11 +134,11 @@
             },
             playVoice() {
                 console.log('play voice');
+                this.playing = true;
                 playTimeInterval = setInterval(() => {
                     this.playTime += 1;
                     this.formatedPlayTime = util.formatTime(this.playTime);
                 }, 1000)
-                this.playing = true;
                 music.play();
             },
             stopVoice() {
