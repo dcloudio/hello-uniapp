@@ -29,6 +29,7 @@
 					<view id="demo3" class="scroll-view-item_H uni-bg-blue">C</view>
 				</scroll-view>
 			</view>
+            <view class="uni-common-pb"></view>
 		</view>
 	</view>
 </template>

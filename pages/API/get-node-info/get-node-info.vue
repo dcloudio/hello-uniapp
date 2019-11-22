@@ -48,14 +48,14 @@
 				uni.createSelectorQuery().select('.target').boundingClientRect().exec((ret) => {
 					const rect = ret[0]
 					if (rect) {
+                        const sort = ['left','right','top','bottom','width','height']
 						const info = []
-						for (let key in rect) {
-							if (key !== 'id' && key !== 'dataset') {
-								info.push({
-									'key': key,
-									'val': rect[key]
-								})
-							}
+						for (let i in sort) {
+                            let key = sort[i]
+                            info.push({
+                                'key': key,
+                                'val': rect[key]
+                            })
 						}
 						this.info = info
 					}
@@ -72,29 +72,29 @@
 	}
 
 	.block {
-		height: 400upx;
-		width: 400upx;
+		height: 400rpx;
+		width: 400rpx;
 		background-color: #FFFFFF;
 		border: 1px solid #ccc;
 		position: relative;
 		margin: 0 auto;
-		margin-bottom: 30upx;
+		margin-bottom: 30rpx;
 	}
 
 	movable-area {
-		height: 400upx;
-		width: 400upx;
+		height: 400rpx;
+		width: 400rpx;
 		position: relative;
 	}
 
 	.target {
-		height: 80upx;
-		width: 80upx;
-		line-height: 80upx;
+		height: 80rpx;
+		width: 80rpx;
+		line-height: 80rpx;
 		text-align: center;
 		color: #FFFFFF;
 		background-color: #4cd964;
-		font-size: 28upx;
+		font-size: 28rpx;
 		position: absolute;
 	}
 
@@ -107,12 +107,12 @@
 
 	.b {
 		font-weight: bold;
-		width: 150upx;
+		width: 150rpx;
 		display: inline-block;
 	}
 
 	.span {
-		width: 100upx;
+		width: 100rpx;
 		display: inline-block;
 	}
 </style>
