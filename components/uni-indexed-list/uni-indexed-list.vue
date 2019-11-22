@@ -169,6 +169,11 @@
 				if (item) {
 					this.scrollViewId = 'uni-indexed-list-' + item.key
 					this.touchmoveIndex = index
+					// #ifdef APP-NVUE
+					dom.scrollToElement(this.$refs['uni-indexed-list-' + item.key][0], {
+						animated: false
+					})
+					// #endif
 				}
 			},
 			touchMove(e) {
