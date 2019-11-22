@@ -27,9 +27,6 @@
 				uni.navigateTo({
 					url: 'new-page/new-vue-page-1?data=Hello'
 				})
-                setTimeout(()=>{
-                    uni.$emit('postMsg',{msg:'From navigator'})
-                },1000)
 			},
 			navigateBack() {
 				uni.navigateBack();
