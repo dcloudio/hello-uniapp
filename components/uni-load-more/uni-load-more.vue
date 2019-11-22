@@ -256,9 +256,9 @@
 	.uni-load-more__img--android-MP>view {
 		position: absolute;
 		box-sizing: border-box;
-		width: 24px;
-		height: 24px;
-		border-radius: 24px;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
 		border: solid 2px transparent;
 		border-top: solid 2px #777777;
 		transform-origin: center;
