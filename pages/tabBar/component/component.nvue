@@ -66,7 +66,7 @@
                             'slider',
                             'switch', 'textarea',
                             // #ifdef APP-PLUS || MP-WEIXIN
-                            'editor',
+                            // 'editor', v3 暂不支持该组件
                             // #endif
                         ]
                     }, {
