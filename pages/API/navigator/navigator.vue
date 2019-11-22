@@ -36,7 +36,7 @@
 			},
 			redirectTo() {
 				uni.redirectTo({
-					url: 'new-page/new-page'
+					url: 'new-page/new-vue-page-1'
 				});
 			},
 			switchTab() {
@@ -51,7 +51,7 @@
 			},
 			customAnimation(){
 				uni.navigateTo({
-					url: 'new-page/new-page?data=使用自定义动画打开页面',
+					url: 'new-page/new-vue-page-1?data=使用自定义动画打开页面',
 					animationType: 'slide-in-bottom',
 					animationDuration: 200
 				})
