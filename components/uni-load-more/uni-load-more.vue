@@ -63,10 +63,8 @@
 		},
 		data() {
 			return {
-				// #ifdef APP-PLUS
 				webviewHide: false,
 				platform: platform
-				// #endif
 			}
 		},
 		// #ifndef APP-NVUE
