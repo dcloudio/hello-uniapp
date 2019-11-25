@@ -910,6 +910,18 @@
 					}
 				},
 				// #endif
+				// #ifdef APP-PLUS
+				{
+					"path": "nav-blur/nav-blur",
+					"style": {
+						"navigationBarTitleText": "模糊效果导航栏",
+						"app-plus": {
+							"titleNView": {
+								"blurEffect":"light"
+							}
+						}
+					}
+				},
 				// #ifdef APP-PLUS || H5
 				{
 					"path": "nav-button/nav-button",
