@@ -922,6 +922,7 @@
 						}
 					}
 				},
+				// #endif
 				// #ifdef APP-PLUS || H5
 				{
 					"path": "nav-button/nav-button",
