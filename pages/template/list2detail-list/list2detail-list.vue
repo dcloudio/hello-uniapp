@@ -5,8 +5,8 @@
 			<view class="banner-title">{{ banner.title }}</view>
 		</view>
 		<view class="uni-list">
-			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value, key) in listData" :key="key" @click="goDetail(value)">
-				<view class="uni-media-list">
+			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value, key) in listData" :key="key" >
+				<view v-if="value.type!=='ad'" class="uni-media-list" @click="goDetail(value)">
 					<image class="uni-media-list-logo" :src="value.cover"></image>
 					<view class="uni-media-list-body">
 						<view class="uni-media-list-text-top">{{ value.title }}</view>
@@ -16,6 +16,10 @@
 						</view>
 					</view>
 				</view>
+                <!--  信息流广告 -->
+                <view v-if="value.type =='ad'" style="padding-left: 22rpx;">
+                    <ad unit-id="adunit-01b7a010bf53d74e"></ad>
+                </view>
 			</view>
 		</view>
 		<uni-load-more :status="status"  :icon-size="16" :content-text="contentText" />
@@ -123,6 +127,10 @@ export default {
 		setTime: function(items) {
 			var newItems = [];
 			items.forEach(e => {
+                //信息流中插入广告，微信限制一页只允许出现一个广告 
+                if( this.listData.length==0 && newItems.length==5){
+                    newItems.push({type:'ad'});
+                }
 				newItems.push({
 					author_name: e.author_name,
 					cover: e.cover,
