@@ -1,5 +1,5 @@
 <template>
-	<text v-if="text" :class="inverted ? 'uni-badge--' + type + ' uni-badge--' + size + ' uni-badge--' + type + '-inverted' : 'uni-badge--' + type + ' uni-badge--' + size" class="uni-badge" :style="width" @click="onClick()">{{ text }}</text>
+	<text v-if="text" :class="inverted ? 'uni-badge--' + type + ' uni-badge--' + size + ' uni-badge--' + type + '-inverted' : 'uni-badge--' + type + ' uni-badge--' + size" class="uni-badge" @click="onClick()">{{ text }}</text>
 </template>
 
 <script>
@@ -26,7 +26,7 @@
 		},
 		data() {
 			return {
-				width: `display: inline-block;width: ${String(this.text).length * 15 + 25}rpx`
+
 			};
 		},
 		methods: {
@@ -52,7 +52,7 @@
 		text-align: center;
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-size: 12px;
-		padding: 0;
+		padding: 0px 6px;
 	}
 
 	.uni-badge--inverted {
