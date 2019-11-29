@@ -34,13 +34,11 @@
 	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniStatusBar from '@/components/uni-status-bar/uni-status-bar.vue';
 	export default {
 		components: {
 			uniIcons,
 			uniNavBar,
-			uniSection,
-			uniStatusBar
+			uniSection
 		},
 		data() {
 			return {

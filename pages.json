@@ -878,6 +878,10 @@
 				{
 					"path": "transition/transition",
 					"style": {}
+				},
+				{
+					"path": "title/title",
+					"style": {}
 				}
 			]
 		},

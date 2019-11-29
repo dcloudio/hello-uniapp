@@ -37,6 +37,14 @@
 			// this.grid.init()
 			this.width = this.grid.width
 		},
+		beforeDestroy() {
+			this.grid.children.forEach((item, index) => {
+				if (item === this) {
+					this.grid.index -= 1
+					this.grid.children.splice(index, 1)
+				}
+			})
+		},
 		methods: {
 			_onClick() {
 				// console.log('点击', this.index);
@@ -66,7 +74,8 @@
 		position: relative;
 		flex: 1;
 		flex-direction: column;
-		/* justify-content: center; */
+		/* justify-content: center;
+ */
 		/* align-items: center;
  */
 	}

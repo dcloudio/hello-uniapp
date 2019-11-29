@@ -32,22 +32,22 @@
 			},
 			disabled: {
 				// 是否为禁用状态
-				type: [String, Boolean],
+				type: [Boolean, String],
 				defalut: false
 			},
 			inverted: {
 				// 是否为空心
-				type: [String, Boolean],
+				type: [Boolean, String],
 				defalut: false
 			},
 			circle: {
 				// 是否为圆角样式
-				type: [String, Boolean],
+				type: [Boolean, String],
 				defalut: false
 			},
 			mark: {
 				// 是否为标记样式
-				type: [String, Boolean],
+				type: [Boolean, String],
 				defalut: false
 			}
 		},

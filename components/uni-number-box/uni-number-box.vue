@@ -62,11 +62,20 @@
 				let step = this.step * scale;
 				if (type === "minus") {
 					value -= step;
+					if (value < this.min) {
+						return;
+					}
+					if (value > this.max) {
+						value = this.max
+					}
 				} else if (type === "plus") {
 					value += step;
-				}
-				if (value < this.min || value > this.max) {
-					return;
+					if (value > this.max) {
+						return;
+					}
+					if (value < this.min) {
+						value = this.min
+					}
 				}
 
 				this.inputValue = String(value / scale);

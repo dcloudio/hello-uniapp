@@ -25,6 +25,7 @@
 				</uni-grid>
 			</view>
 			<button type="primary" @click="add">点击添加一个宫格</button>
+			<button v-if="dynamicList.length !== 0" type="primary" style="margin-top: 15px;" @click="del">点击删除一个宫格</button>
 		</view>
 		<uni-section title="无边框带角标（3列）" type="line"></uni-section>
 		<view class="example-body">
@@ -167,6 +168,9 @@
 						icon: 'none'
 					});
 				}
+			},
+			del() {
+				this.dynamicList.splice(this.dynamicList.length - 1, 1)
 			}
 		}
 	}
