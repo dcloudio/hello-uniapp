@@ -386,6 +386,7 @@ radio-group label, checkbox-group label{
 	padding: 22upx 30upx;
 }
 .uni-list-cell-left {
+    white-space: nowrap;
 	font-size:28upx;
 	padding: 0 30upx;
 }
@@ -395,7 +396,7 @@ radio-group label, checkbox-group label{
 }
 .uni-list-cell::after {
 	position: absolute;
-  z-index: 3;
+	z-index: 3;
 	right: 0;
 	bottom: 0;
 	left: 30upx;
