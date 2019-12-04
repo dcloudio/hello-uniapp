@@ -21,8 +21,31 @@
 				<text class="uni-calendar__backtoday" @click="backtoday">回到今天</text>
 			</view>
 			<view class="uni-calendar__box">
-				<view class="uni-calendar__box-bg">
+				<view v-if="showMonth" class="uni-calendar__box-bg">
 					<text class="uni-calendar__box-bg-text">{{nowDate.month}}</text>
+				</view>
+				<view class="uni-calendar__weeks">
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">日</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">一</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">二</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">三</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">四</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">五</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">六</text>
+					</view>
 				</view>
 				<view class="uni-calendar__weeks" v-for="(item,weekIndex) in weeks" :key="weekIndex">
 					<view class="uni-calendar__weeks-item" v-for="(weeks,weeksIndex) in item" :key="weeksIndex">
@@ -90,6 +113,13 @@
 			 * 插入
 			 */
 			insert: {
+				type: Boolean,
+				default: true
+			},
+			/**
+			 * 是否显示月份背景
+			 */
+			showMonth: {
 				type: Boolean,
 				default: true
 			}
@@ -354,6 +384,24 @@
 
 	.uni-calendar__weeks-item {
 		flex: 1;
+	}
+
+	.uni-calendar__weeks-day {
+		flex: 1;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 45px;
+		border-bottom-color: #F5F5F5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+
+	.uni-calendar__weeks-day-text {
+		font-size: 14px;
 	}
 
 	.uni-calendar__box {

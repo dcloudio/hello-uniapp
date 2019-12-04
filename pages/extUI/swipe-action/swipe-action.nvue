@@ -24,7 +24,7 @@
 
 		<uni-section title="swipe-action 列表" type="line"></uni-section>
 		<uni-swipe-action>
-			<uni-swipe-action-item v-for="(item,index) in swipeList" :show="isOpened" :options="item.options" :key="item.id" @change="swipeChange" @click="swipeClick($event,index)">
+			<uni-swipe-action-item v-for="(item,index) in swipeList" :options="item.options" :key="item.id" @change="swipeChange" @click="swipeClick($event,index)">
 				<text class="cont">{{item.content}}</text>
 			</uni-swipe-action-item>
 		</uni-swipe-action>
@@ -127,17 +127,16 @@
 			},
 			change(e) {
 				this.isOpened = e
-				console.log('...返回：', e);
+				console.log('返回：', e);
 			},
 			swipeChange(e) {
-				console.log('...返回：', e);
+				console.log('返回：', e);
 			},
 			swipeClick(e, index) {
 				let {
 					content
 				} = e
 				if (content.text === '删除') {
-					console.log(content.text, index);
 					uni.showModal({
 						title: '提示',
 						content: '是否删除',

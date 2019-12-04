@@ -115,11 +115,6 @@
 		font-size: 28rpx;
 	}
 
-	.uni-tag--default {
-		color: #333;
-		font-size: 28rpx;
-	}
-
 	.uni-tag-text--primary {
 		color: #007aff !important;
 	}

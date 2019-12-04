@@ -124,13 +124,8 @@
 		font-size: 28rpx;
 	}
 
-	.uni-navbar {
-		width: 750rpx;
-	}
-
 	.uni-navbar__content {
 		position: relative;
-		width: 750rpx;
 		background-color: #ffffff;
 		overflow: hidden;
 	}
@@ -150,7 +145,6 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		width: 750rpx;
 		height: 44px;
 		line-height: 44px;
 		font-size: 16px;

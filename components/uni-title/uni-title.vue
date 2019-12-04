@@ -1,8 +1,6 @@
 <template>
-	<view class="uni-title" :style="{'justify-content':textAlign}">
-		<text :class="['uni-'+type]" :style="{'color':color}">
-			<slot>{{title}}</slot>
-		</text>
+	<view class="uni-title" :style="{'align-items':textAlign}">
+		<text :class="['uni-'+type]" :style="{'color':color}">{{title}}</text>
 	</view>
 </template>
 
@@ -65,8 +63,14 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex-direction: row;
-		justify-content: flex-start;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 8px 0;
+	}
+
+	.uni-title__box {
+		flex: 1;
 	}
 
 	.uni-h1 {

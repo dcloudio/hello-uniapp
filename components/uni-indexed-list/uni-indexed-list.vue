@@ -2,11 +2,11 @@
 	<view class="uni-indexed-list" ref="list" id="list">
 		<!-- #ifdef APP-NVUE -->
 		<list class="uni-indexed-list__scroll" scrollable="true" show-scrollbar="false">
-			<cell v-for="(list, idx) in lists" :key="idx" :ref="'uni-indexed-list-' + list.key">
+			<cell v-for="(list, idx) in lists" :key="idx" :ref="'uni-indexed-list-' + idx">
 				<!-- #endif -->
 				<!-- #ifndef APP-NVUE -->
 				<scroll-view :scroll-into-view="scrollViewId" class="uni-indexed-list__scroll" scroll-y>
-					<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + list.key">
+					<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + idx">
 						<!-- #endif -->
 						<uni-indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect" @itemClick="onClick"></uni-indexed-list-item>
 						<!-- #ifndef APP-NVUE -->
@@ -17,7 +17,7 @@
 			</cell>
 		</list>
 		<!-- #endif -->
-		<view :class="touchmove ? 'uni-indexed-list__menu--active' : ''" @touchstart="touchStart" @touchmove.stop="touchMove" @touchend="touchEnd" class="uni-indexed-list__menu">
+		<view :class="touchmove ? 'uni-indexed-list__menu--active' : ''" @touchstart="touchStart" @touchmove.stop.prevent="touchMove" @touchend="touchEnd" class="uni-indexed-list__menu">
 			<view v-for="(list, key) in lists" :key="key" class="uni-indexed-list__menu-item">
 				<text class="uni-indexed-list__menu-text" :class="touchmoveIndex == key ? 'uni-indexed-list__menu-text--active' : ''">{{ list.key }}</text>
 			</view>
@@ -56,11 +56,11 @@
 		let item = this.lists[index]
 		if (item) {
 			// #ifndef APP-NVUE
-			this.scrollViewId = 'uni-indexed-list-' + item.key
+			this.scrollViewId = 'uni-indexed-list-' + index
 			this.touchmoveIndex = index
 			// #endif
 			// #ifdef APP-NVUE
-			dom.scrollToElement(this.$refs['uni-indexed-list-' + item.key][0], {
+			dom.scrollToElement(this.$refs['uni-indexed-list-' + index][0], {
 				animated: false
 			})
 			this.touchmoveIndex = index
@@ -123,16 +123,13 @@
 					if (value.data.length === 0) {
 						return
 					}
-					// console.log(value)
 					let indexBefore = index
 					let items = value.data.map(item => {
 						let obj = {}
-						// for (let key in item) {
 						obj['key'] = value.letter
 						obj['name'] = item
 						obj['itemIndex'] = index
 						index++
-						// }
 						obj.checked = item.checked ? item.checked : false
 						return obj
 					})
@@ -143,7 +140,6 @@
 						itemIndex: indexBefore
 					})
 				})
-				// console.log(this.lists)
 				// #ifndef APP-NVUE
 				uni.createSelectorQuery()
 					.in(this)
@@ -167,10 +163,10 @@
 				let index = Math.floor(pageY / this.itemHeight)
 				let item = this.lists[index]
 				if (item) {
-					this.scrollViewId = 'uni-indexed-list-' + item.key
+					this.scrollViewId = 'uni-indexed-list-' + index
 					this.touchmoveIndex = index
 					// #ifdef APP-NVUE
-					dom.scrollToElement(this.$refs['uni-indexed-list-' + item.key][0], {
+					dom.scrollToElement(this.$refs['uni-indexed-list-' + index][0], {
 						animated: false
 					})
 					// #endif
@@ -185,7 +181,7 @@
 				}
 				let item = this.lists[index]
 				if (item) {
-					this.scrollViewId = 'uni-indexed-list-' + item.key
+					this.scrollViewId = 'uni-indexed-list-' + index
 					this.touchmoveIndex = index
 				}
 				// #endif

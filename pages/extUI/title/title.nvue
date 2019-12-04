@@ -39,18 +39,17 @@
 				<uni-title class="h4" type="h4" title="1.1 什么是uni-app"></uni-title>
 			</view>
 			<view>
-				<text class="uni-text">uni-app 是一个使用 Vue.js
-					开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉）等多个平台。即使不跨端，uni-app同时也是更好的小程序开发框架。DCloud公司拥有370万开发者用户，旗下uni-app有5万+案例、900款插件、50+微信/qq群，并且被阿里小程序工具内置，开发者可以放心选择。</text>
+				<text class="uni-text">uni-app是一个使用Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉）等多个平台。即使不跨端，uni-app同时也是更好的小程序开发框架。DCloud公司拥有370万开发者用户，旗下uni-app有5万+案例、900款插件、50+微信/qq群，并且被阿里小程序工具内置，开发者可以放心选择。</text>
 			</view>
 			<view class="uni-box">
 				<uni-title class="h4" type="h4" title="1.2 开发规范"></uni-title>
 			</view>
 			<view class="">
-				<uni-title class="h5" type="h5" color="#666">- 页面文件遵循 Vue 单文件组件 (SFC) 规范</uni-title>
-				<uni-title class="h5" type="h5" color="#666">- 组件标签靠近小程序规范，详见uni-app 组件规范</uni-title>
-				<uni-title class="h5" type="h5" color="#666">- 接口能力（JS API）靠近微信小程序规范，但需将前缀 wx 替换为 uni，详见uni-app接口规范</uni-title>
-				<uni-title class="h5" type="h5" color="#666">- 数据绑定及事件处理同 Vue.js 规范，同时补充了App及页面的生命周期</uni-title>
-				<uni-title class="h5" type="h5" color="#666">- 为兼容多端运行，建议使用flex布局进行开发</uni-title>
+				<uni-title class="h5" type="h5" color="#666" title="- 页面文件遵循 Vue 单文件组件 (SFC) 规范"></uni-title>
+				<uni-title class="h5" type="h5" color="#666" title="- 组件标签靠近小程序规范，详见uni-app 组件规范"></uni-title>
+				<uni-title class="h5" type="h5" color="#666" title="- 接口能力（JS API）靠近微信小程序规范，但需将前缀 wx 替换为 uni，详见uni-app接口规范"></uni-title>
+				<uni-title class="h5" type="h5" color="#666" title="- 数据绑定及事件处理同 Vue.js 规范，同时补充了App及页面的生命周期"></uni-title>
+				<uni-title class="h5" type="h5" color="#666" title="- 为兼容多端运行，建议使用flex布局进行开发"></uni-title>
 			</view>
 		</view>
 	</view>
@@ -188,6 +187,7 @@
 
 	.uni-text {
 		font-size: 14px;
+		line-height: 22px;
 		color: #333;
 	}
 </style>

@@ -46,14 +46,12 @@
 		data() {
 			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
-				index: 0,
 				elId,
 				width: 0
 			}
 		},
 		created() {
 			this.children = []
-			this.index = 0
 		},
 		mounted() {
 			this.init()
@@ -78,13 +76,13 @@
 					.select(`#${this.elId}`)
 					.boundingClientRect()
 					.exec(ret => {
-						this.width = parseInt(ret[0].width / this.column) - 1 + 'px'
+						this.width = parseInt((ret[0].width - 1) / this.column) + 'px'
 						fn(this.width)
 					})
 				// #endif
 				// #ifdef APP-NVUE
 				dom.getComponentRect(this.$refs['uni-grid'], (ret) => {
-					this.width = parseInt(ret.size.width / this.column) - 1 + 'px'
+					this.width = parseInt((ret.size.width - 1) / this.column) + 'px'
 					fn(this.width)
 				})
 				// #endif
@@ -109,7 +107,8 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex: 1;
+		/* flex: 1;
+ */
 		flex-direction: row;
 		flex-wrap: wrap;
 	}

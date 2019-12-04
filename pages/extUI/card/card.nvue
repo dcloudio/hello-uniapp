@@ -209,9 +209,11 @@
 
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 		padding: 20rpx 0;
 		padding-bottom: 0;
-
 	}
 
 	.example-box {
