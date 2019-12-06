@@ -1083,6 +1083,12 @@
 						}
 					}
 				},
+				{
+					"path": "swiper-list/swiper-list",
+					"style": {
+						"navigationBarTitleText": "swiper-list"
+					}
+				},
 				// #endif
 				{
 					"path": "scheme/scheme",
