@@ -97,6 +97,13 @@
 
                     },
                     // #endif
+                    {
+                        id: 'canvas',
+                        name: '画布',
+                        open: false,
+                        pages: ['canvas']
+                    
+                    },
                     // #ifdef APP-PLUS
                     {
                         id: 'web-view',
