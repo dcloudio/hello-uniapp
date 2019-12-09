@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-swiper-page">
-		<text>Page {{ pid}}</text>
+		<text>Tab View {{ pid}}</text>
 	</view>
 </template>
 
