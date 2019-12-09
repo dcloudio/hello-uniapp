@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    // #ifdef APP-PLUS
+    // #ifdef APP-NVUE
     const dom = weex.requireModule('dom');
     // #endif
 
