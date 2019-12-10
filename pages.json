@@ -217,14 +217,12 @@
 				"navigationBarTitleText": "image"
 			}
 		},
-		// #ifndef MP-ALIPAY
 		{
 			"path": "pages/component/video/video",
 			"style": {
 				"navigationBarTitleText": "video"
 			}
 		},
-		// #endif
 		// #ifndef MP-ALIPAY || MP-TOUTIAO
 		{
 			"path": "pages/component/audio/audio",

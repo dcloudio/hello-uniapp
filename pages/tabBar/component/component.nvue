@@ -80,9 +80,7 @@
                         open: false,
                         pages: [
                             'image',
-                            // #ifndef MP-ALIPAY
                             'video',
-                            // #endif
                             // #ifndef MP-ALIPAY || MP-TOUTIAO
                             'audio',
                             // #endif
