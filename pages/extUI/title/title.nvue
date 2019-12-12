@@ -1,11 +1,15 @@
 <template>
 	<view class="uni-content">
 		<view class="example-info">
-			<text class="example-info-text"> uni-title 组件主要用于文章、列表详情的标题展示 </text>
+			<text class="example-info-text"> 章节标题，通常用于记录页面标题，使用当前组件在 uni-app 开启统计的情况下，将会自动统计页面标题 </text>
 		</view>
 		<uni-section title="基础用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-title type="h1" title="h1 一级标题 "></uni-title>
+			<uni-title :title="title"></uni-title>
+		</view>
+		<uni-section title="不同类型" type="line"></uni-section>
+		<view class="example-body">
+			<uni-title type="h1" title="h1 一级标题"></uni-title>
 			<uni-title type="h2" title="h2 二级标题"></uni-title>
 			<uni-title type="h3" title="h3 三级标题"></uni-title>
 			<uni-title type="h4" title="h4 四级标题"></uni-title>
@@ -65,12 +69,10 @@
 		},
 		data() {
 			return {
-				title: 'Hello'
+				title: '章节标题通常用于记录页面标题，例如商品标题、新闻标题等，当前组件会自动上报内容统计数据'
 			}
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		methods: {
 
 		}
@@ -183,6 +185,12 @@
 	.uni-box {
 		/* margin: 10px 0;
  */
+	}
+
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
 	}
 
 	.uni-text {

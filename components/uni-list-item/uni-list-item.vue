@@ -16,6 +16,7 @@
 					<text v-if="note" class="uni-list-item__content-note">{{ note }}</text>
 				</view>
 				<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
+					<text v-if="rightText" class="uni-list-item__extra-text">{{rightText}}</text>
 					<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
 					<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
 					<uni-icons v-if="showArrow" :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
@@ -79,6 +80,11 @@
 				// badge类型
 				type: String,
 				default: 'success'
+			},
+			rightText: {
+				// 右侧文字内容
+				type: String,
+				default: ''
 			},
 			thumb: {
 				// 缩略图
@@ -232,5 +238,10 @@
 	.uni-list-item__icon-img {
 		height: 52rpx;
 		width: 52rpx;
+	}
+
+	.uni-list-item__extra-text {
+		color: #999;
+		font-size: 24rpx;
 	}
 </style>

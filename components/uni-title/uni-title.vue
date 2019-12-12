@@ -1,6 +1,6 @@
 <template>
-	<view class="uni-title" :style="{'align-items':textAlign}">
-		<text :class="['uni-'+type]" :style="{'color':color}">{{title}}</text>
+	<view class="uni-title__box" :style="{'align-items':textAlign}">
+		<text class="uni-title__base" :class="['uni-'+type]" :style="{'color':color}">{{title}}</text>
 	</view>
 </template>
 
@@ -9,7 +9,7 @@
 		props: {
 			type: {
 				type: String,
-				default: 'h3'
+				default: ''
 			},
 			title: {
 				type: String,
@@ -19,13 +19,13 @@
 				type: String,
 				default: 'left'
 			},
-			stat: {
-				type: Boolean,
-				default: false
-			},
 			color: {
 				type: String,
 				default: '#333333'
+			},
+			stat: {
+				type: [Boolean, String],
+				default: ''
 			}
 		},
 		data() {
@@ -50,16 +50,57 @@
 				return align
 			}
 		},
+		watch: {
+			title(newVal) {
+				if (this.isOpenStat()) {
+					// 上报数据
+					if (uni.report) {
+						uni.report('title', this.title)
+					}
+				}
+			}
+		},
 		mounted() {
-			if (uni.report) {
-				uni.report('title', this.title)
+			if (this.isOpenStat()) {
+				// 上报数据
+				if (uni.report) {
+					uni.report('title', this.title)
+				}
+			}
+		},
+		methods: {
+			isOpenStat() {
+				if (this.stat === '') {
+					this.isStat = false
+				}
+				let stat_type = (typeof(this.stat) === 'boolean' && this.stat) || (typeof(this.stat) === 'string' && this.stat !==
+					'')
+				if (this.type === "") {
+					this.isStat = true
+					if (this.stat.toString() === 'false') {
+						this.isStat = false
+					}
+				}
+
+				if (this.type !== '') {
+					this.isStat = true
+					if (stat_type) {
+						this.isStat = true
+					} else {
+						this.isStat = false
+					}
+				}
+				return this.isStat
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	.uni-title {
+	/* .uni-title {
+
+	} */
+	.uni-title__box {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -67,10 +108,13 @@
 		align-items: flex-start;
 		justify-content: center;
 		padding: 8px 0;
+		flex: 1;
 	}
 
-	.uni-title__box {
-		flex: 1;
+	.uni-title__base {
+		font-size: 15px;
+		color: #333;
+		font-weight: 500;
 	}
 
 	.uni-h1 {

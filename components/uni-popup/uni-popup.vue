@@ -105,7 +105,8 @@
 			open() {
 				this.showPopup = true
 				this.$nextTick(() => {
-					setTimeout(() => {
+					clearTimeout(this.timer)
+					this.timer = setTimeout(() => {
 						this.showTrans = true
 					}, 50);
 				})

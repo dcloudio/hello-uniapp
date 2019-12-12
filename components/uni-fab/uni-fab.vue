@@ -13,7 +13,7 @@
           'uni-fab__content--flexDirectionStart': flexDirectionStart,
           'uni-fab__content--flexDirectionEnd': flexDirectionEnd,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-        }" :style="{ width: boxWidth, height: boxHeight, backgroundColor: styles.backgroundColor }" class="uni-fab__content">
+        }" :style="{ width: boxWidth, height: boxHeight, backgroundColor: styles.backgroundColor }" class="uni-fab__content" elevation="5">
 				<view v-if="flexDirectionStart || horizontalLeft" class="uni-fab__item uni-fab__item--first" />
 				<view v-for="(item, index) in content" :key="index" :class="{ 'uni-fab__item--active': isShow }" class="uni-fab__item" @click="_onItemClick(index, item)">
 					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="uni-fab__item-image" mode="widthFix" />
@@ -23,10 +23,10 @@
 			</view>
 		</view>
 		<view :class="{
-		  'uni-fab--leftBottom': leftBottom,
-		  'uni-fab--rightBottom': rightBottom,
-		  'uni-fab--leftTop': leftTop,
-		  'uni-fab--rightTop': rightTop,
+		  'uni-fab__circle--leftBottom': leftBottom,
+		  'uni-fab__circle--rightBottom': rightBottom,
+		  'uni-fab__circle--leftTop': leftTop,
+		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
 		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
 			<view class="fab-circle-v" :class="{'uni-fab__plus--active': isShow}"></view>
@@ -190,47 +190,38 @@
 		z-index: 10;
 	}
 
-	.uni-fab--top {
-		width: 30px;
-		height: 30px;
-		right: 15px;
-		bottom: 30px;
-		border-style: solid;
-		border-width: 1px;
-		border-color: #5989b9;
-		border-radius: 5px;
-		transition: opacity 0.3;
-		opacity: 0;
-	}
-
 	.uni-fab--active {
 		opacity: 1;
 	}
 
 	.uni-fab--leftBottom {
-		left: 15px;
-		bottom: 30px;
+		left: 5px;
+		bottom: 20px;
+		padding: 10px;
 	}
 
 	.uni-fab--leftTop {
-		left: 15px;
-		top: 40px;
+		left: 5px;
+		top: 30px;
 		/* #ifdef H5 */
-		top: calc(40px + var(--window-top));
+		top: calc(30px + var(--window-top));
 		/* #endif */
+		padding: 10px;
 	}
 
 	.uni-fab--rightBottom {
-		right: 15px;
-		bottom: 30px;
+		right: 5px;
+		bottom: 20px;
+		padding: 10px;
 	}
 
 	.uni-fab--rightTop {
-		right: 15px;
-		top: 40px;
+		right: 5px;
+		top: 30px;
 		/* #ifdef H5 */
-		top: calc(40px + var(--window-top));
+		top: calc(30px + var(--window-top));
 		/* #endif */
+		padding: 10px;
 	}
 
 	.uni-fab__circle {
@@ -245,6 +236,32 @@
 		background-color: #3c3e49;
 		border-radius: 55px;
 		z-index: 11;
+	}
+
+	.uni-fab__circle--leftBottom {
+		left: 15px;
+		bottom: 30px;
+	}
+
+	.uni-fab__circle--leftTop {
+		left: 15px;
+		top: 40px;
+		/* #ifdef H5 */
+		top: calc(40px + var(--window-top));
+		/* #endif */
+	}
+
+	.uni-fab__circle--rightBottom {
+		right: 15px;
+		bottom: 30px;
+	}
+
+	.uni-fab__circle--rightTop {
+		right: 15px;
+		top: 40px;
+		/* #ifdef H5 */
+		top: calc(40px + var(--window-top));
+		/* #endif */
 	}
 
 	.uni-fab__circle--left {
