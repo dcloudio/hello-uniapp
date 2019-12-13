@@ -65,8 +65,8 @@
                         pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
                             'slider',
                             'switch', 'textarea',
-                            // #ifdef APP-PLUS || MP-WEIXIN
-                            // 'editor', v3 暂不支持该组件
+                            // #ifdef APP-PLUS || MP-WEIXIN || H5
+                            'editor',
                             // #endif
                         ]
                     }, {

@@ -185,7 +185,7 @@
 				"navigationBarTitleText": "textarea"
 			}
 		},
-		// #ifdef APP-PLUS || MP-WEIXIN
+		// #ifdef APP-PLUS || MP-WEIXIN || H5
 		{
 			"path": "pages/component/editor/editor",
 			"style": {
@@ -1094,7 +1094,7 @@
 						"navigationBarTitleText": "打开外部应用"
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
 				{
 					"path": "vant-button/vant-button",
 					"style": {
