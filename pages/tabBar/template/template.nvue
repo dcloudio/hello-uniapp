@@ -91,10 +91,10 @@
 						url: 'swiper-vertical'
 					},
 					// #endif
-					{
-						name: 'swiper-list',
-						url: 'swiper-list'
-					},
+					// {
+					// 	name: 'swiper-list',
+					// 	url: 'swiper-list'
+					// },
 					{
 						name: 'GlobalData和vuex',
 						url: 'global'
