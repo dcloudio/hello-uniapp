@@ -93,7 +93,6 @@
                     <text class="uni-icon" v-if="showClearIcon" @click="clearIcon">&#xe434;</text>
                 </view>
             </view> 
-            <!-- #ifndef APP-NVUE -->
             <view class="uni-form-item uni-column">
                 <view class="title"><text class="uni-form-item__title">可查看密码的输入框</text></view>
                 <view class="uni-input-wrapper">
@@ -101,7 +100,6 @@
                     <text class="uni-icon" :class="[!showPassword ? 'uni-eye-active' : '']" @click="changePassword">&#xe568;</text>
                 </view>
             </view>
-            <!-- #endif -->
         </view>
     </view>
 </template>
