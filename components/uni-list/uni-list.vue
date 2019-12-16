@@ -52,12 +52,9 @@
 		background-color: #ffffff;
 		position: relative;
 		flex-direction: column;
-		/* border-bottom-color: $uni-border-color;
- */
-		/* border-bottom-style: solid;
- */
-		/* border-bottom-width: 1px;
- */
+		/* border-bottom-color: $uni-border-color; */
+		/* border-bottom-style: solid; */
+		/* border-bottom-width: 1px; */
 	}
 
 	/* #ifndef APP-NVUE */

@@ -7,6 +7,12 @@
 </template>
 
 <script>
+	/**
+	 * GridItem 宫格
+	 * @description 宫格组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=27
+	 * @property {Number} index 子组件的唯一标识 ，点击gird会返回当前的标识
+	 */
 	export default {
 		name: 'UniGridItem',
 		inject: ['grid'],

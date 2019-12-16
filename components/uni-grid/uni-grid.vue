@@ -10,6 +10,18 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom');
 	// #endif
+
+	/**
+	 * Grid 宫格
+	 * @description 宫格组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=27
+	 * @property {Number} column 每列显示个数
+	 * @property {String} borderColor 边框颜色
+	 * @property {Boolean} showBorder 是否显示边框
+	 * @property {Boolean} square 是否方形显示
+	 * @property {Boolean} Boolean 点击背景是否高亮
+	 * @event {Function} change 点击 grid 触发，e={detail:{index:0}}，index 为当前点击 gird 下标
+	 */
 	export default {
 		name: 'UniGrid',
 		props: {

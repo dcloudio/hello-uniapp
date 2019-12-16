@@ -22,6 +22,14 @@
 
 <script>
 	import uniIcons from '../uni-icons/uni-icons.vue'
+	/**
+	 * CollapseItem 折叠面板子组件
+	 * @description 折叠面板子组件
+	 * @property {String} title 标题文字
+	 * @property {String} thumb 标题左侧缩略图
+	 * @property {Boolean} disabled = [true|false] 是否展开面板
+	 * @property {Boolean} showAnimation = [true|false] 开启动画
+	 */
 	export default {
 		name: 'UniCollapseItem',
 		components: {

@@ -40,6 +40,24 @@
 	// #ifdef APP-NVUE
 	platform = uni.getSystemInfoSync().platform
 	// #endif
+
+	/**
+	 * Fab 悬浮按钮
+	 * @description 点击可展开一个图形按钮菜单
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=144
+	 * @property {Object} pattern 可选样式配置项
+	 * @property {Object} horizontal = [left | right] 水平对齐方式
+	 * 	@value left 左对齐
+	 * 	@value right 右对齐
+	 * @property {Object} vertical = [bottom | top] 垂直对齐方式
+	 * 	@value bottom 下对齐
+	 * 	@value top 上对齐
+	 * @property {Object} direction = [horizontal | vertical] 展开菜单显示方式
+	 * 	@value horizontal 水平显示
+	 * 	@value vertical 垂直显示
+	 * @property {Array} content 展开菜单内容配置项
+	 * @event {Function} trigger 展开菜单点击事件，返回点击信息
+	 */
 	export default {
 		name: 'UniFab',
 		props: {
