@@ -185,7 +185,7 @@
 				"navigationBarTitleText": "textarea"
 			}
 		},
-		// #ifdef APP-PLUS || MP-WEIXIN
+		// #ifdef APP-PLUS || MP-WEIXIN || H5
 		{
 			"path": "pages/component/editor/editor",
 			"style": {
@@ -217,14 +217,12 @@
 				"navigationBarTitleText": "image"
 			}
 		},
-		// #ifndef MP-ALIPAY
 		{
 			"path": "pages/component/video/video",
 			"style": {
 				"navigationBarTitleText": "video"
 			}
 		},
-		// #endif
 		// #ifndef MP-ALIPAY || MP-TOUTIAO
 		{
 			"path": "pages/component/audio/audio",
@@ -878,6 +876,10 @@
 				{
 					"path": "transition/transition",
 					"style": {}
+				},
+				{
+					"path": "title/title",
+					"style": {}
 				}
 			]
 		},
@@ -1079,6 +1081,12 @@
 						}
 					}
 				},
+				{
+					"path": "swiper-list/swiper-list",
+					"style": {
+						"navigationBarTitleText": "swiper-list"
+					}
+				},
 				// #endif
 				{
 					"path": "scheme/scheme",
@@ -1086,7 +1094,7 @@
 						"navigationBarTitleText": "打开外部应用"
 					}
 				},
-				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
 				{
 					"path": "vant-button/vant-button",
 					"style": {

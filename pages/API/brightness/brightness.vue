@@ -27,9 +27,7 @@ export default {
 	onLoad() {
 		uni.getScreenBrightness({
 			success: res => {
-				console.log(res);
 				this.screen = (res.value * 100).toFixed();
-				console.log('屏幕亮度值：' + this.screen);
 			},
 			fail(e) {
 				console.log(e);
@@ -45,7 +43,6 @@ export default {
 				uni.setScreenBrightness({
 					value: screen / 100,
 					success: function() {
-						console.log('success');
 					},
 					fail(e) {
 						console.log(e);

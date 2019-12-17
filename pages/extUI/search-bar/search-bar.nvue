@@ -2,7 +2,7 @@
 	<view>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" fgColor="#ededed" bgColor="#ffffff" />
+			<uni-search-bar @confirm="search" @input="input" @cancel="cancel" />
 			<view class="search-result">
 				<text class="search-result-text">当前输入为：{{ searchVal }}</text>
 			</view>
@@ -10,13 +10,14 @@
 		<uni-section title="自定义样式" type="line"></uni-section>
 		<view class="example-body">
 			<uni-search-bar placeholder="自定义placeholder" @confirm="search" />
+			<uni-search-bar placeholder="自定义背景色" bgColor="#EEEEEE" @confirm="search" />
 			<uni-search-bar radius="100" placeholder="自定义圆角" @confirm="search" />
 		</view>
-		<uni-section title="控制清除按钮" type="line"></uni-section>
+		<uni-section title="控制清除/取消按钮" type="line"></uni-section>
 		<view class="example-body">
-			<uni-search-bar radius="5" clearButton="always" @confirm="search" />
-			<uni-search-bar radius="5" clearButton="auto" @confirm="search" />
-			<uni-search-bar radius="100" clearButton="no" @confirm="search" />
+			<uni-search-bar radius="5" placeholder="一直显示" clearButton="always" cancelButton="always" @confirm="search" />
+			<uni-search-bar radius="5" placeholder="自动显示隐藏" clearButton="auto" cancelButton="auto" @confirm="search" />
+			<uni-search-bar radius="100" placeholder="一直不显示" clearButton="none" cancelButton="none" @confirm="search" />
 		</view>
 	</view>
 </template>

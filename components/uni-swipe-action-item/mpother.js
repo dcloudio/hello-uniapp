@@ -24,35 +24,31 @@ export default {
 				this.$emit('change', false)
 				this.close()
 			}
-			uni.$emit('__uni__swipe__event', this)
 		}
 	},
 	mounted() {
 		this.position = {}
-		this.init()
-
-		setTimeout(()=>{
+		if (this.swipeaction.children !== undefined) {
+			this.swipeaction.children.push(this)
+		}
+		setTimeout(() => {
 			this.getSelectorQuery()
-		},100)
+		}, 100)
 	},
 	beforeDestoy() {
-		uni.$off('__uni__swipe__event')
+		this.swipeaction.children.forEach((item, index) => {
+			if (item === this) {
+				this.swipeaction.children.splice(index, 1)
+			}
+		})
 	},
 	methods: {
-		init() {
-			uni.$on('__uni__swipe__event', (res) => {
-				if (res !== this && this.autoClose) {
-					if (this.left !== 0) {
-						this.close()
-					}
-				}
-			})
-		},
 		onClick(index, item) {
 			this.$emit('click', {
 				content: item,
 				index
 			})
+			this.close()
 		},
 		touchstart(e) {
 			const {
@@ -60,7 +56,9 @@ export default {
 			} = e.touches[0]
 			if (this.disabled) return
 			const left = this.position.content.left
-			uni.$emit('__uni__swipe__event', this)
+			if (this.autoClose) {
+				this.swipeaction.closeOther(this)
+			}
 			this.width = pageX - left
 			if (this.isopen) return
 			if (this.uniShow) {

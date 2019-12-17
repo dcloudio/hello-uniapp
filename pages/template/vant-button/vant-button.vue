@@ -3,7 +3,7 @@
 		<page-head title="微信小程序自定义组件示例"></page-head>
 		<view class="uni-common-mt" style="text-align: center;width: 750upx;">
 			<text style="padding-left: 10px;padding-right: 10px;">
-				uni-app支持在微信和App端引入微信小程序自定义组件，不支持其他端。以下以vant weapp组件为例演示
+				uni-app支持在微信小程序、QQ小程序端、App端、H5端引入微信小程序自定义组件。以下以vant weapp组件为例演示
 			</text>
 		</view>
 		<view class="uni-common-mt" style="text-align: center;">

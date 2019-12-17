@@ -50,7 +50,7 @@
 			},
 			speed: {
 				// 默认1s滚动100px
-				type: [String, Number],
+				type: Number,
 				default: 100
 			},
 			color: {
@@ -63,27 +63,27 @@
 			},
 			single: {
 				// 是否单行
-				type: [String, Boolean],
+				type: [Boolean, String],
 				default: false
 			},
 			scrollable: {
 				// 是否滚动，添加后控制单行效果取消
-				type: [String, Boolean],
+				type: [Boolean, String],
 				default: false
 			},
 			showIcon: {
 				// 是否显示左侧icon
-				type: [String, Boolean],
+				type: [Boolean, String],
 				default: false
 			},
 			showGetMore: {
 				// 是否显示右侧查看更多
-				type: [String, Boolean],
+				type: [Boolean, String],
 				default: false
 			},
 			showClose: {
 				// 是否显示左侧关闭按钮
-				type: [String, Boolean],
+				type: [Boolean, String],
 				default: false
 			}
 		},
@@ -136,7 +136,9 @@
 						textWidth = 0;
 					let textQuery = new Promise((resolve, reject) => {
 						uni.createSelectorQuery()
+							// #ifndef MP-ALIPAY
 							.in(this)
+							// #endif
 							.select(`#${this.elId}`)
 							.boundingClientRect()
 							.exec(ret => {
@@ -146,7 +148,9 @@
 					})
 					let boxQuery = new Promise((resolve, reject) => {
 						uni.createSelectorQuery()
+							// #ifndef MP-ALIPAY
 							.in(this)
+							// #endif
 							.select(`#${this.elIdBox}`)
 							.boundingClientRect()
 							.exec(ret => {

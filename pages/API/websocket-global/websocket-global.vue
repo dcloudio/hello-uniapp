@@ -4,11 +4,10 @@
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v">
 				<view class="websocket-msg">{{showMsg}}</view>
-				<input class="websocket-room" type="text" value="" v-model.trim="roomId" placeholder="请输入一个房间号" />
 				<button type="primary" @click="connect">连接websocket服务</button>
 				<button v-show="connected" type="primary" @click="send">发送一条消息</button>
 				<button type="primary" @click="close">断开websocket服务</button>
-				<view class="websocket-msg">同时运行两个hello uniapp填入相同的房间号进行测试</view>
+				<view class="websocket-tips">发送消息后会收到一条服务器返回的消息（与发送的消息内容一致）</view>
 			</view>
 		</view>
 	</view>
@@ -43,13 +42,6 @@
 		},
 		methods: {
 			connect() {
-				if (this.roomId === '') {
-					uni.showModal({
-						content: '请输入一个房间号',
-						showCancel: false
-					})
-					return false
-				}
 				if (this.connected || this.connecting) {
 					uni.showModal({
 						content: '正在连接或者已经连接，请勿重复连接',
@@ -62,7 +54,7 @@
 					title: '连接中...'
 				})
 				uni.connectSocket({
-					url: 'wss://connect.websocket.in/hello_uni_app?room_id=' + this.roomId,
+					url: 'wss://echo.websocket.org',
 					data() {
 						return {
 							msg: 'Hello'
@@ -161,4 +153,12 @@
 		line-height: 40px;
 		color: #666666;
 	}
+    
+    .websocket-tips{
+        padding: 40px 0px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 24px;
+        color: #666666;
+    }
 </style>

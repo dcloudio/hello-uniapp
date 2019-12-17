@@ -21,8 +21,31 @@
 				<text class="uni-calendar__backtoday" @click="backtoday">回到今天</text>
 			</view>
 			<view class="uni-calendar__box">
-				<view class="uni-calendar__box-bg">
+				<view v-if="showMonth" class="uni-calendar__box-bg">
 					<text class="uni-calendar__box-bg-text">{{nowDate.month}}</text>
+				</view>
+				<view class="uni-calendar__weeks">
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">日</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">一</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">二</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">三</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">四</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">五</text>
+					</view>
+					<view class="uni-calendar__weeks-day">
+						<text class="uni-calendar__weeks-day-text">六</text>
+					</view>
 				</view>
 				<view class="uni-calendar__weeks" v-for="(item,weekIndex) in weeks" :key="weekIndex">
 					<view class="uni-calendar__weeks-item" v-for="(weeks,weeksIndex) in item" :key="weeksIndex">
@@ -37,59 +60,61 @@
 <script>
 	import Calendar from './util.js';
 	import uniCalendarItem from './uni-calendar-item.vue'
+	/**
+	 * Calendar 日历
+	 * @description 日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=56
+	 * @property {String} date 自定义当前时间，默认为今天
+	 * @property {Boolean} lunar 显示农历
+	 * @property {String} startDate 日期选择范围-开始日期
+	 * @property {String} endDate 日期选择范围-结束日期
+	 * @property {Boolean} range 范围选择
+	 * @property {Boolean} insert = [true|false] 插入模式,默认为false
+	 * 	@value true 弹窗模式
+	 * 	@value false 插入模式
+	 * @property {Array} selected 打点，期待格式[{date: '2019-06-27', info: '签到', data: { custom: '自定义信息', name: '自定义消息头',xxx:xxx... }}]
+	 * @property {Boolean} showMonth 是否选择月份为背景
+	 * @event {Function} change 日期改变，`insert :ture` 时生效
+	 * @event {Function} confirm 确认选择`insert :false` 时生效
+	 * @event {Function} monthSwitch 切换月份时触发
+	 * @example <uni-calendar :insert="true":lunar="true" :start-date="'2019-3-2'":end-date="'2019-5-20'"@change="change" />
+	 */
 	export default {
 		components: {
 			uniCalendarItem
 		},
 		props: {
-			/**
-			 * 当前日期
-			 */
 			date: {
 				type: String,
 				default: ''
 			},
-			/**
-			 * 打点日期
-			 */
 			selected: {
 				type: Array,
 				default () {
 					return []
 				}
 			},
-			/**
-			 * 是否开启阴历日期
-			 */
 			lunar: {
 				type: Boolean,
 				default: false
 			},
-			/**
-			 * 开始时间
-			 */
 			startDate: {
 				type: String,
 				default: ''
 			},
-			/**
-			 * 结束时间
-			 */
 			endDate: {
 				type: String,
 				default: ''
 			},
-			/**
-			 * 范围
-			 */
 			range: {
 				type: Boolean,
 				default: false
 			},
-			/**
-			 * 插入
-			 */
 			insert: {
+				type: Boolean,
+				default: true
+			},
+			showMonth: {
 				type: Boolean,
 				default: true
 			}
@@ -130,7 +155,9 @@
 			open() {
 				this.show = true
 				this.$nextTick(() => {
-					this.aniMaskShow = true
+					setTimeout(() => {
+						this.aniMaskShow = true
+					}, 50)
 				})
 			},
 			close() {
@@ -354,6 +381,24 @@
 
 	.uni-calendar__weeks-item {
 		flex: 1;
+	}
+
+	.uni-calendar__weeks-day {
+		flex: 1;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 45px;
+		border-bottom-color: #F5F5F5;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+
+	.uni-calendar__weeks-day-text {
+		font-size: 14px;
 	}
 
 	.uni-calendar__box {

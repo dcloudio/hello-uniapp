@@ -38,6 +38,23 @@
 </template>
 
 <script>
+	/**
+	 * Card 卡片
+	 * @description 卡片视图组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=22
+	 * @property {String} title 标题文字
+	 * @property {String} extra 标题额外信息
+	 * @property {String} note 标题左侧缩略图
+	 * @property {String} thumbnail 底部信息
+	 * @property {String} mode = [basic|style|title] 卡片模式
+	 * 	@value basic 基础卡片
+	 * 	@value style 图文卡片
+	 * 	@value title 标题卡片
+	 * @property {Boolean} isFull = [true | false] 卡片内容是否通栏，true 时将去除padding值
+	 * @property {Boolean} isShadow = [true | false] 卡片内容是否开启阴影
+	 * @event {Function} click 点击 Card 触发事件
+	 * @example <uni-card title="标题文字" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="额外信息" note="Tips">内容主体，可自定义内容及样式</uni-card>
+	 */
 	export default {
 		name: 'UniCard',
 		props: {

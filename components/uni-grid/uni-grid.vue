@@ -10,6 +10,18 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom');
 	// #endif
+
+	/**
+	 * Grid 宫格
+	 * @description 宫格组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=27
+	 * @property {Number} column 每列显示个数
+	 * @property {String} borderColor 边框颜色
+	 * @property {Boolean} showBorder 是否显示边框
+	 * @property {Boolean} square 是否方形显示
+	 * @property {Boolean} Boolean 点击背景是否高亮
+	 * @event {Function} change 点击 grid 触发，e={detail:{index:0}}，index 为当前点击 gird 下标
+	 */
 	export default {
 		name: 'UniGrid',
 		props: {
@@ -46,14 +58,12 @@
 		data() {
 			const elId = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
 			return {
-				index: 0,
 				elId,
 				width: 0
 			}
 		},
 		created() {
 			this.children = []
-			this.index = 0
 		},
 		mounted() {
 			this.init()
@@ -78,13 +88,13 @@
 					.select(`#${this.elId}`)
 					.boundingClientRect()
 					.exec(ret => {
-						this.width = parseInt(ret[0].width / this.column) - 1 + 'px'
+						this.width = parseInt((ret[0].width - 1) / this.column) + 'px'
 						fn(this.width)
 					})
 				// #endif
 				// #ifdef APP-NVUE
 				dom.getComponentRect(this.$refs['uni-grid'], (ret) => {
-					this.width = parseInt(ret.size.width / this.column) - 1 + 'px'
+					this.width = parseInt((ret.size.width - 1) / this.column) + 'px'
 					fn(this.width)
 				})
 				// #endif
@@ -109,7 +119,8 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex: 1;
+		/* flex: 1;
+ */
 		flex-direction: row;
 		flex-wrap: wrap;
 	}

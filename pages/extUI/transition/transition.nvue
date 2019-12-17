@@ -14,9 +14,9 @@
 		<uni-section title="组合过渡动画" type="line"></uni-section>
 		<view class="example-body">
 			<button class="transition-button" type="primary" @click="mask">透明遮罩层</button>
-			<button class="transition-button" type="primary" @click="open(['fade','zoom-out','slide-top'])">slide-top && zoom-out && fade</button>
-			<button class="transition-button" type="primary" @click="open(['zoom-in','slide-bottom','fade'])">zoom-in && slide-bottom && fade</button>
-			<button class="transition-button" type="primary" @click="open(['slide-left','slide-top','fade'])"> slide-left && slide-top && fade</button>
+			<button class="transition-button" type="primary" @click="open(['fade','zoom-out','slide-top'])">组合动画示例一</button>
+			<button class="transition-button" type="primary" @click="open(['zoom-in','slide-bottom','fade'])">组合动画示例二</button>
+			<button class="transition-button" type="primary" @click="open(['slide-left','slide-top','fade'])">组合动画示例三</button>
 		</view>
 		<!-- 遮罩 -->
 		<uni-transition :mode-class="['fade']" :styles="maskClass" :show="show" @click="onTap" />

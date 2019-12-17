@@ -65,7 +65,7 @@
                         pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
                             'slider',
                             'switch', 'textarea',
-                            // #ifdef MP-WEIXIN
+                            // #ifdef APP-PLUS || MP-WEIXIN || H5
                             'editor',
                             // #endif
                         ]
@@ -80,9 +80,7 @@
                         open: false,
                         pages: [
                             'image',
-                            // #ifndef MP-ALIPAY
                             'video',
-                            // #endif
                             // #ifndef MP-ALIPAY || MP-TOUTIAO
                             'audio',
                             // #endif
@@ -97,6 +95,13 @@
 
                     },
                     // #endif
+                    {
+                        id: 'canvas',
+                        name: '画布',
+                        open: false,
+                        pages: ['canvas']
+                    
+                    },
                     // #ifdef APP-PLUS
                     {
                         id: 'web-view',

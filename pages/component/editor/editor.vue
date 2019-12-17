@@ -21,7 +21,7 @@
 					 data-value="2em"></view>
 					<view :class="formats.marginTop ? 'ql-active' : ''" class="iconfont icon-722bianjiqi_duanqianju" data-name="marginTop"
 					 data-value="20px"></view>
-					<view :class="formats.micon-previewarginBottom ? 'ql-active' : ''" class="iconfont icon-723bianjiqi_duanhouju"
+					<view :class="formats.previewarginBottom ? 'ql-active' : ''" class="iconfont icon-723bianjiqi_duanhouju"
 					 data-name="marginBottom" data-value="20px"></view>
 					<view class="iconfont icon-clearedformat" @tap="removeFormat"></view>
 					<view :class="formats.fontFamily ? 'ql-active' : ''" class="iconfont icon-font" data-name="fontFamily" data-value="Pacifico"></view>
@@ -71,6 +71,7 @@
 	export default {
 		data() {
 			return {
+                readOnly: false,
 				formats: {}
 			}
 		},

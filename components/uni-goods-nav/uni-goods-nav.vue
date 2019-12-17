@@ -23,6 +23,17 @@
 </template>
 
 <script>
+	/**
+	 * GoodsNav 商品导航
+	 * @description 商品加入购物车、立即购买等
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=865
+	 * @property {Array} options 组件参数
+	 * @property {Array} buttonGroup 组件按钮组参数
+	 * @property {Boolean} fill = [true | false] 组件按钮组参数
+	 * @event {Function} click 左侧点击事件
+	 * @event {Function} buttonClick 右侧按钮组点击事件
+	 * @example <uni-goods-nav :fill="true"  options="" buttonGroup="buttonGroup"  @click="" @buttonClick="" />
+	 */
 	export default {
 		name: 'UniGoodsNav',
 		props: {

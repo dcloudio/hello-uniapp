@@ -1,0 +1,89 @@
+// function Ball(x, y, vx, vy, canvasWidth, canvasHeight, ctx) {
+// 	this.canvasWidth = canvasWidth
+// 	this.canvasHeight = canvasHeight
+// 	this.ctx = ctx
+// 	this.x = x
+// 	this.y = y
+// 	this.vx = vx
+// 	this.vy = vy
+// 	this.radius = 5
+// }
+
+function draw(ball) {
+	ball.ctx.beginPath()
+	ball.ctx.fillStyle = '#007AFF'
+	ball.ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI)
+	ball.ctx.closePath()
+	ball.ctx.fill()
+}
+
+function move(ball) {
+	ball.x += ball.vx
+	ball.y += ball.vy
+	// 回到中心
+	// if (getDistance(this.x - this.canvasWidth / 2, this.y - this.canvasHeight / 2) >
+	// 	getDistance(this.canvasWidth / 2, this.canvasHeight / 2) + this.radius) {
+	// 	this.x = this.canvasWidth / 2
+	// 	this.y = this.canvasHeight / 2
+	// }
+
+	// 边框反弹
+	if (ball.x < ball.radius) {
+		ball.vx = Math.abs(ball.vx)
+		return
+	}
+	if (ball.x > ball.canvasWidth - ball.radius) {
+		ball.vx = -Math.abs(ball.vx)
+	}
+	if (ball.y < ball.radius) {
+		ball.vy = Math.abs(ball.vy)
+		return
+	}
+	if (ball.y > ball.canvasWidth - ball.radius) {
+		ball.vy = -Math.abs(ball.vy)
+	}
+}
+
+function getDistance(x, y) {
+	return Math.pow(Math.pow(x, 2) + Math.pow(y, 2), 0.5)
+}
+
+function start(newVal, oldVal, owner, ins) {
+	var canvasWidth = ins.getDataset().width,
+		canvasHeight = ins.getDataset().height,
+        canvasEle = document.querySelectorAll('.canvas>canvas')[0],
+		ctx = canvasEle.getContext('2d'),
+		speed = 3,
+		ballList = [],
+		layer = 3,
+		ballInlayer = 20
+	for (var i = 0; i < layer; i++) {
+		var radius = getDistance(canvasWidth / 2, canvasHeight / 2) / layer * i
+		for (var j = 0; j < ballInlayer; j++) {
+			var deg = j * 2 * Math.PI / ballInlayer,
+				sin = Math.sin(deg),
+				cos = Math.cos(deg),
+				x = radius * cos + canvasWidth / 2,
+				y = radius * sin + canvasHeight / 2,
+				vx = speed * cos,
+				vy = speed * sin
+			ballList.push({x:x, y:y, vx:vx, vy:vy, canvasWidth:canvasWidth, canvasHeight:canvasHeight, ctx:ctx, radius:5})
+		}
+	}
+
+	function animate(ballList) {
+		ctx.clearRect(0, 0, canvasEle.width, canvasEle.height)
+		ballList.forEach(function(item) {
+			move(item)
+			draw(item)
+		})
+		requestAnimationFrame(function() {
+			animate(ballList)
+		})
+	}
+	animate(ballList)
+}
+
+module.exports = {
+	start: start
+}

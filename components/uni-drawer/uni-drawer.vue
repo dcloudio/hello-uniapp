@@ -8,6 +8,17 @@
 </template>
 
 <script>
+	/**
+	 * Drawer 抽屉
+	 * @description 抽屉侧滑菜单
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=26
+	 * @property {Boolean} visible = [true|false] Drawer的显示状态
+	 * @property {Boolean} mask = [true | false] 是否显示遮罩
+	 * @property {Boolean} mode = [left | right] Drawer 滑出位置
+	 * 	@value left 从左侧滑出
+	 * 	@value right 从右侧侧滑出
+	 * @event {Function} close 组件关闭时触发事件
+	 */
 	export default {
 		name: 'UniDrawer',
 		props: {

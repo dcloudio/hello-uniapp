@@ -4,7 +4,7 @@
 		<uni-section title="插入模式" type="line"></uni-section>
 		<view>
 			<!-- 插入模式 -->
-			<uni-calendar :selected="info.selected" @change="change" @monthSwitch="monthSwitch" />
+			<uni-calendar :selected="info.selected" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
 		</view>
 		<uni-section title="弹出模式" type="line"></uni-section>
 		<view class="example-body">
@@ -181,6 +181,12 @@
 		background-color: #4ca2ff;
 	}
 
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+	}
 
 	.calendar-button {
 		flex: 1;

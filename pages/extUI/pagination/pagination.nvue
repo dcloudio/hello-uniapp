@@ -159,8 +159,14 @@
 	}
 
 
+	.example-body {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+	}
+
 	.btn-view {
-		/* #ifndef APP-PLUS-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
 		flex-direction: column;
 		/* #endif */

@@ -1,23 +1,7 @@
 <template>
 	<view class="uni-swipe">
-		<!-- #ifndef APP-PLUS || MP-WEIXIN || H5 -->
-		<view class="uni-swipe_content">
-			<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
-				<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
-		    backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
-		    fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-		  }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
-			</view>
-			<view ref='selector-content-hock' class="selector-query-hock" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
-				<view class="uni-swipe_move-box" :class="{'ani':uniShow}" :style="{transform:moveLeft}">
-					<view class="uni-swipe_box">
-						<slot />
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- #endif -->
-		<!-- #ifdef APP-VUE|| MP-WEIXIN||H5 -->
+		<!-- 在微信小程序 app vue端 h5 使用wxs 实现-->
+		<!-- #ifdef APP-VUE || MP-WEIXIN || H5 -->
 		<view class="uni-swipe_content">
 			<view :data-disabled="disabled" :data-position="pos" :change:prop="swipe.sizeReady" :prop="pos" class="uni-swipe_move-box selector-query-hock move-hock" @touchstart="swipe.touchstart" @touchmove="swipe.touchmove" @touchend="swipe.touchend" @change="change">
 				<view class="uni-swipe_box">
@@ -32,45 +16,94 @@
 			</view>
 		</view>
 		<!-- #endif -->
+
+		<!--  app nvue端 使用 bindingx -->
 		<!-- #ifdef APP-NVUE -->
 		<view ref="selector-box-hock" class="uni-swipe_content" @horizontalpan="touchstart" @touchend="touchend">
 			<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock" :style="{width:right+'px'}">
 				<view ref="button-hock" v-for="(item,index) in options" :key="index" :style="{
-		  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
-		  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px',left: right+'px'
-		}" class="uni-swipe_button " @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+		  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',left: right+'px'}" class="uni-swipe_button " @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'}">{{ item.text }}</text></view>
 			</view>
 			<view ref='selector-content-hock' class="uni-swipe_move-box selector-query-hock">
 				<view class="uni-swipe_box">
 					<slot />
 				</view>
 			</view>
-
 		</view>
 		<!-- #endif -->
 
+		<!-- 在非 app 端、非微信小程序、支付宝小程序、h5端使用 js -->
+		<!-- #ifndef APP-PLUS || MP-WEIXIN || MP-ALIPAY || H5 -->
+		<view class="uni-swipe_content">
+			<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
+				<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
+		    backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
+		    fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
+		  }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+			</view>
+			<view ref='selector-content-hock' class="selector-query-hock" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend" :class="{'ani':uniShow}" :style="{transform:moveLeft}">
+				<view class="uni-swipe_move-box">
+					<view class="uni-swipe_box">
+						<slot />
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- #endif -->
+		<!-- #ifdef MP-ALIPAY -->
+		<view class="uni-swipe-box" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
+			<view class="viewWidth-hook">
+				<movable-area v-if="viewWidth !== 0" class="movable-area" :style="{width:(viewWidth-buttonWidth)+'px'}">
+					<movable-view class="movable-view" direction="horizontal" :animation="!transition" :style="{width:viewWidth+'px'}" :class="[transition?'transition':'']" :x="x" :disabled="disabledView" @change="onChange">
+						<view class="movable-view-box">
+							<slot></slot>
+						</view>
+					</movable-view>
+				</movable-area>
+			</view>
+			<view ref="selector-button-hock" class="uni-swipe_button-group viewWidth-hook">
+				<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
+				  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
+				  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
+				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+			</view>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 <script src="./index.wxs" module="swipe" lang="wxs"></script>
 <script>
-	// #ifndef APP-PLUS|| MP-WEIXIN || H5
-	import mixins from './mpother'
+	// #ifdef APP-VUE|| MP-WEIXIN || H5
+	import mpwxs from './mpwxs'
 	// #endif
-	// #ifdef APP-VUE|| MP-WEIXIN||H5
-	import mp from './mp'
-	// #endif
+
 	// #ifdef APP-NVUE
 	import bindingx from './bindingx.js'
 	// #endif
+
+	// #ifndef APP-PLUS|| MP-WEIXIN || MP-ALIPAY ||  H5
+	import mixins from './mpother'
+	// #endif
+
+	// #ifdef MP-ALIPAY
+	import mpalipay from './mpalipay'
+	// #endif
+
 	export default {
 		// #ifdef APP-VUE|| MP-WEIXIN||H5
-		mixins: [mp],
+		mixins: [mpwxs],
 		// #endif
+
 		// #ifdef APP-NVUE
 		mixins: [bindingx],
 		// #endif
-		// #ifndef APP-PLUS|| MP-WEIXIN || H5
+
+		// #ifndef APP-PLUS|| MP-WEIXIN || MP-ALIPAY ||  H5
 		mixins: [mixins],
+		// #endif
+
+		// #ifdef MP-ALIPAY
+		mixins: [mpalipay],
 		// #endif
 
 		props: {
@@ -113,6 +146,11 @@
 <style scoped>
 	.uni-swipe {
 		overflow: hidden;
+	}
+
+	.uni-swipe-box {
+		position: relative;
+		width: 100%;
 	}
 
 	.uni-swipe_content {
@@ -185,4 +223,30 @@
 		transition-duration: 0.3s;
 		transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 	}
+
+	/* #ifdef MP-ALIPAY */
+	.movable-area {
+		width: 300px;
+		height: 100%;
+		height: 45px;
+	}
+
+	.movable-view {
+		position: relative;
+		width: 160%;
+		height: 45px;
+		z-index: 2;
+	}
+
+	.transition {
+		transition: all 0.3s;
+	}
+
+	.movable-view-box {
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+	}
+
+	/* #endif */
 </style>

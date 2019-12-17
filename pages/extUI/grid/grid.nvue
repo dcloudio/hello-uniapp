@@ -4,7 +4,7 @@
 		<uni-section title="默认样式（3列）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="3" :highlight="true" @change="change">
-				<uni-grid-item v-for="(item, index) in list" :key="index">
+				<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<image :src="item.url" class="image" mode="aspectFill" />
 						<text class="text">{{ item.text }}</text>
@@ -12,11 +12,48 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view>
+		<uni-section title="滑动视图" type="line"></uni-section>
+		<view class="example-body">
+			<!-- 因为swiper特性的关系，请指定swiper的高度 ，swiper的高度并不会被内容撑开-->
+			<swiper class="swiper" :indicator-dots="true">
+				<swiper-item>
+					<uni-grid :column="3" :highlight="true" @change="change">
+						<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
+							<view class="grid-item-box">
+								<image :src="item.url" class="image" mode="aspectFill" />
+								<text class="text">{{ item.text }}</text>
+							</view>
+						</uni-grid-item>
+					</uni-grid>
+				</swiper-item>
+				<swiper-item>
+					<uni-grid :column="3" :highlight="true" @change="change">
+						<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
+							<view class="grid-item-box">
+								<image :src="item.url" class="image" mode="aspectFill" />
+								<text class="text">{{ item.text }}</text>
+							</view>
+						</uni-grid-item>
+					</uni-grid>
+				</swiper-item>
+				<swiper-item>
+					<uni-grid :column="3" :highlight="true" @change="change">
+						<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
+							<view class="grid-item-box">
+								<image :src="item.url" class="image" mode="aspectFill" />
+								<text class="text">{{ item.text }}</text>
+							</view>
+						</uni-grid-item>
+					</uni-grid>
+				</swiper-item>
+			</swiper>
+
+		</view>
 		<uni-section title="动态加载" type="line"></uni-section>
 		<view class="example-body">
 			<view v-if="dynamicList.length!==0" class="grid-dynamic-box">
 				<uni-grid :column="3" :highlight="true" @change="change">
-					<uni-grid-item v-for="(item, index) in dynamicList" :key="index">
+					<uni-grid-item v-for="(item, index) in dynamicList" :index="index" :key="index">
 						<view class="grid-item-box" :style="{'backgroundColor':item.color}">
 							<image :src="item.url" class="image" mode="aspectFill" />
 							<text class="text">{{ item.text }}</text>
@@ -25,11 +62,12 @@
 				</uni-grid>
 			</view>
 			<button type="primary" @click="add">点击添加一个宫格</button>
+			<button v-if="dynamicList.length !== 0" type="primary" style="margin-top: 15px;" @click="del">点击删除一个宫格</button>
 		</view>
 		<uni-section title="无边框带角标（3列）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
-				<uni-grid-item v-if="index <6" v-for="(item ,index) in list" :key="index">
+				<uni-grid-item v-if="index < 6" v-for="(item ,index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<image class="image" :src="item.url" mode="aspectFill" />
 						<text class="text">{{item.text}}</text>
@@ -43,7 +81,7 @@
 		<uni-section title="矩形宫格（3列）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="3" :square="false" :highlight="false" @change="change">
-				<uni-grid-item v-for="(item, index) in list" :key="index">
+				<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<image :src="item.url" class="image" mode="aspectFill" />
 						<text class="text">{{ item.text }}</text>
@@ -54,27 +92,26 @@
 		<uni-section title="边框颜色（4列 无文字）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="4" border-color="#03a9f4" @change="change">
-				<uni-grid-item>
+				<uni-grid-item :index="0">
 					<view class="grid-item-box">
 						<image class="image" src="/static/c1.png" mode="aspectFill" />
 					</view>
 				</uni-grid-item>
-				<uni-grid-item>
+				<uni-grid-item :index="1">
 					<view class="grid-item-box">
 						<image class="image" src="/static/c2.png" mode="aspectFill" />
 					</view>
 				</uni-grid-item>
-				<uni-grid-item>
+				<uni-grid-item :index="2">
 					<view class="grid-item-box">
 						<image class="image" src="/static/c3.png" mode="aspectFill" />
 					</view>
 				</uni-grid-item>
-				<uni-grid-item>
+				<uni-grid-item :index="3">
 					<view class="grid-item-box">
 						<image class="image" src="/static/c4.png" mode="aspectFill" />
 					</view>
 				</uni-grid-item>
-
 			</uni-grid>
 		</view>
 	</view>
@@ -167,6 +204,9 @@
 						icon: 'none'
 					});
 				}
+			},
+			del() {
+				this.dynamicList.splice(this.dynamicList.length - 1, 1)
 			}
 		}
 	}
@@ -307,5 +347,9 @@
 		position: absolute;
 		top: 5px;
 		right: 15px;
+	}
+
+	.swiper {
+		height: 420px;
 	}
 </style>
