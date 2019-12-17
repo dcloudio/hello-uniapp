@@ -316,7 +316,7 @@
 		lines: 1;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		display: inline-block;
+		display: block;
 		width: 100%;
 		white-space: nowrap;
 		/* #endif */
@@ -330,7 +330,7 @@
 		padding-left: 750rpx;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		display: inline-block;
+		display: block;
 		white-space: nowrap;
 		padding-left: 100%;
 		animation: notice 10s 0s linear infinite both;
