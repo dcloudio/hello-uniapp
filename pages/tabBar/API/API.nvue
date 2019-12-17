@@ -111,12 +111,10 @@
                             name: '节点信息',
                             url: 'get-node-info'
                         },
-                        //#ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || H5 || MP-QQ
                         {
                             name: '节点布局交互状态',
                             url: 'intersection-observer'
                         },
-                        //#endif
                         {
                             name: '显示操作菜单',
                             url: 'action-sheet'
