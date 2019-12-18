@@ -30,6 +30,27 @@
 	const dom = weex.requireModule('dom');
 	const animation = weex.requireModule('animation');
 	// #endif
+
+	/**
+	 * NoticeBar 自定义导航栏
+	 * @description 通告栏组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=30
+	 * @property {Number} speed 文字滚动的速度，默认100px/秒
+	 * @property {String} text 显示文字
+	 * @property {String} backgroundColor 背景颜色
+	 * @property {String} color 文字颜色
+	 * @property {String} moreColor 查看更多文字的颜色
+	 * @property {String} moreText 设置“查看更多”的文本
+	 * @property {Boolean} single = [true|false] 是否单行
+	 * @property {Boolean} scrollable = [true|false] 是否滚动，为true时，NoticeBar为单行
+	 * @property {Boolean} showIcon = [true|false] 是否显示左侧喇叭图标
+	 * @property {Boolean} showClose = [true|false] 是否显示左侧关闭按钮
+	 * @property {Boolean} showGetMore = [true|false] 是否显示右侧查看更多图标，为true时，NoticeBar为单行
+	 * @event {Function} click 点击 NoticeBar 触发事件
+	 * @event {Function} close 关闭 NoticeBar 触发事件
+	 * @event {Function} getmore 点击”查看更多“时触发事件
+	 */
+
 	export default {
 		name: 'UniNoticeBar',
 		components: {
@@ -283,6 +304,14 @@
 		flex-direction: row;
 	}
 
+	/* #ifndef APP-NVUE */
+	.uni-noticebar__content-wrapper--scrollable {
+		position: relative;
+		height: 18px;
+	}
+
+	/* #endif */
+
 	.uni-noticebar__content--scrollable {
 		/* #ifdef APP-NVUE */
 		flex: 0;
@@ -330,7 +359,10 @@
 		padding-left: 750rpx;
 		/* #endif */
 		/* #ifndef APP-NVUE */
+		position: absolute;
 		display: block;
+		height: 18px;
+		line-height: 18px;
 		white-space: nowrap;
 		padding-left: 100%;
 		animation: notice 10s 0s linear infinite both;

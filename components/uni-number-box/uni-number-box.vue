@@ -10,6 +10,18 @@
 	</view>
 </template>
 <script>
+	/**
+	 * NumberBox 数字输入框
+	 * @description 带加减按钮的数字输入框
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=31
+	 * @property {Number} value 输入框当前值
+	 * @property {Number} min 最小值
+	 * @property {Number} max 最大值
+	 * @property {Number} step 每次点击改变的间隔大小
+	 * @property {Boolean} disabled = [true|false] 是否为禁用状态
+	 * @event {Function} change 输入框值改变时触发的事件，参数为输入框当前的 value
+	 */
+
 	export default {
 		name: "UniNumberBox",
 		props: {
