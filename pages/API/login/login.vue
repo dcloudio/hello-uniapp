@@ -74,7 +74,7 @@
 								providerName = '头条登录'
 								break;
 							case 'apple':
-								providerName = '苹果登录'
+								providerName = '苹果登录(iOS 13+)'
 								break;
 						}
 						return {
