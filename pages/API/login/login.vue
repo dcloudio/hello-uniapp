@@ -94,31 +94,6 @@
         methods: {
             ...mapMutations(['login']),
             tologin(provider) {
-                // #ifdef APP-PLUS
-                if (provider.id === 'weixin') {
-                    let weixinOauth = null;
-                    plus.oauth.getServices((services)=> {
-                        console.log("services: " + JSON.stringify(services));
-                        for (let i in services) {
-                            let service = services[i];
-                            if (service.id == 'weixin') {
-                                weixinOauth = service;
-                                break;
-                            }
-                        }
-                        weixinOauth.login((res) => {
-                            console.log('login success:', res);
-                            // 更新保存在 store 中的登录状态
-                            this.login(provider.id);
-                        }, function(err) {
-                            console.log('login fail:', err);
-                        })
-                    }, function(err) {
-                        console.log('login fail:', err);
-                    })
-                    return
-                }
-                // #endif
                 uni.login({
                     provider: provider.id,
                     // #ifdef MP-ALIPAY
