@@ -38,10 +38,10 @@
 			}
 		},
 		onUnload() {
+            uni.hideLoading()
 			if (this.socketTask && this.socketTask.close) {
 				this.socketTask.close()
 			}
-            uni.hideLoading()
 		},
 		methods: {
 			connect() {
@@ -71,13 +71,14 @@
 					// #ifdef MP-WEIXIN
 					method: 'GET',
 					// #endif
-					// success(res) {
-					// 	// 这里是接口调用成功的回调，不是连接成功的回调，请注意
-					// },
-					// fail(err) {
-					// 	// 这里是接口调用失败的回调，不是连接失败的回调，请注意
-					// }
+					success(res) {
+						// 这里是接口调用成功的回调，不是连接成功的回调，请注意
+					},
+					fail(err) {
+						// 这里是接口调用失败的回调，不是连接失败的回调，请注意
+					}
 				})
+                console.log(this.socketTask);
 				this.socketTask.onOpen((res) => {
 					this.connecting = false
 					this.connected = true
