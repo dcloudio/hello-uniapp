@@ -39,6 +39,7 @@
 		},
 		onUnload() {
 			uni.closeSocket()
+            uni.hideLoading()
 		},
 		methods: {
 			connect() {
@@ -153,7 +154,7 @@
 		line-height: 40px;
 		color: #666666;
 	}
-    
+
     .websocket-tips{
         padding: 40px 0px;
         text-align: center;
