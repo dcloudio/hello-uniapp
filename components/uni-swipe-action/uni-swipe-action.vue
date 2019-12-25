@@ -5,11 +5,14 @@
 </template>
 
 <script>
+	/**
+	 * SwipeAction 滑动操作
+	 * @description 通过滑动触发选项的容器
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=181
+	 */
 	export default {
 		data() {
-			return {
-
-			};
+			return {};
 		},
 		provide() {
 			return {

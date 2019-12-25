@@ -12,6 +12,16 @@
 </template>
 
 <script>
+	/**
+	 * Section 标题栏
+	 * @description 标题栏
+	 * @property {String} type = [line|circle] 标题装饰类型
+	 * 	@value line 竖线
+	 * 	@value circle 圆形
+	 * @property {String} title 主标题
+	 * @property {String} subTitle 副标题
+	 */
+
 	export default {
 		name: 'UniTitle',
 		props: {

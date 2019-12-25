@@ -23,6 +23,19 @@
 
 <script>
 	import uniIcons from '../uni-icons/uni-icons.vue'
+
+	/**
+	 * Steps 步骤条
+	 * @description 评分组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=34
+	 * @property {Number} active 当前步骤
+	 * @property {String} direction = [row|column] 当前步骤
+	 * 	@value row 横向
+	 * 	@value column 纵向
+	 * @property {String} activeColor 选中状态的颜色
+	 * @property {Array} options 数据源，格式为：[{title:'xxx',desc:'xxx'},{title:'xxx',desc:'xxx'}]
+	 */
+
 	export default {
 		name: 'UniSteps',
 		components: {
