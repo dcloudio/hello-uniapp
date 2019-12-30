@@ -89,7 +89,6 @@
 		// #ifndef APP-NVUE
 		computed: {
 			iconSnowWidth() {
-				console.log((Math.floor(this.iconSize / 24) || 1) * 2);
 				return (Math.floor(this.iconSize / 24) || 1) * 2
 			}
 		},
