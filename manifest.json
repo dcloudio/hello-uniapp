@@ -8,8 +8,9 @@
     /* 5+App特有相关 */
     "app-plus" : {
         "usingComponents" : true,
-        "nvueCompiler":"uni-app",
-		"compilerVersion":3,
+        "nvueCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        "nvueLaunchMode" : "fast",
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,
@@ -115,8 +116,8 @@
                 }
             }
         },
-		"async" : {
-			"timeout" : 20000
-		}
+        "async" : {
+            "timeout" : 20000
+        }
     }
 }

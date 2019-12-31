@@ -5,6 +5,24 @@
 </template>
 
 <script>
+	/**
+	 * Title 章节标题
+	 * @description 章节标题，通常用于记录页面标题，使用当前组件，uni-app 如果开启统计，将会自动统计页面标题
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=1066
+	 * @property {String} type = [h1|h2|h3|h4|h5] 标题类型
+	 * 	@value h1 一级标题
+	 * 	@value h2 二级标题
+	 * 	@value h3 三级标题
+	 * 	@value h4 四级标题
+	 * 	@value h5 五级标题
+	 * @property {String} title 章节标题内容
+	 * @property {String} align = [left|center|right] 对齐方式
+	 * 	@value left 做对齐
+	 * 	@value center 居中对齐
+	 * 	@value right 右对齐
+	 * @property {String} color 字体颜色
+	 * @property {Boolean} stat = [true|false] 是否开启统计功能呢，如不填写type值，默认为开启，填写 type 属性，默认为关闭
+	 */
 	export default {
 		props: {
 			type: {

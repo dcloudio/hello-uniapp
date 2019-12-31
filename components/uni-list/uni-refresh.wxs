@@ -9,7 +9,7 @@ var pullDown = {
 function ready(newValue, oldValue, ownerInstance, instance) {
     var state = instance.getState()
     state.canPullDown = newValue;
-    console.log(newValue);
+    // console.log(newValue);
 }
 
 function touchStart(e, instance) {
@@ -20,7 +20,7 @@ function touchStart(e, instance) {
         return
     }
 
-    console.log("touchStart");
+    // console.log("touchStart");
 
     state.height = 0;
     state.touchStartY = e.touches[0].pageY || e.changedTouches[0].pageY;

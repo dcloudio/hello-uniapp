@@ -38,6 +38,7 @@
 			}
 		},
 		onUnload() {
+            uni.hideLoading()
 			if (this.socketTask && this.socketTask.close) {
 				this.socketTask.close()
 			}
@@ -77,6 +78,7 @@
 						// 这里是接口调用失败的回调，不是连接失败的回调，请注意
 					}
 				})
+                console.log(this.socketTask);
 				this.socketTask.onOpen((res) => {
 					this.connecting = false
 					this.connected = true

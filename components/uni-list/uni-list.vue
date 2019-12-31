@@ -12,6 +12,11 @@
 </template>
 
 <script>
+	/**
+	 * List 列表
+	 * @description 列表组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=24
+	 */
 	export default {
 		name: 'UniList',
 		'mp-weixin': {

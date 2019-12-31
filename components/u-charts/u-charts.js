@@ -3,16 +3,16 @@
  * uni-app平台高性能跨全端图表，支持H5、APP、小程序（微信/支付宝/百度/头条/QQ/360）
  * Copyright (c) 2019 QIUN秋云 https://www.ucharts.cn All rights reserved.
  * Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
- * 
+ *
  * uCharts官方网站
  * https://www.uCharts.cn
- * 
+ *
  * 开源地址:
  * https://gitee.com/uCharts/uCharts
- * 
+ *
  * uni-app插件市场地址：
  * http://ext.dcloud.net.cn/plugin?id=271
- * 
+ *
  */
 
 'use strict';
@@ -1046,11 +1046,11 @@ function getRoseDataPoints(series, type, minRadius, radius) {
     count += item.data;
     dataArr.push(item.data);
   }
-  
+
   var minData = Math.min.apply(null, dataArr);
   var maxData = Math.max.apply(null, dataArr);
   var radiusLength = radius - minRadius;
-  
+
   for (let i = 0; i < series.length; i++) {
     let item = series[i];
     item.data = item.data === null ? 0 : item.data;
@@ -1347,7 +1347,7 @@ function getYAxisTextList(series, opts, config, stack) {
   data = data.filter(function(item) {
     //return item !== null;
     if (typeof item === 'object' && item !== null) {
-      if (item.constructor == Array) {
+      if (Array.isArray(item)) {
         return item !== null;
       } else {
         return item.value !== null;
@@ -1358,7 +1358,7 @@ function getYAxisTextList(series, opts, config, stack) {
   });
   data.map(function(item) {
     if (typeof item === 'object') {
-      if (item.constructor == Array) {
+      if (Array.isArray(item)) {
         item.map(function(subitem) {
           sorted.push(subitem);
         })
@@ -2791,7 +2791,7 @@ function drawXAxis(categories, opts, config, context) {
     }
     context.setLineDash([]);
   }
-  
+
 
   //不绘制X轴
   if (opts.xAxis.disabled !== true) {
@@ -3423,9 +3423,9 @@ function drawRadarDataPoints(series, opts, config, context) {
     labelColor: '#666666',
     opacity: 0.2
   },opts.extra.radar);
-  
+
   var coordinateAngle = getRadarCoordinateSeries(opts.categories.length);
-  
+
   var centerPosition = {
     x: opts.area[3] + (opts.width - opts.area[1] - opts.area[3]) / 2,
     y: opts.area[0] + (opts.height - opts.area[0] - opts.area[2]) / 2
@@ -3513,7 +3513,7 @@ function normalInt(min, max, iter) {
     for (var i = 0; i < iter; i++) {
         arr[i] = Math.random();
     };
-    return  Math.floor(arr.reduce(function(i,j){return i+j})/iter*(max-min))+min;  
+    return  Math.floor(arr.reduce(function(i,j){return i+j})/iter*(max-min))+min;
 };
 
 function collisionNew(area,points,width,height){
@@ -3553,8 +3553,8 @@ function getBoundingBox(data) {
               var longitude = coords[j][0];
               var latitude = coords[j][1];
               var point = {
-                  x: longitude, 
-                  y: latitude 
+                  x: longitude,
+                  y: latitude
               }
               bounds.xMin = bounds.xMin < point.x ? bounds.xMin : point.x;
               bounds.xMax = bounds.xMax > point.x ? bounds.xMax : point.x;
@@ -3581,19 +3581,19 @@ function pointToCoordinate(pointY, pointX,bounds,scale,xoffset,yoffset) {
 }
 
 function isRayIntersectsSegment(poi,s_poi,e_poi){
-      if (s_poi[1]==e_poi[1]){return false;} 
+      if (s_poi[1]==e_poi[1]){return false;}
       if (s_poi[1]>poi[1] && e_poi[1]>poi[1]){return false;}
       if (s_poi[1]<poi[1] && e_poi[1]<poi[1]){return false;}
       if (s_poi[1]==poi[1] && e_poi[1]>poi[1]){return false;}
       if (e_poi[1]==poi[1] && s_poi[1]>poi[1]){return false;}
       if (s_poi[0]<poi[0] && e_poi[1]<poi[1]){return false;}
-      let xseg=e_poi[0]-(e_poi[0]-s_poi[0])*(e_poi[1]-poi[1])/(e_poi[1]-s_poi[1]); 
+      let xseg=e_poi[0]-(e_poi[0]-s_poi[0])*(e_poi[1]-poi[1])/(e_poi[1]-s_poi[1]);
       if (xseg<poi[0]){
         return false;
       }else{
         return true;
       }
-} 
+}
 
 function isPoiWithinPoly(poi,poly){
   let sinsc=0;
@@ -3610,7 +3610,7 @@ function isPoiWithinPoly(poi,poly){
       }
     }
   }
-  
+
   if(sinsc%2==1){
     return true;
   }else{
@@ -3731,11 +3731,11 @@ function getWordCloudPoint(opts,type){
             return true;
         }else {return false};
       };
-      for (let i = 0; i < points.length; i++) { 
+      for (let i = 0; i < points.length; i++) {
         let text = points[i].name;
         let tHeight = points[i].textSize;
         let tWidth = measureText(text,tHeight);
-        let isSpin = Spin(); 
+        let isSpin = Spin();
         let x,y,area,areav;
         let breaknum=0;
         while(true) {
@@ -3752,7 +3752,7 @@ function getWordCloudPoint(opts,type){
             y = normalInt(-opts.height/2, opts.height/2,5)+tHeight/2;
             area=[x-5+opts.width/2,y-5-tHeight+opts.height/2,x+tWidth+5+opts.width/2,y+5+opts.height/2];
             isCollision = collisionNew(area,points,opts.width,opts.height);
-          } 
+          }
           if (!isCollision) break;
           if (breaknum==1000){
             area=[-1000,-1000,-1000,-1000];
@@ -3779,7 +3779,7 @@ function drawWordCloudDataPoints(series, opts, config, context) {
     type: 'normal',
     autoColors: true
   },opts.extra.word);
-  
+
   context.beginPath();
   context.setFillStyle(opts.background||'#FFFFFF');
   context.rect(0,0,opts.width,opts.height);
@@ -3787,7 +3787,7 @@ function drawWordCloudDataPoints(series, opts, config, context) {
   context.save();
   let points = opts.chartData.wordCloudData;
   context.translate(opts.width/2,opts.height/2);
-  
+
   for(let i=0;i<points.length;i++){
       context.save();
       if(points[i].rotate){
@@ -3810,7 +3810,7 @@ function drawWordCloudDataPoints(series, opts, config, context) {
               }
           }else{
             context.fillText(text,(points[i].areav[0]+5-opts.width/2)*process-tWidth*(1-process)/2,(points[i].areav[1]+5+tHeight-opts.height/2)*process);
-          } 
+          }
         }
       }else{
         if(points[i].area[0]>0){
@@ -3823,10 +3823,10 @@ function drawWordCloudDataPoints(series, opts, config, context) {
           }else{
             context.fillText(text,(points[i].area[0]+5-opts.width/2)*process-tWidth*(1-process)/2,(points[i].area[1]+5+tHeight-opts.height/2)*process);
           }
-            
+
         }
       }
-      
+
       context.stroke();
       context.restore();
   }
@@ -3920,11 +3920,11 @@ function drawFunnelDataPoints(series, opts, config, context) {
     context.translate(0,-eachSpacing)
   }
   context.restore();
-  
+
   if (opts.dataLabel !== false && process === 1) {
     drawFunnelText(series, opts, context, eachSpacing, funnelOption.labelAlign, activeWidth, centerPosition);
   }
-  
+
   return {
     center: centerPosition,
     radius: radius,
@@ -3996,7 +3996,7 @@ function drawFunnelText(series, opts, context, eachSpacing, labelAlign,activeWid
       context.stroke();
       context.closePath();
     }
-    
+
   }
 }
 
@@ -4603,7 +4603,7 @@ var Charts = function Charts(opts) {
   config$$1.toolTipLineHeight = config.toolTipLineHeight * opts.pixelRatio;
   config$$1.columePadding = config.columePadding * opts.pixelRatio;
   opts.$this = opts.$this ? opts.$this : this;
-  
+
   this.context = uni.createCanvasContext(opts.canvasId, opts.$this);
   /* 兼容原生H5
   this.context = document.getElementById(opts.canvasId).getContext("2d");

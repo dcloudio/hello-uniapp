@@ -26,12 +26,14 @@
                     <input class="uni-input" confirm-type="search" placeholder="键盘右下角按钮显示为搜索" />
                 </view>
             </view>
+            <!-- #ifndef H5 -->
             <view class="uni-form-item uni-column">
                 <view class="title"><text class="uni-form-item__title">键盘右下角按钮显示为发送</text></view>
                 <view class="uni-input-wrapper">
                     <input class="uni-input" confirm-type="send" placeholder="键盘右下角按钮显示为发送" />
                 </view>
             </view>
+            <!-- #endif -->
             <view class="uni-form-item uni-column">
                 <view class="title"><text class="uni-form-item__title">控制最大输入长度的 input</text></view>
                 <view class="uni-input-wrapper">

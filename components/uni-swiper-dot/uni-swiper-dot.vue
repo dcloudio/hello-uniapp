@@ -24,6 +24,22 @@
 </template>
 
 <script>
+	/**
+	 * SwiperDod 轮播图指示点
+	 * @description 自定义轮播图指示点
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=284
+	 * @property {Number} current 当前指示点索引，必须是通过 `swiper` 的 `change` 事件获取到的 `e.detail.current`
+	 * @property {String} mode = [default|round|nav|indexes] 指示点的类型
+	 * 	@value defualt 默认指示点
+	 * 	@value round 圆形指示点
+	 * 	@value nav 条形指示点
+	 * 	@value indexes 索引指示点
+	 * @property {String} field mode 为 nav 时，显示的内容字段（mode = nav 时必填）
+	 * @property {String} info 轮播图的数据，通过数组长度决定指示点个数
+	 * @property {Object} dotsStyles 指示点样式
+	 * @event {Function} clickItem 组件触发点击事件时触发，e={currentIndex}
+	 */
+
 	export default {
 		name: 'UniSwiperDot',
 		props: {

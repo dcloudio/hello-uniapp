@@ -9,7 +9,7 @@
 					</view>
 				</block>
 				<block v-if="hasUserInfo === true">
-					<view class="uni-h4 uni-center uni-common-mt">{{userInfo.nickName}}</view>
+					<view class="uni-h4 uni-center uni-common-mt">{{userInfo.nickName || userInfo.email}}</view>
 					<view style="padding:30upx 0; text-align:center;">
 						<image class="userinfo-avatar" :src="userInfo.avatarUrl"></image>
 					</view>

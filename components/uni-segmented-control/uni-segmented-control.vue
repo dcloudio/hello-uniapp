@@ -16,6 +16,19 @@
 </template>
 
 <script>
+	/**
+	 * SegmentedControl 分段器
+	 * @description 用作不同视图的显示
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=54
+	 * @property {Number} current 当前选中的tab索引值，从0计数
+	 * @property {String} styleType = [button|text] 分段器样式类型
+	 * 	@value button 按钮类型
+	 * 	@value text 文字类型
+	 * @property {String} activeColor 选中的标签背景色与边框颜色
+	 * @property {Array} values 选项数组
+	 * @event {Function} clickItem 组件触发点击事件时触发，e={currentIndex}
+	 */
+
 	export default {
 		name: 'UniSegmentedControl',
 		props: {

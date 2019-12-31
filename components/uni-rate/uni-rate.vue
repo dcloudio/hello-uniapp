@@ -18,6 +18,22 @@
 
 <script>
 	import uniIcons from "../uni-icons/uni-icons.vue";
+
+	/**
+	 * Rate 评分
+	 * @description 评分组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=33
+	 * @property {Number} value 当前评分
+	 * @property {Number} max 最大的评分
+	 * @property {Number} size 星星的大小
+	 * @property {Number} margin 星星的间距
+	 * @property {String} color 星星的颜色
+	 * @property {String} activeColor 选中状态的星星的颜色
+	 * @property {Boolean} isFill = [true|false] 星星的类型，是否为实心类型
+	 * @property {Boolean} disabled = [true|false] 是否为不可点击状态
+	 * @event {Function} change uniRate 的 value 改变时触发事件，e={value:Number}
+	 */
+
 	export default {
 		name: "UniRate",
 		components: {
@@ -93,7 +109,7 @@
 						});
 					}
 				}
-				console.log("starList[4]: " + starList[4].activeWitch);
+				// console.log("starList[4]: " + starList[4].activeWitch);
 				return starList;
 			}
 		},

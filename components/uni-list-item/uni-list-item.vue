@@ -31,6 +31,28 @@
 <script>
 	import uniIcons from '../uni-icons/uni-icons.vue'
 	import uniBadge from '../uni-badge/uni-badge.vue'
+
+	/**
+	 * ListItem 列表子组件
+	 * @description 列表子组件
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=24
+	 * @property {String} title 标题
+	 * @property {String} note 描述
+	 * @property {String} thumb 左侧缩略图，若thumb有值，则不会显示扩展图标
+	 * @property {String} badgeText 数字角标内容
+	 * @property {String} badgeType 数字角标类型，参考[uni-icons](https://ext.dcloud.net.cn/plugin?id=21)
+	 * @property {String} rightText 右侧文字内容
+	 * @property {Boolean} disabled = [true|false]是否禁用
+	 * @property {Boolean} showArrow = [true|false] 是否显示箭头图标
+	 * @property {Boolean} showBadge = [true|false] 是否显示数字角标
+	 * @property {Boolean} showSwitch = [true|false] 是否显示Switch
+	 * @property {Boolean} switchChecked = [true|false] Switch是否被选中
+	 * @property {Boolean} showExtraIcon = [true|false] 左侧是否显示扩展图标
+	 * @property {Boolean} scrollY = [true|false] 允许纵向滚动，需要显式的设置其宽高
+	 * @property {Object} extraIcon 扩展图标参数，格式为 {color: '#4cd964',size: '22',type: 'spinner'}
+	 * @event {Function} click 点击 uniListItem 触发事件
+	 * @event {Function} switchChange 点击切换 Switch 时触发
+	 */
 	export default {
 		name: 'UniListItem',
 		components: {

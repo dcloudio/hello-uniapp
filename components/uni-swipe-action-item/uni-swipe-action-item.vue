@@ -89,6 +89,18 @@
 	import mpalipay from './mpalipay'
 	// #endif
 
+	/**
+	 * SwipeActionItem 滑动操作子组件
+	 * @description 通过滑动触发选项的容器
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=181
+	 * @property {Boolean} show = [true|false] 开启关闭组件，auto-close = false 时生效
+	 * @property {Boolean} disabled = [true|false] 是否禁止滑动
+	 * @property {Boolean} autoClose = [true|false] 其他组件开启的时候，当前组件是否自动关闭
+	 * @property {Array} options 组件选项内容及样式
+	 * @event {Function} click 点击选项按钮时触发事件，e = {content,index} ，content（点击内容）、index（下标)
+	 * @event {Function} change 组件打开或关闭时触发，true：开启状态；false：关闭状态
+	 */
+
 	export default {
 		// #ifdef APP-VUE|| MP-WEIXIN||H5
 		mixins: [mpwxs],
