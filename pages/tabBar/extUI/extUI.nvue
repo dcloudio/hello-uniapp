@@ -73,6 +73,10 @@
 						url: "indexed-list"
 					},
 					{
+						name: "Link 超链接",
+						url: "link"
+					},
+					{
 						name: "List 列表",
 						url: "list"
 					},

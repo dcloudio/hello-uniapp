@@ -878,6 +878,10 @@
 				{
 					"path": "title/title",
 					"style": {}
+				},
+				{
+					"path": "link/link",
+					"style": {}
 				}
 			]
 		},

@@ -1,5 +1,5 @@
 <template>
-	<text v-if="text" :class="inverted ? 'uni-badge--' + type + ' uni-badge--' + size + ' uni-badge--' + type + '-inverted' : 'uni-badge--' + type + ' uni-badge--' + size" class="uni-badge" @click="onClick()">{{ text }}</text>
+	<text v-if="text" :class="inverted ? 'uni-badge--' + type + ' uni-badge--' + size + ' uni-badge--' + type + '-inverted' : 'uni-badge--' + type + ' uni-badge--' + size" :style="badgeStyle" class="uni-badge" @click="onClick()">{{ text }}</text>
 </template>
 
 <script>
@@ -43,10 +43,21 @@
 		},
 		data() {
 			return {
-
+				badgeStyle: ''
 			};
 		},
+		watch: {
+			text() {
+				this.setStyle()
+			}
+		},
+		mounted() {
+			this.setStyle()
+		},
 		methods: {
+			setStyle() {
+				this.badgeStyle = `width: ${String(this.text).length * 8 + 12}px`
+			},
 			onClick() {
 				this.$emit('click');
 			}
@@ -59,9 +70,10 @@
 		/* #ifndef APP-PLUS */
 		display: flex;
 		/* #endif */
+		justify-content: center;
 		flex-direction: row;
-		height: 40rpx;
-		line-height: 40rpx;
+		height: 20px;
+		line-height: 20px;
 		color: #333;
 		border-radius: 100px;
 		background-color: #f1f1f1;
