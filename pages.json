@@ -1117,6 +1117,7 @@
 		}
 	],
 	"globalStyle": {
+		"pageOrientation": "portrait",
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "Hello uniapp",
 		"navigationBarBackgroundColor": "#007AFF",
