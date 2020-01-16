@@ -99,6 +99,7 @@
 				})
 			},
 			open() {
+				clearTimeout(this.timer)
 				this.isShow = true
 				this.transform = ''
 				this.ani.in = ''
@@ -117,6 +118,7 @@
 
 			},
 			close(type) {
+				clearTimeout(this.timer)
 				this._animation(false)
 			},
 			_animation(type) {
@@ -147,7 +149,6 @@
 						this.transform += `${styles[i]} `
 					}
 				}
-				clearTimeout(this.timer)
 				this.timer = setTimeout(() => {
 					if (!type) {
 						this.isShow = false

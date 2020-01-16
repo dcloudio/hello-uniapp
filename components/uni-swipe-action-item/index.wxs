@@ -50,6 +50,9 @@ function touchmove(e, ownerInstance) {
 	var instance = e.instance;
 	var disabled = instance.getDataset().disabled
 	var state = instance.getState()
+	// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
+	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
+
 	if (disabled) return
 	var pageX = e.touches[0].pageX;
 	move(pageX - state.width, instance, ownerInstance)
@@ -64,6 +67,10 @@ function touchend(e, ownerInstance) {
 	var instance = e.instance;
 	var disabled = instance.getDataset().disabled
 	var state = instance.getState()
+
+	// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
+	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
+
 	if (disabled) return
 	// 滑动过程中触摸结束,通过阙值判断是开启还是关闭
 	moveDirection(state.left, -40, instance, ownerInstance)
@@ -135,6 +142,12 @@ function buttonFold(value, instance, ownerInstance) {
 	for (var i = 0; i < ins.length; i++) {
 		if (!ins[i].getDataset().button) return
 		var btnData = JSON.parse(ins[i].getDataset().button)
+
+		// fix by mehaotian TODO 在 app-vue 中,字符串转对象,需要转两次,这里先这么兼容
+		if (typeof(btnData) === 'string') {
+			btnData = JSON.parse(btnData)
+		}
+
 		var button = btnData[i] && btnData[i].width || 0
 		w += button
 		arr.push(-w)
@@ -160,7 +173,6 @@ function openState(type, ins, ownerInstance) {
 	if (state.isopen === undefined) {
 		state.isopen = false
 	}
-	// console.log(state.isopen , type);
 	// 只有状态有改变才会通知页面改变状态
 	if (state.isopen !== type) {
 		// 通知页面,已经打开
