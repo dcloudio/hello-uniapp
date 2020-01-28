@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-if="leftBottom||rightBottom||leftTop||rightTop" :class="{
+		<view v-if="!onlyPlusButton && (leftBottom||rightBottom||leftTop||rightTop)" :class="{
         'uni-fab--leftBottom': leftBottom,
         'uni-fab--rightBottom': rightBottom,
         'uni-fab--leftTop': leftTop,
@@ -56,6 +56,7 @@
 	 * 	@value horizontal 水平显示
 	 * 	@value vertical 垂直显示
 	 * @property {Array} content 展开菜单内容配置项
+	 * @property {Boolean} onlyPlusButton 是否只显示加号按钮
 	 * @event {Function} trigger 展开菜单点击事件，返回点击信息
 	 */
 	export default {
@@ -86,6 +87,10 @@
 				}
 			},
 			show: {
+				type: Boolean,
+				default: false
+			},
+			onlyPlusButton: {
 				type: Boolean,
 				default: false
 			}
@@ -162,6 +167,10 @@
 		},
 		methods: {
 			_onClick() {
+				this.$emit('plusClick')
+				if (this.onlyPlusButton) {
+					return
+				}
 				this.isShow = !this.isShow
 			},
 			open() {
