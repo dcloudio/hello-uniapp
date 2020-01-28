@@ -58,6 +58,7 @@
 	 * @property {Array} content 展开菜单内容配置项
 	 * @property {Boolean} popMenu 是否使用弹出菜单
 	 * @event {Function} trigger 展开菜单点击事件，返回点击信息
+	 * @event {Function} fabClick 悬浮按钮点击事件
 	 */
 	export default {
 		name: 'UniFab',
@@ -167,7 +168,7 @@
 		},
 		methods: {
 			_onClick() {
-				this.$emit('plusClick')
+				this.$emit('fabClick')
 				if (!this.popMenu) {
 					return
 				}
