@@ -41,6 +41,10 @@
 						url: "collapse"
 					},
 					{
+						name: "Combox 组合框",
+						url: "combox"
+					},
+					{
 						name: "Countdown 倒计时",
 						url: "countdown"
 					},

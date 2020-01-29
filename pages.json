@@ -873,15 +873,27 @@
 				},
 				{
 					"path": "transition/transition",
-					"style": {}
+					"style": {
+						"navigationBarTitleText": "Transition 过渡动画"
+					}
 				},
 				{
 					"path": "title/title",
-					"style": {}
+					"style": {
+						"navigationBarTitleText": "Title 章节标题"
+					}
 				},
 				{
 					"path": "link/link",
-					"style": {}
+					"style": {
+						"navigationBarTitleText": "Link 链接"
+					}
+				},
+				{
+					"path": "combox/combox",
+					"style": {
+						"navigationBarTitleText": "Combox 组合框"
+					}
 				}
 			]
 		},
