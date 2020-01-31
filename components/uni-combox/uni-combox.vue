@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-combox" nvue>
+	<view class="uni-combox">
 		<view v-if="label" class="uni-combox__label" :style="labelStyle">
 			<text>{{label}}</text>
 		</view>
@@ -7,12 +7,14 @@
 			<input class="uni-combox__input" type="text" :placeholder="placeholder" v-model="inputVal" @input="onInput" @focus="onFocus" @blur="onBlur" />
 			<uni-icons class="uni-combox__input-arrow" type="arrowdown" size="14" @click="toggleSelector"></uni-icons>
 			<view class="uni-combox__selector" v-if="showSelector">
-				<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
-					<text>{{emptyTips}}</text>
-				</view>
-				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" @click="onSelectorClick(index)">
-					<text>{{item}}</text>
-				</view>
+				<scroll-view scroll-y="true" class="uni-combox__selector-scroll">
+					<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
+						<text>{{emptyTips}}</text>
+					</view>
+					<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" @click="onSelectorClick(index)">
+						<text>{{item}}</text>
+					</view>
+				</scroll-view>
 			</view>
 		</view>
 	</view>
@@ -90,14 +92,12 @@
 				this.showSelector = !this.showSelector
 			},
 			onFocus() {
-				setTimeout(() => {
-					this.showSelector = true
-				})
+				this.showSelector = true
 			},
 			onBlur() {
 				setTimeout(() => {
 					this.showSelector = false
-				})
+				}, 50)
 			},
 			onSelectorClick(index) {
 				this.inputVal = this.filterCandidates[index]
@@ -127,11 +127,16 @@
 
 	.uni-combox__label {
 		font-size: 16px;
+		line-height: 22px;
 		padding-right: 10px;
 		color: #999999;
 	}
 
 	.uni-combox__input-box {
+		position: relative;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex: 1;
 		flex-direction: row;
 		align-items: center;
@@ -140,6 +145,8 @@
 	.uni-combox__input {
 		flex: 1;
 		font-size: 16px;
+		height: 22px;
+		line-height: 22px;
 	}
 
 	.uni-combox__input-arrow {
@@ -147,18 +154,20 @@
 	}
 
 	.uni-combox__selector {
-		flex-direction: column;
+		box-sizing: border-box;
 		position: absolute;
 		top: 42px;
 		left: 0;
 		width: 100%;
-		max-height: 200px;
-		overflow-y: auto;
-		padding: 10px;
 		background-color: #FFFFFF;
 		border-radius: 6px;
 		box-shadow: #DDDDDD 4px 4px 8px, #DDDDDD -4px -4px 8px;
 		z-index: 2;
+	}
+
+	.uni-combox__selector-scroll {
+		max-height: 200px;
+		box-sizing: border-box;
 	}
 
 	.uni-combox__selector::before {
@@ -183,6 +192,7 @@
 		font-size: 14px;
 		text-align: center;
 		border-bottom: solid 1px #DDDDDD;
+		margin: 0px 10px;
 	}
 
 	.uni-combox__selector-empty:last-child,
