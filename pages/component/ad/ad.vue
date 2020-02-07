@@ -1,0 +1,78 @@
+<template>
+    <view>
+        <page-head :title="title"></page-head>
+        <view class="ad-view">
+            <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload"></ad>
+            <!-- #ifdef APP-PLUS -->
+            <view class="ad-tips" v-if="!isLoad">
+                <text>广告加载中...</text>
+            </view>
+            <!-- #endif -->
+            <!-- #ifndef APP-PLUS -->
+            <view class="ad-tips">
+                <text>小程序端的广告ID由小程序平台提供</text>
+            </view>
+            <!-- #endif -->
+        </view>
+        <view class="tips" @click="gotoapi">
+            <text>本示例页面仅演示ad组件，可点此体验激励视频API</text>
+        </view>
+    </view>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                title: 'AD组件',
+                unitId: '',
+                isLoad: false
+            }
+        },
+        onLoad() {
+            // #ifdef MP-WEIXIN
+            this.unitId = '';
+            // #endif
+            // #ifdef MP-TOUTIAO
+            this.unitId = ''
+            // #endif
+            // #ifdef MP-QQ
+            this.unitId = ''
+            // #endif
+        },
+        methods: {
+            adload() {
+                this.isLoad = true;
+            },
+            gotoapi() {
+                uni.navigateTo({
+                    url: "/pages/API/rewarded-video-ad/rewarded-video-ad"
+                })
+            }
+        }
+    }
+</script>
+
+<style>
+    .content {
+        background-color: #DBDBDB;
+        padding: 10px;
+    }
+
+    .ad-view {
+        background-color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+
+    .ad-tips {
+        color: #999;
+        padding: 30px 0;
+        text-align: center;
+    }
+
+    .tips {
+        margin-top: 30px;
+        color: #999;
+        text-align: center;
+    }
+</style>
