@@ -2,7 +2,7 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap uni-common-mt">
-            <button type="primary" class="btn" @click="show">显示广告</button>
+            <button :loading="loading" :disabled="loading" type="primary" class="btn" @click="show">显示广告</button>
         </view>
         <!-- #ifndef APP-PLUS -->
         <view class="ad-tips">
@@ -16,7 +16,8 @@
     export default {
         data() {
             return {
-                title: '激励视频广告'
+                title: '激励视频广告',
+                loading: false
             }
         },
         onReady() {
@@ -36,9 +37,11 @@
             createAd() {
                 var rewardedVideoAd = this.rewardedVideoAd = uni.createRewardedVideoAd(this.adOption);
                 rewardedVideoAd.onLoad(() => {
+                    this.loading = false;
                     console.log('onLoad event')
                 });
                 rewardedVideoAd.onClose((res) => {
+                    this.loading = true;
                     // 用户点击了【关闭广告】按钮
                     if (res && res.isEnded) {
                         // 正常播放结束
@@ -57,8 +60,10 @@
                     }, 500)
                 });
                 rewardedVideoAd.onError((err) => {
+                    this.loading = false;
                     console.log('onError event', err)
                 });
+                this.loading = true;
             },
             show() {
                 const rewardedVideoAd = this.rewardedVideoAd;
