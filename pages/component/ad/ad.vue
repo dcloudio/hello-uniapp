@@ -72,7 +72,7 @@
 
     .tips {
         margin-top: 30px;
-        color: #999;
+        color: #007AFF;
         text-align: center;
     }
 </style>
