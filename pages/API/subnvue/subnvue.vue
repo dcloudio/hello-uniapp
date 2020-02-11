@@ -75,9 +75,9 @@
 				const subNVue = uni.getSubNVueById('popup')
 		        subNVue.show('slide-in-top', 250)
 		    },
-			videoErrorCallback: function(e) {
+			videoErrorCallback: function() {
 				uni.showModal({
-					content: e.target.errMsg,
+					content: '视频加载失败',
 					showCancel: false
 				})
 			},

@@ -25,7 +25,7 @@
 		},
 		methods: {
 			dataChange: function (e) {
-				this.data = e.target.value
+				this.data = e.detail.value
 			},
 			getClipboard: function () {
 				uni.getClipboardData({

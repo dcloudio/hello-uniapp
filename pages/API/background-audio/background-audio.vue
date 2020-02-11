@@ -52,7 +52,7 @@
 			this.playing = this.$backgroundAudioData.playing;
 			this.playTime = this.$backgroundAudioData.playTime;
 			this.formatedPlayTime = this.$backgroundAudioData.formatedPlayTime;
-			
+
 			let bgAudioMannager = uni.getBackgroundAudioManager();
 			if(!bgAudioMannager.title){
 				bgAudioMannager.title = '致爱丽丝';
@@ -99,7 +99,7 @@
 				}
 			},
 			seek: function (e) {
-				this.bgAudioMannager.seek(e.target.value);
+				this.bgAudioMannager.seek(e.detail.value);
 			},
 			pause: function () {
 				this.bgAudioMannager.pause();

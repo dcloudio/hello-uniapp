@@ -31,9 +31,9 @@ export default {
 	},
 	onLoad() {},
 	methods: {
-		videoErrorCallback: function(e) {
+		videoErrorCallback: function() {
 			uni.showModal({
-				content: e.target.errMsg,
+				content: '视频加载失败',
 				showCancel: false
 			});
 		},

@@ -20,7 +20,7 @@
 		},
 		methods: {
 			bindInput: function (e) {
-				this.inputValue = e.target.value
+				this.inputValue = e.detail.value
 				if (this.inputValue.length > 0) {
 					this.disabled = false
 				} else {

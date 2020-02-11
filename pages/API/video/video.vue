@@ -68,14 +68,14 @@
 		methods: {
 			radioChange(evt) {
 				for (let i = 0; i < this.cameraList.length; i++) {
-					if (this.cameraList[i].value === evt.target.value) {
+					if (this.cameraList[i].value === evt.detail.value) {
 						this.cameraIndex = i;
 						break;
 					}
 				}
 			},
 			sourceTypeChange: function(e) {
-				this.sourceTypeIndex = parseInt(e.target.value)
+				this.sourceTypeIndex = parseInt(e.detail.value)
 			},
 			chooseVideo: function() {
 				uni.chooseVideo({

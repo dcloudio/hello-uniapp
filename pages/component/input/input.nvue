@@ -126,21 +126,21 @@
         },
         methods: {
             onKeyInput: function(event) {
-                this.inputValue = event.target.value
+                this.inputValue = event.detail.value
             },
             replaceInput: function(event) {
-                var value = event.target.value;
+                var value = event.detail.value;
                 if (value === '11') {
                     this.changeValue = '2';
                 }
             },
             hideKeyboard: function(event) {
-                if (event.target.value === '123') {
+                if (event.detail.value === '123') {
                     uni.hideKeyboard();
                 }
             },
             clearInput: function(event) {
-                this.inputClearValue = event.target.value;
+                this.inputClearValue = event.detail.value;
                 if (event.detail.value.length > 0) {
                     this.showClearIcon = true;
                 } else {
