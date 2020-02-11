@@ -2,7 +2,8 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap uni-common-mt">
-            <button :loading="loading" :disabled="loading" type="primary" class="btn" @click="show">显示广告</button>
+            <button v-if="!loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="show">显示广告</button>
+            <button v-if="loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="reloadAd">重新加载广告</button>
         </view>
         <!-- #ifndef APP-PLUS -->
         <view class="ad-tips">
@@ -13,11 +14,14 @@
 </template>
 
 <script>
+    const ERROR_CODE = [-5001, -5002, -5003, -5004, -5005, -5006];
+
     export default {
         data() {
             return {
                 title: '激励视频广告',
-                loading: false
+                loading: false,
+                loadError: false
             }
         },
         onReady() {
@@ -38,6 +42,7 @@
                 var rewardedVideoAd = this.rewardedVideoAd = uni.createRewardedVideoAd(this.adOption);
                 rewardedVideoAd.onLoad(() => {
                     this.loading = false;
+                    this.loadError = false;
                     console.log('onLoad event')
                 });
                 rewardedVideoAd.onClose((res) => {
@@ -61,6 +66,9 @@
                 });
                 rewardedVideoAd.onError((err) => {
                     this.loading = false;
+                    if (err.code && ERROR_CODE.indexOf(err.code) !== -1) {
+                        this.loadError = true;
+                    }
                     console.log('onError event', err)
                 });
                 this.loading = true;
@@ -79,6 +87,10 @@
                             })
                         })
                 })
+            },
+            reloadAd() {
+                this.loading = true;
+                this.rewardedVideoAd.load();
             }
         }
     }
