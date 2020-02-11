@@ -59,10 +59,10 @@
 				this.autoplay = !this.autoplay
 			},
 			intervalChange(e) {
-				this.interval = e.target.value
+				this.interval = e.detail.value
 			},
 			durationChange(e) {
-				this.duration = e.target.value
+				this.duration = e.detail.value
 			}
 		}
 	}

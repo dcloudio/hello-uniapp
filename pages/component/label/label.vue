@@ -76,12 +76,12 @@
 		},
 		methods: {
 			checkboxChange: function(e) {
-				var checked = e.target.value
+				var checked = e.detail.value
 				console.log(checked)
 
 			},
 			radioChange: function(e) {
-				var checked = e.target.value
+				var checked = e.detail.value
 				console.log(checked)
 			}
 		}

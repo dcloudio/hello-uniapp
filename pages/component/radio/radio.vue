@@ -73,7 +73,7 @@
 		methods: {
 			radioChange(evt) {
 				for (let i = 0; i < this.items.length; i++) {
-					if (this.items[i].value === evt.target.value) {
+					if (this.items[i].value === evt.detail.value) {
 						this.current = i;
 						break;
 					}
