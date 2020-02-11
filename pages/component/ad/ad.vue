@@ -14,8 +14,8 @@
             </view>
             <!-- #endif -->
         </view>
-        <view class="tips" @click="gotoapi">
-            <text>本示例页面仅演示ad组件，可点此体验激励视频API</text>
+        <view class="tips">
+            <text class="tips-text">本示例页面仅演示ad组件。另点此可体验</text><text class="tips-hl" @click="gotoapi">激励视频API</text><text class="tips-text">。</text>
         </view>
     </view>
 </template>
@@ -72,7 +72,16 @@
 
     .tips {
         margin-top: 30px;
-        color: #007AFF;
         text-align: center;
+        line-height: 42px;
+    }
+
+    .tips-text {
+        color: #444;
+    }
+
+    .tips-hl {
+        color: #007AFF;
+        margin-left: 1px;
     }
 </style>
