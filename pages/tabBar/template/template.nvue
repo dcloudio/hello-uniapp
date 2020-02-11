@@ -100,10 +100,10 @@
 						url: 'global'
 					},
 					// #ifdef APP-PLUS
-					{
-						name: '问题反馈',
-						url: '/platforms/app-plus/feedback/feedback'
-					},
+					// {
+					// 	name: '问题反馈',
+					// 	url: '/platforms/app-plus/feedback/feedback'
+					// },
 					{
 						name: '打开外部应用',
 						url: 'scheme'
