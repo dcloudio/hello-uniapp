@@ -30,6 +30,13 @@
         'fontFamily': "uniicons",
         'src': "url('/static/uni.ttf')"
     });
+    // 打包后生效
+    if (!plus.runtime.isAgreePrivacy()) {
+        uni.navigateTo({
+            url: "/pages/user-protocol/user-protocol",
+            animationType: "none"
+        })
+    }
     // #endif
 
     import uLink from '@/components/uLink.vue'

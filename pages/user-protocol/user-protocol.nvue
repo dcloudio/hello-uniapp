@@ -1,0 +1,118 @@
+<template>
+    <view class="page">
+        <view>
+            <text class="title">个人信息保护指引</text>
+        </view>
+        <view class="text-item">
+            <text class="tl">1.在浏览使用时，我们会收集、使用设备标识信息用于推荐。</text>
+        </view>
+        <view class="text-item">
+            <text class="tl">2.我们可能会申请位置权限，用于演示 uni-app 的地图、定位能力。</text>
+        </view>
+        <view class="text-item">
+            <text class="tl">3.你可以查看完整版</text>
+        </view>
+        <view class="text-item flex-r">
+            <text class="tl hl" @click="openprotocol"><<用户协议>></text>
+            <text class="tl"> 和 </text>
+            <text class="tl hl" @click="openprotocol"><<隐私政策>></text>
+        </view>
+        <view class="text-item">
+            <text class="tl">以便了解我们收集、使用、共享、存储信息的情况，以及对信息的保护措施。</text>
+        </view>
+        <view class="text-item">
+            <text class="service">如果你同意请点击下面的按钮以接受我们的服务</text>
+        </view>
+        <view class="text-item confirm">
+            <button class="btn-privacy" type="primary" open-type="agreePrivacy" @agreeprivacy="agree">同意</button>
+            <button v-if="isAndroid" class="btn-privacy btn-disagree" type="default" open-type="disagreePrivacy" @disagreeprivacy="disagree">不同意</button>
+        </view>
+    </view>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                isAndroid: false
+            }
+        },
+        onLoad() {
+            this.isAndroid = (uni.getSystemInfoSync().platform === 'android');
+            this._canBack = false;
+        },
+        onBackPress() {
+            return !this._canBack;
+        },
+        methods: {
+            onclick() {
+                console.log("onclick");
+            },
+            openprotocol(e) {
+                uni.navigateTo({
+                    url: "/pages/component/web-view/web-view?url=https://ask.dcloud.net.cn/protocol.html"
+                })
+            },
+            agree(e) {
+                this._canBack = true;
+                setTimeout(() => {
+                    uni.navigateBack({
+                        animationDuration: 0
+                    });
+                }, 100)
+            },
+            disagree() {
+                plus.runtime.quit();
+            }
+        }
+    }
+</script>
+
+<style>
+    .page {
+        padding: 80px 30px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .flex-r {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .text-item {
+        margin-bottom: 5px;
+    }
+
+    .tl {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .hl {
+        color: #007AFF;
+    }
+
+    .service {
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 20px;
+    }
+
+    .confirm {
+        margin-top: 50px;
+        flex-direction: row;
+    }
+
+    .btn-privacy {
+        flex: 1;
+    }
+
+    .btn-disagree {
+        margin-left: 20px;
+    }
+</style>
