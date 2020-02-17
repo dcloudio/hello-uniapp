@@ -70,6 +70,6 @@
 
 <style>
 	.uni-list-cell-left {
-		padding: 0 30upx;
+		padding: 0 30rpx;
 	}
 </style>

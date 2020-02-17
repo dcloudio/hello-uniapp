@@ -352,7 +352,7 @@
 								"style": {
 									"margin": "auto",
 									"width": "80%",
-									"height": "600upx"
+									"height": "600rpx"
 								}
 							}, {
 								"id": "video_mask",

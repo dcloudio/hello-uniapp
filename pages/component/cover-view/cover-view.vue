@@ -51,8 +51,8 @@
 
 <style>
 	map {
-		width: 750upx;
-		height: 750upx;
+		width: 750rpx;
+		height: 750rpx;
 	}
 
 	.video {
@@ -67,7 +67,7 @@
 		position: absolute;
 		left: 5px;
 		top: 5px;
-		width: 375upx;
+		width: 375rpx;
 		text-align: center;
 		background-color: #DDDDDD;
 	}

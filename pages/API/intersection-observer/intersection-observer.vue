@@ -42,27 +42,27 @@
 </script>
 <style>
 	.scroll-view {
-		height: 400upx;
+		height: 400rpx;
 		background: #fff;
 		border: 1px solid #ccc;
 		box-sizing: border-box;
 	}
 
 	.scroll-area {
-		height: 1300upx;
+		height: 1300rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
 	.notice {
-		margin-top: 150upx;
-		margin: 150upx 0 400upx 0;
+		margin-top: 150rpx;
+		margin: 150rpx 0 400rpx 0;
 	}
 
 	.ball {
-		width: 200upx;
-		height: 200upx;
+		width: 200rpx;
+		height: 200rpx;
 		background: #4cd964;
 		border-radius: 50%;
 	}

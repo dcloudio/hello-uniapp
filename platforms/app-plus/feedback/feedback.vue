@@ -183,7 +183,7 @@
     }
 
     .input-view {
-        font-size: 28upx;
+        font-size: 28rpx;
     }
 
     .close-view {

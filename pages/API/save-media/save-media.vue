@@ -138,11 +138,11 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 30upx 0;
+	margin: 30rpx 0;
 	width: 100%;
 }
 .image {
-	height: 400upx;
+	height: 400rpx;
 	overflow: hidden;
 }
 .image image {
@@ -153,6 +153,6 @@ video {
 	width: 100%;
 }
 .uni-button {
-	margin: 30upx 0;
+	margin: 30rpx 0;
 }
 </style>

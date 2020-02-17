@@ -159,8 +159,8 @@
 	}
 
 	image {
-		width: 360upx;
-		height: 360upx;
+		width: 360rpx;
+		height: 360rpx;
 	}
 
 	.about {
@@ -170,7 +170,7 @@
 
 	.content {
 		flex: 1;
-		padding: 30upx;
+		padding: 30rpx;
 		flex-direction: column;
 		justify-content: center;
 	}
@@ -182,11 +182,11 @@
 	}
 
 	.qrcode .tip {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.desc {
-		margin-top: 30upx;
+		margin-top: 30rpx;
 		display: block;
 	}
 
@@ -197,18 +197,18 @@
 
 	button {
 		width: 100%;
-		margin-top: 40upx;
+		margin-top: 40rpx;
 	}
 
 	.version {
-		height: 80upx;
-		line-height: 80upx;
+		height: 80rpx;
+		line-height: 80rpx;
 		justify-content: center;
 		color: #ccc;
 	}
 
 	.source {
-		margin-top: 30upx;
+		margin-top: 30rpx;
 		flex-direction: column;
 	}
 

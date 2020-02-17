@@ -129,6 +129,6 @@
 	}
 
 	.camera-tips {
-		padding: 10upx 30upx;
+		padding: 10rpx 30rpx;
 	}
 </style>

@@ -54,9 +54,9 @@
 	.shake {
 		background-color: #FFCC33;
 		color: #ffffff;
-		margin-bottom: 50upx;
+		margin-bottom: 50rpx;
 	}
 	.uni-textarea .acc-show{
-		height: 240upx;
+		height: 240rpx;
 	}
 </style>

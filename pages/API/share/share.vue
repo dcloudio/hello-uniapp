@@ -7,7 +7,7 @@
 				<textarea class="textarea" v-model="shareText" />
 				</view>
 			<view class="uni-title">分享图片：</view>
-			<view class="uni-uploader" style="padding:15upx; background:#FFF;">
+			<view class="uni-uploader" style="padding:15rpx; background:#FFF;">
 				<view class="uni-uploader__input-box" v-if="!image" @tap="chooseImage"></view>
 				<image class="uni-uploader__img" v-if="image" :src="image"></image>
 			</view>

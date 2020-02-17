@@ -41,10 +41,10 @@
 
 <style>
 	.input {
-		height: 119upx;
-		line-height: 119upx;
-		font-size: 78upx;
-		border-bottom: 1upx solid #E2E2E2;
+		height: 119rpx;
+		line-height: 119rpx;
+		font-size: 78rpx;
+		border-bottom: 1rpx solid #E2E2E2;
 		text-align:center;
 	}
 </style>

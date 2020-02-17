@@ -148,7 +148,7 @@ export default {
 </script>
 <style>
 .button {
-	margin: 30upx;
+	margin: 30rpx;
 	color: #007AFF;
 }
 </style>

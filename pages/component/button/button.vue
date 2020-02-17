@@ -66,8 +66,8 @@
 
 <style>
     button {
-        margin-top: 30upx;
-        margin-bottom: 30upx;
+        margin-top: 30rpx;
+        margin-bottom: 30rpx;
     }
 
     .button-sp-area {
@@ -76,6 +76,6 @@
     }
 
     .mini-btn {
-        margin-right: 10upx;
+        margin-right: 10rpx;
     }
 </style>

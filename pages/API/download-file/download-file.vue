@@ -49,8 +49,8 @@
 
 <style>
 .img {
-	width: 500upx;
-	height: 500upx;
-	margin: 0 95upx;
+	width: 500rpx;
+	height: 500rpx;
+	margin: 0 95rpx;
 }
 </style>

@@ -4,7 +4,7 @@
 		<view class="uni-padding-wrap">
 			<view class="uni-title">默认样式</view>
 			<view>
-				<label class="radio" style="margin-right: 30upx;">
+				<label class="radio" style="margin-right: 30rpx;">
 					<radio value="r1" checked="true" />选中
 				</label>
 				<label class="radio">
@@ -15,7 +15,7 @@
 		<view class="uni-padding-wrap">
 			<view class="uni-title">不同颜色和尺寸的radio</view>
 			<view>
-				<label class="radio" style="margin-right: 30upx;">
+				<label class="radio" style="margin-right: 30rpx;">
 					<radio value="r1" checked="true" color="#FFCC33" style="transform:scale(0.7)"/>选中
 				</label>
 				<label class="radio">

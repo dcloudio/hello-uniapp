@@ -38,7 +38,7 @@
 						<view class="uni-list-cell uni-list-cell-pd">
 							<checkbox class="checkbox-3">选项二</checkbox>
 						</view>
-						<view class="uni-link uni-center" style="margin-top:20upx;">点击该label下的文字默认选中第一个checkbox</view>
+						<view class="uni-link uni-center" style="margin-top:20rpx;">点击该label下的文字默认选中第一个checkbox</view>
 					</label>
 				</checkbox-group>
 			</view>

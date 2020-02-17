@@ -174,40 +174,40 @@ export default {
 .history-title {
 	display: flex;
 	justify-content: space-between;
-	padding: 20upx 30upx;
+	padding: 20rpx 30rpx;
 	padding-bottom: 0;
-	font-size: 34upx;
+	font-size: 34rpx;
 	color: #333;
 }
 .history-title .uni-icon {
-	font-size: 40upx;
+	font-size: 40rpx;
 }
 .history-content {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 15upx;
+	padding: 15rpx;
 }
 .history-item {
-	padding: 4upx 35upx;
+	padding: 4rpx 35rpx;
 	border: 1px #f1f1f1 solid;
 	background: #fff;
-	border-radius: 50upx;
-	margin: 12upx 10upx;
+	border-radius: 50rpx;
+	margin: 12rpx 10rpx;
 	color: #999;
 }
 .history-list-box {
-	/* margin: 10upx 0; */
+	/* margin: 10rpx 0; */
 }
 .history-list-item {
-	padding: 30upx 0;
-	margin-left: 30upx;
+	padding: 30rpx 0;
+	margin-left: 30rpx;
 	border-bottom: 1px #EEEEEE solid;
-	font-size: 28upx;
+	font-size: 28rpx;
 }
 
 .no-data {
 	text-align: center;
 	color: #999;
-	margin: 100upx;
+	margin: 100rpx;
 }
 </style>

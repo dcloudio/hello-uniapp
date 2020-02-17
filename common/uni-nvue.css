@@ -27,7 +27,7 @@ page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10upx;
+    margin-top: 10rpx;
 }
 
 .uni-header-image {

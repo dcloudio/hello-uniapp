@@ -275,8 +275,8 @@
     }
 
     .tab-bar {
-        width: 750upx;
-        height: 84upx;
+        width: 750rpx;
+        height: 84rpx;
         flex-direction: row;
         /* #ifndef APP-PLUS */
         white-space: nowrap;
@@ -314,7 +314,7 @@
     }
 
     .tab-bar-line {
-        height: 1upx;
+        height: 1rpx;
         background-color: #cccccc;
     }
 
@@ -333,9 +333,9 @@
 
     .uni-tab-item-title {
         color: #555;
-        font-size: 30upx;
-        height: 80upx;
-        line-height: 80upx;
+        font-size: 30rpx;
+        height: 80rpx;
+        line-height: 80rpx;
         flex-wrap: nowrap;
         /* #ifndef APP-PLUS */
         white-space: nowrap;

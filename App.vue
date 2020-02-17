@@ -50,16 +50,16 @@
     page {
         background-color: #F4F5F6;
         height: 100%;
-        font-size: 28upx;
+        font-size: 28rpx;
         line-height: 1.8;
     }
 
     .uni-header-logo {
-        padding: 30upx;
+        padding: 30rpx;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 10upx;
+        margin-top: 10rpx;
     }
 
     .uni-header-image {
@@ -73,11 +73,11 @@
 
     .uni-hello-addfile {
         text-align: center;
-        line-height: 300upx;
+        line-height: 300rpx;
         background: #FFF;
-        padding: 50upx;
+        padding: 50rpx;
         margin-top: 10px;
-        font-size: 38upx;
+        font-size: 38rpx;
         color: #808080;
     }
 

@@ -96,19 +96,19 @@
 		background-color: rgba(0, 0, 0, 0.7);
 	}
 	.cell {
-		padding: 10upx 0;
+		padding: 10rpx 0;
 		flex-direction: row;
 		flex-wrap: nowrap;
 	}
 	.name {
 		flex: 0;
-		font-size: 20upx;
-		margin-right: 20upx;
+		font-size: 20rpx;
+		margin-right: 20rpx;
 		color: #FF5A5F;
 	}
 	.content {
 		flex: 1;
-		font-size: 20upx;
+		font-size: 20rpx;
 		color: #F4F5F6;
 	}
 </style>

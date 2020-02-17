@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<view class="uni-hello-text uni-center" style="padding-bottom:50upx;">
+			<view class="uni-hello-text uni-center" style="padding-bottom:50rpx;">
 				旋转手机即可获取方位信息
 			</view>
 			<view class="direction">
@@ -39,10 +39,10 @@
 <style>
 	.direction {
 		position: relative;
-		margin-top: 70upx;
+		margin-top: 70rpx;
 		display: flex;
-		width: 540upx;
-		height: 540upx;
+		width: 540rpx;
+		height: 540rpx;
 		align-items: center;
 		justify-content: center;
 		margin:0 auto;
@@ -50,7 +50,7 @@
 
 	.direction-value {
 		position: relative;
-		font-size: 200upx;
+		font-size: 200rpx;
 		color: #353535;
 		line-height: 1;
 		z-index: 1;
@@ -59,27 +59,27 @@
 	.direction-degree {
 		position: absolute;
 		top: 0;
-		right: -40upx;
-		font-size: 60upx;
+		right: -40rpx;
+		font-size: 60rpx;
 	}
 
 	.bg-compass {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 540upx;
-		height: 540upx;
+		width: 540rpx;
+		height: 540rpx;
 		transition: .1s;
 	}
 
 	.bg-compass-line {
 		position: absolute;
-		left: 267upx;
-		top: -10upx;
-		width: 6upx;
-		height: 56upx;
+		left: 267rpx;
+		top: -10rpx;
+		width: 6rpx;
+		height: 56rpx;
 		background-color: #1AAD19;
-		border-radius: 999upx;
+		border-radius: 999rpx;
 		z-index: 1;
 	}
 </style>

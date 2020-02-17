@@ -113,7 +113,7 @@
 		font-size: 14px;
 		line-height: 14px;
 		color: #777;
-		margin: 40px 2upx;
+		margin: 40px 2rpx;
 		position: relative
 	}
 	video {
@@ -124,7 +124,7 @@
 		height: 200px;
 	}
 	.example .example-title {
-		margin: 40upx 0
+		margin: 40rpx 0
 	}
 	button {
 		background-color: #f8f8f8;

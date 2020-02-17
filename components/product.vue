@@ -19,19 +19,19 @@
 
 <style>
 	.product {
-		padding: 10upx 20upx;
+		padding: 10rpx 20rpx;
 		display: flex;
 		flex-direction: column;
 	}
 
 	.product-image {
-		height: 330upx;
-		width: 330upx;
+		height: 330rpx;
+		width: 330rpx;
 	}
 
 	.product-title {
-		width: 300upx;
-		font-size: 32upx;
+		width: 300rpx;
+		font-size: 32rpx;
 		word-break: break-all;
 		display: -webkit-box;
 		overflow: hidden;
@@ -41,7 +41,7 @@
 	}
 
 	.product-price {
-		font-size: 28upx;
+		font-size: 28rpx;
 		position: relative;
 	}
 
@@ -52,15 +52,15 @@
 	.product-price-favour {
 		color: #888888;
 		text-decoration: line-through;
-		margin-left: 10upx;
+		margin-left: 10rpx;
 	}
 
 	.product-tip {
 		position: absolute;
-		right: 10upx;
+		right: 10rpx;
 		background-color: #FF3333;
 		color: #FFFFFF;
-		padding: 0 10upx;
-		border-radius: 5upx;
+		padding: 0 10rpx;
+		border-radius: 5rpx;
 	}
 </style>

@@ -87,7 +87,7 @@
 
 <style>
 	.scan-result {
-		min-height: 50upx;
-		line-height: 50upx;
+		min-height: 50rpx;
+		line-height: 50rpx;
 	}
 </style>

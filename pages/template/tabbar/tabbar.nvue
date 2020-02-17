@@ -301,8 +301,8 @@
     }
 
     .scroll-h {
-        width: 750upx;
-        height: 80upx;
+        width: 750rpx;
+        height: 80rpx;
         flex-direction: row;
         /* #ifndef APP-PLUS */
         white-space: nowrap;
@@ -314,7 +314,7 @@
     }
 
     .line-h {
-        height: 1upx;
+        height: 1rpx;
         background-color: #cccccc;
     }
 
@@ -323,15 +323,15 @@
         display: inline-block;
         /* #endif */
         flex-wrap: nowrap;
-        padding-left: 34upx;
-        padding-right: 34upx;
+        padding-left: 34rpx;
+        padding-right: 34rpx;
     }
 
     .uni-tab-item-title {
         color: #555;
-        font-size: 30upx;
-        height: 80upx;
-        line-height: 80upx;
+        font-size: 30rpx;
+        height: 80rpx;
+        line-height: 80rpx;
         flex-wrap: nowrap;
         /* #ifndef APP-PLUS */
         white-space: nowrap;
@@ -356,7 +356,7 @@
         /* #ifndef MP-ALIPAY */
         flex-direction: column;
         /* #endif */
-        width: 750upx;
+        width: 750rpx;
     }
 
     .update-tips {
@@ -378,7 +378,7 @@
     }
 
     .refresh {
-        width: 750upx;
+        width: 750rpx;
         height: 64px;
         justify-content: center;
     }
@@ -425,7 +425,7 @@
     }
 
     .loading-more-text {
-        font-size: 28upx;
+        font-size: 28rpx;
         color: #999;
     }
 </style>

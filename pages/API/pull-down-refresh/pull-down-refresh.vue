@@ -70,13 +70,13 @@
 
 <style>
 	.text {
-		margin: 16upx 0;
+		margin: 16rpx 0;
 		width:100%;
 		background-color: #fff;
-		height: 120upx;
-		line-height: 120upx;
+		height: 120rpx;
+		line-height: 120rpx;
 		text-align: center;
 		color: #555;
-		border-radius: 8upx;
+		border-radius: 8rpx;
 	}
 </style>

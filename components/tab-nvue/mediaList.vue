@@ -55,8 +55,8 @@
 	}
 
 	.list-cell {
-		width: 750upx;
-		padding: 0 30upx;
+		width: 750rpx;
+		padding: 0 30rpx;
 	}
 
 	.uni-list-cell-hover {
@@ -66,10 +66,10 @@
 	.media-list {
 		flex: 1;
 		flex-direction: column;
-		border-bottom-width: 1upx;
+		border-bottom-width: 1rpx;
 		border-bottom-style: solid;
 		border-bottom-color: #c8c7cc;
-		padding: 20upx 0;
+		padding: 20rpx 0;
 	}
 
 	.media-image-right {
@@ -87,49 +87,49 @@
 	.media-title {
 		lines: 3;
 		text-overflow: ellipsis;
-		font-size: 32upx;
+		font-size: 32rpx;
 		color: #555555;
 	}
 
 	.media-title2 {
 		flex: 1;
-		margin-top: 6upx;
-		line-height: 40upx;
+		margin-top: 6rpx;
+		line-height: 40rpx;
 	}
 
 	.image-section {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
 	.image-section-right {
-		margin-top: 0upx;
-		margin-left: 10upx;
-		width: 225upx;
-		height: 146upx;
+		margin-top: 0rpx;
+		margin-left: 10rpx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-section-left {
-		margin-top: 0upx;
-		margin-right: 10upx;
-		width: 225upx;
-		height: 146upx;
+		margin-top: 0rpx;
+		margin-right: 10rpx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-list1 {
-		width: 690upx;
-		height: 481upx;
+		width: 690rpx;
+		height: 481rpx;
 	}
 
 	.image-list2 {
-		width: 225upx;
-		height: 146upx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-list3 {
-		width: 225upx;
-		height: 146upx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.media-info {
@@ -137,13 +137,13 @@
 	}
 
 	.info-text {
-		margin-right: 20upx;
+		margin-right: 20rpx;
 		color: #999999;
-		font-size: 24upx;
+		font-size: 24rpx;
 	}
 
 	.media-foot {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 		flex-direction: row;
 		justify-content: space-between;
 	}
@@ -152,24 +152,24 @@
 		align-items: center;
 		justify-content: flex-end;
 		flex-direction: row;
-		height: 40upx;
-		width: 80upx;
+		height: 40rpx;
+		width: 80rpx;
 	}
 
 	.close-view {
 		border-style: solid;
 		border-width: 1px;
 		border-color: #999999;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 		justify-content: center;
-		height: 30upx;
-		width: 40upx;
-		line-height: 30upx;
+		height: 30rpx;
+		width: 40rpx;
+		line-height: 30rpx;
 	}
 
 	.close {
 		text-align: center;
 		color: #999999;
-		font-size: 28upx;
+		font-size: 28rpx;
 	}
 </style>

@@ -73,12 +73,12 @@
 	
     picker-view {
         width: 100%;
-        height: 600upx;
-        margin-top:20upx;
+        height: 600rpx;
+        margin-top:20rpx;
     }
 
     .item {
-        line-height: 100upx;
+        line-height: 100rpx;
         text-align: center;
     }
 </style>

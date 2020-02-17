@@ -114,7 +114,7 @@ export default {
 
 <style>
 	.uni-btn-v {
-		margin: 20upx 0;
+		margin: 20rpx 0;
 		padding: 0;
 	}
 </style>

@@ -226,10 +226,10 @@
 
 <style>
 	.cell-pd {
-		padding: 22upx 30upx;
+		padding: 22rpx 30rpx;
 	}
 
 	.list-pd {
-		margin-top: 50upx;
+		margin-top: 50rpx;
 	}
 </style>

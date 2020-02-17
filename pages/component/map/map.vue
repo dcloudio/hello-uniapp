@@ -45,6 +45,6 @@
 <style>
 	map {
 		width: 100%;
-		height: 600upx;
+		height: 600rpx;
 	}
 </style>
