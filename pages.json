@@ -295,19 +295,6 @@
 				"navigationBarTitleText": "摇一摇"
 			}
 		},
-		// #ifdef APP-PLUS
-		{
-			"path": "pages/user-protocol/user-protocol",
-			"style": {
-				"navigationBarTitleText": "个人信息保护指引",
-				"app-plus": {
-					"titleNView": {
-						"autoBackButton": false
-					}
-				}
-			}
-		},
-		// #endif
 		// #ifdef H5 || APP-PLUS
 		{
 			"path": "pages/about/about",

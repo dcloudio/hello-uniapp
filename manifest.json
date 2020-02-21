@@ -25,10 +25,6 @@
             "Speech" : {},
             "VideoPlayer" : {}
         },
-        "privacy": {
-            /* 打包后生效 */
-            "prompt": "custom"
-        },
         /* 应用发布信息 */
         "distribute" : {
             /* android打包配置 */
