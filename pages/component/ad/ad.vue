@@ -2,10 +2,10 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="ad-view">
-            <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload"></ad>
+            <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload" @error="aderror"></ad>
             <!-- #ifdef APP-PLUS -->
             <view class="ad-tips" v-if="!isLoad">
-                <text>广告加载中...</text>
+                <text>{{adMessage}}</text>
             </view>
             <!-- #endif -->
             <!-- #ifndef APP-PLUS -->
@@ -26,7 +26,8 @@
             return {
                 title: 'AD组件',
                 unitId: '',
-                isLoad: false
+                isLoad: false,
+                adMessage: "广告加载中..."
             }
         },
         onLoad() {
@@ -43,6 +44,9 @@
         methods: {
             adload() {
                 this.isLoad = true;
+            },
+            aderror(e) {
+                this.adMessage = e.detail.errMsg;
             },
             gotoapi() {
                 uni.navigateTo({
