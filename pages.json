@@ -253,8 +253,8 @@
 		},
 		// #ifndef H5 || MP-BAIDU
 		{
-			"path" : "pages/component/ad/ad",
-			"style" : {
+			"path": "pages/component/ad/ad",
+			"style": {
 				"navigationBarTitleText": "AD"
 			}
 		},
@@ -616,8 +616,8 @@
 				},
 				// #ifdef APP-PLUS || MP-WEIXIN
 				{
-					"path" : "rewarded-video-ad/rewarded-video-ad",
-					"style" : {
+					"path": "rewarded-video-ad/rewarded-video-ad",
+					"style": {
 						"navigationBarTitleText": "激励视频广告"
 					}
 				},
