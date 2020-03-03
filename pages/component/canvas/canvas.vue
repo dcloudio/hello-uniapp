@@ -16,15 +16,14 @@
 </template>
 
 <script module="animate" lang="renderjs">
-    function Ball({
-        x,
-        y,
-        vx,
-        vy,
-        canvasWidth,
-        canvasHeight,
-        ctx
-    }) {
+    function Ball(options) {
+        var x = options.x
+        var y = options.y
+        var vx = options.vx
+        var vy = options.vy
+        var canvasWidth = options.canvasWidth
+        var canvasHeight = options.canvasHeight
+        var ctx = options.ctx
         this.canvasWidth = canvasWidth
         this.canvasHeight = canvasHeight
         this.ctx = ctx
@@ -76,8 +75,8 @@
 
     export default {
         methods: {
-            start(newVal, oldVal, owner, ins) {
-                let canvasWidth = ins.getDataset().width,
+            start: function(newVal, oldVal, owner, ins) {
+                var canvasWidth = ins.getDataset().width,
                     canvasHeight = ins.getDataset().height,
                     canvasEle = document.querySelectorAll('.canvas>canvas')[0],
                     ctx = canvasEle.getContext('2d'),
@@ -85,10 +84,10 @@
                     ballList = [],
                     layer = 3,
                     ballInlayer = 20
-                for (let i = 0; i < layer; i++) {
-                    let radius = getDistance(canvasWidth / 2, canvasHeight / 2) / layer * i
-                    for (let j = 0; j < ballInlayer; j++) {
-                        let deg = j * 2 * Math.PI / ballInlayer,
+                for (var i = 0; i < layer; i++) {
+                    var radius = getDistance(canvasWidth / 2, canvasHeight / 2) / layer * i
+                    for (var j = 0; j < ballInlayer; j++) {
+                        var deg = j * 2 * Math.PI / ballInlayer,
                             sin = Math.sin(deg),
                             cos = Math.cos(deg),
                             x = radius * cos + canvasWidth / 2,
@@ -96,13 +95,13 @@
                             vx = speed * cos,
                             vy = speed * sin
                         ballList.push(new Ball({
-                            x,
-                            y,
-                            vx,
-                            vy,
-                            canvasWidth,
-                            canvasHeight,
-                            ctx,
+                            x: x,
+                            y: y,
+                            vx: vx,
+                            vy: vy,
+                            canvasWidth: canvasWidth,
+                            canvasHeight: canvasHeight,
+                            ctx: ctx,
                             radius: 5
                         }))
                     }
