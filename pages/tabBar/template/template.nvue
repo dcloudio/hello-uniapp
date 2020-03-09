@@ -92,10 +92,10 @@
 					},
 					// #endif
                     // #ifdef APP-NVUE
-					{
-						name: 'swiper-list',
-						url: 'swiper-list-nvue'
-					},
+					// {
+					// 	name: 'swiper-list',
+					// 	url: 'swiper-list-nvue'
+					// },
                     // #endif
 					{
 						name: 'GlobalData和vuex',
