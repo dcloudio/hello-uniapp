@@ -1118,6 +1118,14 @@
 					}
 				},
 				// #endif
+				// #ifdef APP-PLUS
+				{
+					"path": "swiper-list-nvue/swiper-list-nvue",
+					"style": {
+						"navigationBarTitleText": "swiper-list"
+					}
+				},
+				// #endif
 				{
 					"path": "scheme/scheme",
 					"style": {
