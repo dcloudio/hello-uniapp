@@ -67,7 +67,6 @@
             }
         },
         onLoad() {
-            this.pageHeight = uni.getSystemInfoSync().windowHeight;
             for (var i = 0; i < 6; i++) {
                 this.tabList.push({
                     id: "tab" + i,
@@ -77,6 +76,7 @@
             }
         },
         onReady() {
+            this.pageHeight = uni.getSystemInfoSync().windowHeight;
             this._lastTabIndex = 0;
             this.swiperWidth = 0;
             this.tabbarWidth = 0;
