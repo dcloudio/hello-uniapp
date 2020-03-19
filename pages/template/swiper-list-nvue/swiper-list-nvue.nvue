@@ -1,5 +1,5 @@
 <template>
-    <list :id="pageId" class="page" :bounce="true">
+    <list :id="pageId" class="page" :bounce="false">
         <cell>
             <view id="head" class="header">
                 <text class="header-title">header</text>
