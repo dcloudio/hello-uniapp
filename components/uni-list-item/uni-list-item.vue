@@ -15,10 +15,11 @@
 					<text class="uni-list-item__content-title">{{ title }}</text>
 					<text v-if="note" class="uni-list-item__content-note">{{ note }}</text>
 				</view>
-				<view v-if="showBadge || showArrow || showSwitch" class="uni-list-item__extra">
+				<view class="uni-list-item__extra">
 					<text v-if="rightText" class="uni-list-item__extra-text">{{rightText}}</text>
 					<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
 					<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked" @change="onSwitchChange" />
+					<slot name="right"></slot>
 					<uni-icons v-if="showArrow" :size="20" class="uni-icon-wrapper" color="#bbb" type="arrowright" />
 				</view>
 			</view>
