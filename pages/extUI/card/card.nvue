@@ -16,7 +16,7 @@
 						<view class="footer-box">
 							<view class="" @click.stop="footerClick('喜欢')"><text class="footer-box__item"> 喜欢</text></view>
 							<view class="" @click.stop="footerClick('评论')"><text class="footer-box__item"> 评论</text></view>
-							<view class="" @click.stop="footerClick('分享')"><text class="footer-box__item"> 收藏</text></view>
+							<view class="" @click.stop="footerClick('分享')"><text class="footer-box__item"> 分享</text></view>
 						</view>
 					</block>
 				</uni-card>
@@ -35,7 +35,7 @@
 						<view class="footer-box">
 							<view @click.stop="footerClick('喜欢')"><text class="footer-box__item"> 喜欢</text></view>
 							<view @click.stop="footerClick('评论')"><text class="footer-box__item"> 评论</text></view>
-							<view @click.stop="footerClick('分享')"><text class="footer-box__item"> 收藏</text></view>
+							<view @click.stop="footerClick('分享')"><text class="footer-box__item"> 分享</text></view>
 						</view>
 					</template>
 				</uni-card>
