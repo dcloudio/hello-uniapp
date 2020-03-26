@@ -119,7 +119,7 @@
 <style>
 	.image {
 		width: 100%;
-		height: 360upx;
+		height: 360rpx;
 	}
 
 	.btn-savefile {

@@ -143,6 +143,6 @@
 
 <style>
 	.uni-pd {
-		padding-left: 30upx;
+		padding-left: 30rpx;
 	}
 </style>

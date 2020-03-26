@@ -139,7 +139,7 @@
 
 <style>
 	.banner {
-		height: 360upx;
+		height: 360rpx;
 		overflow: hidden;
 		position: relative;
 		background-color: #ccc;
@@ -150,21 +150,21 @@
 	}
 
 	.banner-title {
-		max-height: 84upx;
+		max-height: 84rpx;
 		overflow: hidden;
 		position: absolute;
-		left: 30upx;
-		bottom: 30upx;
+		left: 30rpx;
+		bottom: 30rpx;
 		width: 90%;
-		font-size: 32upx;
+		font-size: 32rpx;
 		font-weight: 400;
-		line-height: 42upx;
+		line-height: 42rpx;
 		color: white;
 		z-index: 11;
 	}
 
 	.article-meta {
-		padding: 20upx 40upx;
+		padding: 20rpx 40rpx;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
@@ -172,20 +172,20 @@
 	}
 
 	.article-text {
-		font-size: 26upx;
-		line-height: 50upx;
-		margin: 0 20upx;
+		font-size: 26rpx;
+		line-height: 50rpx;
+		margin: 0 20rpx;
 	}
 
 	.article-author,
 	.article-time {
-		font-size: 30upx;
+		font-size: 30rpx;
 	}
 
 	.article-content {
-		padding: 0 30upx;
+		padding: 0 30rpx;
 		overflow: hidden;
-		font-size: 30upx;
-		margin-bottom: 30upx;
+		font-size: 30rpx;
+		margin-bottom: 30rpx;
 	}
 </style>

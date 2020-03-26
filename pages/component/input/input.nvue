@@ -13,7 +13,7 @@
                 </view>
             </view>
             <!-- #ifdef APP-PLUS -->
-            <view v-if="platform==='ios'" class="uni-form-item uni-column">
+            <view v-if="platform==='ios'&&!isNvue" class="uni-form-item uni-column">
                 <view class="title"><text class="uni-form-item__title">隐藏 iOS 软键盘上的导航条</text></view>
                 <view class="uni-input-wrapper">
                     <input class="uni-input" placeholder="触摸其他地方收起键盘" @focus="onFocus" @blur="onBlur" />
@@ -121,26 +121,27 @@
                 changeValue: '',
                 showPassword: true,
                 src: '../../../static/eye-1.png',
-                platform: ''
+                platform: '',
+                isNvue: false,
             }
         },
         methods: {
             onKeyInput: function(event) {
-                this.inputValue = event.target.value
+                this.inputValue = event.detail.value
             },
             replaceInput: function(event) {
-                var value = event.target.value;
+                var value = event.detail.value;
                 if (value === '11') {
                     this.changeValue = '2';
                 }
             },
             hideKeyboard: function(event) {
-                if (event.target.value === '123') {
+                if (event.detail.value === '123') {
                     uni.hideKeyboard();
                 }
             },
             clearInput: function(event) {
-                this.inputClearValue = event.target.value;
+                this.inputClearValue = event.detail.value;
                 if (event.detail.value.length > 0) {
                     this.showClearIcon = true;
                 } else {
@@ -167,6 +168,9 @@
         },
         onLoad() {
             this.platform = uni.getSystemInfoSync().platform
+            // #ifdef APP-PLUS-NVUE
+            this.isNvue = true
+            // #endif
         }
     }
 </script>

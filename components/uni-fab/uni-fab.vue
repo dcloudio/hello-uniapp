@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-if="leftBottom||rightBottom||leftTop||rightTop" :class="{
+		<view v-if="popMenu && (leftBottom||rightBottom||leftTop||rightTop)" :class="{
         'uni-fab--leftBottom': leftBottom,
         'uni-fab--rightBottom': rightBottom,
         'uni-fab--leftTop': leftTop,
@@ -56,7 +56,9 @@
 	 * 	@value horizontal 水平显示
 	 * 	@value vertical 垂直显示
 	 * @property {Array} content 展开菜单内容配置项
+	 * @property {Boolean} popMenu 是否使用弹出菜单
 	 * @event {Function} trigger 展开菜单点击事件，返回点击信息
+	 * @event {Function} fabClick 悬浮按钮点击事件
 	 */
 	export default {
 		name: 'UniFab',
@@ -88,6 +90,10 @@
 			show: {
 				type: Boolean,
 				default: false
+			},
+			popMenu: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
@@ -162,6 +168,10 @@
 		},
 		methods: {
 			_onClick() {
+				this.$emit('fabClick')
+				if (!this.popMenu) {
+					return
+				}
 				this.isShow = !this.isShow
 			},
 			open() {
@@ -215,6 +225,9 @@
 	.uni-fab--leftBottom {
 		left: 5px;
 		bottom: 20px;
+		/* #ifdef H5 */
+		bottom: calc(20px + var(--window-bottom));
+		/* #endif */
 		padding: 10px;
 	}
 
@@ -230,6 +243,9 @@
 	.uni-fab--rightBottom {
 		right: 5px;
 		bottom: 20px;
+		/* #ifdef H5 */
+		bottom: calc(20px + var(--window-bottom));
+		/* #endif */
 		padding: 10px;
 	}
 
@@ -259,6 +275,9 @@
 	.uni-fab__circle--leftBottom {
 		left: 15px;
 		bottom: 30px;
+		/* #ifdef H5 */
+		bottom: calc(30px + var(--window-bottom));
+		/* #endif */
 	}
 
 	.uni-fab__circle--leftTop {
@@ -272,6 +291,9 @@
 	.uni-fab__circle--rightBottom {
 		right: 15px;
 		bottom: 30px;
+		/* #ifdef H5 */
+		bottom: calc(30px + var(--window-bottom));
+		/* #endif */
 	}
 
 	.uni-fab__circle--rightTop {

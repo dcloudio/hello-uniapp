@@ -337,19 +337,19 @@
 <style>
 	.canvas-element-wrapper {
 		display: block;
-		margin-bottom: 100upx;
+		margin-bottom: 100rpx;
 	}
 
 	.canvas-element {
 		width: 100%;
-		height: 500upx;
+		height: 500rpx;
 		background-color: #ffffff;
 	}
 
 	.canvas-buttons {
-		padding: 30upx 50upx 10upx;
+		padding: 30rpx 50rpx 10rpx;
 		width: 100%;
-		height: 360upx;
+		height: 360rpx;
 		box-sizing: border-box;
 	}
 
@@ -360,7 +360,7 @@
 		justify-content: center;
 		height: 40px;
 		line-height: 1;
-		width: 300upx;
-		margin: 15upx 12upx;
+		width: 300rpx;
+		margin: 15rpx 12rpx;
 	}
 </style>

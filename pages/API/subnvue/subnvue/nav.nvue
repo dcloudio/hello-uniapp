@@ -45,13 +45,13 @@
 		align-items: center;
 	}
 	.title {
-			font-size: 36upx;
+			font-size: 36rpx;
 	}
 	.back {
 		position: absolute;
 		left: 3px;
 		color: #000000;
 		font-family: unibtn;
-		font-size: 54upx;
+		font-size: 54rpx;
 	}
 </style>

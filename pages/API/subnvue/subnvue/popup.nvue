@@ -6,7 +6,7 @@
 				<text class="content">{{content}}</text>
 			</div>
 			<div>
-				<text style="color: red; font-size: 30upx;">以下为 Popup 内部滚动示例：</text>
+				<text style="color: red; font-size: 30rpx;">以下为 Popup 内部滚动示例：</text>
 			</div>
 			<div class="cell" v-for="(item, index) in lists" @click="handle(item)" :key="index">
 				<text class="text">{{item}}</text>
@@ -62,59 +62,59 @@
 	.wrapper {
 		flex-direction: column;
 		justify-content: space-between;
-		padding: 10upx 15upx;
+		padding: 10rpx 15rpx;
 		background-color: #F4F5F6;
-		border-radius: 4upx;
+		border-radius: 4rpx;
 	}
 
 	.title {
-		height: 100upx;
-		line-height: 100upx;
+		height: 100rpx;
+		line-height: 100rpx;
 		border-bottom-style: solid;
-		border-bottom-width: 1upx;
+		border-bottom-width: 1rpx;
 		border-bottom-color: #CBCBCB;
 		flex: 0;
-		font-size: 30upx;
+		font-size: 30rpx;
 	}
 
 	.scroller {
-		height: 400upx;
-		padding: 8upx 15upx;
+		height: 400rpx;
+		padding: 8rpx 15rpx;
 	}
 
 	.content {
 		color: #555555;
-		font-size: 32upx;
+		font-size: 32rpx;
 	}
 
 	.message-wrapper {
 		flex: 0;
 		border-top-style: solid;
-		border-top-width: 1upx;
+		border-top-width: 1rpx;
 		border-top-color: #CBCBCB;
-		height: 80upx;
+		height: 80rpx;
 		align-items: flex-end;
 	}
 
 	.send-message {
-		font-size: 30upx;
-		line-height: 80upx;
+		font-size: 30rpx;
+		line-height: 80rpx;
 		color: #00CE47;
-		margin-left: 20upx;
+		margin-left: 20rpx;
 	}
 
 	.cell {
-		margin: 10upx;
-		padding: 20upx 0;
-		top: 10upx;
+		margin: 10rpx;
+		padding: 20rpx 0;
+		top: 10rpx;
 		align-items: center;
 		justify-content: center;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 		background-color: #5989B9;
 	}
 
 	.text {
-		font-size: 30upx;
+		font-size: 30rpx;
 		text-align: center;
 		color: white;
 	}

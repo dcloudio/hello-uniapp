@@ -1,12 +1,12 @@
 <template>
-	<view class="page">
-		<view class='feedback-title'>
-			<text>问题和意见</text>
-			<text class="feedback-quick" @tap="chooseMsg">快速键入</text>
-		</view>
-		<view class="feedback-body">
-			<textarea placeholder="请详细描述你的问题和意见..." v-model="sendDate.content" class="feedback-textare" />
-			</view>
+    <view class="page">
+        <view class='feedback-title'>
+            <text>问题和意见</text>
+            <text class="feedback-quick" @tap="chooseMsg">快速键入</text>
+        </view>
+        <view class="feedback-body">
+            <textarea placeholder="请详细描述你的问题和意见..." v-model="sendDate.content" class="feedback-textare"></textarea>
+        </view>
         <view class='feedback-title'>
             <text>图片(选填,提供问题截图,总大小10M以下)</text>
         </view>
@@ -25,7 +25,7 @@
                             </view>
                         </block>
                         <view class="uni-uploader__input-box" v-show="imageList.length < 8">
-                        	<view class="uni-uploader__input" @tap="chooseImg"></view>
+                            <view class="uni-uploader__input" @tap="chooseImg"></view>
                         </view>
                     </view>
                 </view>
@@ -40,7 +40,8 @@
         <view class='feedback-title feedback-star-view'>
             <text>应用评分</text>
             <view class="feedback-star-view">
-                <text class="feedback-star" v-for="(value,key) in stars" :key="key" :class="key < sendDate.score ? 'active' : ''" @tap="chooseStar(value)"></text>
+                <text class="feedback-star" v-for="(value,key) in stars" :key="key" :class="key < sendDate.score ? 'active' : ''"
+                    @tap="chooseStar(value)"></text>
             </view>
         </view>
         <button type="default" class="feedback-submit" @tap="send">提交</button>
@@ -78,8 +79,8 @@
             this.sendDate = Object.assign(deviceInfo, this.sendDate);
         },
         methods: {
-            close(e){
-                this.imageList.splice(e,1);
+            close(e) {
+                this.imageList.splice(e, 1);
             },
             chooseMsg() { //快速输入
                 uni.showActionSheet({
@@ -105,11 +106,28 @@
             previewImage(index) { //预览图片
                 uni.previewImage({
                     urls: this.imageList,
-					current:this.imageList[index]
+                    current: this.imageList[index]
                 });
             },
             send() { //发送反馈
                 console.log(JSON.stringify(this.sendDate));
+                if (this.imageList.length === 0) {
+                    uni.showModal({
+                        content: '至少选择一张图片',
+                        showCancel: false
+                    })
+                    return
+                }
+                if (this.sendDate.content.length === 0) {
+                    uni.showModal({
+                        content: '请输入问题和意见',
+                        showCancel: false
+                    })
+                    return
+                }
+                uni.showLoading({
+                    title: '上传中...'
+                })
                 let imgs = this.imageList.map((value, index) => {
                     return {
                         name: "image" + index,
@@ -121,20 +139,37 @@
                     files: imgs,
                     formData: this.sendDate,
                     success: (res) => {
-                        if (res.statusCode === 200) {
-                            uni.showToast({
-                                title: "反馈成功!"
-                            });
+                        if (typeof res.data === 'string') {
+                            res.data = JSON.parse(res.data)
+                        }
+                        if (res.statusCode === 200 && res.data && res.data.ret === 0) {
+                            uni.showModal({
+                                content: '反馈成功',
+                                showCancel: false
+                            })
                             this.imageList = [];
                             this.sendDate = {
                                 score: 0,
                                 content: "",
                                 contact: ""
                             }
+                        } else if (res.statusCode !== 200){
+                            uni.showModal({
+                                content: '反馈失败，错误码为：' + res.statusCode,
+                                showCancel: false
+                            })
+                        } else {
+                            uni.showModal({
+                                content: '反馈失败',
+                                showCancel: false
+                            })
                         }
                     },
                     fail: (res) => {
-                        console.log(res)
+                        console.log(JSON.stringify(res))
+                    },
+                    complete() {
+                        uni.hideLoading()
                     }
                 });
             }
@@ -148,9 +183,20 @@
     }
 
     .input-view {
-        font-size: 28upx;
+        font-size: 28rpx;
     }
-    .close-view{
-        text-align: center;line-height:14px;height: 16px;width: 16px;border-radius: 50%;background: #FF5053;color: #FFFFFF;position: absolute;top: -6px;right: -4px;font-size: 12px;
+
+    .close-view {
+        text-align: center;
+        line-height: 14px;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #FF5053;
+        color: #FFFFFF;
+        position: absolute;
+        top: -6px;
+        right: -4px;
+        font-size: 12px;
     }
 </style>

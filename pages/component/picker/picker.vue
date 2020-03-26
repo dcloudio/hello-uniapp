@@ -101,8 +101,8 @@
 		},
 		methods: {
 			bindPickerChange: function(e) {
-				console.log('picker发送选择改变，携带值为：' + e.target.value)
-				this.index = e.target.value
+				console.log('picker发送选择改变，携带值为：' + e.detail.value)
+				this.index = e.detail.value
 			},
 			bindMultiPickerColumnChange: function(e) {
 				console.log('修改的列为：' + e.detail.column + '，值为：' + e.detail.value)
@@ -151,10 +151,10 @@
 				this.$forceUpdate()
 			},
 			bindDateChange: function(e) {
-				this.date = e.target.value
+				this.date = e.detail.value
 			},
 			bindTimeChange: function(e) {
-				this.time = e.target.value
+				this.time = e.detail.value
 			}
 			
 		}

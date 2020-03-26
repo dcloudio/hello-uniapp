@@ -148,7 +148,7 @@ export default {
 
 <style>
 .banner {
-	height: 360upx;
+	height: 360rpx;
 	overflow: hidden;
 	position: relative;
 	background-color: #ccc;
@@ -159,22 +159,22 @@ export default {
 }
 
 .banner-title {
-	max-height: 84upx;
+	max-height: 84rpx;
 	overflow: hidden;
 	position: absolute;
-	left: 30upx;
-	bottom: 30upx;
+	left: 30rpx;
+	bottom: 30rpx;
 	width: 90%;
-	font-size: 32upx;
+	font-size: 32rpx;
 	font-weight: 400;
-	line-height: 42upx;
+	line-height: 42rpx;
 	color: white;
 	z-index: 11;
 }
 
 .uni-media-list-logo {
-	width: 180upx;
-	height: 140upx;
+	width: 180rpx;
+	height: 140rpx;
 }
 
 .uni-media-list-body {
@@ -183,8 +183,8 @@ export default {
 }
 
 .uni-media-list-text-top {
-	height: 74upx;
-	font-size: 28upx;
+	height: 74rpx;
+	font-size: 28rpx;
 	overflow: hidden;
 }
 

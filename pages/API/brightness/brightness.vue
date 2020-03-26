@@ -63,24 +63,24 @@ export default {
 
 <style>
 .text-box {
-	margin-bottom: 40upx;
+	margin-bottom: 40rpx;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 300upx;
+	height: 300rpx;
 	background-color: #ffffff;
-	font-size: 32upx;
+	font-size: 32rpx;
 	color: #353535;
 }
 
 .uni-slider {
-	margin: 100upx 0;
+	margin: 100rpx 0;
 }
 
 .tips {
-	font-size: 26upx;
+	font-size: 26rpx;
 	text-align: center;
-	margin-top: 20upx;
+	margin-top: 20rpx;
 	color: #999;
 }
 </style>

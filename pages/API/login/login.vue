@@ -2,7 +2,7 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap">
-            <view style="background:#FFF; padding:40upx;">
+            <view style="background:#FFF; padding:40rpx;">
                 <block v-if="hasLogin === true">
                     <view class="uni-h3 uni-center uni-common-mt">已登录</view>
                     <view class="uni-hello-text uni-center">

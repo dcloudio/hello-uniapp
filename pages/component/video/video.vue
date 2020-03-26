@@ -88,6 +88,6 @@
 
 <style>
 	video {
-		width: 690upx;
+		width: 690rpx;
 	}
 </style>

@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<view style="background:#FFF; padding:40upx;">
+			<view style="background:#FFF; padding:40rpx;">
 				<block v-if="hasUserInfo === false">
 					<view class="uni-hello-text uni-center">
 						<text>请点击下方按钮获取用户头像及昵称</text>
@@ -10,7 +10,7 @@
 				</block>
 				<block v-if="hasUserInfo === true">
 					<view class="uni-h4 uni-center uni-common-mt">{{userInfo.nickName || userInfo.email}}</view>
-					<view style="padding:30upx 0; text-align:center;">
+					<view style="padding:30rpx 0; text-align:center;">
 						<image class="userinfo-avatar" :src="userInfo.avatarUrl"></image>
 					</view>
 				</block>
@@ -119,8 +119,8 @@
 
 <style>
 	.userinfo-avatar {
-		border-radius: 128upx;
-		width: 128upx;
-		height: 128upx;
+		border-radius: 128rpx;
+		width: 128rpx;
+		height: 128rpx;
 	}
 </style>

@@ -7,7 +7,7 @@
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'top')"><text class="word-btn-white">左上角显示</text></view>
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'top')"><text class="word-btn-white">右上角显示</text></view>
 		</view>
-		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" />
+		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" @fabClick="fabClick" />
 	</view>
 </template>
 
@@ -72,6 +72,12 @@
 							console.log('用户点击取消')
 						}
 					}
+				})
+			},
+			fabClick() {
+				uni.showToast({
+					title: '点击了悬浮按钮',
+					icon: 'none'
 				})
 			},
 			switchBtn(hor, ver) {

@@ -94,29 +94,29 @@
 	.animation-element-wrapper {
 		display: flex;
 		width: 100%;
-		padding-top: 150upx;
-		padding-bottom: 150upx;
+		padding-top: 150rpx;
+		padding-bottom: 150rpx;
 		justify-content: center;
 		overflow: hidden;
 		background-color: #ffffff;
 	}
 
 	.animation-element {
-		width: 200upx;
-		height: 200upx;
+		width: 200rpx;
+		height: 200rpx;
 		background-color: #1AAD19;
 	}
 
 	.animation-buttons {
-		padding:30upx 0;
+		padding:30rpx 0;
 		width: 100%;
-		height: 360upx;
+		height: 360rpx;
 	}
 
 	.animation-button {
 		float: left;
 		width: 44%;
-		margin: 15upx 3%;
+		margin: 15rpx 3%;
 	}
 
 	.animation-button-reset {

@@ -2,14 +2,14 @@
 	<view v-if="show" class="uni-noticebar" :style="{ backgroundColor: backgroundColor }" @click="onClick">
 		<!-- #ifdef MP-ALIPAY -->
 		<view v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close" @click="close">
-			<uni-icons type="closefill" :color="color" size="12" />
+			<uni-icons type="closeempty" :color="color" size="12" />
 		</view>
 		<view v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon">
 			<uni-icons type="sound" :color="color" size="14" />
 		</view>
 		<!-- #endif -->
 		<!-- #ifndef MP-ALIPAY -->
-		<uni-icons v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close" type="closefill" :color="color" size="12" @click="close" />
+		<uni-icons v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close" type="closeempty" :color="color" size="12" @click="close" />
 		<uni-icons v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon" type="sound" :color="color" size="14" />
 		<!-- #endif -->
 		<view ref="textBox" class="uni-noticebar__content-wrapper" :class="{'uni-noticebar__content-wrapper--scrollable':scrollable, 'uni-noticebar__content-wrapper--single':!scrollable && (single || moreText)}">

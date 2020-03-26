@@ -90,6 +90,6 @@
 
 	.demo {
 		background: #FFF;
-		padding: 50upx;
+		padding: 50rpx;
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<view class="qiun-columns">
-		<view class="qiun-padding" style="font-size: 32upx;">
+		<view class="qiun-padding" style="font-size: 32rpx;">
 			<text>{{tips}}</text>
 		</view>
     <view class="qiun-padding">
@@ -77,8 +77,8 @@
 			<!--#endif-->
 			<!--#ifndef MP-ALIPAY -->
 			<canvas canvas-id="canvasArcbar1" id="canvasArcbar1" class="charts3"></canvas>
-			<canvas canvas-id="canvasArcbar2" id="canvasArcbar2" class="charts3" style="margin-left: 250upx;"></canvas>
-			<canvas canvas-id="canvasArcbar3" id="canvasArcbar3" class="charts3" style="margin-left: 500upx;"></canvas>
+			<canvas canvas-id="canvasArcbar2" id="canvasArcbar2" class="charts3" style="margin-left: 250rpx;"></canvas>
+			<canvas canvas-id="canvasArcbar3" id="canvasArcbar3" class="charts3" style="margin-left: 500rpx;"></canvas>
 			<!--#endif-->
 		</view>
     <view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
@@ -1091,7 +1091,7 @@
 <style>
 	page {
 		background: #F2F2F2;
-		width: 750upx;
+		width: 750rpx;
 		overflow-x: hidden;
 	}
 
@@ -1116,7 +1116,7 @@
 	}
 
 	.qiun-common-mt {
-		margin-top: 10upx;
+		margin-top: 10rpx;
 	}
 
 	.qiun-bg-white {
@@ -1125,56 +1125,56 @@
 
 	.qiun-title-bar {
 		width: 96%;
-		padding: 10upx 2%;
+		padding: 10rpx 2%;
 		flex-wrap: nowrap;
 	}
 
 	.qiun-title-dot-light {
-		border-left: 10upx solid #0ea391;
-		padding-left: 10upx;
-		font-size: 32upx;
+		border-left: 10rpx solid #0ea391;
+		padding-left: 10rpx;
+		font-size: 32rpx;
 		color: #000000
 	}
 
 	/* 通用样式 */
 	.qiun-charts {
-		width: 750upx;
-		height: 500upx;
+		width: 750rpx;
+		height: 500rpx;
 		background-color: #FFFFFF;
 	}
 
 	.charts {
-		width: 750upx;
-		height: 500upx;
+		width: 750rpx;
+		height: 500rpx;
 		background-color: #FFFFFF;
 	}
 
 	/* 横屏样式 */
 	.qiun-charts-rotate {
-		width: 700upx;
-		height: 1100upx;
+		width: 700rpx;
+		height: 1100rpx;
 		background-color: #FFFFFF;
-		padding: 25upx;
+		padding: 25rpx;
 	}
 
 	.charts-rotate {
-		width: 700upx;
-		height: 1100upx;
+		width: 700rpx;
+		height: 1100rpx;
 		background-color: #FFFFFF;
 	}
 
 	/* 圆弧进度样式 */
 	.qiun-charts3 {
-		width: 750upx;
-		height: 250upx;
+		width: 750rpx;
+		height: 250rpx;
 		background-color: #FFFFFF;
 		position: relative;
 	}
 
 	.charts3 {
 		position: absolute;
-		width: 250upx;
-		height: 250upx;
+		width: 250rpx;
+		height: 250rpx;
 		background-color: #FFFFFF;
 	}
 
@@ -1182,13 +1182,13 @@
 		display: block;
 		width: auto;
 		overflow: hidden;
-		padding: 15upx;
-		height: 30upx;
-		line-height: 30upx;
-		margin: 10upx;
+		padding: 15rpx;
+		height: 30rpx;
+		line-height: 30rpx;
+		margin: 10rpx;
 		background: #ff9933;
-		font-size: 30upx;
-		border-radius: 8upx;
+		font-size: 30rpx;
+		border-radius: 8rpx;
 		justify-content: center;
 		text-align: center;
 		border: 1px solid #dc7004;

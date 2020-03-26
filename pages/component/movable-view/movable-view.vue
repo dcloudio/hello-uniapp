@@ -54,7 +54,7 @@
 			<movable-area scale-area>
 				<movable-view direction="all" @scale="onScale" scale scale-min="0.5" scale-max="4" :scale-value="scale">text</movable-view>
 			</movable-area>
-			<view @tap="tap2" class="uni-link uni-center uni-common-mt" style="padding-bottom:80upx;">
+			<view @tap="tap2" class="uni-link uni-center uni-common-mt" style="padding-bottom:80rpx;">
 				点击这里放大3倍
 			</view>
 		</view>
@@ -109,21 +109,21 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 150upx;
-		width: 150upx;
+		height: 150rpx;
+		width: 150rpx;
 		background-color: #007AFF;
 		color: #fff;
 	}
 
 	movable-area {
-		height: 300upx;
+		height: 300rpx;
 		width: 100%;
 		background-color: #D8D8D8;
 		overflow: hidden;
 	}
 
 	.max {
-		width:500upx;
-		height: 500upx;
+		width:500rpx;
+		height: 500rpx;
 	}
 </style>

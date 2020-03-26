@@ -205,7 +205,7 @@
 <style>
 	.uni-title {
 		/* width: 100%; */
-		/* height: 80upx; */
+		/* height: 80rpx; */
 		text-align: center;
 	}
 
@@ -218,19 +218,19 @@
 		align-items: center;
 		width: 100%;
 		background: rgba(0, 0, 0, 0.6);
-		padding: 0 30upx;
+		padding: 0 30rpx;
 		box-sizing: border-box;
 	}
 
 	.uni-scroll_box {
 		height: 70%;
 		background: #fff;
-		border-radius: 20upx;
+		border-radius: 20rpx;
 	}
 
 	.uni-list-box {
-		margin: 0 20upx;
-		padding: 15upx 0;
+		margin: 0 20rpx;
+		padding: 15rpx 0;
 		border-bottom: 1px #f5f5f5 solid;
 		box-sizing: border-box;
 	}
@@ -240,12 +240,12 @@
 	}
 
 	.uni-list_name {
-		font-size: 30upx;
+		font-size: 30rpx;
 		color: #333;
 	}
 
 	.uni-list_item {
-		font-size: 24upx;
+		font-size: 24rpx;
 		color: #555;
 		line-height: 1.5;
 	}
@@ -254,7 +254,7 @@
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		min-height: 100upx;
+		min-height: 100rpx;
 		width: 100%;
 		background: #fff;
 		box-sizing: border-box;
@@ -263,38 +263,38 @@
 
 	.uni-success_sub {
 		/* width: 100%%; */
-		height: 100upx;
+		height: 100rpx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 30upx;
+		padding: 0 30rpx;
 	}
 
 	.uni-close_button {
-		padding: 0 20upx;
-		height: 60upx;
-		line-height: 60upx;
+		padding: 0 20rpx;
+		height: 60rpx;
+		line-height: 60rpx;
 		background: #ce3c39;
 		color: #ffffff;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 	}
 
 	.uni-success_content {
-		height: 600upx;
-		margin: 30upx;
+		height: 600rpx;
+		margin: 30rpx;
 		margin-top: 0;
 		border: 1px #eee solid;
-		padding: 30upx;
+		padding: 30rpx;
 	}
 
 	.uni-content_list {
-		padding-bottom: 10upx;
+		padding-bottom: 10rpx;
 		border-bottom: 1px #f5f5f5 solid;
 	}
 
 	.uni-tips {
 		text-align: center;
-		font-size: 24upx;
+		font-size: 24rpx;
 		color: #666;
 	}
 </style>

@@ -2,7 +2,7 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap">
-            <view style="background:#FFF; padding:50upx 0;">
+            <view style="background:#FFF; padding:50rpx 0;">
                 <view class="uni-hello-text uni-center">支付金额</text></view>
                 <view class="uni-h1 uni-center uni-common-mt">
                     <text class="rmbLogo">￥</text>
@@ -200,7 +200,7 @@
 
 <style>
     .rmbLogo {
-        font-size: 40upx;
+        font-size: 40rpx;
     }
 
     button {
@@ -217,12 +217,12 @@
 
     .price {
         border-bottom: 1px solid #eee;
-        width: 200upx;
-        height: 80upx;
-        padding-bottom: 4upx;
+        width: 200rpx;
+        height: 80rpx;
+        padding-bottom: 4rpx;
     }
 
     .ipaPayBtn {
-        margin-top: 30upx;
+        margin-top: 30rpx;
     }
 </style>

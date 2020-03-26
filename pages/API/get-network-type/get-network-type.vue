@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view style="background:#FFFFFF; padding:40upx;">
+			<view style="background:#FFFFFF; padding:40rpx;">
 				<view class="uni-hello-text uni-center">网络状态</view>
 				<block v-if="hasNetworkType === false">
 					<view class="uni-h2 uni-center uni-common-mt">未获取</view>

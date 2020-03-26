@@ -11,7 +11,7 @@
         <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
             <view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
                 <text class="uni-panel-text">{{item.name}}</text>
-                <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">&#xe581;</text>
+                <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
             </view>
             <view class="uni-panel-c" v-if="item.open">
                 <view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item2)">
@@ -100,7 +100,7 @@
                         name: '画布',
                         open: false,
                         pages: ['canvas']
-                    
+
                     },
                     // #ifdef APP-PLUS
                     {
@@ -122,6 +122,13 @@
                         name: '网页',
                         open: false,
                         pages: ['web-view']
+                    },
+                    // #endif
+                    // #ifndef H5 || MP-BAIDU
+                    {
+                        url: 'ad',
+                        name: 'AD组件',
+                        open: false
                     },
                     // #endif
                 ],

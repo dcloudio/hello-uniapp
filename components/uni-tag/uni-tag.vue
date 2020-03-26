@@ -54,22 +54,22 @@
 			disabled: {
 				// 是否为禁用状态
 				type: [Boolean, String],
-				defalut: false
+				default: false
 			},
 			inverted: {
 				// 是否为空心
 				type: [Boolean, String],
-				defalut: false
+				default: false
 			},
 			circle: {
 				// 是否为圆角样式
 				type: [Boolean, String],
-				defalut: false
+				default: false
 			},
 			mark: {
 				// 是否为标记样式
 				type: [Boolean, String],
-				defalut: false
+				default: false
 			}
 		},
 		methods: {

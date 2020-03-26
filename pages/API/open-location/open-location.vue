@@ -56,7 +56,7 @@
 		methods: {
 			openLocation: function (e) {
 				console.log(e)
-				var value = e.target.value
+				var value = e.detail.value
 				uni.openLocation({
 					longitude: Number(value.longitude),
 					latitude: Number(value.latitude),
@@ -70,6 +70,6 @@
 
 <style>
 	.uni-list-cell-left {
-		padding: 0 30upx;
+		padding: 0 30rpx;
 	}
 </style>

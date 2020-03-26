@@ -20,7 +20,7 @@
 
 			</view>
 		</view>
-		<view style="height: 1000upx;"></view>
+		<view style="height: 1000rpx;"></view>
 	</view>
 </template>
 
@@ -65,10 +65,10 @@ export default {
 image,
 swiper,
 .img-view {
-	width: 750upx;
-	height: 500upx;
+	width: 750rpx;
+	height: 500rpx;
 }
 .page-section-title {
-	margin-top: 50upx;
+	margin-top: 50rpx;
 }
 </style>

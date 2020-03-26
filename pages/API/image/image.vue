@@ -100,13 +100,13 @@
 		},
 		methods: {
 			sourceTypeChange: function(e) {
-				this.sourceTypeIndex = parseInt(e.target.value)
+				this.sourceTypeIndex = parseInt(e.detail.value)
 			},
 			sizeTypeChange: function(e) {
-				this.sizeTypeIndex = parseInt(e.target.value)
+				this.sizeTypeIndex = parseInt(e.detail.value)
 			},
 			countChange: function(e) {
-				this.countIndex = e.target.value;
+				this.countIndex = e.detail.value;
 			},
 			chooseImage: async function() {
 				// #ifdef APP-PLUS
@@ -226,10 +226,10 @@
 
 <style>
 	.cell-pd {
-		padding: 22upx 30upx;
+		padding: 22rpx 30rpx;
 	}
 
 	.list-pd {
-		margin-top: 50upx;
+		margin-top: 50rpx;
 	}
 </style>

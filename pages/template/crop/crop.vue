@@ -28,8 +28,8 @@
 				</view>
 			</view>
 			<view class='cropper-config'>
-				<button type="primary reverse" @click="getImage" style='margin-top: 30upx;'> 选择图片 </button>
-				<button type="warn" @click="getImageInfo" style='margin-top: 30upx;'> 点击生成图片 </button>
+				<button type="primary reverse" @click="getImage" style='margin-top: 30rpx;'> 选择图片 </button>
+				<button type="warn" @click="getImageInfo" style='margin-top: 30rpx;'> 点击生成图片 </button>
 			</view>
 			<canvas canvas-id="myCanvas" :style="'position:absolute;border: 1px solid red; width:'+imageW+'px;height:'+imageH+'px;top:-9999px;left:-9999px;'"></canvas>
 		</view>
@@ -355,11 +355,11 @@
 	}
 
 	.cropper-config {
-		padding: 20upx 40upx;
+		padding: 20rpx 40rpx;
 	}
 
 	.cropper-content {
-		min-height: 750upx;
+		min-height: 750rpx;
 		width: 100%;
 	}
 
@@ -416,7 +416,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: visible;
-		outline: 1upx solid #69f;
+		outline: 1rpx solid #69f;
 		outline-color: rgba(102, 153, 255, .75)
 	}
 	/* 横向虚线 */
@@ -427,8 +427,8 @@
 		left: 0;
 		width: 100%;
 		height: 33.33333333%;
-		border-top: 1upx dashed rgba(255, 255, 255, 0.5);
-		border-bottom: 1upx dashed rgba(255, 255, 255, 0.5);
+		border-top: 1rpx dashed rgba(255, 255, 255, 0.5);
+		border-bottom: 1rpx dashed rgba(255, 255, 255, 0.5);
 	}
 	/* 纵向虚线 */
 
@@ -438,8 +438,8 @@
 		top: 0;
 		width: 33.33333333%;
 		height: 100%;
-		border-left: 1upx dashed rgba(255, 255, 255, 0.5);
-		border-right: 1upx dashed rgba(255, 255, 255, 0.5);
+		border-left: 1rpx dashed rgba(255, 255, 255, 0.5);
+		border-right: 1rpx dashed rgba(255, 255, 255, 0.5);
 	}
 	/* 四个方向的线  为了之后的拖动事件*/
 
@@ -450,7 +450,7 @@
 		background-color: #69f;
 		top: 0;
 		left: 0;
-		height: 1upx;
+		height: 1rpx;
 		opacity: 0.1;
 		cursor: n-resize;
 	}
@@ -459,12 +459,12 @@
 		content: '';
 		position: absolute;
 		top: 50%;
-		right: 0upx;
+		right: 0rpx;
 		width: 100%;
 		-webkit-transform: translate3d(0, -50%, 0);
 		transform: translate3d(0, -50%, 0);
 		bottom: 0;
-		height: 41upx;
+		height: 41rpx;
 		background: transparent;
 		z-index: 11;
 	}
@@ -474,8 +474,8 @@
 		display: block;
 		background-color: #69f;
 		top: 0;
-		right: 0upx;
-		width: 1upx;
+		right: 0rpx;
+		width: 1rpx;
 		opacity: 0.1;
 		height: 100%;
 		cursor: e-resize;
@@ -486,7 +486,7 @@
 		position: absolute;
 		top: 0;
 		left: 50%;
-		width: 41upx;
+		width: 41rpx;
 		-webkit-transform: translate3d(-50%, 0, 0);
 		transform: translate3d(-50%, 0, 0);
 		bottom: 0;
@@ -502,7 +502,7 @@
 		background-color: #69f;
 		bottom: 0;
 		left: 0;
-		height: 1upx;
+		height: 1rpx;
 		opacity: 0.1;
 		cursor: s-resize;
 	}
@@ -511,12 +511,12 @@
 		content: '';
 		position: absolute;
 		top: 50%;
-		right: 0upx;
+		right: 0rpx;
 		width: 100%;
 		-webkit-transform: translate3d(0, -50%, 0);
 		transform: translate3d(0, -50%, 0);
 		bottom: 0;
-		height: 41upx;
+		height: 41rpx;
 		background: transparent;
 		z-index: 11;
 	}
@@ -527,7 +527,7 @@
 		background-color: #69f;
 		top: 0;
 		left: 0;
-		width: 1upx;
+		width: 1rpx;
 		opacity: 0.1;
 		height: 100%;
 		cursor: w-resize;
@@ -538,7 +538,7 @@
 		position: absolute;
 		top: 0;
 		left: 50%;
-		width: 41upx;
+		width: 41rpx;
 		-webkit-transform: translate3d(-50%, 0, 0);
 		transform: translate3d(-50%, 0, 0);
 		bottom: 0;
@@ -548,8 +548,8 @@
 	}
 
 	.uni-cropper-point {
-		width: 5upx;
-		height: 5upx;
+		width: 5rpx;
+		height: 5rpx;
 		background-color: #69f;
 		opacity: .75;
 		position: absolute;
@@ -557,24 +557,24 @@
 	}
 
 	.point-t {
-		top: -3upx;
+		top: -3rpx;
 		left: 50%;
-		margin-left: -3upx;
+		margin-left: -3rpx;
 		cursor: n-resize;
 	}
 
 	.point-tr {
-		top: -3upx;
+		top: -3rpx;
 		left: 100%;
-		margin-left: -3upx;
+		margin-left: -3rpx;
 		cursor: n-resize;
 	}
 
 	.point-r {
 		top: 50%;
 		left: 100%;
-		margin-left: -3upx;
-		margin-top: -3upx;
+		margin-left: -3rpx;
+		margin-top: -3rpx;
 		cursor: n-resize;
 	}
 
@@ -584,8 +584,8 @@
 		-webkit-transform: translate3d(-50%, -50%, 0);
 		transform: translate3d(-50%, -50%, 0);
 		cursor: n-resize;
-		width: 36upx;
-		height: 36upx;
+		width: 36rpx;
+		height: 36rpx;
 		background-color: #69f;
 		position: absolute;
 		z-index: 1112;
@@ -595,32 +595,32 @@
 	.point-b {
 		left: 50%;
 		top: 100%;
-		margin-left: -3upx;
-		margin-top: -3upx;
+		margin-left: -3rpx;
+		margin-top: -3rpx;
 		cursor: n-resize;
 	}
 
 	.point-bl {
 		left: 0%;
 		top: 100%;
-		margin-left: -3upx;
-		margin-top: -3upx;
+		margin-left: -3rpx;
+		margin-top: -3rpx;
 		cursor: n-resize;
 	}
 
 	.point-l {
 		left: 0%;
 		top: 50%;
-		margin-left: -3upx;
-		margin-top: -3upx;
+		margin-left: -3rpx;
+		margin-top: -3rpx;
 		cursor: n-resize;
 	}
 
 	.point-lt {
 		left: 0%;
 		top: 0%;
-		margin-left: -3upx;
-		margin-top: -3upx;
+		margin-left: -3rpx;
+		margin-top: -3rpx;
 		cursor: n-resize;
 	}
 	/* 裁剪框预览内容 */

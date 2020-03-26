@@ -64,8 +64,8 @@
 	}
 
 	.list-cell {
-		width: 750upx;
-		padding: 0 30upx;
+		width: 750rpx;
+		padding: 0 30rpx;
 	}
 
 	.uni-list-cell-hover {
@@ -76,10 +76,10 @@
 		position: relative;
 		flex: 1;
 		flex-direction: column;
-		/* border-bottom-width: 1upx;
+		/* border-bottom-width: 1rpx;
 		border-bottom-style: solid;
 		border-bottom-color: #ebebeb; */
-		padding: 20upx 30upx 21upx 30upx;
+		padding: 20rpx 30rpx 21rpx 30rpx;
 	}
 
     .media-item-hover{
@@ -88,10 +88,10 @@
 
 	.media-item-line {
 		position: absolute;
-		left: 30upx;
-		right: 30upx;
+		left: 30rpx;
+		right: 30rpx;
 		bottom: 0;
-		height: 1upx;
+		height: 1rpx;
 		background-color: #ebebeb;
 	}
 
@@ -110,49 +110,49 @@
 	.media-title {
 		lines: 3;
 		text-overflow: ellipsis;
-		font-size: 30upx;
+		font-size: 30rpx;
 		color: #555555;
 	}
 
 	.media-title2 {
 		flex: 1;
-		margin-top: 6upx;
-		line-height: 40upx;
+		margin-top: 6rpx;
+		line-height: 40rpx;
 	}
 
 	.image-section {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
 	.image-section-right {
-		margin-top: 0upx;
-		margin-left: 10upx;
-		width: 225upx;
-		height: 146upx;
+		margin-top: 0rpx;
+		margin-left: 10rpx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-section-left {
-		margin-top: 0upx;
-		margin-right: 10upx;
-		width: 225upx;
-		height: 146upx;
+		margin-top: 0rpx;
+		margin-right: 10rpx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-list1 {
-		width: 690upx;
-		height: 481upx;
+		width: 690rpx;
+		height: 481rpx;
 	}
 
 	.image-list2 {
-		width: 225upx;
-		height: 146upx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.image-list3 {
-		width: 225upx;
-		height: 146upx;
+		width: 225rpx;
+		height: 146rpx;
 	}
 
 	.media-info {
@@ -161,13 +161,13 @@
 	}
 
 	.info-text {
-		margin-right: 20upx;
+		margin-right: 20rpx;
 		color: #999999;
-		font-size: 24upx;
+		font-size: 24rpx;
 	}
 
 	.media-foot {
-		margin-top: 25upx;
+		margin-top: 25rpx;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
@@ -177,10 +177,10 @@
 		position: relative;
 		align-items: center;
 		flex-direction: row;
-		width: 40upx;
-		height: 30upx;
-		line-height: 30upx;
-		border-width: 1upx;
+		width: 40rpx;
+		height: 30rpx;
+		line-height: 30rpx;
+		border-width: 1rpx;
 		border-style: solid;
 		border-color: #aaaaaa;
 		border-radius: 4px;
@@ -190,8 +190,8 @@
 
 	.close-l {
 		position: absolute;
-		width: 18upx;
-		height: 1upx;
+		width: 18rpx;
+		height: 1rpx;
 		background-color: #aaaaaa;
 	}
 

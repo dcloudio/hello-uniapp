@@ -2,14 +2,14 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-title">设置step</view>
-			<view>
-				<slider value="60" @change="sliderChange" step="5" />
-			</view>
-
 			<view class="uni-title">显示当前value</view>
 			<view>
 				<slider value="50" @change="sliderChange" show-value />
+			</view>
+			
+			<view class="uni-title">设置步进step跳动</view>
+			<view>
+				<slider value="60" @change="sliderChange" step="5" />
 			</view>
 
 			<view class="uni-title">设置最小/最大值</view>

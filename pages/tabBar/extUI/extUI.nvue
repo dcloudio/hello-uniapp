@@ -41,6 +41,10 @@
 						url: "collapse"
 					},
 					{
+						name: "Combox 组合框",
+						url: "combox"
+					},
+					{
 						name: "Countdown 倒计时",
 						url: "countdown"
 					},
@@ -71,6 +75,10 @@
 					{
 						name: "IndexedList 索引列表",
 						url: "indexed-list"
+					},
+					{
+						name: "Link 超链接",
+						url: "link"
 					},
 					{
 						name: "List 列表",

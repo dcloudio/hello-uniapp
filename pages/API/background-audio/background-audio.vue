@@ -52,7 +52,7 @@
 			this.playing = this.$backgroundAudioData.playing;
 			this.playTime = this.$backgroundAudioData.playTime;
 			this.formatedPlayTime = this.$backgroundAudioData.formatedPlayTime;
-			
+
 			let bgAudioMannager = uni.getBackgroundAudioManager();
 			if(!bgAudioMannager.title){
 				bgAudioMannager.title = '致爱丽丝';
@@ -99,7 +99,7 @@
 				}
 			},
 			seek: function (e) {
-				this.bgAudioMannager.seek(e.target.value);
+				this.bgAudioMannager.seek(e.detail.value);
 			},
 			pause: function () {
 				this.bgAudioMannager.pause();
@@ -116,12 +116,12 @@
 
 <style>
 	image {
-		width: 150upx;
-		height: 150upx;
+		width: 150rpx;
+		height: 150rpx;
 	}
 
 	.page-body-text {
-		padding: 0 30upx;
+		padding: 0 30rpx;
 	}
 
 	.page-body-wrapper {
@@ -129,22 +129,22 @@
 	}
 
 	.page-body-info {
-		padding-bottom: 50upx;
+		padding-bottom: 50rpx;
 	}
 
 	.time-big {
-		font-size: 60upx;
-		margin: 20upx;
+		font-size: 60rpx;
+		margin: 20rpx;
 	}
 
 	.slider {
-		width:630upx;
+		width:630rpx;
 	}
 
 	.play-time {
-		font-size: 28upx;
+		font-size: 28rpx;
 		width:100%;
-		padding: 20upx 0;
+		padding: 20rpx 0;
 		display: flex;
 		justify-content: space-between;
 		box-sizing: border-box;
@@ -153,11 +153,11 @@
 	.page-body-buttons {
 		display: flex;
 		justify-content: space-around;
-		margin-top: 100upx;
+		margin-top: 100rpx;
 	}
 
 	.page-body-button {
-		width: 250upx;
+		width: 250rpx;
 		text-align: center;
 	}
 </style>

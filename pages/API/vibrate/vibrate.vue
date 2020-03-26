@@ -42,18 +42,18 @@ export default {
 
 <style>
 .uni-padding-wrap {
-	margin-top: 50upx 0;
+	margin-top: 50rpx 0;
 }
 .uni-button {
-	margin: 30upx 0;
+	margin: 30rpx 0;
 }
 .uni-tips {
 	color: #666;
-	font-size: 30upx;
+	font-size: 30rpx;
 }
 .uni-tips-text {
-	margin-top: 15upx;
+	margin-top: 15rpx;
 	line-height: 1.2;
-	font-size: 24upx;
+	font-size: 24rpx;
 }
 </style>

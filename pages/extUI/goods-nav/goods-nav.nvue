@@ -3,7 +3,7 @@
 		<text class="example-info"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
 		<uni-section title="基础用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-goods-nav />
+			<uni-goods-nav @click="onClick" />
 		</view>
 
 		<uni-section title="自定义用法" type="line"></uni-section>
@@ -11,7 +11,7 @@
 			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
 		</view>
 		<view class="goods-carts">
-			<uni-goods-nav :options="options" :button-group="buttonGroup" />
+			<uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
 		</view>
 
 	</view>
@@ -28,13 +28,13 @@
 		data() {
 			return {
 				options: [{
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/kefu.png',
+					icon: 'headphones',
 					text: '客服'
 				}, {
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/dianpu.png',
+					icon: 'shop',
 					text: '店铺'
 				}, {
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/uni-ui/goodsnav/carts.png',
+					icon: 'cart',
 					text: '购物车',
 					info: 2
 				}],
@@ -61,7 +61,6 @@
 			},
 			buttonClick(e) {
 				console.log(e)
-
 				this.options[2].info++
 			}
 		}

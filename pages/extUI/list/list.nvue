@@ -10,6 +10,11 @@
 		<uni-section title="菜单列表" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item title="列表右侧带箭头" rightText="右侧文字" />
+			<uni-list-item title="右侧插槽" :showArrow="false">
+				<template v-slot:right="">
+					<image style="width: 40px;height: 40px;" src="/static/logo.png" mode="widthFix"></image>
+				</template>
+			</uni-list-item>
 			<uni-list-item :show-badge="true" title="列表右侧带箭头 + 角标" badge-text="12" />
 			<uni-list-item title="列表左侧带略缩图" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" />
 			<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon1" title="列表左侧带扩展图标" />
