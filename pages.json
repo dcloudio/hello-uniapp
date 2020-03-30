@@ -322,9 +322,8 @@
 				{
 					"path": "subnvue/subnvue",
 					"style": {
-						"navigationBarTitleText": "SubNvue",
+						"navigationBarTitleText": "原生子窗体",
 						"app-plus": {
-							"titleNView": false,
 							"subNVues": [{
 								"id": "drawer",
 								"path": "subnvue/subnvue/drawer",
@@ -352,10 +351,6 @@
 									"height": "110px",
 									"background": "transparent"
 								}
-							}, {
-								"id": "nav",
-								"path": "subnvue/subnvue/nav",
-								"type": "navigationBar"
 							}]
 						}
 					}
