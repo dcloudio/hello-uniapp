@@ -1,6 +1,6 @@
 <template>
     <view class="uni-swiper-page">
-        <list ref="list" class="list" :offset-accuracy="5" :bounce="false" isSwiperList="true">
+        <list ref="list" class="list" :offset-accuracy="5" :bounce="false" fixFreezing="true">
             <cell v-for="(item, index) in dataList" :key="item.id" :ref="'item'+index">
                 <view class="list-item">
                     <text>{{item.name}}</text>
