@@ -259,7 +259,7 @@
 			}
 		},
 		// #endif
-		// #ifdef APP-PLUS
+		// #ifdef APP-PLUS || H5
 		{
 			"path": "pages/component/web-view-local/web-view-local",
 			"style": {}
