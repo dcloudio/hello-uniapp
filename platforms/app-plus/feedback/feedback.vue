@@ -94,7 +94,7 @@
                 uni.chooseImage({
                     sourceType: ["camera", "album"],
                     sizeType: "compressed",
-                    count: 8 - this.imageList.length,
+                    count: 5 - this.imageList.length,
                     success: (res) => {
                         this.imageList = this.imageList.concat(res.tempFilePaths);
                     }
@@ -130,10 +130,11 @@
                 })
                 let imgs = this.imageList.map((value, index) => {
                     return {
-                        name: "image" + index,
+                        name: "images" + index,
                         uri: value
                     }
                 })
+                // TODO 服务端限制上传文件一次最大不超过 2M, 图片一次最多不超过5张
                 uni.uploadFile({
                     url: "https://service.dcloud.net.cn/feedback",
                     files: imgs,
@@ -148,11 +149,11 @@
                                 showCancel: false
                             })
                             this.imageList = [];
-                            this.sendDate = {
+                            this.sendDate = Object.assign({},{
                                 score: 0,
                                 content: "",
                                 contact: ""
-                            }
+                            })
                         } else if (res.statusCode !== 200){
                             uni.showModal({
                                 content: '反馈失败，错误码为：' + res.statusCode,
