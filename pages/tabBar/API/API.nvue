@@ -41,6 +41,10 @@
                     name: '图片',
                     url: 'image'
                 },
+				{
+				    name: '音频',
+				    url: 'inner-audio'
+				},
                 // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
                 {
                     name: '录音',

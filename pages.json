@@ -544,6 +544,12 @@
 					}
 				},
 				{
+					"path": "inner-audio/inner-audio",
+					"style": {
+						"navigationBarTitleText": "音频"
+					}
+				},
+				{
 					"path": "background-audio/background-audio",
 					"style": {
 						"navigationBarTitleText": "背景音频"
