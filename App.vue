@@ -82,4 +82,13 @@
     }
 
     /* #endif*/
+
+    /* #ifdef MP-360 */
+    ::-webkit-scrollbar {width: 4px; height: 4px; background-color: transparent;}
+    ::-webkit-scrollbar-track {background-color: transparent;}
+    ::-webkit-scrollbar-thumb {background-color: #ddd;}
+    ::-webkit-scrollbar-thumb:hover {background-color: #ccc;}
+    ::-webkit-scrollbar-thumb:active {background-color: #bbb;}
+    ::-webkit-scrollbar-corner {background: #ffffff;}
+    /* #endif*/
 </style>
