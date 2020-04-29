@@ -69,6 +69,8 @@
 	.uni-badge {
 		/* #ifndef APP-PLUS */
 		display: flex;
+		box-sizing: border-box;
+		overflow: hidden;
 		/* #endif */
 		justify-content: center;
 		flex-direction: row;

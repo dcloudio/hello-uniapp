@@ -336,7 +336,7 @@
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: 28rpx;
+		font-size: 14px;
 		color: #333;
 	}
 

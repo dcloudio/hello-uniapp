@@ -181,7 +181,7 @@
 		justify-content: center;
 		line-height: 48rpx;
 		padding: 5rpx;
-		font-size: 24rpx;
+		font-size: 12px;
 	}
 
 	.uni-countdown__number {
@@ -195,6 +195,6 @@
 		line-height: 48rpx;
 		margin: 5rpx;
 		text-align: center;
-		font-size: 24rpx;
+		font-size: 12px;
 	}
 </style>

@@ -45,43 +45,15 @@
 </template>
 
 <script>
-	let observer = null;
-	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniList from '@/components/uni-list/uni-list.vue'
-	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	export default {
-		components: {
-			uniSection,
-			uniList,
-			uniListItem
-		},
+		components: {},
 		data() {
 			return {
 				appear: false,
 			}
 		},
 		onReady() {
-			// const systeminfo = uni.getSystemInfoSync()
-			// observer = uni.createIntersectionObserver(this);
-			// observer.relativeTo('.scroll', {
-			//   top: -systeminfo.windowTop
-			// }).observe('.uni-section', (res) => {
-			//   console.log(res);
-			//   if (res.intersectionRatio > 0 && !this.appear) {
-			//     uni.setNavigationBarTitle({
-			//       title: 'Title 标题栏'
-			//     })
-			//   } else {
-			//     uni.setNavigationBarTitle({
-			//       title: '修改后的标题'
-			//     })
-			//   }
-			// })
-		},
-		onUnload() {
-			// if (observer) {
-			//   observer.disconnect()
-			// }
+
 		},
 		methods: {
 
@@ -127,12 +99,16 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
 		font-size: 14px;
 		background-color: #ffffff;
+		overflow: hidden;
 	}
 
 	/* #endif */

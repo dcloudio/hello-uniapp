@@ -73,6 +73,7 @@ function touchend(e, ownerInstance) {
 
 	if (disabled) return
 	// 滑动过程中触摸结束,通过阙值判断是开启还是关闭
+	// fixed by mehaotian 定时器解决点击按钮，touchend 触发比 click 事件时机早的问题 ，主要是 ios13
 	moveDirection(state.left, -40, instance, ownerInstance)
 }
 

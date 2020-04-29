@@ -22,6 +22,17 @@
 
 <script>
 	import uniIcons from '../uni-icons/uni-icons.vue'
+	/**
+	 * Combox 组合输入框
+	 * @description 组合输入框一般用于既可以输入也可以选择的场景
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=1261
+	 * @property {String} label 左侧文字
+	 * @property {String} labelWidth 左侧内容宽度
+	 * @property {String} placeholder 输入框占位符
+	 * @property {Array} candidates 候选项列表
+	 * @property {String} emptyTips 筛选结果为空时显示的文字
+	 * @property {String} value 组合框的值
+	 */
 	export default {
 		name: 'uniCombox',
 		components: {
@@ -121,8 +132,7 @@
 		height: 40px;
 		flex-direction: row;
 		align-items: center;
-		/* border-bottom: solid 1px #DDDDDD;
- */
+		/* border-bottom: solid 1px #DDDDDD; */
 	}
 
 	.uni-combox__label {

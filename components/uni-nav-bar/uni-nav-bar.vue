@@ -133,12 +133,12 @@
 		font-size: 34rpx;
 		/* #endif */
 		/* #ifndef APP-PLUS */
-		font-size: 32rpx;
+		font-size: 16;
 		/* #endif */
 	}
 
 	.uni-nav-bar-right-text {
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 	.uni-navbar__content {
@@ -208,7 +208,7 @@
 		flex: 1;
 		align-items: center;
 		justify-content: center;
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 

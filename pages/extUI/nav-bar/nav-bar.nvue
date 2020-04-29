@@ -30,16 +30,8 @@
 </template>
 
 <script>
-	// console.log(uni.getSystemInfoSync());
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
-	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniIcons,
-			uniNavBar,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {
 				city: '北京'
@@ -132,12 +124,16 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 		padding: 0;
 		font-size: 14px;
 		background-color: #ffffff;
+		overflow: hidden;
 	}
 
 	/* #endif */
@@ -192,7 +188,7 @@
 	}
 
 	.uni-nav-bar-text {
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 	.city {
@@ -235,7 +231,7 @@
 		width: 370rpx;
 		/* #endif */
 		padding: 0 5px;
-		font-size: 28rpx;
+		font-size: 14px;
 		background-color: #f8f8f8;
 	}
 

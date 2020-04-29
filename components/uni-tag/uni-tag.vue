@@ -93,7 +93,7 @@
 		line-height: 30px;
 		justify-content: center;
 		color: #333;
-		border-radius: 6rpx;
+		border-radius: 3px;
 		background-color: #f8f8f8;
 		border-width: 1rpx;
 		border-style: solid;
@@ -119,21 +119,21 @@
 		height: 20px;
 		padding: 0px 8px;
 		line-height: 20px;
-		font-size: 24rpx;
+		font-size: 12px;
 	}
 
 	.uni-tag--default {
 		color: #333;
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 	.uni-tag-text--small {
-		font-size: 24rpx !important;
+		font-size: 12px !important;
 	}
 
 	.uni-tag-text {
 		color: #fff;
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 	.uni-tag-text--primary {

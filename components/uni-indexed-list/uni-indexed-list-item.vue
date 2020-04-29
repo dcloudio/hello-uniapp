@@ -69,7 +69,7 @@
 	}
 
 	.uni-indexed-list__item {
-		font-size: 32rpx;
+		font-size: 16;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -80,7 +80,7 @@
 	}
 
 	.uni-indexed-list__item-container {
-		padding-left: 30rpx;
+		padding-left: 15px;
 		flex: 1;
 		position: relative;
 		/* #ifndef APP-NVUE */
@@ -103,7 +103,7 @@
 		justify-content: space-between;
 		align-items: center;
 		height: 50px;
-		padding: 30rpx;
+		padding: 15px;
 		padding-left: 0;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
@@ -137,6 +137,6 @@
 	.uni-indexed-list__title {
 		padding: 6px 12px;
 		line-height: 24px;
-		font-size: 24rpx;
+		font-size: 12px;
 	}
 </style>

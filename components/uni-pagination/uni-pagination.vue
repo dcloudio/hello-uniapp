@@ -135,7 +135,7 @@
 		width: 60px;
 		height: 30px;
 		line-height: 30px;
-		font-size: 28rpx;
+		font-size: 14px;
 		position: relative;
 		background-color: #f8f8f8;
 		flex-direction: row;
@@ -151,7 +151,7 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		font-size: 28rpx;
+		font-size: 14px;
 		position: relative;
 		flex-direction: row;
 		justify-content: center;
@@ -169,7 +169,7 @@
 		align-items: center;
 		height: 30px;
 		line-height: 30px;
-		font-size: 28rpx;
+		font-size: 14px;
 		color: #333;
 	}
 
