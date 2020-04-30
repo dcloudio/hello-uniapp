@@ -81,14 +81,14 @@
 	},
 	/* 快应用特有相关 */
 	"quickapp": {},
-	"quickapp-vue": {
+	"quickapp-native": {
 		"icon": "/static/logo.png",
 		"package": "com.example.demo",
 		"features": [{
 			"name": "system.clipboard"
 		}]
 	},
-	"quickapp-light": {
+	"quickapp-webview": {
 		"icon": "/static/logo.png",
 		"package": "com.example.demo",
 		"features": [{
