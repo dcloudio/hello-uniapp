@@ -5,7 +5,7 @@
 		</view>
 		<view class="uni-dialog-content">
 			<text class="uni-dialog-content-text" v-if="mode === 'base'">{{content}}</text>
-			<input v-else class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus" placeholder="请输入内容">
+			<input v-else class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus">
 		</view>
 		<view class="uni-dialog-button-group">
 			<view class="uni-dialog-button" @click="close">
