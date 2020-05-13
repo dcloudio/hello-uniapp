@@ -22,6 +22,9 @@
 				value: ''
 			}
 		},
+		onUnload() {
+			this.watchStop();
+		},
 		methods: {
 			getOrient: function () {
 				var that = this;
