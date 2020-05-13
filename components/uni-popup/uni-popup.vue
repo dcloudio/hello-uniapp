@@ -100,6 +100,7 @@
 			}
 		},
 		created() {
+			this.mkclick = this.maskClick
 			if (this.animation) {
 				this.duration = 300
 			} else {

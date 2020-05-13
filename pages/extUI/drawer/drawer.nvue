@@ -145,7 +145,6 @@
 		padding: 0;
 		font-size: 14px;
 		background-color: #ffffff;
-		overflow: hidden;
 	}
 
 	/* #endif */
