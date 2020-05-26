@@ -91,9 +91,9 @@
 	"quickapp-webview": {
 		"icon": "/static/logo.png",
 		"package": "com.example.demo",
-		"features": [{
-			"name": "system.clipboard"
-		}]
+		"minPlatformVersion": 1070,
+		"versionName": "1.0.0",
+		"versionCode": 100
 	},
 	/* 小程序特有相关 */
 	"mp-weixin": {
