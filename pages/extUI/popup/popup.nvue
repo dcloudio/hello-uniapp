@@ -26,23 +26,23 @@
 			<button class="button" type="primary" @click="confirmShare"><text class="button-text">分享模版示例</text></button>
 		</view>
 		<!-- 基本示例 -->
-		<uni-popup ref="popup" :type="type" :animation="false" @change="change">
+		<uni-popup id="popup" ref="popup" :type="type" :animation="false" @change="change">
 			<view class="popup-content">popup 内容，此示例没有动画效果</view>
 		</uni-popup>
 		<!-- 消息提示 -->
-		<uni-popup ref="popupMessage" type="message" @change="change">
+		<uni-popup id="popupMessage" ref="popupMessage" type="message" @change="change">
 			<uni-popup-message :type="msgType" :message="message" :duration="2000"></uni-popup-message>
 		</uni-popup>
 		<!-- 对话框 -->
-		<uni-popup ref="popupDialog" type="dialog" @change="change">
+		<uni-popup id="popupDialog" ref="popupDialog" type="dialog" @change="change">
 			<uni-popup-dialog :type="msgType" title="通知" content="欢迎使用 uni-popup!" :before-close="true" @confirm="dialogConfirm" @close="dialogClose"></uni-popup-dialog>
 		</uni-popup>
 		<!-- 提交信息 -->
-		<uni-popup ref="dialogInput" type="dialog" @change="change">
+		<uni-popup id="dialogInput" ref="dialogInput" type="dialog" @change="change">
 			<uni-popup-dialog mode="input" title="输入内容" value="对话框预置提示内容!" placeholder="请输入内容" @confirm="dialogInputConfirm"></uni-popup-dialog>
 		</uni-popup>
 		<!-- 分享示例 -->
-		<uni-popup ref="popupShare" type="share" @change="change">
+		<uni-popup id="popupShare" ref="popupShare" type="share" @change="change">
 			<uni-popup-share title="分享到" @select="select"></uni-popup-share>
 		</uni-popup>
 	</view>

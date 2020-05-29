@@ -4,13 +4,13 @@
 		<uni-section title="插入模式" type="line"></uni-section>
 		<view>
 			<!-- 插入模式 -->
-			<uni-calendar :selected="info.selected" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
+			<uni-calendar class="uni-calendar--hook" :selected="info.selected" :showMonth="false" @change="change" @monthSwitch="monthSwitch" />
 		</view>
 		<uni-section title="弹出模式" type="line"></uni-section>
 		<view class="example-body">
 			<button class="calendar-button" type="button" @click="open">打开日历</button>
 		</view>
-		<uni-calendar ref="calendar" :clear-date="true" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate" :endDate="info.endDate" :range="info.range" @confirm="confirm" @close="close" />
+		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate" :endDate="info.endDate" :range="info.range" @confirm="confirm" @close="close" />
 	</view>
 </template>
 

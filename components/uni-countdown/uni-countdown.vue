@@ -21,6 +21,7 @@
 	 * @property {Number} hour 小时
 	 * @property {Number} minute 分钟
 	 * @property {Number} second 秒
+	 * @property {Number} timestamp 时间戳
 	 * @property {Boolean} showDay = [true|false] 是否显示天数
 	 * @property {Boolean} showColon = [true|false] 是否以冒号为分隔符
 	 * @property {String} splitorColor 分割符号颜色
@@ -69,6 +70,10 @@
 			second: {
 				type: Number,
 				default: 0
+			},
+			timestamp: {
+				type: Number,
+				default: 0
 			}
 		},
 		data() {
@@ -104,7 +109,10 @@
 			clearInterval(this.timer)
 		},
 		methods: {
-			toSeconds(day, hours, minutes, seconds) {
+			toSeconds(timestamp, day, hours, minutes, seconds) {
+				if (timestamp) {
+					return timestamp - parseInt(new Date().getTime() / 1000, 10)
+				}
 				return day * 60 * 60 * 24 + hours * 60 * 60 + minutes * 60 + seconds
 			},
 			timeUp() {
@@ -140,7 +148,7 @@
 				this.s = second
 			},
 			startData() {
-				this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+				this.seconds = this.toSeconds(this.timestamp, this.day, this.hour, this.minute, this.second)
 				if (this.seconds <= 0) {
 					return
 				}
@@ -156,7 +164,7 @@
 			},
 			changeFlag() {
 				if (!this.syncFlag) {
-					this.seconds = this.toSeconds(this.day, this.hour, this.minute, this.second)
+					this.seconds = this.toSeconds(this.timestamp, this.day, this.hour, this.minute, this.second)
 					this.startData();
 					this.syncFlag = true;
 				}
