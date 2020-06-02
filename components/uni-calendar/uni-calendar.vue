@@ -138,8 +138,8 @@
 		},
 		watch: {
 			date(newVal) {
-				this.cale.setDate(newVal)
-				this.init(this.cale.selectDate.fullDate)
+				// this.cale.setDate(newVal)
+				this.init(newVal)
 			},
 			startDate(val) {
 				this.cale.resetSatrtDate(val)
@@ -162,8 +162,8 @@
 				range: this.range,
 			})
 			// 选中某一天
-			this.cale.setDate(this.date)
-			this.init(this.cale.selectDate.fullDate)
+			// this.cale.setDate(this.date)
+			this.init(this.date)
 			// this.setDay
 		},
 		methods: {
@@ -172,7 +172,6 @@
 			bindDateChange(e) {
 				const value = e.detail.value + '-1'
 				console.log(this.cale.getDate(value));
-				this.cale.setDate(value)
 				this.init(value)
 			},
 			/**
@@ -180,6 +179,7 @@
 			 * @param {Object} date
 			 */
 			init(date) {
+				this.cale.setDate(date)
 				this.weeks = this.cale.weeks
 				this.nowDate = this.calendar = this.cale.getInfo(date)
 			},
@@ -190,8 +190,8 @@
 				// 弹窗模式并且清理数据
 				if (this.clearDate && !this.insert) {
 					this.cale.cleanMultipleStatus()
-					this.cale.setDate(this.date)
-					this.init(this.cale.selectDate.fullDate)
+					// this.cale.setDate(this.date)
+					this.init(this.date)
 				}
 				this.show = true
 				this.$nextTick(() => {
@@ -280,7 +280,7 @@
 			backtoday() {
 				console.log(this.cale.getDate(new Date()).fullDate);
 				let date = this.cale.getDate(new Date()).fullDate
-				this.cale.setDate(date)
+				// this.cale.setDate(date)
 				this.init(date)
 				this.change()
 			},
