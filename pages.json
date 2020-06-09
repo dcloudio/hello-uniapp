@@ -251,7 +251,7 @@
 				"navigationBarTitleText": "web-view"
 			}
 		},
-		// #ifndef H5 || MP-BAIDU
+		// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
 		{
 			"path": "pages/component/ad/ad",
 			"style": {

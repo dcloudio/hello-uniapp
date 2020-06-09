@@ -124,7 +124,7 @@
                         pages: ['web-view']
                     },
                     // #endif
-                    // #ifndef H5 || MP-BAIDU
+                    // #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
                     {
                         url: 'ad',
                         name: 'AD组件',
