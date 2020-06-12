@@ -329,7 +329,7 @@
                     ]
                 },
 				// #endif
-				// #ifndef H5
+				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
                 {
                     id: 'share',
                     name: '分享',
