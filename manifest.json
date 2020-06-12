@@ -7,6 +7,9 @@
 	"transformPx": false,
 	/* 5+App特有相关 */
 	"app-plus": {
+		// "optimization": {
+		// 	"subPackages": true
+		// },
 		"usingComponents": true,
 		"nvueCompiler": "uni-app",
 		"compilerVersion": 3,
@@ -91,9 +94,14 @@
 	"quickapp-webview": {
 		"icon": "/static/logo.png",
 		"package": "com.example.demo",
-		"minPlatformVersion": 1070,
 		"versionName": "1.0.0",
 		"versionCode": 100
+	},
+	"quickapp-webview-union": {
+		"minPlatformVersion": 1063
+	},
+	"quickapp-webview-huawei": {
+		"minPlatformVersion": 1070
 	},
 	/* 小程序特有相关 */
 	"mp-weixin": {

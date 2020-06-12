@@ -95,13 +95,14 @@
 
                     },
                     // #endif
+					// #ifndef QUICKAPP-WEBVIEW-UNION
                     {
                         id: 'canvas',
                         name: '画布',
                         open: false,
                         pages: ['canvas']
-
                     },
+					// #endif
                     // #ifdef APP-PLUS || H5
                     {
                         id: 'web-view',

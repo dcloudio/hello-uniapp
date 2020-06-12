@@ -107,10 +107,12 @@
                             name: '创建动画',
                             url: 'animation'
                         },
+						// #ifndef QUICKAPP-WEBVIEW-UNION
                         {
                             name: '创建绘画',
                             url: 'canvas'
                         },
+						// #endif
                         {
                             name: '节点信息',
                             url: 'get-node-info'
@@ -311,7 +313,7 @@
                     open: false
                 },
                 // #endif
-                // #ifndef H5
+                // #ifndef H5 || QUICKAPP-WEBVIEW
                 {
                     id: 'login',
                     name: '登录',
@@ -326,6 +328,8 @@
                         }
                     ]
                 },
+				// #endif
+				// #ifndef H5
                 {
                     id: 'share',
                     name: '分享',
