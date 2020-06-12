@@ -148,7 +148,18 @@
 			};
 		},
 		onLoad() {},
-		onReady() {},
+		onReady() {
+			// #ifdef APP-NVUE
+			uni.preloadPage({
+				url: "/pages/extUI/calendar/calendar",
+				success(){
+					console.log("preloadPage /pages/extUI/calendar/calendar")
+				},
+				fail(){
+				}
+			})
+			// #endif
+		},
 		onShareAppMessage() {
 			return {
 				title: '欢迎体验uni-app',
