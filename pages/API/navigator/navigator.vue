@@ -11,11 +11,21 @@
 				<!-- #ifdef APP-PLUS -->
 				<button @tap="customAnimation">使用自定义动画打开页面</button>
 				<!-- #endif -->
+				<!-- #ifdef APP-PLUS || H5 -->
+				<button @tap="preloadPage">预载复杂页面</button>
+				<!-- #endif -->
+				<!-- #ifdef APP-PLUS -->
+				<button @tap="unPreloadPage">取消页面预载</button>
+				<!-- #endif -->
+				<!-- #ifdef APP-PLUS || H5 -->
+				<button @tap="navigateToPreloadPage">打开复杂页面</button>
+				<!-- #endif -->
 			</view>
 		</view>
 	</view>
 </template>
 <script>
+	const preloadPageUrl = '/pages/extUI/calendar/calendar'
 	export default {
 		data() {
 			return {
@@ -51,6 +61,31 @@
 					url: 'new-page/new-vue-page-1?data=使用自定义动画打开页面',
 					animationType: 'slide-in-bottom',
 					animationDuration: 200
+				})
+			},
+			preloadPage(){
+				uni.preloadPage({
+					url: preloadPageUrl,
+					success(){
+						uni.showToast({
+							title:'页面预载成功'
+						})
+					},
+					fail(){
+						uni.showToast({
+							title:'页面预载失败'
+						})
+					}
+				})
+			},
+			unPreloadPage(){
+				uni.unPreloadPage({
+					url: preloadPageUrl
+				})
+			},
+			navigateToPreloadPage(){
+				uni.navigateTo({
+					url: preloadPageUrl
 				})
 			}
 		}
