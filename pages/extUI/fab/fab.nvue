@@ -12,11 +12,8 @@
 </template>
 
 <script>
-	import uniFab from '@/components/uni-fab/uni-fab.vue'
 	export default {
-		components: {
-			uniFab
-		},
+		components: {},
 		data() {
 			return {
 				title: 'uni-fab',
@@ -132,6 +129,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

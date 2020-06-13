@@ -8,10 +8,11 @@
 					<slot />
 				</view>
 				<view ref="selector-button-hock" class="uni-swipe_button-group selector-query-hock move-hock">
+					<!-- 使用 touchend 解决 ios 13 不触发按钮事件的问题-->
 					<view v-for="(item,index) in options" :data-button="btn" :key="index" :style="{
 		          backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 		          fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-		        }" class="uni-swipe_button button-hock" @click.stop="onClick(index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+		        }" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item)"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
 				</view>
 			</view>
 		</view>

@@ -67,24 +67,28 @@
 						]
 					},
 					// #endif
+					// #ifndef QUICKAPP-WEBVIEW
 					{
 						name: '顶部选项卡',
 						url: 'tabbar'
 					},
+					// #endif
 					{
 						name: '组件通讯',
 						url: 'component-communication'
 					},
-					// #ifndef MP-QQ
+					// #ifndef MP-QQ || QUICKAPP-WEBVIEW
 					{
 						name: 'uCharts 图表',
 						url: 'ucharts'
 					},
 					// #endif
+					// #ifndef QUICKAPP-WEBVIEW
 					{
 						name: '列表到详情示例',
 						url: 'list2detail-list'
 					},
+					// #endif
 					// #ifdef APP-PLUS || H5 || MP-WEIXIN  || MP-QQ
 					{
 						name: '上下滑动切换视频',
@@ -102,10 +106,10 @@
 						url: 'global'
 					},
 					// #ifdef APP-PLUS
-					// {
-					// 	name: '问题反馈',
-					// 	url: '/platforms/app-plus/feedback/feedback'
-					// },
+					{
+						name: '问题反馈',
+						url: '/platforms/app-plus/feedback/feedback'
+					},
 					{
 						name: '打开外部应用',
 						url: 'scheme'

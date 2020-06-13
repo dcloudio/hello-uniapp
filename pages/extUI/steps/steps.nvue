@@ -13,13 +13,8 @@
 </template>
 
 <script>
-	import uniSteps from '@/components/uni-steps/uni-steps.vue'
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniSection,
-			uniSteps
-		},
+		components: {},
 		data() {
 			return {
 				active: 1,
@@ -97,6 +92,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

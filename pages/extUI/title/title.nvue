@@ -60,13 +60,8 @@
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniTitle from '@/components/uni-title/uni-title.vue'
 	export default {
-		components: {
-			uniTitle,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {
 				title: '章节标题通常用于记录页面标题，例如商品标题、新闻标题等，当前组件会自动上报内容统计数据'
@@ -117,6 +112,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

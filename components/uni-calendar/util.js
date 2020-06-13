@@ -9,7 +9,7 @@ class Calendar {
 		range
 	} = {}) {
 		// 当前日期
-		this.date = this.getDate(date) // 当前初入日期
+		this.date = this.getDate(new Date()) // 当前初入日期
 		// 打点信息
 		this.selected = selected || [];
 		// 范围开始
@@ -18,15 +18,46 @@ class Calendar {
 		this.endDate = endDate
 		this.range = range
 		// 多选状态
+		this.cleanMultipleStatus()
+		// 每周日期
+		this.weeks = {}
+		// this._getWeek(this.date.fullDate)
+	}
+	/**
+	 * 设置日期
+	 * @param {Object} date
+	 */
+	setDate(date) {
+		this.selectDate = this.getDate(date)
+		this._getWeek(this.selectDate.fullDate)
+	}
+
+	/**
+	 * 清理多选状态
+	 */
+	cleanMultipleStatus() {
 		this.multipleStatus = {
 			before: '',
 			after: '',
 			data: []
 		}
-		// 每周日期
-		this.weeks = {}
+	}
 
-		this._getWeek(this.date.fullDate)
+	/**
+	 * 重置开始日期
+	 */
+	resetSatrtDate(startDate) {
+		// 范围开始
+		this.startDate = startDate
+
+	}
+
+	/**
+	 * 重置结束日期
+	 */
+	resetEndDate(endDate) {
+		// 范围结束
+		this.endDate = endDate
 	}
 
 	/**
@@ -116,7 +147,6 @@ class Calendar {
 				let dateCompAfter = this.dateCompare(fullDate, this.endDate)
 				disableAfter = this.dateCompare(nowDate, dateCompAfter ? this.endDate : fullDate)
 			}
-
 			let multiples = this.multipleStatus.data
 			let checked = false
 			let multiplesStatus = -1
@@ -130,12 +160,13 @@ class Calendar {
 					checked = true
 				}
 			}
-
 			let data = {
 				fullDate: nowDate,
 				year: full.year,
 				date: i,
 				multiple: this.range ? checked : false,
+				beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
+				afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
 				month: full.month,
 				lunar: this.getlunar(full.year, full.month, i),
 				disable: !disableBefore || !disableAfter,
@@ -164,13 +195,7 @@ class Calendar {
 		}
 		return dateArr
 	}
-	/**
-	 * 设置日期
-	 * @param {Object} date
-	 */
-	setDate(date) {
-		this._getWeek(date)
-	}
+
 	/**
 	 * 获取当前日期详情
 	 * @param {Object} date
@@ -257,12 +282,12 @@ class Calendar {
 			before,
 			after
 		} = this.multipleStatus
+
 		if (!this.range) return
 		if (before && after) {
 			this.multipleStatus.before = ''
 			this.multipleStatus.after = ''
 			this.multipleStatus.data = []
-			this._getWeek(fullDate)
 		} else {
 			if (!before) {
 				this.multipleStatus.before = fullDate
@@ -273,9 +298,9 @@ class Calendar {
 				} else {
 					this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
 				}
-				this._getWeek(fullDate)
 			}
 		}
+		this._getWeek(fullDate)
 	}
 
 	/**

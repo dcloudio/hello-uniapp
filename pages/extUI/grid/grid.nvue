@@ -5,7 +5,7 @@
 		<view class="example-body">
 			<uni-grid :column="3" :highlight="true" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
-					<view class="grid-item-box">
+					<view class="grid-item-box" style="background-color: #fff;">
 						<image :src="item.url" class="image" mode="aspectFill" />
 						<text class="text">{{ item.text }}</text>
 					</view>
@@ -118,17 +118,8 @@
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniGrid from '@/components/uni-grid/uni-grid.vue'
-	import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
-	import uniBadge from '@/components/uni-badge/uni-badge.vue'
 	export default {
-		components: {
-			uniSection,
-			uniGrid,
-			uniGridItem,
-			uniBadge
-		},
+		components: {},
 		data() {
 			return {
 				dynamicList: [],
@@ -250,6 +241,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

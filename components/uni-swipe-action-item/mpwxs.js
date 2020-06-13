@@ -43,7 +43,7 @@ export default {
 	},
 	methods: {
 		init() {
-			
+
 			setTimeout(() => {
 				this.getSize()
 				this.getButtonSize()
@@ -53,7 +53,7 @@ export default {
 			if (!this.autoClose) return
 			this.swipeaction.closeOther(this)
 		},
-		
+
 		change(e) {
 			this.$emit('change', e.open)
 			let valueObj = this.position[0]
@@ -67,6 +67,29 @@ export default {
 				content: item,
 				index
 			})
+		},
+		appTouchStart(e) {
+			const {
+				clientX
+			} = e.changedTouches[0]
+			this.clientX = clientX
+			this.timestamp = new Date().getTime()
+		},
+		appTouchEnd(e, index, item) {
+			const {
+				clientX
+			} = e.changedTouches[0]
+			// fixed by xxxx 模拟点击事件，解决 ios 13 点击区域错位的问题
+			let diff = Math.abs(this.clientX - clientX)
+			let time = (new Date().getTime()) - this.timestamp
+			console.log(diff);
+			if (diff < 40 && time < 300) {
+				// console.log('点击');
+				this.$emit('click', {
+					content: item,
+					index
+				})
+			}
 		},
 		getSize() {
 			const views = uni.createSelectorQuery().in(this)

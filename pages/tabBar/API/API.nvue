@@ -41,6 +41,10 @@
                     name: '图片',
                     url: 'image'
                 },
+				{
+				    name: '音频',
+				    url: 'inner-audio'
+				},
                 // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
                 {
                     name: '录音',
@@ -103,10 +107,12 @@
                             name: '创建动画',
                             url: 'animation'
                         },
+						// #ifndef QUICKAPP-WEBVIEW-UNION
                         {
                             name: '创建绘画',
                             url: 'canvas'
                         },
+						// #endif
                         {
                             name: '节点信息',
                             url: 'get-node-info'
@@ -307,7 +313,7 @@
                     open: false
                 },
                 // #endif
-                // #ifndef H5
+                // #ifndef H5 || QUICKAPP-WEBVIEW
                 {
                     id: 'login',
                     name: '登录',
@@ -322,6 +328,8 @@
                         }
                     ]
                 },
+				// #endif
+				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
                 {
                     id: 'share',
                     name: '分享',

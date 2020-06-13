@@ -25,13 +25,8 @@
 	</view>
 </template>
 <script>
-	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniNumberBox,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {
 				numberValue: 0
@@ -82,6 +77,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

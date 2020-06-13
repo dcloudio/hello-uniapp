@@ -28,16 +28,8 @@
 </template>
 
 <script>
-	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
-	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
-	import uniSection from '@/components/uni-section/uni-section.vue'
-
 	export default {
-		components: {
-			uniSection,
-			uniCollapse,
-			uniCollapseItem
-		},
+		components: {},
 		data() {
 			const listData = [{
 					name: '基础用法',
@@ -143,6 +135,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

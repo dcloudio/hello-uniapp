@@ -251,7 +251,7 @@
 				"navigationBarTitleText": "web-view"
 			}
 		},
-		// #ifndef H5 || MP-BAIDU
+		// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
 		{
 			"path": "pages/component/ad/ad",
 			"style": {
@@ -259,7 +259,7 @@
 			}
 		},
 		// #endif
-		// #ifdef APP-PLUS
+		// #ifdef APP-PLUS || H5
 		{
 			"path": "pages/component/web-view-local/web-view-local",
 			"style": {}
@@ -322,9 +322,8 @@
 				{
 					"path": "subnvue/subnvue",
 					"style": {
-						"navigationBarTitleText": "SubNvue",
+						"navigationBarTitleText": "原生子窗体",
 						"app-plus": {
-							"titleNView": false,
 							"subNVues": [{
 								"id": "drawer",
 								"path": "subnvue/subnvue/drawer",
@@ -352,10 +351,6 @@
 									"height": "110px",
 									"background": "transparent"
 								}
-							}, {
-								"id": "nav",
-								"path": "subnvue/subnvue/nav",
-								"type": "navigationBar"
 							}]
 						}
 					}
@@ -546,6 +541,12 @@
 					"path": "voice/voice",
 					"style": {
 						"navigationBarTitleText": "录音"
+					}
+				},
+				{
+					"path": "inner-audio/inner-audio",
+					"style": {
+						"navigationBarTitleText": "音频"
 					}
 				},
 				{
@@ -1162,7 +1163,10 @@
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
-		"backgroundColorBottom": "#F4F5F6"
+		"backgroundColorBottom": "#F4F5F6",
+		"mp-360": {
+			"navigationStyle": "custom"
+		}
 	},
 	"tabBar": {
 		"color": "#7A7E83",

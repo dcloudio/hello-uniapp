@@ -28,13 +28,8 @@
 </template>
 
 <script>
-	import uniSection from '@/components/uni-section/uni-section.vue'
-	import uniTransition from '@/components/uni-transition/uni-transition.vue'
 	export default {
-		components: {
-			uniSection,
-			uniTransition
-		},
+		components: {},
 		data() {
 			return {
 				show: false,
@@ -119,6 +114,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

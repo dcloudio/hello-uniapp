@@ -14,6 +14,7 @@ Vue.prototype.$backgroundAudioData = {
 	playTime: 0,
 	formatedPlayTime: '00:00:00'
 }
+Vue.prototype.$adpid = "1111111111"
 
 Vue.component('page-head', pageHead)
 Vue.component('page-foot', pageFoot)

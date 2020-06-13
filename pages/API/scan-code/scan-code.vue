@@ -38,24 +38,7 @@
 						this.result = res.result
 					},
 					fail: (err) => {
-						// #ifdef MP
-						uni.getSetting({
-							success: (res) => {
-								let authStatus = res.authSetting['scope.camera'];
-								if (!authStatus) {
-									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要使用您的相机，请在设置界面打开相关权限',
-										success: (res) => {
-											if (res.confirm) {
-												uni.openSetting()
-											}
-										}
-									})
-								}
-							}
-						})
-						// #endif
+						// 需要注意的是小程序扫码不需要申请相机权限
 					}
 				});
 			}

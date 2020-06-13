@@ -29,13 +29,8 @@
 </template>
 
 <script>
-	import uniBadge from '@/components/uni-badge/uni-badge.vue';
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniBadge,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {};
 		}
@@ -80,6 +75,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

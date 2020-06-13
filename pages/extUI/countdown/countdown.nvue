@@ -28,13 +28,8 @@
 	</view>
 </template>
 <script>
-	import uniCountdown from '@/components/uni-countdown/uni-countdown.vue'
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniCountdown,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {
 				testHour: 0,
@@ -97,6 +92,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

@@ -112,13 +112,8 @@
 </template>
 
 <script>
-	import uniTag from '@/components/uni-tag/uni-tag.vue';
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	export default {
-		components: {
-			uniTag,
-			uniSection
-		},
+		components: {},
 		data() {
 			return {
 				type: 'default',
@@ -178,6 +173,9 @@
 	}
 
 	.example-body {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;

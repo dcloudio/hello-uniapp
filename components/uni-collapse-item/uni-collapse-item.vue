@@ -168,8 +168,8 @@
 	}
 
 	.uni-collapse-cell__title-img {
-		height: 52rpx;
-		width: 52rpx;
+		height: 26px;
+		width: 26px;
 		margin-right: 10px;
 	}
 
@@ -187,7 +187,7 @@
 
 	.uni-collapse-cell__title-text {
 		flex: 1;
-		font-size: 28rpx;
+		font-size: 14px;
 		/* #ifndef APP-NVUE */
 		white-space: nowrap;
 		color: inherit;
