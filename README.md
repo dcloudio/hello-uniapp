@@ -63,12 +63,12 @@
         <b>360小程序</b>
       </a>
     </div>
-    <p>
-        <em>注：某些平台不能提交简单demo，故补充了一些其他功能；hello uni-app示例代码可从[github](https://github.com/dcloudio/hello-uniapp)获取</em></br>
-        <em>快应用仅支持 vivo 、oppo、华为</em></br>
-        <em>360小程序仅 windows平台支持，需要在360浏览器中打开</em></br>
-    </p>
+    
 </div>
+
+> 注：某些平台不能提交简单demo，故补充了一些其他功能；hello uni-app示例代码可从[github](https://github.com/dcloudio/hello-uniapp)获取
+> - 快应用仅支持 vivo 、oppo、华为
+> - 360小程序仅 windows平台支持，需要在360浏览器中打开
 
 `uni-app`官网文档详见[https://uniapp.dcloud.io](https://uniapp.dcloud.io)
 
