@@ -3,7 +3,7 @@
         onLaunch: function() {
             console.log('App Launch');
             // #ifdef APP-PLUS
-            // 检测升级
+            // 检测升级，服务端代码是通过uniCloud的云函数实现的，详情可参考：https://ext.dcloud.net.cn/plugin?id=2226
             uni.request({
                 url: 'https://7a3e3fa9-7820-41d0-be80-11927ac2026c.bspapp.com/http/update', //检查更新的服务器地址
                 data: {
