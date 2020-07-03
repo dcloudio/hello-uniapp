@@ -5,7 +5,7 @@
             // #ifdef APP-PLUS
             // 检测升级
             uni.request({
-                url: 'https://uniapp.dcloud.io/update', //检查更新的服务器地址
+                url: 'https://7a3e3fa9-7820-41d0-be80-11927ac2026c.bspapp.com/http/update', //检查更新的服务器地址
                 data: {
                     appid: plus.runtime.appid,
                     version: plus.runtime.version,
@@ -13,14 +13,13 @@
                 },
                 success: (res) => {
                     if (res.statusCode == 200 && res.data.isUpdate) {
-                        let openUrl = plus.os.name === 'iOS' ? res.data.iOS : res.data.Android;
                         // 提醒用户更新
                         uni.showModal({
                             title: '更新提示',
                             content: res.data.note ? res.data.note : '是否选择更新',
-                            success: (showResult) => {
-                                if (showResult.confirm) {
-                                    plus.runtime.openURL(openUrl);
+                            success: (ee) => {
+                                if (ee.confirm) {
+                                    plus.runtime.openURL(res.data.url);
                                 }
                             }
                         })
