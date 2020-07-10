@@ -42,7 +42,7 @@
 			return {
 				title: 'backgroundAudio',
 				bgAudioMannager: null,
-				dataUrl: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
+				dataUrl: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3',
 				playing: false,
 				playTime: 0,
 				formatedPlayTime: '00:00:00'
