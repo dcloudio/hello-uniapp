@@ -18,7 +18,7 @@
 					poster: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg',
 					name: '致爱丽丝',
 					author: '暂无',
-					src: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
+					src: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3',
 				},
 				audioAction: {
 					method: 'pause'

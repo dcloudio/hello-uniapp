@@ -14,7 +14,7 @@
 	</view>
 </template>
 <script>
-	const audioUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3'
+	const audioUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3'
 	export default {
 		data() {
 			return {
