@@ -35,12 +35,7 @@
 </template>
 
 <script>
-	import uLink from "@/components/uLink.vue"
-
 	export default {
-		components: {
-			uLink
-		},
 		data() {
 			return {
 				providerList: [],
