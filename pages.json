@@ -1154,6 +1154,9 @@
 		}
 	],
 	"globalStyle": {
+		// #ifdef MP-360
+		"navigationStyle": "custom",
+		// #endif
 		"pageOrientation": "portrait",
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "Hello uniapp",
