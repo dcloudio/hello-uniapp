@@ -28,9 +28,11 @@
     </view>
 </template>
 <script>
+    import uLink from '@/components/uLink.vue'
     import setTabBar from '@/components/api-set-tabbar.nvue';
     export default {
         components: {
+            uLink,
             setTabBar
         },
         data() {
