@@ -117,12 +117,9 @@
 					    url: 'vant-button'
 					}
 					// #endif
-				],
-				navigateFlag: false
+				]
 			}
 		},
-		onLoad() {},
-		onReady() {},
 		onShareAppMessage() {
 			return {
 				title: '欢迎体验uni-app',
@@ -149,18 +146,11 @@
 				}
 			},
 			goDetailPage(e) {
-				if (this.navigateFlag) {
-					return;
-				}
-				this.navigateFlag = true;
 				let path = e.url ? e.url : e;
 				let url = ~path.indexOf('platform') ? path : '/pages/template/' + path + '/' + path;
 				uni.navigateTo({
 					url: url
 				});
-				setTimeout(() => {
-					this.navigateFlag = false;
-				}, 200)
 				return false;
 			}
 		}

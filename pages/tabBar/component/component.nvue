@@ -128,8 +128,7 @@
                         open: false
                     },
                     // #endif
-                ],
-                navigateFlag: false
+                ]
             }
         },
         onShareAppMessage() {
@@ -158,10 +157,6 @@
                 }
             },
             goDetailPage(e) {
-                if (this.navigateFlag) {
-                    return;
-                }
-                this.navigateFlag = true;
                 if (typeof e === 'string') {
                     uni.navigateTo({
                         url: '/pages/component/' + e + '/' + e
@@ -171,9 +166,6 @@
                         url: e.url
                     })
                 }
-                setTimeout(() => {
-                    this.navigateFlag = false;
-                }, 200)
             }
         }
     }
