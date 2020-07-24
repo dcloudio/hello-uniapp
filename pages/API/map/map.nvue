@@ -48,9 +48,9 @@
             <button class="button" @click="addPolygons">addPolygons</button>
             <button class="button" @click="addCircles">addCircles</button>
             <button class="button" @click="includePoint">includePoints</button>
-            <button class="button" @click="getCenterLocation">getCenterLocation</button>
-            <button class="button" @click="getRegion">getRegion</button>
-            <button class="button" @click="translateMarker">translateMarker</button>
+            <button class="button" @click="handleGetCenterLocation">getCenterLocation</button>
+            <button class="button" @click="handleGetRegion">getRegion</button>
+            <button class="button" @click="handleTranslateMarker">translateMarker</button>
         </scroll-view>
     </view>
 </template>
@@ -326,7 +326,7 @@
             includePoint() {
                 this.includePoints = testIncludePoints;
             },
-            getCenterLocation() {
+            handleGetCenterLocation() {
                 this.map.getCenterLocation({
                     success: ret => {
                         console.log(JSON.stringify(ret));
@@ -336,7 +336,7 @@
                     }
                 })
             },
-            getRegion() {
+            handleGetRegion() {
                 this.map.getRegion({
                     success: ret => {
                         console.log(JSON.stringify(ret));
@@ -346,7 +346,7 @@
                     }
                 })
             },
-            translateMarker() {
+            handleTranslateMarker() {
                 this.map.translateMarker({
                     markerId: 1,
                     destination: {

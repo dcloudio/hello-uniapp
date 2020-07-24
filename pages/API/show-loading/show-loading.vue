@@ -34,12 +34,13 @@
 			hideLoading: function() {
 				uni.hideLoading();
 			}
-		},
-		onUnload() {
-			// #ifdef MP-ALIPAY
-			this._showTimer && clearTimeout(this._showTimer);
-			// #endif
 		}
+		// #ifdef MP-ALIPAY
+		,
+		onUnload() {
+			this._showTimer && clearTimeout(this._showTimer);
+		}
+		// #endif
 	}
 </script>
 
