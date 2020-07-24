@@ -9,6 +9,7 @@
 			<view class="uni-common-mt" style="background:#FFF; padding:20rpx;">
 				<rich-text :nodes="nodes"></rich-text>
 			</view>
+			<!-- #ifndef MP-ALIPAY -->
 			<view class="uni-title uni-common-mt">
 				字符串类型
 				<text>\nnodes属性为String</text>
@@ -16,6 +17,7 @@
 			<view class="uni-common-mt" style="background:#FFF; padding:20rpx;">
 				<rich-text :nodes="strings"></rich-text>
 			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
