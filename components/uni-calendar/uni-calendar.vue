@@ -338,7 +338,7 @@
 	}
 
 	.uni-calendar--mask-show {
-		opacity: 1
+		opacity: 1;
 	}
 
 	.uni-calendar--fixed {
@@ -389,8 +389,6 @@
 
 	.uni-calendar--fixed-width {
 		width: 50px;
-		/* padding: 0 15px;
- */
 	}
 
 	.uni-calendar__backtoday {
@@ -444,7 +442,6 @@
 	.uni-calendar--right {
 		transform: rotate(135deg);
 	}
-
 
 	.uni-calendar__weeks {
 		position: relative;

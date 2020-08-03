@@ -120,7 +120,6 @@
 		border-bottom-style: solid;
 	}
 
-
 	.uni-collapse-cell--hover {
 		background-color: #f1f1f1;
 	}
@@ -131,18 +130,13 @@
 
 	.uni-collapse-cell--disabled {
 		background-color: #f1f1f1;
-		/* opacity: 0.3;
- */
 	}
-
 
 	.uni-collapse-cell--hide {
 		height: 48px;
 	}
 
 	.uni-collapse-cell--animation {
-		/* transition: transform 0.3s ease;
- */
 		transition-property: transform;
 		transition-duration: 0.3s;
 		transition-timing-function: ease;
@@ -178,7 +172,6 @@
 		height: 20px;
 		transform: rotate(0deg);
 		transform-origin: center center;
-
 	}
 
 	.uni-collapse-cell__title-arrow-active {

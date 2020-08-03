@@ -132,7 +132,6 @@
 		height: 40px;
 		flex-direction: row;
 		align-items: center;
-		/* border-bottom: solid 1px #DDDDDD; */
 	}
 
 	.uni-combox__label {

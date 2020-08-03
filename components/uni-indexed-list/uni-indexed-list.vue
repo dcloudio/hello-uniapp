@@ -283,7 +283,7 @@
 	}
 
 	.uni-indexed-list__menu--active {
-		background-color: rgb(200, 200, 200);
+		background-color: #c8c8c8;
 	}
 
 	.uni-indexed-list__menu-text--active {

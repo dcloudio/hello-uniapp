@@ -233,7 +233,6 @@
 	}
 
 	/* #endif */
-
 	/* #ifdef H5 */
 	.uni-load-more__img--android-H5 {
 		animation: loading-android-H5-rotate 2s linear infinite;
@@ -275,7 +274,6 @@
 	}
 
 	/* #endif */
-
 	/* #ifndef APP-NVUE || H5 */
 	.uni-load-more__img--android-MP {
 		position: relative;

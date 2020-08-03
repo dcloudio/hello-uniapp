@@ -49,15 +49,15 @@
 </template>
 
 <script>
-	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue'
-	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
-	import uniPopupShare from '@/components/uni-popup/uni-popup-share.vue'
+	// import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue'
+	// import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
+	// import uniPopupShare from '@/components/uni-popup/uni-popup-share.vue'
 	export default {
-		components: {
-			uniPopupMessage,
-			uniPopupDialog,
-			uniPopupShare
-		},
+		// components: {
+		// 	uniPopupMessage,
+		// 	uniPopupDialog,
+		// 	uniPopupShare
+		// },
 		data() {
 			return {
 				type: 'top',
@@ -177,17 +177,18 @@
 	}
 </script>
 <style>
+	@charset "UTF-8";
+
 	/* 头条小程序组件内不能引入字体 */
 	/* #ifdef MP-TOUTIAO */
 	@font-face {
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
+		src: url("~@/static/uni.ttf") format("truetype");
 	}
 
 	/* #endif */
-
 	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
@@ -247,7 +248,6 @@
 		color: #3b4144;
 	}
 
-
 	.example-body {
 		flex-direction: column;
 		padding: 15px;
@@ -276,14 +276,12 @@
 		background-color: #4ca2ff;
 	}
 
-
 	.example-body {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
 		padding: 5px 15px;
 	}
-
 
 	.popup-content {
 		background-color: #fff;
@@ -298,7 +296,6 @@
 	}
 
 	/* #endif */
-
 	.button {
 		/* #ifndef APP-NVUE */
 		display: flex;

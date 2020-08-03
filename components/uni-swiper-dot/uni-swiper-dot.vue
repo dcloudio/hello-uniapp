@@ -139,8 +139,6 @@
 		border-radius: 100px;
 		margin-left: 6px;
 		background-color: rgba(0, 0, 0, 0.4);
-		/* transition: width 0.2s linear;  不要取消注释，不然会不能变色
- */
 	}
 
 	.uni-swiper__dots-item:first-child {
@@ -185,8 +183,6 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		/* flex: 1;
- */
 		justify-content: center;
 		align-items: center;
 	}

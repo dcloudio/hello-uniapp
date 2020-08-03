@@ -35,17 +35,18 @@
 </script>
 
 <style>
+	@charset "UTF-8";
+
 	/* 头条小程序组件内不能引入字体 */
 	/* #ifdef MP-TOUTIAO */
 	@font-face {
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
+		src: url("~@/static/uni.ttf") format("truetype");
 	}
 
 	/* #endif */
-
 	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
@@ -81,7 +82,6 @@
 		padding: 0;
 		font-size: 14px;
 		background-color: #ffffff;
-		/* overflow: hidden; */
 	}
 
 	/* #endif */
@@ -105,7 +105,6 @@
 		line-height: 20px;
 		color: #3b4144;
 	}
-
 
 	.example-body {
 		flex-direction: column;
@@ -134,7 +133,6 @@
 	.word-btn--hover {
 		background-color: #4ca2ff;
 	}
-
 
 	.example-body {
 		padding: 0px 12px;

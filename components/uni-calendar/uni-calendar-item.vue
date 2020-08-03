@@ -124,7 +124,6 @@
 		height: 8px;
 		border-radius: 8px;
 		background-color: #dd524d;
-
 	}
 
 	.uni-calendar-item--disable {

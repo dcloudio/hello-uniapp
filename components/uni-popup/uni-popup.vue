@@ -71,8 +71,11 @@
 			 * 监听遮罩是否可点击
 			 * @param {Object} val
 			 */
-			maskClick(val) {
-				this.mkclick = val
+			maskClick: {
+				handler: function(val) {
+					this.mkclick = val
+				},
+				immediate: true
 			}
 		},
 		data() {
@@ -205,6 +208,8 @@
 	}
 </script>
 <style scoped>
+	@charset "UTF-8";
+
 	.uni-popup {
 		position: fixed;
 		/* #ifndef APP-NVUE */
@@ -272,12 +277,9 @@
 	}
 
 	.content-ani {
-		/* transition: transform 0.3s;
- */
 		transition-property: transform, opacity;
 		transition-duration: 0.2s;
 	}
-
 
 	.uni-top-content {
 		transform: translateY(0);

@@ -1,0 +1,24 @@
+<template>
+	<view class="test">
+		<uni-test></uni-test>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style>
+	.test {
+		color: #0062CC;
+	}
+</style>

@@ -69,7 +69,7 @@
 	}
 
 	.uni-indexed-list__item {
-		font-size: 16;
+		font-size: 16px;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */

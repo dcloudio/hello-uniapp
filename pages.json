@@ -704,7 +704,7 @@
 						"app-plus": {
 							"titleNView": {
 								"buttons": [{
-									"text": "",
+									"text": "\ue563",
 									"fontSrc": "/static/uni.ttf",
 									"fontSize": "22px"
 								}]
@@ -911,6 +911,18 @@
 					"style": {
 						"navigationBarTitleText": "Combox 组合框"
 					}
+				},
+				{
+					"path": "list/ad",
+					"style": {}
+				},
+				{
+					"path": "list/chat",
+					"style": {}
+				},
+				{
+					"path": "test/test",
+					"style": {}
 				}
 			]
 		},

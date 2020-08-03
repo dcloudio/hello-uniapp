@@ -124,8 +124,6 @@
 		overflow: hidden;
 	}
 
-
-
 	.uni-border {
 		position: relative;
 		/* #ifdef APP-NVUE */
@@ -155,7 +153,6 @@
 	}
 
 	/* #endif */
-
 	.uni-border-bottom {
 		position: relative;
 		/* #ifdef APP-NVUE */
@@ -212,7 +209,6 @@
 	}
 
 	/* #endif */
-
 	.uni-card__thumbnailimage {
 		position: relative;
 		flex-direction: column;
@@ -260,7 +256,6 @@
 		flex-direction: row;
 		align-items: center;
 		padding: 10px;
-
 	}
 
 	.uni-card__title-box {
@@ -329,7 +324,7 @@
 	}
 
 	.uni-card__header-title-text {
-		font-size: 16;
+		font-size: 16px;
 		flex: 1;
 		color: #333;
 	}
@@ -397,7 +392,7 @@
 		text-overflow: ellipsis;
 		/* #endif */
 		/* #ifdef APP-NVUE */
-		lines: 1
-			/* #endif */
+		lines: 1;
+		/* #endif */
 	}
 </style>

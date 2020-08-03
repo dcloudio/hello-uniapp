@@ -198,7 +198,6 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-
 		flex: 1;
 		flex-direction: row;
 		justify-content: center;

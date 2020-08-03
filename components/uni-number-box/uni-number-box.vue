@@ -120,7 +120,6 @@
 <style scoped>
 	/* #ifdef APP-NVUE */
 	/* #endif */
-
 	.uni-numbox {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -136,7 +135,7 @@
 		width: 40px;
 		height: 35px;
 		text-align: center;
-		font-size: 16;
+		font-size: 16px;
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #e5e5e5;
@@ -153,10 +152,6 @@
 		justify-content: center;
 		width: 35px;
 		height: 35px;
-		/* line-height: $box-line-height;
- */
-		/* text-align: center;
- */
 		font-size: 20px;
 		color: #333;
 		background-color: #f8f8f8;

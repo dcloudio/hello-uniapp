@@ -87,12 +87,10 @@
 						name: "NavBar 自定义导航栏",
 						url: "nav-bar"
 					},
-					// #ifndef QUICKAPP-WEBVIEW
 					{
 						name: "NoticeBar 通告栏",
 						url: "notice-bar"
 					},
-					// #endif
 					{
 						name: "NumberBox 数字输入框",
 						url: "number-box"
@@ -101,12 +99,10 @@
 						name: "Pagination 分页器",
 						url: "pagination"
 					},
-					// #ifndef QUICKAPP-WEBVIEW-HUAWEI
 					{
 						name: "PopUp 弹出层",
 						url: "popup"
 					},
-					// #endif
 					{
 						name: "Rate 评分",
 						url: "rate"
@@ -147,11 +143,10 @@
 			// #ifdef APP-NVUE
 			uni.preloadPage({
 				url: "/pages/extUI/calendar/calendar",
-				success(){
+				success() {
 					console.log("preloadPage /pages/extUI/calendar/calendar")
 				},
-				fail(){
-				}
+				fail() {}
 			})
 			// #endif
 		},
