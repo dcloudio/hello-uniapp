@@ -11,21 +11,27 @@
 				<block v-if="hasNetworkType === true">
 					<view class="uni-h2 uni-center uni-common-mt">{{networkType}}</view>
 				</block>
+				<view v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-textarea uni-common-mt">
+					<textarea :value="connectedWifi"></textarea>
+				</view>
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary" @tap="getNetworkType">获取手机网络状态</button>
-				<button @tap="clear">清空</button>
+				<button type="primary"  @tap="getNetworkType">获取手机网络状态</button>
+				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">获取 wifi 信息</button>
+				<button class="uni-common-mt" @tap="clear">清空</button>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
+	import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
 				title: 'getNetworkType',
 				hasNetworkType: false,
-				networkType: ''
+				networkType: '',
+				connectedWifi: ''
 			}
 		},
 		onUnload:function(){
@@ -48,7 +54,28 @@
 			},
 			clear: function () {
 				this.hasNetworkType = false,
-					this.networkType = ''
+				this.networkType = '',
+				this.connectedWifi = ''
+			},
+			getConnectedWifi() {
+				const that = this
+				uni.startWifi({
+					success: function() {
+						console.log("=========== startWifi success  =========")
+						uni.getConnectedWifi({
+							success: function(res) {
+								const { wifi } = res
+								that.connectedWifi = JSON.stringify(wifi)
+							},
+							fail: function(res) {
+								console.log("=========== getConnectedWifi fail res =========", res)
+							}
+						})
+					},
+					fail: function(res) {
+						console.log("=========== startWifi fail res =========", res)
+					}
+				})
 			}
 		}
 	}
