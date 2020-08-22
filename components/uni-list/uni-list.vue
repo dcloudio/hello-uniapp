@@ -1,13 +1,13 @@
 <template>
 	<!-- #ifndef APP-NVUE -->
-	<view class="uni-list">
+	<view class="uni-list uni-border-top-bottom">
 		<view v-if="border" class="uni-list--border-top"></view>
 		<slot />
 		<view v-if="border" class="uni-list--border-bottom"></view>
 	</view>
 	<!-- #endif -->
 	<!-- #ifdef APP-NVUE -->
-	<list class="uni-list" :class="{'uni-list--border':border}" :enableBackToTop="enableBackToTop" loadmoreoffset="15">
+	<list class="uni-list" :class="{ 'uni-list--border': border }" :enableBackToTop="enableBackToTop" loadmoreoffset="15">
 		<slot />
 	</list>
 	<!-- #endif -->
@@ -44,17 +44,17 @@
 		provide() {
 			return {
 				list: this
-			}
+			};
 		},
 		created() {
-			this.firstChildAppend = false
+			this.firstChildAppend = false;
 		},
 		methods: {
 			loadMore(e) {
-				this.$emit("scrolltolower");
+				this.$emit('scrolltolower');
 			}
 		}
-	}
+	};
 </script>
 <style scoped>
 	.uni-list {
@@ -68,7 +68,7 @@
 
 	.uni-list--border {
 		position: relative;
-		/* #ifdef APP-PLUS */
+		/* #ifdef APP-NVUE */
 		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 0.5px;

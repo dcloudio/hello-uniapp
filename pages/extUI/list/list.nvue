@@ -18,14 +18,16 @@
 		<uni-section title="点击反馈" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item title="弹窗提示" clickable @click="onClick" />
-			<uni-list-item title="页面跳转" link :to="`./chat`" />
+			<uni-list-item title="页面跳转" :to="`./chat`" @click="onClick" />
+			<uni-list-item title="关闭当前页面打开新页面" link="redirectTo" to="./chat" @click="onClick" />
+			<uni-list-item title="打开错误页面(查看控制台)" link="redirectTo" to="./chats" @click="onClick" />
 		</uni-list>
 		<uni-section title="不显示分割线" type="line"></uni-section>
 		<uni-list :border="false">
 			<uni-list-item title="列表文字" />
-			<uni-list-item title="列表文字" note="列表描述信息" rightText="右侧文字" />
+			<uni-list-item :border="false" title="列表文字" note="列表描述信息" rightText="右侧文字" />
+			<uni-list-item :border="true" title="列表文字" note="列表描述信息" rightText="右侧文字" />
 		</uni-list>
-
 		<uni-section title="文字溢出隐藏" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item :ellipsis="1" title="列表 title 超长文字显示一行,以下是测试文字以下是测试文字以下是测试文字以下是测试文字以下是测试文字以下是测试文字" showArrow rightText="右侧文字" />
@@ -50,22 +52,22 @@
 		<uni-section title="使用插槽" type="line"></uni-section>
 		<uni-list>
 			<uni-list-item>
-				<view class="slot-box">
+				<view slot="body" class="slot-box">
 					<text class="slot-text">默认插槽</text>
 					<uni-badge text="2" type="primary" />
 				</view>
 			</uni-list-item>
 			<uni-list-item title="自定义右侧插槽" note="列表描述信息" link>
-				<template slot="right">
+				<template slot="header">
 					<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 				</template>
 			</uni-list-item>
 			<uni-list-item>
-				<view slot="left" class="slot-box">
+				<view slot="header" class="slot-box">
 					<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 				</view>
-				<text class="slot-text">自定义左侧插槽</text>
-				<template slot="right">
+				<text slot="body" class="slot-box slot-text">自定义左侧插槽</text>
+				<template slot="footer">
 					<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 				</template>
 			</uni-list-item>
@@ -91,7 +93,8 @@
 			};
 		},
 		methods: {
-			onClick() {
+			onClick(e) {
+				console.log('执行click事件', e.data)
 				uni.showToast({
 					title: '点击反馈'
 				});
@@ -224,6 +227,7 @@
 	}
 
 	.slot-text {
+		flex: 1;
 		font-size: 14px;
 		color: #4cd964;
 		margin-right: 10px;

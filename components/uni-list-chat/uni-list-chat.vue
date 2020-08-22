@@ -2,30 +2,34 @@
 	<!-- #ifdef APP-NVUE -->
 	<cell>
 		<!-- #endif -->
-		<view :hover-class="(!clickable && !link )? '' : 'uni-list-chat--hover'" class="uni-list-chat">
-			<view :class="{'uni-list--border':border,'uni-list-chat--first':isFirstChild}"></view>
+		<view :hover-class="!clickable && !link ? '' : 'uni-list-chat--hover'" class="uni-list-chat" @click.stop="onClick">
+			<view :class="{ 'uni-list--border': border, 'uni-list-chat--first': isFirstChild }"></view>
 			<view class="uni-list-chat__container">
 				<view class="uni-list-chat__header-warp">
-					<view v-if="avatarCircle || avatarList.length === 0" class="uni-list-chat__header" :class="{'header--circle':avatarCircle}">
+					<view v-if="avatarCircle || avatarList.length === 0" class="uni-list-chat__header" :class="{ 'header--circle': avatarCircle }">
 						<image class="uni-list-chat__header-image" :src="avatar" mode="aspectFill"></image>
 					</view>
 					<!-- 头像组 -->
 					<view v-else class="uni-list-chat__header">
-						<view v-for="(item,index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar" :style="{width:imageWidth+'px',height:imageWidth+'px'}">
-							<image class="uni-list-chat__header-image" :style="{width:imageWidth+'px',height:imageWidth+'px'}" :src="item.url" mode="aspectFill"></image>
+						<view v-for="(item, index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }">
+							<image class="uni-list-chat__header-image" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }" :src="item.url" mode="aspectFill"></image>
 						</view>
 					</view>
 				</view>
-				<view v-if="badgeText&& badgePositon === 'left'" class="uni-list-chat__badge uni-list-chat__badge-pos" :class="[isSingle]"><text class="uni-list-chat__badge-text">{{badgeText === 'dot' ?'':badgeText}}</text></view>
+				<view v-if="badgeText && badgePositon === 'left'" class="uni-list-chat__badge uni-list-chat__badge-pos" :class="[isSingle]">
+					<text class="uni-list-chat__badge-text">{{ badgeText === 'dot' ? '' : badgeText }}</text>
+				</view>
 				<view class="uni-list-chat__content">
 					<view class="uni-list-chat__content-main">
-						<text class="uni-list-chat__content-title uni-ellipsis">{{title}}</text>
-						<text class="uni-list-chat__content-note uni-ellipsis">{{note}}</text>
+						<text class="uni-list-chat__content-title uni-ellipsis">{{ title }}</text>
+						<text class="uni-list-chat__content-note uni-ellipsis">{{ note }}</text>
 					</view>
 					<view class="uni-list-chat__content-extra">
 						<slot>
-							<text class="uni-list-chat__content-extra-text">{{time}}</text>
-							<view v-if="badgeText && badgePositon === 'right'" class="uni-list-chat__badge" :class="[isSingle,badgePositon==='right'?'uni-list-chat--right':'']"><text class="uni-list-chat__badge-text">{{badgeText === 'dot' ?'':badgeText}}</text></view>
+							<text class="uni-list-chat__content-extra-text">{{ time }}</text>
+							<view v-if="badgeText && badgePositon === 'right'" class="uni-list-chat__badge" :class="[isSingle, badgePositon === 'right' ? 'uni-list-chat--right' : '']">
+								<text class="uni-list-chat__badge-text">{{ badgeText === 'dot' ? '' : badgeText }}</text>
+							</view>
 						</slot>
 					</view>
 				</view>
@@ -38,8 +42,7 @@
 
 <script>
 	// 头像大小
-	const avatarWidth = 45
-
+	const avatarWidth = 45;
 
 	/**
 	 * ListChat 聊天列表
@@ -56,7 +59,7 @@
 	 * 	@value redirectTo 	同 uni.redirectTo()
 	 * 	@value reLaunch   	同 uni.reLaunch()
 	 * 	@value switchTab  	同 uni.switchTab()
-	 * @property {String} 	to  							跳转目标页面
+	 * @property {String | PageURIString} 	to  			跳转目标页面
 	 * @property {String} 	time							右侧时间显示
 	 * @property {Boolean} 	avatarCircle = [true|false]		是否显示圆形头像，默认为false
 	 * @property {String} 	avatar							头像地址，avatarCircle 不填时生效
@@ -109,36 +112,34 @@
 			avatarList: {
 				type: Array,
 				default () {
-					return []
+					return [];
 				}
 			}
 		},
 		inject: ['list'],
 		computed: {
 			isSingle() {
-
 				if (this.badgeText === 'dot') {
-					return 'uni-badge--dot'
+					return 'uni-badge--dot';
 				} else {
-					const badgeText = this.badgeText.toString()
+					const badgeText = this.badgeText.toString();
 					if (badgeText.length > 1) {
-						return 'uni-badge--complex'
+						return 'uni-badge--complex';
 					} else {
-						return 'uni-badge--single'
+						return 'uni-badge--single';
 					}
 				}
-
 			},
 			computedAvatar() {
 				if (this.avatarList.length > 4) {
-					this.imageWidth = avatarWidth * 0.31
-					return "avatarItem--3"
+					this.imageWidth = avatarWidth * 0.31;
+					return 'avatarItem--3';
 				} else if (this.avatarList.length > 1) {
-					this.imageWidth = avatarWidth * 0.47
-					return "avatarItem--2"
+					this.imageWidth = avatarWidth * 0.47;
+					return 'avatarItem--2';
 				} else {
-					this.imageWidth = avatarWidth
-					return "avatarItem--1"
+					this.imageWidth = avatarWidth;
+					return 'avatarItem--1';
 				}
 			}
 		},
@@ -148,19 +149,53 @@
 				border: true,
 				// avatarList: 3,
 				imageWidth: 50
-			}
+			};
 		},
 		mounted() {
 			if (!this.list.firstChildAppend) {
-				this.list.firstChildAppend = true
-				this.isFirstChild = true
+				this.list.firstChildAppend = true;
+				this.isFirstChild = true;
 			}
-			this.border = this.list.border
+			this.border = this.list.border;
 		},
 		methods: {
+			onClick() {
+				if (this.to !== '') {
+					this.openPage();
+					return;
+				}
 
+				if (this.clickable || this.link) {
+					this.$emit('click', {
+						data: {}
+					});
+				}
+			},
+			openPage() {
+				if (['navigateTo', 'redirectTo', 'reLaunch', 'switchTab'].indexOf(this.link) !== -1) {
+					this.pageApi(this.link);
+				} else {
+					this.pageApi('navigateTo');
+				}
+			},
+			pageApi(api) {
+				uni[api]({
+					url: this.to,
+					success: res => {
+						this.$emit('click', {
+							data: res
+						});
+					},
+					fail: err => {
+						this.$emit('click', {
+							data: err
+						});
+						console.error(err.errMsg);
+					}
+				});
+			}
 		}
-	}
+	};
 </script>
 
 <style scoped>
@@ -388,7 +423,7 @@
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		left: calc(45px + 10px - 6px + 0px);
-		top: calc(10px/2 + 1px + 0px);
+		top: calc(10px/ 2 + 1px + 0px);
 		/* #endif */
 	}
 
@@ -432,7 +467,7 @@
 		top: 6px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		left: calc(45px + 15px - 10px/2 + 1px + 0px);
+		left: calc(45px + 15px - 10px/ 2 + 1px + 0px);
 		/* #endif */
 		width: 10px;
 		height: 10px;

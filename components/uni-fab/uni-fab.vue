@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-if="popMenu && (leftBottom||rightBottom||leftTop||rightTop)" :class="{
+		<view v-if="popMenu && (leftBottom||rightBottom||leftTop||rightTop) && content.length > 0" :class="{
         'uni-fab--leftBottom': leftBottom,
         'uni-fab--rightBottom': rightBottom,
         'uni-fab--leftTop': leftTop,
@@ -29,8 +29,8 @@
 		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
 		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
-			<view class="fab-circle-v" :class="{'uni-fab__plus--active': isShow}"></view>
-			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow}"></view>
+			<view class="fab-circle-v" :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
+			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow  && content.length > 0}"></view>
 		</view>
 	</view>
 </template>
