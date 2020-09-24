@@ -686,6 +686,24 @@
 		{
 			"root": "pages/extUI",
 			"pages": [{
+					"path": "forms/forms",
+					"style": {
+						"navigationBarTitleText": "Form 表单"
+					}
+				},
+				{
+					"path": "field/field",
+					"style": {
+						"navigationBarTitleText": "Field 字段"
+					}
+				},
+				{
+					"path": "group/group",
+					"style": {
+						"navigationBarTitleText": "Group 分组"
+					}
+				},
+				{
 					"path": "badge/badge",
 					"style": {
 						"navigationBarTitleText": "Badge 数字角标"
@@ -704,7 +722,7 @@
 						"app-plus": {
 							"titleNView": {
 								"buttons": [{
-									"text": "",
+									"text": "\ue563",
 									"fontSrc": "/static/uni.ttf",
 									"fontSize": "22px"
 								}]
@@ -911,6 +929,18 @@
 					"style": {
 						"navigationBarTitleText": "Combox 组合框"
 					}
+				},
+				{
+					"path": "list/ad",
+					"style": {}
+				},
+				{
+					"path": "list/chat",
+					"style": {}
+				},
+				{
+					"path": "test/test",
+					"style": {}
 				}
 			]
 		},

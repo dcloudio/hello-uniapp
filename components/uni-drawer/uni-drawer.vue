@@ -94,9 +94,6 @@
 </script>
 
 <style scoped>
-	/* 抽屉宽度
- */
-
 	.uni-drawer {
 		/* #ifndef APP-NVUE */
 		display: block;
@@ -145,7 +142,6 @@
 	.uni-drawer__content--visible {
 		transform: translateX(0px);
 	}
-
 
 	.uni-drawer__mask {
 		/* #ifndef APP-NVUE */

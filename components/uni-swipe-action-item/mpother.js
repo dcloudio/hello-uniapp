@@ -1,39 +1,39 @@
-// #ifdef APP-NVUE
-const dom = weex.requireModule('dom');
-// #endif
+const MIN_DISTANCE = 10;
 export default {
 	data() {
 		return {
 			uniShow: false,
-			left: 0
-		}
-	},
-	computed: {
-		moveLeft() {
-			return `translateX(${this.left}px)`
+			left: 0,
+			buttonShow: 'none',
+			ani: false,
+			moveLeft:''
 		}
 	},
 	watch: {
 		show(newVal) {
-			if (!this.position || JSON.stringify(this.position) === '{}') return;
 			if (this.autoClose) return
-			if (newVal) {
-				this.$emit('change', true)
-				this.open()
-			} else {
-				this.$emit('change', false)
-				this.close()
-			}
+			this.openState(newVal)
+		},
+		left(){
+			this.moveLeft = `translateX(${this.left}px)`
+		},
+		buttonShow(newVal){
+			if (this.autoClose) return
+			this.openState(newVal)
+		},
+		leftOptions() {
+			this.init()
+		},
+		rightOptions() {
+			this.init()
 		}
 	},
 	mounted() {
-		this.position = {}
+		// this.position = {}
 		if (this.swipeaction.children !== undefined) {
 			this.swipeaction.children.push(this)
 		}
-		setTimeout(() => {
-			this.getSelectorQuery()
-		}, 100)
+		this.init()
 	},
 	beforeDestoy() {
 		this.swipeaction.children.forEach((item, index) => {
@@ -43,116 +43,210 @@ export default {
 		})
 	},
 	methods: {
-		onClick(index, item) {
-			this.$emit('click', {
-				content: item,
-				index
-			})
-			this.close()
+		init(){
+			clearTimeout(this.timer)
+			this.timer = setTimeout(() => {
+				this.getSelectorQuery()
+			}, 100)
+			// 移动距离
+			this.left = 0
+			this.x = 0
+		},
+		closeSwipe(e) {
+			if (!this.autoClose) return
+			this.swipeaction.closeOther(this)
+		},
+		appTouchStart(e) {
+			const {
+				clientX
+			} = e.changedTouches[0]
+			this.clientX = clientX
+			this.timestamp = new Date().getTime()
+		},
+		appTouchEnd(e, index, item, position) {
+			const {
+				clientX
+			} = e.changedTouches[0]
+			// fixed by xxxx 模拟点击事件，解决 ios 13 点击区域错位的问题
+			let diff = Math.abs(this.clientX - clientX)
+			let time = (new Date().getTime()) - this.timestamp
+			if (diff < 40 && time < 300) {
+				this.$emit('click', {
+					content: item,
+					index,
+					position
+				})
+			}
 		},
 		touchstart(e) {
-			const {
-				pageX
-			} = e.touches[0]
 			if (this.disabled) return
-			const left = this.position.content.left
-			if (this.autoClose) {
-				this.swipeaction.closeOther(this)
-			}
-			this.width = pageX - left
-			if (this.isopen) return
-			if (this.uniShow) {
-				this.uniShow = false
-				this.isopen = true
-				this.openleft = this.left + this.position.button.width
-			}
+			this.ani = false
+			this.x = this.left || 0
+			this.stopTouchStart(e)
+			this.autoClose && this.closeSwipe()
 		},
-		touchmove(e, index) {
+		touchmove(e) {
 			if (this.disabled) return
-			const {
-				pageX
-			} = e.touches[0]
-			this.setPosition(pageX)
+			// 是否可以滑动页面
+			this.stopTouchMove(e);
+			if (this.direction !== 'horizontal') {
+				return;
+			}
+
+			this.move(this.x + this.deltaX)
 		},
 		touchend() {
 			if (this.disabled) return
-			if (this.isopen) {
-				this.move(this.openleft, 0)
+			this.moveDirection(this.left)
+		},
+		/**
+		 * 设置移动距离
+		 * @param {Object} value
+		 */
+		move(value) {
+			value = value || 0
+			const leftWidth = this.leftWidth
+			const rightWidth = this.rightWidth
+			// 获取可滑动范围
+			this.left = this.range(value, -rightWidth, leftWidth);
+		},
+
+		/**
+		 * 获取范围
+		 * @param {Object} num
+		 * @param {Object} min
+		 * @param {Object} max
+		 */
+		range(num, min, max) {
+			return Math.min(Math.max(num, min), max);
+		},
+		/**
+		 * 移动方向判断
+		 * @param {Object} left
+		 * @param {Object} value
+		 */
+		moveDirection(left) {
+			const threshold = this.threshold
+			const isopen = this.isopen || 'none'
+			const leftWidth = this.leftWidth
+			const rightWidth = this.rightWidth
+			if (this.deltaX === 0) {
+				this.openState('none')
 				return
 			}
-			this.move(this.left, -40)
-		},
-		setPosition(x, y) {
-			if (!this.position.button.width) {
-				return
-			}
-			// this.left = x - this.width
-			this.setValue(x - this.width)
-		},
-		setValue(value) {
-			// 设置最大最小值
-			this.left = Math.max(-this.position.button.width, Math.min(parseInt(value), 0))
-			this.position.content.left = this.left
-			if (this.isopen) {
-				this.openleft = this.left + this.position.button.width
-			}
-		},
-		move(left, value) {
-			if (left >= value) {
-				this.$emit('change', false)
-				this.close()
+			if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth > 0 && rightWidth +
+					left < threshold)) {
+				// right
+				this.openState('right')
+			} else if ((isopen === 'none' && leftWidth > 0 && left > threshold) || (isopen !== 'none' && leftWidth > 0 &&
+					leftWidth - left < threshold)) {
+				// left
+				this.openState('left')
 			} else {
-				this.$emit('change', true)
-				this.open()
+				// default
+				this.openState('none')
 			}
 		},
-		open() {
-			this.uniShow = true
-			this.left = -this.position.button.width
-			this.setValue(-this.position.button.width)
+
+		/**
+		 * 开启状态
+		 * @param {Boolean} type
+		 */
+		openState(type) {
+			const leftWidth = this.leftWidth
+			const rightWidth = this.rightWidth
+			let left = ''
+			this.isopen = this.isopen ? this.isopen : 'none'
+			switch (type) {
+				case "left":
+					left = leftWidth
+					break
+				case "right":
+					left = -rightWidth
+					break
+				default:
+					left = 0
+			}
+
+
+			if (this.isopen !== type) {
+				this.throttle = true
+				this.$emit('change', type)
+			}
+
+			this.isopen = type
+			// 添加动画类
+			this.ani = true
+			this.$nextTick(() => {
+				this.move(left)
+			})
+			// 设置最终移动位置,理论上只要进入到这个函数，肯定是要打开的
 		},
 		close() {
-			this.uniShow = true
-			this.setValue(0)
-			setTimeout(() => {
-				this.uniShow = false
-				this.isopen = false
-			}, 300)
+			this.openState('none')
 		},
+		getDirection(x, y) {
+			if (x > y && x > MIN_DISTANCE) {
+				return 'horizontal';
+			}
+			if (y > x && y > MIN_DISTANCE) {
+				return 'vertical';
+			}
+			return '';
+		},
+
+		/**
+		 * 重置滑动状态
+		 * @param {Object} event
+		 */
+		resetTouchStatus() {
+			this.direction = '';
+			this.deltaX = 0;
+			this.deltaY = 0;
+			this.offsetX = 0;
+			this.offsetY = 0;
+		},
+
+		/**
+		 * 设置滑动开始位置
+		 * @param {Object} event
+		 */
+		stopTouchStart(event) {
+			this.resetTouchStatus();
+			const touch = event.touches[0];
+			this.startX = touch.clientX;
+			this.startY = touch.clientY;
+		},
+
+		/**
+		 * 滑动中，是否禁止打开
+		 * @param {Object} event
+		 */
+		stopTouchMove(event) {
+			const touch = event.touches[0];
+			this.deltaX = touch.clientX - this.startX;
+			this.deltaY = touch.clientY - this.startY;
+			this.offsetX = Math.abs(this.deltaX);
+			this.offsetY = Math.abs(this.deltaY);
+			this.direction = this.direction || this.getDirection(this.offsetX, this.offsetY);
+		},
+
 		getSelectorQuery() {
-			// #ifndef APP-NVUE
-			const views = uni.createSelectorQuery().in(this);
+			const views = uni.createSelectorQuery().in(this)
 			views
-				.selectAll('.selector-query-hock')
+				.selectAll('.uni-swipe_button-group')
 				.boundingClientRect(data => {
-					console.log(data)
-					this.position.content = data[1]
-					this.position.button = data[0]
-					if (this.autoClose) return
-					if (this.show) {
-						this.open()
+					let show = 'none'
+					if (this.autoClose) {
+						show = 'none'
 					} else {
-						this.close()
+						show = this.show
 					}
+					this.leftWidth = data[0].width || 0
+					this.rightWidth = data[1].width || 0
+					this.buttonShow = show
 				})
 				.exec()
-			// #endif
-			// #ifdef APP-NVUE
-			dom.getComponentRect(this.$refs['selector-content-hock'], (data) => {
-				if (this.position.content) return
-				this.position.content = data.size
-			})
-			dom.getComponentRect(this.$refs['selector-button-hock'], (data) => {
-				if (this.position.button) return
-				this.position.button = data.size
-				if (this.autoClose) return
-				if (this.show) {
-					this.open()
-				} else {
-					this.close()
-				}
-			})
-			// #endif
 		}
 	}
 }

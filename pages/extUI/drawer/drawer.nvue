@@ -9,23 +9,10 @@
 		<text class="example-info">这是抽屉式导航组件使用示例，可以指定菜单左侧或者右侧弹出（仅初始化生效），组件内部可以放置任何内容。点击页面按钮即可显示导航菜单。</text>
 		<view>
 			<uni-section title="左侧滑出" type="line"></uni-section>
+
 			<view class="example-body">
 				<view class="word-btn draw-cotrol-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="showDrawer('showLeft')"><text class="word-btn-white">显示Drawer</text></view>
 				<uni-drawer ref="showLeft" mode="left" :width="320" @change="change($event,'showLeft')">
-					<!-- #ifndef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
-					<uni-list>
-						<uni-list-item title="Item1" />
-						<uni-list-item title="Item2" />
-						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
-					</uni-list>
-					<!-- #endif -->
-					<!-- #ifdef MP-BAIDU || MP-ALIPAY || MP-TOUTIAO -->
-					<view class="uni-list">
-						<uni-list-item title="Item1" />
-						<uni-list-item title="Item2" />
-						<uni-list-item :show-badge="true" title="Item3" badge-text="12" />
-					</view>
-					<!-- #endif -->
 					<view class="close">
 						<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="closeDrawer('showLeft')"><text class="word-btn-white">关闭Drawer</text></view>
 					</view>
@@ -99,17 +86,18 @@
 </script>
 
 <style>
+	@charset "UTF-8";
+
 	/* 头条小程序组件内不能引入字体 */
 	/* #ifdef MP-TOUTIAO */
 	@font-face {
 		font-family: uniicons;
 		font-weight: normal;
 		font-style: normal;
-		src: url('~@/static/uni.ttf') format('truetype');
+		src: url("~@/static/uni.ttf") format("truetype");
 	}
 
 	/* #endif */
-
 	/* #ifndef APP-NVUE */
 	page {
 		display: flex;
@@ -169,7 +157,6 @@
 		color: #3b4144;
 	}
 
-
 	.example-body {
 		flex-direction: column;
 		padding: 15px;
@@ -197,7 +184,6 @@
 	.word-btn--hover {
 		background-color: #4ca2ff;
 	}
-
 
 	.header {
 		/* #ifndef APP-NVUE */
@@ -278,10 +264,9 @@
 		width: 100%;
 		height: 100%;
 		/* #endif */
-		flex: 1
+		flex: 1;
 	}
 
-	/* 处理抽屉内容滚动 */
 	.scroll-view-box {
 		flex: 1;
 		position: absolute;

@@ -1,29 +1,30 @@
 export default {
 	data() {
 		return {
-			isshow: false,
-			viewWidth: 0,
-			buttonWidth: 0,
-			disabledView: false,
 			x: 0,
-			transition: false
+			transition: false,
+			width: 0,
+			viewWidth: 0,
+			swipeShow: 0
 		}
 	},
 	watch: {
 		show(newVal) {
 			if (this.autoClose) return
-			if (newVal) {
-				this.open()
+			if (newVal && newVal !== 'none' ) {
+				this.transition = true
+				this.open(newVal)
 			} else {
 				this.close()
 			}
-		},
+		}
 	},
 	created() {
 		if (this.swipeaction.children !== undefined) {
 			this.swipeaction.children.push(this)
 		}
 	},
+
 	beforeDestroy() {
 		this.swipeaction.children.forEach((item, index) => {
 			if (item === this) {
@@ -33,116 +34,161 @@ export default {
 	},
 	mounted() {
 		this.isopen = false
-		this.transition = true
 		setTimeout(() => {
 			this.getQuerySelect()
 		}, 50)
-
 	},
 	methods: {
-		onClick(index, item) {
-			this.$emit('click', {
-				content: item,
-				index
-			})
-		},
-		touchstart(e) {
-			let {
-				pageX,
-				pageY
+		appTouchStart(e) {
+			const {
+				clientX
 			} = e.changedTouches[0]
-			this.transition = false
-			this.startX = pageX
-			if (this.autoClose) {
-				this.swipeaction.closeOther(this)
-			}
+			this.clientX = clientX
+			this.timestamp = new Date().getTime()
 		},
-		touchmove(e) {
-			let {
-				pageX,
+		appTouchEnd(e, index, item, position) {
+			const {
+				clientX
 			} = e.changedTouches[0]
-			this.slide = this.getSlide(pageX)
-			if (this.slide === 0) {
-				this.disabledView = false
-			}
-
-		},
-		touchend(e) {
-			this.stop = false
-			this.transition = true
-			if (this.isopen) {
-				if (this.moveX === -this.buttonWidth) {
-					this.close()
-					return
-				}
-				this.move()
-			} else {
-				if (this.moveX === 0) {
-					this.close()
-					return
-				}
-				this.move()
-			}
-		},
-		open() {
-			this.x = this.moveX
-			this.$nextTick(() => {
-				this.x = -this.buttonWidth
-				this.moveX = this.x
-				
-				if(!this.isopen){
-					this.isopen = true
-					this.$emit('change', true)
-				}
-			})
-		},
-		close() {
-			this.x = this.moveX
-			this.$nextTick(() => {
-				this.x = 0
-				this.moveX = this.x
-				if(this.isopen){
-					this.isopen = false
-					this.$emit('change', false)
-				}
-			})
-		},
-		move() {
-			if (this.slide === 0) {
-				this.open()
-			} else {
-				this.close()
-			}
-		},
-		onChange(e) {
-			let x = e.detail.x
-			this.moveX = x
-			if (x >= this.buttonWidth) {
-				this.disabledView = true
-				this.$nextTick(() => {
-					this.x = this.buttonWidth
+			// fixed by xxxx 模拟点击事件，解决 ios 13 点击区域错位的问题
+			let diff = Math.abs(this.clientX - clientX)
+			let time = (new Date().getTime()) - this.timestamp
+			if (diff < 40 && time < 300) {
+				this.$emit('click', {
+					content: item,
+					index,
+					position
 				})
 			}
 		},
-		getSlide(x) {
-			if (x >= this.startX) {
-				this.startX = x
-				return 1
+		// onClick(index, item, position) {
+		// 	this.$emit('click', {
+		// 		content: item,
+		// 		index,
+		// 		position
+		// 	})
+		// },
+		/**
+		 * 移动触发
+		 * @param {Object} e
+		 */
+		onChange(e) {
+			this.moveX = e.detail.x
+			this.isclose = false
+		},
+		touchstart(e) {
+			this.transition = false
+			this.isclose = true
+			this.autoClose && this.swipeaction.closeOther(this)
+		},
+		touchmove(e) {},
+		touchend(e) {
+			// 0的位置什么都不执行
+			if (this.isclose && this.isopen === 'none') return
+			if (this.isclose && this.isopen !== 'none') {
+				this.transition = true
+				this.close()
 			} else {
-				this.startX = x
-				return 0
+				this.move(this.moveX + this.leftWidth)
+			}
+		},
+
+		/**
+		 * 移动
+		 * @param {Object} moveX
+		 */
+		move(moveX) {
+			// 打开关闭的处理逻辑不太一样
+			this.transition = true
+			// 未打开状态
+			if (!this.isopen || this.isopen === 'none') {
+				if (moveX > this.threshold) {
+					this.open('left')
+				} else if (moveX < -this.threshold) {
+					this.open('right')
+				} else {
+					this.close()
+				}
+			} else {
+				if (moveX < 0 && moveX < this.rightWidth) {
+					const rightX = this.rightWidth + moveX
+					if (rightX < this.threshold) {
+						this.open('right')
+					} else {
+						this.close()
+					}
+				} else if (moveX > 0 && moveX < this.leftWidth) {
+					const leftX = this.leftWidth - moveX
+					if (leftX < this.threshold) {
+						this.open('left')
+					} else {
+						this.close()
+					}
+				}
+
 			}
 
 		},
+
+		/**
+		 * 打开
+		 */
+		open(type) {
+			this.x = this.moveX
+			this.animation(type)
+		},
+
+		/**
+		 * 关闭
+		 */
+		close() {
+			this.x = this.moveX
+			// TODO 解决 x 值不更新的问题，所以会多触发一次 nextTick ，待优化
+			this.$nextTick(() => {
+				this.x = -this.leftWidth
+				if(this.isopen!=='none'){
+					this.$emit('change', 'none')
+				}
+				this.isopen = 'none'
+			})
+		},
+
+		/**
+		 * 执行结束动画
+		 * @param {Object} type
+		 */
+		animation(type) {
+			this.$nextTick(() => {
+				if (type === 'left') {
+					this.x = 0
+				} else {
+					this.x = -this.rightWidth - this.leftWidth
+				}
+				
+				if(this.isopen!==type){
+					this.$emit('change', type)
+				}
+				this.isopen = type
+			})
+
+		},
+		getSlide(x) {},
 		getQuerySelect() {
 			const query = uni.createSelectorQuery().in(this);
-			query.selectAll('.viewWidth-hook').boundingClientRect(data => {
-
-				this.viewWidth = data[0].width
-				this.buttonWidth = data[1].width
-				this.transition = false
+			query.selectAll('.movable-view--hock').boundingClientRect(data => {
+				this.leftWidth = data[1].width
+				this.rightWidth = data[2].width
+				this.width = data[0].width
+				this.viewWidth = this.width + this.rightWidth + this.leftWidth
+				if (this.leftWidth === 0) {
+					// TODO 疑似bug ,初始化的时候如果x 是0，会导致移动位置错误，所以让元素超出一点
+					this.x = -0.1
+				} else {
+					this.x = -this.leftWidth
+				}
+				this.moveX = this.x
 				this.$nextTick(() => {
-					this.transition = true
+					this.swipeShow = 1
 				})
 
 				if (!this.buttonWidth) {
@@ -150,8 +196,9 @@ export default {
 				}
 
 				if (this.autoClose) return
-				if (this.show) {
-					this.open()
+				if (this.show !== 'none') {
+					this.transition = true
+					this.open(this.shows)
 				}
 			}).exec();
 

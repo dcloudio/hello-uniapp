@@ -82,10 +82,6 @@
 		position: relative;
 		flex: 1;
 		flex-direction: column;
-		/* justify-content: center;
- */
-		/* align-items: center;
- */
 	}
 
 	.uni-grid-item--border {
@@ -126,7 +122,6 @@
 	}
 
 	/* #endif */
-
 	.uni-grid-item--border-top {
 		position: relative;
 		/* #ifdef APP-NVUE */

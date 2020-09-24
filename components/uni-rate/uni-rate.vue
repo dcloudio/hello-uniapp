@@ -1,44 +1,52 @@
 <template>
-	<view class="uni-rate">
-		<view :key="index" :style="{ marginLeft: margin + 'px' }" @click="_onClick(index)" class="uni-rate__icon" v-for="(star, index) in stars">
-			<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
-			<!-- #ifdef APP-NVUE -->
-			<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
-				<uni-icons style="text-align: left;" :color="activeColor" :size="size" type="star-filled" />
+	<view>
+		<view ref="uni-rate" class="uni-rate">
+			<view class="uni-rate__icon" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove">
+				<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
+				<!-- #ifdef APP-NVUE -->
+				<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
+					<uni-icons style="text-align: left;" :color="disabled?'#ccc':activeColor" :size="size" type="star-filled" />
+				</view>
+				<!-- #endif -->
+				<!-- #ifndef APP-NVUE -->
+				<view :style="{ width: star.activeWitch}" class="uni-rate__icon-on">
+					<uni-icons :color="disabled?disabledColor:activeColor" :size="size" type="star-filled" />
+				</view>
+				<!-- #endif -->
 			</view>
-			<!-- #endif -->
-			<!-- #ifndef APP-NVUE -->
-			<view :style="{ width: star.activeWitch,top:-size/2+'px' }" class="uni-rate__icon-on">
-				<uni-icons :color="activeColor" :size="size" type="star-filled" />
-			</view>
-			<!-- #endif -->
 		</view>
 	</view>
 </template>
 
 <script>
+	// #ifdef APP-NVUE
+	const dom = uni.requireNativePlugin('dom');
+	// #endif
 	import uniIcons from "../uni-icons/uni-icons.vue";
-
 	/**
 	 * Rate 评分
 	 * @description 评分组件
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=33
-	 * @property {Number} value 当前评分
-	 * @property {Number} max 最大的评分
-	 * @property {Number} size 星星的大小
-	 * @property {Number} margin 星星的间距
-	 * @property {String} color 星星的颜色
-	 * @property {String} activeColor 选中状态的星星的颜色
-	 * @property {Boolean} isFill = [true|false] 星星的类型，是否为实心类型
-	 * @property {Boolean} disabled = [true|false] 是否为不可点击状态
-	 * @event {Function} change uniRate 的 value 改变时触发事件，e={value:Number}
+	 * @property {Boolean} 	isFill = [true|false] 		星星的类型，是否为实心类型, 默认为实心
+	 * @property {String} 	color 						未选中状态的星星颜色，默认为 "#ececec"
+	 * @property {String} 	activeColor 				选中状态的星星颜色，默认为 "#ffca3e"
+	 * @property {String} 	disabledColor 				禁用状态的星星颜色，默认为 "#c0c0c0"
+	 * @property {Number} 	size 						星星的大小
+	 * @property {Number} 	value/v-model 				当前评分
+	 * @property {Number} 	max 						最大评分评分数量，目前一分一颗星
+	 * @property {Number} 	margin 						星星的间距，单位 px
+	 * @property {Boolean} 	disabled = [true|false] 	是否为禁用状态，默认为 false
+	 * @property {Boolean} 	readonly = [true|false] 	是否为只读状态，默认为 false
+	 * @property {Boolean} 	allowHalf = [true|false] 	是否实现半星，默认为 false
+	 * @property {Boolean} 	touchable = [true|false] 	是否支持滑动手势，默认为 true
+	 * @event {Function} change 						uniRate 的 value 改变时触发事件，e={value:Number}
 	 */
 
 	export default {
-		name: "UniRate",
 		components: {
 			uniIcons
 		},
+		name: "UniRate",
 		props: {
 			isFill: {
 				// 星星的类型，是否镂空
@@ -46,7 +54,7 @@
 				default: true
 			},
 			color: {
-				// 星星的颜色
+				// 星星未选中的颜色
 				type: String,
 				default: "#ececec"
 			},
@@ -54,6 +62,11 @@
 				// 星星选中状态颜色
 				type: String,
 				default: "#ffca3e"
+			},
+			disabledColor: {
+				// 星星禁用状态颜色
+				type: String,
+				default: "#c0c0c0"
 			},
 			size: {
 				// 星星的大小
@@ -63,7 +76,7 @@
 			value: {
 				// 当前评分
 				type: [Number, String],
-				default: 0
+				default: 1
 			},
 			max: {
 				// 最大评分
@@ -79,6 +92,21 @@
 				// 是否可点击
 				type: [Boolean, String],
 				default: false
+			},
+			readonly: {
+				// 是否只读
+				type: [Boolean, String],
+				default: false
+			},
+			allowHalf: {
+				// 是否显示半星
+				type: [Boolean, String],
+				default: false
+			},
+			touchable: {
+				// 是否支持滑动手势
+				type: [Boolean, String],
+				default: true
 			}
 		},
 		data() {
@@ -86,14 +114,17 @@
 				valueSync: ""
 			};
 		},
+		watch: {
+			value(newVal) {
+				this.valueSync = Number(newVal);
+			}
+		},
 		computed: {
 			stars() {
 				const value = this.valueSync ? this.valueSync : 0;
 				const starList = [];
 				const floorValue = Math.floor(value);
 				const ceilValue = Math.ceil(value);
-				// console.log("ceilValue: " + ceilValue);
-				// console.log("floorValue: " + floorValue);
 				for (let i = 0; i < this.max; i++) {
 					if (floorValue > i) {
 						starList.push({
@@ -109,22 +140,98 @@
 						});
 					}
 				}
-				// console.log("starList[4]: " + starList[4].activeWitch);
 				return starList;
 			}
 		},
 		created() {
 			this.valueSync = Number(this.value);
+			this._rateBoxLeft = 0
+			this._oldValue = null
+		},
+		mounted() {
+			setTimeout(() => {
+				this._getSize()
+			}, 100)
 		},
 		methods: {
-			_onClick(index) {
-				if (this.disabled) {
-					return;
+			touchstart(e) {
+				if (this.readonly || this.disabled) return
+				const {
+					clientX,
+					screenX
+				} = e.changedTouches[0]
+				// TODO 做一下兼容，只有 Nvue 下才有 screenX，其他平台式 clientX
+				this._getRateCount(clientX || screenX)
+			},
+			touchmove(e) {
+				if (this.readonly || this.disabled || !this.touchable) return
+				const {
+					clientX,
+					screenX
+				} = e.changedTouches[0]
+				this._getRateCount(clientX || screenX)
+			},
+			/**
+			 * 获取星星个数
+			 */
+			_getRateCount(clientX) {
+				const rateMoveRange = clientX - this._rateBoxLeft
+				let index = parseInt(rateMoveRange / (this.size + this.margin))
+				index = index < 0 ? 0 : index;
+				index = index > this.max ? this.max : index;
+				const range = parseInt(rateMoveRange - (this.size + this.margin) * index);
+				let value = 0;
+				if (this._oldValue === index) return;
+				this._oldValue = index;
+
+				if (this.allowHalf) {
+					if (range > (this.size / 2)) {
+						value = index + 1
+					} else {
+						value = index + 0.5
+					}
+				} else {
+					value = index + 1
 				}
-				this.valueSync = index + 1;
+
+				value = Math.max(0.5, Math.min(value, this.max))
+				this.valueSync = value
+				this._onChange()
+			},
+
+			/**
+			 * 触发动态修改
+			 */
+			_onChange() {
+
+				this.$emit("input", this.valueSync);
 				this.$emit("change", {
 					value: this.valueSync
 				});
+			},
+			/**
+			 * 获取星星距离屏幕左侧距离
+			 */
+			_getSize() {
+				// #ifndef APP-NVUE
+				uni.createSelectorQuery()
+					.in(this)
+					.select('.uni-rate')
+					.boundingClientRect()
+					.exec(ret => {
+						if (ret) {
+							this._rateBoxLeft = ret[0].left
+						}
+					})
+				// #endif
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['uni-rate'], (ret) => {
+					const size = ret.size
+					if (size) {
+						this._rateBoxLeft = size.left
+					}
+				})
+				// #endif
 			}
 		}
 	};
@@ -135,14 +242,14 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		line-height: 0;
+		line-height: 1;
 		font-size: 0;
 		flex-direction: row;
 	}
 
 	.uni-rate__icon {
 		position: relative;
-		line-height: 0;
+		line-height: 1;
 		font-size: 0;
 	}
 

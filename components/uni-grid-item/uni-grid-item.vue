@@ -82,10 +82,6 @@
 		position: relative;
 		flex: 1;
 		flex-direction: column;
-		/* justify-content: center;
- */
-		/* align-items: center;
- */
 	}
 
 	.uni-grid-item--border {
@@ -117,7 +113,6 @@
 		z-index: 0;
 		/* #endif */
 	}
-
 
 	.uni-highlight:active {
 		background-color: #f1f1f1;

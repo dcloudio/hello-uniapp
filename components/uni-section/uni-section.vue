@@ -23,7 +23,7 @@
 	 */
 
 	export default {
-		name: 'UniTitle',
+		name: 'UniSection',
 		props: {
 			type: {
 				type: String,
@@ -68,28 +68,12 @@
 		height: 50px;
 		background-color: #f8f8f8;
 		/* #ifdef APP-NVUE */
-		border-bottom-color: #e5e5e5;
-		border-bottom-style: solid;
-		border-bottom-width: 0.5px;
 		/* #endif */
 		font-weight: normal;
 	}
 
 	/* #ifndef APP-NVUE */
-	.uni-section:after {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		height: 1px;
-		content: '';
-		-webkit-transform: scaleY(.5);
-		transform: scaleY(.5);
-		background-color: #e5e5e5;
-	}
-
 	/* #endif */
-
 	.uni-section__head {
 		flex-direction: row;
 		justify-content: center;

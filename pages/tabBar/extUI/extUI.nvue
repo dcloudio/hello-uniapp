@@ -29,10 +29,6 @@
 						url: "badge"
 					},
 					{
-						name: "Calendar 日历",
-						url: "calendar"
-					},
-					{
 						name: "Card 卡片",
 						url: "card"
 					},
@@ -61,12 +57,24 @@
 						url: "fav"
 					},
 					{
+						name: "Field 字段",
+						url: "field"
+					},
+					{
+						name: "Forms 表单",
+						url: "forms"
+					},
+					{
 						name: "GoodsNav 商品导航",
 						url: "goods-nav"
 					},
 					{
 						name: "Grid 宫格",
 						url: "grid"
+					},
+					{
+						name: "Group 分组",
+						url: "group"
 					},
 					{
 						name: "Icons 图标",
@@ -92,12 +100,12 @@
 						name: "NavBar 自定义导航栏",
 						url: "nav-bar"
 					},
-					// #ifndef QUICKAPP-WEBVIEW
+					// #ifndef QUICKAPP-WEBVIEW 
 					{
 						name: "NoticeBar 通告栏",
 						url: "notice-bar"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "NumberBox 数字输入框",
 						url: "number-box"
@@ -106,12 +114,12 @@
 						name: "Pagination 分页器",
 						url: "pagination"
 					},
-					// #ifndef QUICKAPP-WEBVIEW-HUAWEI
+					// #ifndef QUICKAPP-WEBVIEW-HUAWEI 
 					{
 						name: "PopUp 弹出层",
 						url: "popup"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "Rate 评分",
 						url: "rate"
@@ -152,11 +160,10 @@
 			// #ifdef APP-NVUE
 			uni.preloadPage({
 				url: "/pages/extUI/calendar/calendar",
-				success(){
+				success() {
 					console.log("preloadPage /pages/extUI/calendar/calendar")
 				},
-				fail(){
-				}
+				fail() {}
 			})
 			// #endif
 		},

@@ -62,7 +62,7 @@
 				default: '无匹配项'
 			},
 			value: {
-				type: String,
+				type: [String, Number],
 				default: ''
 			}
 		},
@@ -83,7 +83,7 @@
 			},
 			filterCandidates() {
 				return this.candidates.filter((item) => {
-					return item.indexOf(this.inputVal) > -1
+					return item.toString().indexOf(this.inputVal) > -1
 				})
 			},
 			filterCandidatesLength() {
@@ -132,7 +132,6 @@
 		height: 40px;
 		flex-direction: row;
 		align-items: center;
-		/* border-bottom: solid 1px #DDDDDD; */
 	}
 
 	.uni-combox__label {

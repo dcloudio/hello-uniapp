@@ -139,8 +139,6 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		/* flex: 1;
- */
 		position: relative;
 		justify-content: center;
 		align-items: center;
@@ -193,17 +191,9 @@
 		top: 2px;
 		justify-content: center;
 		align-items: center;
-		/* width: 0;
- */
-		/* height: 0;
- */
 	}
 
 	.uni-tab__dot {
-		/* width: 30rpx;
- */
-		/* height: 30rpx;
- */
 		padding: 0 4px;
 		line-height: 15px;
 		color: #ffffff;
@@ -215,8 +205,6 @@
 
 	.uni-tab__dots {
 		padding: 0 4px;
-		/* width: auto;
- */
 		border-radius: 15px;
 	}
 

@@ -21,5 +21,5 @@ export default {
 			config:config
 		}
 	},
-	mixins: [message],
+	mixins: [message]
 }

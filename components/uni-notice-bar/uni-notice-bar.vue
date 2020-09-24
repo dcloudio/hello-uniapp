@@ -311,7 +311,6 @@
 	}
 
 	/* #endif */
-
 	.uni-noticebar__content--scrollable {
 		/* #ifdef APP-NVUE */
 		flex: 0;
