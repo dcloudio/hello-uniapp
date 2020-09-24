@@ -12,10 +12,11 @@
 				<uni-field type="textarea" :input-border="true" label="体重" name="size" v-model="formData.size" placeholder="请输入体重" />
 			</uni-group>
 
-			<button class="button" form-type="submit">Submit</button>
-			<button class="button" form-type="reset">Reset</button>
+			<!-- 直接使用组件自带submit、reset 方法，小程序不生效 -->
+			<!-- <button class="button" form-type="submit">Submit</button>
+			<button class="button" form-type="reset">Reset</button> -->
 
-			<button class="button" @click="submitForm('form')">手动提交</button>
+			<button class="button" @click="submitForm('form')">校验表单</button>
 			<button class="button" @click="validateField('form')">校验部分表单</button>
 			<button class="button" @click="clearValidate('form','name')">移除部分表单校验结果</button>
 			<button class="button" @click="clearValidate('form')">移除全部表单校验结果</button>

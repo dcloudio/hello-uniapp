@@ -2,7 +2,7 @@
 	<view class="uni-field" :class="{'uni-border-top': borderTop, 'uni-border-bottom': borderBottom }" :style="[fieldStyle]">
 		<view class="uni-field-inner" :class="[type == 'textarea' ? 'uni-textarea-inner' : '', 'uni-label-postion-' + labelPos]">
 			<view :class="errorTop ? 'uni-error-in-label' : ''">
-				<view class="uni-label" :class="[required ? 'uni-required' : '']" :style="{
+				<view class="uni-field-label" :class="[required ? 'uni-required' : '']" :style="{
                     justifyContent: justifyContent,
                     width: labelWid +'px',
                     marginBottom: labelMarginBottom,
@@ -11,7 +11,7 @@
 						<uni-icons size="16" :type="leftIcon" :color="iconColor" />
 					</view>
 					<slot name="leftIcon"></slot>
-					<text class="uni-label-text" :class="[this.$slots.leftIcon || leftIcon ? 'uni-label-left-gap' : '']">{{ label }}</text>
+					<text class="uni-label-text" :class="[leftIcon ? 'uni-label-left-gap' : '']">{{ label }}</text>
 				</view>
 				<view v-if="errorTop" class="uni-error-message" :style="{paddingLeft: '4px'}">{{ errorMessage }}</view>
 			</view>
@@ -488,7 +488,7 @@ export default {
   align-items: flex-start;
   flex: 1; }
 
-.uni-label {
+.uni-field-label {
   width: 65px;
   flex: 1 1 65px;
   text-align: left;
