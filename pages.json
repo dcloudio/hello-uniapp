@@ -99,6 +99,12 @@
 		},
 		// #endif
 		{
+			"path": "pages/component/match-media/match-media",
+			"style": {
+				"navigationBarTitleText": "match-media"
+			}
+		},
+		{
 			"path": "pages/component/text/text",
 			"style": {
 				"navigationBarTitleText": "text"
@@ -309,7 +315,7 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
-	],
+    ],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
