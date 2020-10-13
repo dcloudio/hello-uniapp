@@ -1,4 +1,5 @@
 node_modules/
+dist/**
 .project
 unpackage/
 .DS_Store

@@ -66,6 +66,12 @@
 </script>
 
 <style scoped>
+	/* #ifndef APP-NVUE */
+	.uni-link {
+		cursor: pointer;
+	}
+
+	/* #endif */
 	.uni-link--withline {
 		text-decoration: underline;
 	}

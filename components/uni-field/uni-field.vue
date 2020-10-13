@@ -1,19 +1,19 @@
 <template>
-	<view class="uni-field" :class="{'uni-border-top': borderTop, 'uni-border-bottom': borderBottom }" :style="[fieldStyle]">
+	<view class="uni-field" :class="{ 'uni-border-top': borderTop, 'uni-border-bottom': borderBottom }" :style="[fieldStyle]">
 		<view class="uni-field-inner" :class="[type == 'textarea' ? 'uni-textarea-inner' : '', 'uni-label-postion-' + labelPos]">
 			<view :class="errorTop ? 'uni-error-in-label' : ''">
 				<view class="uni-field-label" :class="[required ? 'uni-required' : '']" :style="{
-                    justifyContent: justifyContent,
-                    width: labelWid +'px',
-                    marginBottom: labelMarginBottom,
-                }">
+						justifyContent: justifyContent,
+						width: labelWid + 'px',
+						marginBottom: labelMarginBottom
+					}">
 					<view class="uni-icon-wrap" v-if="leftIcon">
 						<uni-icons size="16" :type="leftIcon" :color="iconColor" />
 					</view>
 					<slot name="leftIcon"></slot>
 					<text class="uni-label-text" :class="[leftIcon ? 'uni-label-left-gap' : '']">{{ label }}</text>
 				</view>
-				<view v-if="errorTop" class="uni-error-message" :style="{paddingLeft: '4px'}">{{ errorMessage }}</view>
+				<view v-if="errorTop" class="uni-error-message" :style="{ paddingLeft: '4px' }">{{ msg }}</view>
 			</view>
 			<view class="fild-body" :class="[inputBorder ? 'uni-input-border' : '']" :style="[borderEixstTextareaStyle]">
 				<view class="uni-flex-1 uni-flex" :style="[inputWrapStyle]">
@@ -22,7 +22,7 @@
 						v-else
 						:type="type"
 						class="uni-flex-1 uni-field__input-wrap"
-                        :name="name"
+						:name="name"
 						:value="value"
 						:password="password || this.type === 'password'"
 						:placeholder="placeholder"
@@ -37,15 +37,21 @@
 						@confirm="onConfirm"
 						@tap="fieldClick"
 					/>
-                	<uni-icons :size="clearSize" v-if="clearable && value != ''" type="clear" color="#c0c4cc" @click="onClear" class="uni-clear-icon" />
+					<uni-icons :size="clearSize" v-if="clearable && value != ''" type="clear" color="#c0c4cc" @click="onClear" class="uni-clear-icon" />
 				</view>
 				<view class="uni-button-wrap"><slot name="right" /></view>
-                <uni-icons v-if="rightIcon" size="16" @click="rightIconClick" :type="rightIcon" color="#c0c4cc" :style="[rightIconStyle]" />
-        	</view>
+				<uni-icons v-if="rightIcon" size="16" @click="rightIconClick" :type="rightIcon" color="#c0c4cc" :style="[rightIconStyle]" />
+			</view>
 		</view>
-		<view v-if="errorBottom" class="uni-error-message" :style="{
-			paddingLeft: Number(labelWid) + 4 + 'px'
-		}">{{ errorMessage }}</view>
+		<view
+			v-if="errorBottom"
+			class="uni-error-message"
+			:style="{
+				paddingLeft: Number(labelWid) + 4 + 'px'
+			}"
+		>
+			{{ msg }}
+		</view>
 	</view>
 </template>
 
@@ -89,7 +95,7 @@
  * @example <uni-field v-model="mobile" label="手机号" required :error-message="errorMessage"></uni-field>
  */
 export default {
-	name:"uni-field",
+	name: 'uni-field',
 	props: {
 		// rules:{
 		// 	type:Array,
@@ -128,14 +134,14 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		// errorMessage: {
-		// 	type: [String, Boolean],
-		// 	default: ''
-		// },
+		errorMessage: {
+			type: [String, Boolean],
+			default: ''
+		},
 		placeholder: String,
 		placeholderStyle: String,
-        focus: Boolean,
-        name: String,
+		focus: Boolean,
+		name: String,
 		value: [Number, String],
 		type: {
 			type: String,
@@ -189,61 +195,64 @@ export default {
 			focused: false,
 			itemIndex: 0,
 			errorTop: false,
-            errorBottom: false,
-            labelMarginBottom: '',
-            errorWidth: '',
-			errorMessage: '',
+			errorBottom: false,
+			labelMarginBottom: '',
+			errorWidth: '',
+			errMsg: '',
 			errorBorderColor: false,
-			val:'',
-			labelPos:'',
-			labelWid:'',
-			labelAli:''
+			val: '',
+			labelPos: '',
+			labelWid: '',
+			labelAli: ''
 		};
 	},
 	computed: {
-        fieldStyle() {
-            let style = {}
-            if(this.labelPos == 'top') {
-                style.padding = '10px 14px'
-                this.labelMarginBottom = '6px'
-            }
-            if (this.labelPos == 'left' && this.errorMessage !== false && this.errorMessage != '') {
-                style.paddingBottom = '0px'
-                this.errorBottom = true
-                this.errorTop = false
-            } else if (this.labelPos == 'top' && this.errorMessage !== false && this.errorMessage != '') {
-                this.errorBottom = false
-                this.errorTop = true
-            }else {
-                // style.paddingBottom = ''
-                this.errorTop = false
-                this.errorBottom = false
-            }
-            return style
+		msg() {
+			return this.errorMessage || this.errMsg;
+		},
+		fieldStyle() {
+			let style = {};
+			if (this.labelPos === 'top') {
+				style.padding = '10px 14px';
+				this.labelMarginBottom = '6px';
+			}
+			if (this.labelPos === 'left' && this.msg !== false && this.msg !== '') {
+				style.paddingBottom = '0px';
+				this.errorBottom = true;
+				this.errorTop = false;
+			} else if (this.labelPos === 'top' && this.msg !== false && this.msg !== '') {
+				this.errorBottom = false;
+				this.errorTop = true;
+			} else {
+				// style.paddingBottom = ''
+				this.errorTop = false;
+				this.errorBottom = false;
+			}
+			return style;
 		},
 
 		borderEixstTextareaStyle() {
-			let style = {}
+			let style = {};
 			if (this.inputBorder) {
 				if (this.type === 'textarea') {
-					style.minHeight = '60px'
+					style.minHeight = '60px';
 				}
-				if (this.errorMessage !== false && this.errorMessage != '') {
-					style.borderColor = '#dd524d'
+				if (this.msg !== false && this.msg != '') {
+					style.borderColor = '#dd524d';
 				}
 			}
-			return style
+			return style;
 		},
 
 		inputWrapStyle() {
 			let style = {};
 			// 判断lable的位置，如果是left的话，让input左边两边有间隙
-			if(this.labelPos == 'left') {
+			if (this.labelPos == 'left') {
 				style.margin = `0 4px`;
 			} else {
 				// 如果lable是top的，input的左边就没必要有间隙了
-                style.marginRight = `4px`;
-                // this.fieldStyle.style.padding = '10px 14px'
+				style.marginRight = `4px`;
+				// this.fieldStyle.style.padding = '10px 14px'
 			}
 			return style;
 		},
@@ -256,25 +265,25 @@ export default {
 		},
 		labelStyle() {
 			let style = {};
-			if(this.labelAli == 'left') style.justifyContent = 'flext-start';
-			if(this.labelAli == 'center') style.justifyContent = 'center';
-			if(this.labelAli == 'right') style.justifyContent = 'flext-end';
+			if (this.labelAli == 'left') style.justifyContent = 'flext-start';
+			if (this.labelAli == 'center') style.justifyContent = 'center';
+			if (this.labelAli == 'right') style.justifyContent = 'flext-end';
 			return style;
 		},
 		// uni不支持在computed中写style.justifyContent = 'center'的形式，故用此方法
 		justifyContent() {
-			if(this.labelAli == 'left') return 'flex-start';
-			if(this.labelAli == 'center') return 'center';
-			if(this.labelAli == 'right') return 'flex-end';
+			if (this.labelAli == 'left') return 'flex-start';
+			if (this.labelAli == 'center') return 'center';
+			if (this.labelAli == 'right') return 'flex-end';
 		},
 		// 因为uniapp的input组件的maxlength组件必须要数值，这里转为数值，给用户可以传入字符串数值
 		inputMaxlength() {
-			return Number(this.maxlength)
+			return Number(this.maxlength);
 		},
 		// label的位置
 		fieldInnerStyle() {
 			let style = {};
-			if(this.labelPos == 'left') {
+			if (this.labelPos == 'left') {
 				style.flexDirection = 'row';
 			} else {
 				style.flexDirection = 'column';
@@ -283,34 +292,39 @@ export default {
 			return style;
 		}
 	},
-	watch:{
-		trigger(trigger){
-			this.formTrigger = trigger
+	watch: {
+		trigger(trigger) {
+			this.formTrigger = trigger;
 		}
 	},
 	created() {
-		this.form = this.getForm()
-		this.formRules = []
-		this.formTrigger = this.trigger
-
-		if (this.form) {
-			this.form.childrens.push(this)
-			this.labelPos = this.labelPosition ? this.labelPosition : this.form.labelPosition
-			this.labelWid = this.labelWidth    ? this.labelWidth    : this.form.labelWidth
-			this.labelAli = this.labelAlign	   ? this.labelAlign    : this.form.labelAlign
-
-			if (this.form.formRules) {
-				this.formRules = this.form.formRules[this.name]
-			}
-			this.validator = this.form.validator
-		}else{
-			this.labelPos = this.labelPosition 	|| 'left'
-			this.labelWid = this.labelWidth 	|| 65
-			this.labelAli = this.labelAlign		|| 'left'
-		}
-
+		this.form = this.getForm();
+		this.formRules = [];
+		this.formTrigger = this.trigger;
+		this.init();
 	},
 	methods: {
+		/**
+		 * 初始化变量值
+		 */
+		init() {
+			if (this.form) {
+				this.form.childrens.push(this);
+				this.labelPos = this.labelPosition ? this.labelPosition : this.form.labelPosition;
+				this.labelWid = this.labelWidth ? this.labelWidth : this.form.labelWidth;
+				this.labelAli = this.labelAlign ? this.labelAlign : this.form.labelAlign;
+
+				if (this.form.formRules) {
+					this.formRules = this.form.formRules[this.name];
+				}
+				this.validator = this.form.validator;
+				this.form.formData[this.name] = this.value || '';
+			} else {
+				this.labelPos = this.labelPosition || 'left';
+				this.labelWid = this.labelWidth || 65;
+				this.labelAli = this.labelAlign || 'left';
+			}
+		},
 		/**
 		 * 获取父元素实例
 		 */
@@ -319,16 +333,17 @@ export default {
 			let parentName = parent.$options.name;
 			while (parentName !== 'uniForms') {
 				parent = parent.$parent;
-				if (!parent) return false
+				if (!parent) return false;
 				parentName = parent.$options.name;
 			}
 			return parent;
 		},
+
 		/**
 		 * 移除该表单项的校验结果
 		 */
-		clearValidate(){
-			this.errorMessage = ''
+		clearValidate() {
+			this.errMsg = '';
 		},
 		/**
 		 * 父组件处理函数
@@ -336,11 +351,15 @@ export default {
 		 */
 		parentVal(callback) {
 			if (this.type === 'number') {
-				this.val = this.val === '' ? this.val : Number(this.val)
+				this.val = this.val === '' ? this.val : Number(this.val);
 			}
-			typeof(callback) === 'function' && callback({
-				[this.name]: this.val
-			}, this.name)
+			typeof callback === 'function' &&
+				callback(
+					{
+						[this.name]: this.val
+					},
+					this.name
+				);
 		},
 		/**
 		 * 触发校验
@@ -348,57 +367,60 @@ export default {
 		 * @param {Object} value
 		 */
 		triggerValidator(trigger, value) {
-			let isValid = false
+			let isValid = false;
 			// 如果 name 不存在，则不开启校验
-			this.formRules && this.formRules.rules && this.formRules.rules.forEach(item => {
-				item.trigger = this.isTrigger(this.form.formTrigger , this.formTrigger ,item.trigger)
-				if (item.trigger !== trigger || item.trigger === 'submit') return
-				isValid = true
-			})
+			this.formRules &&
+				this.formRules.rules &&
+				this.formRules.rules.forEach(item => {
+					item.trigger = this.isTrigger(this.form.formTrigger, this.formTrigger, item.trigger);
+					if (item.trigger !== trigger || item.trigger === 'submit') return;
+					isValid = true;
+				});
 
-			isValid && this.triggerCheck(value)
+			isValid && this.triggerCheck(value);
 		},
 		/**
 		 * 校验规则
 		 * @param {Object} value
 		 */
-		triggerCheck(value,item) {
+		triggerCheck(value, item) {
 			// 输入值为 number
 			if (this.type === 'number') {
-				value = value === '' ? value : Number(value)
+				value = value === '' ? value : Number(value);
 			}
 			const result = this.validator.validateUpdate({
 				[this.name]: value
-			})
-			this.errorMessage = !result ? '' : result.errorMessage
-			this.form.validateCheck(result)
+			});
+			this.errMsg = !result ? '' : result.errorMessage;
+			this.form.validateCheck(result);
 		},
 		/**
 		 * 触发时机
 		 * @param {Object} event
 		 */
-		isTrigger(parentRule,itemRlue,rule){
-			let rl = 'none'
-			if(rule){
-				rl= rule
-			}else if(itemRlue){
-				rl= itemRlue
-			}else if(parentRule){
-				rl= parentRule
-			}else{
-				rl= 'blur'
+		isTrigger(parentRule, itemRlue, rule) {
+			let rl = 'none';
+			if (rule) {
+				rl = rule;
+			} else if (itemRlue) {
+				rl = itemRlue;
+			} else if (parentRule) {
+				rl = parentRule;
+			} else {
+				rl = 'blur';
 			}
-			return rl
+			return rl;
 		},
 
 		onInput(event) {
 			let value = event.detail.value;
 			// 判断是否去除空格
-			if(this.trim) value = this.trimStr(value);
+			if (this.trim) value = this.trimStr(value);
+			this.form.formData[this.name] = value || '';
+			this.val = value;
 			this.$emit('input', value);
 			// 校验输入
-			this.val = value
-			this.triggerValidator('change', value)
+			this.triggerValidator('change', value);
 		},
 
 		onFocus(event) {
@@ -406,24 +428,24 @@ export default {
 			this.$emit('focus', event);
 		},
 		onBlur(event) {
-			let value = event.detail.value
+			let value = event.detail.value;
 			// 最开始使用的是监听图标@touchstart事件，自从hx2.8.4后，此方法在微信小程序出错
 			// 这里改为监听点击事件，手点击清除图标时，同时也发生了@blur事件，导致图标消失而无法点击，这里做一个延时
 			setTimeout(() => {
 				this.focused = false;
-			}, 100)
+			}, 100);
 			this.$emit('blur', event);
 
 			// 校验输入
-			this.triggerValidator('blur', value)
+			this.triggerValidator('blur', value);
 		},
 		onConfirm(e) {
 			this.$emit('confirm', e.detail.value);
 		},
 		onClear(event) {
-			this.val = ''
+			this.val = '';
 			this.$emit('input', '');
-			this.clearValidate()
+			this.clearValidate();
 		},
 		rightIconClick() {
 			this.$emit('right-icon-click');
@@ -431,20 +453,20 @@ export default {
 		},
 		fieldClick() {
 			this.$emit('click');
-        },
-        trimStr(str, pos = 'both') {
-            if (pos == 'both') {
-                return str.replace(/^\s+|\s+$/g, "");
-            } else if (pos == "left") {
-                return str.replace(/^\s*/, '');
-            } else if (pos == 'right') {
-                return str.replace(/(\s*$)/g, "");
-            } else if (pos == 'all') {
-                return str.replace(/\s+/g, "");
-            } else {
-                return str;
-            }
-        }
+		},
+		trimStr(str, pos = 'both') {
+			if (pos == 'both') {
+				return str.replace(/^\s+|\s+$/g, '');
+			} else if (pos == 'left') {
+				return str.replace(/^\s*/, '');
+			} else if (pos == 'right') {
+				return str.replace(/(\s*$)/g, '');
+			} else if (pos == 'all') {
+				return str.replace(/\s+/g, '');
+			} else {
+				return str;
+			}
+		}
 	}
 };
 </script>
@@ -454,7 +476,8 @@ export default {
   padding: 16px 14px;
   text-align: left;
   color: #333;
-  font-size: 14px; }
+  font-size: 14px;
+  background-color: #fff; }
 
 .uni-field-inner {
   display: flex;
