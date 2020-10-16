@@ -623,6 +623,14 @@
 					}
 				},
 				// #endif
+				// #ifdef APP-PLUS
+				{
+					"path": "full-screen-video-ad/full-screen-video-ad",
+					"style": {
+						"navigationBarTitleText": "全屏视频广告"
+					}
+				},
+				// #endif
 				// #ifndef H5
 				{
 					"path": "brightness/brightness",

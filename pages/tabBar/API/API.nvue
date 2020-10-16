@@ -310,6 +310,11 @@
                     name: '激励视频广告',
                     open: false
                 },
+                {
+                    url: 'full-screen-video-ad',
+                    name: '全屏视频广告',
+                    open: false
+                },
                 // #endif
                 // #ifndef H5 || QUICKAPP-WEBVIEW
                 {
