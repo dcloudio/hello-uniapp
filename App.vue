@@ -1,3 +1,8 @@
+<!-- <template>
+	<view class="fix-pc-padding">
+
+	</view>
+</template> -->
 <script>
     export default {
         onLaunch: function() {
@@ -54,7 +59,9 @@
         font-size: 28rpx;
         line-height: 1.8;
     }
-
+	.fix-pc-padding {
+		padding: 0 50px;
+	}
     .uni-header-logo {
         padding: 30rpx;
         flex-direction: column;

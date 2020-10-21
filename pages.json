@@ -1,4 +1,10 @@
 {
+	"leftWindow": {
+	    "path": "windows/left-window.vue",
+	    "style": {
+	      "width": "560px"
+	    }
+	},
 	"pages": [
 		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
@@ -35,7 +41,7 @@
 			}
 		},
 		{
-			"path": "pages/tabBar/template/template",
+			"path": "pages/tabBar/template/templatePage",
 			"style": {
 				"navigationBarTitleText": "模版",
 				"app-plus": {
@@ -1207,7 +1213,7 @@
 				"selectedIconPath": "static/extuiHL.png",
 				"text": "扩展组件"
 			}, {
-				"pagePath": "pages/tabBar/template/template",
+				"pagePath": "pages/tabBar/template/templatePage",
 				"iconPath": "static/template.png",
 				"selectedIconPath": "static/templateHL.png",
 				"text": "模板"

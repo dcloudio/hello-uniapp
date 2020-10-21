@@ -139,4 +139,8 @@
 	.desc {
 		/* text-indent: 40rpx; */
 	}
+	.flex-pc {
+		display: flex;
+		justify-content: center;
+	}
 </style>

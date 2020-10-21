@@ -178,7 +178,7 @@
 		/* #endif */
 		flex-direction: column;
 		position: fixed;
-		left: 0;
+		left: var(--window-left);
 		right: 0;
 		bottom: 0;
 	}

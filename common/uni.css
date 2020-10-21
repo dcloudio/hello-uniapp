@@ -66,6 +66,7 @@ form {
 }
 .uni-page-body {
 	width: 100%;
+	padding:0 100px;
 	flex-grow: 1;
 	overflow-x: hidden;
 }

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view :src="url" @message="getMessage"></web-view>
+		<web-view class="fix-left-window" :src="url" @message="getMessage"></web-view>
 	</view>
 </template>
 
@@ -28,5 +28,7 @@
 </script>
 
 <style>
-
+.fix-left-window {
+	padding-left: var(--window-left);
+}
 </style>
