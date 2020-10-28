@@ -1,39 +1,40 @@
 <!--responsive/right-window.vue-->
 <template>
-  <view class="left-window-style">
-		<view class="main-menu">
-			<uni-list>
-				<uni-list-item v-for="menu in menus" :key="menu.id"
-				:title="menu.name"
-				:thumb="menu.iconPath"
-				@click="toSecondMenu(menu.component)"
-				:clickable="true"
-				showArrow
-				thumb-size="lg" />
-			</uni-list>
+	<scroll-view class="fix-window" scroll-y="true">
+		<view class="left-window-style">
+			<view class="main-menu">
+				<uni-list>
+					<uni-list-item v-for="menu in menus" :key="menu.iconPath"
+					:title="menu.name"
+					:thumb="menu.iconPath"
+					@click="toSecondMenu(menu.component)"
+					:clickable="true"
+					showArrow
+					thumb-size="lg" />
+				</uni-list>
+			</view>
+			<view class="second-menu">
+				<component v-bind:is="currentComponent"></component>
+			</view>
 		</view>
-		<view class="second-menu">
-			<component v-bind:is="currentComponent"></component>
-		</view>
-  </view>
+	</scroll-view>
 </template>
 
 <script>
-import uniSubMenu from '@/windows/uni-sub-menu/uni-sub-menu.vue'
-import component from '@/pages/tabBar/component/component.nvue'
+import componentPage from '@/pages/tabBar/component/component.nvue'
 import API from '@/pages/tabBar/API/API.nvue'
 import extUI from '@/pages/tabBar/extUI/extUI.nvue'
-import templatePage from '@/pages/tabBar/template/templatePage.nvue'
+import templatePage from '@/pages/tabBar/template/template.nvue'
 import { mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
-			currentComponent: 'component',
+			currentComponent: 'componentPage',
 			menus: [{
-				id: 'component1',
+				id: 'componentPage',
 				iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/8b4f7fc0-12d1-11eb-8a36-ebb87efcf8c0.png",
 				name: '内置组件',
-				component: 'component'
+				component: 'componentPage'
 			},{
 				id: 'API',
 				iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c15af2c0-12d1-11eb-81ea-f115fe74321c.png",
@@ -58,11 +59,10 @@ export default {
 	    }
 	},
 	components:{
-		component,
+		componentPage,
 		API,
 		extUI,
-		templatePage,
-		uniSubMenu
+		templatePage
 	},
 	watch:{
 		matchLeftWindow: {
@@ -70,14 +70,17 @@ export default {
 			handler(newMatches) {
 				this.setMatchLeftWindow(newMatches)
 			}
+		},
+		$route: {
+			immediate: true,
+			handler(newRoute) {
+				if(newRoute.path === '/'){
+					uni.redirectTo({
+						url:'pages/component/view/view'
+					})
+				}
+			}
 		}
-	},
-	mounted() {
-		uni.redirectTo({
-			url:'pages/component/view/view'
-		})
-	},
-	onLoad() {
 	},
 	methods: {
 		...mapMutations(['setMatchLeftWindow']),
@@ -89,18 +92,28 @@ export default {
 </script>
 
 <style>
+	.page {
+		background-color: #fff;
+	}
+	.fix-window {
+		/* position: fixed; */
+		width: 560px;
+		height: calc(100vh);
+		background-color: #fff;
+	}
 	.left-window-style {
 		background-color: #fff;
 		display: flex;
 		flex-direction: row;
-		height: calc(100vh);
 	}
 	.main-menu {
 		width: 240px;
+		height: calc(100vh);
 	}
 	.second-menu {
 		width: 300px;
 		background-color: #F8F8F8;
+		height: calc(100vh);
 	}
 	.icon-image {
 		width: 30px;

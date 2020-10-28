@@ -41,7 +41,7 @@
 			}
 		},
 		{
-			"path": "pages/tabBar/template/templatePage",
+			"path": "pages/tabBar/template/template",
 			"style": {
 				"navigationBarTitleText": "模版",
 				"app-plus": {
@@ -1213,7 +1213,7 @@
 				"selectedIconPath": "static/extuiHL.png",
 				"text": "扩展组件"
 			}, {
-				"pagePath": "pages/tabBar/template/templatePage",
+				"pagePath": "pages/tabBar/template/template",
 				"iconPath": "static/template.png",
 				"selectedIconPath": "static/templateHL.png",
 				"text": "模板"

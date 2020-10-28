@@ -178,7 +178,10 @@
 		/* #endif */
 		flex-direction: column;
 		position: fixed;
+		left: 0;
+		/* #ifdef H5 */
 		left: var(--window-left);
+		/* #endif */
 		right: 0;
 		bottom: 0;
 	}

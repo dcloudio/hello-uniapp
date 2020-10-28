@@ -32,7 +32,7 @@
     });
     // #endif
 
-    export default {
+    export default  {
         data() {
             return {
                 list: [{

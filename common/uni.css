@@ -6,6 +6,12 @@
 }
 
 /*通用 */
+.fix-left-window {
+	/* #ifdef H5 */
+	padding-left: var(--window-left);
+	/* #endif */
+}
+
 view{
 	font-size:28rpx;
 	line-height:1.8;
@@ -71,7 +77,7 @@ form {
 	overflow-x: hidden;
 }
 .uni-padding-wrap{
-	width:690rpx;
+	/* width:690rpx; */
 	padding:0 30rpx;
 }
 .uni-word {
