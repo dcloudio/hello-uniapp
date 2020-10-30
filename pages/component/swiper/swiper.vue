@@ -71,7 +71,7 @@
 <style>
 	.uni-margin-wrap {
 		width:690rpx;
-		margin:0 30rpx;
+		width: 100%;;
 	}
 	.swiper {
 		height: 300rpx;

@@ -48,8 +48,8 @@
 					this.max = 0;
 					this.data = [];
 					let data = [];
-					this.max += 10;
-					for (var i = this.max - 9; i < this.max + 1; i++) {
+					this.max += 20;
+					for (var i = this.max - 19; i < this.max + 1; i++) {
 						data.push(i)
 					}
 					this.data = this.data.concat(data);

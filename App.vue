@@ -1,9 +1,5 @@
-<!-- <template>
-	<view class="fix-pc-padding">
-
-	</view>
-</template> -->
 <script>
+	import { mapState } from 'vuex'
     export default {
         onLaunch: function() {
             console.log('App Launch');
@@ -41,6 +37,19 @@
         onHide: function() {
             console.log('App Hide')
         },
+		// ********暂用作适配 PC 居中*********开始
+		// mounted() {
+		// 	if (this.hasLeftWin) {
+		// 		this.$el.style.padding ='0 20%'
+		// 		this.$el.style.backgroundColor ='#fff'
+		// 	}
+		// },
+		// computed:{
+		// 	...mapState({
+		// 		hasLeftWin: state => !state.noMatchLeftWindow
+		// 	})
+		// },
+		// ********暂用作适配 PC 居中*********结束
 		globalData: {
 			test: ''
 		}
@@ -52,9 +61,34 @@
     /* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
     @import './common/uni.css';
 
+	/* H5 兼容 pc 所需 */
+	/* #ifdef H5 */
+/* 	@media screen and (min-width: 1500px) {
+		uni-content{
+			width: 1400px;
+			margin: 0 auto;
+		}
+
+	} */
+
+	uni-body {
+		background-color: #fff;
+	}
+
+/*
+	uni-left-window::-webkit-scrollbar {
+	    display: none;
+	}
+	uni-left-window {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	*/
+	/* #endif */
+
     /* 以下样式用于 hello uni-app 演示所需 */
     page {
-        background-color: #F4F5F6;
+        background-color: #F1F1F1;
         height: 100%;
         font-size: 28rpx;
         line-height: 1.8;

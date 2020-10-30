@@ -4,21 +4,22 @@
             <set-tab-bar @unmount="leaveSetTabBarPage"></set-tab-bar>
         </template>
         <template v-else>
-            <view class="uni-header-logo">
+            <view v-if="!hasLeftWin" class="uni-header-logo">
                 <image class="uni-header-image" src="/static/apiIndex.png"></image>
             </view>
-            <view class="uni-hello-text">
+            <view v-if="!hasLeftWin" class="uni-hello-text">
                 <text class="hello-text">以下将演示uni-app接口能力，详细文档见：</text>
                 <u-link class="hello-link" :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'"
                     :inWhiteList="true"></u-link>
             </view>
             <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-                <view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
+                <view class="uni-panel-h" :class="item.open || activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
                     <text class="uni-panel-text">{{item.name}}</text>
-                    <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+                    <text class="uni-panel-icon uni-icon" :class="item.open || activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
                 </view>
-                <view class="uni-panel-c" v-if="item.open">
-                    <view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item2.url)">
+                <view class="uni-panel-c" v-if="item.open || activeOpen === item.id">
+                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
+
                         <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
                         <text class="uni-navigate-icon uni-icon">&#xe470;</text>
                     </view>
@@ -29,6 +30,7 @@
 </template>
 <script>
     import setTabBar from '@/components/api-set-tabbar.nvue';
+	import { mapState, mapMutations } from 'vuex';
     export default {
         components: {
             setTabBar
@@ -377,9 +379,16 @@
             ];
             return {
                 showSetTabBarPage: false,
-                list: list
+                list: list,
+				notForPc: [{
+						name: '设置TabBar',
+						url: 'set-tabbar'
+				}]
             };
         },
+		mounted() {
+			uni.setStorageSync('menuList', this.list)
+		},
         onShareAppMessage() {
             return {
                 title: '欢迎体验uni-app',
@@ -402,7 +411,38 @@
         onHide() {
             this.leaveSetTabBarPage();
         },
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		watch:{
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+						let path = newRoute.path.split('/')[3]
+						for (const item of this.list) {
+							if (Array.isArray(item.pages)) {
+								for (const page of item.pages) {
+									if (page === path) {
+										this.setActiveOpen(item.id)
+									}
+									if (page.url && page.url === path) {
+										this.setActiveOpen(item.id)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
         methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
             triggerCollapse(e) {
                 if (!this.list[e].pages) {
                     this.goDetailPage(this.list[e].url);
@@ -416,15 +456,31 @@
                     }
                 }
             },
-            goDetailPage(e) {
-                if (e === 'set-tabbar') {
-                    this.showSetTabBarPage = true;
-                    return;
-                }
-                let url = ~e.indexOf('platform') ? e : '/pages/API/' + e + '/' + e;
-                uni.navigateTo({
-                    url: url
-                });
+            goDetailPage(panel, e) {
+				for (const item of this.notForPc) {
+					if (e === item.url && this.hasLeftWin) {
+						uni.showModal({
+							title: '提示',
+							content: `[${item.name}]功能 PC 不支持， 请在手机上体验！`
+						})
+						return;
+					}
+				}
+				if (e === 'set-tabbar') {
+					this.showSetTabBarPage = true;
+					return;
+				}
+				let url = ~e.indexOf('platform') ? e : '/pages/API/' + e + '/' + e;
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
+				this.$emit('changeLeftWin', panel, url)
             },
             leaveSetTabBarPage() {
                 this.showSetTabBarPage = false;

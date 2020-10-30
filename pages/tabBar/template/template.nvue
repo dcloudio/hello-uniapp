@@ -1,19 +1,19 @@
 <template>
 	<view class="uni-container">
-		<view class="uni-header-logo">
+		<view v-if="!hasLeftWin" class="uni-header-logo">
 			<image class="uni-header-image" src="/static/templateIndex.png"></image>
 		</view>
-		<view class="uni-hello-text">
+		<view v-if="!hasLeftWin" class="uni-hello-text">
 			<text class="hello-text">以下是部分模板示例，更多模板见插件市场：</text>
 			<u-link class="hello-link" href="https://ext.dcloud.net.cn" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
 		<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-			<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
+			<view :class="{'left-win-active': leftWinActive === item.url  && hasLeftWin, 'uni-panel-h-on': item.open || activeOpen === item.id}" class="uni-panel-h" @click="triggerCollapse(index)">
 				<text class="uni-panel-text">{{item.name}}</text>
-				<text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+				<text class="uni-panel-icon uni-icon" :class="item.open || activeOpen === item.id  ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
 			</view>
-			<view class="uni-panel-c" v-if="item.open">
-				<view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item2)">
+			<view class="uni-panel-c" v-if="item.open || activeOpen === item.id ">
+				<view :class="{'left-win-active': leftWinActive === item2.url  && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item2)">
 					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
 					<text class="uni-navigate-icon uni-icon">&#xe470;</text>
 				</view>
@@ -22,6 +22,7 @@
 	</view>
 </template>
 <script>
+	import { mapState, mapMutations } from 'vuex';
 	export default {
 		data() {
 			return {
@@ -131,7 +132,38 @@
 				url: '/pages/about/about'
 			});
 		},
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		watch:{
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+						let path = newRoute.path.split('/')[3]
+						for (const item of this.list) {
+							if (Array.isArray(item.pages)) {
+								for (const page of item.pages) {
+									if (page === path) {
+										this.setActiveOpen(item.id)
+									}
+									if (page.url && page.url === path) {
+										this.setActiveOpen(item.id)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
 			triggerCollapse(e) {
 				if (!this.list[e].pages) {
 					this.goDetailPage(this.list[e].url);
@@ -148,9 +180,15 @@
 			goDetailPage(e) {
 				let path = e.url ? e.url : e;
 				let url = ~path.indexOf('platform') ? path : '/pages/template/' + path + '/' + path;
-				uni.navigateTo({
-					url: url
-				});
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
 				return false;
 			}
 		}

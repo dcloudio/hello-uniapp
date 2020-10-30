@@ -178,11 +178,14 @@
 		/* #endif */
 		flex-direction: column;
 		position: fixed;
-		left: 0;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		/* #endif */
-		right: 0;
+		left: calc(var(--window-left) * 1);
+		right: var(--window-right);
 		bottom: 0;
 	}
+/* 	@media screen and (min-width: 1500px) {
+		.goods-carts {
+			left: calc(var(--window-left) * 2.6);
+			right: calc(var(--window-left) * 1.6);
+		}
+	} */
 </style>

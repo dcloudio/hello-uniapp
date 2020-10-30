@@ -1453,3 +1453,7 @@ radio-group label, checkbox-group label{
     left: 0;
     transform: translateY(50%);
 }
+
+.left-win-active text{
+	color: #4cd964 !important;
+}

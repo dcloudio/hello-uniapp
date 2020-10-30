@@ -154,7 +154,7 @@
 
     .page {
         flex: 1;
-        width: 750rpx;
+        /* width: 750rpx; */
     }
 
     .swiper {
