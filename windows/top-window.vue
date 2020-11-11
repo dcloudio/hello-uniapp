@@ -6,9 +6,8 @@
 				<text>hello uni-app</text>
 			</navigator>
 		</view>
-		<view class="right-header">
-			<view class="right-header-item" :class="{'active': active === menu.component}" v-for="menu in menus" :key="menu.component" @click="toSecondMenu(menu.component)">{{menu.name}}</view>
-		</view>
+		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current" @onTabItemTap="toSecondMenu" />
+		<uni-link class="phone-link" href="https://m3w.cn/uniapp" text="手机版"></uni-link>
 	</view>
 </template>
 
@@ -17,26 +16,25 @@
 	export default {
 		data() {
 			return {
-				menus: [{
-					id: 'componentPage',
-					iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/8b4f7fc0-12d1-11eb-8a36-ebb87efcf8c0.png",
-					name: '内置组件',
-					component: 'componentPage'
-				},{
-					id: 'API',
-					iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c15af2c0-12d1-11eb-81ea-f115fe74321c.png",
-					name: '接口',
-					component: 'API'
-				},{
-					id: 'extUI',
-					iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/d45d20f0-12d1-11eb-b997-9918a5dda011.png",
-					name: '扩展组件',
-					component: 'extUI'
-				},{
-					id: 'template',
-					iconPath: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/e0bd9dc0-12d1-11eb-81ea-f115fe74321c.png",
-					name: '模板',
-					component: 'templatePage'
+				selected: {
+					component: 0,
+					API: 1,
+					extUI: 2,
+					template: 3
+				},
+				current: 0,
+				indexPage: [{
+					tabBar: '/pages/tabBar/component/component',
+					index: '/pages/component/view/view'
+				}, {
+					tabBar: '/pages/tabBar/API/API',
+					index: '/pages/API/set-navigation-bar-title/set-navigation-bar-title'
+				}, {
+					tabBar: '/pages/tabBar/extUI/extUI',
+					index: '/pages/extUI/badge/badge'
+				}, {
+					tabBar: '/pages/tabBar/template/template',
+					index: '/pages/template/nav-button/nav-button'
 				}]
 			}
 		},
@@ -45,24 +43,44 @@
 				active: state => state.active
 			})
 		},
+		watch: {
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					let comp = newRoute.path.split('/')[2]
+						this.current = this.selected[comp]
+
+					for(const item of this.indexPage) {
+						if (newRoute.path === item.tabBar) {
+							uni.redirectTo({
+								url: item.index
+							})
+						}
+					}
+				}
+			}
+		},
+		mounted() {
+		},
 		methods: {
 			...mapMutations(['setActive']),
-			toSecondMenu(component) {
+			toSecondMenu(e) {
+				let component = e.pagePath.split('/')[3]
+				if (component === 'component') {
+						component = 'componentPage'
+					}
+				if (component === 'template') {
+					component = 'templatePage'
+				}
 				this.setActive(component)
-				let url = `/pages/component/view/view`
-				if (component === 'API') {
-					url = `/pages/API/navigator/navigator`
+				const activeTabBar = '/' + e.pagePath
+				for(const item of this.indexPage) {
+					if (activeTabBar === item.tabBar) {
+						uni.redirectTo({
+							url: item.index
+						})
+					}
 				}
-				if (component === 'extUI') {
-					url = `/pages/extUI/badge/badge`
-				}
-				if (component === 'templatePage') {
-					url = `/pages/template/nav-button/nav-button`
-				}
-				console.log(944)
-				uni.redirectTo({
-					url: url
-				})
 			}
 		}
 	}
@@ -81,11 +99,6 @@
 		background-color: #FFFFFF;
 		color: #333;
 	}
-	// @media screen and (min-width: 1500px) {
-	// 	.top-window-header {
-	// 		padding: 0 calc(var(--window-left) * 1.6);
-	// 	}
-	// }
 	.logo {
 		display: flex;
 		flex-direction: row;
@@ -115,5 +128,13 @@
 	.active {
 		color: #4cd964;
 		border-bottom: 2px solid;
+	}
+	.tab-bar-flex {
+		// flex: 1;
+		width: 360px;
+	}
+	.phone-link {
+		padding-left: 20px;
+		cursor: pointer;
 	}
 </style>

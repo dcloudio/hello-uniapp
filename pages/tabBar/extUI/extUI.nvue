@@ -7,7 +7,7 @@
 			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
 			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
-		<view class="uni-panel" v-for="item in lists" :key="item.url">
+		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel" v-for="item in lists" :key="item.url">
 			<view :class="{'left-win-active': leftWinActive ===  item.url && hasLeftWin}" class="uni-panel-h" @click="goDetailPage(item.url)">
 				<text class="uni-panel-text">{{item.name}}</text>
 				<text class="uni-panel-icon uni-icon">&#xe470;</text>
@@ -20,6 +20,18 @@
 	export default {
 		data() {
 			return {
+				hideList: [
+					'notice-bar',
+					'nav-bar',
+					'popup',
+					'swiper-dot',
+					'transition',
+					'rate',
+					'indexed-list',
+					'swipe-action',
+					'combox',
+					'fab'
+				],
 				lists: [{
 						name: "Badge 数字角标",
 						url: "badge"
@@ -169,6 +181,7 @@
 				activeOpen: state => state.activeOpen
 			})
 		},
+		// #ifdef H5
 		watch:{
 			$route: {
 				immediate: true,
@@ -179,6 +192,7 @@
 				}
 			}
 		},
+		// #endif
 		methods: {
 			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
 			goDetailPage(path) {

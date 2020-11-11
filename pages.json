@@ -320,9 +320,9 @@
 			"style": {
 				"navigationBarTitleText": "问题反馈"
 			}
-		},
+		}
 		// #ifdef H5
-		{
+		,{
 			"path": "pages/error/404",
 			"style": {
 				"navigationBarTitleText": "Not Found"
@@ -488,13 +488,13 @@
 				{
 					"path": "get-network-type/get-network-type",
 					"style": {
-						"navigationBarTitleText": "获取手机网络状态"
+						"navigationBarTitleText": "获取设备网络状态"
 					}
 				},
 				{
 					"path": "get-system-info/get-system-info",
 					"style": {
-						"navigationBarTitleText": "获取手机系统信息"
+						"navigationBarTitleText": "获取设备系统信息"
 					}
 				},
 				{
@@ -1195,9 +1195,15 @@
 	],
 	"globalStyle": {
 		"pageOrientation": "portrait",
-		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "Hello uniapp",
+		// #ifndef H5
+		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#007AFF",
+		// #endif
+		// #ifdef  H5
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#F1F1F1",
+		// #endif
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
 		"backgroundColorBottom": "#F4F5F6",

@@ -64,10 +64,12 @@ page {
 	/* #endif */
     background-color: #ffffff;
     flex-direction: row !important;
-	justify-content: space-betweenn !important;
+	/* justify-content: space-between !important; */
     align-items: center !important;
     padding: 12px;
+	/* #ifdef H5 */
 	cursor: pointer;
+	/* #endif */
 }
 /*
 .uni-panel-h:active {
@@ -110,7 +112,9 @@ page {
     border-top-color: #f0f0f0;
     border-top-width: 1px;
     padding: 12px;
+	/* #ifdef H5 */
 	cursor: pointer;
+	/* #endif */
 }
 
 .uni-navigate-item:active {

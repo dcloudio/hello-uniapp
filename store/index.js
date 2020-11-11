@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 		noMatchLeftWindow: true,
 		active: 'componentPage',
 		leftWinActive: '/pages/component/view/view',
-		activeOpen: 'view',
+		activeOpen: '',
 		menu: []
 	},
 	mutations: {

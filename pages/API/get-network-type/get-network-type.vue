@@ -16,7 +16,7 @@
 				</view>
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary"  @tap="getNetworkType">获取手机网络状态</button>
+				<button type="primary"  @tap="getNetworkType">获取设备网络状态</button>
 				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">获取 wifi 信息</button>
 				<button class="uni-common-mt" @tap="clear">清空</button>
 			</view>

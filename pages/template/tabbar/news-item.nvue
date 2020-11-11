@@ -152,7 +152,13 @@
 
 	.image-list3 {
 		width: 225rpx;
+		/* #ifdef H5 */
+		width: 30%;
+		/* #endif */
 		height: 146rpx;
+		/* #ifdef H5 */
+		height: 146px;
+		/* #endif */
 	}
 
 	.media-info {

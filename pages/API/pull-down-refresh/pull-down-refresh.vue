@@ -2,6 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
+			<view style="font-size: 12px; color: #666;">注：PC 不支持下拉刷新</view>
 			<view class="text" v-for="(num,index) in data" :key="index">list - {{num}}</view>
 			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
 		</view>

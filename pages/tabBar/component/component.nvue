@@ -9,11 +9,11 @@
                 :inWhiteList="true"></u-link>
         </view>
         <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-            <view class="uni-panel-h" :class="item.open || activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
+            <view class="uni-panel-h" :class="activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
                 <text class="uni-panel-text">{{item.name}}</text>
-                <text class="uni-panel-icon uni-icon" :class="item.open || activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+                <text class="uni-panel-icon uni-icon" :class="activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
             </view>
-            <view class="uni-panel-c" v-if="item.open || activeOpen === item.id">
+            <view class="uni-panel-c" v-if="activeOpen === item.id">
                 <view :class="{'left-win-active': leftWinActive === (item2.url ? item2.url.split('/')[3] : item2) && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item.id, item2)">
                     <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
                     <text class="uni-navigate-icon uni-icon">&#xe470;</text>
@@ -142,12 +142,6 @@
                 url: '/pages/about/about'
             });
         },
-		mounted() {
-			// if (this.hasLeftWin) {
-			// 	this.setMenu(this.list)
-			// }
-			// uni.setStorageSync('menuList', this.list)
-		},
 		computed: {
 			...mapState({
 				hasLeftWin: state => !state.noMatchLeftWindow,
@@ -155,6 +149,7 @@
 				activeOpen: state => state.activeOpen
 			})
 		},
+		// #ifdef H5
 		watch:{
 			$route: {
 				immediate: true,
@@ -178,20 +173,18 @@
 				}
 			}
 		},
+		// #endif
         methods: {
 			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
-            triggerCollapse(e) {
+            triggerCollapse(e, id) {
                 if (!this.list[e].pages) {
-                    this.goDetailPage(this.list[e].url);
+                    this.goDetailPage( '', this.list[e].url);
                     return;
                 }
-                for (var i = 0; i < this.list.length; ++i) {
-                    if (e === i) {
-                        this.list[i].open = !this.list[e].open;
-                    } else {
-                        this.list[i].open = false;
-                    }
-                }
+				if (id === this.activeOpen) {
+					id = ''
+				}
+				this.setActiveOpen(id)
             },
             goDetailPage(panel, e) {
                 if (typeof e === 'string') {

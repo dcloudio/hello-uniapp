@@ -409,7 +409,9 @@
     }
 
     .scrollview {
+		margin-top: 240px;
         flex: 1;
+        /* padding: 10px; */
         padding: 10px;
     }
 

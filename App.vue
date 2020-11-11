@@ -37,19 +37,6 @@
         onHide: function() {
             console.log('App Hide')
         },
-		// ********暂用作适配 PC 居中*********开始
-		// mounted() {
-		// 	if (this.hasLeftWin) {
-		// 		this.$el.style.padding ='0 20%'
-		// 		this.$el.style.backgroundColor ='#fff'
-		// 	}
-		// },
-		// computed:{
-		// 	...mapState({
-		// 		hasLeftWin: state => !state.noMatchLeftWindow
-		// 	})
-		// },
-		// ********暂用作适配 PC 居中*********结束
 		globalData: {
 			test: ''
 		}
@@ -63,32 +50,35 @@
 
 	/* H5 兼容 pc 所需 */
 	/* #ifdef H5 */
-/* 	@media screen and (min-width: 1500px) {
-		uni-content{
-			width: 1400px;
-			margin: 0 auto;
+	@media screen and (min-width: 768px) {
+		body{
+			overflow-y: scroll;
 		}
+		/* .uni-page-head {
+		    background-color: #f5f5f5 !important;
+		    color: #333 !important;
+		} */
+	}
 
+	 /* 顶栏通栏样式 */
+	/* .uni-top-window {
+	    left: 0;
+	    right: 0;
 	} */
-
-	uni-body {
-		background-color: #fff;
+	uni-page-body {
+		background-color: #F5F5F5 !important;
+		min-height: 100% !important;
+		height: auto !important;
 	}
 
-/*
-	uni-left-window::-webkit-scrollbar {
-	    display: none;
+	uni-tabbar .uni-tabbar {
+		background-color: #fff !important;
 	}
-	uni-left-window {
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	*/
 	/* #endif */
 
     /* 以下样式用于 hello uni-app 演示所需 */
     page {
-        background-color: #F1F1F1;
+        background-color: #efeff4;
         height: 100%;
         font-size: 28rpx;
         line-height: 1.8;

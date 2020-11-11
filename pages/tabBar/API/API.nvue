@@ -13,13 +13,12 @@
                     :inWhiteList="true"></u-link>
             </view>
             <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-                <view class="uni-panel-h" :class="item.open || activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
+                <view class="uni-panel-h" :class="activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
                     <text class="uni-panel-text">{{item.name}}</text>
-                    <text class="uni-panel-icon uni-icon" :class="item.open || activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+                    <text class="uni-panel-icon uni-icon" :class="activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
                 </view>
-                <view class="uni-panel-c" v-if="item.open || activeOpen === item.id">
-                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
-
+                <view class="uni-panel-c" v-if="activeOpen === item.id">
+                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin, 'pc-hide': item2.name === '设置TabBar' && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
                         <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
                         <text class="uni-navigate-icon uni-icon">&#xe470;</text>
                     </view>
@@ -144,11 +143,11 @@
                     name: '设备',
                     open: false,
                     pages: [{
-                            name: '获取手机网络状态',
+                            name: '获取设备网络状态',
                             url: 'get-network-type'
                         },
                         {
-                            name: '获取手机系统信息',
+                            name: '获取设备系统信息',
                             url: 'get-system-info'
                         },
                         {
@@ -195,6 +194,7 @@
                             url: 'ibeacon'
                         },
                         // #endif
+						// #ifndef H5
                         {
                             name: '监听加速度传感器',
                             url: 'on-accelerometer-change'
@@ -203,6 +203,7 @@
                             name: '监听罗盘数据',
                             url: 'on-compass-change'
                         },
+						// #endif
                         //#ifdef APP-PLUS
                         {
                             name: '监听距离传感器',
@@ -418,6 +419,7 @@
 				activeOpen: state => state.activeOpen
 			})
 		},
+		// #ifdef H5
 		watch:{
 			$route: {
 				immediate: true,
@@ -441,31 +443,20 @@
 				}
 			}
 		},
+		// #endif
         methods: {
 			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
-            triggerCollapse(e) {
+            triggerCollapse(e, id) {
                 if (!this.list[e].pages) {
-                    this.goDetailPage(this.list[e].url);
+                    this.goDetailPage('', this.list[e].url);
                     return;
                 }
-                for (var i = 0; i < this.list.length; ++i) {
-                    if (e === i) {
-                        this.list[i].open = !this.list[e].open;
-                    } else {
-                        this.list[i].open = false;
-                    }
-                }
+				if (id === this.activeOpen) {
+					id = ''
+				}
+				this.setActiveOpen(id)
             },
             goDetailPage(panel, e) {
-				for (const item of this.notForPc) {
-					if (e === item.url && this.hasLeftWin) {
-						uni.showModal({
-							title: '提示',
-							content: `[${item.name}]功能 PC 不支持， 请在手机上体验！`
-						})
-						return;
-					}
-				}
 				if (e === 'set-tabbar') {
 					this.showSetTabBarPage = true;
 					return;

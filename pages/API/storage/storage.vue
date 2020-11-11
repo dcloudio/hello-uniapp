@@ -91,7 +91,7 @@
 						success: (res) => {
 							uni.showModal({
 								title: '存储数据成功',
-								content: ' ',
+								content: JSON.stringify(res.errMsg),
 								showCancel:false
 							})
 						},

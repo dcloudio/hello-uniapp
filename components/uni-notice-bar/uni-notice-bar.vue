@@ -355,7 +355,7 @@
 	.uni-noticebar__content-text--scrollable {
 		/* #ifdef APP-NVUE */
 		lines: 1;
-		padding-left: 750rpx;
+		/* padding-left: 750rpx; */
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		position: absolute;

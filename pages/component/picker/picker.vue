@@ -61,14 +61,14 @@
 	</view>
 </template>
 <script>
-	
+
 	function getDate(type) {
 		const date = new Date();
-	
+
 		let year = date.getFullYear();
 		let month = date.getMonth() + 1;
 		let day = date.getDate();
-	
+
 		if (type === 'start') {
 			year = year - 60;
 		} else if (type === 'end') {
@@ -76,7 +76,7 @@
 		}
 		month = month > 9 ? month : '0' + month;;
 		day = day > 9 ? day : '0' + day;
-	
+
 		return `${year}-${month}-${day}`;
 	}
 	export default {
@@ -156,7 +156,7 @@
 			bindTimeChange: function(e) {
 				this.time = e.detail.value
 			}
-			
+
 		}
 	}
 </script>

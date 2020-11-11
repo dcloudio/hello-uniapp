@@ -5,12 +5,16 @@
 	src: url('~@/static/uni.ttf') format('truetype');
 }
 
-/*通用 */
+/* #ifdef H5 */
 .fix-left-window {
-	/* #ifdef H5 */
 	padding-left: var(--window-left);
-	/* #endif */
 }
+.pc-hide {
+	display: none !important;
+}
+/* #endif */
+
+/*通用 */
 
 view{
 	font-size:28rpx;
@@ -74,7 +78,7 @@ form {
 	width: 100%;
 	padding:0 100px;
 	flex-grow: 1;
-	overflow-x: hidden;
+	/* overflow-x: hidden; */
 }
 .uni-padding-wrap{
 	/* width:690rpx; */
@@ -1455,5 +1459,5 @@ radio-group label, checkbox-group label{
 }
 
 .left-win-active text{
-	color: #4cd964 !important;
+	color: #007AFF !important;
 }

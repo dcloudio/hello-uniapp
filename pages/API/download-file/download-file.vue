@@ -2,8 +2,10 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<image class="img" v-if="imageSrc" :src="imageSrc" mode="center" />
-			<block v-else>
+			<view v-if="imageSrc" class="image-container">
+				<image class="img" :src="imageSrc" mode="center" />
+			</view>
+			<block v-else style="margin-top: 50px;">
 				<view class="uni-hello-text">
 					点击按钮下载服务端示例图片（下载网络文件到本地临时目录）
 				</view>
@@ -51,6 +53,11 @@
 .img {
 	width: 500rpx;
 	height: 500rpx;
-	margin: 0 95rpx;
+	margin: 0 auto;
+}
+.image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>

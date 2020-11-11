@@ -124,7 +124,7 @@
 	/* #endif */
 	/* #ifndef APP-NVUE */
 	page {
-		width: 100%;
+		/* width: 100%; */
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
