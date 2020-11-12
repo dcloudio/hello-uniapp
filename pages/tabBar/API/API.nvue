@@ -471,7 +471,6 @@
 						url: url
 					})
 				}
-				this.$emit('changeLeftWin', panel, url)
             },
             leaveSetTabBarPage() {
                 this.showSetTabBarPage = false;

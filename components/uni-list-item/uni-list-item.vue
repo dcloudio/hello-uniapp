@@ -230,6 +230,7 @@
 		font-size: 16px;
 		position: relative;
 		justify-content: space-between;
+		align-items: center;
 		background-color: #fff;
 		flex-direction: row;
 	}
@@ -355,11 +356,15 @@
 
 	.flex--direction {
 		flex-direction: column;
+		/* #ifndef APP-NVUE */
 		align-items: initial;
+		/* #endif */
 	}
 
 	.flex--justify {
+		/* #ifndef APP-NVUE */
 		justify-content: initial;
+		/* #endif */
 	}
 
 	.uni-list--lg {

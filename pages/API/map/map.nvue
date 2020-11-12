@@ -403,15 +403,18 @@
 
     .map {
         width: 750rpx;
+		/* #ifdef H5 */
 		width: 100%;
+		/* #endif */
         height: 250px;
         background-color: #f0f0f0;
     }
 
     .scrollview {
+		/* #ifdef H5 */
 		margin-top: 240px;
+		/* #endif */
         flex: 1;
-        /* padding: 10px; */
         padding: 10px;
     }
 

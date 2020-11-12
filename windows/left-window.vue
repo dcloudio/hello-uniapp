@@ -1,7 +1,7 @@
 <template>
 	<view class="left-window-style">
 		<view class="second-menu">
-			<component v-bind:is="active" @changeLeftWin="changeLeftWin"></component>
+			<component v-bind:is="active"></component>
 		</view>
 	</view>
 </template>
@@ -76,12 +76,7 @@
 			}
 		},
 		methods: {
-			...mapMutations(['setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen', 'setActive']),
-			changeLeftWin(panel, e, data) {
-				this.setActiveOpen(panel)
-				this.setLeftWinActive(e)
-				this.menu = data
-			}
+			...mapMutations(['setMatchLeftWindow', 'setActive']),
 		}
 	}
 </script>
