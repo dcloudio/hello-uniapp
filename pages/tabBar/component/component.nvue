@@ -127,6 +127,7 @@
 					// #endif
 					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
 					{
+						id: 'ad',
 						url: 'ad',
 						name: 'AD组件',
 						open: false
