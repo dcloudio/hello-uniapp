@@ -1196,21 +1196,20 @@
 	"globalStyle": {
 		"pageOrientation": "portrait",
 		"navigationBarTitleText": "Hello uniapp",
-		// #ifndef H5
 		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#007AFF",
-		// #endif
-		// #ifdef  H5
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#F1F1F1",
-		// #endif
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
 		"backgroundColorBottom": "#F4F5F6",
 		"mp-360": {
 			"navigationStyle": "custom"
 		},
-		"maxWidth": 1190
+		"h5": {
+			"maxWidth": 1190,
+			"navigationBarTextStyle": "black",
+			"navigationBarBackgroundColor": "#F1F1F1"
+		}
+
 	},
 	"tabBar": {
 		"color": "#7A7E83",

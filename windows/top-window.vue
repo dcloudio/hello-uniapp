@@ -86,7 +86,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style>
 	.top-window-header {
 		height: 60px;
 		padding: 0 15px;
@@ -104,15 +104,13 @@
 		flex-direction: row;
 		align-items: center;
 		flex: 1;
-
-		image {
-			height: 30px;
-			width: 30px;
-		}
-
-		text {
-			margin-left: 8px;
-		}
+	}
+	.logo image {
+		height: 30px;
+		width: 30px;
+	}
+	.logo text {
+		margin-left: 8px;
 	}
 	.right-header {
 		display: flex;
@@ -130,7 +128,6 @@
 		border-bottom: 2px solid;
 	}
 	.tab-bar-flex {
-		// flex: 1;
 		width: 360px;
 	}
 	.phone-link {

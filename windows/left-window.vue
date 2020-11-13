@@ -52,24 +52,26 @@
 			$route: {
 				immediate: true,
 				handler(newRoute) {
-					if (newRoute.path === '/') {
-						uni.redirectTo({
-							url: 'pages/component/view/view'
-						})
-					} else if (!newRoute.matched.length) {
-						uni.redirectTo({
-							url: 'pages/error/404'
-						})
-					} else {
-						let active = newRoute.path.split('/')[2]
-						if (this.nav.includes(active)) {
-							if (active === 'component') {
-								active = 'componentPage'
+					if (this.matchLeftWindow) {
+						if (newRoute.path === '/') {
+							uni.redirectTo({
+								url: 'pages/component/view/view'
+							})
+						} else if (!newRoute.matched.length) {
+							uni.redirectTo({
+								url: 'pages/error/404'
+							})
+						} else {
+							let active = newRoute.path.split('/')[2]
+							if (this.nav.includes(active)) {
+								if (active === 'component') {
+									active = 'componentPage'
+								}
+								if (active === 'template') {
+									active = 'templatePage'
+								}
+								this.setActive(active)
 							}
-							if (active === 'template') {
-								active = 'templatePage'
-							}
-							this.setActive(active)
 						}
 					}
 				}
