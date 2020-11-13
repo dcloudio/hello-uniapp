@@ -313,6 +313,8 @@
                     name: '激励视频广告',
                     open: false
                 },
+				// #endif
+				// #ifdef APP-PLUS
                 {
                     url: 'full-screen-video-ad',
                     name: '全屏视频广告',
