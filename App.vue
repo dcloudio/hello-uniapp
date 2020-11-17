@@ -54,10 +54,6 @@
 		body{
 			overflow-y: scroll;
 		}
-		/* .uni-page-head {
-		    background-color: #f5f5f5 !important;
-		    color: #333 !important;
-		} */
 	}
 
 	 /* 顶栏通栏样式 */
@@ -65,13 +61,14 @@
 	    left: 0;
 	    right: 0;
 	} */
+
 	uni-page-body {
 		background-color: #F5F5F5 !important;
 		min-height: 100% !important;
 		height: auto !important;
 	}
 
-	uni-tabbar .uni-tabbar {
+	.uni-top-window uni-tabbar .uni-tabbar {
 		background-color: #fff !important;
 	}
 	/* #endif */
