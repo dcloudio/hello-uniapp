@@ -17,7 +17,9 @@
 			</view>
 			<view class="uni-btn-v uni-common-mt">
 				<button type="primary"  @tap="getNetworkType">获取设备网络状态</button>
+				<!-- #ifdef MP-WEIXIN -->
 				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">获取 wifi 信息</button>
+				<!-- #endif -->
 				<button class="uni-common-mt" @tap="clear">清空</button>
 			</view>
 		</view>
@@ -57,26 +59,25 @@
 				this.networkType = '',
 				this.connectedWifi = ''
 			},
+			// #ifdef MP-WEIXIN
 			getConnectedWifi() {
 				const that = this
 				uni.startWifi({
 					success: function() {
-						console.log("=========== startWifi success  =========")
 						uni.getConnectedWifi({
 							success: function(res) {
 								const { wifi } = res
 								that.connectedWifi = JSON.stringify(wifi)
 							},
 							fail: function(res) {
-								console.log("=========== getConnectedWifi fail res =========", res)
 							}
 						})
 					},
 					fail: function(res) {
-						console.log("=========== startWifi fail res =========", res)
 					}
 				})
 			}
+			// #endif
 		}
 	}
 </script>
