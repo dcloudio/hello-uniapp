@@ -71,6 +71,10 @@
 	.uni-top-window uni-tabbar .uni-tabbar {
 		background-color: #fff !important;
 	}
+
+	.uni-app--showleftwindow .hideOnPc {
+		display: none !important;
+	}
 	/* #endif */
 
     /* 以下样式用于 hello uni-app 演示所需 */
