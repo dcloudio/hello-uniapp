@@ -77,7 +77,6 @@
 		background-color: #efeff4;
 		min-height: 100%;
 		height: auto;
-		width: 100%;
 	}
 
 	view {
@@ -86,7 +85,7 @@
 	}
 
 	.example {
-		/* padding: 0 15px 15px; */
+		padding: 0 15px 15px;
 	}
 
 	.example-info {
@@ -106,7 +105,6 @@
 		font-size: 14px;
 		background-color: #ffffff;
 	}
-
 
 	/* #endif */
 	.example {

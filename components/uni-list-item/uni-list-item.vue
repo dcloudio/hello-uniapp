@@ -230,7 +230,6 @@
 		font-size: 16px;
 		position: relative;
 		justify-content: space-between;
-		align-items: center;
 		background-color: #fff;
 		flex-direction: row;
 	}

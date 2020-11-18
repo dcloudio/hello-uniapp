@@ -62,7 +62,7 @@
 				default: '无匹配项'
 			},
 			value: {
-				type: String,
+				type: [String, Number],
 				default: ''
 			}
 		},
@@ -83,7 +83,7 @@
 			},
 			filterCandidates() {
 				return this.candidates.filter((item) => {
-					return item.indexOf(this.inputVal) > -1
+					return item.toString().indexOf(this.inputVal) > -1
 				})
 			},
 			filterCandidatesLength() {

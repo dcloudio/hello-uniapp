@@ -107,7 +107,6 @@
 		background-color: #efeff4;
 		min-height: 100%;
 		height: auto;
-		width: 100%;
 	}
 
 	view {

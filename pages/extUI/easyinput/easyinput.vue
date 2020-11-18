@@ -1,17 +1,34 @@
 <template>
 	<view>
-		<text class="example-info"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
-		<uni-section title="基础用法" type="line"></uni-section>
-		<view class="example-body">
-			<uni-goods-nav @click="onClick" />
+		<text class="example-info"> easyinput 组件是对原生input组件的增强 ，是专门为配合表单组件 uni-forms 而设计的，easyinput 内置了边框，图标等，同时包含 input 所有功能</text>
+		<uni-section title="默认" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</view>
+		<uni-section title="左图标" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput prefixIcon="search" v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</view>
+		<uni-section title="右图标" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput suffixIcon="search" v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</view>
+		<uni-section title="禁用" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput disabled v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</view>
+		<uni-section title="密码框" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput type="password" v-model="password" placeholder="请输入密码"></uni-easyinput>
+		</view>
+		<uni-section title="多行文本" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput type="textarea" v-model="value" placeholder="请输入内容"></uni-easyinput>
 		</view>
 
-		<uni-section title="自定义用法" type="line"></uni-section>
-		<view class="example-body">
-			<uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
-		</view>
-		<view class="goods-carts">
-			<uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick" />
+		<uni-section title="多行文本自动高度" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput type="textarea" autoHeight v-model="value" placeholder="请输入内容"></uni-easyinput>
 		</view>
 
 	</view>
@@ -19,49 +36,16 @@
 
 <script>
 	export default {
-		components: {},
 		data() {
 			return {
-				options: [{
-					icon: 'headphones',
-					text: '客服'
-				}, {
-					icon: 'shop',
-					text: '店铺',
-					info: 2,
-					infoBackgroundColor: '#007aff',
-					infoColor: "#f5f5f5"
-				}, {
-					icon: 'cart',
-					text: '购物车',
-					info: 2
-				}],
-				buttonGroup: [{
-						text: '加入购物车',
-						backgroundColor: '#ffa200',
-						color: '#fff'
-					},
-					{
-						text: '立即购买',
-						backgroundColor: '#ff0000',
-						color: '#fff'
-					}
-				]
+				value: '',
+				password: ''
 			}
+
 		},
 		onLoad() {},
-		methods: {
-			onClick(e) {
-				uni.showToast({
-					title: `点击${e.content.text}`,
-					icon: 'none'
-				})
-			},
-			buttonClick(e) {
-				console.log(e)
-				this.options[2].info++
-			}
-		}
+		onReady() {},
+		methods: {}
 	}
 </script>
 
@@ -165,25 +149,14 @@
 		background-color: #4ca2ff;
 	}
 
-	.example-body {
-		padding: 0;
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
+	.example {
+		padding: 10px;
+		background-color: #fff;
 	}
 
-	.goods-carts {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		position: fixed;
-		left: 0;
-		right: 0;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		right: var(--window-right);
-		/* #endif */
-		bottom: 0;
+	.text {
+		font-size: 14px;
+		color: #333;
+		margin-bottom: 10px;
 	}
 </style>

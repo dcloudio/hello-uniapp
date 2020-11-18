@@ -16,7 +16,10 @@
 	</view>
 </template>
 <script>
-	import { mapState, mapMutations } from 'vuex';
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 	export default {
 		data() {
 			return {
@@ -37,10 +40,6 @@
 						url: "badge"
 					},
 					{
-						name: "Calendar 日历",
-						url: "calendar"
-					},
-					{
 						name: "Card 卡片",
 						url: "card"
 					},
@@ -57,8 +56,20 @@
 						url: "countdown"
 					},
 					{
+						name: "DataCheckbox 数据选择器",
+						url: "data-checkbox"
+					},
+					{
+						name: "Dateformat 日期格式化",
+						url: "dateformat"
+					},
+					{
 						name: "Drawer 抽屉",
 						url: "drawer"
+					},
+					{
+						name: "Easyinput 增强输入框",
+						url: "easyinput"
 					},
 					{
 						name: "Fab 悬浮按钮",
@@ -69,12 +80,20 @@
 						url: "fav"
 					},
 					{
+						name: "Forms 表单",
+						url: "forms"
+					},
+					{
 						name: "GoodsNav 商品导航",
 						url: "goods-nav"
 					},
 					{
 						name: "Grid 宫格",
 						url: "grid"
+					},
+					{
+						name: "Group 分组",
+						url: "group"
 					},
 					{
 						name: "Icons 图标",
@@ -100,10 +119,12 @@
 						name: "NavBar 自定义导航栏",
 						url: "nav-bar"
 					},
+					// #ifndef QUICKAPP-WEBVIEW 
 					{
 						name: "NoticeBar 通告栏",
 						url: "notice-bar"
 					},
+					// #endif 
 					{
 						name: "NumberBox 数字输入框",
 						url: "number-box"
@@ -112,10 +133,12 @@
 						name: "Pagination 分页器",
 						url: "pagination"
 					},
+					// #ifndef QUICKAPP-WEBVIEW-HUAWEI 
 					{
 						name: "PopUp 弹出层",
 						url: "popup"
 					},
+					// #endif 
 					{
 						name: "Rate 评分",
 						url: "rate"
@@ -182,7 +205,7 @@
 			})
 		},
 		// #ifdef H5
-		watch:{
+		watch: {
 			$route: {
 				immediate: true,
 				handler(newRoute) {

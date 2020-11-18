@@ -1,9 +1,9 @@
 <template>
-	<view class="">
+	<view>
 		<view class="uni-padding-wrap uni-common-mt">
 			<uni-segmented-control :current="current" :values="items" :style-type="styleType" :active-color="activeColor" @clickItem="onClickItem" />
 		</view>
-		<view class="content uni-padding-wrap">
+		<view class="content">
 			<view v-if="current === 0"><text class="content-text">选项卡1的内容</text></view>
 			<view v-if="current === 1"><text class="content-text">选项卡2的内容</text></view>
 			<view v-if="current === 2"><text class="content-text">选项卡3的内容</text></view>
@@ -198,7 +198,6 @@
 	}
 
 	.uni-padding-wrap {
-		/* width: 750rpx; */
 		padding: 0px 30px;
 	}
 

@@ -1,9 +1,9 @@
 {
 	"leftWindow": {
-	    "path": "windows/left-window.vue",
-	    "style": {
-	      "width": "350px"
-	    }
+		"path": "windows/left-window.vue",
+		"style": {
+			"width": "350px"
+		}
 	},
 	"topWindow": {
 		"path": "windows/top-window.vue",
@@ -322,14 +322,14 @@
 			}
 		}
 		// #ifdef H5
-		,{
+		, {
 			"path": "pages/error/404",
 			"style": {
 				"navigationBarTitleText": "Not Found"
 			}
 		}
 		// #endif
-    ],
+	],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
@@ -714,6 +714,24 @@
 		{
 			"root": "pages/extUI",
 			"pages": [{
+					"path": "forms/forms",
+					"style": {
+						"navigationBarTitleText": "Form 表单"
+					}
+				},
+				{
+					"path": "field/field",
+					"style": {
+						"navigationBarTitleText": "Field 字段"
+					}
+				},
+				{
+					"path": "group/group",
+					"style": {
+						"navigationBarTitleText": "Group 分组"
+					}
+				},
+				{
 					"path": "badge/badge",
 					"style": {
 						"navigationBarTitleText": "Badge 数字角标"
@@ -951,6 +969,34 @@
 				{
 					"path": "test/test",
 					"style": {}
+				},
+				{
+					"path": "table/table",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "dateformat/dateformat",
+					"style": {
+						"navigationBarTitleText": "Dateformat 日期格式化",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "data-checkbox/data-checkbox",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "easyinput/easyinput",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
 				}
 			]
 		},
