@@ -61,7 +61,7 @@
 				bgAudioMannager.singer = '暂无';
 			}
 			if(!bgAudioMannager.coverImgUrl){
-				bgAudioMannager.coverImgUrl = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.jpg';
+				bgAudioMannager.coverImgUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/e61b5e30-2bcf-11eb-b680-7980c8a877b8.jpg';
 			}
 
 			bgAudioMannager.onPlay(() => {
