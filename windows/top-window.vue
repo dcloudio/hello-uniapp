@@ -40,21 +40,24 @@
 		},
 		computed: {
 			...mapState({
-				active: state => state.active
+				active: state => state.active,
+				hasLeftWin: state => !state.noMatchLeftWindow
 			})
 		},
 		watch: {
 			$route: {
 				immediate: true,
 				handler(newRoute) {
-					let comp = newRoute.path.split('/')[2]
-						this.current = this.selected[comp]
+					if ( this.hasLeftWin ) {
+						let comp = newRoute.path.split('/')[2]
+							this.current = this.selected[comp]
 
-					for(const item of this.indexPage) {
-						if (newRoute.path === item.tabBar) {
-							uni.redirectTo({
-								url: item.index
-							})
+						for(const item of this.indexPage) {
+							if (newRoute.path === item.tabBar) {
+								uni.redirectTo({
+									url: item.index
+								})
+							}
 						}
 					}
 				}
