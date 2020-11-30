@@ -30,8 +30,14 @@
 			})
 		},
 		onUnload() {
-			uni.startCompass();
+			// #ifndef MP-ALIPAY
+			uni.stopCompass();
 			this.direction = 0;
+			// #endif
+
+			// #ifdef MP-ALIPAY
+			uni.offCompassChange();
+			// #endif
 		}
 	}
 </script>

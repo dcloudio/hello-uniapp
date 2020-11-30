@@ -24,6 +24,11 @@
 				title: 'toast'
 			}
 		},
+		// #ifdef MP-ALIPAY
+		onUnload() {
+			this._showTimer && clearTimeout(this._showTimer);
+		},
+		// #endif
 		methods: {
 			toast1Tap: function () {
 				uni.showToast({
@@ -42,6 +47,12 @@
 					icon: "loading",
 					duration: 5000
 				})
+				// #ifdef MP-ALIPAY
+				this._showTimer && clearTimeout(this._showTimer);
+				this._showTimer = setTimeout(() => {
+					this.hideToast()
+				}, 3000)
+				// #endif
 			},
 			toast4Tap: function () {
 				uni.showToast({

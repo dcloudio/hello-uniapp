@@ -10,7 +10,12 @@ const store = new Vuex.Store({
 		openid: null,
 		testvuex:false,
         colorIndex: 0,
-        colorList: ['#FF0000','#00FF00','#0000FF']
+        colorList: ['#FF0000','#00FF00','#0000FF'],
+		noMatchLeftWindow: true,
+		active: 'componentPage',
+		leftWinActive: '/pages/component/view/view',
+		activeOpen: '',
+		menu: []
 	},
 	mutations: {
 		login(state, provider) {
@@ -32,7 +37,22 @@ const store = new Vuex.Store({
 		},
         setColorIndex(state,index){
             state.colorIndex = index
-        }
+        },
+		setMatchLeftWindow(state, matchLeftWindow){
+			state.noMatchLeftWindow = !matchLeftWindow
+		},
+		setActive(state, tabPage){
+			state.active = tabPage
+		},
+		setLeftWinActive(state, leftWinActive){
+			state.leftWinActive = leftWinActive
+		},
+		setActiveOpen(state, activeOpen){
+			state.activeOpen = activeOpen
+		},
+		setMenu(state, menu){
+			state.menu = menu
+		}
 	},
     getters:{
         currentColor(state){

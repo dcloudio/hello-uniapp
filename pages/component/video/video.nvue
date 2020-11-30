@@ -88,6 +88,9 @@
 <style>
     .video {
         width: 750rpx;
+		/* #ifdef H5 */
+		width: 100%;
+		/* #endif */
         height: 400rpx;
         background-color: #808080;
     }
@@ -95,6 +98,5 @@
     .btn {
         margin-top: 5px;
         margin-bottom: 5px;
-        ;
     }
 </style>

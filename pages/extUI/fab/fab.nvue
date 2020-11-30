@@ -190,7 +190,7 @@
 		background-color: #4ca2ff;
 	}
 
-	/* #ifndef APP-NVUE */
+	/* #ifndef APP-NVUE || H5 */
 	page {
 		height: 100vh;
 	}

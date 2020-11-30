@@ -302,7 +302,10 @@
 
     .scroll-h {
         width: 750rpx;
-        height: 80rpx;
+		/* #ifdef H5 */
+		width:100%;
+		/* #endif */
+		height: 80rpx;
         flex-direction: row;
         /* #ifndef APP-PLUS */
         white-space: nowrap;
@@ -357,6 +360,7 @@
         flex-direction: column;
         /* #endif */
         width: 750rpx;
+		width:100%;
     }
 
     .update-tips {
@@ -379,6 +383,7 @@
 
     .refresh {
         width: 750rpx;
+		width:100%;
         height: 64px;
         justify-content: center;
     }

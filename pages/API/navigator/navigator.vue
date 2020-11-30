@@ -7,7 +7,7 @@
 				<button @tap="navigateBack">返回上一页</button>
 				<button @tap="redirectTo">在当前页面打开</button>
 				<button @tap="switchTab">切换到模板选项卡</button>
-				<button @tap="reLaunch">关闭所有页面，打开首页</button>
+				<button v-if="!hasLeftWin" @tap="reLaunch">关闭所有页面，打开首页</button>
 				<!-- #ifdef APP-PLUS -->
 				<button @tap="customAnimation">使用自定义动画打开页面</button>
 				<!-- #endif -->
@@ -26,11 +26,17 @@
 </template>
 <script>
 	const preloadPageUrl = '/pages/extUI/calendar/calendar'
+	import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
 				title: 'navigate'
 			}
+		},
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow
+			})
 		},
 		methods: {
 			navigateTo() {
@@ -52,6 +58,12 @@
 				});
 			},
 			reLaunch() {
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: '/pages/component/view/view'
+					});
+					return;
+				}
 				uni.reLaunch({
 					url: '/pages/tabBar/component/component'
 				});

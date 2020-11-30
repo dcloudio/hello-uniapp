@@ -133,11 +133,7 @@
 </script>
 
 <style>
-	.uni-padding-wrap {
-		width: 690rpx;
-		padding: 0 30rpx;
-	}
-
+	
 	.uni-btn-v {
 		padding: 10rpx 0;
 	}

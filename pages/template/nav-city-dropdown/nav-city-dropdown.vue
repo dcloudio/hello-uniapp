@@ -24,7 +24,11 @@
 			@onCancel="onCancel"
 			:pickerValueArray="pickerValueArray"
 		></mpvue-picker>
-	</view>
+
+<!-- 		<picker ref="mpvuePicker" @change="bindPickerChange" :value="index" :range="pickerValueArray" range-key="label">
+			<view class="">{{pickerValueArray[index].label}}</view>
+		</picker>
+ -->	</view>
 </template>
 
 <script>
@@ -60,7 +64,8 @@ export default {
 			themeColor: '#007AFF',
 			mode: '',
 			deepLength: 1,
-			pickerValueDefault: [0]
+			pickerValueDefault: [0],
+			index: 0,
 		};
 	},
 	onReady() {

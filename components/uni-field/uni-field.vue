@@ -318,7 +318,9 @@ export default {
 					this.formRules = this.form.formRules[this.name];
 				}
 				this.validator = this.form.validator;
-				this.form.formData[this.name] = this.value || '';
+				if(this.name){
+					this.form.formData[this.name] = this.value || '';
+				}
 			} else {
 				this.labelPos = this.labelPosition || 'left';
 				this.labelWid = this.labelWidth || 65;

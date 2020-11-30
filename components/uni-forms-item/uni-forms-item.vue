@@ -1,32 +1,20 @@
 <template>
-	<view class="uni-field" :class="{'uni-border-top': borderTop &&!custom, 'uni-border-bottom': borderBottom &&!custom ,'uni-field-custom':custom}" :style="[fieldStyle]">
-		<template v-if="!custom">
-			<view class="uni-field-inner" :class="[ 'uni-label-postion-' + labelPos]">
-				<view :class="errorTop ? 'uni-error-in-label' : ''">
-					<view class="uni-field-label" :class="[required ? 'uni-required' : '']" :style="{
-			            justifyContent: justifyContent,
-			            width: labelWid +'px',
-			            marginBottom: labelMarginBottom,
-			        }">
-						<view class="uni-icon-wrap" v-if="leftIcon">
-							<uni-icons size="16" :type="leftIcon" :color="iconColor" />
-						</view>
-						<slot name="leftIcon"></slot>
-						<text class="uni-label-text" :class="[leftIcon ? 'uni-label-left-gap' : '']">{{ label }}</text>
-					</view>
-					<view v-if="errorTop && showMessage" class="uni-error-message" :style="{paddingLeft: '4px'}">{{ msg }}</view>
-				</view>
-				<view class="fild-body">
-					<slot></slot>
-				</view>
+	<view class="uni-forms-item" :class="{'uni-forms-item--border':border,'is-first-border':border&&isFirstBorder,'uni-forms-item-error':msg}">
+		<view class="uni-forms-item__inner" :class="['is-direction-'+labelPos,]">
+			<view v-if="label" class="uni-forms-item__label" :style="{width:labelWid+'px',justifyContent: justifyContent}">
+				<slot name="left">
+					<uni-icons v-if="leftIcon" class="label-icon" size="16" :type="leftIcon" :color="iconColor" />
+					<text>{{label}}</text>
+					<text v-if="required" class="is-required">*</text>
+				</slot>
 			</view>
-			<view v-if="errorBottom && showMessage" class="uni-error-message" :style="{
-				paddingLeft: Number(labelWid) + 4 + 'px'
-			}">{{ msg }}</view>
-		</template>
-		<template v-else>
-			<slot></slot>
-		</template>
+			<view class="uni-forms-item__content" :class="{'is-input-error-border': msg}">
+				<slot></slot>
+			</view>
+		</view>
+		<view class="uni-error-message" :class="{'uni-error-msg--boeder':border}" :style="{
+			paddingLeft: (labelPos === 'left'? Number(labelWid)+5:5) + 'px'
+		}">{{ showMsg === 'undertext' ? msg:'' }}</view>
 	</view>
 </template>
 
@@ -36,18 +24,26 @@
 	 * @description 此组件可以实现表单的输入与校验，包括 "text" 和 "textarea" 类型。
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=21001
 	 * @property {Boolean} 	required 			是否必填，左边显示红色"*"号（默认false）
-	 * @property {Boolean} 	trigger 			表单校验时机（默认blur）
-	 * @property {String } 	leftIcon 			label左边的图标，限uni-ui的图标名称
+	 * @property {String} validateTrigger = [bind|submit]	校验触发器方式 默认 submit 可选
+	 * 	@value bind 	发生变化时触发
+	 * 	@value submit 	提交时触发
+	 * @property {String } 	leftIcon 			label左边的图标，限 uni-ui 的图标名称
 	 * @property {String } 	iconColor 			左边通过icon配置的图标的颜色（默认#606266）
 	 * @property {String } 	label 				输入框左边的文字提示
 	 * @property {Number } 	labelWidth 			label的宽度，单位px（默认65）
-	 * @property {String } 	labelAlign 			label的文字对齐方式（默认left）
-	 * @property {String } 	labelPosition 		label的文字的位置（默认left）
+	 * @property {String } 	labelAlign = [left|center|right] label的文字对齐方式（默认left）
+	 * 	@value left		label 左侧显示
+	 * 	@value center	label 居中
+	 * 	@value right	label 右侧对齐
+	 * @property {String } 	labelPosition = [top|left] label的文字的位置（默认left）
+	 * 	@value top	顶部显示 label
+	 * 	@value left	左侧显示 label
 	 * @property {String } 	errorMessage 		显示的错误提示内容，如果为空字符串或者false，则不显示错误信息
 	 * @property {String } 	name 				表单域的属性名，在使用校验规则时必填
-	 * @property {Boolean} 	border-bottom 		是否显示field的下边框（默认true）
-	 * @property {Boolean} 	border-top 			是否显示field的上边框（默认false）
 	 */
+
+
+
 	export default {
 		name: "uniFormsItem",
 		props: {
@@ -61,8 +57,9 @@
 				type: Boolean,
 				default: true
 			},
+			name: String,
 			required: Boolean,
-			trigger: {
+			validateTrigger: {
 				type: String,
 				default: ''
 			},
@@ -90,17 +87,6 @@
 			errorMessage: {
 				type: [String, Boolean],
 				default: ''
-			},
-			name: String,
-			// 是否显示上边框
-			borderTop: {
-				type: Boolean,
-				default: false
-			},
-			// 是否显示下边框
-			borderBottom: {
-				type: Boolean,
-				default: true
 			}
 		},
 		data() {
@@ -113,7 +99,10 @@
 				val: '',
 				labelPos: '',
 				labelWid: '',
-				labelAli: ''
+				labelAli: '',
+				showMsg: 'undertext',
+				border: false,
+				isFirstBorder: false
 			};
 		},
 		computed: {
@@ -123,7 +112,7 @@
 			fieldStyle() {
 				let style = {}
 				if (this.labelPos == 'top') {
-					style.padding = '10px 14px'
+					style.padding = '0 0'
 					this.labelMarginBottom = '6px'
 				}
 				if (this.labelPos == 'left' && this.msg !== false && this.msg != '') {
@@ -143,37 +132,79 @@
 
 			// uni不支持在computed中写style.justifyContent = 'center'的形式，故用此方法
 			justifyContent() {
-				if (this.labelAli == 'left') return 'flex-start';
-				if (this.labelAli == 'center') return 'center';
-				if (this.labelAli == 'right') return 'flex-end';
+				if (this.labelAli === 'left') return 'flex-start';
+				if (this.labelAli === 'center') return 'center';
+				if (this.labelAli === 'right') return 'flex-end';
 			}
 
 		},
 		watch: {
-			trigger(trigger) {
+			validateTrigger(trigger) {
 				this.formTrigger = trigger
 			}
 		},
 		created() {
 			this.form = this.getForm()
+			this.group = this.getForm('uniGroup')
 			this.formRules = []
-			this.formTrigger = this.trigger
+			this.formTrigger = this.validateTrigger
+			// if (this.form) {
+			this.form.childrens.push(this)
+			// }
 			this.init()
-
+		},
+		destroyed() {
+			if (this.form) {
+				this.form.childrens.forEach((item, index) => {
+					if (item === this) {
+						this.form.childrens.splice(index, 1)
+					}
+				})
+			}
 		},
 		methods: {
 			init() {
 				if (this.form) {
-					this.form.childrens.push(this)
-					this.labelPos = this.labelPosition ? this.labelPosition : this.form.labelPosition
-					this.labelWid = this.labelWidth ? this.labelWidth : this.form.labelWidth
-					this.labelAli = this.labelAlign ? this.labelAlign : this.form.labelAlign
-					if (this.form.formRules) {
-						this.formRules = this.form.formRules[this.name]
-					}
-					this.validator = this.form.validator
+					let {
+						formRules,
+						validator,
+						formData,
+						value,
+						labelPosition,
+						labelWidth,
+						labelAlign,
+						errShowType
+					} = this.form
 
-					this.form.formData[this.name] = ''
+					this.labelPos = this.labelPosition ? this.labelPosition : labelPosition
+					this.labelWid = this.labelWidth ? this.labelWidth : labelWidth
+					this.labelAli = this.labelAlign ? this.labelAlign : labelAlign
+
+					// 判断第一个 item
+					if (!this.form.isFirstBorder) {
+						this.form.isFirstBorder = true
+						this.isFirstBorder = true
+					}
+					// 判断 group 里的第一个 item
+					if (this.group) {
+						if (!this.group.isFirstBorder) {
+							this.group.isFirstBorder = true
+							this.isFirstBorder = true
+						}
+					}
+
+					this.border = this.form.border
+					this.showMsg = errShowType
+
+					if (formRules) {
+						this.formRules = formRules[this.name] || {}
+					}
+
+					this.validator = validator
+
+					if (this.name) {
+						formData[this.name] = value.hasOwnProperty(this.name) ? value[this.name] : this.form._getValue(this, '')
+					}
 				} else {
 					this.labelPos = this.labelPosition || 'left'
 					this.labelWid = this.labelWidth || 65
@@ -183,10 +214,10 @@
 			/**
 			 * 获取父元素实例
 			 */
-			getForm() {
+			getForm(name = 'uniForms') {
 				let parent = this.$parent;
 				let parentName = parent.$options.name;
-				while (parentName !== 'uniForms') {
+				while (parentName !== name) {
 					parent = parent.$parent;
 					if (!parent) return false
 					parentName = parent.$options.name;
@@ -199,22 +230,19 @@
 			clearValidate() {
 				this.errMsg = ''
 			},
-			/**
-			 * 父组件处理函数
-			 * @param {Object} callback
-			 */
-			// parentVal(callback) {
-			// 	typeof(callback) === 'function' && callback({
-			// 		[this.name]: this.form.formData[this.name]
-			// 	}, this.name)
-			// },
-
+			setValue(value) {
+				if (this.name) {
+					if (this.errMsg) this.errMsg = ''
+					this.form.formData[this.name] = this.form._getValue(this, value)
+				}
+			},
 			/**
 			 * 校验规则
 			 * @param {Object} value
 			 */
-			triggerCheck(value, callback) {
-				let promise;
+			async triggerCheck(value, callback) {
+				let promise = null;
+				this.errMsg = ''
 				// if no callback, return promise
 				if (callback && typeof callback !== 'function' && Promise) {
 					promise = new Promise((resolve, reject) => {
@@ -229,16 +257,38 @@
 					if (promise) return promise
 				}
 
-				const rules = this.formRules.rules
-				const rule = rules.find(item => item.format && item.format === 'number')
-				// 输入值为 number
-				if (rule) {
-					value = value === '' ? value : Number(value)
+				const isNoField = this.isRequired(this.formRules.rules || [])
+
+
+				let isTrigger = this.isTrigger(this.formRules.validateTrigger, this.validateTrigger, this.form.validateTrigger)
+
+				let result = null
+
+				if (!(!isTrigger)) {
+					result = this.validator && (await this.validator.validateUpdate({
+						[this.name]: value
+					}, this.form.formData))
 				}
-				this.form.formData[this.name] = value
-				const result = this.validator && this.validator.validateUpdate({
-					[this.name]: value
-				})
+				// 判断是否必填
+				if (!isNoField && !value) {
+					result = null
+				}
+
+				if (isTrigger && result && result.errorMessage) {
+					if (this.form.errShowType === 'toast') {
+						uni.showToast({
+							title: result.errorMessage || '校验错误',
+							icon: 'none'
+						})
+					}
+					if (this.form.errShowType === 'modal') {
+						uni.showModal({
+							title: '提示',
+							content: result.errorMessage || '校验错误'
+						})
+					}
+				}
+
 				this.errMsg = !result ? '' : result.errorMessage
 				this.form.validateCheck(result ? result : null)
 				typeof callback === 'function' && callback(result ? result : null);
@@ -249,238 +299,126 @@
 			 * 触发时机
 			 * @param {Object} event
 			 */
-			isTrigger(parentRule, itemRlue, rule) {
-				let rl = 'none'
-				if (rule) {
-					rl = rule
-				} else if (itemRlue) {
-					rl = itemRlue
-				} else if (parentRule) {
-					rl = parentRule
-				} else {
-					rl = 'blur'
+			isTrigger(rule, itemRlue, parentRule) {
+				let rl = true;
+				//  bind  submit
+				if (rule === 'submit' || !rule) {
+					if (rule === undefined) {
+						if (itemRlue !== 'bind') {
+							if (!itemRlue) {
+								return parentRule === 'bind' ? true : false
+							}
+							return false
+						}
+						return true
+					}
+					return false
 				}
-				return rl
+				return true;
+			},
+			// 是否有必填字段
+			isRequired(rules) {
+				let isNoField = false
+				for (let i = 0; i < rules.length; i++) {
+					const ruleData = rules[i]
+					if (ruleData.required) {
+						isNoField = true
+						break
+					}
+				}
+				return isNoField
 			}
-
 		}
 	};
 </script>
 
 <style scoped>
-	@charset "UTF-8";
-
-	.uni-field {
-		padding: 16px 14px;
+	.uni-forms-item {
+		position: relative;
 		text-align: left;
 		color: #333;
 		font-size: 14px;
-		background-color: #fff;
+		margin-bottom: 22px;
 	}
 
-	.uni-field-inner {
+	.uni-forms-item__inner {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		align-items: center;
+		/* #endif */
 	}
 
-	.uni-textarea-inner {
-		align-items: flex-start;
+	.is-direction-left {
+		flex-direction: row;
 	}
 
-	.uni-textarea-class {
-		min-height: 48px;
-		width: auto;
-		font-size: 14px;
-	}
-
-	.fild-body {
-		width: 100%;
-		display: flex;
-		flex: 1;
-		align-items: center;
-	}
-
-	.uni-arror-right {
-		margin-left: 4px;
-	}
-
-	.uni-label-text {
-		display: inline-block;
-	}
-
-	.uni-label-left-gap {
-		margin-left: 3px;
-	}
-
-	.uni-label-postion-top {
+	.is-direction-top {
 		flex-direction: column;
-		align-items: flex-start;
-		flex: 1;
 	}
 
-	.uni-field-label {
+	.uni-forms-item__label {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-shrink: 0;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		font-size: 14px;
+		color: #333;
 		width: 65px;
-		flex: 1 1 65px;
-		text-align: left;
-		position: relative;
-		display: flex;
-		align-items: center;
+		padding: 5px 0;
+		box-sizing: border-box;
+		height: 36px;
+		margin-right: 5px;
 	}
 
-	.uni-required::before {
-		content: '*';
-		position: absolute;
-		left: -8px;
-		font-size: 14px;
+	.uni-forms-item__content {
+		/* #ifndef APP-NVUE */
+		width: 100%;
+		/* #endif */
+		box-sizing: border-box;
+		min-height: 36px;
+	}
+
+	.label-icon {
+		margin-right: 5px;
+		margin-top: -1px;
+	}
+
+	.is-required {
 		color: #dd524d;
-		height: 9px;
-		line-height: 1;
-	}
-
-	.uni-field__input-wrap {
-		position: relative;
-		overflow: hidden;
-		font-size: 14px;
-		height: 24px;
-		flex: 1;
-		width: auto;
-	}
-
-	.uni-clear-icon {
-		display: flex;
-		align-items: center;
 	}
 
 	.uni-error-message {
+		position: absolute;
+		bottom: -17px;
+		left: 0;
 		line-height: 12px;
-		padding-top: 2px;
-		padding-bottom: 2px;
 		color: #dd524d;
 		font-size: 12px;
 		text-align: left;
 	}
 
-	.uni-input-error-border {
+	.uni-error-msg--boeder {
+		position: relative;
+		bottom: 0;
+		line-height: 22px;
+	}
+
+	.is-input-error-border {
 		border-color: #dd524d;
 	}
 
-	.placeholder-style {
-		color: #969799;
+	.uni-forms-item--border {
+		margin-bottom: 0;
+		padding: 10px 15px;
+		border-top: 1px #eee solid;
 	}
 
-	.uni-input-class {
-		font-size: 14px;
+	.uni-forms-item-error {
+		padding-bottom: 0;
 	}
 
-	.uni-button-wrap {
-		margin-left: 4px;
-	}
-
-	/* start--Retina 屏幕下的 1px 边框--start */
-	.uni-border,
-	.uni-border-bottom,
-	.uni-border-left,
-	.uni-border-right,
-	.uni-border-top,
-	.uni-border-top-bottom {
-		position: relative;
-	}
-
-	.uni-border-bottom:after,
-	.uni-border-left:after,
-	.uni-border-right:after,
-	.uni-border-top-bottom:after,
-	.uni-border-top:after,
-	.uni-border:after {
-		/* #ifndef APP-NVUE */
-		content: ' ';
-		/* #endif */
-		position: absolute;
-		left: 0;
-		top: 0;
-		pointer-events: none;
-		box-sizing: border-box;
-		-webkit-transform-origin: 0 0;
-		transform-origin: 0 0;
-		width: 199.8%;
-		height: 199.7%;
-		transform: scale(0.5, 0.5);
-		border: 0 solid #e5e5e5;
-		z-index: 2;
-	}
-
-	.uni-input-border {
-		min-height: 34px;
-		padding-left: 4px;
-		border: 1px solid #e5e5e5;
-		border-radius: 6px;
-		box-sizing: border-box;
-	}
-
-	.uni-border-top:after {
-		border-top-width: 1px;
-	}
-
-	.uni-border-left:after {
-		border-left-width: 1px;
-	}
-
-	.uni-border-right:after {
-		border-right-width: 1px;
-	}
-
-	.uni-border-bottom:after {
-		border-bottom-width: 1px;
-	}
-
-	.uni-border-top-bottom:after {
-		border-width: 1px 0;
-	}
-
-	.uni-border:after {
-		border-width: 1px;
-	}
-
-	/* end--Retina 屏幕下的 1px 边框--end */
-	.uni-icon-wrap {
-		padding-left: 3px;
-		padding-right: 3px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.uni-button-wrap {
-		display: flex;
-		align-items: right;
-		justify-content: center;
-	}
-
-	.uni-clear-icon {
-		display: flex;
-		align-items: center;
-		margin-left: 4px;
-	}
-
-	.uni-flex {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-	}
-
-	.uni-flex-1 {
-		flex: 1;
-	}
-
-	.uni-error-in-label {
-		display: flex;
-		flex-direction: row;
-	}
-
-	.uni-field-custom {
-		padding: 0;
+	.is-first-border {
 		border: none;
 	}
 </style>

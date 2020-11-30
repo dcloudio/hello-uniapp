@@ -23,6 +23,9 @@ page {
 }
 
 .uni-header-logo {
+	/* #ifdef H5 */
+	display: flex;
+	/* #endif */
     padding: 15px 15px;
     flex-direction: column;
     justify-content: center;
@@ -56,10 +59,17 @@ page {
 }
 
 .uni-panel-h {
+	/* #ifdef H5 */
+	display: flex;
+	/* #endif */
     background-color: #ffffff;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: row !important;
+	/* justify-content: space-between !important; */
+    align-items: center !important;
     padding: 12px;
+	/* #ifdef H5 */
+	cursor: pointer;
+	/* #endif */
 }
 /*
 .uni-panel-h:active {
@@ -92,6 +102,9 @@ page {
 }
 
 .uni-navigate-item {
+	/* #ifdef H5 */
+	display: flex;
+	/* #endif */
     flex-direction: row;
     align-items: center;
     background-color: #FFFFFF;
@@ -99,6 +112,9 @@ page {
     border-top-color: #f0f0f0;
     border-top-width: 1px;
     padding: 12px;
+	/* #ifdef H5 */
+	cursor: pointer;
+	/* #endif */
 }
 
 .uni-navigate-item:active {

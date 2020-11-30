@@ -66,6 +66,7 @@
 	swiper,
 	.img-view {
 		width: 750rpx;
+		width: 100%;
 		height: 500rpx;
 	}
 	.page-section-title{

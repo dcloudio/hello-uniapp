@@ -1,14 +1,14 @@
 <template>
 	<view class="uni-container">
-		<view class="uni-header-logo">
+		<view v-if="!hasLeftWin" class="uni-header-logo">
 			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
 		</view>
-		<view class="uni-hello-text">
+		<view v-if="!hasLeftWin" class="uni-hello-text">
 			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
 			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
-		<view class="uni-panel" v-for="item in lists" :key="item.url">
-			<view class="uni-panel-h" @click="goDetailPage(item.url)">
+		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel" v-for="item in lists" :key="item.url">
+			<view :class="{'left-win-active': leftWinActive ===  item.url && hasLeftWin}" class="uni-panel-h" @click="goDetailPage(item.url)">
 				<text class="uni-panel-text">{{item.name}}</text>
 				<text class="uni-panel-icon uni-icon">&#xe470;</text>
 			</view>
@@ -16,14 +16,25 @@
 	</view>
 </template>
 <script>
-	import uLink from "@/components/uLink.vue"
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 	export default {
-		components: {
-			uLink
-		},
 		data() {
 			return {
-				navigateFlag: false,
+				hideList: [
+					'notice-bar',
+					'nav-bar',
+					'popup',
+					'swiper-dot',
+					'transition',
+					'rate',
+					'indexed-list',
+					'swipe-action',
+					'combox',
+					'fab'
+				],
 				lists: [{
 						name: "Badge 数字角标",
 						url: "badge"
@@ -45,8 +56,20 @@
 						url: "countdown"
 					},
 					{
+						name: "DataCheckbox 数据选择器",
+						url: "data-checkbox"
+					},
+					{
+						name: "Dateformat 日期格式化",
+						url: "dateformat"
+					},
+					{
 						name: "Drawer 抽屉",
 						url: "drawer"
+					},
+					{
+						name: "Easyinput 增强输入框",
+						url: "easyinput"
 					},
 					{
 						name: "Fab 悬浮按钮",
@@ -55,10 +78,6 @@
 					{
 						name: "Fav 收藏按钮",
 						url: "fav"
-					},
-					{
-						name: "Field 输入框",
-						url: "field"
 					},
 					{
 						name: "Forms 表单",
@@ -178,18 +197,38 @@
 				url: '/pages/about/about'
 			});
 		},
-		methods: {
-			goDetailPage(path) {
-				if (this.navigateFlag) {
-					return;
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		// #ifdef H5
+		watch: {
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+					}
 				}
-				this.navigateFlag = true;
-				uni.navigateTo({
-					url: '/pages/extUI/' + path + '/' + path
-				});
-				setTimeout(() => {
-					this.navigateFlag = false;
-				}, 200)
+			}
+		},
+		// #endif
+		methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+			goDetailPage(path) {
+				const url = '/pages/extUI/' + path + '/' + path
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
 			}
 		}
 	}

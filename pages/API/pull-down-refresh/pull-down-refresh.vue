@@ -2,6 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
+			<view style="font-size: 12px; color: #666;">注：PC 不支持下拉刷新</view>
 			<view class="text" v-for="(num,index) in data" :key="index">list - {{num}}</view>
 			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
 		</view>
@@ -48,8 +49,8 @@
 					this.max = 0;
 					this.data = [];
 					let data = [];
-					this.max += 10;
-					for (var i = this.max - 9; i < this.max + 1; i++) {
+					this.max += 20;
+					for (var i = this.max - 19; i < this.max + 1; i++) {
 						data.push(i)
 					}
 					this.data = this.data.concat(data);

@@ -1,30 +1,37 @@
 <template>
-	<view class="uni-wrap">
-		<scroll-view class="scroll" scroll-y>
-			<view class="example-info">
-				<text class="example-info-text"> uni-group 组件主要用于表单分组 </text>
-			</view>
-			<uni-group title="group 1" margin-top="20">
-				<uni-field v-model="name" label="姓名" placeholder="请填写姓名" :error-message="errorMessage"></uni-field>
-				<uni-field v-model="mobile" label="手机号" label-position="left" placeholder="请填写手机号" :error-message="errorMessage" type="text" :clearable="true">
-					<button v-if="true" type="primary" slot="right" size="mini">发送验证码</button>
-				</uni-field>
-			</uni-group>
+	<view>
+		<view class="example-info">
+			<text class="example-info-text">分组组件可用于将组件分组，添加间隔，以产生明显的区块</text>
+		</view>
+		<uni-section title="基础分组" type="line"></uni-section>
+		<uni-group>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+		</uni-group>
 
+		<uni-group title="基本模式" margin-top="20">
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+		</uni-group>
 
-			<uni-group title="group 2">
-				<uni-field v-model="name" label="身高" placeholder="请填写身高" :error-message="errorMessage"></uni-field>
-				<uni-field v-model="mobile" label="体重" label-position="left" placeholder="请填写体重" :error-message="errorMessage" type="text" :clearable="true">
-				</uni-field>
-			</uni-group>
+		<uni-section title="卡片分组" type="line"></uni-section>
+		<uni-group mode="card">
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+		</uni-group>
 
-			<uni-group title="group 3">
-				<uni-field v-model="mobile" label="邮箱" label-position="left" placeholder="请填写邮箱" :error-message="errorMessage" type="text" :clearable="true">
-				</uni-field>
-				<uni-field v-model="weixin" label="微信号" label-position="left" placeholder="请填写微信号" :required="false" :focus="true" type="text" :clearable="true" :password="false" :disabled="false" confirmType="good" :error-message="errorMessage" />
-				<uni-field v-model="message" type="textarea" label="家庭地址" placeholder="请填写详细住址" :error-message="errorMessage" />
-			</uni-group>
-		</scroll-view>
+		<uni-group title="card 模式" mode="card">
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+			<view> 分组内容 </view>
+		</uni-group>
 	</view>
 </template>
 

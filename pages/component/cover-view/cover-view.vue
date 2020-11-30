@@ -52,7 +52,8 @@
 <style>
 	map {
 		width: 750rpx;
-		height: 750rpx;
+		width: 100%;
+		height: 600px;
 	}
 
 	.video {
