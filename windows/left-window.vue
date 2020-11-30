@@ -87,7 +87,7 @@
 	@import '../common/uni-nvue.css';
 
 	.left-window-style {
-		min-height: calc(100vh - var(--window-top));
+		min-height: calc(100vh - var(--top-window-height));
 		background-color: #f8f8f8;
 	}
 
