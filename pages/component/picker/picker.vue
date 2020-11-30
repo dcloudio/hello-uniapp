@@ -44,6 +44,9 @@
 				</view>
 			</view>
 		</view>
+		<view class="uni-picker-tips">
+			注：选择 09:01 ~ 21:01 之间的时间, 不在区间内不能选中
+		</view>
 
 		<view class="uni-title uni-common-pl">日期选择器</view>
 		<view class="uni-list">
@@ -58,6 +61,9 @@
 				</view>
 			</view>
 		</view>
+		<view class="uni-picker-tips">
+			注：选择当前时间 ±10 年之间的时间, 不在区间内不能选中
+		</view>
 	</view>
 </template>
 <script>
@@ -70,9 +76,9 @@
 		let day = date.getDate();
 
 		if (type === 'start') {
-			year = year - 60;
+			year = year - 10;
 		} else if (type === 'end') {
-			year = year + 2;
+			year = year + 10;
 		}
 		month = month > 9 ? month : '0' + month;;
 		day = day > 9 ? day : '0' + day;
@@ -162,5 +168,11 @@
 </script>
 
 <style>
-
+.uni-picker-tips {
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 15px;
+	padding: 0 15px;
+	/* text-align: right; */
+}
 </style>
