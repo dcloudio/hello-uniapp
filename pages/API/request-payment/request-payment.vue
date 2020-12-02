@@ -71,6 +71,7 @@
 		methods: {
 			loginMpWeixin() {
 				return new Promise((resolve, reject) => {
+					//这里服务端基于uniCloud uni-id云函数实现，详情参考：https://uniapp.dcloud.net.cn/uniCloud/uni-id
 					uni.login({
 						provider: 'weixin',
 						success(res) {
@@ -190,6 +191,7 @@
 					if (!this.price) {
 						reject(new Error('请输入金额'))
 					}
+					//这里服务端基于uniCloud unipay云函数实现，详情参考：https://uniapp.dcloud.net.cn/uniCloud/unipay
 					uni.request({
 						method: 'POST',
 						url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/pay',
