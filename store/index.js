@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		hasLogin: false,
+		isUniverifyLogin: false,
 		loginProvider: "",
 		openid: null,
 		testvuex:false,
@@ -52,6 +53,10 @@ const store = new Vuex.Store({
 		},
 		setMenu(state, menu){
 			state.menu = menu
+		},
+		setUniverifyLogin(state, payload){
+			typeof payload !== 'boolean' ? payload = !!payload : '';
+			state.isUniverifyLogin = payload;
 		}
 	},
     getters:{
