@@ -32,6 +32,11 @@
 			<uni-data-checkbox min="1" max="2" multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
 		</uni-group>
 
+		<uni-group title="自定义高亮颜色">
+			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
+			<uni-data-checkbox selectedColor="red" multiple v-model="formData.hobby" :localdata="hobby2"></uni-data-checkbox>
+		</uni-group>
+
 		<uni-section title="单选" type="line"></uni-section>
 		<uni-group title="基础用法">
 			<view class="text">选中：{{formData.value}}</view>
@@ -56,6 +61,12 @@
 			<view class="text">选中：{{formData.value}}</view>
 			<uni-data-checkbox mode="button" v-model="formData.value" :localdata="sex1"></uni-data-checkbox>
 		</uni-group>
+
+		<uni-group title="自定义高亮颜色">
+			<view class="text">选中：{{formData.value}}</view>
+			<uni-data-checkbox selectedColor="red" v-model="formData.value" :localdata="sex1"></uni-data-checkbox>
+		</uni-group>
+
 	</view>
 </template>
 

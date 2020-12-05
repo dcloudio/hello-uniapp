@@ -2,12 +2,12 @@
 	<view class="uni-easyinput" :class="{'uni-easyinput-error':msg}">
 		<view class="uni-easyinput__content" :class="{'is-input-border':inputBorder ,'is-input-error-border':inputBorder && msg,'is-textarea':type==='textarea','is-disabled':disabled}">
 			<uni-icons v-if="prefixIcon" class="content-clear-icon" :type="prefixIcon" color="#c0c4cc"></uni-icons>
-			<textarea v-if="type === 'textarea'" class="uni-easyinput__content-textarea" :class="{'input-padding':inputBorder}" :name="name" :value="val" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focus" :autoHeight="autoHeight" @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm"></textarea>
+			<textarea v-if="type === 'textarea'" class="uni-easyinput__content-textarea" :class="{'input-padding':inputBorder}" :name="name" :value="val" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" :autoHeight="autoHeight" @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm"></textarea>
 			<input v-else :type="type === 'password'?'text':type" class="uni-easyinput__content-input" :style="{
 				 'padding-right':type === 'password' ||clearable || prefixIcon?'':'10px',
 				 'padding-left':prefixIcon?'':'10px',
 				 'color':msg?'#dd524d':''
-			 }" :name="name" :value="val" :password="!showPassword && type === 'password'" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focus" @focus="onFocus" @blur="onBlur" @input="onInput" @confirm="onConfirm" />
+			 }" :name="name" :value="val" :password="!showPassword && type === 'password'" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" @focus="onFocus" @blur="onBlur" @input="onInput" @confirm="onConfirm" />
 			<template v-if="type === 'password'">
 				<uni-icons v-if="val != '' " class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" :type="showPassword?'eye-slash-filled':'eye-filled'" :size="18" color="#c0c4cc" @click="onEyes"></uni-icons>
 			</template>
@@ -15,7 +15,7 @@
 				<uni-icons v-if="suffixIcon" class="content-clear-icon" :type="suffixIcon" color="#c0c4cc"></uni-icons>
 			</template>
 			<template v-else>
-				<uni-icons class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize" v-if="clearable && focused && val != '' " color="#c0c4cc" @click="onClear"></uni-icons>
+				<uni-icons class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize" v-if="clearable && focused && val " color="#c0c4cc" @click="onClear"></uni-icons>
 			</template>
 		</view>
 	</view>
@@ -53,6 +53,12 @@
 	 * @event {Function} 	confirm 			点击完成按钮时触发
 	 * @example <uni-easyinput v-model="mobile"></uni-easyinput>
 	 */
+
+	import {
+		debounce,
+		throttle
+	} from './common.js'
+
 	export default {
 		name: 'uni-easyinput',
 		props: {
@@ -68,11 +74,14 @@
 			},
 			autoHeight: {
 				type: Boolean,
-				default: true
+				default: false
 			},
 			placeholder: String,
 			placeholderStyle: String,
-			focus: Boolean,
+			focus: {
+				type: Boolean,
+				default: false
+			},
 			disabled: {
 				type: Boolean,
 				default: false
@@ -136,6 +145,11 @@
 				if (this.formItem) {
 					this.formItem.setValue(newVal)
 				}
+			},
+			focus(newVal) {
+				this.$nextTick(() => {
+					this.focused = this.focus
+				})
 			}
 		},
 		created() {
@@ -148,6 +162,13 @@
 					this.form.inputChildrens.push(this)
 				}
 			}
+
+		},
+		mounted() {
+			// this.onInput = throttle(this.input, 500)
+			this.$nextTick(() => {
+				this.focused = this.focus
+			})
 		},
 		methods: {
 			/**
@@ -272,8 +293,8 @@
 		font-size: 14px;
 		padding-top: 6px;
 		padding-bottom: 10px;
-		box-sizing: border-box;
 		min-height: 80px;
+		height: 80px;
 	}
 
 	.input-padding {

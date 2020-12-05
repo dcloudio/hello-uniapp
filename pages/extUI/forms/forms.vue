@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<text class="example-info"> uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
-		<uni-forms :value="formData" ref="form" validate-trigger="bind" err-show-type="toast">
+		<uni-forms :value="formData" ref="form" validate-trigger="bind" err-show-type="undertext">
 			<uni-group title="基本信息" top="0">
 				<uni-forms-item name="name" required label="用户名">
 					<uni-easyinput type="text" :inputBorder="true" v-model="formData.name" placeholder="请输入用户名"></uni-easyinput>
@@ -16,8 +16,11 @@
 				<uni-forms-item name="email" label="邮箱">
 					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
 				</uni-forms-item>
+				<uni-forms-item name="time" label="创建时间">
+					<uni-datetime-picker v-model="formData.time" :min-year="2000" :max-year="2030" :timestamp="true" @change="datetimeChange"></uni-datetime-picker>
+				</uni-forms-item>
 				<uni-forms-item name="checked" label="详细信息">
-					<switch :checked="formData.checked" @change="binddata('checked',$event.detail.value)" />
+					<switch :checked="formData.checked" @change="change('checked',$event.detail.value)" />
 				</uni-forms-item>
 			</uni-group>
 			<template v-if="formData.checked">
@@ -41,7 +44,7 @@
 			</template>
 
 			<!-- 直接使用组件自带submit、reset 方法，小程序不生效 -->
-			<!-- <button class="button" form-type="submit">Submit</button>
+			<!-- 			<button class="button" form-type="submit">Submit</button>
 				<button class="button" form-type="reset">Reset</button> -->
 
 			<view class="example">
@@ -60,6 +63,7 @@
 		data() {
 			return {
 				formData: {
+					time: '',
 					name: '',
 					age: '',
 					email: "",
@@ -164,6 +168,7 @@
 			setTimeout(() => {
 				this.formData = {
 					name: 'LiMing',
+					time: '',
 					age: 1,
 					email: "",
 					sex: '0',
@@ -173,9 +178,8 @@
 					country: 2,
 					weight: 120
 				}
-
 				uni.hideLoading()
-			}, 0)
+			}, 500)
 		},
 		onReady() {
 			this.$refs.form.setRules(this.rules)
@@ -184,8 +188,9 @@
 			test(e) {
 				console.log('---', e.detail.value);
 			},
-			change(event) {
-				this.formData.checked = event.detail.value
+			change(name, value) {
+				this.formData.checked = value
+				this.$refs.form.setValue(name, value)
 			},
 
 			/**
@@ -193,6 +198,7 @@
 			 * @param {Object} form
 			 */
 			submitForm(form) {
+				console.log(this.formData);
 				this.$refs[form].submit()
 					.then((res) => {
 						console.log('表单的值：', res);
@@ -233,6 +239,9 @@
 			clearValidate(form, name) {
 				if (!name) name = []
 				this.$refs[form].clearValidate(name)
+			},
+			datetimeChange(e) {
+				this.formData.time = e
 			}
 		}
 	}

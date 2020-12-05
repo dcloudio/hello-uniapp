@@ -87,10 +87,10 @@ export default {
 	created() {
 		let db = null;
 		let dbCmd = null;
-		
+
 		if(this.collection){
 			this.db = uniCloud.database();
-			this.dbCmd = db.command;
+			this.dbCmd = this.db.command;
 		}
 
 		this._isEnded = false
@@ -287,7 +287,7 @@ export default {
 				exec = exec.action(this.action)
 			}
 
-			exec = this.db.collection(this.collection)
+			exec = exec.collection(this.collection)
 
 			if (!(!this.where || !Object.keys(this.where).length)) {
 				exec = exec.where(this.where)

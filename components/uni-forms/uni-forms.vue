@@ -35,15 +35,16 @@
 		if (formName) {
 			this.$refs[formName].setValue(name, value)
 		} else {
-			let refName = null
+			let formVm
 			for (let i in this.$refs) {
-				if (this.$refs[i] && this.$refs[i].$options.name === 'uniForms') {
-					refName = i
+				const vm = this.$refs[i]
+				if (vm && vm.$options && vm.$options.name === 'uniForms') {
+					formVm = vm
 					break
 				}
 			}
-			if (!refName) return console.error('当前 uni-froms 组件缺少 ref 属性')
-			this.$refs[refName].setValue(name, value)
+			if (!formVm) return console.error('当前 uni-froms 组件缺少 ref 属性')
+			formVm.setValue(name, value)
 		}
 	}
 
@@ -126,6 +127,7 @@
 			let _this = this
 			this.childrens = []
 			this.inputChildrens = []
+			this.checkboxChildrens = []
 			this.formRules = []
 			this.init(this.rules)
 		},
@@ -181,8 +183,11 @@
 			resetForm(event) {
 				this.childrens.forEach(item => {
 					item.errMsg = ''
-					item.val = ''
-					item.$emit('input', '')
+					const inputComp = this.inputChildrens.find(child => child.rename === item.name)
+					if (inputComp) {
+						inputComp.errMsg = ''
+						inputComp.$emit('input', inputComp.multiple ? [] : '')
+					}
 				})
 
 				this.isChildEdit = true
@@ -360,15 +365,22 @@
 			 * 移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果
 			 */
 			clearValidate(props) {
-				props = [].concat(props || []);
+				props = [].concat(props);
 				this.childrens.forEach(item => {
-					// if (props.length === 0) {
-					// 	item.errMsg = ''
-					// } else {
-					if (props.indexOf(item.name) !== -1) {
+					const inputComp = this.inputChildrens.find(child => child.rename === item.name)
+					if (props.length === 0) {
 						item.errMsg = ''
+						if (inputComp) {
+							inputComp.errMsg = ''
+						}
+					} else {
+						if (props.indexOf(item.name) !== -1) {
+							item.errMsg = ''
+							if (inputComp) {
+								inputComp.errMsg = ''
+							}
+						}
 					}
-					// }
 				})
 			},
 			// 把 value 转换成指定的类型

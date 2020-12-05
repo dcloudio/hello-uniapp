@@ -52,11 +52,24 @@ const parser = {
 	},
 }
 
+// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
+function getDate(time) {
+	if (time instanceof Date) {
+		return time
+	}
+	switch (typeof time) {
+		case 'string':
+			return new Date(time.replace(/-/g, '/'))
+		default:
+			return new Date(time)
+	}
+}
+
 export function formatDate(date, format = 'yyyy/MM/dd hh:mm:ss') {
 	if (!date && date !== 0) {
 		return '-'
 	}
-	date = date instanceof Date ? date : new Date(date)
+	date = getDate(date)
 	const dateObj = {
 		year: date.getFullYear(),
 		month: date.getMonth() + 1,
@@ -116,7 +129,7 @@ export function friendlyDate(time, {
 		}
 	}
 	const text = localeText[locale] || localeText.zh
-	let date = new Date(time)
+	let date = getDate(time)
 	let ms = date.getTime() - Date.now()
 	let absMs = Math.abs(ms)
 	if (absMs < threshold[0]) {

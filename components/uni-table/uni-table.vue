@@ -155,7 +155,7 @@
 		background-color: #fff;
 	}
 
-	.uni-table /deep/ .uni-table-tr:nth-child(n+2):hover {
+	.uni-table ::v-deep .uni-table-tr:nth-child(n+2):hover {
 		background-color: #f5f7fa;
 	}
 
@@ -167,7 +167,7 @@
 		border-bottom: none;
 	}
 
-	.table--stripe /deep/ .uni-table-tr:nth-child(2n+3) {
+	.table--stripe ::v-deep .uni-table-tr:nth-child(2n+3) {
 		background-color: #fafafa;
 	}
 

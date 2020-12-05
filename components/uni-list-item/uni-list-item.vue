@@ -168,19 +168,36 @@
 				default: true
 			}
 		},
-		inject: ['list'],
+		// inject: ['list'],
 		data() {
 			return {
 				isFirstChild: false
 			};
 		},
 		mounted() {
-			if (!this.list.firstChildAppend) {
-				this.list.firstChildAppend = true;
-				this.isFirstChild = true;
+			this.list = this.getForm()
+			// 判断是否存在 uni-list 组件
+			if (this.list) {
+				if (!this.list.firstChildAppend) {
+					this.list.firstChildAppend = true;
+					this.isFirstChild = true;
+				}
 			}
 		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniList') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			onClick() {
 				if (this.to !== '') {
 					this.openPage();
@@ -277,7 +294,7 @@
 		right: 0;
 		left: 0;
 		height: 1px;
-		content: '';
+		content: "";
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
 		background-color: #e5e5e5;
