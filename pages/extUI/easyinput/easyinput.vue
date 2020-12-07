@@ -3,7 +3,7 @@
 		<text class="example-info"> easyinput 组件是对原生input组件的增强 ，是专门为配合表单组件 uni-forms 而设计的，easyinput 内置了边框，图标等，同时包含 input 所有功能</text>
 		<uni-section title="默认" type="line"></uni-section>
 		<view class="example">
-			<uni-easyinput v-model="value" placeholder="请输入内容"></uni-easyinput>
+			<uni-easyinput v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
 		</view>
 		<uni-section title="左图标" type="line"></uni-section>
 		<view class="example">
@@ -45,7 +45,11 @@
 		},
 		onLoad() {},
 		onReady() {},
-		methods: {}
+		methods: {
+			input(e) {
+				console.log('输入内容：', e);
+			}
+		}
 	}
 </script>
 

@@ -21,7 +21,7 @@
 	 * @property {String} 	border = [true|false] 		标题
 	 */
 	export default {
-		name: 'UniList',
+		name: 'uniList',
 		'mp-weixin': {
 			options: {
 				multipleSlots: false
@@ -41,11 +41,11 @@
 				default: true
 			}
 		},
-		provide() {
-			return {
-				list: this
-			};
-		},
+		// provide() {
+		// 	return {
+		// 		list: this
+		// 	};
+		// },
 		created() {
 			this.firstChildAppend = false;
 		},

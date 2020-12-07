@@ -163,6 +163,12 @@
 						name: "SwiperDot 轮播图指示点",
 						url: "swiper-dot"
 					},
+					// #ifdef H5 
+					{
+						name: "Table 表格",
+						url: "table"
+					},
+					// #endif 
 					{
 						name: "Tag 标签",
 						url: "tag"

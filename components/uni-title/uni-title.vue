@@ -117,7 +117,7 @@
 <style scoped>
 	/* .uni-title {
 
-	} */
+} */
 	.uni-title__box {
 		/* #ifndef APP-NVUE */
 		display: flex;

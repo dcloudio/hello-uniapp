@@ -77,7 +77,7 @@
 <style scoped>
 	.uni-table-tr {
 		display: table-row;
-		transition: all .3s;
+		transition: all 0.3s;
 		box-sizing: border-box;
 	}
 
@@ -97,11 +97,11 @@
 		border-right: 1px #ddd solid;
 	}
 
-	.uni-table-tr /deep/ .uni-table-th.table--border:last-child {
+	.uni-table-tr ::v-deep .uni-table-th.table--border:last-child {
 		border-right: none;
 	}
 
-	.uni-table-tr /deep/ .uni-table-td.table--border:last-child {
+	.uni-table-tr ::v-deep .uni-table-td.table--border:last-child {
 		border-right: none;
 	}
 </style>

@@ -116,7 +116,7 @@
 				}
 			}
 		},
-		inject: ['list'],
+		// inject: ['list'],
 		computed: {
 			isSingle() {
 				if (this.badgeText === 'dot') {
@@ -152,13 +152,29 @@
 			};
 		},
 		mounted() {
-			if (!this.list.firstChildAppend) {
-				this.list.firstChildAppend = true;
-				this.isFirstChild = true;
+			this.list = this.getForm()
+			if (this.list) {
+				if (!this.list.firstChildAppend) {
+					this.list.firstChildAppend = true;
+					this.isFirstChild = true;
+				}
+				this.border = this.list.border;
 			}
-			this.border = this.list.border;
 		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniList') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			onClick() {
 				if (this.to !== '') {
 					this.openPage();
@@ -228,7 +244,7 @@
 		right: 0;
 		left: 0;
 		height: 1px;
-		content: '';
+		content: "";
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
 		background-color: #e5e5e5;
@@ -444,7 +460,6 @@
 
 	.uni-badge--single {
 		/* #ifndef APP-NVUE */
-		left: calc(45px + 7px + 0px);
 		/* #endif */
 		width: 18px;
 		height: 18px;

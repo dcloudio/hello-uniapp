@@ -247,8 +247,8 @@
 	}
 
 	/* .transition {
-		transition: all 0.3s;
-	} */
+	transition: all 0.3s;
+} */
 	.movable-view-box {
 		flex-shrink: 0;
 		height: 100%;
