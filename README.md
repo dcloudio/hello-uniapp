@@ -14,6 +14,8 @@ hello-uniapp 示例工程可以通过两种方式创建， 一种是 HBuilderX, 
 
 HBuilderX是通用的前端开发工具，但为`uni-app`做了特别强化，请下载App开发版。
 
+由于截图在 github 不便浏览，参见官方文档 [HBuilderX 可视化界面创建](https://uniapp.dcloud.net.cn/quickstart?id=_1-%e9%80%9a%e8%bf%87-hbuilderx-%e5%8f%af%e8%a7%86%e5%8c%96%e7%95%8c%e9%9d%a2)
+
 ### 通过 vue-cli 创建
 
 ```
@@ -50,7 +52,7 @@ cd my-project
 npm run dev:h5
 ```
 
-更多信息查看 uni-app [官方文档-快速上手](https://uniapp.dcloud.net.cn/quickstart)，欢迎提 issues，推荐到[官方社区](https://ask.dcloud.net.cn/explore/)提问。
+欢迎提 issues，推荐到[官方社区](https://ask.dcloud.net.cn/explore/)提问。
 
 ## 扫码体验
 
