@@ -1,11 +1,13 @@
 # hello-uniapp
 
-`uni-app`框架示例，一套代码，同时发行到iOS、Android、H5、小程序等多个平台，请使用手机扫码快速体验`uni-app`的强大功能。
+`uni-app`框架示例，一套代码，同时发行到iOS、Android、H5、小程序等多个平台。
+
+请使用手机扫码快速体验`uni-app`的强大功能:
 
 <div class="quick">
     <h3 id="快速体验"><a href="/README?id=%e5%bf%ab%e9%80%9f%e4%bd%93%e9%aa%8c" data-id="快速体验" class="anchor"><span>快速体验</span></a></h3>
     <p>一套代码编到10个平台，这不是梦想。眼见为实，扫描10个二维码，亲自体验最全面的跨平台效果！</p>
-    <div class="flex-img-group-view">
+    <div style="display:flex">
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">
         <div class="barcode-img-box">
           <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni-android.png" width="160" />
