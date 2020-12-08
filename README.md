@@ -56,7 +56,7 @@ npm run dev:h5
 
 <div class="quick">
     <p>一套代码编到10个平台，这不是梦想。眼见为实，扫描10个二维码，亲自体验最全面的跨平台效果！</p>
-    <div class="flex-img-group-view">
+    <div style="display: flex;">
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">
         <div class="barcode-img-box">
           <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni-android.png" width="160" />
