@@ -12,7 +12,6 @@
 </template>
 
 <script>
-	import { mapMutations, mapState } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -38,20 +37,21 @@
 				}]
 			}
 		},
-		computed: {
-			...mapState({
-				active: state => state.active,
-				hasLeftWin: state => !state.noMatchLeftWindow
-			})
+		props: {
+			matchLeftWindow: {
+				type: Boolean
+			},
+			showLeftWindow: {
+				type: Boolean
+			}
 		},
 		watch: {
 			$route: {
 				immediate: true,
 				handler(newRoute) {
-					if ( this.hasLeftWin ) {
+					if ( this.showLeftWindow ) {
 						let comp = newRoute.path.split('/')[2]
 							this.current = this.selected[comp]
-
 						for(const item of this.indexPage) {
 							if (newRoute.path === item.tabBar) {
 								uni.redirectTo({
@@ -66,16 +66,7 @@
 		mounted() {
 		},
 		methods: {
-			...mapMutations(['setActive']),
 			toSecondMenu(e) {
-				let component = e.pagePath.split('/')[3]
-				if (component === 'component') {
-						component = 'componentPage'
-					}
-				if (component === 'template') {
-					component = 'templatePage'
-				}
-				this.setActive(component)
 				const activeTabBar = '/' + e.pagePath
 				for(const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
