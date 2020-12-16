@@ -140,16 +140,9 @@
 							this.setUniverifyLogin(true);
 							uni.closeAuthView();
 
-							const {
-								access_token,
-								openid
-							} = res.authResult
-
-							// 注意大小写
 							const univerifyInfo = {
 								provider: provider.id,
-								accessToken: access_token,
-								openid
+								...res.authResult,
 							}
 
 							this.getPhoneNumber(univerifyInfo).then((phoneNumber) => {
@@ -159,7 +152,7 @@
 								uni.showModal({
 									showCancel: false,
 									title: '手机号获取失败',
-									content: JSON.stringify(err)
+									content: `${err.errMsg}\n，错误码：${err.code}`
 								})
 								console.error(res);
 							})
@@ -167,7 +160,7 @@
 							this.setUniverifyLogin(false);
 						}
 						// #endif
-						
+
 						// #ifdef MP-WEIXIN
 						console.warn('如需获取openid请参考uni-id: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 						uni.request({
@@ -206,12 +199,29 @@
 							return;
 						}
 
+						// 未开通
+						if (err.code == 1000) {
+							uni.showModal({
+								title: '登陆失败',
+								content: `${err.errMsg}\n，错误码：${err.code}`,
+								confirmText: '开通指南',
+								cancelText: '确定',
+								success: (res) => {
+									if (res.confirm) {
+										setTimeout(() => {
+											plus.runtime.openWeb('https://ask.dcloud.net.cn/article/37965')
+										}, 500)
+									}
+								}
+							});
+						}
+
 						// 一键登录预登陆失败
 						if (err.code == '30005') {
 							uni.showModal({
 								showCancel: false,
 								title: '预登陆失败',
-								content: JSON.stringify(this.univerifyErrorMsg || err.errMsg)
+								content: this.univerifyErrorMsg || err.errMsg
 							});
 							return;
 						}
