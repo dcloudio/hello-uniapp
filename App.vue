@@ -1,5 +1,5 @@
 <script>
-	import { mapState } from 'vuex'
+	import { mapMutations } from 'vuex'
     export default {
         onLaunch: function() {
             console.log('App Launch');
@@ -29,6 +29,22 @@
 				    }
 				})
 			}
+
+			// 一键登录预登陆，可以显著提高登录速度
+			uni.preLogin({
+				provider: 'univerify',
+				success: (res) => {
+					// 成功
+					this.setUniverifyErrorMsg();
+					console.log("preLogin success: ", res);
+				},
+				fail: (res) => {
+					this.setUniverifyLogin(false);
+					this.setUniverifyErrorMsg(res.errMsg);
+					// 失败
+					console.log("preLogin fail res: ", res);
+				}
+			})
             // #endif
         },
         onShow: function() {
@@ -39,6 +55,9 @@
         },
 		globalData: {
 			test: ''
+		},
+		methods:{
+			...mapMutations(['setUniverifyErrorMsg','setUniverifyLogin'])
 		}
     }
 </script>

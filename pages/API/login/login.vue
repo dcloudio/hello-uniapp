@@ -28,8 +28,8 @@
 				</button>
 				<!-- #endif -->
 				<!-- #ifndef MP-TOUTIAO -->
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" :loading="value.id === 'univerify' ? univerifyBtnLoading : false"
-				 @click="tologin(value)" :key="key">{{value.name}}</button>
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)"
+				 :loading="value.id === 'univerify' ? univerifyBtnLoading : false" :key="key">{{value.name}}</button>
 				<!-- #endif -->
 			</view>
 		</view>
@@ -49,12 +49,11 @@
 				title: 'login',
 				providerList: [],
 				phoneNumber: '',
-				univerifyErrorMsg: '',
-				univerifyBtnLoading: true
+				univerifyBtnLoading: false
 			}
 		},
 		computed: {
-			...mapState(['hasLogin', 'isUniverifyLogin'])
+			...mapState(['hasLogin', 'isUniverifyLogin', 'univerifyErrorMsg'])
 		},
 		onLoad() {
 			uni.getProvider({
@@ -89,7 +88,6 @@
 								break;
 							case 'univerify':
 								providerName = '一键登录'
-								this.univerifyPreLogin();
 								break;
 						}
 						return {
@@ -118,35 +116,12 @@
 					duration
 				}))
 			},
-			univerifyPreLogin(value = 'univerify') {
-				this.univerifyBtnLoading = true;
-				uni.preLogin({
-					provider: value,
-					success: (res) => {
-						// 成功
-						this.univerifyErrorMsg = '';
-
-						console.log("preLogin success: ", res);
-					},
-					fail: (res) => {
-						this.setUniverifyLogin(false);
-
-						this.univerifyErrorMsg = res.errMsg;
-
-						// 失败
-						console.log("preLogin fail res: ", res);
-						console.log("preLogin fail: ", res.errCode)
-						console.log("preLogin fail: ", res.errMsg)
-					},
-					complete: () => {
-						this.univerifyBtnLoading = false;
-					}
-				})
-			},
 			tologin(provider) {
 				if (provider.id === 'univerify') {
 					this.univerifyBtnLoading = true;
 				}
+
+				// 一键登录已在APP onLaunch的时候进行了预登陆，可以显著提高登录速度。登录成功后，预登陆状态会重置
 				uni.login({
 					provider: provider.id,
 					// #ifdef MP-ALIPAY
@@ -160,6 +135,7 @@
 						// 更新保存在 store 中的登录状态
 						this.login(provider.id);
 
+						// #ifdef APP-PLUS
 						if (provider.id === 'univerify') {
 							this.setUniverifyLogin(true);
 							uni.closeAuthView();
@@ -181,6 +157,7 @@
 								uni.setStorageSync(univerifyInfoKey, univerifyInfo)
 							}).catch(err => {
 								uni.showModal({
+									showCancel: false,
 									title: '手机号获取失败',
 									content: JSON.stringify(err)
 								})
@@ -189,6 +166,8 @@
 						} else {
 							this.setUniverifyLogin(false);
 						}
+						// #endif
+						
 						// #ifdef MP-WEIXIN
 						console.warn('如需获取openid请参考uni-id: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 						uni.request({
@@ -217,6 +196,8 @@
 					},
 					fail: (err) => {
 						console.log('login fail:', err);
+
+						// 一键登录点击其他登录方式
 						if (err.code == '30002') {
 							uni.closeAuthView();
 							this.Toast({
@@ -224,17 +205,21 @@
 							})
 							return;
 						}
+
+						// 一键登录预登陆失败
 						if (err.code == '30005') {
-							// 预登陆失败
 							uni.showModal({
+								showCancel: false,
 								title: '预登陆失败',
-								content: JSON.stringify(this.univerifyErrorMsg || '预登陆失败')
+								content: JSON.stringify(this.univerifyErrorMsg || err.errMsg)
 							});
 							return;
 						}
+
+						// 一键登录用户关闭验证界面
 						if (err.code != '30003') {
-							//用户关闭验证界面
 							uni.showModal({
+								showCancel: false,
 								title: '登录失败',
 								content: JSON.stringify(err)
 							});

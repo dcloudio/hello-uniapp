@@ -104,6 +104,8 @@
 								}
 							}
 						})
+						// #endif
+						// #ifdef APP-PLUS
 						uni.showModal({
 							title: '获取用户信息失败',
 							content: '错误原因' + content,

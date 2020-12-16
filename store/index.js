@@ -16,7 +16,8 @@ const store = new Vuex.Store({
 		active: 'componentPage',
 		leftWinActive: '/pages/component/view/view',
 		activeOpen: '',
-		menu: []
+		menu: [],
+		univerifyErrorMsg: ''
 	},
 	mutations: {
 		login(state, provider) {
@@ -57,6 +58,9 @@ const store = new Vuex.Store({
 		setUniverifyLogin(state, payload) {
 			typeof payload !== 'boolean' ? payload = !!payload : '';
 			state.isUniverifyLogin = payload;
+		},
+		setUniverifyErrorMsg(state,payload = ''){
+			state.univerifyErrorMsg = payload
 		}
 	},
 	getters: {
