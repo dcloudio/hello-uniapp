@@ -202,7 +202,7 @@
 						// 未开通
 						if (err.code == 1000) {
 							uni.showModal({
-								title: '登陆失败',
+								title: '登录失败',
 								content: `${err.errMsg}\n，错误码：${err.code}`,
 								confirmText: '开通指南',
 								cancelText: '确定',
@@ -214,13 +214,14 @@
 									}
 								}
 							});
+							return;
 						}
 
 						// 一键登录预登陆失败
 						if (err.code == '30005') {
 							uni.showModal({
 								showCancel: false,
-								title: '预登陆失败',
+								title: '预登录失败',
 								content: this.univerifyErrorMsg || err.errMsg
 							});
 							return;
