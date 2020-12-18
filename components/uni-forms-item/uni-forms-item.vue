@@ -179,7 +179,6 @@
 					this.labelPos = this.labelPosition ? this.labelPosition : labelPosition
 					this.labelWid = this.label ? (this.labelWidth ? this.labelWidth : labelWidth) : 0
 					this.labelAli = this.labelAlign ? this.labelAlign : labelAlign
-					console.log(this.labelWid);
 					// 判断第一个 item
 					if (!this.form.isFirstBorder) {
 						this.form.isFirstBorder = true

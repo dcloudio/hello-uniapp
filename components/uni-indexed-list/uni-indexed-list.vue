@@ -8,7 +8,7 @@
 				<scroll-view :scroll-into-view="scrollViewId" class="uni-indexed-list__scroll" scroll-y>
 					<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + idx">
 						<!-- #endif -->
-						<uni-indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect" @itemClick="onClick"></uni-indexed-list-item>
+						<indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect" @itemClick="onClick"></indexed-list-item>
 						<!-- #ifndef APP-NVUE -->
 					</view>
 				</scroll-view>
@@ -29,7 +29,7 @@
 </template>
 <script>
 	import uniIcons from '../uni-icons/uni-icons.vue'
-	import uniIndexedListItem from './uni-indexed-list-item.vue'
+	import indexedListItem from './uni-indexed-list-item.vue'
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
 	// #endif
@@ -85,7 +85,7 @@
 		name: 'UniIndexedList',
 		components: {
 			uniIcons,
-			uniIndexedListItem
+			indexedListItem
 		},
 		props: {
 			options: {

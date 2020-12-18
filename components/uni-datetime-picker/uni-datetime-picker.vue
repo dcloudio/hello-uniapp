@@ -304,14 +304,14 @@
 	}
 
 	.uni-datetime-picker-colon::after {
-		content: ":";
+		content: ':';
 		position: absolute;
 		top: 53px;
 		right: 0;
 	}
 
 	.uni-datetime-picker-hyphen::after {
-		content: "-";
+		content: '-';
 		position: absolute;
 		top: 53px;
 		right: -2px;
@@ -342,7 +342,7 @@
 		border-style: solid;
 		transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 		transform-origin: center;
-		transition: transform 0.3s;
+		transition: transform .3s;
 		position: absolute;
 		top: 50%;
 		right: 5px;

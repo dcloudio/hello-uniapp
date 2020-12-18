@@ -20,58 +20,6 @@ const attrs = [
 ]
 
 export default {
-	props: {
-		options: {
-			type: [Object, Array],
-			default () {
-				return {}
-			}
-		},
-		collection: {
-			type: String,
-			default: ''
-		},
-		action: {
-			type: String,
-			default: ''
-		},
-		field: {
-			type: String,
-			default: ''
-		},
-		pageData: {
-			type: String,
-			default: 'add'
-		},
-		pageCurrent: {
-			type: Number,
-			default: 1
-		},
-		pageSize: {
-			type: Number,
-			default: 20
-		},
-		getcount: {
-			type: [Boolean, String],
-			default: false
-		},
-		orderby: {
-			type: String,
-			default: ''
-		},
-		where: {
-			type: [String, Object],
-			default: ''
-		},
-		getone: {
-			type: [Boolean, String],
-			default: false
-		},
-		manual: {
-			type: Boolean,
-			default: false
-		}
-	},
 	data() {
 		return {
 			loading: false,
