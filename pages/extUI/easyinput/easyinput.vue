@@ -5,17 +5,21 @@
 		<view class="example">
 			<uni-easyinput v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
 		</view>
+		<uni-section title="自定义样式" type="line"></uni-section>
+		<view class="example">
+			<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" focus placeholder="请输入内容" @input="input"></uni-easyinput>
+		</view>
 		<uni-section title="左图标" type="line"></uni-section>
 		<view class="example">
-			<uni-easyinput prefixIcon="search" v-model="value" placeholder="请输入内容"></uni-easyinput>
+			<uni-easyinput prefixIcon="search" v-model="value" placeholder="请输入内容" @iconClick="iconClick"></uni-easyinput>
 		</view>
 		<uni-section title="右图标" type="line"></uni-section>
 		<view class="example">
-			<uni-easyinput suffixIcon="search" v-model="value" placeholder="请输入内容"></uni-easyinput>
+			<uni-easyinput suffixIcon="search" v-model="value" placeholder="请输入内容" @iconClick="iconClick"></uni-easyinput>
 		</view>
 		<uni-section title="禁用" type="line"></uni-section>
 		<view class="example">
-			<uni-easyinput disabled v-model="value" placeholder="请输入内容"></uni-easyinput>
+			<uni-easyinput disabled value="已禁用" placeholder="请输入内容"></uni-easyinput>
 		</view>
 		<uni-section title="密码框" type="line"></uni-section>
 		<view class="example">
@@ -39,7 +43,12 @@
 		data() {
 			return {
 				value: '',
-				password: ''
+				password: '',
+				placeholderStyle: "color:#499721;font-size:16px",
+				styles: {
+					color: 'blue',
+					borderColor: '#499721'
+				}
 			}
 
 		},
@@ -48,6 +57,12 @@
 		methods: {
 			input(e) {
 				console.log('输入内容：', e);
+			},
+			iconClick(type) {
+				uni.showToast({
+					title: `点击了${type==='prefix'?'左侧':'右侧'}的图标`,
+					icon: 'none'
+				})
 			}
 		}
 	}

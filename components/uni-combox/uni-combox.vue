@@ -180,7 +180,7 @@
 	}
 
 	.uni-combox__selector::before {
-		content: "";
+		content: '';
 		position: absolute;
 		width: 0;
 		height: 0;

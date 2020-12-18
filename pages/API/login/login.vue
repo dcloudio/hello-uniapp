@@ -28,8 +28,8 @@
 				</button>
 				<!-- #endif -->
 				<!-- #ifndef MP-TOUTIAO -->
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" :disabled="value.id === 'univerify' ? univerifyBtnDisabled : false"
-				 @click="tologin(value)" :key="key">{{value.name}}</button>
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)"
+				 :loading="value.id === 'univerify' ? univerifyBtnLoading : false" :key="key">{{value.name}}</button>
 				<!-- #endif -->
 			</view>
 		</view>
@@ -38,7 +38,8 @@
 <script>
 	import {
 		mapState,
-		mapMutations
+		mapMutations,
+		mapActions
 	} from 'vuex'
 	const univerifyInfoKey = 'univerifyInfo';
 
@@ -48,11 +49,11 @@
 				title: 'login',
 				providerList: [],
 				phoneNumber: '',
-				univerifyBtnDisabled: true
+				univerifyBtnLoading: false
 			}
 		},
 		computed: {
-			...mapState(['hasLogin', 'isUniverifyLogin'])
+			...mapState(['hasLogin', 'isUniverifyLogin', 'univerifyErrorMsg'])
 		},
 		onLoad() {
 			uni.getProvider({
@@ -86,22 +87,6 @@
 								providerName = '苹果登录'
 								break;
 							case 'univerify':
-								uni.preLogin({
-									provider: value,
-									success: (res) => {
-										// 成功
-										console.log("preLogin success: ", res);
-										this.univerifyBtnDisabled = false;
-									},
-									fail: (res) => {
-										// 失败
-										console.log("preLogin fail: ", res);
-										// 失败
-										console.log("preLogin fail: ", res.errCode)
-										console.log("preLogin fail: ", res.errMsg)
-										this.setUniverifyLogin(false);
-									}
-								})
 								providerName = '一键登录'
 								break;
 						}
@@ -117,25 +102,26 @@
 				}
 			});
 
-			uni.onAuthViewOtherLoginButtonClick(() => {
-				uni.closeAuthView();
-				this.Toast({
-					title: '其他登录方式'
-				})
-			})
-
 			if (this.hasLogin && this.isUniverifyLogin) {
-				this.getPhoneNumber(uni.getStorageSync(univerifyInfoKey))
+				this.getPhoneNumber(uni.getStorageSync(univerifyInfoKey)).then((phoneNumber) => {
+					this.phoneNumber = phoneNumber
+				})
 			}
 		},
 		methods: {
 			...mapMutations(['login', 'setUniverifyLogin']),
+			...mapActions(['getPhoneNumber']),
 			Toast(data, duration = 1000) {
 				uni.showToast(Object.assign({}, data, {
 					duration
 				}))
 			},
 			tologin(provider) {
+				if (provider.id === 'univerify') {
+					this.univerifyBtnLoading = true;
+				}
+
+				// 一键登录已在APP onLaunch的时候进行了预登陆，可以显著提高登录速度。登录成功后，预登陆状态会重置
 				uni.login({
 					provider: provider.id,
 					// #ifdef MP-ALIPAY
@@ -143,29 +129,38 @@
 					// #endif
 					success: (res) => {
 						console.log('login success:', res);
+						this.Toast({
+							title: '登录成功'
+						})
 						// 更新保存在 store 中的登录状态
 						this.login(provider.id);
 
+						// #ifdef APP-PLUS
 						if (provider.id === 'univerify') {
 							this.setUniverifyLogin(true);
 							uni.closeAuthView();
 
-							const {
-								access_token,
-								openid
-							} = res.authResult
-
-							// 注意大小写
 							const univerifyInfo = {
 								provider: provider.id,
-								accessToken: access_token,
-								openid
+								...res.authResult,
 							}
 
-							this.getPhoneNumber(univerifyInfo);
+							this.getPhoneNumber(univerifyInfo).then((phoneNumber) => {
+								this.phoneNumber = phoneNumber;
+								uni.setStorageSync(univerifyInfoKey, univerifyInfo)
+							}).catch(err => {
+								uni.showModal({
+									showCancel: false,
+									title: '手机号获取失败',
+									content: `${err.errMsg}\n，错误码：${err.code}`
+								})
+								console.error(res);
+							})
 						} else {
 							this.setUniverifyLogin(false);
 						}
+						// #endif
+
 						// #ifdef MP-WEIXIN
 						console.warn('如需获取openid请参考uni-id: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 						uni.request({
@@ -194,37 +189,57 @@
 					},
 					fail: (err) => {
 						console.log('login fail:', err);
-					}
-				});
-			},
-			getPhoneNumber(univerifyInfo) {
-				uni.request({
-					url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/univerify-login',
-					method: 'POST',
-					data: univerifyInfo,
-					success: (res) => {
-						console.log(res);
-						const {
-							data
-						} = res;
-						if (data.success) {
-							this.phoneNumber = data.phoneNumber;
-							uni.setStorageSync(univerifyInfoKey, univerifyInfo)
-						} else {
+
+						// 一键登录点击其他登录方式
+						if (err.code == '30002') {
+							uni.closeAuthView();
 							this.Toast({
-								icon: 'none',
-								title: `手机号获取失败`
+								title: '其他登录方式'
 							})
-							console.error(res);
+							return;
 						}
 
+						// 未开通
+						if (err.code == 1000) {
+							uni.showModal({
+								title: '登录失败',
+								content: `${err.errMsg}\n，错误码：${err.code}`,
+								confirmText: '开通指南',
+								cancelText: '确定',
+								success: (res) => {
+									if (res.confirm) {
+										setTimeout(() => {
+											plus.runtime.openWeb('https://ask.dcloud.net.cn/article/37965')
+										}, 500)
+									}
+								}
+							});
+							return;
+						}
+
+						// 一键登录预登陆失败
+						if (err.code == '30005') {
+							uni.showModal({
+								showCancel: false,
+								title: '预登录失败',
+								content: this.univerifyErrorMsg || err.errMsg
+							});
+							return;
+						}
+
+						// 一键登录用户关闭验证界面
+						if (err.code != '30003') {
+							uni.showModal({
+								showCancel: false,
+								title: '登录失败',
+								content: JSON.stringify(err)
+							});
+						}
 					},
-					fail: (err) => {
-						this.Toast({
-							title: '一键登录失败'
-						})
+					complete: () => {
+						this.univerifyBtnLoading = false;
 					}
-				})
+				});
 			}
 		}
 	}

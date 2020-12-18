@@ -92,7 +92,7 @@
 		right: 0;
 		left: 0;
 		height: 1px;
-		content: "";
+		content: '';
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
 		background-color: #e5e5e5;

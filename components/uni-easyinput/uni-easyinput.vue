@@ -1,18 +1,17 @@
 <template>
-	<view class="uni-easyinput" :class="{'uni-easyinput-error':msg}">
-		<view class="uni-easyinput__content" :class="{'is-input-border':inputBorder ,'is-input-error-border':inputBorder && msg,'is-textarea':type==='textarea','is-disabled':disabled}">
-			<uni-icons v-if="prefixIcon" class="content-clear-icon" :type="prefixIcon" color="#c0c4cc"></uni-icons>
+	<view class="uni-easyinput" :class="{'uni-easyinput-error':msg}" :style="{color:inputBorder && msg?'#dd524d':styles.color}">
+		<view class="uni-easyinput__content" :class="{'is-input-border':inputBorder ,'is-input-error-border':inputBorder && msg,'is-textarea':type==='textarea','is-disabled':disabled}" :style="{'border-color':inputBorder && msg?'#dd524d':styles.borderColor,'background-color':disabled?styles.disableColor:'#fff'}">
+			<uni-icons v-if="prefixIcon" class="content-clear-icon" :type="prefixIcon" color="#c0c4cc" @click="onClickIcon('prefix')"></uni-icons>
 			<textarea v-if="type === 'textarea'" class="uni-easyinput__content-textarea" :class="{'input-padding':inputBorder}" :name="name" :value="val" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" :autoHeight="autoHeight" @input="onInput" @blur="onBlur" @focus="onFocus" @confirm="onConfirm"></textarea>
 			<input v-else :type="type === 'password'?'text':type" class="uni-easyinput__content-input" :style="{
 				 'padding-right':type === 'password' ||clearable || prefixIcon?'':'10px',
-				 'padding-left':prefixIcon?'':'10px',
-				 'color':msg?'#dd524d':''
+				 'padding-left':prefixIcon?'':'10px'
 			 }" :name="name" :value="val" :password="!showPassword && type === 'password'" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" @focus="onFocus" @blur="onBlur" @input="onInput" @confirm="onConfirm" />
 			<template v-if="type === 'password'">
 				<uni-icons v-if="val != '' " class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" :type="showPassword?'eye-slash-filled':'eye-filled'" :size="18" color="#c0c4cc" @click="onEyes"></uni-icons>
 			</template>
 			<template v-else-if="suffixIcon">
-				<uni-icons v-if="suffixIcon" class="content-clear-icon" :type="suffixIcon" color="#c0c4cc"></uni-icons>
+				<uni-icons v-if="suffixIcon" class="content-clear-icon" :type="suffixIcon" color="#c0c4cc" @click="onClickIcon('suffix')"></uni-icons>
 			</template>
 			<template v-else>
 				<uni-icons class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize" v-if="clearable && focused && val " color="#c0c4cc" @click="onClear"></uni-icons>
@@ -26,31 +25,33 @@
 	 * Field 输入框
 	 * @description 此组件可以实现表单的输入与校验，包括 "text" 和 "textarea" 类型。
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=21001
-	 * @property {String| Number} 	value 				输入内容
-	 * @property {String } 	type 				输入框的类型（默认text） password/text/textarea/..
-	 * @value text		文本输入键盘
-	 * @value textarea 	多行文本输入键盘
-	 * @value password 	密码输入键盘
-	 * @value number	数字输入键盘，注意iOS上app-vue弹出的数字键盘并非9宫格方式
-	 * @value idcard	身份证输入键盘，信、支付宝、百度、QQ小程序
-	 * @value digit		带小数点的数字键盘	，App的nvue页面、微信、支付宝、百度、头条、QQ小程序支持
-	 * @property {Boolean} 	clearable 			是否显示右侧清空内容的图标控件(输入框有内容，且获得焦点时才显示)，点击可清空输入框内容（默认true）
-	 * @property {Boolean} 	autoHeight 		是否自动增高输入区域，type为textarea时有效（默认true）
-	 * @property {String } 	placeholder 		输入框的提示文字
+	 * @property {String| Number} 	value 		输入内容
+	 * @property {String } 	type 							输入框的类型（默认text） password/text/textarea/..
+	 * 	@value text				文本输入键盘
+	 * 	@value textarea 	多行文本输入键盘
+	 * 	@value password 	密码输入键盘
+	 * 	@value number			数字输入键盘，注意iOS上app-vue弹出的数字键盘并非9宫格方式
+	 * 	@value idcard			身份证输入键盘，信、支付宝、百度、QQ小程序
+	 * 	@value digit			带小数点的数字键盘	，App的nvue页面、微信、支付宝、百度、头条、QQ小程序支持
+	 * @property {Boolean} 	clearable 				是否显示右侧清空内容的图标控件(输入框有内容，且获得焦点时才显示)，点击可清空输入框内容（默认true）
+	 * @property {Boolean} 	autoHeight 				是否自动增高输入区域，type为textarea时有效（默认true）
+	 * @property {String } 	placeholder 			输入框的提示文字
 	 * @property {String } 	placeholderStyle 	placeholder的样式(内联样式，字符串)，如"color: #ddd"
-	 * @property {Boolean} 	focus 				是否自动获得焦点（默认false）
-	 * @property {Boolean} 	disabled 			是否不可输入（默认false）
-	 * @property {Number } 	maxlength 			最大输入长度，设置为 -1 的时候不限制最大长度（默认140）
-	 * @property {String } 	confirmType 		设置键盘右下角按钮的文字，仅在type="text"时生效（默认done）
-	 * @property {Number } 	clearSize 			清除图标的大小，单位px（默认15）
-	 * @property {String} 	prefixIcon			输入框头部图标
-	 * @property {String} 	suffixIcon			输入框尾部图标
-	 * @property {Boolean} 	trim 				是否自动去除两端的空格
-	 * @property {Boolean} 	inputBorder 		是否显示input输入框的边框（默认false）
-	 * @event {Function} 	input 				输入框内容发生变化时触发
-	 * @event {Function} 	focus 				输入框获得焦点时触发
-	 * @event {Function} 	blur 				输入框失去焦点时触发
-	 * @event {Function} 	confirm 			点击完成按钮时触发
+	 * @property {Boolean} 	focus 						是否自动获得焦点（默认false）
+	 * @property {Boolean} 	disabled 					是否不可输入（默认false）
+	 * @property {Number } 	maxlength 				最大输入长度，设置为 -1 的时候不限制最大长度（默认140）
+	 * @property {String } 	confirmType 			设置键盘右下角按钮的文字，仅在type="text"时生效（默认done）
+	 * @property {Number } 	clearSize 				清除图标的大小，单位px（默认15）
+	 * @property {String} 	prefixIcon				输入框头部图标
+	 * @property {String} 	suffixIcon				输入框尾部图标
+	 * @property {Boolean} 	trim 							是否自动去除两端的空格
+	 * @property {Boolean} 	inputBorder 			是否显示input输入框的边框（默认false）
+	 * @property {Object} 	styles 						自定义颜色
+	 * @event {Function} 		input 						输入框内容发生变化时触发
+	 * @event {Function} 		focus 						输入框获得焦点时触发
+	 * @event {Function} 		blur 							输入框失去焦点时触发
+	 * @event {Function} 		confirm 					点击完成按钮时触发
+	 * @event {Function} 		iconClick 				点击图标时触发
 	 * @example <uni-easyinput v-model="mobile"></uni-easyinput>
 	 */
 
@@ -116,6 +117,17 @@
 			trim: {
 				type: Boolean,
 				default: true
+			},
+			// 自定义样式
+			styles: {
+				type: Object,
+				default () {
+					return {
+						color: '#333',
+						disableColor: '#eee',
+						borderColor: '#e5e5e5'
+					}
+				}
 			}
 		},
 		data() {
@@ -141,6 +153,7 @@
 		},
 		watch: {
 			value(newVal) {
+				if (this.errMsg) this.errMsg = ''
 				this.val = newVal
 				if (this.formItem) {
 					this.formItem.setValue(newVal)
@@ -176,6 +189,9 @@
 			 */
 			init() {
 
+			},
+			onClickIcon(type) {
+				this.$emit('iconClick', type)
 			},
 			/**
 			 * 获取父元素实例

@@ -136,7 +136,7 @@
 
 	/* #ifndef APP-NVUE */
 	.uni-border:after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -165,7 +165,7 @@
 
 	/* #ifndef APP-NVUE */
 	.uni-border-bottom:after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -193,7 +193,7 @@
 
 	/* #ifndef APP-NVUE */
 	.uni-border-top:after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 0;
 		left: 0;

@@ -77,7 +77,7 @@
 <style scoped>
 	.uni-table-tr {
 		display: table-row;
-		transition: all 0.3s;
+		transition: all .3s;
 		box-sizing: border-box;
 	}
 
