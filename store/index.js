@@ -56,8 +56,7 @@ const store = new Vuex.Store({
 			state.menu = menu
 		},
 		setUniverifyLogin(state, payload) {
-			typeof payload !== 'boolean' ? payload = !!payload : '';
-			state.isUniverifyLogin = payload;
+			state.isUniverifyLogin = !!payload
 		},
 		setUniverifyErrorMsg(state,payload = ''){
 			state.univerifyErrorMsg = payload
