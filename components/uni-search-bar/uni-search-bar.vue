@@ -1,18 +1,17 @@
 <template>
 	<view class="uni-searchbar">
 		<view :style="{borderRadius:radius+'px',backgroundColor: bgColor}" class="uni-searchbar__box" @click="searchClick">
-			<!-- #ifdef MP-ALIPAY -->
 			<view class="uni-searchbar__box-icon-search">
-				<uni-icons color="#999999" size="18" type="search" />
+				<slot name="searchIcon">
+					<uni-icons color="#999999" size="18" type="search" />
+				</slot>
 			</view>
-			<!-- #endif -->
-			<!-- #ifndef MP-ALIPAY -->
-			<uni-icons color="#999999" class="uni-searchbar__box-icon-search" size="18" type="search" />
-			<!-- #endif -->
-			<input v-if="show" :focus="showSync" :placeholder="placeholder" :maxlength="maxlength" @confirm="confirm" class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal" />
+			<input v-if="show || searchVal" :focus="showSync" :placeholder="placeholder" :maxlength="maxlength" class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal" @confirm="confirm" @blur="blur" />
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear" @click="clear">
-				<uni-icons color="#999999" class="" size="24" type="clear" />
+				<slot name="clearIcon">
+					<uni-icons color="#c0c4cc" class="" size="18" type="clear" />
+				</slot>
 			</view>
 		</view>
 		<text @click="cancel" class="uni-searchbar__cancel" v-if="cancelButton ==='always' || show && cancelButton ==='auto'">{{cancelText}}</text>
@@ -39,9 +38,12 @@
 	 * 	@value none 一直不显示
 	 * @property {String} cancelText 取消按钮的文字
 	 * @property {String} bgColor 输入框背景颜色
+	 * @property {Boolean} focus 是否自动聚焦
 	 * @event {Function} confirm uniSearchBar 的输入框 confirm 事件，返回参数为uniSearchBar的value，e={value:Number}
-	 * @event {Function} input uniSearchBar 的 value 改变时触发事件，返回参数为uniSearchBar的value，e={value:Number}
+	 * @event {Function} input uniSearchBar 的 value 改变时触发事件，返回参数为uniSearchBar的value，e=value
 	 * @event {Function} cancel 点击取消按钮时触发事件，返回参数为uniSearchBar的value，e={value:Number}
+	 * @event {Function} clear 点击清除按钮时触发事件，返回参数为uniSearchBar的value，e={value:Number}
+	 * @event {Function} blur input失去焦点时触发事件，返回参数为uniSearchBar的value，e={value:Number}
 	 */
 
 	export default {
@@ -77,20 +79,46 @@
 			maxlength: {
 				type: [Number, String],
 				default: 100
+			},
+			value: {
+				type: [Number, String],
+				default: ""
+			},
+			focus: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
 			return {
 				show: false,
 				showSync: false,
-				searchVal: ""
+				searchVal: ''
 			}
 		},
 		watch: {
-			searchVal() {
-				this.$emit("input", {
-					value: this.searchVal
-				})
+			value: {
+				immediate: true,
+				handler(newVal) {
+					this.searchVal = newVal
+					if (newVal) {
+						this.show = true
+					}
+				}
+			},
+			focus: {
+				immediate: true,
+				handler(newVal) {
+					if (newVal) {
+						this.show = true;
+						this.$nextTick(() => {
+							this.showSync = true
+						})
+					}
+				}
+			},
+			searchVal(newVal, oldVal) {
+				this.$emit("input", newVal)
 			}
 		},
 		methods: {
@@ -98,13 +126,15 @@
 				if (this.show) {
 					return
 				}
-				this.searchVal = ""
 				this.show = true;
 				this.$nextTick(() => {
-					this.showSync = true;
+					this.showSync = true
 				})
 			},
 			clear() {
+				this.$emit("clear", {
+					value: this.searchVal
+				})
 				this.searchVal = ""
 			},
 			cancel() {
@@ -131,6 +161,17 @@
 				this.$emit("confirm", {
 					value: this.searchVal
 				})
+			},
+			blur() {
+				// #ifndef APP-PLUS
+				uni.hideKeyboard();
+				// #endif
+				// #ifdef APP-PLUS
+				plus.key.hideSoftKeybord()
+				// #endif
+				this.$emit("blur", {
+					value: this.searchVal
+				})
 			}
 		}
 	};
@@ -144,7 +185,6 @@
 		flex-direction: row;
 		position: relative;
 		padding: 8px;
-		background-color: #ffffff;
 	}
 
 	.uni-searchbar__box {
@@ -170,7 +210,7 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		width: 32px;
+		padding: 0 8px;
 		justify-content: center;
 		align-items: center;
 		color: #808080;
@@ -185,7 +225,7 @@
 	.uni-searchbar__box-icon-clear {
 		align-items: center;
 		line-height: 24px;
-		padding-left: 5px;
+		padding-left: 8px;
 	}
 
 	.uni-searchbar__text-placeholder {

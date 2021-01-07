@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view ref="uni-rate" class="uni-rate">
-			<view class="uni-rate__icon" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove">
+			<view v-if="" class="uni-rate__icon" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
 				<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
 				<!-- #ifdef APP-NVUE -->
 				<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
@@ -111,13 +111,16 @@
 		},
 		data() {
 			return {
-				valueSync: ""
+				valueSync: "",
+				userMouseFristMove: true,
+				userRated: false,
+				userLastRate: 1
 			};
 		},
 		watch: {
 			value(newVal) {
 				this.valueSync = Number(newVal);
-			}
+			},
 		},
 		computed: {
 			stars() {
@@ -152,9 +155,15 @@
 			setTimeout(() => {
 				this._getSize()
 			}, 100)
+			// #ifdef H5
+			this.PC = this.IsPC()
+			// #endif
 		},
 		methods: {
 			touchstart(e) {
+				// #ifdef H5
+				if (this.IsPC()) return
+				// #endif
 				if (this.readonly || this.disabled) return
 				const {
 					clientX,
@@ -164,6 +173,9 @@
 				this._getRateCount(clientX || screenX)
 			},
 			touchmove(e) {
+				// #ifdef H5
+				if (this.IsPC()) return
+				// #endif
 				if (this.readonly || this.disabled || !this.touchable) return
 				const {
 					clientX,
@@ -171,21 +183,83 @@
 				} = e.changedTouches[0]
 				this._getRateCount(clientX || screenX)
 			},
+
+			/**
+			 * 兼容 PC @tian
+			 */
+
+			mousedown(e) {
+				// #ifdef H5
+				if (!this.IsPC()) return
+				if (this.readonly || this.disabled) return
+				const {
+					clientX,
+				} = e
+				this.userLastRate = this.valueSync
+				this._getRateCount(clientX)
+				this.userRated = true
+				// #endif
+			},
+			mousemove(e) {
+				// #ifdef H5
+				if (!this.IsPC()) return
+				if (this.userRated) return
+				if (this.userMouseFristMove) {
+					console.log('---mousemove----', this.valueSync);
+					this.userLastRate = this.valueSync
+					this.userMouseFristMove = false
+				}
+				if (this.readonly || this.disabled || !this.touchable) return
+				const {
+					clientX,
+				} = e
+				this._getRateCount(clientX)
+				// #endif
+			},
+			mouseleave(e) {
+				// #ifdef H5
+				if (!this.IsPC()) return
+				if (this.readonly || this.disabled || !this.touchable) return
+				if (this.userRated) {
+					this.userRated = false
+					return
+				}
+				this.valueSync = this.userLastRate
+				// #endif
+			},
+			// #ifdef H5
+			IsPC() {
+				var userAgentInfo = navigator.userAgent;
+				var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+				var flag = true;
+				for (var v = 0; v < Agents.length; v++) {
+					if (userAgentInfo.indexOf(Agents[v]) > 0) {
+						flag = false;
+						break;
+					}
+				}
+				return flag;
+			},
+			// #endif
+
 			/**
 			 * 获取星星个数
 			 */
 			_getRateCount(clientX) {
+				const size = Number(this.size)
+				if (size === NaN) {
+					return new Error('size 属性只能设置为数字')
+				}
 				const rateMoveRange = clientX - this._rateBoxLeft
-				let index = parseInt(rateMoveRange / (this.size + this.margin))
+				let index = parseInt(rateMoveRange / (size + this.margin))
 				index = index < 0 ? 0 : index;
 				index = index > this.max ? this.max : index;
-				const range = parseInt(rateMoveRange - (this.size + this.margin) * index);
+				const range = parseInt(rateMoveRange - (size + this.margin) * index);
 				let value = 0;
-				if (this._oldValue === index) return;
+				if (this._oldValue === index && !this.PC) return;
 				this._oldValue = index;
-
 				if (this.allowHalf) {
-					if (range > (this.size / 2)) {
+					if (range > (size / 2)) {
 						value = index + 1
 					} else {
 						value = index + 0.5

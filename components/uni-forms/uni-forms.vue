@@ -107,21 +107,6 @@
 			trigger(trigger) {
 				this.formTrigger = trigger
 			},
-			value: {
-				handler(newVal) {
-					if (this.isChildEdit) {
-						this.isChildEdit = false
-						return
-					}
-					this.childrens.forEach((item) => {
-						if (item.name) {
-							const formDataValue = newVal.hasOwnProperty(item.name) ? newVal[item.name] : null
-							this.formData[item.name] = this._getValue(item, formDataValue)
-						}
-					})
-				},
-				deep: true
-			}
 		},
 		created() {
 			let _this = this
@@ -131,17 +116,40 @@
 			this.formRules = []
 			this.init(this.rules)
 		},
+
 		methods: {
 			init(formRules) {
+				// 判断是否有规则
 				if (Object.keys(formRules).length > 0) {
 					this.formTrigger = this.trigger
 					this.formRules = formRules
 					if (!this.validator) {
 						this.validator = new Validator(formRules)
 					}
+				} else {
+					return
 				}
-				this.childrens.forEach((item) => {
-					item.init()
+
+				// 判断表单存在那些实例
+				for (let i in this.value) {
+					const itemData = this.childrens.find(v => v.name === i)
+					if (itemData) {
+						this.formData[i] = this.value[i]
+						itemData.init()
+					}
+				}
+
+				// watch 每个属性 ，需要知道具体那个属性发变化
+				Object.keys(this.value).forEach((key) => {
+					this.$watch('value.' + key, (newVal) => {
+						const itemData = this.childrens.find(v => v.name === key)
+						if (itemData) {
+							this.formData[key] = this._getValue(key, newVal)
+							itemData.init()
+						} else {
+							this.formData[key] = this.value[key] || null
+						}
+					})
 				})
 			},
 			/**
@@ -160,8 +168,7 @@
 			setValue(name, value, callback) {
 				let example = this.childrens.find(child => child.name === name)
 				if (!example) return null
-				this.isChildEdit = true
-				value = this._getValue(example, value)
+				value = this._getValue(example.name, value)
 				this.formData[name] = value
 				example.val = value
 				this.$emit('input', Object.assign({}, this.value, this.formData))
@@ -176,6 +183,7 @@
 				const value = event.detail.value
 				return this.validateAll(value || this.formData, 'submit')
 			},
+
 			/**
 			 * 表单重置
 			 * @param {Object} event
@@ -190,10 +198,9 @@
 					}
 				})
 
-				this.isChildEdit = true
 				this.childrens.forEach((item) => {
 					if (item.name) {
-						this.formData[item.name] = this._getValue(item, '')
+						this.formData[item.name] = this._getValue(item.name, '')
 					}
 				})
 
@@ -213,7 +220,6 @@
 			 * 校验所有或者部分表单
 			 */
 			async validateAll(invalidFields, type, callback) {
-
 				this.childrens.forEach(item => {
 					item.errMsg = ''
 				})
@@ -241,13 +247,12 @@
 							break
 						}
 					}
-
 					// 如果存在 required 才会将内容插入校验对象
 					if (!isNoField && (!tempInvalidFields[item] && tempInvalidFields[item] !== false)) {
 						delete tempInvalidFields[item]
 					}
-
 				})
+
 				// 循环字段是否存在于校验规则中
 				for (let i in this.formRules) {
 					for (let j in tempInvalidFields) {
@@ -258,18 +263,29 @@
 				}
 				let result = []
 				let example = null
+
+				let newFormData = {}
+				this.childrens.forEach(v => {
+					newFormData[v.name] = invalidFields[v.name] || this._getValue(v.name, '')
+				})
 				if (this.validator) {
 					for (let i in fieldsValue) {
+						// 循环校验，目的是异步校验
 						const resultData = await this.validator.validateUpdate({
 							[i]: fieldsValue[i]
 						}, this.formData)
+
+						// 未通过
 						if (resultData) {
+							// 获取当前未通过子组件实例
 							example = this.childrens.find(child => child.name === resultData.key)
-							const inputComp = this.inputChildrens.find(child => child.rename === example.name)
+							// 获取easyInput 组件实例
+							const inputComp = this.inputChildrens.find(child => child.rename === (example && example.name))
 							if (inputComp) {
 								inputComp.errMsg = resultData.errorMessage
 							}
 							result.push(resultData)
+							// 区分触发类型
 							if (this.errShowType === 'undertext') {
 								if (example) example.errMsg = resultData.errorMessage
 							} else {
@@ -296,17 +312,20 @@
 				if (Array.isArray(result)) {
 					if (result.length === 0) result = null
 				}
+
 				if (type === 'submit') {
 					this.$emit('submit', {
 						detail: {
-							value: invalidFields,
+							value: newFormData,
 							errors: result
 						}
 					})
 				} else {
 					this.$emit('validate', result)
 				}
-				callback && typeof callback === 'function' && callback(result, invalidFields)
+
+				callback && typeof callback === 'function' && callback(result, newFormData)
+
 				if (promise && callback) {
 					return promise
 				} else {
@@ -342,14 +361,11 @@
 				props = [].concat(props);
 				let invalidFields = {}
 				this.childrens.forEach(item => {
-					// item.parentVal((val, name) => {
 					if (props.indexOf(item.name) !== -1) {
 						invalidFields = Object.assign({}, invalidFields, {
 							[item.name]: this.formData[item.name]
 						})
 					}
-					// })
-
 				})
 				return this.validateAll(invalidFields, '', callback)
 			},
@@ -383,14 +399,18 @@
 					}
 				})
 			},
-			// 把 value 转换成指定的类型
-			_getValue(item, value) {
-				const rules = item.formRules.rules || []
+			/**
+			 * 把 value 转换成指定的类型
+			 * @param {Object} key
+			 * @param {Object} value
+			 */
+			_getValue(key, value) {
+				const rules = (this.formRules[key] && this.formRules[key].rules) || []
 				const isRuleNum = rules.find(val => val.format && this.type_filter(val.format))
 				const isRuleBool = rules.find(val => val.format && val.format === 'boolean' || val.format === 'bool')
 				// 输入值为 number
 				if (isRuleNum) {
-					value = value === '' || value === null ? null : Number(value)
+					value = isNaN(value) ? value : (value === '' || value === null ? null : Number(value))
 				}
 				// 简单判断真假值
 				if (isRuleBool) {
@@ -398,7 +418,10 @@
 				}
 				return value
 			},
-			// 过滤数字类型
+			/**
+			 * 过滤数字类型
+			 * @param {Object} format
+			 */
 			type_filter(format) {
 				return format === 'int' || format === 'double' || format === 'number'
 			}
@@ -407,10 +430,6 @@
 </script>
 
 <style scoped>
-	.uni-forms {
-		overflow: hidden;
-	}
-
 	.uni-forms--top {
 		padding: 10px 15px;
 	}

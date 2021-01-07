@@ -136,7 +136,6 @@
 				if (this.labelAli === 'center') return 'center';
 				if (this.labelAli === 'right') return 'flex-end';
 			}
-
 		},
 		watch: {
 			validateTrigger(trigger) {
@@ -148,9 +147,9 @@
 			this.group = this.getForm('uniGroup')
 			this.formRules = []
 			this.formTrigger = this.validateTrigger
-			// if (this.form) {
-			this.form.childrens.push(this)
-			// }
+			if (this.form) {
+				this.form.childrens.push(this)
+			}
 			this.init()
 		},
 		destroyed() {
@@ -158,6 +157,7 @@
 				this.form.childrens.forEach((item, index) => {
 					if (item === this) {
 						this.form.childrens.splice(index, 1)
+						delete this.form.formData[item.name]
 					}
 				})
 			}
@@ -179,11 +179,13 @@
 					this.labelPos = this.labelPosition ? this.labelPosition : labelPosition
 					this.labelWid = this.label ? (this.labelWidth ? this.labelWidth : labelWidth) : 0
 					this.labelAli = this.labelAlign ? this.labelAlign : labelAlign
+
 					// 判断第一个 item
 					if (!this.form.isFirstBorder) {
 						this.form.isFirstBorder = true
 						this.isFirstBorder = true
 					}
+
 					// 判断 group 里的第一个 item
 					if (this.group) {
 						if (!this.group.isFirstBorder) {
@@ -200,10 +202,6 @@
 					}
 
 					this.validator = validator
-
-					if (this.name) {
-						formData[this.name] = value.hasOwnProperty(this.name) ? value[this.name] : this.form._getValue(this, '')
-					}
 				} else {
 					this.labelPos = this.labelPosition || 'left'
 					this.labelWid = this.labelWidth || 65
@@ -223,18 +221,22 @@
 				}
 				return parent;
 			},
+
 			/**
 			 * 移除该表单项的校验结果
 			 */
 			clearValidate() {
 				this.errMsg = ''
 			},
+
 			setValue(value) {
 				if (this.name) {
 					if (this.errMsg) this.errMsg = ''
-					this.form.formData[this.name] = this.form._getValue(this, value)
+					this.form.formData[this.name] = this.form._getValue(this.name, value)
+					this.triggerCheck(this.form._getValue(this.name, value))
 				}
 			},
+
 			/**
 			 * 校验规则
 			 * @param {Object} value
@@ -243,37 +245,35 @@
 				let promise = null;
 				this.errMsg = ''
 				// if no callback, return promise
-				if (callback && typeof callback !== 'function' && Promise) {
-					promise = new Promise((resolve, reject) => {
-						callback = function(valid) {
-							!valid ? resolve(valid) : reject(valid)
-						};
-					});
-				}
-
-				if (!this.validator) {
-					typeof callback === 'function' && callback(null);
-					if (promise) return promise
-				}
-
+				// if (callback && typeof callback !== 'function' && Promise) {
+				// 	promise = new Promise((resolve, reject) => {
+				// 		callback = function(valid) {
+				// 			!valid ? resolve(valid) : reject(valid)
+				// 		};
+				// 	});
+				// }
+				// if (!this.validator) {
+				// 	typeof callback === 'function' && callback(null);
+				// 	if (promise) return promise
+				// }
+				if (!this.validator) return
 				const isNoField = this.isRequired(this.formRules.rules || [])
-
-
 				let isTrigger = this.isTrigger(this.formRules.validateTrigger, this.validateTrigger, this.form.validateTrigger)
-
 				let result = null
-
 				if (!(!isTrigger)) {
-					result = this.validator && (await this.validator.validateUpdate({
+					result = await this.validator.validateUpdate({
 						[this.name]: value
-					}, this.form.formData))
+					}, this.form.formData)
 				}
 				// 判断是否必填
 				if (!isNoField && !value) {
 					result = null
 				}
-
 				if (isTrigger && result && result.errorMessage) {
+					const inputComp = this.form.inputChildrens.find(child => child.rename === this.name)
+					if (inputComp) {
+						inputComp.errMsg = result.errorMessage
+					}
 					if (this.form.errShowType === 'toast') {
 						uni.showToast({
 							title: result.errorMessage || '校验错误',
@@ -289,9 +289,10 @@
 				}
 
 				this.errMsg = !result ? '' : result.errorMessage
+				// 触发validate事件
 				this.form.validateCheck(result ? result : null)
-				typeof callback === 'function' && callback(result ? result : null);
-				if (promise) return promise
+				// typeof callback === 'function' && callback(result ? result : null);
+				// if (promise) return promise
 
 			},
 			/**

@@ -16,7 +16,7 @@
 
 		<uni-section title="图文卡片" type="line"></uni-section>
 		<view class="example-body">
-			<uni-card :is-shadow="true" title="标题文字" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" extra="额外信息" note="true" @click="clickCard">
+			<uni-card :is-shadow="true" title="标题文字" mode="style" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" extra="额外信息" note="true" @click="clickCard">
 				<text class="content-box-text">图文卡片支持传入一张图片，在最上方显示，标题作为图片描述，额外信息作为内容标题，通常作用为作者信息或发布时间描述，自行配置是否需要底部信息</text>
 				<block slot="footer">
 					<view class="footer-box">
@@ -29,10 +29,10 @@
 		</view>
 		<uni-section title="标题卡片" type="line"></uni-section>
 		<view class="example-body">
-			<uni-card :isShadow="true" title="标题内容" subTitle="副标题" mode="title" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="技术没有上限" note="true" @click="clickCard">
+			<uni-card :isShadow="true" title="标题内容" subTitle="副标题" mode="title" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" extra="技术没有上限" note="true" @click="clickCard">
 				<view>
 					<view class="image-box">
-						<image class="image" mode="aspectFill" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" />
+						<image class="image" mode="aspectFill" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg" />
 					</view>
 					<view class="content-box">
 						<text class="content-box-text">标题卡片带有一个双标题头部，右侧为额外描述信息 ，内容可自定义实现</text>
@@ -87,7 +87,7 @@
 					shadow: true,
 					note: 'Tips',
 					extra: '额外信息',
-					thumbnail: 'https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png'
+					thumbnail: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png'
 				}],
 				Tips: ['喜欢', '评论', '分享']
 			}

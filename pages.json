@@ -997,6 +997,27 @@
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false
 					}
+				},
+				{
+					"path": "data-indexed-list/data-indexed-list",
+					"style": {
+						"navigationBarTitleText": "",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "data-picker/data-picker",
+					"style": {
+						"navigationBarTitleText": "级联选择",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "layout/layout",
+					"style": {
+						"navigationBarTitleText": "layout 布局",
+						"enablePullDownRefresh": false
+					}
 				}
 			]
 		},

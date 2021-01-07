@@ -5,6 +5,14 @@
 		<view class="example">
 			<uni-easyinput v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
 		</view>
+
+		<uni-section title="去除空格" type="line"></uni-section>
+		<view class="example">
+			<view>输入内容："{{ value }}"</view>
+			<uni-easyinput trim="all" v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
+		</view>
+
+
 		<uni-section title="自定义样式" type="line"></uni-section>
 		<view class="example">
 			<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" focus placeholder="请输入内容" @input="input"></uni-easyinput>
