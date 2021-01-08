@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="page-body">
 			<view class='wrapper'>
-				<view class='toolbar' @tap="format">
+				<view class='toolbar' @tap="format" style="height: 120px;overflow-y: auto;">
 					<view :class="formats.bold ? 'ql-active' : ''" class="iconfont icon-zitijiacu" data-name="bold"></view>
 					<view :class="formats.italic ? 'ql-active' : ''" class="iconfont icon-zitixieti" data-name="italic"></view>
 					<view :class="formats.underline ? 'ql-active' : ''" class="iconfont icon-zitixiahuaxian" data-name="underline"></view>
@@ -21,8 +21,8 @@
 					 data-value="2em"></view>
 					<view :class="formats.marginTop ? 'ql-active' : ''" class="iconfont icon-722bianjiqi_duanqianju" data-name="marginTop"
 					 data-value="20px"></view>
-					<view :class="formats.previewarginBottom ? 'ql-active' : ''" class="iconfont icon-723bianjiqi_duanhouju"
-					 data-name="marginBottom" data-value="20px"></view>
+					<view :class="formats.previewarginBottom ? 'ql-active' : ''" class="iconfont icon-723bianjiqi_duanhouju" data-name="marginBottom"
+					 data-value="20px"></view>
 					<view class="iconfont icon-clearedformat" @tap="removeFormat"></view>
 					<view :class="formats.fontFamily ? 'ql-active' : ''" class="iconfont icon-font" data-name="fontFamily" data-value="Pacifico"></view>
 					<view :class="formats.fontSize === '24px' ? 'ql-active' : ''" class="iconfont icon-fontsize" data-name="fontSize"
@@ -58,9 +58,11 @@
 
 				</view>
 
-				<editor id="editor" class="ql-container" placeholder="开始输入..." showImgSize showImgToolbar showImgResize
-				 @statuschange="onStatusChange" :read-only="readOnly" @ready="onEditorReady">
-				</editor>
+				<view class="editor-wrapper">
+					<editor id="editor" class="ql-container" placeholder="开始输入..." showImgSize showImgToolbar showImgResize
+					 @statuschange="onStatusChange" :read-only="readOnly" @ready="onEditorReady">
+					</editor>
+				</view>
 			</view>
 		</view>
 
@@ -71,7 +73,7 @@
 	export default {
 		data() {
 			return {
-                readOnly: false,
+				readOnly: false,
 				formats: {}
 			}
 		},
@@ -155,8 +157,17 @@
 <style>
 	@import "./editor-icon.css";
 
+	.page-body {
+		height: calc(100vh - var(--window-top) - var(--status-bar-height));
+	}
+
 	.wrapper {
-		padding: 5px;
+		height: 100%;
+	}
+
+	.editor-wrapper {
+		height: calc(100vh - var(--window-top) - var(--status-bar-height) - 140px);
+		background: #fff;
 	}
 
 	.iconfont {
@@ -180,8 +191,7 @@
 		padding: 12px 15px;
 		width: 100%;
 		min-height: 30vh;
-		height: auto;
-		background: #fff;
+		height: 100%;
 		margin-top: 20px;
 		font-size: 16px;
 		line-height: 1.5;

@@ -201,7 +201,10 @@
 		{
 			"path": "pages/component/editor/editor",
 			"style": {
-				"navigationBarTitleText": "editor"
+				"navigationBarTitleText": "editor",
+				"app-plus": {
+					"softinputMode": "adjustResize"
+				}
 			}
 		},
 		// #endif
@@ -994,7 +997,7 @@
 				{
 					"path": "easyinput/easyinput",
 					"style": {
-						"navigationBarTitleText": "",
+						"navigationBarTitleText": "easyinput",
 						"enablePullDownRefresh": false
 					}
 				},
