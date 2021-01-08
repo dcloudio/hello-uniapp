@@ -61,7 +61,7 @@
 	 * @property {Boolean} isFull = [true | false] 卡片内容是否通栏，为 true 时将去除padding值
 	 * @property {Boolean} isShadow = [true | false] 卡片内容是否开启阴影
 	 * @event {Function} click 点击 Card 触发事件
-	 * @example <uni-card title="标题文字" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" extra="额外信息" note="Tips">内容主体，可自定义内容及样式</uni-card>
+	 * @example <uni-card title="标题文字" thumbnail="xxx.jpg" extra="额外信息" note="Tips">内容主体，可自定义内容及样式</uni-card>
 	 */
 	export default {
 		name: 'UniCard',

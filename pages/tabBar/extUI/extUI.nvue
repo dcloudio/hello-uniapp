@@ -60,6 +60,10 @@
 						url: "data-checkbox"
 					},
 					{
+						name: "DataPicker 数据驱动的picker选择器",
+						url: "data-picker"
+					},
+					{
 						name: "Dateformat 日期格式化",
 						url: "dateformat"
 					},

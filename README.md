@@ -61,19 +61,19 @@ npm run dev:h5
     <div style="display: flex;">
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">
         <div class="barcode-img-box">
-          <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni-android.png" width="160" />
+          <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/ba7d0750-517d-11eb-bdc1-8bd33eb6adaa.png" width="160" />
         </div>
         <b>Android版</b>
       </a>
       <a href="https://itunes.apple.com/cn/app/hello-uni-app/id1417078253?mt=8" target="_blank" class="clear-style barcode-view">
         <div class="barcode-img-box">
-          <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni-ios.png" width="160" />
+          <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/bb3ef7c0-517d-11eb-bdc1-8bd33eb6adaa.png" width="160" />
         </div>
         <b>iOS版</b>
       </a>
       <a href="https://hellouniapp.dcloud.net.cn/" target="_blank" class="clear-style barcode-view">
         <div class="barcode-img-box">
-          <img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/uni-h5.png" width="160" />
+          <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/bb3ef7c0-517d-11eb-bdc1-8bd33eb6adaa.png" width="160" />
         </div>
         <b>H5版</b>
       </a>
@@ -82,13 +82,13 @@ npm run dev:h5
         <b>微信小程序版</b>
       </a>
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">
-        <div class="barcode-img-box"><img src="https://img-cdn-qiniu.dcloud.net.cn/img/alipay1.png" width="160" /></div>
+        <div class="barcode-img-box"><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b131e0d0-517d-11eb-a16f-5b3e54966275.png" width="160" /></div>
         <b>支付宝小程序版</b>
       </a>
     </div>
     <div class="flex-img-group-view" style="margin-top: 20px;">
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">
-        <div class="barcode-img-box"><img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/doc/baidu-uniapp.png" width="160" /></div>
+        <div class="barcode-img-box"><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b204e840-517d-11eb-8ff1-d5dcf8779628.png" width="160" /></div>
         <b>百度小程序版</b>
       </a>
       <a href="//m3w.cn/uniapp" target="_blank" class="clear-style barcode-view">

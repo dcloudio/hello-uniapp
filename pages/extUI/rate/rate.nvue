@@ -11,7 +11,7 @@
 		</view>
 		<uni-section title="设置尺寸大小" type="line"></uni-section>
 		<view class="example-body">
-			<uni-rate :size="18" :value="5" />
+			<uni-rate size="18" :value="5" />
 		</view>
 		<uni-section title="设置评分数" type="line"></uni-section>
 		<view class="example-body">

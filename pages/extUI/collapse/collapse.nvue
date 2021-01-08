@@ -17,10 +17,10 @@
 		</uni-collapse>
 		<uni-section title="配置图标" type="line"></uni-section>
 		<uni-collapse>
-			<uni-collapse-item title="标题文字" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png">
+			<uni-collapse-item title="标题文字" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
 				<text class="content">折叠内容主体，可自定义内容及样式</text>
 			</uni-collapse-item>
-			<uni-collapse-item title="标题文字" thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png">
+			<uni-collapse-item title="标题文字" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
 				<text class="content">折叠内容主体，可自定义内容及样式</text>
 			</uni-collapse-item>
 		</uni-collapse>

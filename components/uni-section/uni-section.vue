@@ -99,6 +99,9 @@
 	}
 
 	.uni-section__content {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
 		flex-direction: column;
 		flex: 1;
 		color: #333;

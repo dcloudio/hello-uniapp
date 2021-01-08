@@ -37,10 +37,10 @@
 
 		<uni-section title="显示图标或图片" type="line"></uni-section>
 		<uni-list>
-			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" thumb-size="sm" rightText="小图" />
+			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" thumb-size="sm" rightText="小图" />
 
-			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" thumb-size="base" rightText="默认" />
-			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://img-cdn-qiniu.dcloud.net.cn/new-page/uni.png" thumb-size="lg" rightText="大图" />
+			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" thumb-size="base" rightText="默认" />
+			<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" thumb-size="lg" rightText="大图" />
 			<uni-list-item :show-extra-icon="true" showArrow :extra-icon="extraIcon" title="列表左侧带扩展图标" />
 		</uni-list>
 		<uni-section title="右侧显示 switch/badge" type="line"></uni-section>

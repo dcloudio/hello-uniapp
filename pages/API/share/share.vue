@@ -72,7 +72,7 @@
 			return {
 				title: this.shareText ? this.shareText : "欢迎体验uni-app",
 				path: '/pages/tabBar/component/component',
-				imageUrl:this.image ? this.image : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png'
+				imageUrl:this.image ? this.image : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
 			}
 		},
 		onUnload:function(){
@@ -189,7 +189,7 @@
 						shareOPtions.imageUrl = this.image;
 						break;
 					case 5:
-						shareOPtions.imageUrl = this.image ? this.image : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png'
+						shareOPtions.imageUrl = this.image ? this.image : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
 						shareOPtions.title = '欢迎体验uniapp';
 						shareOPtions.miniProgram = {
 							id:'gh_33446d7f7a26',
