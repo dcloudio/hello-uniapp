@@ -30,8 +30,8 @@ export default {
 		return {
 			showSwiper: false,
 			imgUrls: [
-				'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg',
-				'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg'
+				'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b4b60b10-5168-11eb-bd01-97bc1429a9ff.jpg',
+				'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b1dcfa70-5168-11eb-bd01-97bc1429a9ff.jpg'
 			]
 		};
 	},

@@ -65,7 +65,7 @@
 		data() {
 			return {
 				name:'杨大宝',
-				imageSrc: 'https://img-cdn-qiniu.dcloud.net.cn/demo_crop.jpg',
+				imageSrc: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b31d90c0-5168-11eb-bdc1-8bd33eb6adaa.jpg',
 				isShowImg: false,
 				// 初始化的宽高
 				cropperInitW: SCREEN_WIDTH,

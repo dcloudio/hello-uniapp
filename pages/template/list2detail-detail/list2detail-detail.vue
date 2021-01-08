@@ -100,7 +100,7 @@
 										title: this.banner.title,
 										scene: tapIndex === 0 ? 'WXSceneSession' : 'WXSenceTimeline',
 										href: 'https://uniapp.dcloud.io/h5' + DETAIL_PAGE_PATH + '?detailDate=' + JSON.stringify(this.banner),
-										imageUrl: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png'
+										imageUrl: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
 									});
 								}
 							});

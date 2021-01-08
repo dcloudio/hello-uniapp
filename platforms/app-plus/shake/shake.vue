@@ -1,10 +1,10 @@
 <template>
 	<view class="root" :style="{backgroundImage:'url('+img+')'}">
 		<view :class="[show ? 'up' : '','shake-up']">
-			<image mode="aspectFit" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shakeup.png"></image>
+			<image mode="aspectFit" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b718cdb0-517d-11eb-a16f-5b3e54966275.png"></image>
 		</view>
 		<view :class="[show ? 'down' : '','shake-down']">
-			<image mode="aspectFit" src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shakedown.png"></image>
+			<image mode="aspectFit" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6600500-517d-11eb-8ff1-d5dcf8779628.png"></image>
 		</view>
 	</view>
 </template>
@@ -12,26 +12,41 @@
 	export default {
 		data() {
 			return {
-				img: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/1.jpg',
+				img: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/aff47ed0-517d-11eb-8ff1-d5dcf8779628.jpg',
 				show: false,
-				isOpened: false
+				isOpened: false,
+				index: 1
+			}
+		},
+		computed:{
+			pageIndex() {
+				if (this.index === 1) {
+					return 'aff47ed0-517d-11eb-8ff1-d5dcf8779628'
+				} else if (this.index === 2) {
+					return '1fc36f80-5199-11eb-a16f-5b3e54966275'
+				} else if (this.index === 3) {
+					return '20a3bd60-5199-11eb-97b7-0dc4655d6e68'
+				} else if (this.index === 4) {
+					return '8b872410-51a7-11eb-8a36-ebb87efcf8c0'
+				} else {
+					return 'aff47ed0-517d-11eb-8ff1-d5dcf8779628'
+				}
 			}
 		},
 		onLoad: function () {
 			this.music = uni.createInnerAudioContext();
-			this.music.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/shake.wav';
+			this.music.src = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b5897b20-517d-11eb-a16f-5b3e54966275.wav';
 
-			let index = 1,
-				t = null;
+			let t = null;
 			uni.onAccelerometerChange((res) => {
 				if (Math.abs(res.x) + Math.abs(res.y) + Math.abs(res.z) > 20 && !this.show && this.isOpened) {
 					this.music.play();
 					setTimeout(() => {
-						index++;
-						if (index > 4) {
-							index = 1
+						this.index++;
+						if (this.index > 4) {
+							this.index = 1
 						}
-						this.img = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/shake/' + index + '.jpg';
+						this.img = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/' + this.pageIndex + '.jpg';
 					}, 2000);
 					this.show = true;
 					if (t) {
