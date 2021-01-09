@@ -249,6 +249,7 @@
 		justify-content: space-between;
 		background-color: #fff;
 		flex-direction: row;
+		align-items: center;
 	}
 
 	.uni-list-item--disabled {
