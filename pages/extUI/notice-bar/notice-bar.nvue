@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="fixforpc-window">
 		<text class="example-info">通告栏组件多用于系统通知，广告通知等场景，可自定义图标，颜色，展现方式等。</text>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
@@ -162,6 +162,16 @@
 		flex-direction: column;
 		/* #ifndef APP-NVUE */
 		display: block;
+		/* #endif */
+	}
+
+	.fixforpc-window {
+		/* #ifndef APP-NVUE */
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
 		/* #endif */
 	}
 </style>

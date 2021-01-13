@@ -220,6 +220,7 @@
 		transition-timing-function: ease;
 		transition-duration: 0.3s;
 		transition-property: transform, opacity;
+		z-index: 998;
 	}
 
 	.fade-in {

@@ -108,7 +108,7 @@
 			onBlur() {
 				setTimeout(() => {
 					this.showSelector = false
-				}, 50)
+				}, 153)
 			},
 			onSelectorClick(index) {
 				this.inputVal = this.filterCandidates[index]
@@ -202,6 +202,7 @@
 		text-align: center;
 		border-bottom: solid 1px #DDDDDD;
 		margin: 0px 10px;
+		cursor: pointer;
 	}
 
 	.uni-combox__selector-empty:last-child,

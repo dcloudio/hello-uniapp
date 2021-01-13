@@ -88,6 +88,9 @@
 		flex-direction: row;
 		height: 36px;
 		overflow: hidden;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.segmented-control__item {

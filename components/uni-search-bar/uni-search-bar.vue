@@ -10,7 +10,7 @@
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear" @click="clear">
 				<slot name="clearIcon">
-					<uni-icons color="#c0c4cc" class="" size="18" type="clear" />
+					<uni-icons color="#c0c4cc" size="18" type="clear" />
 				</slot>
 			</view>
 		</view>
@@ -226,6 +226,9 @@
 		align-items: center;
 		line-height: 24px;
 		padding-left: 8px;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-searchbar__text-placeholder {
@@ -239,5 +242,8 @@
 		line-height: 36px;
 		font-size: 14px;
 		color: #333;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 </style>

@@ -6,7 +6,7 @@
 	/**
 	 * Dateformat 日期格式化
 	 * @description 日期格式化组件
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=xxx
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3279
 	 * @property {Object|String|Number} date 日期对象/日期字符串/时间戳
 	 * @property {String} locale 格式化使用的语言
 	 * 	@value zh 中文

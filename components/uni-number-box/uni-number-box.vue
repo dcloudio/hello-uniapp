@@ -1,10 +1,10 @@
 <template>
 	<view class="uni-numbox">
-		<view @click="_calcValue('minus')" class="uni-numbox__minus">
+		<view @click="_calcValue('minus')" class="uni-numbox__minus uni-cursor-point">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
 		</view>
-		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
-		<view @click="_calcValue('plus')" class="uni-numbox__plus">
+		<input :disabled="disabled" @focus="_onFocus" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
+		<view @click="_calcValue('plus')" class="uni-numbox__plus uni-cursor-point">
 			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
 		</view>
 	</view>
@@ -58,6 +58,7 @@
 			inputValue(newVal, oldVal) {
 				if (+newVal !== +oldVal) {
 					this.$emit("change", newVal);
+					this.$emit("input", newVal);
 				}
 			}
 		},
@@ -101,6 +102,7 @@
 				return scale;
 			},
 			_onBlur(event) {
+				this.$emit('blur', event)
 				let value = event.detail.value;
 				if (!value) {
 					// this.inputValue = 0;
@@ -113,6 +115,9 @@
 					value = this.min;
 				}
 				this.inputValue = value;
+			},
+			_onFocus(event) {
+				this.$emit('focus', event)
 			}
 		}
 	};
@@ -128,6 +133,12 @@
 		height: 35px;
 		line-height: 35px;
 		width: 120px;
+	}
+
+	.uni-cursor-point {
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-numbox__value {
@@ -182,11 +193,14 @@
 	}
 
 	.uni-numbox--text {
-		font-size: 40rpx;
+		font-size: 20px;
 		color: #333;
 	}
 
 	.uni-numbox--disabled {
 		color: #c0c0c0;
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
 	}
 </style>

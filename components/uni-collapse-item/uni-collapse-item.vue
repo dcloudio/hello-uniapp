@@ -1,6 +1,6 @@
 <template>
 	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }" class="uni-collapse-cell">
-		<view class="uni-collapse-cell__title" @click="onClick">
+		<view :class="{ 'uni-collapse-cell--disabled': disabled}" class="uni-collapse-cell__title" @click="onClick">
 			<image v-if="thumb" :src="thumb" class="uni-collapse-cell__title-img" />
 			<text class="uni-collapse-cell__title-text">{{ title }}</text>
 			<!-- #ifdef MP-ALIPAY -->
@@ -130,6 +130,9 @@
 
 	.uni-collapse-cell--disabled {
 		background-color: #f1f1f1;
+		/* #ifdef H5 */
+		cursor: not-allowed !important;
+		/* #endif */
 	}
 
 	.uni-collapse-cell--hide {
@@ -155,6 +158,9 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-collapse-cell__title:active {

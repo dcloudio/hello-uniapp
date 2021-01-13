@@ -114,9 +114,11 @@
 			this.inputChildrens = []
 			this.checkboxChildrens = []
 			this.formRules = []
+			// this.init(this.rules)
+		},
+		mounted() {
 			this.init(this.rules)
 		},
-
 		methods: {
 			init(formRules) {
 				// 判断是否有规则
@@ -129,7 +131,6 @@
 				} else {
 					return
 				}
-
 				// 判断表单存在那些实例
 				for (let i in this.value) {
 					const itemData = this.childrens.find(v => v.name === i)
@@ -423,7 +424,7 @@
 			 * @param {Object} format
 			 */
 			type_filter(format) {
-				return format === 'int' || format === 'double' || format === 'number'
+				return format === 'int' || format === 'double' || format === 'number' || format === 'timestamp'
 			}
 		}
 	}
