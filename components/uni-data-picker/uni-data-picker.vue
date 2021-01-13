@@ -2,22 +2,14 @@
 	<view class="uni-data-tree">
 		<view class="uni-data-tree-input" @click="handleInput">
 			<slot :options="options" :data="inputSelected" :error="errorMessage">
-				<!-- <view class="input-value">
-          <uni-load-more class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
-        </view> -->
-				<view v-if="errorMessage" class="input-value">
-					<text class="error-text">{{errorMessage}}</text>
-				</view>
-				<view v-else-if="loading && !isOpened" class="input-value">
-					<uni-load-more class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
-				</view>
-				<view v-else-if="inputSelected.length" class="input-value">
-					<view v-for="(item,index) in inputSelected" :key="index" class="input-value-item">
+				<view class="input-value">
+					<text v-if="errorMessage" class="error-text">{{errorMessage}}</text>
+					<uni-load-more v-else-if="loading && !isOpened" class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
+					<view v-else-if="inputSelected.length" v-for="(item,index) in inputSelected" :key="index" class="input-value-item">
 						<text>{{item.text}}</text><text v-if="index<inputSelected.length-1" class="input-split-line">/</text>
 					</view>
-				</view>
-				<view v-else class="input-value placeholder">
-					<text>{{placeholder}}</text>
+					<text v-else class="placeholder">{{placeholder}}</text>
+					<view class="input-arrow"></view>
 				</view>
 			</slot>
 		</view>
@@ -45,7 +37,7 @@
 	 * uni-data-picker
 	 * @description uni-data-picker
 	 * @tutorial https://uniapp.dcloud.net.cn/uniCloud/uni-data-picker
-	 * @property {String} title 弹出窗口标题
+	 * @property {String} popup-title 弹出窗口标题
 	 * @property {Array} localdata 本地数据，参考
 	 * @property {Boolean} preload = [true|false] 是否预加载数据
 	 * @value true 开启预加载数据，点击弹出窗口后显示已加载数据
@@ -55,9 +47,6 @@
 	 * @value false 关闭分布查询，一次查询出所有数据
 	 * @property {String|DBFieldString} self-field 分布查询当前字段名称
 	 * @property {String|DBFieldString} parent-field 分布查询父字段名称
-	 * @property {Boolean} array2tree = [true|false] 是否查询出树结构数据
-	 * @value true
-	 * @value false
 	 * @property {String|DBCollectionString} collection 表名
 	 * @property {String|DBFieldString} field 查询字段，多个字段用 `,` 分割
 	 * @property {String} orderby 排序字段及正序倒叙设置
@@ -79,6 +68,10 @@
 			placeholder: {
 				type: String,
 				default: '请选择'
+			},
+			heightMobile: {
+				type: String,
+				default: ''
 			},
 			options: {
 				type: [Object, Array],
@@ -181,6 +174,9 @@
 	.uni-data-tree {
 		position: relative;
 		font-size: 14px;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.error-text {
@@ -207,7 +203,7 @@
 		flex-wrap: nowrap;
 		font-size: 14px;
 		line-height: 38px;
-		border: 1px #e5e5e5 solid;
+		border: 1px solid #e5e5e5;
 		border-radius: 5px;
 		padding: 0 5px;
 	}
@@ -217,11 +213,22 @@
 	}
 
 	.placeholder {
-		opacity: .5;
+		color: grey;
 	}
 
 	.input-split-line {
 		opacity: .5;
+	}
+
+	.input-arrow {
+		margin-left: auto;
+		margin-right: 5px;
+		width: 7px;
+		height: 7px;
+		border-left: 1px solid #999;
+		border-bottom: 1px solid #999;
+		transform: rotate(-45deg);
+		transform-origin: 2px;
 	}
 
 	.uni-data-tree-cover {

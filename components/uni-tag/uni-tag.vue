@@ -98,6 +98,9 @@
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #f8f8f8;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-tag--circle {
@@ -113,6 +116,9 @@
 
 	.uni-tag--disabled {
 		opacity: 0.5;
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
 	}
 
 	.uni-tag--small {

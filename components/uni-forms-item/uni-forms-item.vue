@@ -233,6 +233,7 @@
 				if (this.name) {
 					if (this.errMsg) this.errMsg = ''
 					this.form.formData[this.name] = this.form._getValue(this.name, value)
+					if (!this.formRules || (typeof(this.formRules) && JSON.stringify(this.formRules) === '{}')) return
 					this.triggerCheck(this.form._getValue(this.name, value))
 				}
 			},

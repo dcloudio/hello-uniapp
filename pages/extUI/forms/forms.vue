@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<text class="example-info"> uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
+		<text class="example-info">uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
 
 		<uni-forms :rules="rules" :value="formData" ref="form" validate-trigger="bind" err-show-type="undertext">
 			<uni-group title="基本信息" top="0">
@@ -9,17 +9,19 @@
 				</uni-forms-item>
 				<!-- 使用原生input，需要绑定binddata -->
 				<uni-forms-item name="age" required label="年龄">
-					<input type="text" v-model="formData.age" class="uni-input-border" @blur="binddata('age',$event.detail.value)" placeholder="请输入年龄">
+					<input type="text" v-model="formData.age" class="uni-input-border" @blur="binddata('age', $event.detail.value)" placeholder="请输入年龄" />
 				</uni-forms-item>
 				<uni-forms-item name="weight" label="体重">
-					<slider min="0" max="200" show-value v-model="formData.weight" @change="binddata('weight',$event.detail.value)" 　 step="5" />
+					<slider min="0" max="200" step="5" show-value v-model="formData.weight" @change="binddata('weight', $event.detail.value)"></slider>
+				</uni-forms-item>
+				<uni-forms-item required name="birth" label="出生日期">
+					<uni-datetime-picker timestamp v-model="formData.birth"></uni-datetime-picker>
 				</uni-forms-item>
 				<uni-forms-item name="email" label="邮箱">
 					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
 				</uni-forms-item>
-
 				<uni-forms-item name="checked" label="详细信息">
-					<switch :checked="formData.checked" @change="change('checked',$event.detail.value)" />
+					<switch :checked="formData.checked" @change="change('checked', $event.detail.value)" />
 				</uni-forms-item>
 			</uni-group>
 			<template v-if="formData.checked">
@@ -28,8 +30,8 @@
 						<uni-data-checkbox v-model="formData.sex" :localdata="sex"></uni-data-checkbox>
 					</uni-forms-item>
 					<uni-forms-item name="country" label="国家">
-						<picker :value="formData.country" :range="range" @change="binddata('country',$event.detail.value)">
-							<view>{{formData.country === ''? '请选择国家':range[formData.country]}}</view>
+						<picker :value="formData.country" :range="range" @change="binddata('country', $event.detail.value)">
+							<view>{{ formData.country === '' ? '请选择国家' : range[formData.country] }}</view>
 						</picker>
 					</uni-forms-item>
 					<uni-forms-item required name="hobby" label="兴趣爱好">
@@ -39,7 +41,6 @@
 						<uni-easyinput type="textarea" v-model="formData.remarks" :maxlength="50" placeholder="请输入备注"></uni-easyinput>
 					</uni-forms-item>
 				</uni-group>
-
 			</template>
 
 			<!-- 直接使用组件自带submit、reset 方法，小程序不生效 -->
@@ -49,7 +50,7 @@
 			<view class="example">
 				<button class="button" @click="submitForm('form')">校验表单</button>
 				<button class="button" @click="validateField('form')">只校验用户名和邮箱项</button>
-				<button class="button" @click="clearValidate('form','name')">移除用户名的校验结果</button>
+				<button class="button" @click="clearValidate('form', 'name')">移除用户名的校验结果</button>
 				<button class="button" @click="clearValidate('form')">移除全部表单校验结果</button>
 				<button class="button" @click="resetForm">重置表单</button>
 			</view>
@@ -64,100 +65,125 @@
 				formData: {
 					name: '',
 					age: '',
-					email: "",
+					email: '',
 					sex: '',
 					hobby: [],
-					remarks: "",
+					remarks: '',
 					checked: false,
 					country: -1,
-					weight: 0
+					weight: 0,
+					birth: ''
 				},
 				sex: [{
-					text: '男',
-					value: '0'
-				}, {
-					text: '女',
-					value: '1'
-				}, {
-					text: '未知',
-					value: '2'
-				}],
+						text: '男',
+						value: '0'
+					},
+					{
+						text: '女',
+						value: '1'
+					},
+					{
+						text: '未知',
+						value: '2'
+					}
+				],
 				hobby: [{
-					text: '足球',
-					value: 0
-				}, {
-					text: '篮球',
-					value: 1
-				}, {
-					text: '游泳',
-					value: 2
-				}],
+						text: '足球',
+						value: 0
+					},
+					{
+						text: '篮球',
+						value: 1
+					},
+					{
+						text: '游泳',
+						value: 2
+					}
+				],
 				range: ['中国', '美国', '澳大利亚'],
 				show: false,
 				rules: {
 					name: {
-						// validateTrigger:'submit',
 						rules: [{
-							required: true,
-							errorMessage: '请输入用户名',
-						}, {
-							minLength: 3,
-							maxLength: 15,
-							errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符',
-						}]
+								required: true,
+								errorMessage: '请输入用户名'
+							},
+							{
+								minLength: 3,
+								maxLength: 15,
+								errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符'
+							}
+						]
 					},
 					age: {
 						rules: [{
 								required: true,
-								errorMessage: '请输入年龄',
+								errorMessage: '请输入年龄'
 							},
 							{
 								format: 'int',
-								errorMessage: '年龄必须是数字',
-							}, {
+								errorMessage: '年龄必须是数字'
+							},
+							{
 								minimum: 18,
 								maximum: 30,
-								errorMessage: '年龄应该大于 {minimum} 岁，小于 {maximum} 岁',
+								errorMessage: '年龄应该大于 {minimum} 岁，小于 {maximum} 岁'
 							}
 						]
 					},
 					weight: {
 						rules: [{
-							format: 'number',
-							errorMessage: '体重必须是数字',
-						}, {
-							minimum: 100,
-							maximum: 200,
-							errorMessage: '体重应该大于 {minimum} 斤，小于 {maximum} 斤',
-						}]
+								format: 'number',
+								errorMessage: '体重必须是数字'
+							},
+							{
+								minimum: 100,
+								maximum: 200,
+								errorMessage: '体重应该大于 {minimum} 斤，小于 {maximum} 斤'
+							}
+						]
+					},
+					birth: {
+						rules: [
+							// {
+							// 	required: true,
+							// 	errorMessage: '请选择时间'
+							// },
+							{
+								format: 'timestamp',
+								errorMessage: '必须是时间戳'
+							}
+						]
 					},
 					email: {
 						rules: [{
 							format: 'email',
-							errorMessage: '请输入正确的邮箱地址',
+							errorMessage: '请输入正确的邮箱地址'
 						}]
 					},
 					checked: {
 						rules: [{
-							format: 'bool',
+							format: 'bool'
 						}]
 					},
 					sex: {
 						rules: [{
-							format: "string"
+							format: 'string'
 						}]
 					},
 					hobby: {
 						rules: [{
-							format: "array"
-						}, {
-							validateFunction: function(rule, value, data, callback) {
-								if (value.length < 2) {
-									callback('请至少勾选两个兴趣爱好')
+								format: 'array'
+							},
+							{
+								validateFunction: function(rule, value, data, callback) {
+									if (value.length < 2) {
+										callback('请至少勾选两个兴趣爱好')
+									}
+									return true
 								}
-								return true
 							}
-						}]
+						]
 					}
 				}
 			}
@@ -168,15 +194,16 @@
 			// 模拟异步请求数据
 			setTimeout(() => {
 				this.formData = {
-					name: 'LiMing',
-					age: 12,
-					email: "",
+					name: 'DCloud',
+					age: 21,
+					email: '',
 					sex: '0',
 					hobby: [0, 2],
-					remarks: "热爱学习，热爱生活",
+					remarks: '热爱学习，热爱生活',
 					checked: false,
 					country: 2,
-					weight: 120
+					weight: 120,
+					birth: ''
 				}
 				uni.hideLoading()
 			}, 500)
@@ -185,6 +212,9 @@
 			// this.$refs.form.setRules(this.rules)
 		},
 		methods: {
+			birthChange(e) {
+				console.log(e)
+			},
 			change(name, value) {
 				this.formData.checked = value
 				this.$refs.form.setValue(name, value)
@@ -196,14 +226,16 @@
 			 */
 			submitForm(form) {
 				// console.log(this.formData);
-				this.$refs[form].submit()
-					.then((res) => {
-						console.log('表单的值：', res);
+				this.$refs[form]
+					.submit()
+					.then(res => {
+						console.log('表单的值：', res)
 						uni.showToast({
 							title: '验证成功'
 						})
-					}).catch((errors) => {
-						console.error('验证失败：', errors);
+					})
+					.catch(errors => {
+						console.error('验证失败：', errors)
 					})
 			},
 
@@ -218,14 +250,17 @@
 			 * @param {Object} form
 			 */
 			validateField(form) {
-				this.$refs[form].validateField(['name', 'email']).then((res) => {
-					uni.showToast({
-						title: '验证成功'
+				this.$refs[form]
+					.validateField(['name', 'email'])
+					.then(res => {
+						uni.showToast({
+							title: '验证成功'
+						})
+						console.log('表单的值：', res)
 					})
-					console.log('表单的值：', res);
-				}).catch((errors) => {
-					console.error('验证失败：', errors);
-				})
+					.catch(errors => {
+						console.error('验证失败：', errors)
+					})
 			},
 
 			/**

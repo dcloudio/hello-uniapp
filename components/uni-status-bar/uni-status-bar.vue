@@ -18,7 +18,6 @@
 
 <style scoped>
 	.uni-status-bar {
-		width: 750rpx;
 		height: 20px;
 	}
 </style>

@@ -122,6 +122,9 @@
 		flex-direction: column;
 		border-radius: 5px;
 		overflow: hidden;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-border {

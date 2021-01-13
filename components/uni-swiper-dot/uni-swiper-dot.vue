@@ -143,12 +143,8 @@
 		width: 8px;
 		border-radius: 100px;
 		margin-left: 6px;
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: red;
 		cursor: pointer;
-		border-width: 5px 0;
-		border-style: solid;
-		border-color: transparent;
-		background-clip: padding-box;
 	}
 
 	.uni-swiper__dots-item:first-child {

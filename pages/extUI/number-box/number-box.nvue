@@ -5,6 +5,10 @@
 		<view class="example-body">
 			<uni-number-box />
 		</view>
+		<uni-section :title="'使用v-model : '+ vModelValue" type="line"></uni-section>
+		<view class="example-body">
+			<uni-number-box v-model="vModelValue" @blur="blur" @focus="focus" />
+		</view>
 		<uni-section title="设置最小值和最大值" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :min="2" :max="9" :value="5" />
@@ -17,11 +21,10 @@
 		<view class="example-body">
 			<uni-number-box :disabled="true" />
 		</view>
-		<uni-section :title="'获取输入的值 : '+numberValue" type="line"></uni-section>
+		<uni-section :title="'获取输入的值 : '+ numberValue" type="line"></uni-section>
 		<view class="example-body">
 			<uni-number-box :value="numberValue" @change="change" />
 		</view>
-		<!-- <view style="height: 30rpx;"></view> -->
 	</view>
 </template>
 <script>
@@ -29,13 +32,21 @@
 		components: {},
 		data() {
 			return {
-				numberValue: 0
+				numberValue: 0,
+				vModelValue: 3
 			}
 		},
 		methods: {
 			change(value) {
 				this.numberValue = value
+			},
+			blur(e) {
+				console.log('-------blur:', e);
+			},
+			focus(e) {
+				console.log('-------focus:', e);
 			}
+
 		}
 	}
 </script>

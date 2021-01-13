@@ -21,8 +21,8 @@
 			</view>
 			<button class="button" type="primary" @click="confirmDialog"><text class="button-text">输入对话框</text></button>
 		</view>
-		<uni-section title="底部分享示例" type="line"></uni-section>
-		<view class="example-body share">
+		<uni-section title="底部分享示例" type="line" class="hideOnPc"></uni-section>
+		<view class="example-body share hideOnPc">
 			<button class="button" type="primary" @click="confirmShare"><text class="button-text">分享模版示例</text></button>
 		</view>
 		<!-- 基本示例 -->

@@ -24,16 +24,7 @@
 		data() {
 			return {
 				hideList: [
-					'notice-bar',
-					'nav-bar',
-					'popup',
-					'swiper-dot',
-					'transition',
-					'rate',
-					'indexed-list',
-					'swipe-action',
-					'combox',
-					'fab'
+					'load-more'
 				],
 				lists: [{
 						name: "Badge 数字角标",
@@ -146,6 +137,10 @@
 					{
 						name: "Rate 评分",
 						url: "rate"
+					},
+					{
+						name: "Row 布局-行",
+						url: "row"
 					},
 					{
 						name: "SearchBar 搜索栏",

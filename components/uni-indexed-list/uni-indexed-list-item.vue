@@ -90,6 +90,9 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-indexed-list__item-border {

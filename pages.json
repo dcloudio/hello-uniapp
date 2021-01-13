@@ -997,7 +997,7 @@
 				{
 					"path": "easyinput/easyinput",
 					"style": {
-						"navigationBarTitleText": "easyinput",
+						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false
 					}
 				},
@@ -1016,7 +1016,14 @@
 					}
 				},
 				{
-					"path": "layout/layout",
+					"path": "datetime-picker/datetime-picker",
+					"style": {
+						"navigationBarTitleText": "日期时间",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "row/row",
 					"style": {
 						"navigationBarTitleText": "layout 布局",
 						"enablePullDownRefresh": false

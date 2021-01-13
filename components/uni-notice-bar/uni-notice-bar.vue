@@ -1,7 +1,7 @@
 <template>
 	<view v-if="show" class="uni-noticebar" :style="{ backgroundColor: backgroundColor }" @click="onClick">
 		<!-- #ifdef MP-ALIPAY -->
-		<view v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close" @click="close">
+		<view v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close uni-cursor-point" @click="close">
 			<uni-icons type="closeempty" :color="color" size="12" />
 		</view>
 		<view v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon">
@@ -9,7 +9,7 @@
 		</view>
 		<!-- #endif -->
 		<!-- #ifndef MP-ALIPAY -->
-		<uni-icons v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close" type="closeempty" :color="color" size="12" @click="close" />
+		<uni-icons v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close uni-cursor-point" type="closeempty" :color="color" size="12" @click="close" />
 		<uni-icons v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon" type="sound" :color="color" size="14" />
 		<!-- #endif -->
 		<view ref="textBox" class="uni-noticebar__content-wrapper" :class="{'uni-noticebar__content-wrapper--scrollable':scrollable, 'uni-noticebar__content-wrapper--single':!scrollable && (single || moreText)}">
@@ -17,7 +17,7 @@
 				<text :id="elId" ref="animationEle" class="uni-noticebar__content-text" :class="{'uni-noticebar__content-text--scrollable':scrollable,'uni-noticebar__content-text--single':!scrollable && (single || moreText)}" :style="{color:color, width:wrapWidth+'px', 'animationDuration': animationDuration, '-webkit-animationDuration': animationDuration ,animationPlayState: webviewHide?'paused':animationPlayState,'-webkit-animationPlayState':webviewHide?'paused':animationPlayState, animationDelay: animationDelay, '-webkit-animationDelay':animationDelay}">{{text}}</text>
 			</view>
 		</view>
-		<view v-if="showGetMore === true || showGetMore === 'true'" class="uni-noticebar__more" @click="clickMore">
+		<view v-if="showGetMore === true || showGetMore === 'true'" class="uni-noticebar__more uni-cursor-point" @click="clickMore">
 			<text v-if="moreText" :style="{ color: moreColor }" class="uni-noticebar__more-text">{{ moreText }}</text>
 			<uni-icons type="arrowright" :color="moreColor" size="14" />
 		</view>
@@ -277,6 +277,12 @@
 		align-items: center;
 		padding: 6px 12px;
 		margin-bottom: 10px;
+	}
+
+	.uni-cursor-point {
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-noticebar-close {

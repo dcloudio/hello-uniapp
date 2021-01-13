@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view ref="uni-rate" class="uni-rate">
-			<view v-if="" class="uni-rate__icon" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
+			<view v-if="" class="uni-rate__icon" :class="{'uni-cursor-not-allowed': disabled}" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
 				<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
 				<!-- #ifdef APP-NVUE -->
 				<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
@@ -319,6 +319,9 @@
 		line-height: 1;
 		font-size: 0;
 		flex-direction: row;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-rate__icon {
@@ -334,5 +337,11 @@
 		left: 0;
 		line-height: 1;
 		text-align: left;
+	}
+
+	.uni-cursor-not-allowed {
+		/* #ifdef H5 */
+		cursor: not-allowed !important;
+		/* #endif */
 	}
 </style>
