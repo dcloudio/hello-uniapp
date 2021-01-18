@@ -69,6 +69,17 @@
 					})
 					return;
 				}
+
+				if(this.loginProvider === 'apple'){
+					const nickname = uni.getStorageSync('apple_nickname')
+					if(nickname){
+						this.hasUserInfo = true;
+						this.userInfo = { nickName:nickname }
+						this.btnLoading = false;
+						return;
+					}
+				}
+
 				uni.getUserInfo({
 					provider: this.loginProvider,
 					success: (result) => {

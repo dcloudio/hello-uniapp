@@ -127,7 +127,7 @@
 					// #ifdef MP-ALIPAY
 					scopes: 'auth_user', //支付宝小程序需设置授权类型
 					// #endif
-					success: (res) => {
+					success: async (res) => {
 						console.log('login success:', res);
 						this.Toast({
 							title: '登录成功'
@@ -136,28 +136,14 @@
 						this.login(provider.id);
 
 						// #ifdef APP-PLUS
-						if (provider.id === 'univerify') {
-							this.setUniverifyLogin(true);
-							uni.closeAuthView();
-
-							const univerifyInfo = {
-								provider: provider.id,
-								...res.authResult,
-							}
-
-							this.getPhoneNumber(univerifyInfo).then((phoneNumber) => {
-								this.phoneNumber = phoneNumber;
-								uni.setStorageSync(univerifyInfoKey, univerifyInfo)
-							}).catch(err => {
-								uni.showModal({
-									showCancel: false,
-									title: '手机号获取失败',
-									content: `${err.errMsg}\n，错误码：${err.code}`
-								})
-								console.error(res);
-							})
-						} else {
-							this.setUniverifyLogin(false);
+						this.setUniverifyLogin(provider.id === 'univerify')
+						switch (provider.id) {
+							case 'univerify':
+								this.loginByUniverify(provider.id, res)
+								break;
+							case 'apple':
+								this.loginByApple(provider.id, res)
+								break;
 						}
 						// #endif
 
@@ -240,6 +226,71 @@
 						this.univerifyBtnLoading = false;
 					}
 				});
+			},
+			loginByUniverify(provider, res) {
+				this.setUniverifyLogin(true);
+				uni.closeAuthView();
+
+				const univerifyInfo = {
+					provider,
+					...res.authResult,
+				}
+
+				this.getPhoneNumber(univerifyInfo).then((phoneNumber) => {
+					this.phoneNumber = phoneNumber;
+					uni.setStorageSync(univerifyInfoKey, univerifyInfo)
+				}).catch(err => {
+					uni.showModal({
+						showCancel: false,
+						title: '手机号获取失败',
+						content: `${err.errMsg}\n，错误码：${err.code}`
+					})
+					console.error(res);
+				})
+			},
+			async loginByApple(provider, res) {
+				// 获取用户信息
+				const [getUserInfoErr, result] = await uni.getUserInfo({
+					provider
+				});
+				if (getUserInfoErr) {
+					let content = getUserInfoErr.errMsg;
+					if (~content.indexOf('uni.login')) {
+						content = '请在登录页面完成登录操作';
+					}
+					uni.showModal({
+						title: '获取用户信息失败',
+						content: '错误原因' + content,
+						showCancel: false
+					});
+				}
+				// uni-id 苹果登录
+				uni.request({
+					url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
+					method: 'POST',
+					data: {
+						action: 'loginByApple',
+						params: result.userInfo
+					},
+					success: (res) => {
+						console.log('uniId login success', res);
+						if(res.data.code !== 0){
+							uni.showModal({
+								showCancel: false,
+								content: `苹果登录失败: ${JSON.stringify(res.data.msg)}`,
+							})
+						} else {
+							uni.setStorageSync('openid', res.data.openid)
+							uni.setStorageSync('apple_nickname', res.data.userInfo.nickname)
+						}
+					},
+					fail: (e) => {
+						uni.showModal({
+							content: `苹果登录失败: ${JSON.stringify(e)}`,
+							showCancel: false
+						})
+					}
+				})
 			}
 		}
 	}
