@@ -324,14 +324,6 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
-		// #ifdef H5
-		, {
-			"path": "pages/error/404",
-			"style": {
-				"navigationBarTitleText": "Not Found"
-			}
-		}
-		// #endif
 	],
 	"subPackages": [{
 			"root": "pages/API",
