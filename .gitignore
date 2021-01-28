@@ -4,3 +4,4 @@ unpackage/
 .DS_Store
 wxcomponents/**/*.vue
 wxcomponents/**/*.css
+.hbuilderx/
