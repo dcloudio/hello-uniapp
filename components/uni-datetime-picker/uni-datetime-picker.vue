@@ -1,20 +1,22 @@
 <template>
 	<view class="uni-datetime-picker">
-		<view @click="tiggerTimePicker">
+		<view @click="initTimePicker">
 			<slot>
-				<view class="uni-datetime-picker-timebox uni-datetime-picker-flex">
+				<view class="uni-datetime-picker-timebox uni-datetime-picker-flex" :class="{'uni-datetime-picker-disabled': disabled}">
 					{{time}}
-					<view v-if="!time" class="uni-datetime-picker-time">选择日期时间</view>
+					<view v-if="!time" class="uni-datetime-picker-time">
+						选择{{title}}
+					</view>
 					<view class="uni-datetime-picker-down-arrow"></view>
 				</view>
 			</slot>
 		</view>
-		<view v-if="visible" class="uni-datetime-picker-mask" @click="initTimePicker"></view>
+		<view v-if="visible" class="uni-datetime-picker-mask" @click="tiggerTimePicker"></view>
 		<view v-if="visible" class="uni-datetime-picker-popup">
 			<view class="uni-title">
-				设置日期和时间
+				设置{{title}}
 			</view>
-			<picker-view class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="ymd" @change="bindDateChange">
+			<picker-view v-show="dateShow" class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="ymd" @change="bindDateChange">
 				<picker-view-column class="uni-datetime-picker-hyphen">
 					<view class="uni-datetime-picker-item" v-for="(item,index) in years" :key="index">{{item}}</view>
 				</picker-view-column>
@@ -25,7 +27,7 @@
 					<view class="uni-datetime-picker-item" v-for="(item,index) in days" :key="index">{{item < 10 ? '0' + item : item}}</view>
 				</picker-view-column>
 			</picker-view>
-			<picker-view class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="hms" @change="bindTimeChange">
+			<picker-view v-show="timeShow" class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="hms" @change="bindTimeChange">
 				<picker-view-column class="uni-datetime-picker-colon">
 					<view class="uni-datetime-picker-item" v-for="(item,index) in hours" :key="index">{{item < 10 ? '0' + item : item}}</view>
 				</picker-view-column>
@@ -37,7 +39,7 @@
 				</picker-view-column>
 			</picker-view>
 			<view class="uni-datetime-picker-btn">
-				<view class="" @click="clearTime">重置</view>
+				<view class="" @click="clearTime">清空</view>
 				<view class="uni-datetime-picker-btn-group">
 					<view class="uni-datetime-picker-cancel" @click="tiggerTimePicker">取消</view>
 					<view class="" @click="setTime">确定</view>
@@ -48,60 +50,136 @@
 </template>
 
 <script>
+	/**
+	 * DatetimePicker 时间选择器
+	 * @description 可以同时选择日期和时间的选择器
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=xxx
+	 * @property {String} type = [datetime | date | time] 显示模式
+	 * @property {Boolean} multiple = [true|false] 是否多选
+	 * @property {String|Number} value 默认值
+	 * @property {String|Number} start 起始日期或时间
+	 * @property {String|Number} end 起始日期或时间
+	 * @property {String} return-type = [timestamp | string]
+	 * @event {Function} change  选中发生变化触发
+	 */
+
 	export default {
 		data() {
 			return {
+				indicatorStyle: `height: 50px;`,
 				visible: false,
+				dateShow: true,
+				timeShow: true,
+				title: '日期和时间',
+				// 输入框当前时间
 				time: '',
-				years: [],
-				months: [],
-				days: [],
-				hours: [],
-				minutes: [],
-				seconds: [],
+				// 当前的年月日时分秒
 				year: 1900,
 				month: 0,
 				day: 0,
 				hour: 0,
 				minute: 0,
 				second: 0,
-				indicatorStyle: `height: 50px;`,
+				// 起始时间
+				startYear: 1920,
+				startMonth: 1,
+				startDay: 1,
+				startHour: 0,
+				startMinute: 0,
+				startSecond: 0,
+				// 结束时间
+				endYear: 2120,
+				endMonth: 12,
+				endDay: 31,
+				endHour: 23,
+				endMinute: 59,
+				endSecond: 59,
 			}
 		},
 		props: {
 			type: {
 				type: String,
-				default: 'datetime-local'
-			},
-			timestamp: {
-				type: Boolean,
-				default: false
+				default: 'datetime'
 			},
 			value: {
 				type: [String, Number],
 				default: ''
 			},
-			maxYear: {
+			start: {
 				type: [Number, String],
-				default: 2100
+				default: ''
 			},
-			minYear: {
+			end: {
 				type: [Number, String],
-				default: 1900
-			}
-		},
-		computed: {
-			ymd() {
-				return [this.year - this.minYear, this.month - 1, this.day - 1]
+				default: ''
 			},
-			hms() {
-				return [this.hour, this.minute, this.second]
+			returnType: {
+				type: String,
+				default: 'string'
+			},
+			disabled: {
+				type: Boolean,
+				default: false
 			}
 		},
 		watch: {
-			value(newValue) {
-				this.parseValue(this.value)
-				this.initTime()
+			value: {
+				handler(newVal, oldVal) {
+					if (newVal) {
+						this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+						this.initTime()
+					} else {
+						this.parseValue(Date.now())
+					}
+				},
+				immediate: true
+			},
+			type: {
+				handler(newValue) {
+					if (newValue === 'date') {
+						this.dateShow = true
+						this.timeShow = false
+						this.title = '日期'
+					} else if (newValue === 'time') {
+						this.dateShow = false
+						this.timeShow = true
+						this.title = '时间'
+					} else {
+						this.dateShow = true
+						this.timeShow = true
+						this.title = '日期和时间'
+					}
+				},
+				immediate: true
+			},
+			start: {
+				handler(newVal) {
+					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'start') //兼容 iOS、safari 日期格式
+				},
+				immediate: true
+			},
+			end: {
+				handler(newVal) {
+					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'end') //兼容 iOS、safari 日期格式
+				},
+				immediate: true
+			},
+
+			// 月、日、时、分、秒可选范围变化后，检查当前值是否在范围内，不在则当前值重置为可选范围第一项
+			months(newVal) {
+				this.checkValue('month', this.month, newVal)
+			},
+			days(newVal) {
+				this.checkValue('day', this.day, newVal)
+			},
+			hours(newVal) {
+				this.checkValue('hour', this.hour, newVal)
+			},
+			minutes(newVal) {
+				this.checkValue('minute', this.minute, newVal)
+			},
+			seconds(newVal) {
+				this.checkValue('second', this.second, newVal)
 			}
 		},
 		created() {
@@ -115,37 +193,175 @@
 				}
 			}
 		},
-		mounted() {
-			const date = new Date()
-			for (let i = this.minYear; i <= this.maxYear; i++) {
-				this.years.push(i)
-			}
+		computed: {
+			// 当前年、月、日、时、分、秒选择范围
+			years() {
+				return this.getCurrentRange('year')
+			},
 
-			for (let i = 1; i <= 12; i++) {
-				this.months.push(i)
-			}
+			months() {
+				return this.getCurrentRange('month')
+			},
 
-			for (let i = 1; i <= 31; i++) {
-				this.days.push(i)
-			}
+			days() {
+				return this.getCurrentRange('day')
+			},
 
-			for (let i = 0; i <= 23; i++) {
-				this.hours.push(i)
-			}
+			hours() {
+				return this.getCurrentRange('hour')
+			},
 
-			for (let i = 0; i <= 59; i++) {
-				this.minutes.push(i)
-			}
+			minutes() {
+				return this.getCurrentRange('minute')
+			},
 
-			for (let i = 0; i <= 59; i++) {
-				this.seconds.push(i)
-			}
-			this.parseValue(this.value)
-			if (this.value) {
-				this.initTime()
-			}
+			seconds() {
+				return this.getCurrentRange('second')
+			},
 
+			// picker 当前值数组
+			ymd() {
+				return [this.year - this.minYear, this.month - this.minMonth, this.day - this.minDay]
+			},
+			hms() {
+				return [this.hour - this.minHour, this.minute - this.minMinute, this.second - this.minSecond]
+			},
+
+			// 当前 date 是 start
+			currentDateIsStart() {
+				return this.year === this.startYear && this.month === this.startMonth && this.day === this.startDay
+			},
+
+			// 当前 date 是 end
+			currentDateIsEnd() {
+				return this.year === this.endYear && this.month === this.endMonth && this.day === this.endDay
+			},
+
+			// 当前年、月、日、时、分、秒的最小值和最大值
+			minYear() {
+				return this.startYear
+			},
+			maxYear() {
+				return this.endYear
+			},
+			minMonth() {
+				if (this.year === this.startYear) {
+					return this.startMonth
+				} else {
+					return 1
+				}
+			},
+			maxMonth() {
+				if (this.year === this.endYear) {
+					return this.endMonth
+				} else {
+					return 12
+				}
+			},
+			minDay() {
+				if (this.year === this.startYear && this.month === this.startMonth) {
+					return this.startDay
+				} else {
+					return 1
+				}
+			},
+			maxDay() {
+				if (this.year === this.endYear && this.month === this.endMonth) {
+					return this.endDay
+				} else {
+					return this.daysInMonth(this.year, this.month)
+				}
+			},
+			minHour() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsStart) {
+						return this.startHour
+					} else {
+						return 0
+					}
+				}
+				if (this.type === 'time') {
+					return this.startHour
+				}
+			},
+			maxHour() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsEnd) {
+						return this.endHour
+					} else {
+						return 23
+					}
+				}
+				if (this.type === 'time') {
+					return this.endHour
+				}
+			},
+			minMinute() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsStart && this.hour === this.startHour) {
+						return this.startMinute
+					} else {
+						return 0
+					}
+				}
+				if (this.type === 'time') {
+					if (this.hour === this.startHour) {
+						return this.startMinute
+					} else {
+						return 0
+					}
+				}
+			},
+			maxMinute() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsEnd && this.hour === this.startHour) {
+						return this.endMinute
+					} else {
+						return 59
+					}
+				}
+				if (this.type === 'time') {
+					if (this.hour === this.endHour) {
+						return this.endMinute
+					} else {
+						return 59
+					}
+				}
+			},
+			minSecond() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsStart && this.hour === this.startHour && this.minute === this.startMinute) {
+						return this.startSecond
+					} else {
+						return 0
+					}
+				}
+				if (this.type === 'time') {
+					if (this.hour === this.startHour && this.minute === this.startMinute) {
+						return this.startSecond
+					} else {
+						return 0
+					}
+				}
+			},
+			maxSecond() {
+				if (this.type === 'datetime') {
+					if (this.currentDateIsEnd && this.hour === this.startHour && this.minute === this.endMinute) {
+						return this.endSecond
+					} else {
+						return 59
+					}
+				}
+				if (this.type === 'time') {
+					if (this.hour === this.endHour && this.minute === this.endMinute) {
+						return this.endSecond
+					} else {
+						return 59
+					}
+				}
+			}
 		},
+
 		methods: {
 			/**
 			 * 获取父元素实例
@@ -160,31 +376,246 @@
 				}
 				return parent;
 			},
-			parseDateTime(datetime) {
-				let defaultDate = null
-				if (!datetime) {
-					defaultDate = new Date()
+
+			/**
+			 * 解析时分秒字符串，例如：00:00:00
+			 * @param {String} timeString
+			 */
+			parseTimeType(timeString) {
+				if (timeString) {
+					let timeArr = timeString.split(':')
+					this.hour = Number(timeArr[0])
+					this.minute = Number(timeArr[1])
+					this.second = Number(timeArr[2])
+				}
+			},
+
+			/**
+			 * 解析选择器初始值，类型可以是字符串、时间戳，例如：2000-10-02、'08:30:00'、 1610695109000
+			 * @param {String | Number} datetime
+			 */
+			initPickerValue(datetime) {
+				let defaultValue = null
+				if (datetime) {
+					defaultValue = this.compareValueWithStartAndEnd(datetime, this.start, this.end)
 				} else {
-					defaultDate = new Date(datetime)
+					defaultValue = Date.now()
+					defaultValue = this.compareValueWithStartAndEnd(defaultValue, this.start, this.end)
 				}
-				this.year = defaultDate.getFullYear()
-				if (this.year < this.minYear || this.year > this.maxYear) {
-					const now = Date.now()
-					this.parseDateTime(now)
-					return
-				}
-				this.month = defaultDate.getMonth() + 1
-				this.day = defaultDate.getDate()
-				this.hour = defaultDate.getHours()
-				this.minute = defaultDate.getMinutes()
-				this.second = defaultDate.getSeconds()
+				this.parseValue(defaultValue)
 			},
-			parseValue(defaultTime) {
-				if (Number(defaultTime)) {
-					defaultTime = parseInt(defaultTime)
+
+			/**
+			 * 初始值规则：
+			 * - 用户设置初始值 value
+			 * 	- 设置了起始时间 start、终止时间 end，并 start < value < end，初始值为 value， 否则初始值为 start
+			 * 	- 只设置了起始时间 start，并 start < value，初始值为 value，否则初始值为 start
+			 * 	- 只设置了终止时间 end，并 value < end，初始值为 value，否则初始值为 end
+			 * 	- 无起始终止时间，则初始值为 value
+			 * - 无初始值 value，则初始值为当前本地时间 Date.now()
+			 * @param {Object} value
+			 * @param {Object} dateBase
+			 */
+			compareValueWithStartAndEnd(value, start, end) {
+				let winner = null
+				value = this.superTimeStamp(value)
+				start = this.superTimeStamp(start)
+				end = this.superTimeStamp(end)
+
+				if (start && end) {
+					if (value < start) {
+						winner = new Date(start)
+					} else if (value > end) {
+						winner = new Date(end)
+					} else {
+						winner = new Date(value)
+					}
+				} else if (start && !end) {
+					winner = start <= value ? new Date(value) : new Date(start)
+				} else if (!start && end) {
+					winner = value <= end ? new Date(value) : new Date(end)
+				} else {
+					winner = new Date(value)
 				}
-				this.parseDateTime(defaultTime)
+
+				return winner
 			},
+
+			/**
+			 * 转换为可比较的时间戳，接受日期、时分秒、时间戳
+			 * @param {Object} value
+			 */
+			superTimeStamp(value) {
+				let dateBase = ''
+				if (this.type === 'time' && value && typeof value === 'string') {
+					const now = new Date()
+					const year = now.getFullYear()
+					const month = now.getMonth() + 1
+					const day = now.getDate()
+					dateBase = year + '/' + month + '/' + day + ' '
+				}
+				if (Number(value) && typeof value !== NaN) {
+					value = parseInt(value)
+					dateBase = 0
+				}
+				return this.createTimeStamp(dateBase + value)
+			},
+
+			/**
+			 * 解析默认值 value，字符串、时间戳
+			 * @param {Object} defaultTime
+			 */
+			parseValue(value) {
+				if (!value) return
+				if (this.type === 'time' && typeof value === "string") {
+					this.parseTimeType(value)
+				} else {
+					let defaultDate = null
+					defaultDate = new Date(value)
+					if (this.type !== 'time') {
+						this.year = defaultDate.getFullYear()
+						this.month = defaultDate.getMonth() + 1
+						this.day = defaultDate.getDate()
+					}
+					if (this.type !== 'date') {
+						this.hour = defaultDate.getHours()
+						this.minute = defaultDate.getMinutes()
+						this.second = defaultDate.getSeconds()
+					}
+				}
+			},
+
+			/**
+			 * 解析可选择时间范围 start、end，年月日字符串、时间戳
+			 * @param {Object} defaultTime
+			 */
+			parseDatetimeRange(point, pointType) {
+				if (point && this.type === 'time') {
+					const pointArr = point.split(':')
+					this[pointType + 'Hour'] = Number(pointArr[0])
+					this[pointType + 'Minute'] = Number(pointArr[1])
+					this[pointType + 'Second'] = Number(pointArr[2])
+				} else {
+					if (!point) {
+						pointType === 'start' ? this.startYear = this.year - 60 : this.endYear = this.year + 60
+						return
+					}
+					if (Number(point) && Number(point) !== NaN) {
+						point = parseInt(point)
+					}
+					// datetime 的 end 没有时分秒, 则不限制
+					const hasTime = /[0-9]:[0-9]/
+					if (this.type === 'datetime' && pointType === 'end' && typeof point === 'string' && !hasTime.test(point)) {
+						point = point + ' 23:59:59'
+					}
+					const pointDate = new Date(point)
+					this[pointType + 'Year'] = pointDate.getFullYear()
+					this[pointType + 'Month'] = pointDate.getMonth() + 1
+					this[pointType + 'Day'] = pointDate.getDate()
+					if (this.type === 'datetime') {
+						this[pointType + 'Hour'] = pointDate.getHours()
+						this[pointType + 'Minute'] = pointDate.getMinutes()
+						this[pointType + 'Second'] = pointDate.getSeconds()
+					}
+				}
+			},
+
+			// 获取 年、月、日、时、分、秒 当前可选范围
+			getCurrentRange(value) {
+				const range = []
+				for (let i = this['min' + this.capitalize(value)]; i <= this['max' + this.capitalize(value)]; i++) {
+					range.push(i)
+				}
+				return range
+			},
+
+			// 字符串首字母大写
+			capitalize(str) {
+				return str.charAt(0).toUpperCase() + str.slice(1)
+			},
+
+			// 检查当前值是否在范围内，不在则当前值重置为可选范围第一项
+			checkValue(name, value, values) {
+				if (values.indexOf(value) === -1) {
+					this[name] = values[0]
+				}
+			},
+
+			// 每个月的实际天数
+			daysInMonth(year, month) { // Use 1 for January, 2 for February, etc.
+				return new Date(year, month, 0).getDate();
+			},
+
+			//兼容 iOS、safari 日期格式
+			fixIosDateFormat(value) {
+				if (typeof value === 'string') {
+					value = value.replace(/-/g, '/')
+				}
+				return value
+			},
+
+			/**
+			 * 生成时间戳
+			 * @param {Object} time
+			 */
+			createTimeStamp(time) {
+				if (!time) return
+				if (typeof time === "number") {
+					return time
+				} else {
+					time = time.replace(/-/g, '/')
+					if (this.type === 'date') {
+						time = time + ' ' + '00:00:00'
+					}
+					return Date.parse(time)
+				}
+			},
+
+			/**
+			 * 生成日期或时间的字符串
+			 */
+			createDomSting() {
+				const yymmdd = this.year +
+					'-' +
+					(this.month < 10 ? '0' + this.month : this.month) +
+					'-' +
+					(this.day < 10 ? '0' + this.day : this.day)
+
+				const hhmmss = (this.hour < 10 ? '0' + this.hour : this.hour) +
+					':' +
+					(this.minute < 10 ? '0' + this.minute : this.minute) +
+					':' +
+					(this.second < 10 ? '0' + this.second : this.second)
+
+				if (this.type === 'date') {
+					return yymmdd
+				} else if (this.type === 'time') {
+					return hhmmss
+				} else {
+					return yymmdd + ' ' + hhmmss
+				}
+			},
+
+			/**
+			 * 初始化返回值，并抛出 change 事件
+			 */
+			initTime() {
+				this.time = this.createDomSting()
+				if (this.returnType === 'timestamp' && this.type !== 'time') {
+					this.formItem && this.formItem.setValue(this.createTimeStamp(this.time))
+					this.$emit('change', this.createTimeStamp(this.time))
+					this.$emit('input', this.createTimeStamp(this.time))
+				} else {
+					this.formItem && this.formItem.setValue(this.time)
+					this.$emit('change', this.time)
+					this.$emit('input', this.time)
+				}
+			},
+
+			/**
+			 * 用户选择日期或时间更新 data
+			 * @param {Object} e
+			 */
 			bindDateChange(e) {
 				const val = e.detail.value
 				this.year = this.years[val[0]]
@@ -197,53 +628,41 @@
 				this.minute = this.minutes[val[1]]
 				this.second = this.seconds[val[2]]
 			},
+
+			/**
+			 * 初始化弹出层
+			 */
 			initTimePicker() {
-				// if (!this.time) {
-				// 	this.parseValue()
-				// }
-				this.parseValue(this.value)
+				if (this.disabled) return
+				const value = this.fixIosDateFormat(this.value)
+				this.initPickerValue(value)
 				this.visible = !this.visible
 			},
+
+			/**
+			 * 触发或关闭弹框
+			 */
 			tiggerTimePicker() {
 				this.visible = !this.visible
 			},
+
+			/**
+			 * 用户点击“清空”按钮，清空当前值
+			 */
 			clearTime() {
 				this.time = ''
 				this.formItem && this.formItem.setValue(this.time)
 				this.$emit('change', this.time)
+				this.$emit('input', this.time)
 				this.tiggerTimePicker()
 			},
-			initTime() {
-				this.time = this.createDomSting()
-				if (!this.timestamp) {
-					this.formItem && this.formItem.setValue(this.time)
-					this.$emit('change', this.time)
-				} else {
-					this.formItem && this.formItem.setValue(this.createTimeStamp(this.time))
-					this.$emit('change', this.createTimeStamp(this.time))
-				}
-			},
+
+			/**
+			 * 用户点击“确定”按钮
+			 */
 			setTime() {
 				this.initTime()
 				this.tiggerTimePicker()
-			},
-			createTimeStamp(time) {
-				return Date.parse(new Date(time))
-			},
-			createDomSting() {
-				const yymmdd = this.year +
-					'-' +
-					(this.month < 10 ? '0' + this.month : this.month) +
-					'-' +
-					(this.day < 10 ? '0' + this.day : this.day) +
-					' ' +
-					(this.hour < 10 ? '0' + this.hour : this.hour) +
-					':' +
-					(this.minute < 10 ? '0' + this.minute : this.minute) +
-					':' +
-					(this.second < 10 ? '0' + this.second : this.second)
-
-				return yymmdd
 			}
 		}
 	}
@@ -254,6 +673,7 @@
 		width: 100%;
 		height: 130px;
 		margin-top: 30px;
+		cursor: pointer;
 	}
 
 	.uni-datetime-picker-item {
@@ -265,7 +685,7 @@
 		margin-top: 60px;
 		display: flex;
 		justify-content: space-between;
-		color: blue;
+		color: #007AFF;
 		cursor: pointer;
 	}
 
@@ -354,5 +774,12 @@
 	.uni-datetime-picker-flex {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	.uni-datetime-picker-disabled {
+		opacity: 0.4;
+		/* #ifdef H5 */
+		cursor: not-allowed !important;
+		/* #endif */
 	}
 </style>

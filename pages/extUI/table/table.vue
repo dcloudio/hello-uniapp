@@ -1,11 +1,12 @@
 <template>
 	<view>
-		<uni-table border stripe emptyText="暂无更多数据" type="selection">
+		<uni-table border :loading="loading" stripe :emptyText="loading?'加载中...':'暂无更多数据'" type="selection">
 			<uni-tr>
 				<uni-th align="center">日期</uni-th>
 				<uni-th align="center">姓名</uni-th>
 				<uni-th align="left">地址</uni-th>
 			</uni-tr>
+			<!--
 			<uni-tr>
 				<uni-td>2020-10-20</uni-td>
 				<uni-td>Jeson</uni-td>
@@ -27,6 +28,8 @@
 				<uni-td>北京市海淀区</uni-td>
 			</uni-tr>
 
+
+			-->
 		</uni-table>
 	</view>
 </template>
@@ -38,9 +41,14 @@
 
 			}
 		},
-		methods: {
-
-		}
+		created() {
+			this.loading = true
+			setTimeout(() => {
+				console.log('----');
+				this.loading = false
+			}, 2000)
+		},
+		methods: {}
 	}
 </script>
 

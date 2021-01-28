@@ -9,7 +9,7 @@
 				</uni-collapse-item>
 			</uni-collapse>
 		</view>
-		<uni-section title="手风琴效果" type="line"></uni-section>
+		<uni-section title="手风琴效果（展开一个会收起其他）" type="line"></uni-section>
 		<uni-collapse :accordion="true">
 			<uni-collapse-item v-for="item in accordion" :key="item.id" :title="item.title" :show-animation="item.animation">
 				<text class="content">{{ item.content }}</text>

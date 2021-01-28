@@ -5,7 +5,7 @@
 			<view v-if="noData" class="uni-table-loading">
 				<view class="uni-table-text">{{emptyText}}</view>
 			</view>
-			<view v-show="loading" class="uni-table-mask">
+			<view v-if="loading" class="uni-table-mask">
 				<div class="uni-table--loader"></div>
 			</view>
 		</view>
@@ -63,7 +63,7 @@
 		},
 		watch: {
 			loading(val) {
-
+				console.log(val);
 			}
 		},
 		created() {

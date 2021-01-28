@@ -67,7 +67,7 @@ function getDate(time) {
 
 export function formatDate(date, format = 'yyyy/MM/dd hh:mm:ss') {
 	if (!date && date !== 0) {
-		return '-'
+		return ''
 	}
 	date = getDate(date)
 	const dateObj = {
@@ -98,7 +98,7 @@ export function friendlyDate(time, {
 	format = 'yyyy/MM/dd hh:mm:ss'
 }) {
 	if (!time && time !== 0) {
-		return '-'
+		return ''
 	}
 	const localeText = {
 		zh: {

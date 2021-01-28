@@ -186,6 +186,8 @@
 		mounted() {
 			// this.onInput = throttle(this.input, 500)
 			this.$nextTick(() => {
+				// setTimeout(()=>{
+				// },1000)
 				this.focused = this.focus
 			})
 		},
@@ -233,16 +235,14 @@
 			},
 
 			onFocus(event) {
-				this.focused = true;
+				// this.focused = true;
 				this.$emit('focus', event);
 			},
 			onBlur(event) {
 				let value = event.detail.value;
-				// 最开始使用的是监听图标@touchstart事件，自从hx2.8.4后，此方法在微信小程序出错
-				// 这里改为监听点击事件，手点击清除图标时，同时也发生了@blur事件，导致图标消失而无法点击，这里做一个延时
-				setTimeout(() => {
-					this.focused = false;
-				}, 100);
+				// setTimeout(() => {
+				// this.focused = false;
+				// }, 100);
 				this.$emit('blur', event);
 			},
 			onConfirm(e) {
@@ -294,18 +294,20 @@
 		/* #ifndef APP-NVUE */
 		width: 100%;
 		display: flex;
+		box-sizing: border-box;
+		min-height: 36px;
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		box-sizing: border-box;
-		min-height: 36px;
 	}
 
 	.uni-easyinput__content-input {
+		/* #ifndef APP-NVUE */
+		width: auto;
+		/* #endif */
 		position: relative;
 		overflow: hidden;
 		flex: 1;
-		width: auto;
 		line-height: 2;
 		font-size: 14px;
 	}
@@ -322,13 +324,15 @@
 		position: relative;
 		overflow: hidden;
 		flex: 1;
-		width: auto;
 		line-height: 1.5;
 		font-size: 14px;
 		padding-top: 6px;
 		padding-bottom: 10px;
-		min-height: 80px;
 		height: 80px;
+		/* #ifndef APP-NVUE */
+		min-height: 80px;
+		width: auto;
+		/* #endif */
 	}
 
 	.input-padding {
@@ -347,12 +351,12 @@
 	.is-input-border {
 		/* #ifndef APP-NVUE */
 		display: flex;
+		box-sizing: border-box;
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
 		border: 1px solid #e5e5e5;
 		border-radius: 4px;
-		box-sizing: border-box;
 	}
 
 	.is-required {
@@ -390,7 +394,12 @@
 	}
 
 	.is-first-border {
+		/* #ifndef APP-NVUE */
 		border: none;
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		border-width: 0;
+		/* #endif */
 	}
 
 	.is-disabled {
