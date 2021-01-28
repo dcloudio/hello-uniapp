@@ -105,7 +105,7 @@
 					color: '#3c3e49',
 					selectedColor: '#007AFF',
 					backgroundColor: '#fff',
-					buttonColor: '#3c3e49'
+					buttonColor: '#007AFF'
 				}
 			}
 		},

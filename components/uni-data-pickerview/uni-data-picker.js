@@ -131,13 +131,6 @@ export default {
       }
 
       return result.join(' || ')
-    },
-    formatValue(value) {
-      var dl = new Array(value.length)
-      for (let i = 0; i < dl.length; i++) {
-        dl[i] = value[i].value
-      }
-      this._value = dl
     }
   },
   created() {
@@ -333,16 +326,16 @@ export default {
         hasNodes
       } = this._filterData(this._treeData, this.selected)
 
-      let isLeaf = this._stepSearh === false && !hasNodes
+      let isleaf = this._stepSearh === false && !hasNodes
 
       if (node) {
-        node.isLeaf = isLeaf
+        node.isleaf = isleaf
       }
 
       this.dataList = dataList
       this.selectedIndex = dataList.length - 1
 
-      if (!isLeaf && this.selected.length < dataList.length) {
+      if (!isleaf && this.selected.length < dataList.length) {
         this.selected.push({
           value: null,
           text: "请选择"
@@ -350,7 +343,7 @@ export default {
       }
 
       return {
-        isLeaf,
+        isleaf,
         hasNodes
       }
     },
@@ -421,7 +414,7 @@ export default {
         }
       }
     },
-    _findNodePath(key, nodes, path) {
+    _findNodePath(key, nodes, path = []) {
       for (let i = 0; i < nodes.length; i++) {
         let {
           value,
@@ -435,40 +428,37 @@ export default {
         })
 
         if (value === key) {
-          break;
+          return path
         }
 
         if (children) {
-          this._findNodePath(key, children, path)
-        } else {
-          path.pop()
+          const p = this._findNodePath(key, children, path)
+          if (p.length) {
+            return p
+          }
         }
+
+        path.pop()
       }
+      return []
     },
     _processLocalData() {
       this._treeData = []
       this._extractTree(this.localdata, this._treeData)
 
       var inputValue = this.value
-      if (!inputValue || !inputValue.length) {
+      if (inputValue === undefined) {
         return
       }
 
-      if (typeof inputValue === "string") {
-        let nodePath = []
-        this._findNodePath(inputValue, this.localdata, nodePath)
-        this.selected = nodePath
-      } else {
-        let selected = new Array(inputValue.length)
-        for (var i = 0; i < inputValue.length; i++) {
-          selected[i] = {
-            value: inputValue[i]
-          }
+      if (Array.isArray(inputValue)) {
+        inputValue = inputValue[inputValue.length - 1]
+        if (typeof inputValue === 'object' && inputValue.value) {
+          inputValue = inputValue.value
         }
-        this.selected = selected
       }
-
-      //this._updateBindData()
+      
+      this.selected = this._findNodePath(inputValue, this.localdata)
     }
   }
 }

@@ -280,7 +280,7 @@
 	}
 
 	/* #ifdef MP-ALIPAY || MP-WEIXIN */
-	/deep/ .uni-row {
+	::v-deep .uni-row {
 		margin-bottom: 10px;
 	}
 

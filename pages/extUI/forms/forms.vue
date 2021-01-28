@@ -15,7 +15,7 @@
 					<slider min="0" max="200" step="5" show-value v-model="formData.weight" @change="binddata('weight', $event.detail.value)"></slider>
 				</uni-forms-item>
 				<uni-forms-item required name="birth" label="出生日期">
-					<uni-datetime-picker timestamp v-model="formData.birth"></uni-datetime-picker>
+					<uni-datetime-picker type="date" v-model="formData.birth" start="2000-06-01 06:30:30" end="2030-6-1" return-type="timestamp"></uni-datetime-picker>
 				</uni-forms-item>
 				<uni-forms-item name="email" label="邮箱">
 					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
@@ -144,11 +144,10 @@
 						]
 					},
 					birth: {
-						rules: [
-							// {
-							// 	required: true,
-							// 	errorMessage: '请选择时间'
-							// },
+						rules: [{
+								required: true,
+								errorMessage: '请选择时间'
+							},
 							{
 								format: 'timestamp',
 								errorMessage: '必须是时间戳'

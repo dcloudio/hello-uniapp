@@ -3,13 +3,21 @@
 		<view class="uni-data-tree-input" @click="handleInput">
 			<slot :options="options" :data="inputSelected" :error="errorMessage">
 				<view class="input-value">
-					<text v-if="errorMessage" class="error-text">{{errorMessage}}</text>
-					<uni-load-more v-else-if="loading && !isOpened" class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
-					<view v-else-if="inputSelected.length" v-for="(item,index) in inputSelected" :key="index" class="input-value-item">
-						<text>{{item.text}}</text><text v-if="index<inputSelected.length-1" class="input-split-line">/</text>
+					<text v-if="errorMessage" class="selected-area error-text">{{errorMessage}}</text>
+					<view v-else-if="loading && !isOpened" class="selected-area">
+						<uni-load-more class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
 					</view>
-					<text v-else class="placeholder">{{placeholder}}</text>
-					<view class="input-arrow"></view>
+					<scroll-view v-else-if="inputSelected.length" class="selected-area" scroll-x="true">
+						<view class="selected-list">
+							<view class="selected-item" v-for="(item,index) in inputSelected" :key="index">
+								<text>{{item.text}}</text><text v-if="index<inputSelected.length-1" class="input-split-line">/</text>
+							</view>
+						</view>
+					</scroll-view>
+					<text v-else class="selected-area placeholder">{{placeholder}}</text>
+					<view class="arrow-area">
+						<view class="input-arrow"></view>
+					</view>
 				</view>
 			</slot>
 		</view>
@@ -17,7 +25,7 @@
 		<view class="uni-data-tree-dialog" v-if="isOpened">
 			<view class="dialog-caption">
 				<view class="title-area">
-					<text class="title">{{popupTitle}}</text>
+					<text class="dialog-title">{{popupTitle}}</text>
 				</view>
 				<view class="dialog-close" @click="handleClose">
 					<view class="dialog-close-plus" data-id="close"></view>
@@ -140,6 +148,7 @@
 				this.isOpened = false
 			},
 			handleInput() {
+				console.log('handleInput');
 				this.show()
 			},
 			handleClose(e) {
@@ -183,19 +192,6 @@
 		color: #DD524D;
 	}
 
-	.loading-cover {
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		background-color: rgba(255, 255, 255, 0.5);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		z-index: 101;
-	}
-
 	.input-value {
 		display: flex;
 		flex-direction: row;
@@ -206,10 +202,35 @@
 		border: 1px solid #e5e5e5;
 		border-radius: 5px;
 		padding: 0 5px;
+		overflow: hidden;
+		/* #ifdef APP-NVUE */
+		height: 40px;
+		/* #endif */
 	}
 
-	.input-value-item {
+	.selected-area {
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.load-more {
+		margin-right: auto;
+		/* #ifdef APP-NVUE */
+		width: 40px;
+		/* #endif */
+	}
+
+	.selected-list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		padding: 0 5px;
+	}
+
+	.selected-item {
+		flex-direction: row;
 		padding: 0 1px;
+		white-space: nowrap;
 	}
 
 	.placeholder {
@@ -220,15 +241,21 @@
 		opacity: .5;
 	}
 
-	.input-arrow {
+	.arrow-area {
+		position: relative;
 		margin-left: auto;
-		margin-right: 5px;
+		width: 20px;
+		display: flex;
+		justify-content: center;
+		transform: rotate(-45deg);
+		transform-origin: 2px;
+	}
+
+	.input-arrow {
 		width: 7px;
 		height: 7px;
 		border-left: 1px solid #999;
 		border-bottom: 1px solid #999;
-		transform: rotate(-45deg);
-		transform-origin: 2px;
 	}
 
 	.uni-data-tree-cover {
@@ -246,16 +273,19 @@
 	.uni-data-tree-dialog {
 		position: fixed;
 		left: 0;
-		top: auto;
+		top: 20%;
 		right: 0;
 		bottom: 0;
-		height: 80vh;
 		background-color: #FFFFFF;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
 		display: flex;
 		flex-direction: column;
 		z-index: 102;
+		overflow: hidden;
+		/* #ifdef APP-NVUE */
+		width: 750rpx;
+		/* #endif */
 	}
 
 	.dialog-caption {
@@ -272,7 +302,7 @@
 		padding: 0 10px;
 	}
 
-	.title {
+	.dialog-title {
 		font-weight: bold;
 		line-height: 44px;
 	}
@@ -283,6 +313,7 @@
 		right: 0;
 		bottom: 0;
 		display: flex;
+		flex-direction: row;
 		align-items: center;
 		padding: 0 15px;
 	}
@@ -298,6 +329,11 @@
 	.dialog-close-rotate {
 		position: absolute;
 		transform: rotate(-45deg);
+	}
+
+	.picker-view {
+		flex: 1;
+		overflow: hidden;
 	}
 
 	/* #ifdef H5 */

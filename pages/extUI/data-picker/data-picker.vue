@@ -4,14 +4,14 @@
       <text>uni-data-picker</text>
     </view>
     <uni-data-picker placeholder="请选择地址" popup-title="请选择所在地区" :preload="true" :step-searh="true" self-field="code"
-      parent-field="parent_code" collection="opendb-city-china" orderby="value asc" field="code as value, name as text" @nodeclick="onnodeclick" @change="onchange">
+      parent-field="parent_code" collection="opendb-city-china" orderby="value asc" field="code as value, name as text, eq(['$type', 2]) as isleaf" @nodeclick="onnodeclick" @change="onchange">
     </uni-data-picker>
 
     <view class="title">
       <text>uni-data-picker 有默认值</text>
     </view>
     <uni-data-picker placeholder="请选择地址" popup-title="请选择所在地区" :preload="true" :step-searh="true" self-field="code"
-      parent-field="parent_code" collection="opendb-city-china" orderby="value asc" field="code as value, name as text"
+      parent-field="parent_code" collection="opendb-city-china" orderby="value asc" field="code as value, name as text, eq(['$type', 2]) as isleaf"
       v-model="address">
     </uni-data-picker> -->
 

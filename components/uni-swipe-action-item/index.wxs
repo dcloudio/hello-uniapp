@@ -39,7 +39,7 @@ function touchstart(e, ins) {
 	disabled = (typeof(disabled) === 'string' ? JSON.parse(disabled) : disabled) || false;
 	if (disabled) return
 	// 开始触摸时移除动画类
-	instance.requestAnimationFrame(function(){
+	instance.requestAnimationFrame(function() {
 		instance.removeClass('ani');
 		ins.callMethod('closeSwipe');
 	})
@@ -56,7 +56,6 @@ function touchstart(e, ins) {
  * @param {Object} ownerInstance
  */
 function touchmove(e, ownerInstance) {
-
 	var instance = e.instance;
 	var disabled = instance.getDataset().disabled
 	var state = instance.getState()
@@ -109,7 +108,7 @@ function move(value, instance, ownerInstance) {
 	var rightWidth = state.rightWidth
 	// 获取可滑动范围
 	state.left = range(value, -rightWidth, leftWidth);
-	instance.requestAnimationFrame(function(){
+	instance.requestAnimationFrame(function() {
 		instance.setStyle({
 			transform: 'translateX(' + state.left + 'px)',
 			'-webkit-transform': 'translateX(' + state.left + 'px)'
@@ -188,7 +187,7 @@ function openState(type, ins, ownerInstance) {
 
 	// && !state.throttle
 
-	if (state.isopen !== type ) {
+	if (state.isopen !== type) {
 		state.throttle = true
 		ownerInstance.callMethod('change', {
 			open: type
@@ -198,7 +197,7 @@ function openState(type, ins, ownerInstance) {
 
 	state.isopen = type
 	// 添加动画类
-	ins.requestAnimationFrame(function(){
+	ins.requestAnimationFrame(function() {
 		ins.addClass('ani');
 		move(left, ins, ownerInstance)
 	})
@@ -238,6 +237,11 @@ function stopTouchStart(event) {
 	var state = instance.getState();
 	resetTouchStatus(instance);
 	var touch = event.touches[0];
+	// #ifdef H5
+	if (isPC()) {
+		touch = event;
+	}
+	// #endif
 	state.startX = touch.clientX;
 	state.startY = touch.clientY;
 }
@@ -250,17 +254,65 @@ function stopTouchMove(event) {
 	var instance = event.instance;
 	var state = instance.getState();
 	var touch = event.touches[0];
+	// #ifdef H5
+	if (isPC()) {
+		touch = event;
+	}
+	// #endif
 	state.deltaX = touch.clientX - state.startX;
 	state.deltaY = touch.clientY - state.startY;
-	state.offsetX = Math.abs(state.deltaX);
 	state.offsetY = Math.abs(state.deltaY);
+	state.offsetX = Math.abs(state.deltaX);
 	state.direction = state.direction || getDirection(state.offsetX, state.offsetY);
 }
 
+// #ifdef H5
+function isPC() {
+	var userAgentInfo = navigator.userAgent;
+	var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+	var flag = true;
+	for (let v = 0; v < Agents.length - 1; v++) {
+		if (userAgentInfo.indexOf(Agents[v]) > 0) {
+			flag = false;
+			break;
+		}
+	}
+	return flag;
+}
+
+let movable = false
+
+function mousedown(e, ins) {
+	if (!isPC()) return
+	touchstart(e, ins)
+	movable = true
+}
+
+function mousemove(e, ins) {
+	if (!isPC()) return
+	if (!movable) return
+	touchmove(e, ins)
+}
+
+function mouseup(e, ins) {
+	if (!isPC()) return
+	touchend(e, ins)
+	movable = false
+}
+
+function mouseleave(e, ins) {
+	if (!isPC()) return
+	movable = false
+}
+// #endif
 
 module.exports = {
 	sizeReady: sizeReady,
 	touchstart: touchstart,
 	touchmove: touchmove,
-	touchend: touchend
+	touchend: touchend,
+	mousedown: mousedown,
+	mousemove: mousemove,
+	mouseup: mouseup,
+	mouseleave: mouseleave
 }

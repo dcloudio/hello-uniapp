@@ -266,7 +266,7 @@
 
 				let newFormData = {}
 				this.childrens.forEach(v => {
-					newFormData[v.name] = invalidFields[v.name] || this._getValue(v.name, '')
+					newFormData[v.name] = this._getValue(v.name, invalidFields[v.name])
 				})
 				if (this.validator) {
 					for (let i in fieldsValue) {
