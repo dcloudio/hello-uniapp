@@ -145,10 +145,8 @@
 		margin-left: 6px;
 		background-color: rgba(0, 0, 0, 0.4);
 		cursor: pointer;
-	/* 	border-width: 5px 0;
-		border-style: solid;
-		border-color: transparent;
-		background-clip: padding-box; */
+		/* #ifdef H5 */
+		/* #endif */
 	}
 
 	.uni-swiper__dots-item:first-child {

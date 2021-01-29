@@ -4,10 +4,16 @@
 		<view class="uni-drawer__content" :class="{'uni-drawer--right': rightMode,'uni-drawer--left': !rightMode, 'uni-drawer__content--visible': showDrawer}" :style="{width:drawerWidth+'px'}">
 			<slot />
 		</view>
+		<!-- #ifdef H5 -->
+		<keypress @esc="close('mask')" />
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
+	// #ifdef H5
+	import keypress from './keypress.js'
+	// #endif
 	/**
 	 * Drawer 抽屉
 	 * @description 抽屉侧滑菜单
@@ -22,6 +28,11 @@
 	 */
 	export default {
 		name: 'UniDrawer',
+		components: {
+			// #ifdef H5
+			keypress
+			// #endif
+		},
 		props: {
 			/**
 			 * 显示模式（左、右），只在初始化生效

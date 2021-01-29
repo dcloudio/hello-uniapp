@@ -6,12 +6,18 @@
 				<slot />
 			</view>
 		</uni-transition>
+		<!-- #ifdef H5 -->
+		<keypress v-if="maskShow" @esc="onTap" />
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
 	import uniTransition from '../uni-transition/uni-transition.vue'
 	import popup from './popup.js'
+	// #ifdef H5
+	import keypress from './keypress.js'
+	// #endif
 	/**
 	 * PopUp 弹出层
 	 * @description 弹出层组件，为了解决遮罩弹层的问题
@@ -31,7 +37,10 @@
 	export default {
 		name: 'UniPopup',
 		components: {
-			uniTransition
+			uniTransition,
+			// #ifdef H5
+			keypress
+			// #endif
 		},
 		props: {
 			// 开启动画

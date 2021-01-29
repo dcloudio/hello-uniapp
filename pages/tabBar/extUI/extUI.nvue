@@ -55,12 +55,12 @@
 						url: "data-picker"
 					},
 					{
-						name: "DatetimePicker 日期时间picker选择器",
-						url: "datetime-picker"
-					},
-					{
 						name: "Dateformat 日期格式化",
 						url: "dateformat"
+					},
+					{
+						name: "DatetimePicker 日期选择器",
+						url: "datetime-picker"
 					},
 					{
 						name: "Drawer 抽屉",
@@ -118,12 +118,12 @@
 						name: "NavBar 自定义导航栏",
 						url: "nav-bar"
 					},
-					// #ifndef QUICKAPP-WEBVIEW
+					// #ifndef QUICKAPP-WEBVIEW 
 					{
 						name: "NoticeBar 通告栏",
 						url: "notice-bar"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "NumberBox 数字输入框",
 						url: "number-box"
@@ -132,12 +132,12 @@
 						name: "Pagination 分页器",
 						url: "pagination"
 					},
-					// #ifndef QUICKAPP-WEBVIEW-HUAWEI
+					// #ifndef QUICKAPP-WEBVIEW-HUAWEI 
 					{
 						name: "PopUp 弹出层",
 						url: "popup"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "Rate 评分",
 						url: "rate"
@@ -166,12 +166,12 @@
 						name: "SwiperDot 轮播图指示点",
 						url: "swiper-dot"
 					},
-					// #ifdef H5
+					// #ifdef H5 
 					{
 						name: "Table 表格",
 						url: "table"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "Tag 标签",
 						url: "tag"
