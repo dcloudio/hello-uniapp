@@ -18,10 +18,16 @@
 		<view v-if="popup.isDesktop" class="uni-popup-dialog__close" @click="close">
 			<span class="uni-popup-dialog__close-icon "></span>
 		</view>
+		<!-- #ifdef H5 -->
+		<keypress @esc="close" @enter="onOk" />
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
+	// #ifdef H5
+	import keypress from './keypress.js'
+	// #endif
 	/**
 	 * PopUp 弹出层-对话框样式
 	 * @description 弹出层-对话框样式
@@ -44,6 +50,11 @@
 
 	export default {
 		name: "uniPopupDialog",
+		components: {
+			// #ifdef H5
+			keypress
+			// #endif
+		},
 		props: {
 			value: {
 				type: [String, Number],

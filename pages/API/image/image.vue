@@ -134,12 +134,16 @@
 						this.imageList = this.imageList.concat(res.tempFilePaths);
 					},
 					fail: (err) => {
+						console.log("err: ",err);
 						// #ifdef APP-PLUS
 						if (err['code'] && err.code !== 0 && this.sourceTypeIndex === 2) {
 							this.checkPermission(err.code);
 						}
 						// #endif
 						// #ifdef MP
+						if(err.errMsg.indexOf('cancel') !== '-1'){
+							return;
+						}
 						uni.getSetting({
 							success: (res) => {
 								let authStatus = false;

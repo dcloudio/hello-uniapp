@@ -55,12 +55,12 @@
 						url: "data-picker"
 					},
 					{
-						name: "DatetimePicker 日期时间picker选择器",
-						url: "datetime-picker"
-					},
-					{
 						name: "Dateformat 日期格式化",
 						url: "dateformat"
+					},
+					{
+						name: "DatetimePicker 日期选择器",
+						url: "datetime-picker"
 					},
 					{
 						name: "Drawer 抽屉",
