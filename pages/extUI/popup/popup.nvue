@@ -9,10 +9,10 @@
 		</view>
 		<uni-section title="自定义弹出层(dialog + message) 示例" type="line"></uni-section>
 		<view class="example-body message">
-			<button class="button popup__success" @click="toggleMessage('success')"><text class="button-text">成功</text></button>
-			<button class="button popup__error" @click="toggleMessage('error')"><text class="button-text">错误</text></button>
-			<button class="button popup__warn" @click="toggleMessage('warn')"><text class="button-text">警告</text></button>
-			<button class="button popup__info" @click="toggleMessage('info')"><text class="button-text">信息</text></button>
+			<view class="button popup__success" @click="toggleMessage('success')"><text class="button-text">成功</text></view>
+			<view class="button popup__error" @click="toggleMessage('error')"><text class="button-text">错误</text></view>
+			<view class="button popup__warn" @click="toggleMessage('warn')"><text class="button-text">警告</text></view>
+			<view class="button popup__info" @click="toggleMessage('info')"><text class="button-text">信息</text></view>
 		</view>
 		<uni-section title="提交信息 (input + 延迟关闭)" type="line"></uni-section>
 		<view class="example-body dialog">
@@ -306,6 +306,7 @@
 		flex: 1;
 		height: 40px;
 		margin: 0 15px;
+		border-radius: 5px;
 	}
 
 	.button-text {
@@ -342,7 +343,7 @@
 
 	.popup__success {
 		color: #fff;
-		background-color: #4cd964;
+		background-color: #09BB07;
 	}
 
 	.popup__warn {
