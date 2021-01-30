@@ -16,10 +16,10 @@
 
 /*通用 */
 
-view{
+/* view{
 	font-size:28rpx;
 	line-height:1.8;
-}
+} */
 progress, checkbox-group{
 	width: 100%;
 }

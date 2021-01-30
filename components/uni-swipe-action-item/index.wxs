@@ -280,7 +280,7 @@ function isPC() {
 	return flag;
 }
 
-let movable = false
+var movable = false
 
 function mousedown(e, ins) {
 	if (!isPC()) return
