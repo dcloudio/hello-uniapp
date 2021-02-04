@@ -144,8 +144,8 @@
 		border-radius: 100px;
 		margin-left: 6px;
 		background-color: rgba(0, 0, 0, 0.4);
-		cursor: pointer;
 		/* #ifdef H5 */
+		cursor: pointer;
 		/* #endif */
 	}
 

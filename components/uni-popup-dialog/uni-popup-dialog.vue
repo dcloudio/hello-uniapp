@@ -255,7 +255,8 @@
 	.uni-popup__info {
 		color: #909399;
 	}
-
+	
+	/* #ifdef H5 */
 	.uni-popup-dialog__close {
 		display: block;
 		cursor: pointer;
@@ -280,4 +281,5 @@
 		background: #909399;
 		transform: rotate(-90deg);
 	}
+	/* #endif */
 </style>

@@ -180,7 +180,9 @@
 
 	.uni-swipe_text--center {
 		width: 100%;
+		/* #ifdef H5 */
 		cursor: grab;
+		/* #endif */
 	}
 
 	.uni-swipe_button-group {

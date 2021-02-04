@@ -364,7 +364,7 @@
 		/* #endif */
 		height: 26px;
 		width: 26px;
-		marin-right: 10px;
+		margin-right: 10px;
 	}
 
 	.uni-icon-wrapper {

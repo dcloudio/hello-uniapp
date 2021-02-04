@@ -238,7 +238,8 @@
 			width: 100%;
 		}
 	}
-
+	
+	/* #ifdef H5 */
 	/deep/ .image img {
 		-webkit-user-drag: none;
 		-khtml-user-drag: none;
@@ -246,6 +247,7 @@
 		-o-user-drag: none;
 		user-drag: none;
 	}
+	/* #endif */
 
 	.uni-bg-red {
 		background-color: #ff5a5f;
