@@ -11,7 +11,7 @@ describe('pages/component/view/view.vue', () => {
 	 * 1. 检测页面标题是否为 view
 	 */
 	it('view 组件标题', async () => {
-		let view = await page.$('.uni-page-head-title')
+		let view = await page.$('.common-page-head-title')
 		expect(await view.text()).toBe('view')
 	})
 	/**
