@@ -26,158 +26,199 @@
 				hideList: [
 					'load-more'
 				],
-				lists: [{
-						name: "Badge 数字角标",
+				lists: [
+					{
+						name: "badge 数字角标",
 						url: "badge"
 					},
 					{
-						name: "Card 卡片",
+						name: "calendar 日历",
+						url: "calendar"
+					},
+					{
+						name: "card 卡片",
 						url: "card"
 					},
 					{
-						name: "Collapse 折叠面板",
+						name: "collapse 折叠面板",
 						url: "collapse"
 					},
+
+					// #ifndef APP-NVUE
 					{
-						name: "Combox 组合框",
+						name: "combox 组合框",
 						url: "combox"
 					},
+					// #endif
 					{
-						name: "Countdown 倒计时",
+						name: "countdown 倒计时",
 						url: "countdown"
 					},
 					{
-						name: "DataCheckbox 数据选择器",
+						name: "dataCheckbox 数据选择器",
 						url: "data-checkbox"
 					},
 					{
-						name: "DataPicker 数据驱动的picker选择器",
+						name: "dataPicker 数据驱动的picker选择器",
 						url: "data-picker"
 					},
+
+					// #ifndef APP-NVUE
 					{
-						name: "Dateformat 日期格式化",
+						name: "datePicker 日期选择器",
+						url: "date-picker"
+					},
+					// #endif
+					{
+						name: "dateformat 日期格式化",
 						url: "dateformat"
 					},
+
+					// #ifndef APP-NVUE
 					{
-						name: "DatetimePicker 日期选择器",
+						name: "datetimePicker 日期选择器",
 						url: "datetime-picker"
 					},
+					// #endif
 					{
-						name: "Drawer 抽屉",
+						name: "drawer 抽屉",
 						url: "drawer"
 					},
 					{
-						name: "Easyinput 增强输入框",
+						name: "easyinput 增强输入框",
 						url: "easyinput"
 					},
 					{
-						name: "Fab 悬浮按钮",
+						name: "fab 悬浮按钮",
 						url: "fab"
 					},
 					{
-						name: "Fav 收藏按钮",
+						name: "fav 收藏按钮",
 						url: "fav"
 					},
+
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
 					{
-						name: "Forms 表单",
+						name: "field 输入框",
+						url: "field"
+					},
+					// #endif
+
+					// #ifndef APP-NVUE
+					{
+						name: "filePicker 文件选择上传",
+						url: "file-picker"
+					},
+					// #endif
+					{
+						name: "forms 表单",
 						url: "forms"
 					},
 					{
-						name: "GoodsNav 商品导航",
+						name: "goodsNav 商品导航",
 						url: "goods-nav"
 					},
 					{
-						name: "Grid 宫格",
+						name: "grid 宫格",
 						url: "grid"
 					},
 					{
-						name: "Group 分组",
+						name: "group 分组",
 						url: "group"
 					},
 					{
-						name: "Icons 图标",
+						name: "icons 图标",
 						url: "icons"
 					},
 					{
-						name: "IndexedList 索引列表",
+						name: "indexedList 索引列表",
 						url: "indexed-list"
 					},
+
 					{
-						name: "Link 超链接",
+						name: "link 超链接",
 						url: "link"
 					},
 					{
-						name: "List 列表",
+						name: "list 列表",
 						url: "list"
 					},
 					{
-						name: "LoadMore 加载更多",
+						name: "loadMore 加载更多",
 						url: "load-more"
 					},
 					{
-						name: "NavBar 自定义导航栏",
+						name: "navBar 自定义导航栏",
 						url: "nav-bar"
 					},
-					// #ifndef QUICKAPP-WEBVIEW 
 					{
-						name: "NoticeBar 通告栏",
+						name: "noticeBar 通告栏",
 						url: "notice-bar"
 					},
-					// #endif 
 					{
-						name: "NumberBox 数字输入框",
+						name: "numberBox 数字输入框",
 						url: "number-box"
 					},
 					{
-						name: "Pagination 分页器",
+						name: "pagination 分页器",
 						url: "pagination"
 					},
-					// #ifndef QUICKAPP-WEBVIEW-HUAWEI 
 					{
-						name: "PopUp 弹出层",
+						name: "popUp 弹出层",
 						url: "popup"
 					},
-					// #endif 
 					{
-						name: "Rate 评分",
+						name: "rate 评分",
 						url: "rate"
 					},
 					{
-						name: "Row 布局-行",
+						name: "row 布局-行",
 						url: "row"
 					},
 					{
-						name: "SearchBar 搜索栏",
+						name: "searchBar 搜索栏",
 						url: "search-bar"
 					},
+
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
 					{
-						name: "SegmentedControl 分段器",
+						name: "section 标题栏",
+						url: "section"
+					},
+					// #endif
+					{
+						name: "segmentedControl 分段器",
 						url: "segmented-control"
 					},
 					{
-						name: "Steps 步骤条",
+						name: "steps 步骤条",
 						url: "steps"
 					},
 					{
-						name: "SwipeAction 滑动操作",
+						name: "swipeAction 滑动操作",
 						url: "swipe-action"
 					},
 					{
-						name: "SwiperDot 轮播图指示点",
+						name: "swiperDot 轮播图指示点",
 						url: "swiper-dot"
 					},
-					// #ifdef H5 
+
+					// #ifndef APP-NVUE || MP-TOUTIAO
 					{
-						name: "Table 表格",
+						name: "table 表格",
 						url: "table"
 					},
-					// #endif 
+					// #endif
 					{
-						name: "Tag 标签",
+						name: "tag 标签",
 						url: "tag"
 					},
 					{
-						name: "Transition 过渡动画",
+						name: "title 章节标题",
+						url: "title"
+					},
+					{
+						name: "transition 过渡动画",
 						url: "transition"
 					},
 				]

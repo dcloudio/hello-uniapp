@@ -1,18 +1,20 @@
 
 var pattern = {
   email: /^\S+?@\S+?\.\S+?$/,
+  idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
   url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i')
 };
 
 const FORMAT_MAPPING = {
-  "int": 'number',
+  "int": 'integer',
   "bool": 'boolean',
   "double": 'number',
   "long": 'number',
   "password": 'string'
+  // "fileurls": 'array'
 }
 
-function formatMessage(args, resources) {
+function formatMessage(args, resources = '') {
   var defaultMessage = ['label']
   defaultMessage.forEach((item) => {
     if (args[item] === undefined) {
@@ -74,20 +76,16 @@ const types = {
     return typeof value === 'object' && !types.array(value);
   },
   date(value) {
-    var v
-    if (value instanceof Date) {
-      v = value;
-    } else {
-      v = new Date(value);
-    }
-    return typeof v.getTime === 'function' && typeof v.getMonth === 'function' && typeof v.getYear === 'function' && !isNaN(v.getTime());
+    return value instanceof Date;
   },
   timestamp(value) {
     if (!this.integer(value) || Math.abs(value).toString().length > 16) {
       return false
     }
-
-    return this.date(value);
+    return true;
+  },
+  file(value) {
+    return typeof value.url === 'string';
   },
   email(value) {
     return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
@@ -104,6 +102,18 @@ const types = {
   },
   method(value) {
     return typeof value === 'function';
+  },
+  idcard(value) {
+    return typeof value === 'string' && !!value.match(pattern.idcard);
+  },
+  'url-https'(value) {
+    return this.url(value) && value.startsWith('https://');
+  },
+  'url-scheme'(value) {
+    return value.startsWith('://');
+  },
+  'url-web'(value) {
+    return false;
   }
 }
 
@@ -113,10 +123,10 @@ class RuleValidator {
     this._message = message
   }
 
-  async validateRule(key, value, data, allData) {
+  async validateRule(fieldKey, fieldValue, value, data, allData) {
     var result = null
 
-    let rules = key.rules
+    let rules = fieldValue.rules
 
     let hasRequired = rules.findIndex((item) => {
       return item.required
@@ -140,11 +150,9 @@ class RuleValidator {
       let rule = rules[i]
       let vt = this._getValidateType(rule)
 
-      if (key.label !== undefined) {
-        Object.assign(rule, {
-          label: key.label
-        })
-      }
+      Object.assign(rule, {
+        label: fieldValue.label || `["${fieldKey}"]`
+      })
 
       if (RuleValidatorHelper[vt]) {
         result = RuleValidatorHelper[vt](rule, value, message)
@@ -168,6 +176,10 @@ class RuleValidator {
           break
         }
       }
+    }
+
+    if (result !== null) {
+      result = message.TAG + result
     }
 
     return result
@@ -200,6 +212,8 @@ class RuleValidator {
       result = 'required'
     } else if (rule.format) {
       result = 'format'
+    } else if (rule.arrayType) {
+      result = 'arrayTypeFormat'
     } else if (rule.range) {
       result = 'range'
     } else if (rule.maximum || rule.minimum) {
@@ -208,6 +222,8 @@ class RuleValidator {
       result = 'rangeLength'
     } else if (rule.pattern) {
       result = 'pattern'
+    } else if (rule.validateFunction) {
+      result = 'validateFunction'
     }
     return result
   }
@@ -261,9 +277,9 @@ const RuleValidatorHelper = {
     let max = exclusiveMaximum ? value >= maximum : value > maximum;
 
     if (minimum !== undefined && min) {
-      return formatMessage(rule, rule.errorMessage || message['number'].min)
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMinimum ? 'exclusiveMinimum' : 'minimum'])
     } else if (maximum !== undefined && max) {
-      return formatMessage(rule, rule.errorMessage || message['number'].max)
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMaximum ? 'exclusiveMaximum' : 'maximum'])
     } else if (minimum !== undefined && maximum !== undefined && (min || max)) {
       return formatMessage(rule, rule.errorMessage || message['number'].range)
     }
@@ -281,9 +297,9 @@ const RuleValidatorHelper = {
     let val = value.length;
 
     if (min !== undefined && val < min) {
-      return formatMessage(rule, rule.errorMessage || message['length'].min)
+      return formatMessage(rule, rule.errorMessage || message['length'].minLength)
     } else if (max !== undefined && val > max) {
-      return formatMessage(rule, rule.errorMessage || message['length'].max)
+      return formatMessage(rule, rule.errorMessage || message['length'].maxLength)
     } else if (min !== undefined && max !== undefined && (val < min || val > max)) {
       return formatMessage(rule, rule.errorMessage || message['length'].range)
     }
@@ -301,11 +317,27 @@ const RuleValidatorHelper = {
 
   format(rule, value, message) {
     var customTypes = Object.keys(types);
-    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : rule.format;
+    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : (rule.format || rule.arrayType);
 
     if (customTypes.indexOf(format) > -1) {
       if (!types[format](value)) {
-        return formatMessage(rule, rule.errorMessage || message.types[format]);
+        return formatMessage(rule, rule.errorMessage || message.typeError);
+      }
+    }
+
+    return null
+  },
+
+  arrayTypeFormat(rule, value, message) {
+    if (!Array.isArray(value)) {
+      return formatMessage(rule, rule.errorMessage || message.typeError);
+    }
+
+    for (let i = 0; i < value.length; i++) {
+      const element = value[i];
+      let formatResult = this.format(rule, element, message)
+      if (formatResult !== null) {
+        return formatResult
       }
     }
 
@@ -355,7 +387,7 @@ class SchemaValidator extends RuleValidator {
     let schema = this._schema
     for (let key in schema) {
       let value = schema[key]
-      let errorMessage = await this.validateRule(value, data[key], data, allData)
+      let errorMessage = await this.validateRule(key, value, data[key], data, allData)
       if (errorMessage != null) {
         result.push({
           key,
@@ -370,7 +402,7 @@ class SchemaValidator extends RuleValidator {
   async invokeValidateUpdate(data, all, allData) {
     let result = []
     for (let key in data) {
-      let errorMessage = await this.validateRule(this._schema[key], data[key], data, allData)
+      let errorMessage = await this.validateRule(key, this._schema[key], data[key], data, allData)
       if (errorMessage != null) {
         result.push({
           key,
@@ -388,46 +420,44 @@ class SchemaValidator extends RuleValidator {
     if (new Set(keys.concat(keys2)).size === keys2.length) {
       return ''
     }
+
+    var noExistFields = keys.filter((key) => { return keys2.indexOf(key) < 0; })
+    var errorMessage = formatMessage({
+      field: JSON.stringify(noExistFields)
+    }, SchemaValidator.message.TAG + SchemaValidator.message['defaultInvalid'])
     return [{
       key: 'invalid',
-      errorMessage: SchemaValidator.message['defaultInvalid']
+      errorMessage
     }]
   }
 }
 
 function Message() {
   return {
+    TAG: "",
     default: '验证错误',
-    defaultInvalid: '字段超出范围',
+    defaultInvalid: '提交的字段{field}在数据库中并不存在',
+    validateFunction: '验证无效',
     required: '{label}必填',
     'enum': '{label}超出范围',
+    timestamp: '{label}格式无效',
     whitespace: '{label}不能为空',
+    typeError: '{label}类型无效',
     date: {
       format: '{label}日期{value}格式无效',
       parse: '{label}日期无法解析,{value}无效',
       invalid: '{label}日期{value}无效'
     },
-    types: {
-      string: '{label}类型无效',
-      array: '{label}类型无效',
-      object: '{label}类型无效',
-      number: '{label}类型无效',
-      date: '{label}类型无效',
-      boolean: '{label}类型无效',
-      integer: '{label}类型无效',
-      float: '{label}类型无效',
-      regexp: '{label}无效',
-      email: '{label}类型无效',
-      url: '{label}类型无效'
-    },
     length: {
-      min: '{label}长度不能少于{minLength}',
-      max: '{label}长度不能超过{maxLength}',
+      minLength: '{label}长度不能少于{minLength}',
+      maxLength: '{label}长度不能超过{maxLength}',
       range: '{label}必须介于{minLength}和{maxLength}之间'
     },
     number: {
-      min: '{label}不能小于{minimum}',
-      max: '{label}不能大于{maximum}',
+      minimum: '{label}不能小于{minimum}',
+      maximum: '{label}不能大于{maximum}',
+      exclusiveMinimum: '{label}不能小于等于{minimum}',
+      exclusiveMaximum: '{label}不能大于等于{maximum}',
       range: '{label}必须介于{minimum}and{maximum}之间'
     },
     pattern: {

@@ -13,8 +13,6 @@
 </template>
 
 <script>
-	import uniIcons from "../uni-icons/uni-icons.vue";
-
 	/**
 	 * Fav 收藏按钮
 	 * @description 用于收藏功能，可点击切换选中、不选中的状态
@@ -32,9 +30,6 @@
 	 */
 	export default {
 		name: "UniFav",
-		components: {
-			uniIcons
-		},
 		props: {
 			star: {
 				type: [Boolean, String],

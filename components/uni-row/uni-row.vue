@@ -78,108 +78,73 @@
 	};
 </script>
 
-<style lang="scss">
-	$layout-namespace: ".uni-";
-	$row:$layout-namespace+"row";
-	$modifier-separator: "--";
-
-	@mixin utils-clearfix {
-		$selector: &;
-
-		@at-root {
-
-			/* #ifndef APP-NVUE */
-			#{$selector}::before,
-			#{$selector}::after {
-				display: table;
-				content: "";
-			}
-
-			#{$selector}::after {
-				clear: both;
-			}
-
-			/* #endif */
-		}
-
-	}
-
-	@mixin utils-flex ($direction: row) {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: $direction;
-	}
-
-	@mixin set-flex($state) {
-		@at-root &-#{$state} {
-			@content
-		}
-	}
-
-	#{$row} {
+<style scoped>
+	.uni-row {
 		position: relative;
 		flex-direction: row;
-
 		/* #ifdef APP-NVUE */
 		flex: 1;
 		/* #endif */
-
 		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		/* #endif */
-
-		// 非nvue使用float布局
-		@include utils-clearfix;
-
-		// 在QQ、字节、百度小程序平台，编译后使用shadow dom，不可使用flex布局，使用float
-		@at-root {
-
-			/* #ifndef MP-QQ || MP-TOUTIAO || MP-BAIDU */
-			&#{$modifier-separator}flex {
-				@include utils-flex;
-				flex-wrap: wrap;
-				flex: 1;
-
-				&:before,
-				&:after {
-					/* #ifndef APP-NVUE */
-					display: none;
-					/* #endif */
-				}
-
-				@include set-flex(justify-center) {
-					justify-content: center;
-				}
-
-				@include set-flex(justify-end) {
-					justify-content: flex-end;
-				}
-
-				@include set-flex(justify-space-between) {
-					justify-content: space-between;
-				}
-
-				@include set-flex(justify-space-around) {
-					justify-content: space-around;
-				}
-
-				@include set-flex(align-middle) {
-					align-items: center;
-				}
-
-				@include set-flex(align-bottom) {
-					align-items: flex-end;
-				}
-			}
-
-			/* #endif */
-		}
-
 	}
 
-	// 字节、QQ配置后不生效
-	// 此处用法无法使用scoped
+	/* #ifndef APP-NVUE */
+	.uni-row::before,
+	.uni-row::after {
+		display: table;
+		content: "";
+	}
+
+	.uni-row::after {
+		clear: both;
+	}
+
+	/* #endif */
+	/* #ifndef MP-QQ || MP-TOUTIAO || MP-BAIDU */
+	.uni-row--flex {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		flex-wrap: wrap;
+		flex: 1;
+	}
+
+	.uni-row--flex:before,
+	.uni-row--flex:after {
+		/* #ifndef APP-NVUE */
+		display: none;
+		/* #endif */
+	}
+
+	.uni-row--flex-justify-center {
+		justify-content: center;
+	}
+
+	.uni-row--flex-justify-end {
+		justify-content: flex-end;
+	}
+
+	.uni-row--flex-justify-space-between {
+		justify-content: space-between;
+	}
+
+	.uni-row--flex-justify-space-around {
+		justify-content: space-around;
+	}
+
+	.uni-row--flex-align-middle {
+		align-items: center;
+	}
+
+	.uni-row--flex-align-bottom {
+		align-items: flex-end;
+	}
+
+	/* #endif */
+
 	/* #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ */
 	:host {
 		display: block;

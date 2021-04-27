@@ -21,7 +21,6 @@
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
 	/**
 	 * Combox 组合输入框
 	 * @description 组合输入框一般用于既可以输入也可以选择的场景
@@ -35,9 +34,6 @@
 	 */
 	export default {
 		name: 'uniCombox',
-		components: {
-			uniIcons
-		},
 		props: {
 			label: {
 				type: String,
@@ -163,7 +159,9 @@
 	}
 
 	.uni-combox__selector {
+		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
+		/* #endif */
 		position: absolute;
 		top: 42px;
 		left: 0;
@@ -175,12 +173,16 @@
 	}
 
 	.uni-combox__selector-scroll {
+		/* #ifndef APP-NVUE */
 		max-height: 200px;
 		box-sizing: border-box;
+		/* #endif */
 	}
 
 	.uni-combox__selector::before {
-		content: '';
+		/* #ifndef APP-NVUE */
+		content: "";
+		/* #endif */
 		position: absolute;
 		width: 0;
 		height: 0;
@@ -194,19 +196,21 @@
 
 	.uni-combox__selector-empty,
 	.uni-combox__selector-item {
-		/* #ifdef APP-NVUE */
+		/* #ifndef APP-NVUE */
 		display: flex;
+		cursor: pointer;
 		/* #endif */
 		line-height: 36px;
 		font-size: 14px;
 		text-align: center;
 		border-bottom: solid 1px #DDDDDD;
 		margin: 0px 10px;
-		cursor: pointer;
 	}
 
 	.uni-combox__selector-empty:last-child,
 	.uni-combox__selector-item:last-child {
+		/* #ifndef APP-NVUE */
 		border-bottom: none;
+		/* #endif */
 	}
 </style>

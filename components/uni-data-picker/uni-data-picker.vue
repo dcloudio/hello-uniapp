@@ -2,7 +2,7 @@
 	<view class="uni-data-tree">
 		<view class="uni-data-tree-input" @click="handleInput">
 			<slot :options="options" :data="inputSelected" :error="errorMessage">
-				<view class="input-value">
+				<view class="input-value" :class="{'input-value-border': border}">
 					<text v-if="errorMessage" class="selected-area error-text">{{errorMessage}}</text>
 					<view v-else-if="loading && !isOpened" class="selected-area">
 						<uni-load-more class="load-more" :contentText="loadMore" status="loading"></uni-load-more>
@@ -10,12 +10,12 @@
 					<scroll-view v-else-if="inputSelected.length" class="selected-area" scroll-x="true">
 						<view class="selected-list">
 							<view class="selected-item" v-for="(item,index) in inputSelected" :key="index">
-								<text>{{item.text}}</text><text v-if="index<inputSelected.length-1" class="input-split-line">/</text>
+								<text>{{item.text}}</text><text v-if="index<inputSelected.length-1" class="input-split-line">{{split}}</text>
 							</view>
 						</view>
 					</scroll-view>
 					<text v-else class="selected-area placeholder">{{placeholder}}</text>
-					<view class="arrow-area">
+					<view class="arrow-area" v-if="!readonly">
 						<view class="input-arrow"></view>
 					</view>
 				</view>
@@ -32,20 +32,14 @@
 					<view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
 				</view>
 			</view>
-			<data-picker-view class="picker-view" ref="pickerView" v-model="value" :localdata="localdata" :preload="preload" :collection="collection" :field="field" :orderby="orderby" :where="where" :step-searh="stepSearh" :self-field="selfField" :parent-field="parentField" :managed-mode="true" @change="onchange" @datachange="ondatachange"></data-picker-view>
+			<data-picker-view class="picker-view" ref="pickerView" v-model="value" :localdata="localdata" :preload="preload" :collection="collection" :field="field" :orderby="orderby" :where="where" :step-searh="stepSearh" :self-field="selfField" :parent-field="parentField" :managed-mode="true" @change="onchange" @datachange="ondatachange" @nodeclick="onnodeclick"></data-picker-view>
 		</view>
-		<!-- #ifdef H5 -->
-		<keypress v-if="isOpened" @esc="handleClose" />
-		<!-- #endif -->
 	</view>
 </template>
 
 <script>
 	import dataPicker from "../uni-data-pickerview/uni-data-picker.js"
 	import DataPickerView from "../uni-data-pickerview/uni-data-pickerview.vue"
-	// #ifdef H5
-	import keypress from './keypress.js'
-	// #endif
 
 	/**
 	 * uni-data-picker
@@ -53,6 +47,8 @@
 	 * @tutorial https://uniapp.dcloud.net.cn/uniCloud/uni-data-picker
 	 * @property {String} popup-title 弹出窗口标题
 	 * @property {Array} localdata 本地数据，参考
+	 * @property {Boolean} border = [true|false] 是否有边框
+	 * @property {Boolean} readonly = [true|false] 是否仅读
 	 * @property {Boolean} preload = [true|false] 是否预加载数据
 	 * @value true 开启预加载数据，点击弹出窗口后显示已加载数据
 	 * @value false 关闭预加载数据，点击弹出窗口后开始加载数据
@@ -65,19 +61,22 @@
 	 * @property {String|DBFieldString} field 查询字段，多个字段用 `,` 分割
 	 * @property {String} orderby 排序字段及正序倒叙设置
 	 * @property {String|JQLString} where 查询条件
-	 * @event {Function} onpopupshow 弹出的选择窗口打开时触发此事件
-	 * @event {Function} onpopuphide 弹出的选择窗口关闭时触发此事件
+	 * @event {Function} popupshow 弹出的选择窗口打开时触发此事件
+	 * @event {Function} popuphide 弹出的选择窗口关闭时触发此事件
 	 */
 	export default {
 		name: 'UniDataPicker',
 		mixins: [dataPicker],
 		components: {
-			DataPickerView,
-			// #ifdef H5
-			keypress
-			// #endif
+			DataPickerView
 		},
 		props: {
+			options: {
+				type: [Object, Array],
+				default () {
+					return {}
+				}
+			},
 			popupTitle: {
 				type: String,
 				default: '请选择'
@@ -90,11 +89,17 @@
 				type: String,
 				default: ''
 			},
-			options: {
-				type: [Object, Array],
-				default () {
-					return {}
-				}
+			readonly: {
+				type: Boolean,
+				default: false
+			},
+			border: {
+				type: Boolean,
+				default: true
+			},
+			split: {
+				type: String,
+				default: '/'
 			}
 		},
 		data() {
@@ -124,9 +129,18 @@
 				this.load()
 			},
 			load() {
+				if (this.readonly) {
+					this._processReadonly(this.localdata, this.value)
+					return
+				}
+
 				if (this.isLocaldata) {
 					this.loadData()
 					this.inputSelected = this.selected.slice(0)
+				} else if (!this.parentField && !this.selfField && this.value) {
+					this.getNodeData(() => {
+						this.inputSelected = this.selected.slice(0)
+					})
 				} else if (this.value.length) {
 					this.getTreePath(() => {
 						this.inputSelected = this.selected.slice(0)
@@ -152,16 +166,23 @@
 						selectedIndex: this.selectedIndex
 					})
 				})
+				this.$emit('popupopened')
 			},
 			hide() {
 				this.isOpened = false
+				this.$emit('popupclosed')
 			},
 			handleInput() {
-				console.log('handleInput');
+				if (this.readonly) {
+					return
+				}
 				this.show()
 			},
 			handleClose(e) {
 				this.hide()
+			},
+			onnodeclick(e) {
+				this.$emit('nodeclick', e)
 			},
 			ondatachange(e) {
 				this._treeData = this.$refs.pickerView._treeData
@@ -171,6 +192,48 @@
 				this.inputSelected = e
 				this._dispatchEvent(e)
 			},
+			_processReadonly(dataList, valueArray) {
+				var isTree = dataList.findIndex((item) => {
+					return item.children
+				})
+				if (isTree > -1) {
+					if (Array.isArray(valueArray)) {
+						let inputValue = valueArray[valueArray.length - 1]
+						if (typeof inputValue === 'object' && inputValue.value) {
+							inputValue = inputValue.value
+						}
+					}
+					this.inputSelected = this._findNodePath(inputValue, this.localdata)
+					return
+				}
+
+				let result = []
+				for (let i = 0; i < valueArray.length; i++) {
+					var value = valueArray[i]
+					var item = dataList.find((v) => {
+						return v.value == value
+					})
+					if (item) {
+						result.push(item)
+					}
+				}
+				if (result.length) {
+					this.inputSelected = result
+				}
+			},
+			_filterForArray(data, valueArray) {
+				var result = []
+				for (let i = 0; i < valueArray.length; i++) {
+					var value = valueArray[i]
+					var found = data.find((item) => {
+						return item.value == value
+					})
+					if (found) {
+						result.push(found)
+					}
+				}
+				return result
+			},
 			_dispatchEvent(selected) {
 				var value = new Array(selected.length)
 				for (var i = 0; i < selected.length; i++) {
@@ -178,11 +241,15 @@
 				}
 
 				if (this.formItem) {
-					const v = value[value.length - 1]
-					this.formItem.setValue(v)
+					const item = selected[selected.length - 1]
+					this.formItem.setValue(item.value)
 				}
 
-				this.$emit('change', value)
+				this.$emit('change', {
+					detail: {
+						value: selected
+					}
+				})
 			}
 		}
 	}
@@ -192,9 +259,6 @@
 	.uni-data-tree {
 		position: relative;
 		font-size: 14px;
-		/* #ifdef H5 */
-		cursor: pointer;
-		/* #endif */
 	}
 
 	.error-text {
@@ -202,14 +266,14 @@
 	}
 
 	.input-value {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
 		align-items: center;
 		flex-wrap: nowrap;
 		font-size: 14px;
 		line-height: 38px;
-		border: 1px solid #e5e5e5;
-		border-radius: 5px;
 		padding: 0 5px;
 		overflow: hidden;
 		/* #ifdef APP-NVUE */
@@ -217,20 +281,33 @@
 		/* #endif */
 	}
 
+	.input-value-border {
+		border: 1px solid #e5e5e5;
+		border-radius: 5px;
+	}
+
 	.selected-area {
 		flex: 1;
 		overflow: hidden;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
 	}
 
 	.load-more {
+		/* #ifndef APP-NVUE */
 		margin-right: auto;
+		/* #endif */
 		/* #ifdef APP-NVUE */
 		width: 40px;
 		/* #endif */
 	}
 
 	.selected-list {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
 		flex-wrap: nowrap;
 		padding: 0 5px;
@@ -239,7 +316,9 @@
 	.selected-item {
 		flex-direction: row;
 		padding: 0 1px;
+		/* #ifndef APP-NVUE */
 		white-space: nowrap;
+		/* #endif */
 	}
 
 	.placeholder {
@@ -247,17 +326,19 @@
 	}
 
 	.input-split-line {
-		opacity: .5;
+		opacity: 0.5;
 	}
 
 	.arrow-area {
 		position: relative;
-		margin-left: auto;
 		width: 20px;
+		/* #ifndef APP-NVUE */
+		margin-left: auto;
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		transform: rotate(-45deg);
-		transform-origin: 2px;
+		transform-origin: center;
 	}
 
 	.input-arrow {
@@ -274,7 +355,9 @@
 		right: 0;
 		bottom: 0;
 		background-color: rgba(0, 0, 0, 0.4);
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: column;
 		z-index: 100;
 	}
@@ -288,7 +371,9 @@
 		background-color: #FFFFFF;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: column;
 		z-index: 102;
 		overflow: hidden;
@@ -299,15 +384,21 @@
 
 	.dialog-caption {
 		position: relative;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
 		border-bottom: 1px solid #f0f0f0;
 	}
 
 	.title-area {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		align-items: center;
+		/* #ifndef APP-NVUE */
 		margin: auto;
+		/* #endif */
 		padding: 0 10px;
 	}
 
@@ -321,7 +412,9 @@
 		top: 0;
 		right: 0;
 		bottom: 0;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		flex-direction: row;
 		align-items: center;
 		padding: 0 15px;

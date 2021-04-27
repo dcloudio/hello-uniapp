@@ -19,7 +19,7 @@
 			<span class="uni-popup-dialog__close-icon "></span>
 		</view>
 		<!-- #ifdef H5 -->
-		<keypress @esc="close" @enter="onOk" />
+		<keypress @esc="close" @enter="onOk"/>
 		<!-- #endif -->
 	</view>
 </template>
@@ -160,7 +160,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-popup-dialog {
 		width: 300px;
 		border-radius: 5px;
@@ -211,6 +211,7 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
+
 		flex: 1;
 		flex-direction: row;
 		justify-content: center;
@@ -232,7 +233,7 @@
 	}
 
 	.uni-button-color {
-		color: #007aff;
+		color: $uni-color-primary;
 	}
 
 	.uni-dialog-input {
@@ -241,32 +242,35 @@
 	}
 
 	.uni-popup__success {
-		color: #4cd964;
+		color: $uni-color-success;
 	}
 
 	.uni-popup__warn {
-		color: #f0ad4e;
+		color: $uni-color-warning;
 	}
 
 	.uni-popup__error {
-		color: #dd524d;
+		color: $uni-color-error;
 	}
 
 	.uni-popup__info {
 		color: #909399;
 	}
-	
-	/* #ifdef H5 */
+
 	.uni-popup-dialog__close {
+		/* #ifndef APP-NVUE */
 		display: block;
 		cursor: pointer;
+		/* #endif */
 		position: absolute;
 		top: 9px;
 		right: 17px;
 	}
 
 	.uni-popup-dialog__close-icon {
+		/* #ifndef APP-NVUE */
 		display: inline-block;
+		/* #endif */
 		width: 13px;
 		height: 1px;
 		background: #909399;
@@ -274,12 +278,13 @@
 	}
 
 	.uni-popup-dialog__close-icon::after {
+		/* #ifndef APP-NVUE */
 		content: '';
 		display: block;
+		/* #endif */
 		width: 13px;
 		height: 1px;
 		background: #909399;
 		transform: rotate(-90deg);
 	}
-	/* #endif */
 </style>

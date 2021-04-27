@@ -81,14 +81,11 @@
 		margin-top: 10px;
 	}
 
-	.group-margin {
-		margin: 0 -15px;
-	}
-
 	.uni-group__title {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
+		flex-direction: row;
 		align-items: center;
 		padding-left: 15px;
 		height: 40px;
@@ -99,7 +96,6 @@
 
 	.uni-group__content {
 		padding: 15px;
-		background-color: #FFF;
 	}
 
 	.group-conent-padding {

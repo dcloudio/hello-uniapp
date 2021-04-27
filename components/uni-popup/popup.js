@@ -41,10 +41,12 @@ export default {
 		}
 		fixSize()
 		// #ifdef H5
-		window.addEventListener('resize', fixSize)
-		this.$once('hook:beforeDestroy', () => {
-			window.removeEventListener('resize', fixSize)
-		})
+		if (window) {
+			window.addEventListener('resize', fixSize)
+			this.$once('hook:beforeDestroy', () => {
+				window.removeEventListener('resize', fixSize)
+			})
+		}
 		// #endif
 	},
 }

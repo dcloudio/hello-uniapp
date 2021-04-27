@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view ref="uni-rate" class="uni-rate">
-			<view v-if="" class="uni-rate__icon" :class="{'uni-cursor-not-allowed': disabled}" :style="{ 'margin-right': margin + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
+			<view v-if="" class="uni-rate__icon" :class="{'uni-cursor-not-allowed': disabled}" :style="{ 'margin-right': marginNumber + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
 				<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
 				<!-- #ifdef APP-NVUE -->
 				<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">
@@ -22,7 +22,6 @@
 	// #ifdef APP-NVUE
 	const dom = uni.requireNativePlugin('dom');
 	// #endif
-	import uniIcons from "../uni-icons/uni-icons.vue";
 	/**
 	 * Rate 评分
 	 * @description 评分组件
@@ -43,9 +42,6 @@
 	 */
 
 	export default {
-		components: {
-			uniIcons
-		},
 		name: "UniRate",
 		props: {
 			isFill: {
@@ -144,6 +140,10 @@
 					}
 				}
 				return starList;
+			},
+
+			marginNumber() {
+				return Number(this.margin)
 			}
 		},
 		created() {
@@ -246,15 +246,16 @@
 			 * 获取星星个数
 			 */
 			_getRateCount(clientX) {
+				this._getSize()
 				const size = Number(this.size)
 				if (size === NaN) {
 					return new Error('size 属性只能设置为数字')
 				}
 				const rateMoveRange = clientX - this._rateBoxLeft
-				let index = parseInt(rateMoveRange / (size + this.margin))
+				let index = parseInt(rateMoveRange / (size + this.marginNumber))
 				index = index < 0 ? 0 : index;
 				index = index > this.max ? this.max : index;
-				const range = parseInt(rateMoveRange - (size + this.margin) * index);
+				const range = parseInt(rateMoveRange - (size + this.marginNumber) * index);
 				let value = 0;
 				if (this._oldValue === index && !this.PC) return;
 				this._oldValue = index;
