@@ -3,11 +3,11 @@
 		<text class="example-info">数字输入框组件多用于购物车加减商品等场景</text>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-number-box />
+			<uni-number-box @change="changeValue" />
 		</view>
 		<uni-section :title="'使用v-model : '+ vModelValue" type="line"></uni-section>
 		<view class="example-body">
-			<uni-number-box v-model="vModelValue" @blur="blur" @focus="focus" />
+			<uni-number-box v-model="vModelValue" @blur="blur" @focus="focus" @change="changeValue" />
 		</view>
 		<uni-section title="设置最小值和最大值" type="line"></uni-section>
 		<view class="example-body">
@@ -39,6 +39,9 @@
 		methods: {
 			change(value) {
 				this.numberValue = value
+			},
+			changeValue(value) {
+				console.log('返回数值：', value);
 			},
 			blur(e) {
 				console.log('-------blur:', e);

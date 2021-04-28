@@ -1,8 +1,16 @@
 <template>
+	<!-- #ifdef H5 -->
+	<td class="uni-table-td" :rowspan="rowspan" :colspan="colspan" :class="{'table--border':border}" :style="{width:width + 'px','text-align':align}">
+		<slot></slot>
+	</td>
+	<!-- #endif -->
+	<!-- #ifndef H5 -->
 	<!-- :class="{'table--border':border}"  -->
 	<view class="uni-table-td" :class="{'table--border':border}" :style="{width:width + 'px','text-align':align}">
 		<slot></slot>
 	</view>
+	<!-- #endif -->
+	
 </template>
 
 <script>
@@ -25,6 +33,14 @@
 			align: {
 				type: String,
 				default: 'left'
+			},
+			rowspan: {
+				type: [Number,String],
+				default: 1
+			},
+			colspan: {
+					type: [Number,String],
+				default: 1
 			}
 		},
 		data() {
@@ -54,18 +70,21 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss">
+	$border-color:#EBEEF5;
+
 	.uni-table-td {
 		display: table-cell;
-		padding: 12px 10px;
-		vertical-align: middle;
-		border-bottom: 1px #ddd solid;
-		color: #666;
+		padding: 8px 10px;
 		font-size: 14px;
+		border-bottom: 1px $border-color solid;
+		font-weight: 400;
+		color: #606266;
+		line-height: 23px;
 		box-sizing: border-box;
 	}
 
 	.table--border {
-		border-right: 1px #ddd solid;
+		border-right: 1px $border-color solid;
 	}
 </style>

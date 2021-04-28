@@ -13,7 +13,6 @@
 </template>
 
 <script>
-	import uniTransition from '../uni-transition/uni-transition.vue'
 	import popup from './popup.js'
 	// #ifdef H5
 	import keypress from './keypress.js'
@@ -37,7 +36,6 @@
 	export default {
 		name: 'UniPopup',
 		components: {
-			uniTransition,
 			// #ifdef H5
 			keypress
 			// #endif

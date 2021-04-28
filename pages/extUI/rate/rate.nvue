@@ -19,7 +19,7 @@
 		</view>
 		<uni-section title="设置星星间隔" type="line"></uni-section>
 		<view class="example-body">
-			<uni-rate :value="4" :margin="20" />
+			<uni-rate :value="4" margin="20" />
 		</view>
 		<uni-section title="设置颜色" type="line"></uni-section>
 		<view class="example-body">

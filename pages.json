@@ -715,12 +715,6 @@
 					}
 				},
 				{
-					"path": "field/field",
-					"style": {
-						"navigationBarTitleText": "Field 字段"
-					}
-				},
-				{
 					"path": "group/group",
 					"style": {
 						"navigationBarTitleText": "Group 分组"
@@ -962,10 +956,6 @@
 					"style": {}
 				},
 				{
-					"path": "test/test",
-					"style": {}
-				},
-				{
 					"path": "table/table",
 					"style": {
 						"navigationBarTitleText": "",
@@ -994,16 +984,16 @@
 					}
 				},
 				{
-					"path": "data-indexed-list/data-indexed-list",
+					"path": "data-picker/data-picker",
 					"style": {
-						"navigationBarTitleText": "",
+						"navigationBarTitleText": "级联选择",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
-					"path": "data-picker/data-picker",
+					"path": "date-picker/date-picker",
 					"style": {
-						"navigationBarTitleText": "级联选择",
+						"navigationBarTitleText": "日期选择",
 						"enablePullDownRefresh": false
 					}
 				},
@@ -1018,6 +1008,13 @@
 					"path": "row/row",
 					"style": {
 						"navigationBarTitleText": "layout 布局",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "file-picker/file-picker",
+					"style": {
+						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false
 					}
 				}

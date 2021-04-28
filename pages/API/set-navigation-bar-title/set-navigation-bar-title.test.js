@@ -17,7 +17,7 @@ describe('pages/API/set-navigation-bar-title/set-navigation-bar-title.vue', () =
     })
 
     it('set-navigation-bar-title 组件标题', async () => {
-    	let view = await page.$('.uni-page-head-title')
+    	let view = await page.$('.common-page-head-title')
     	expect(await view.text()).toBe('nav-default')
     })
 })

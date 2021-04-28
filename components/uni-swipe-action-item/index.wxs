@@ -1,6 +1,12 @@
 var MIN_DISTANCE = 10;
 
 /**
+ * 判断当前是否为H5、app-vue
+ */
+var IS_HTML5 = false
+if (typeof window === 'object') IS_HTML5 = true
+
+/**
  * 监听页面内值的变化,主要用于动态开关swipe-action
  * @param {Object} newValue
  * @param {Object} oldValue
@@ -146,7 +152,8 @@ function moveDirection(left, ins, ownerInstance) {
 		openState('none', ins, ownerInstance)
 		return
 	}
-	if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth > 0 && rightWidth +
+	if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth > 0 &&
+			rightWidth +
 			left < threshold)) {
 		// right
 		openState('right', ins, ownerInstance)
@@ -237,11 +244,9 @@ function stopTouchStart(event) {
 	var state = instance.getState();
 	resetTouchStatus(instance);
 	var touch = event.touches[0];
-	// #ifdef H5
-	if (isPC()) {
+	if (IS_HTML5 && isPC()) {
 		touch = event;
 	}
-	// #endif
 	state.startX = touch.clientX;
 	state.startY = touch.clientY;
 }
@@ -254,11 +259,9 @@ function stopTouchMove(event) {
 	var instance = event.instance;
 	var state = instance.getState();
 	var touch = event.touches[0];
-	// #ifdef H5
-	if (isPC()) {
+	if (IS_HTML5 && isPC()) {
 		touch = event;
 	}
-	// #endif
 	state.deltaX = touch.clientX - state.startX;
 	state.deltaY = touch.clientY - state.startY;
 	state.offsetY = Math.abs(state.deltaY);
@@ -266,7 +269,6 @@ function stopTouchMove(event) {
 	state.direction = state.direction || getDirection(state.offsetX, state.offsetY);
 }
 
-// #ifdef H5
 function isPC() {
 	var userAgentInfo = navigator.userAgent;
 	var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -283,28 +285,31 @@ function isPC() {
 var movable = false
 
 function mousedown(e, ins) {
+	if (!IS_HTML5) return
 	if (!isPC()) return
 	touchstart(e, ins)
 	movable = true
 }
 
 function mousemove(e, ins) {
+	if (!IS_HTML5) return
 	if (!isPC()) return
 	if (!movable) return
 	touchmove(e, ins)
 }
 
 function mouseup(e, ins) {
+	if (!IS_HTML5) return
 	if (!isPC()) return
 	touchend(e, ins)
 	movable = false
 }
 
 function mouseleave(e, ins) {
+	if (!IS_HTML5) return
 	if (!isPC()) return
 	movable = false
 }
-// #endif
 
 module.exports = {
 	sizeReady: sizeReady,

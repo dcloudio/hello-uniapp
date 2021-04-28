@@ -1,32 +1,44 @@
 <template>
 	<view class="uni-data-checklist">
-		<template v-if="loading">
+		<template v-if="!isLocal">
 			<view class="uni-data-loading">
-				<uni-load-more status="loading" iconType="snow" :iconSize="18" :content-text="contentText"></uni-load-more>
+				<uni-load-more v-if="!mixinDatacomErrorMessage" status="loading" iconType="snow" :iconSize="18" :content-text="contentText"></uni-load-more>
+				<text v-else>{{mixinDatacomErrorMessage}}</text>
 			</view>
 		</template>
 		<template v-else>
-			<checkbox-group v-if="multiple" class="checklist-group" :class="{'is-list':mode==='list','is-wrap':wrap}" @change="chagne">
-				<label class="checklist-box" :class="item.labelClass" :style="[item.styleBackgroud]" v-for="(item,index) in dataList" :key="index">
-					<checkbox class="hidden" hidden :disabled="!!item.disabled" :value="item.value+''" :checked="item.selected" />
-					<view v-if="(mode !=='tag' && mode !== 'list') || ( mode === 'list' && icon === 'left')" class="checkbox__inner" :class="item.checkboxBgClass" :style="[item.styleIcon]">
-						<view class="checkbox__inner-icon" :class="item.checkboxClass"></view>
+			<checkbox-group v-if="multiple" class="checklist-group" :class="{'is-list':mode==='list' || wrap}" @change="chagne">
+				<!-- :class="item.labelClass"  -->
+				<label class="checklist-box" :class="['is--'+mode,item.selected?'is-checked':'',(disabled || !!item.disabled)?'is-disable':'',index!==0&&mode==='list'?'is-list-border':'']" :style="item.styleBackgroud" v-for="(item,index) in dataList" :key="index">
+					<checkbox class="hidden" hidden :disabled="disabled || !!item.disabled" :value="item.value+''" :checked="item.selected" />
+					<!-- :style="item.styleIcon" -->
+
+					<view v-if="(mode !=='tag' && mode !== 'list') || ( mode === 'list' && icon === 'left')" class="checkbox__inner" :style="item.styleIcon">
+						<!-- :class="item.checkboxClass" -->
+						<view class="checkbox__inner-icon"></view>
 					</view>
 					<view class="checklist-content" :class="{'list-content':mode === 'list' && icon ==='left'}">
-						<text class="checklist-text" :class="item.textClass" :style="[item.styleIconText]">{{item.text}}</text>
-						<view v-if="mode === 'list' && icon === 'right'" class="checkobx__list" :class="item.listClass" :style="[item.styleBackgroud]"></view>
+						<!-- :class="item.textClass" -->
+						<text class="checklist-text" :style="item.styleIconText">{{item.text}}</text>
+						<!-- :class="item.listClass"  -->
+						<view v-if="mode === 'list' && icon === 'right'" class="checkobx__list" :style="item.styleBackgroud"></view>
 					</view>
 				</label>
 			</checkbox-group>
 			<radio-group v-else class="checklist-group" :class="{'is-list':mode==='list','is-wrap':wrap}" @change="chagne">
-				<label class="checklist-box" :class="item.labelClass" :style="[item.styleBackgroud]" v-for="(item,index) in dataList" :key="index">
-					<radio hidden :disabled="item.disabled" :value="item.value+''" :checked="item.selected" />
-					<view v-if="(mode !=='tag' && mode !== 'list') || ( mode === 'list' && icon === 'left')" class="radio__inner" :class="item.checkboxBgClass" :style="[item.styleBackgroud]">
-						<view class="radio__inner-icon" :class="item.checkboxClass" :style="[item.styleIcon]"></view>
+				<!-- -->
+				<label class="checklist-box" :class="['is--'+mode,item.selected?'is-checked':'',(disabled || !!item.disabled)?'is-disable':'',index!==0&&mode==='list'?'is-list-border':'']" :style="item.styleBackgroud" v-for="(item,index) in dataList" :key="index">
+					<radio class="hidden" hidden :disabled="disabled || item.disabled" :value="item.value+''" :checked="item.selected" />
+					<!-- :class="item.checkboxBgClass"  -->
+					<view v-if="(mode !=='tag' && mode !== 'list') || ( mode === 'list' && icon === 'left')" class="radio__inner" :style="item.styleBackgroud">
+						<!-- :class="item.checkboxClass"  -->
+						<view class="radio__inner-icon" :style="item.styleIcon"></view>
 					</view>
 					<view class="checklist-content" :class="{'list-content':mode === 'list' && icon ==='left'}">
-						<text class="checklist-text" :class="item.textClass" :style="[item.styleIconText]">{{item.text}}</text>
-						<view v-if="mode === 'list' && icon === 'right'" class="checkobx__list" :class="item.listClass" :style="[item.styleRightIcon]"></view>
+						<!-- :class="item.textClass" -->
+						<text class="checklist-text" :style="item.styleIconText">{{item.text}}</text>
+						<!-- :class="item.listClass" -->
+						<view v-if="mode === 'list' && icon === 'right'" :style="item.styleRightIcon" class="checkobx__list"></view>
 					</view>
 				</label>
 			</radio-group>
@@ -52,16 +64,18 @@
 	 * @property {Boolean} wrap 是否换行显示
 	 * @property {String} icon = [left|right]  list 列表模式下icon显示位置
 	 * @property {Boolean} selectedColor 选中颜色
+	 * @property {Boolean} emptyText 没有数据时显示的文字 ，本地数据无效
 	 * @property {Boolean} selectedTextColor 选中文本颜色，如不填写则自动显示
 	 * @value left 左侧显示
 	 * @value right 右侧显示
 	 * @event {Function} change  选中发生变化触发
 	 */
 
-	import clientdb from './clientdb.js'
+	// import clientdb from './clientdb.js'
 	export default {
 		name: 'uniDataChecklist',
-		mixins: [clientdb],
+		// mixins: [clientdb],
+		mixins: [uniCloud.mixinDatacom],
 		props: {
 			mode: {
 				type: String,
@@ -101,60 +115,17 @@
 			},
 			selectedColor: {
 				type: String,
-				default: ''
+				default: '#007aff'
 			},
 			selectedTextColor: {
 				type: String,
-				default: ''
+				default: '#333'
 			},
-			// clientDB 相关
-			options: {
-				type: [Object, Array],
-				default () {
-					return {}
-				}
-			},
-			collection: {
+			emptyText: {
 				type: String,
-				default: ''
+				default: '暂无数据'
 			},
-			action: {
-				type: String,
-				default: ''
-			},
-			field: {
-				type: String,
-				default: ''
-			},
-			pageData: {
-				type: String,
-				default: 'add'
-			},
-			pageCurrent: {
-				type: Number,
-				default: 1
-			},
-			pageSize: {
-				type: Number,
-				default: 20
-			},
-			getcount: {
-				type: [Boolean, String],
-				default: false
-			},
-			orderby: {
-				type: String,
-				default: ''
-			},
-			where: {
-				type: [String, Object],
-				default: ''
-			},
-			getone: {
-				type: [Boolean, String],
-				default: false
-			},
-			manual: {
+			disabled: {
 				type: Boolean,
 				default: false
 			}
@@ -167,8 +138,7 @@
 				},
 				deep: true
 			},
-
-			listData(newVal) {
+			mixinDatacomResData(newVal) {
 				this.range = newVal
 				this.dataList = this.getDataList(this.getSelectedValue(newVal))
 			},
@@ -186,6 +156,7 @@
 					contentrefresh: '加载中',
 					contentnomore: '没有更多'
 				},
+				isLocal: true,
 				styles: {
 					selectedColor: '#007aff',
 					selectedTextColor: '#333',
@@ -196,10 +167,6 @@
 			this.form = this.getForm('uniForms')
 			this.formItem = this.getForm('uniFormsItem')
 			this.formItem && this.formItem.setValue(this.value)
-			this.styles = {
-				selectedColor: this.selectedColor,
-				selectedTextColor: this.selectedTextColor
-			}
 
 			if (this.formItem) {
 				if (this.formItem.name) {
@@ -209,16 +176,30 @@
 			}
 
 			if (this.localdata && this.localdata.length !== 0) {
+				this.isLocal = true
 				this.range = this.localdata
 				this.dataList = this.getDataList(this.getSelectedValue(this.range))
 			} else {
 				if (this.collection) {
+					this.isLocal = false
 					this.loadData()
 				}
 			}
 		},
 		methods: {
-			init(range) {},
+			loadData() {
+				this.mixinDatacomGet().then(res => {
+					this.mixinDatacomResData = res.result.data
+					if (this.mixinDatacomResData.length === 0) {
+						this.isLocal = false
+						this.mixinDatacomErrorMessage = this.emptyText
+					} else {
+						this.isLocal = true
+					}
+				}).catch(err => {
+					this.mixinDatacomErrorMessage = err.message
+				})
+			},
 			/**
 			 * 获取父元素实例
 			 */
@@ -270,60 +251,6 @@
 					this.dataList = this.getDataList(detail.value)
 				}
 			},
-			getLabelClass(item, index) {
-				let classes = []
-				switch (this.mode) {
-					case 'default':
-						item.disabled && classes.push('disabled-cursor')
-						break
-					case 'button':
-						classes.push(...['is-button', ...this.getClasses(item, 'button')])
-						break
-					case 'list':
-						if (this.multiple) {
-							classes.push('is-list-multiple-box')
-						} else {
-							classes.push('is-list-box')
-						}
-						item.disabled && classes.push('is-list-disabled')
-						index !== 0 && classes.push('is-list-border')
-						break
-					case 'tag':
-						classes.push(...['is-tag', ...this.getClasses(item, 'tag')])
-						break
-				}
-				classes = classes.join(' ')
-				return classes
-			},
-			getCheckboxClass(item, type = '') {
-				let classes = []
-				if (this.multiple) {
-					classes.push(...this.getClasses(item, 'default-multiple', type))
-				} else {
-					classes.push(...this.getClasses(item, 'default', type))
-				}
-				classes = classes.join(' ')
-				return classes
-			},
-			getTextClass(item) {
-				let classes = []
-				switch (this.mode) {
-					case 'default':
-						classes.push(...this.getClasses(item, 'list'))
-						break
-					case 'button':
-						classes.push(...this.getClasses(item, 'list'))
-						break
-					case 'list':
-						classes.push(...this.getClasses(item, 'list'))
-						break
-					case 'tag':
-						classes.push(...['is-tag-text', ...this.getClasses(item, 'tag-text')])
-						break
-				}
-				classes = classes.join(' ')
-				return classes
-			},
 
 			/**
 			 * 获取渲染的新数组
@@ -336,7 +263,6 @@
 				if (this.multiple) {
 					if (!Array.isArray(value)) {
 						value = []
-						// console.error('props 类型错误');
 					}
 				}
 				dataList.forEach((item, index) => {
@@ -380,7 +306,7 @@
 							}
 						}
 					}
-					this.setClass(item, index)
+					this.setStyles(item, index)
 					list[index] = item
 				})
 				return list
@@ -390,38 +316,15 @@
 			 * @param {Object} item
 			 * @param {Object} index
 			 */
-			setClass(item, index) {
-				// 设置 label 的 class
-				item.labelClass = this.getLabelClass(item, index)
-				// 设置 checkbox外层样式
-				item.checkboxBgClass = this.getCheckboxClass(item, '-bg')
-				// 设置 checkbox 内层样式
-				item.checkboxClass = this.getCheckboxClass(item)
-				// 设置文本样式
-				item.textClass = this.getTextClass(item)
-				// 设置 list 对勾右侧样式
-				item.listClass = this.getCheckboxClass(item, '-list')
-
+			setStyles(item, index) {
 				//  设置自定义样式
 				item.styleBackgroud = this.setStyleBackgroud(item)
 				item.styleIcon = this.setStyleIcon(item)
 				item.styleIconText = this.setStyleIconText(item)
 				item.styleRightIcon = this.setStyleRightIcon(item)
-			},
-			/**
-			 * 获取 class
-			 */
-			getClasses(item, name, type = '') {
-				let classes = []
-				item.disabled && classes.push('is-' + name + '-disabled' + type)
-				item.selected && classes.push('is-' + name + '-checked' + type)
 
-				if (this.mode !== 'button' || name === 'button') {
-					item.selected && item.disabled && classes.push('is-' + name + '-disabled-checked' + type)
-				}
-
-				return classes
 			},
+
 			/**
 			 * 获取选中值
 			 * @param {Object} range
@@ -442,73 +345,102 @@
 			 */
 			setStyleBackgroud(item) {
 				let styles = {}
-
-				if (item.selected) {
-					if (this.mode !== 'list') {
-						styles.borderColor = this.styles.selectedColor
-					}
-					if (this.mode === 'tag') {
-						styles.backgroundColor = this.styles.selectedColor
-					}
+				// if (item.selected) {
+				if (this.mode !== 'list') {
+					styles['border-color'] = item.selected ? this.selectedColor : '#DCDFE6'
 				}
-				return styles
+				if (this.mode === 'tag') {
+					styles['background-color'] = item.selected ? this.selectedColor : '#f5f5f5'
+				}
+				// }
+				let classles = ''
+				for (let i in styles) {
+					classles += `${i}:${styles[i]};`
+				}
+				return classles
 			},
 			setStyleIcon(item) {
 				let styles = {}
+				let classles = ''
+				// if (item.selected) {
+				styles['background-color'] = item.selected ? this.selectedColor : '#fff'
+				styles['border-color'] = item.selected ? this.selectedColor : '#DCDFE6'
 
-				if (item.selected) {
-					styles.backgroundColor = this.styles.selectedColor
-					styles.borderColor = this.styles.selectedColor
+				if (!item.selected && item.disabled) {
+					styles['background-color'] = '#F2F6FC'
+					styles['border-color'] = item.selected ? this.selectedColor : '#DCDFE6'
 				}
-				return styles
+
+				for (let i in styles) {
+					classles += `${i}:${styles[i]};`
+				}
+				// }
+				return classles
 			},
 			setStyleIconText(item) {
 				let styles = {}
-				if (item.selected) {
-					if (this.styles.selectedTextColor) {
-						styles.color = this.styles.selectedTextColor
-					} else {
-						if (this.mode === 'tag') {
-							styles.color = '#fff'
-						} else {
-							styles.color = this.styles.selectedColor
-						}
-					}
+				let classles = ''
+				// if (item.selected) {
+				// if (this.selectedTextColor) {
+				// 	styles.color = item.selected?this.selectedTextColor:'#999'
+				// } else {
+				if (this.mode === 'tag') {
+					styles.color = item.selected ? '#fff' : '#333'
+
+				} else {
+					styles.color = item.selected ? this.selectedColor : '#333'
 				}
-				return styles
+				if (!item.selected && item.disabled) {
+					styles.color = '#999'
+				}
+				// }
+				for (let i in styles) {
+					classles += `${i}:${styles[i]};`
+				}
+				// }
+
+				return classles
 			},
 			setStyleRightIcon(item) {
 				let styles = {}
-				if (item.selected) {
-					if (this.mode === 'list') {
-						styles.borderColor = this.styles.selectedColor
-					}
+				let classles = ''
+				// if (item.selected) {
+				if (this.mode === 'list') {
+					styles['border-color'] = item.selected ? this.styles.selectedColor : '#DCDFE6'
 				}
+				for (let i in styles) {
+					classles += `${i}:${styles[i]};`
+				}
+				// }
 
-				return styles
+				return classles
 			}
+			// setColor(){
+			// 	return
+			// }
 		}
 	}
 </script>
 
 <style scoped>
-	@charset "UTF-8";
+	.uni-data-loading {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		height: 36px;
+		padding-left: 10px;
+		color: #999;
+	}
 
 	.uni-data-checklist {
 		position: relative;
 		z-index: 0;
-		/* min-height: 36px; */
 	}
 
-	.uni-data-loading {
-		display: flex;
-		align-items: center;
-		/* justify-content: center; */
-		height: 36px;
-		padding-left: 10px;
-	}
-
-	.checklist-group {
+	.uni-data-checklist .checklist-group {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -516,45 +448,27 @@
 		flex-wrap: wrap;
 	}
 
-	.checklist-box {
+	.uni-data-checklist .checklist-group.is-list {
+		flex-direction: column;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
+		position: relative;
 		margin: 5px 0;
 		margin-right: 25px;
 	}
 
-	.checklist-text {
-		font-size: 14px;
-		color: #333;
-		margin-left: 5px;
-		transition: color 0.2s;
+	.uni-data-checklist .checklist-group .checklist-box .hidden {
+		position: absolute;
+		opacity: 0;
 	}
 
-	.is-button {
-		margin-right: 10px;
-		padding: 3px 15px;
-		border: 1px #DCDFE6 solid;
-		border-radius: 3px;
-		transition: border-color 0.2s;
-	}
-
-	.is-list {
-		flex-direction: column;
-	}
-
-	.is-list-box {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		padding: 10px 15px;
-		padding-left: 0;
-		margin: 0;
-	}
-
-	.checklist-content {
+	.uni-data-checklist .checklist-group .checklist-box .checklist-content {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -564,11 +478,234 @@
 		justify-content: space-between;
 	}
 
-	.list-content {
+	.uni-data-checklist .checklist-group .checklist-box .checklist-content .checklist-text {
+		font-size: 14px;
+		color: #333;
 		margin-left: 5px;
+		line-height: 14px;
 	}
 
-	.is-list-multiple-box {
+	.uni-data-checklist .checklist-group .checklist-box .checklist-content .checkobx__list {
+		border: 1px solid #fff;
+		border-left: 0;
+		border-top: 0;
+		height: 12px;
+		width: 6px;
+		transform-origin: center;
+		transform: rotate(45deg);
+		opacity: 0;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box .checkbox__inner {
+		/* #ifndef APP-NVUE */
+		flex-shrink: 0;
+		box-sizing: border-box;
+		/* #endif */
+		position: relative;
+		width: 16px;
+		height: 16px;
+		border: 1px solid #DCDFE6;
+		border-radius: 2px;
+		background-color: #fff;
+		z-index: 1;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box .checkbox__inner .checkbox__inner-icon {
+		position: absolute;
+		/* #ifdef APP-NVUE */
+		top: 2px;
+		/* #endif */
+		/* #ifndef APP-NVUE */
+		top: 1px;
+		/* #endif */
+		left: 5px;
+		height: 8px;
+		width: 4px;
+		border: 1px solid #fff;
+		border-left: 0;
+		border-top: 0;
+		opacity: 0;
+		transform-origin: center;
+		transform: rotate(40deg);
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box .radio__inner {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		/* #ifndef APP-NVUE */
+		flex-shrink: 0;
+		box-sizing: border-box;
+		/* #endif */
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		width: 16px;
+		height: 16px;
+		border: 1px solid #DCDFE6;
+		border-radius: 16px;
+		background-color: #fff;
+		z-index: 1;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box .radio__inner .radio__inner-icon {
+		width: 8px;
+		height: 8px;
+		border-radius: 10px;
+		opacity: 0;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-disable {
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-disable .checkbox__inner {
+		background-color: #F2F6FC;
+		border-color: #DCDFE6;
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-disable .radio__inner {
+		background-color: #F2F6FC;
+		border-color: #DCDFE6;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-disable .checklist-text {
+		color: #999;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked .checkbox__inner {
+		border-color: #007aff;
+		background-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked .checkbox__inner .checkbox__inner-icon {
+		opacity: 1;
+		transform: rotate(45deg);
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked .radio__inner {
+		border-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked .radio__inner .radio__inner-icon {
+		opacity: 1;
+		background-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked .checklist-text {
+		color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked.is-disable .checkbox__inner {
+		opacity: 0.4;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--default.is-checked.is-disable .checklist-text {
+		opacity: 0.4;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button {
+		margin-right: 10px;
+		padding: 5px 15px;
+		border: 1px #DCDFE6 solid;
+		border-radius: 3px;
+		transition: border-color 0.2s;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-disable {
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+		border: 1px #eee solid;
+		opacity: 0.4;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-disable .checkbox__inner {
+		background-color: #F2F6FC;
+		border-color: #DCDFE6;
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-disable .radio__inner {
+		background-color: #F2F6FC;
+		border-color: #DCDFE6;
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-disable .checklist-text {
+		color: #999;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked {
+		border-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked .checkbox__inner {
+		border-color: #007aff;
+		background-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked .checkbox__inner .checkbox__inner-icon {
+		opacity: 1;
+		transform: rotate(45deg);
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked .radio__inner {
+		border-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked .radio__inner .radio__inner-icon {
+		opacity: 1;
+		background-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked .checklist-text {
+		color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--button.is-checked.is-disable {
+		opacity: 0.4;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--tag {
+		margin-right: 10px;
+		padding: 5px 10px;
+		border: 1px #DCDFE6 solid;
+		border-radius: 3px;
+		background-color: #f5f5f5;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--tag .checklist-text {
+		margin: 0;
+		color: #333;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--tag.is-disable {
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+		opacity: 0.4;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--tag.is-checked {
+		background-color: #007aff;
+		border-color: #007aff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--tag.is-checked .checklist-text {
+		color: #fff;
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--list {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -577,93 +714,17 @@
 		margin: 0;
 	}
 
-	.is-list-border {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-list-border {
 		border-top: 1px #eee solid;
 	}
 
-	.is-tag {
-		margin-right: 10px;
-		padding: 3px 10px;
-		border: 1px #eee solid;
-		border-radius: 3px;
-		background-color: #f5f5f5;
-		/* transition: border-color 0.1s; */
-	}
-
-	.is-tag-text {
-		margin: 0;
-		color: #666;
-	}
-
-	.checkbox__inner {
-		flex-shrink: 0;
-		position: relative;
-		border: 1px solid #DCDFE6;
-		border-radius: 2px;
-		box-sizing: border-box;
-		width: 16px;
-		height: 16px;
-		background-color: #fff;
-		z-index: 1;
-		transition: border-color 0.1s;
-	}
-
-	.checkbox__inner-icon {
-		border: 1px solid #fff;
-		border-left: 0;
-		border-top: 0;
-		height: 8px;
-		left: 5px;
-		position: absolute;
-		top: 1px;
-		width: 3px;
-		opacity: 0;
-		transition: transform .2s;
-		transform-origin: center;
-		transform: rotate(40deg) scaleY(0.4);
-	}
-
-	.radio__inner {
-		flex-shrink: 0;
-		/* #ifndef APP-NVUE */
-		display: flex;
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-disable {
+		/* #ifdef H5 */
+		cursor: not-allowed;
 		/* #endif */
-		justify-content: center;
-		align-items: center;
-		position: relative;
-		border: 1px solid #DCDFE6;
-		border-radius: 2px;
-		box-sizing: border-box;
-		width: 16px;
-		height: 16px;
-		border-radius: 16px;
-		background-color: #fff;
-		z-index: 1;
-		transition: border-color .3s;
 	}
 
-	.radio__inner-icon {
-		width: 8px;
-		height: 8px;
-		border-radius: 10px;
-		opacity: 0;
-		transition: transform .3s;
-	}
-
-	.checkobx__list {
-		border: 1px solid #fff;
-		border-left: 0;
-		border-top: 0;
-		height: 12px;
-		width: 6px;
-		transform-origin: center;
-		opacity: 0;
-		transition: all 0.3s;
-		transform: rotate(45deg);
-	}
-
-	/* 禁用样式 */
-	.is-default-disabled-bg {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-disable .checkbox__inner {
 		background-color: #F2F6FC;
 		border-color: #DCDFE6;
 		/* #ifdef H5 */
@@ -671,151 +732,34 @@
 		/* #endif */
 	}
 
-	.is-default-multiple-disabled-bg {
-		background-color: #F2F6FC;
-		border-color: #DCDFE6;
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
-	}
-
-	.is-default-disabled {
-		border-color: #F2F6FC;
-	}
-
-	.is-default-multiple-disabled {
-		border-color: #F2F6FC;
-	}
-
-	.is-list-disabled {
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-disable .checklist-text {
 		color: #999;
 	}
 
-	.is-list-disabled-checked {
-		color: #a1dcc1;
-	}
-
-	.is-button-disabled {
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
-		border-color: #EBEEF5;
-	}
-
-	.is-button-text-disabled {
-		color: #C0C4CC;
-	}
-
-	.is-button-disabled-checked {
-		border-color: #a1dcc1;
-	}
-
-	.is-tag-disabled {
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
-		border-color: #e9e9eb;
-		background-color: #f4f4f5;
-	}
-
-	.is-tag-text-disabled {
-		color: #bcbec2;
-	}
-
-	/* 选中样式 */
-	.is-default-checked-bg {
-		border-color: #007aff;
-	}
-
-	.is-default-multiple-checked-bg {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checkbox__inner {
 		border-color: #007aff;
 		background-color: #007aff;
 	}
 
-	.is-default-checked {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checkbox__inner .checkbox__inner-icon {
 		opacity: 1;
-		background-color: #007aff;
-		transform: rotate(45deg) scaleY(1);
+		transform: rotate(45deg);
 	}
 
-	.is-default-multiple-checked {
-		opacity: 1;
-		transform: rotate(45deg) scaleY(1);
-	}
-
-	.is-default-disabled-checked-bg {
-		opacity: 0.4;
-	}
-
-	.is-default-multiple-disabled-checked-bg {
-		opacity: 0.4;
-	}
-
-	.is-default-checked-list {
-		border-color: #007aff;
-		opacity: 1;
-		transform: rotate(45deg) scaleY(1);
-	}
-
-	.is-default-multiple-checked-list {
-		border-color: #007aff;
-		opacity: 1;
-		transform: rotate(45deg) scaleY(1);
-	}
-
-	.is-list-disabled-checked {
-		opacity: 0.4;
-	}
-
-	.is-default-disabled-checked-list {
-		opacity: 0.4;
-	}
-
-	.is-default-multiple-disabled-checked-list {
-		opacity: 0.4;
-	}
-
-	.is-button-checked {
-		border-color: #007aff;
-	}
-
-	.is-button-disabled-checked {
-		opacity: 0.4;
-	}
-
-	.is-list-checked {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checklist-text {
 		color: #007aff;
 	}
 
-	.is-tag-checked {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checklist-content .checkobx__list {
+		opacity: 1;
 		border-color: #007aff;
-		background-color: #007aff;
 	}
 
-	.is-tag-text-checked {
-		color: #fff;
-	}
-
-	.is-tag-disabled-checked {
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked.is-disable .checkbox__inner {
 		opacity: 0.4;
 	}
 
-	.disabled-cursor {
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
-	}
-
-	.is-wrap {
-		flex-direction: column;
-	}
-
-	.hidden {
-		/* #ifdef MP-ALIPAY */
-		display: none;
-		/* #endif */
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked.is-disable .checklist-text {
+		opacity: 0.4;
 	}
 </style>

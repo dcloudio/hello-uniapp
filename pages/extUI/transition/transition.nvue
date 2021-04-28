@@ -1,29 +1,18 @@
 <template>
 	<view>
 		<text class="example-info">过渡动画，通常用于元素的过渡效果，例如淡隐淡出效果，遮罩层的效果、放大缩小的效果等</text>
-		<uni-section title="基础过渡动画" type="line"></uni-section>
-		<view class="example-body">
-			<button class="transition-button" type="primary" @click="open(['fade'])">fade</button>
-			<button class="transition-button" type="primary" @click="open(['slide-top'])">slide-top</button>
-			<button class="transition-button" type="primary" @click="open(['slide-left'])">slide-left</button>
-			<button class="transition-button" type="primary" @click="open(['slide-right'])">slide-right</button>
-			<button class="transition-button" type="primary" @click="open(['slide-bottom'])">slide-bottom</button>
-			<button class="transition-button" type="primary" @click="open(['zoom-in','fade'])">zoom-in</button>
-			<button class="transition-button" type="primary" @click="open(['zoom-out','fade'])">zoom-out</button>
+		<uni-section title="示例" type="line"></uni-section>
+		<view class="example">
+			<uni-transition ref="ani" custom-class="transition" :mode-class="modeClass" :styles="styles" :show="show"><text class="text">示例元素</text></uni-transition>
 		</view>
-		<uni-section title="组合过渡动画" type="line"></uni-section>
+		<uni-section title="操作" type="line"></uni-section>
 		<view class="example-body">
-			<button class="transition-button" type="primary" @click="mask">透明遮罩层</button>
-			<button class="transition-button" type="primary" @click="open(['fade','zoom-out','slide-top'])">组合动画示例一</button>
-			<button class="transition-button" type="primary" @click="open(['zoom-in','slide-bottom','fade'])">组合动画示例二</button>
-			<button class="transition-button" type="primary" @click="open(['slide-left','slide-top','fade'])">组合动画示例三</button>
+			<button class="transition-button" type="default" @click="handle('fade')">淡隐淡出</button>
+			<button class="transition-button" type="default" @click="handle(['fade', 'slide-top'])">由上至下</button>
+			<button class="transition-button" type="default" @click="handle(['fade', 'slide-right'])">由右至左过</button>
+			<button class="transition-button" type="default" @click="handle(['fade', 'zoom-in'])">由小到大过</button>
+			<button class="transition-button" type="default" @click="custom">自定义动画</button>
 		</view>
-		<!-- 遮罩 -->
-		<uni-transition :mode-class="['fade']" :styles="maskClass" :show="show" @click="onTap" />
-		<!-- 过渡 -->
-		<uni-transition :duration="500" :mode-class="modeClass" :styles="transfromClass" :show="transShow" @click="onTap" @change="change">
-			<text class="box">Test</text>
-		</uni-transition>
 	</view>
 </template>
 
@@ -32,45 +21,87 @@
 		components: {},
 		data() {
 			return {
-				show: false,
-				transShow: false,
-				modeClass: ['fade'],
-				maskClass: {
-					'position': 'fixed',
-					'bottom': 0,
-					'top': 0,
-					'left': 0,
-					'right': 0,
-					'background-color': 'rgba(0, 0, 0, 0.4)'
-				},
-				transfromClass: {
-					'position': 'fixed',
-					'bottom': 0,
-					'top': 0,
-					'left': 0,
-					'right': 0,
-					/* #ifndef APP-NVUE */
-					'display': 'flex',
-					/* #endif */
-					'justify-content': 'center',
-					'align-items': 'center'
-				}
+				show: true,
+				modeClass: 'fade',
+				styles: {}
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			// #ifdef APP-NVUE
+			this.styles = {
+				justifyContent: 'center',
+				alignItems: 'center',
+				width: '100px',
+				height: '100px',
+				borderRadius: '5px',
+				textAlign: 'center',
+				backgroundColor: '#4cd964',
+				boxShadow: '0 0 5px 1px rgba(0,0,0,0.2)'
+			}
+			// #endif
+		},
 		methods: {
-			mask() {
-				this.show = true
+			handle(type) {
+				this.show = !this.show
+				this.modeClass = type
 			},
-			open(mode) {
-				this.modeClass = mode
-				this.transShow = !this.transShow
-			},
-			onTap() {
-				this.transShow = this.show = false
-			},
-			change(e) {
-				console.log(e.detail);
+			custom() {
+				// TODO 下面修改宽高在百度下还有些问题待修复
+				// this.$refs.ani.step({
+				// 	width: '200px'
+				// })
+				// this.$refs.ani.step({
+				// 	height: '150px'
+				// },{
+				// 	delay:100,
+				// 	duration:200
+				// })
+				this.$refs.ani.step({
+					width: '100px',
+					height: '100px',
+					rotate: '180'
+				}, {
+					delay: 200,
+					duration: 300
+				})
+				this.$refs.ani.step({
+					width: '100px',
+					height: '100px',
+					rotate: '0'
+				}, {
+					transformOrigin: '50% 50%'
+				})
+
+				this.$refs.ani.step({
+					translateX: '-100px'
+				}, {
+					timingFunction: 'ease-in',
+					duration: 100
+				})
+
+				this.$refs.ani.step({
+					translateX: '100px'
+				}, {
+					timingFunction: 'ease',
+					duration: 300
+				})
+
+				this.$refs.ani.step({
+					translateX: '50px',
+					scale: 1.5
+				}, {
+					timingFunction: 'linear',
+					duration: 100
+				})
+				this.$refs.ani.step({
+					translateX: '0px',
+					scale: 1
+				}, {
+					timingFunction: 'linear',
+					duration: 150
+				})
+
+				this.$refs.ani.run()
 			}
 		}
 	}
@@ -176,30 +207,45 @@
 		background-color: #4ca2ff;
 	}
 
-	.example-body {
-		padding: 15px 20px;
+	.example {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: center;
+		align-items: center;
+		height: 150px;
+		background-color: #fff;
+	}
+
+	.example-body {
+		padding: 10px 20px;
+		padding-bottom: 0px;
 	}
 
 	.transition-button {
 		/* #ifndef APP-NVUE */
-		/* width: 100%; */
+		width: 100%;
 		/* #endif */
-		padding: 0 15px;
-		margin: 10px 5px;
+		flex: 1;
+		margin-bottom: 10px;
 	}
 
-	.box {
-		color: #fff;
+	/* #ifndef APP-NVUE */
+	.example ::v-deep .transition {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		width: 100px;
 		height: 100px;
-		line-height: 100px;
+		border-radius: 5px;
 		text-align: center;
-		background-color: #4CD964;
+		background-color: #4cd964;
+		box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+	}
+
+	/* #endif */
+	.text {
+		font-size: 14px;
+		color: #fff;
 	}
 </style>

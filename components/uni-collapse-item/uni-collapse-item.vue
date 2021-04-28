@@ -1,15 +1,18 @@
 <template>
-	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }" class="uni-collapse-cell">
-		<view :class="{ 'uni-collapse-cell--disabled': disabled}" class="uni-collapse-cell__title" @click="onClick">
+	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }"
+	 class="uni-collapse-cell">
+		<view :class="{ 'uni-collapse-cell--disabled': disabled}" class="uni-collapse-cell__title"  @click="onClick">
 			<image v-if="thumb" :src="thumb" class="uni-collapse-cell__title-img" />
 			<text class="uni-collapse-cell__title-text">{{ title }}</text>
 			<!-- #ifdef MP-ALIPAY -->
-			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
+			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }"
+			 class="uni-collapse-cell__title-arrow">
 				<uni-icons color="#bbb" size="20" type="arrowdown" />
 			</view>
 			<!-- #endif -->
 			<!-- #ifndef MP-ALIPAY -->
-			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
+			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }"
+			 class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
 			<!-- #endif -->
 		</view>
 		<view :class="{'uni-collapse-cell__content--hide':!isOpen}" class="uni-collapse-cell__content">
@@ -21,7 +24,6 @@
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
 	/**
 	 * CollapseItem 折叠面板子组件
 	 * @description 折叠面板子组件
@@ -32,9 +34,6 @@
 	 */
 	export default {
 		name: 'UniCollapseItem',
-		components: {
-			uniIcons
-		},
 		props: {
 			title: {
 				// 列表标题
@@ -112,34 +111,38 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.uni-collapse-cell {
 		flex-direction: column;
-		border-color: #e5e5e5;
+		border-color: $uni-border-color;
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
 	}
 
+
 	.uni-collapse-cell--hover {
-		background-color: #f1f1f1;
+		background-color: $uni-bg-color-hover;
 	}
 
 	.uni-collapse-cell--open {
-		background-color: #f1f1f1;
+		background-color: $uni-bg-color-hover;
 	}
 
 	.uni-collapse-cell--disabled {
-		background-color: #f1f1f1;
+		background-color: $uni-bg-color-hover;
 		/* #ifdef H5 */
 		cursor: not-allowed !important;
 		/* #endif */
+		// opacity: 0.3;
 	}
+
 
 	.uni-collapse-cell--hide {
 		height: 48px;
 	}
 
 	.uni-collapse-cell--animation {
+		// transition: transform 0.3s ease;
 		transition-property: transform;
 		transition-duration: 0.3s;
 		transition-timing-function: ease;
@@ -164,12 +167,12 @@
 	}
 
 	.uni-collapse-cell__title:active {
-		background-color: #f1f1f1;
+		background-color: $uni-bg-color-hover;
 	}
 
 	.uni-collapse-cell__title-img {
-		height: 26px;
-		width: 26px;
+		height: $uni-img-size-base;
+		width: $uni-img-size-base;
 		margin-right: 10px;
 	}
 
@@ -178,6 +181,7 @@
 		height: 20px;
 		transform: rotate(0deg);
 		transform-origin: center center;
+
 	}
 
 	.uni-collapse-cell__title-arrow-active {
@@ -186,7 +190,7 @@
 
 	.uni-collapse-cell__title-text {
 		flex: 1;
-		font-size: 14px;
+		font-size: $uni-font-size-base;
 		/* #ifndef APP-NVUE */
 		white-space: nowrap;
 		color: inherit;

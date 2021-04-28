@@ -144,7 +144,9 @@
 		border-radius: 100px;
 		margin-left: 6px;
 		background-color: rgba(0, 0, 0, 0.4);
+		/* #ifndef APP-NVUE */
 		cursor: pointer;
+		/* #endif */
 		/* #ifdef H5 */
 		/* #endif */
 	}

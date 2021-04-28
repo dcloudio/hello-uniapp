@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-nav-bar color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft" left-text="返回" title="标题" @clickLeft="back" />
+		<uni-nav-bar :fixed="true" color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft" left-text="返回" title="uni-nav-bar 标题" @clickLeft="back" />
 		<text class="example-info">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
@@ -184,6 +184,10 @@
 
 	.word-btn--hover {
 		background-color: #4ca2ff;
+	}
+
+	page {
+		height: 120%;
 	}
 
 	.uni-nav-bar-text {

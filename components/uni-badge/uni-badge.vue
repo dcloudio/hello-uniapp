@@ -81,7 +81,7 @@
 		background-color: #f1f1f1;
 		background-color: transparent;
 		text-align: center;
-		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		font-family: "Helvetica Neue", Helvetica, sans-serif;
 		font-size: 12px;
 		padding: 0px 6px;
 		/* #ifdef H5 */

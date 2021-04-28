@@ -83,11 +83,10 @@
 		}
 	}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 	.uni-popup-share {
 		background-color: #fff;
 	}
-
 	.uni-share-title {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -97,12 +96,10 @@
 		justify-content: center;
 		height: 40px;
 	}
-
 	.uni-share-title-text {
 		font-size: 14px;
 		color: #666;
 	}
-
 	.uni-share-content {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -111,7 +108,7 @@
 		justify-content: center;
 		padding-top: 10px;
 	}
-
+	
 	.uni-share-content-box {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -120,7 +117,7 @@
 		flex-wrap: wrap;
 		width: 360px;
 	}
-
+	
 	.uni-share-content-item {
 		width: 90px;
 		/* #ifndef APP-NVUE */
@@ -131,22 +128,22 @@
 		padding: 10px 0;
 		align-items: center;
 	}
-
+	
 	.uni-share-content-item:active {
 		background-color: #f5f5f5;
 	}
-
+	
 	.uni-share-image {
 		width: 30px;
 		height: 30px;
 	}
-
+	
 	.uni-share-text {
 		margin-top: 10px;
 		font-size: 14px;
 		color: #3B4144;
 	}
-
+	
 	.uni-share-button-box {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -154,14 +151,14 @@
 		flex-direction: row;
 		padding: 10px 15px;
 	}
-
+	
 	.uni-share-button {
 		flex: 1;
 		border-radius: 50px;
 		color: #666;
 		font-size: 16px;
 	}
-
+	
 	.uni-share-button::after {
 		border-radius: 50px;
 	}

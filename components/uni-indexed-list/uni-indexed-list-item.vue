@@ -19,12 +19,8 @@
 </template>
 
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
 	export default {
 		name: 'UniIndexedList',
-		components: {
-			uniIcons
-		},
 		props: {
 			loaded: {
 				type: Boolean,

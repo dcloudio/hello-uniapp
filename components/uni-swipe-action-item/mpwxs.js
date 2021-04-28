@@ -101,7 +101,6 @@ export default {
 				})
 			}
 		},
-		// #ifdef H5
 		onClickForPC(index, item, position) {
 			// #ifdef H5
 			if(!isPC()) return
@@ -112,7 +111,6 @@ export default {
 				position
 			})
 		},
-		// #endif
 		getButtonSize() {
 			const views = uni.createSelectorQuery().in(this)
 			views

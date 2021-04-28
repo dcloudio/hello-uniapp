@@ -11,8 +11,10 @@
 					</view>
 					<!-- 头像组 -->
 					<view v-else class="uni-list-chat__header">
-						<view v-for="(item, index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }">
-							<image class="uni-list-chat__header-image" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }" :src="item.url" mode="aspectFill"></image>
+						<view v-for="(item, index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar"
+						 :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }">
+							<image class="uni-list-chat__header-image" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }" :src="item.url"
+							 mode="aspectFill"></image>
 						</view>
 					</view>
 				</view>
@@ -214,24 +216,54 @@
 	};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	$background-color: #fff;
+	$divide-line-color: #e5e5e5;
+	$avatar-width: 45px;
+	$avatar-border-radius: 5px;
+	$avatar-border-color: #eee;
+	$avatar-border-width: 1px;
+	$title-size: 16px;
+	$title-color: #3b4144;
+	$title-weight: normal;
+	$note-size: 12px;
+	$note-color: #999;
+	$note-weight: normal;
+	$right-text-size: 12px;
+	$right-text-color: #999;
+	$right-text-weight: normal;
+	$badge-left: 0px;
+	$badge-top: 0px;
+	$dot-width: 10px;
+	$dot-height: 10px;
+	$badge-size: 18px;
+	$badge-font: 12px;
+	$badge-color: #fff;
+	$badge-background-color: #ff5a5f;
+	$badge-space: 6px;
+	$hover: #f5f5f5;
+
 	.uni-list-chat {
-		font-size: 16px;
+		font-size: $uni-font-size-lg;
 		position: relative;
 		flex-direction: column;
 		justify-content: space-between;
-		background-color: #fff;
+		background-color: $background-color;
 	}
 
+	// .uni-list-chat--disabled {
+	// 	opacity: 0.3;
+	// }
+
 	.uni-list-chat--hover {
-		background-color: #f5f5f5;
+		background-color: $hover;
 	}
 
 	.uni-list--border {
 		position: relative;
-		margin-left: 15px;
+		margin-left: $uni-spacing-row-lg;
 		/* #ifdef APP-PLUS */
-		border-top-color: #e5e5e5;
+		border-top-color: $divide-line-color;
 		border-top-style: solid;
 		border-top-width: 0.5px;
 		/* #endif */
@@ -247,7 +279,7 @@
 		content: '';
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
-		background-color: #e5e5e5;
+		background-color: $divide-line-color;
 	}
 
 	.uni-list-item--first:after {
@@ -255,6 +287,7 @@
 	}
 
 	/* #endif */
+
 	.uni-list-chat--first {
 		border-top-width: 0px;
 	}
@@ -278,6 +311,7 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		/* #endif */
+
 		/* #ifdef APP-NVUE */
 		lines: 2;
 		/* #endif */
@@ -290,7 +324,7 @@
 		/* #endif */
 		flex-direction: row;
 		flex: 1;
-		padding: 10px 15px;
+		padding: $uni-spacing-row-base $uni-spacing-row-lg;
 		position: relative;
 		overflow: hidden;
 	}
@@ -313,12 +347,13 @@
 		height: 50px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		width: 45px;
-		height: 45px;
+		width: $avatar-width;
+		height: $avatar-width;
 		/* #endif */
-		border-radius: 5px;
-		border-color: #eee;
-		border-width: 1px;
+
+		border-radius: $avatar-border-radius;
+		border-color: $avatar-border-color;
+		border-width: $avatar-border-width;
 		border-style: solid;
 		overflow: hidden;
 	}
@@ -327,8 +362,8 @@
 		/* #ifndef APP-PLUS */
 		box-sizing: border-box;
 		display: flex;
-		width: 45px;
-		height: 45px;
+		width: $avatar-width;
+		height: $avatar-width;
 		/* #endif */
 		/* #ifdef APP-NVUE */
 		width: 50px;
@@ -345,8 +380,8 @@
 		height: 50px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		width: 45px;
-		height: 45px;
+		width: $avatar-width;
+		height: $avatar-width;
 		/* #endif */
 	}
 
@@ -393,23 +428,23 @@
 		/* #endif */
 		flex-direction: column;
 		justify-content: space-between;
-		padding-left: 10px;
+		padding-left: $uni-spacing-row-base;
 		flex: 1;
 		overflow: hidden;
 	}
 
 	.uni-list-chat__content-title {
-		font-size: 16px;
-		color: #3b4144;
-		font-weight: normal;
+		font-size: $title-size;
+		color: $title-color;
+		font-weight: $title-weight;
 		overflow: hidden;
 	}
 
 	.uni-list-chat__content-note {
 		margin-top: 3px;
-		color: #999;
-		font-size: 12px;
-		font-weight: normal;
+		color: $note-color;
+		font-size: $note-size;
+		font-weight: $title-weight;
 		overflow: hidden;
 	}
 
@@ -425,9 +460,9 @@
 	}
 
 	.uni-list-chat__content-extra-text {
-		color: #999;
-		font-size: 12px;
-		font-weight: normal;
+		color: $right-text-color;
+		font-size: $right-text-size;
+		font-weight: $right-text-weight;
 		overflow: hidden;
 	}
 
@@ -438,8 +473,8 @@
 		top: 3px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		left: calc(45px + 10px - 6px + 0px);
-		top: calc(10px/ 2 + 1px + 0px);
+		left: calc(#{$avatar-width} + 10px - #{$badge-space} + #{$badge-left});
+		top: calc(#{$uni-spacing-row-base}/ 2 + 1px + #{$badge-top});
 		/* #endif */
 	}
 
@@ -450,19 +485,20 @@
 		justify-content: center;
 		align-items: center;
 		border-radius: 100px;
-		background-color: #ff5a5f;
+		background-color: $badge-background-color;
 	}
 
 	.uni-list-chat__badge-text {
-		color: #fff;
-		font-size: 12px;
+		color: $badge-color;
+		font-size: $badge-font;
 	}
 
 	.uni-badge--single {
 		/* #ifndef APP-NVUE */
+		// left: calc(#{$avatar-width} + 7px + #{$badge-left});
 		/* #endif */
-		width: 18px;
-		height: 18px;
+		width: $badge-size;
+		height: $badge-size;
 	}
 
 	.uni-badge--complex {
@@ -472,8 +508,8 @@
 		/* #ifndef APP-NVUE */
 		width: auto;
 		/* #endif */
-		height: 18px;
-		padding: 0 6px;
+		height: $badge-size;
+		padding: 0 $badge-space;
 	}
 
 	.uni-badge--dot {
@@ -482,10 +518,10 @@
 		top: 6px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		left: calc(45px + 15px - 10px/ 2 + 1px + 0px);
+		left: calc(#{$avatar-width} + 15px - #{$dot-width}/ 2 + 1px + #{$badge-left});
 		/* #endif */
-		width: 10px;
-		height: 10px;
+		width: $dot-width;
+		height: $dot-height;
 		padding: 0;
 	}
 

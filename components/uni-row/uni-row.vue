@@ -77,6 +77,7 @@
 		}
 	};
 </script>
+
 <style scoped>
 	.uni-row {
 		position: relative;
@@ -87,12 +88,9 @@
 		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		/* #endif */
-		/* #ifndef APP-NVUE */
-		/* #endif */
-		/* #ifndef MP-QQ || MP-TOUTIAO || MP-BAIDU */
-		/* #endif */
 	}
 
+	/* #ifndef APP-NVUE */
 	.uni-row::before,
 	.uni-row::after {
 		display: table;
@@ -103,6 +101,8 @@
 		clear: both;
 	}
 
+	/* #endif */
+	/* #ifndef MP-QQ || MP-TOUTIAO || MP-BAIDU */
 	.uni-row--flex {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -110,13 +110,13 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		flex: 1;
-		/* #ifndef APP-NVUE */
-		/* #endif */
 	}
 
 	.uni-row--flex:before,
 	.uni-row--flex:after {
+		/* #ifndef APP-NVUE */
 		display: none;
+		/* #endif */
 	}
 
 	.uni-row--flex-justify-center {
@@ -142,6 +142,8 @@
 	.uni-row--flex-align-bottom {
 		align-items: flex-end;
 	}
+
+	/* #endif */
 
 	/* #ifdef MP-WEIXIN || MP-TOUTIAO || MP-QQ */
 	:host {

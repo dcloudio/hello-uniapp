@@ -28,7 +28,6 @@
 	</view>
 </template>
 <script>
-	import uniIcons from '../uni-icons/uni-icons.vue'
 	import indexedListItem from './uni-indexed-list-item.vue'
 	// #ifdef APP-NVUE
 	const dom = weex.requireModule('dom');
@@ -84,7 +83,6 @@
 	export default {
 		name: 'UniIndexedList',
 		components: {
-			uniIcons,
 			indexedListItem
 		},
 		props: {
