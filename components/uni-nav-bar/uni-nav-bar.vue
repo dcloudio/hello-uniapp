@@ -219,8 +219,10 @@
 	.uni-navbar--fixed {
 		position: fixed;
 		z-index: 998;
+		/* #ifndef APP-NVUE */
 		left: var(--window-left);
 		right: var(--window-right);
+		/* #endif */
 	}
 
 	.uni-navbar--shadow {

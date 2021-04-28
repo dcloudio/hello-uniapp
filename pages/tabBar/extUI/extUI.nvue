@@ -26,8 +26,7 @@
 				hideList: [
 					'load-more'
 				],
-				lists: [
-					{
+				lists: [{
 						name: "badge 数字角标",
 						url: "badge"
 					},
@@ -44,12 +43,12 @@
 						url: "collapse"
 					},
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "combox 组合框",
 						url: "combox"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "countdown 倒计时",
 						url: "countdown"
@@ -63,23 +62,23 @@
 						url: "data-picker"
 					},
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "datePicker 日期选择器",
 						url: "date-picker"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "dateformat 日期格式化",
 						url: "dateformat"
 					},
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "datetimePicker 日期选择器",
 						url: "datetime-picker"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "drawer 抽屉",
 						url: "drawer"
@@ -97,19 +96,19 @@
 						url: "fav"
 					},
 
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
 					{
 						name: "field 输入框",
 						url: "field"
 					},
-					// #endif
+					// #endif 
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "filePicker 文件选择上传",
 						url: "file-picker"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "forms 表单",
 						url: "forms"
@@ -134,7 +133,6 @@
 						name: "indexedList 索引列表",
 						url: "indexed-list"
 					},
-
 					{
 						name: "link 超链接",
 						url: "link"
@@ -180,12 +178,12 @@
 						url: "search-bar"
 					},
 
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
 					{
 						name: "section 标题栏",
 						url: "section"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "segmentedControl 分段器",
 						url: "segmented-control"
@@ -203,12 +201,12 @@
 						url: "swiper-dot"
 					},
 
-					// #ifndef APP-NVUE || MP-TOUTIAO
+					// #ifndef APP-NVUE || MP-TOUTIAO 
 					{
 						name: "table 表格",
 						url: "table"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "tag 标签",
 						url: "tag"

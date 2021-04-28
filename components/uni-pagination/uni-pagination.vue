@@ -1,28 +1,31 @@
 <template>
 	<view class="uni-pagination">
-		<view class="uni-pagination__total is-phone-hide">
-			共 {{total}} 条
-		</view>
+		<view class="uni-pagination__total is-phone-hide">共 {{ total }} 条</view>
 		<view class="uni-pagination__btn" :class="currentIndex === 1 ? 'uni-pagination--disabled' : 'uni-pagination--enabled'" :hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickLeft">
-			<template v-if="showIcon===true || showIcon === 'true'">
+			<template v-if="showIcon === true || showIcon === 'true'">
 				<uni-icons color="#666" size="16" type="arrowleft" />
 			</template>
-			<template v-else><text class="uni-pagination__child-btn">{{ prevText }}</text></template>
+			<template v-else>
+				<text class="uni-pagination__child-btn">{{ prevText }}</text>
+			</template>
 		</view>
 		<view class="uni-pagination__num uni-pagination__num-flex-none">
 			<view class="uni-pagination__num-current">
-				<text class="uni-pagination__num-current-text is-pc-hide" style="color:#409EFF">{{ currentIndex }}</text><text class="uni-pagination__num-current-text is-pc-hide">/{{ maxPage || 0 }}</text>
+				<text class="uni-pagination__num-current-text is-pc-hide" style="color:#409EFF">{{ currentIndex }}</text>
+				<text class="uni-pagination__num-current-text is-pc-hide">/{{ maxPage || 0 }}</text>
 
-				<view v-for="(item,index) in paper" :key="index" :class="{'page--active':item === currentIndex}" class="uni-pagination__num-tag tag--active is-phone-hide" @click.top="selectPage(item,index)">
-					<text> {{item}}</text>
+				<view v-for="(item, index) in paper" :key="index" :class="{ 'page--active': item === currentIndex }" class="uni-pagination__num-tag tag--active is-phone-hide" @click.top="selectPage(item, index)">
+					<text>{{ item }}</text>
 				</view>
 			</view>
 		</view>
 		<view class="uni-pagination__btn" :class="currentIndex >= maxPage ? 'uni-pagination--disabled' : 'uni-pagination--enabled'" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickRight">
-			<template v-if="showIcon===true || showIcon === 'true'">
+			<template v-if="showIcon === true || showIcon === 'true'">
 				<uni-icons color="#666" size="16" type="arrowright" />
 			</template>
-			<template v-else><text class="uni-pagination__child-btn">{{ nextText }}</text></template>
+			<template v-else>
+				<text class="uni-pagination__child-btn">{{ nextText }}</text>
+			</template>
 		</view>
 	</view>
 </template>
@@ -60,15 +63,18 @@
 				type: [Number, String],
 				default: 1
 			},
-			total: { // 数据总量
+			total: {
+				// 数据总量
 				type: [Number, String],
 				default: 0
 			},
-			pageSize: { // 每页数据量
+			pageSize: {
+				// 每页数据量
 				type: [Number, String],
 				default: 10
 			},
-			showIcon: { // 是否以 icon 形式展示按钮
+			showIcon: {
+				// 是否以 icon 形式展示按钮
 				type: [Boolean, String],
 				default: false
 			},
@@ -114,18 +120,14 @@
 							showPagerArr.push(item)
 						}
 					} else if (num + 2 <= totalNum) {
-						if (item > (num - (pagerCount + 1) / 2) && item < (num + (pagerCount + 1) / 2)) {
+						if (item > num - (pagerCount + 1) / 2 && item < num + (pagerCount + 1) / 2) {
 							showPagerArr.push(item)
 						}
-
 					} else {
-						if ((item > num - (pagerCount + 1) / 2 || pagerNum - pagerCount < item) && item <
-							totalArr[totalArr.length - 1]) {
+						if ((item > num - (pagerCount + 1) / 2 || pagerNum - pagerCount < item) && item < totalArr[totalArr.length - 1]) {
 							showPagerArr.push(item)
 						}
-
 					}
-
 				})
 				if (pagerNum > pagerCount) {
 					if ((pagerCount + 1) / 2 >= num) {
@@ -138,12 +140,10 @@
 					}
 					showPagerArr.push(totalArr[totalArr.length - 1])
 				} else {
-
 					if ((pagerCount + 1) / 2 >= num) {} else if (num + 2 <= totalNum) {} else {
 						showPagerArr.shift()
 						showPagerArr.push(totalArr[totalArr.length - 1])
 					}
-
 				}
 
 				return showPagerArr
@@ -191,7 +191,6 @@
 						}
 						return
 					}
-
 				}
 			},
 			clickLeft() {
@@ -246,7 +245,7 @@
 		line-height: 30px;
 		font-size: 14px;
 		position: relative;
-		background-color: #F4F4F5;
+		background-color: #f4f4f5;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
@@ -281,10 +280,12 @@
 	}
 
 	.uni-pagination__num-tag {
+		/* #ifdef H5 */
 		cursor: pointer;
+		min-width: 30px;
+		/* #endif */
 		margin: 0 5px;
 		height: 30px;
-		min-width: 30px;
 		text-align: center;
 		line-height: 30px;
 		color: #666;
@@ -331,6 +332,7 @@
 		color: #fff;
 	}
 
+	/* #ifdef H5 */
 	.is-pc-hide {
 		display: block;
 	}
@@ -339,7 +341,6 @@
 		display: none;
 	}
 
-	/* #ifdef H5 */
 	@media screen and (min-width: 450px) {
 		.is-pc-hide {
 			display: none;
