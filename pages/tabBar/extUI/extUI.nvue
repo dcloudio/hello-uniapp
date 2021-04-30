@@ -96,13 +96,6 @@
 						url: "fav"
 					},
 
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
-					{
-						name: "field 输入框",
-						url: "field"
-					},
-					// #endif 
-
 					// #ifndef APP-NVUE 
 					{
 						name: "filePicker 文件选择上传",
