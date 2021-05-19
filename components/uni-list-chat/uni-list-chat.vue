@@ -11,10 +11,8 @@
 					</view>
 					<!-- 头像组 -->
 					<view v-else class="uni-list-chat__header">
-						<view v-for="(item, index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar"
-						 :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }">
-							<image class="uni-list-chat__header-image" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }" :src="item.url"
-							 mode="aspectFill"></image>
+						<view v-for="(item, index) in avatarList" :key="index" class="uni-list-chat__header-box" :class="computedAvatar" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }">
+							<image class="uni-list-chat__header-image" :style="{ width: imageWidth + 'px', height: imageWidth + 'px' }" :src="item.url" mode="aspectFill"></image>
 						</view>
 					</view>
 				</view>
@@ -216,54 +214,24 @@
 	};
 </script>
 
-<style lang="scss" scoped>
-	$background-color: #fff;
-	$divide-line-color: #e5e5e5;
-	$avatar-width: 45px;
-	$avatar-border-radius: 5px;
-	$avatar-border-color: #eee;
-	$avatar-border-width: 1px;
-	$title-size: 16px;
-	$title-color: #3b4144;
-	$title-weight: normal;
-	$note-size: 12px;
-	$note-color: #999;
-	$note-weight: normal;
-	$right-text-size: 12px;
-	$right-text-color: #999;
-	$right-text-weight: normal;
-	$badge-left: 0px;
-	$badge-top: 0px;
-	$dot-width: 10px;
-	$dot-height: 10px;
-	$badge-size: 18px;
-	$badge-font: 12px;
-	$badge-color: #fff;
-	$badge-background-color: #ff5a5f;
-	$badge-space: 6px;
-	$hover: #f5f5f5;
-
+<style scoped>
 	.uni-list-chat {
-		font-size: $uni-font-size-lg;
+		font-size: 16px;
 		position: relative;
 		flex-direction: column;
 		justify-content: space-between;
-		background-color: $background-color;
+		background-color: #fff;
 	}
 
-	// .uni-list-chat--disabled {
-	// 	opacity: 0.3;
-	// }
-
 	.uni-list-chat--hover {
-		background-color: $hover;
+		background-color: #f5f5f5;
 	}
 
 	.uni-list--border {
 		position: relative;
-		margin-left: $uni-spacing-row-lg;
+		margin-left: 15px;
 		/* #ifdef APP-PLUS */
-		border-top-color: $divide-line-color;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 0.5px;
 		/* #endif */
@@ -276,10 +244,10 @@
 		right: 0;
 		left: 0;
 		height: 1px;
-		content: '';
+		content: "";
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
-		background-color: $divide-line-color;
+		background-color: #e5e5e5;
 	}
 
 	.uni-list-item--first:after {
@@ -287,7 +255,6 @@
 	}
 
 	/* #endif */
-
 	.uni-list-chat--first {
 		border-top-width: 0px;
 	}
@@ -311,7 +278,6 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		/* #endif */
-
 		/* #ifdef APP-NVUE */
 		lines: 2;
 		/* #endif */
@@ -324,7 +290,7 @@
 		/* #endif */
 		flex-direction: row;
 		flex: 1;
-		padding: $uni-spacing-row-base $uni-spacing-row-lg;
+		padding: 10px 15px;
 		position: relative;
 		overflow: hidden;
 	}
@@ -347,13 +313,12 @@
 		height: 50px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		width: $avatar-width;
-		height: $avatar-width;
+		width: 45px;
+		height: 45px;
 		/* #endif */
-
-		border-radius: $avatar-border-radius;
-		border-color: $avatar-border-color;
-		border-width: $avatar-border-width;
+		border-radius: 5px;
+		border-color: #eee;
+		border-width: 1px;
 		border-style: solid;
 		overflow: hidden;
 	}
@@ -362,8 +327,8 @@
 		/* #ifndef APP-PLUS */
 		box-sizing: border-box;
 		display: flex;
-		width: $avatar-width;
-		height: $avatar-width;
+		width: 45px;
+		height: 45px;
 		/* #endif */
 		/* #ifdef APP-NVUE */
 		width: 50px;
@@ -380,8 +345,8 @@
 		height: 50px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		width: $avatar-width;
-		height: $avatar-width;
+		width: 45px;
+		height: 45px;
 		/* #endif */
 	}
 
@@ -428,23 +393,23 @@
 		/* #endif */
 		flex-direction: column;
 		justify-content: space-between;
-		padding-left: $uni-spacing-row-base;
+		padding-left: 10px;
 		flex: 1;
 		overflow: hidden;
 	}
 
 	.uni-list-chat__content-title {
-		font-size: $title-size;
-		color: $title-color;
-		font-weight: $title-weight;
+		font-size: 16px;
+		color: #3b4144;
+		font-weight: normal;
 		overflow: hidden;
 	}
 
 	.uni-list-chat__content-note {
 		margin-top: 3px;
-		color: $note-color;
-		font-size: $note-size;
-		font-weight: $title-weight;
+		color: #999;
+		font-size: 12px;
+		font-weight: normal;
 		overflow: hidden;
 	}
 
@@ -460,9 +425,9 @@
 	}
 
 	.uni-list-chat__content-extra-text {
-		color: $right-text-color;
-		font-size: $right-text-size;
-		font-weight: $right-text-weight;
+		color: #999;
+		font-size: 12px;
+		font-weight: normal;
 		overflow: hidden;
 	}
 
@@ -473,8 +438,8 @@
 		top: 3px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		left: calc(#{$avatar-width} + 10px - #{$badge-space} + #{$badge-left});
-		top: calc(#{$uni-spacing-row-base}/ 2 + 1px + #{$badge-top});
+		left: calc(45px + 10px - 6px + 0px);
+		top: calc(10px/ 2 + 1px + 0px);
 		/* #endif */
 	}
 
@@ -485,20 +450,19 @@
 		justify-content: center;
 		align-items: center;
 		border-radius: 100px;
-		background-color: $badge-background-color;
+		background-color: #ff5a5f;
 	}
 
 	.uni-list-chat__badge-text {
-		color: $badge-color;
-		font-size: $badge-font;
+		color: #fff;
+		font-size: 12px;
 	}
 
 	.uni-badge--single {
 		/* #ifndef APP-NVUE */
-		// left: calc(#{$avatar-width} + 7px + #{$badge-left});
 		/* #endif */
-		width: $badge-size;
-		height: $badge-size;
+		width: 18px;
+		height: 18px;
 	}
 
 	.uni-badge--complex {
@@ -508,8 +472,8 @@
 		/* #ifndef APP-NVUE */
 		width: auto;
 		/* #endif */
-		height: $badge-size;
-		padding: 0 $badge-space;
+		height: 18px;
+		padding: 0 6px;
 	}
 
 	.uni-badge--dot {
@@ -518,10 +482,10 @@
 		top: 6px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		left: calc(#{$avatar-width} + 15px - #{$dot-width}/ 2 + 1px + #{$badge-left});
+		left: calc(45px + 15px - 10px/ 2 + 1px + 0px);
 		/* #endif */
-		width: $dot-width;
-		height: $dot-height;
+		width: 10px;
+		height: 10px;
 		padding: 0;
 	}
 

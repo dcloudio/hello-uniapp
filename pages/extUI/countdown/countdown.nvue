@@ -5,6 +5,10 @@
 		<view class="example-body">
 			<uni-countdown :day="1" :hour="1" :minute="12" :second="40" />
 		</view>
+		<uni-section title="自由控制开始/暂停" type="line"></uni-section>
+		<view class="example-body">
+			<uni-countdown :start="start" :day="1" :hour="1" :minute="12" :second="40" />
+		</view>
 		<uni-section title="不显示天数" type="line"></uni-section>
 		<view class="example-body">
 			<uni-countdown :show-day="false" :hour="12" :minute="12" :second="12" />
@@ -34,15 +38,21 @@
 			return {
 				testHour: 0,
 				testMinute: 0,
-				testSecond: 0
+				testSecond: 0,
+				start: false
 			}
 		},
-		created() {
+		mounted() {
 			setTimeout(() => {
+				console.log(1111);
 				this.testHour = 1
 				this.testMinute = 1
 				this.testSecond = 0
-			}, 2000)
+				this.start = true
+			}, 3000)
+			setTimeout(() => {
+				this.start = false
+			}, 10000)
 		},
 		methods: {
 			timeup() {

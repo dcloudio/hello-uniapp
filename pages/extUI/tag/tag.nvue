@@ -18,6 +18,9 @@
 			<view class="tag-view">
 				<uni-tag text="标签" type="error" />
 			</view>
+			<view class="tag-view">
+				<uni-tag text="标签" type="royal" />
+			</view>
 		</view>
 		<uni-section title="空心标签" type="line"></uni-section>
 		<view class="example-body">
@@ -36,6 +39,9 @@
 			<view class="tag-view">
 				<uni-tag :inverted="true" text="标签" type="error" />
 			</view>
+			<view class="tag-view">
+				<uni-tag :inverted="true" text="标签" type="royal" />
+			</view>
 		</view>
 		<uni-section title="圆角样式" type="line"></uni-section>
 		<view class="example-body">
@@ -51,6 +57,15 @@
 			<view class="tag-view">
 				<uni-tag :inverted="true" :circle="true" text="标签" type="error" />
 			</view>
+			<view class="tag-view">
+				<uni-tag :inverted="true" :circle="true" text="标签" type="royal" />
+			</view>
+		</view>
+		<uni-section title="自定义样式" type="line"></uni-section>
+		<view class="example-body">
+			<view class="tag-view">
+				<uni-tag text="我是自定义样式标签" custom-style="background-color: #000; color: #fff;"></uni-tag>
+			</view>
 		</view>
 		<uni-section title="标记样式" type="line"></uni-section>
 		<view class="example-body">
@@ -65,6 +80,9 @@
 			</view>
 			<view class="tag-view">
 				<uni-tag :mark="true" :circle="true" text="标签" type="error" />
+			</view>
+			<view class="tag-view">
+				<uni-tag :mark="true" :circle="true" text="标签" type="royal" />
 			</view>
 		</view>
 		<uni-section title="点击事件" type="line"></uni-section>

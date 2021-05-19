@@ -1,14 +1,8 @@
 <template>
-	<view :class="[
-      'uni-tag--' + type,
-      disabled === true || disabled === 'true' ? 'uni-tag--disabled' : '',
-      inverted === true || inverted === 'true' ? type + '-uni-tag--inverted' : '',
-      circle === true || circle === 'true' ? 'uni-tag--circle' : '',
-      mark === true || mark === 'true' ? 'uni-tag--mark' : '',
-      'uni-tag--' + size
-    ]" @click="onClick()" class="uni-tag" v-if="text">
-		<text :class="[type === 'default' ? 'uni-tag--default':'uni-tag-text',inverted === true || inverted === 'true' ? 'uni-tag-text--'+type : '',size === 'small' ? 'uni-tag-text--small':'' ]">{{ text }}</text>
-	</view>
+	<text class="uni-tag" v-if="text" :class="classes" :style="customStyle" @click="onClick">
+		<slot />{{text}}
+		<slot name="right" />
+	</text>
 </template>
 
 <script>
@@ -70,13 +64,42 @@
 				// 是否为标记样式
 				type: [Boolean, String],
 				default: false
+			},
+			customStyle: {
+				type: String,
+				default: ''
+			}
+		},
+		computed: {
+			classes() {
+				const {
+					type,
+					disabled,
+					inverted,
+					circle,
+					mark,
+					size,
+					isTrue
+				} = this
+				return [
+					'uni-tag--' + type,
+					isTrue(disabled) ? 'uni-tag--disabled' : '',
+					isTrue(inverted) ? type + '-uni-tag--inverted' : '',
+					isTrue(circle) ? 'uni-tag--circle' : '',
+					isTrue(mark) ? 'uni-tag--mark' : '',
+					'uni-tag--' + size,
+					type === 'default' ? 'uni-tag--default' : 'uni-tag-text',
+					isTrue(inverted) ? 'uni-tag-text--' + type : '',
+					size === 'small' ? 'uni-tag-text--small' : ''
+				]
 			}
 		},
 		methods: {
+			isTrue(value) {
+				return value === true || value === 'true'
+			},
 			onClick() {
-				if (this.disabled === true || this.disabled === "true") {
-					return;
-				}
+				if (this.isTrue(this.disabled)) return
 				this.$emit("click");
 			}
 		}
@@ -86,12 +109,13 @@
 <style scoped>
 	.uni-tag {
 		/* #ifndef APP-NVUE */
-		display: flex;
+		display: inline-block;
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		align-self: flex-start;
 		/* #endif */
 		padding: 0px 16px;
-		height: 30px;
 		line-height: 30px;
-		justify-content: center;
 		color: #333;
 		border-radius: 3px;
 		background-color: #f8f8f8;
@@ -133,8 +157,13 @@
 		font-size: 14px;
 	}
 
+	.uni-tag--royal {
+		color: #333;
+		font-size: 14px;
+	}
+
 	.uni-tag-text--small {
-		font-size: 12px !important;
+		font-size: 12px;
 	}
 
 	.uni-tag-text {
@@ -143,19 +172,23 @@
 	}
 
 	.uni-tag-text--primary {
-		color: #007aff !important;
+		color: #007aff;
 	}
 
 	.uni-tag-text--success {
-		color: #4cd964 !important;
+		color: #4cd964;
 	}
 
 	.uni-tag-text--warning {
-		color: #f0ad4e !important;
+		color: #f0ad4e;
 	}
 
 	.uni-tag-text--error {
-		color: #dd524d !important;
+		color: #dd524d;
+	}
+
+	.uni-tag-text--royal {
+		color: #4335d6;
 	}
 
 	.uni-tag--primary {
@@ -220,6 +253,22 @@
 		border-width: 1rpx;
 		border-style: solid;
 		border-color: #dd524d;
+	}
+
+	.uni-tag--royal {
+		color: #fff;
+		background-color: #4335d6;
+		border-width: 1rpx;
+		border-style: solid;
+		border-color: #4335d6;
+	}
+
+	.royal-uni-tag--inverted {
+		color: #4335d6;
+		background-color: #ffffff;
+		border-width: 1rpx;
+		border-style: solid;
+		border-color: #4335d6;
 	}
 
 	.uni-tag--inverted {

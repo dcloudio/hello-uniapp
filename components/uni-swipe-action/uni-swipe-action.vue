@@ -11,6 +11,7 @@
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=181
 	 */
 	export default {
+		name: "UniSwipeAction",
 		data() {
 			return {};
 		},

@@ -48,9 +48,9 @@
 
 <script>
 	/**
-	 * DataChecklist 数据选择器
+	 * DataCheckbox 数据选择器
 	 * @description 通过数据渲染 checkbox 和 radio
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=xxx
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3456
 	 * @property {String} mode = [default| list | button | tag] 显示模式
 	 * @value default  	默认横排模式
 	 * @value list		列表模式
@@ -71,10 +71,8 @@
 	 * @event {Function} change  选中发生变化触发
 	 */
 
-	// import clientdb from './clientdb.js'
 	export default {
-		name: 'uniDataChecklist',
-		// mixins: [clientdb],
+		name: 'uniDataCheckbox',
 		mixins: [uniCloud.mixinDatacom],
 		props: {
 			mode: {

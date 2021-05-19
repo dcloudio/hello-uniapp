@@ -219,9 +219,13 @@
 	.uni-navbar--fixed {
 		position: fixed;
 		z-index: 998;
-		/* #ifndef APP-NVUE */
+		/* #ifdef H5 */
 		left: var(--window-left);
 		right: var(--window-right);
+		/* #endif */
+		/* #ifndef H5 */
+		left: 0;
+		right: 0;
 		/* #endif */
 	}
 

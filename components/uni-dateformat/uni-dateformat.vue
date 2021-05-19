@@ -3,6 +3,9 @@
 </template>
 
 <script>
+	import {
+		friendlyDate
+	} from './date-format.js'
 	/**
 	 * Dateformat 日期格式化
 	 * @description 日期格式化组件
@@ -14,9 +17,6 @@
 	 * @property {Array} threshold 应用不同类型格式化的阈值
 	 * @property {String} format 输出日期字符串时的格式
 	 */
-	import {
-		friendlyDate
-	} from './date-format.js'
 	export default {
 		name: 'uniDateformat',
 		props: {

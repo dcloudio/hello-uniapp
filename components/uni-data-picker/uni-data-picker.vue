@@ -42,9 +42,9 @@
 	import DataPickerView from "../uni-data-pickerview/uni-data-pickerview.vue"
 
 	/**
-	 * uni-data-picker
-	 * @description uni-data-picker
-	 * @tutorial https://uniapp.dcloud.net.cn/uniCloud/uni-data-picker
+	 * DataPicker 级联选择
+	 * @description 支持单列、和多列级联选择。列数没有限制，如果屏幕显示不全，顶部tab区域会左右滚动。
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3796
 	 * @property {String} popup-title 弹出窗口标题
 	 * @property {Array} localdata 本地数据，参考
 	 * @property {Boolean} border = [true|false] 是否有边框
