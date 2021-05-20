@@ -83,7 +83,7 @@
 					return
 				}
 				this.value++
-			}, 100)
+			}, 5)
 		}
 	};
 </script>

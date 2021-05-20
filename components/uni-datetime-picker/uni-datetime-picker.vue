@@ -4,13 +4,13 @@
 		'uni-date-x--border': border}">
 			<view v-if="!isRange" class="uni-date-x uni-date-single" @click="show">
 				<view class="uni-date__icon-logo">
-					<image class="uni-date-editor--logo" src="./icon/cale-50.png" mode=""></image>
+					<image class="uni-date-editor--logo" src="./cale-50.png" mode=""></image>
 				</view>
 				<input class="uni-date__input" type="text" v-model="singleVal" :placeholder="placeholder" :disabled="true" />
 			</view>
 			<view v-else class="uni-date-x uni-date-range" @click="show">
 				<view class="uni-date__icon-logo">
-					<image class="uni-date-editor--logo" src="./icon/cale-50.png" mode=""></image>
+					<image class="uni-date-editor--logo" src="./cale-50.png" mode=""></image>
 				</view>
 				<input class="uni-date__input uni-date-range__input" type="text" v-model="range.startDate" :placeholder="startPlaceholder" :disabled="true" />
 				<slot>
@@ -70,8 +70,8 @@
 	</view>
 </template>
 <script>
-	import uniCalendar from './basic/uni-calendar.vue'
-	import timePicker from './basic/time-picker/components/time-picker/time-picker.vue'
+	import uniCalendar from './uni-calendar.vue'
+	import timePicker from './time-picker.vue'
 
 	/**
 	 * DatetimePicker 时间选择器

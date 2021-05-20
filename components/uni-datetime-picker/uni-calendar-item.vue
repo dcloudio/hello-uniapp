@@ -16,7 +16,7 @@
 				}">
 			<text v-if="selected&&weeks.extraInfo" class="uni-calendar-item__weeks-box-circle"></text>
 			<text class="uni-calendar-item__weeks-box-text">{{weeks.date}}</text>
-		<!-- 	<text v-if="!lunar&&!weeks.extraInfo && weeks.isDay" class="uni-calendar-item__weeks-lunar-text">今天</text>
+			<!-- 	<text v-if="!lunar&&!weeks.extraInfo && weeks.isDay" class="uni-calendar-item__weeks-lunar-text">今天</text>
 			<text v-if="lunar&&!weeks.extraInfo" class="uni-calendar-item__weeks-lunar-text" >{{weeks.isDay?'今天': (weeks.lunar.IDayCn === '初一'?weeks.lunar.IMonthCn:weeks.lunar.IDayCn)}}</text> -->
 			<!-- <text v-if="weeks.extraInfo&&weeks.extraInfo.info" class="uni-calendar-item__weeks-lunar-text">{{weeks.extraInfo.info}}</text> -->
 		</view>
@@ -64,7 +64,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-calendar-item__weeks-box {
 		flex: 1;
 		/* #ifndef APP-NVUE */
@@ -77,13 +77,12 @@
 	}
 
 	.uni-calendar-item__weeks-box-text {
-		font-size: $uni-font-size-base;
-		// color: $uni-text-color;
+		font-size: 14px;
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
-		font-size: $uni-font-size-sm;
-		color: $uni-text-color;
+		font-size: 12px;
+		color: #333;
 	}
 
 	.uni-calendar-item__weeks-box-item {
@@ -100,7 +99,6 @@
 		cursor: pointer;
 		/* #endif */
 	}
-	
 
 	.uni-calendar-item__weeks-box-circle {
 		position: absolute;
@@ -109,75 +107,65 @@
 		width: 8px;
 		height: 8px;
 		border-radius: 8px;
-		background-color: $uni-color-error;
-
+		background-color: #dd524d;
 	}
 
 	.uni-calendar-item__weeks-box .uni-calendar-item--disable {
-		// background-color: rgba(249, 249, 249, $uni-opacity-disabled);
-		color: $uni-text-color-disable;
+		color: #c0c0c0;
 		cursor: default;
 	}
 
 	.uni-calendar-item--isDay-text {
-		color: $uni-color-primary !important;
+		color: #007aff !important;
 	}
 
 	.uni-calendar-item--isDay {
-		background-color: $uni-color-primary;
+		background-color: #007aff;
 		opacity: 0.8;
 		color: #fff;
 	}
 
 	.uni-calendar-item--extra {
-		color: $uni-color-error;
+		color: #dd524d;
 		opacity: 0.8;
 	}
 
 	.uni-calendar-item--checked {
-		background-color: $uni-color-primary;
-		// border-radius: 50%;
+		background-color: #007aff;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;
 		color: #fff;
 		opacity: 0.8;
 	}
-	
+
 	.uni-calendar-item--multiple .uni-calendar-item--checked-range-text {
 		color: #333;
 	}
 
 	.uni-calendar-item--multiple {
-		background-color:  #f2f6fc;
-		// color: #fff;
+		background-color: #f2f6fc;
 		opacity: 0.8;
 	}
 
 	.uni-calendar-item--multiple .uni-calendar-item--before-checked {
 		background-color: #409eff;
 		color: #fff;
-		// border-radius: 50%;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;
 	}
 
 	.uni-calendar-item--multiple .uni-calendar-item--after-checked {
-		background-color: #409eff;;
+		background-color: #409eff;
 		color: #fff;
-		// border-radius: 50%;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;
 	}
-	
+
 	.uni-calendar-item--before-checked-x {
-		// border-top-left-radius: 25px;
-		// border-bottom-left-radius: 25px;
 		background-color: #f2f6fc;
 	}
-	
+
 	.uni-calendar-item--after-checked-x {
-		// border-top-right-radius: 25px;
-		// border-bottom-right-radius: 25px;
 		background-color: #f2f6fc;
 	}
 </style>

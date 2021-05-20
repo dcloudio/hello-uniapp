@@ -2,8 +2,7 @@
 	<view class="uni-datetime-picker">
 		<view @click="initTimePicker">
 			<slot>
-				<view class="uni-datetime-picker-timebox-pointer"
-					:class="{'uni-datetime-picker-disabled': disabled, 'uni-datetime-picker-timebox': border}">
+				<view class="uni-datetime-picker-timebox-pointer" :class="{'uni-datetime-picker-disabled': disabled, 'uni-datetime-picker-timebox': border}">
 					<text class="uni-datetime-picker-text">{{time}}</text>
 					<view v-if="!time" class="uni-datetime-picker-time">
 						<text class="uni-datetime-picker-text">选择{{title}}</text>
@@ -12,14 +11,12 @@
 			</slot>
 		</view>
 		<view v-if="visible" id="mask" class="uni-datetime-picker-mask" @click="tiggerTimePicker"></view>
-		<view v-if="visible" class="uni-datetime-picker-popup" :class="[dateShow && timeShow ? '' : 'fix-nvue-height']"
-			:style="fixNvueBug">
+		<view v-if="visible" class="uni-datetime-picker-popup" :class="[dateShow && timeShow ? '' : 'fix-nvue-height']" :style="fixNvueBug">
 			<view class="uni-title">
 				<text class="uni-datetime-picker-text">设置{{title}}</text>
 			</view>
 			<view v-if="dateShow" class="uni-datetime-picker__container-box">
-				<picker-view class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="ymd"
-					@change="bindDateChange">
+				<picker-view class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="ymd" @change="bindDateChange">
 					<picker-view-column>
 						<view class="uni-datetime-picker-item" v-for="(item,index) in years" :key="index">
 							<text class="uni-datetime-picker-item">{{lessThanTen(item)}}</text>
@@ -41,8 +38,7 @@
 				<text class="uni-datetime-picker-sign sign-right">-</text>
 			</view>
 			<view v-if="timeShow" class="uni-datetime-picker__container-box">
-				<picker-view class="uni-datetime-picker-view" :class="[hideSecond ? 'time-hide-second' : '']"
-					:indicator-style="indicatorStyle" :value="hms" @change="bindTimeChange">
+				<picker-view class="uni-datetime-picker-view" :class="[hideSecond ? 'time-hide-second' : '']" :indicator-style="indicatorStyle" :value="hms" @change="bindTimeChange">
 					<picker-view-column>
 						<view class="uni-datetime-picker-item" v-for="(item,index) in hours" :key="index">
 							<text class="uni-datetime-picker-item">{{lessThanTen(item)}}</text>
@@ -767,7 +763,9 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	@charset "UTF-8";
+
 	.uni-datetime-picker {
 		/* #ifndef APP-NVUE */
 		width: 100%;
@@ -860,7 +858,6 @@
 	}
 
 	.uni-datetime-picker-timebox {
-
 		border: 1px solid #E5E5E5;
 		border-radius: 5px;
 		padding: 7px 10px;
@@ -875,7 +872,6 @@
 		cursor: pointer;
 		/* #endif */
 	}
-
 
 	.uni-datetime-picker-disabled {
 		opacity: 0.4;

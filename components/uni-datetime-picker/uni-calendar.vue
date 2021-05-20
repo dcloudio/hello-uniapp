@@ -1,17 +1,14 @@
 <template>
 	<view class="uni-calendar" @mouseleave="leaveCale">
-		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}"
-			@click="clean"></view>
-		<view v-if="insert || show" class="uni-calendar__content"
-			:class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow}">
+		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}" @click="clean"></view>
+		<view v-if="insert || show" class="uni-calendar__content" :class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow}">
 
 			<view class="uni-calendar__header">
 				<view v-if="left" class="uni-calendar__header-btn-box" @click.stop="pre">
 					<view class="uni-calendar__header-btn uni-calendar--left"></view>
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
-					<text
-						class="uni-calendar__header-text">{{ (nowDate.year||'') +'年'+( nowDate.month||'') +'月'}}</text>
+					<text class="uni-calendar__header-text">{{ (nowDate.year||'') +'年'+( nowDate.month||'') +'月'}}</text>
 				</picker>
 				<view v-if="right" class="uni-calendar__header-btn-box" @click.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
@@ -48,33 +45,27 @@
 				</view>
 				<view class="uni-calendar__weeks" v-for="(item,weekIndex) in weeks" :key="weekIndex">
 					<view class="uni-calendar__weeks-item" v-for="(weeks,weeksIndex) in item" :key="weeksIndex">
-						<calendar-item class="uni-calendar-item--hook" :weeks="weeks" :calendar="calendar"
-							:selected="selected" :lunar="lunar" :checkHover="range" @change="choiceDate"
-							@handleMouse="handleMouse">
+						<calendar-item class="uni-calendar-item--hook" :weeks="weeks" :calendar="calendar" :selected="selected" :lunar="lunar" :checkHover="range" @change="choiceDate" @handleMouse="handleMouse">
 						</calendar-item>
 					</view>
 				</view>
 			</view>
-			<view v-if="!insert && !range && typeHasTime" class="uni-date-changed uni-calendar--fixed-top"
-				style="padding: 0 40px;">
+			<view v-if="!insert && !range && typeHasTime" class="uni-date-changed uni-calendar--fixed-top" style="padding: 0 40px;">
 				<text class="uni-date-changed--time-date">{{tempSingleDate ? tempSingleDate : '选择日期'}}</text>
-				<time-picker type="time" :start="reactStartTime" :end="reactEndTime" v-model="time" :disabled="!tempSingleDate"
-					:border="false" class="time-picker-style">
+				<time-picker type="time" :start="reactStartTime" :end="reactEndTime" v-model="time" :disabled="!tempSingleDate" :border="false" class="time-picker-style">
 				</time-picker>
 			</view>
 
 			<view v-if="!insert && range && typeHasTime" class="uni-date-changed uni-calendar--fixed-top">
 				<view class="uni-date-changed--time-start">
 					<text class="uni-date-changed--time-date">{{tempRange.before ? tempRange.before : '开始日期'}}</text>
-					<time-picker type="time" :start="reactStartTime" v-model="timeRange.startTime"
-						:border="false" :disabled="!tempRange.before" class="time-picker-style">
+					<time-picker type="time" :start="reactStartTime" v-model="timeRange.startTime" :border="false" :disabled="!tempRange.before" class="time-picker-style">
 					</time-picker>
 				</view>
 				<uni-icons type="arrowthinright" color="#999" style="line-height: 50px;"></uni-icons>
 				<view class="uni-date-changed--time-end">
 					<text class="uni-date-changed--time-date">{{tempRange.after ? tempRange.after : '结束日期'}}</text>
-					<time-picker type="time" :end="reactEndTime" v-model="timeRange.endTime" :border="false"
-						:disabled="!tempRange.after" class="time-picker-style">
+					<time-picker type="time" :end="reactEndTime" v-model="timeRange.endTime" :border="false" :disabled="!tempRange.after" class="time-picker-style">
 					</time-picker>
 				</view>
 			</view>
@@ -94,7 +85,7 @@
 <script>
 	import Calendar from './util.js';
 	import calendarItem from './uni-calendar-item.vue'
-	import timePicker from './time-picker/components/time-picker/time-picker.vue'
+	import timePicker from './time-picker.vue'
 	/**
 	 * Calendar 日历
 	 * @description 日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等
@@ -504,7 +495,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-calendar {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -518,7 +509,7 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background-color: $uni-bg-color-mask;
+		background-color: rgba(0, 0, 0, 0.4);
 		transition-property: opacity;
 		transition-duration: 0.3s;
 		opacity: 0;
@@ -528,7 +519,7 @@
 	}
 
 	.uni-calendar--mask-show {
-		opacity: 1
+		opacity: 1;
 	}
 
 	.uni-calendar--fixed {
@@ -561,9 +552,6 @@
 		justify-content: center;
 		align-items: center;
 		height: 50px;
-		// border-bottom-color: $uni-border-color;
-		// border-bottom-style: solid;
-		// border-bottom-width: 1px;
 	}
 
 	.uni-calendar--fixed-top {
@@ -572,14 +560,13 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: space-between;
-		border-top-color: $uni-border-color;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
 
 	.uni-calendar--fixed-width {
 		width: 50px;
-		// padding: 0 15px;
 	}
 
 	.uni-calendar__backtoday {
@@ -593,21 +580,21 @@
 		font-size: 12px;
 		border-top-left-radius: 25px;
 		border-bottom-left-radius: 25px;
-		color: $uni-text-color;
-		background-color: $uni-bg-color-hover;
+		color: #333;
+		background-color: #f1f1f1;
 	}
 
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: $uni-font-size-base;
-		color: $uni-text-color;
+		font-size: 14px;
+		color: #333;
 	}
 
 	.uni-calendar__button-text {
 		text-align: center;
 		width: 100px;
-		font-size: $uni-font-size-base;
+		font-size: 14px;
 		color: #007aff;
 		letter-spacing: 3px;
 	}
@@ -626,10 +613,10 @@
 	.uni-calendar__header-btn {
 		width: 10px;
 		height: 10px;
-		border-left-color: $uni-text-color-placeholder;
+		border-left-color: #808080;
 		border-left-style: solid;
 		border-left-width: 2px;
-		border-top-color: $uni-color-subtitle;
+		border-top-color: #555555;
 		border-top-style: solid;
 		border-top-width: 2px;
 	}
@@ -641,7 +628,6 @@
 	.uni-calendar--right {
 		transform: rotate(135deg);
 	}
-
 
 	.uni-calendar__weeks {
 		position: relative;
@@ -693,7 +679,7 @@
 	.uni-calendar__box-bg-text {
 		font-size: 200px;
 		font-weight: bold;
-		color: $uni-text-color-grey;
+		color: #999;
 		opacity: 0.1;
 		text-align: center;
 		/* #ifndef APP-NVUE */
@@ -703,18 +689,14 @@
 
 	.uni-date-changed {
 		padding: 0 10px;
-		// line-height: 50px;
 		text-align: center;
 		color: #333;
-		border-top-color: $uni-border-color;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
 
-
 	.uni-date-changed--time text {
-		// padding: 0 20px;
-		// height: 50px;
 		line-height: 50px;
 	}
 
@@ -731,27 +713,24 @@
 		display: flex;
 		justify-content: right;
 		align-items: center;
-		// flex: 1;
 	}
 
 	.uni-date-changed--time-end {
 		display: flex;
 		justify-content: left;
 		align-items: center;
-		// flex: 1;
 	}
 
 	.uni-date-changed--time-date {
 		color: #999;
 		line-height: 50px;
-		// opacity: 0.6;
 	}
 
 	.time-picker-style {
 		width: 62px;
 		display: flex;
 		justify-content: center;
-		align-items: center
+		align-items: center;
 	}
 
 	.mr-10 {
