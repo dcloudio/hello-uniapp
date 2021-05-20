@@ -1,0 +1,31 @@
+{
+  "name": "uni-preset-vue",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "uni",
+    "build": "uni build",
+    "dev:ssr": "uni --ssr",
+	"build:ssr": "uni build --ssr"
+  },
+  "dependencies": {
+	"@dcloudio/uni-app": "../uni-app-next/packages/uni-app",
+	"@dcloudio/uni-cloud": "../uni-app-next/packages/uni-cloud",
+	"@dcloudio/uni-components": "../uni-app-next/packages/uni-components",
+    "@dcloudio/uni-h5": "../uni-app-next/packages/uni-h5",
+    "@dcloudio/uni-h5-vue": "../uni-app-next/packages/uni-h5-vue",
+	"@dcloudio/uni-i18n": "../uni-app-next/packages/uni-i18n",
+    "@dcloudio/uni-shared": "../uni-app-next/packages/uni-shared",
+	"@vue/shared": "^3.1.0-beta.3",
+    "vue": "^3.1.0-beta.3",
+    "vue-router": "^4.0.7",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@dcloudio/uni-cli-shared": "../uni-app-next/packages/uni-cli-shared",
+    "@dcloudio/vite-plugin-uni": "../uni-app-next/packages/vite-plugin-uni",
+    "@vitejs/plugin-vue": "^1.2.2",
+	"@vue/compiler-sfc": "^3.1.0-beta.3",
+	"@vue/server-renderer": "^3.1.0-beta.3",
+	"vite": "^2.3.2"
+  }
+}
