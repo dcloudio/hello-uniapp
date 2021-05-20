@@ -29,25 +29,24 @@
 			actionSheetTap() {
 				const that = this
 				uni.showActionSheet({
-					title:'标题',
+					title: '标题',
 					itemList: ['item1', 'item2', 'item3', 'item4'],
 					popover: {
-						top: that.buttonRect.top * 2 + that.buttonRect.height,
-						left: that.buttonRect.left + that.buttonRect.width/2
+						// 104: navbar + topwindow 高度，暂时 fix createSelectorQuery 在 pc 上获取 top 不准确的 bug
+						top: that.buttonRect.top + 104  + that.buttonRect.height,
+						left: that.buttonRect.left + that.buttonRect.width / 2
 					},
 					success: (e) => {
 						console.log(e.tapIndex);
 						uni.showToast({
-							title:"点击了第" + e.tapIndex + "个选项",
-							icon:"none"
+							title: "点击了第" + e.tapIndex + "个选项",
+							icon: "none"
 						})
 					}
 				})
 			},
 			// #ifdef H5
 			getNodeInfo() {
-				let i = 1
-				console.log(i++)
 				uni.createSelectorQuery().select('.target').boundingClientRect().exec((ret) => {
 					const rect = ret[0]
 					if (rect) {
