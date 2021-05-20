@@ -23,7 +23,6 @@
 			<!-- #endif -->
 		</view>
 	</view>
-	</view>
 </template>
 <script>
 	export default {
