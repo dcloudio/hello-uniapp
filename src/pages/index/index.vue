@@ -4,6 +4,7 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
+    <button type="defalut" @click="dis">disconnect</button>
   </view>
 </template>
 
@@ -12,16 +13,32 @@ export default {
   data() {
     return {
       title: 'Hello',
+      observer1: {},
+      observer2: {}
     }
   },
   onLoad() {},
   mounted() {
-      const observer = uni.createIntersectionObserver(this);
-      console.log(111, observer)
-      const observer2 = uni.createMediaQueryObserver(this);
-      // console.log(222, observer2)
+    this.observer1 = uni.createMediaQueryObserver(this);
+      this.observer1.observe({
+        minWidth: 400,
+        maxHeight: 600
+      }, matches => {
+        console.log(555555, matches)
+      })
+      this.observer2 = uni.createMediaQueryObserver(this);
+      this.observer2.observe({
+        minWidth: 400,
+        maxWidth: 600
+      }, matches => {
+        console.log(666666, matches)
+      })
   },
-  methods: {},
+  methods: {
+    dis() {
+      this.observer2.disconnect()
+    }
+  },
 }
 </script>
 
