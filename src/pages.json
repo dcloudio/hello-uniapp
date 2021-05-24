@@ -238,14 +238,6 @@
 				"navigationBarTitleText": "video"
 			}
 		},
-		// #ifndef MP-ALIPAY || MP-TOUTIAO
-		{
-			"path": "pages/component/audio/audio",
-			"style": {
-				"navigationBarTitleText": "audio"
-			}
-		},
-		// #endif
 		// #ifndef MP-TOUTIAO
 		{
 			"path": "pages/component/map/map",
