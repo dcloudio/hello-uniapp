@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "form",
+  "component": true,
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Link 链接",
+  "component": true,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-link": "/components/uni-link/uni-link"
+  }
+}

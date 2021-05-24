@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Fav 收藏按钮",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-fav": "/components/uni-fav/uni-fav",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+  }
+}

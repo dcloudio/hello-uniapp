@@ -3,7 +3,7 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt" v-if="showVideo">
 			<view>
-				<video id="myVideo" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-uni-app-doc/3c1782e0-60ab-11eb-8ff1-d5dcf8779628.m4v"
+				<video id="myVideo" src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126-lite.m4v"
 				 @error="videoErrorCallback" :danmu-list="danmuList" enable-danmu danmu-btn controls poster="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b1476d40-4e5f-11eb-b997-9918a5dda011.png"></video>
 			</view>
 			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
@@ -13,7 +13,7 @@
 						<view class="uni-label">弹幕内容</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input v-model:value="danmuValue" class="uni-input" type="text" placeholder="在此处输入弹幕内容" />
+						<input v-model="danmuValue" class="uni-input" type="text" placeholder="在此处输入弹幕内容" />
 					</view>
 				</view>
 			</view>
@@ -22,6 +22,7 @@
 			</view>
 			<!-- #endif -->
 		</view>
+	</view>
 	</view>
 </template>
 <script>
@@ -60,7 +61,6 @@
 		},
 		methods: {
 			sendDanmu: function() {
-        console.log('sendDanmu')
 				this.videoContext.sendDanmu({
 					text: this.danmuValue,
 					color: this.getRandomColor()

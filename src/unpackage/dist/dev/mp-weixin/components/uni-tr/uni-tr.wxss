@@ -1,0 +1,28 @@
+
+.uni-table-tr.data-v-65220fe4 {
+	display: table-row;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	box-sizing: border-box;
+}
+.checkbox.data-v-65220fe4 {
+	padding: 12px 8px;
+	width: 26px;
+	padding-left: 12px;
+	display: table-cell;
+	vertical-align: middle;
+	color: #333;
+	font-weight: 500;
+	border-bottom: 1px #ddd solid;
+	font-size: 14px;
+}
+.tr-table--border.data-v-65220fe4 {
+	border-right: 1px #ddd solid;
+}
+.uni-table-tr.data-v-65220fe4  .uni-table-th.table--border:last-child {
+	border-right: none;
+}
+.uni-table-tr.data-v-65220fe4  .uni-table-td.table--border:last-child {
+	border-right: none;
+}
+

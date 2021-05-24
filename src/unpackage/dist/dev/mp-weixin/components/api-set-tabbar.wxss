@@ -1,0 +1,10 @@
+
+.button {
+		margin-top: 30rpx;
+        margin-left: 0;
+        margin-right: 0;
+}
+.btn-area {
+		padding-top: 30rpx;
+}
+

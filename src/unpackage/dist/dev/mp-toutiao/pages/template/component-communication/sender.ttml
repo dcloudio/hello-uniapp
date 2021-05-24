@@ -1,0 +1,1 @@
+<view class="sender-container"><button type="primary" data-event-opts="{{[['tap',[['send',['$event']]]]]}}" bindtap="__e">点击发送消息</button></view>

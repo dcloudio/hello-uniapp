@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Badge 数字角标",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-badge": "/components/uni-badge/uni-badge"
+  }
+}

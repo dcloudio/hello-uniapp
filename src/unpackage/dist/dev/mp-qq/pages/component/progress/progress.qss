@@ -1,0 +1,18 @@
+
+.progress-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 50rpx;
+    margin-bottom: 60rpx;
+}
+.uni-icon {
+    line-height: 1.5;
+}
+.progress-cancel {
+    margin-left: 40rpx;
+}
+.progress-control button{
+    margin-top: 20rpx;
+}
+

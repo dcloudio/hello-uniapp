@@ -1,0 +1,1 @@
+<view class="{{['data-v-41423f68','uni-col',sizeClass,pointClassList]}}" style="{{'padding-left:'+($root.m0+'rpx')+';'+('padding-right:'+($root.m1+'rpx')+';')}}"><slot></slot></view>

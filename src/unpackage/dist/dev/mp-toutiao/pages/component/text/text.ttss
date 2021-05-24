@@ -1,0 +1,21 @@
+
+.text-box {
+	margin-bottom: 40rpx;
+	padding: 40rpx 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	min-height: 300rpx;
+	background-color: #FFFFFF;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	text-align: center;
+	font-size: 30rpx;
+	color: #353535;
+	line-height: 1.8;
+}
+

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "Form 表单",
+  "usingComponents": {
+    "uni-forms": "/components/uni-forms/uni-forms",
+    "uni-group": "/components/uni-group/uni-group",
+    "uni-forms-item": "/components/uni-forms-item/uni-forms-item",
+    "uni-easyinput": "/components/uni-easyinput/uni-easyinput",
+    "uni-datetime-picker": "/components/uni-datetime-picker/uni-datetime-picker",
+    "uni-data-checkbox": "/components/uni-data-checkbox/uni-data-checkbox"
+  }
+}

@@ -1,0 +1,1 @@
+<view><page-head vue-id="5dfeb3a4-1" title="{{title}}" onVueInit="__l"></page-head><view class="uni-common-mt"><view><map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{covers}}"></map></view></view></view>

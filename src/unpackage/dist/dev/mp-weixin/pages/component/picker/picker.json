@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "picker",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

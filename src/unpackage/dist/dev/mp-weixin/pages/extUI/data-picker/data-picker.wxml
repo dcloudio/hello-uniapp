@@ -1,0 +1,1 @@
+<view class="container"><view class="title"><text>uni-data-picker 本地数据</text></view><uni-data-picker bind:input="__e" vue-id="523c29b6-1" placeholder="请选择班级" popup-title="请选择所在地区" localdata="{{dataTree}}" value="{{classes}}" data-event-opts="{{[['^input',[['__set_model',['','classes','$event',[]]]]]]}}" bind:__l="__l"></uni-data-picker></view>

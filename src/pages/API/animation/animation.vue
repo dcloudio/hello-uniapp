@@ -6,15 +6,15 @@
 				<view class="animation-element" :animation="animationData"></view>
 			</view>
 			<scroll-view class="animation-buttons" scroll-y="true">
-				<button class="animation-button" @click="rotate">旋转</button>
-				<button class="animation-button" @click="scale">缩放</button>
-				<button class="animation-button" @click="translate">移动</button>
-				<button class="animation-button" @click="skew">倾斜</button>
-				<button class="animation-button" @click="rotateAndScale">旋转并缩放</button>
-				<button class="animation-button" @click="rotateThenScale">旋转后缩放</button>
-				<button class="animation-button" @click="all">同时展示全部</button>
-				<button class="animation-button" @click="allInQueue">顺序展示全部</button>
-				<button class="animation-button animation-button-reset" @click="reset">还原</button>
+				<button class="animation-button" @tap="rotate">旋转</button>
+				<button class="animation-button" @tap="scale">缩放</button>
+				<button class="animation-button" @tap="translate">移动</button>
+				<button class="animation-button" @tap="skew">倾斜</button>
+				<button class="animation-button" @tap="rotateAndScale">旋转并缩放</button>
+				<button class="animation-button" @tap="rotateThenScale">旋转后缩放</button>
+				<button class="animation-button" @tap="all">同时展示全部</button>
+				<button class="animation-button" @tap="allInQueue">顺序展示全部</button>
+				<button class="animation-button animation-button-reset" @tap="reset">还原</button>
 			</scroll-view>
 		</view>
 	</view>

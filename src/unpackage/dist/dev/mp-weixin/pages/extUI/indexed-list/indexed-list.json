@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "IndexedList 索引列表",
+  "disableScroll": true,
+  "usingComponents": {
+    "uni-indexed-list": "/components/uni-indexed-list/uni-indexed-list"
+  }
+}

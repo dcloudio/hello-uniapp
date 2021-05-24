@@ -66,7 +66,7 @@ var dateUtils = {
 	}
 };
 
-export default {
+module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
 	dateUtils: dateUtils

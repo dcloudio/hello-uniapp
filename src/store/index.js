@@ -1,6 +1,9 @@
-import { createStore } from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-const store = createStore({
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
 	state: {
 		hasLogin: false,
 		isUniverifyLogin: false,

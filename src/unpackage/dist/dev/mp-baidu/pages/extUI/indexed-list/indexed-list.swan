@@ -1,0 +1,1 @@
+<uni-indexed-list vue-id="62133ceb-1" options="{{list}}" show-select="{{true}}" data-event-opts="{{[['^click',[['bindClick']]]]}}" bind:click="__e"></uni-indexed-list>

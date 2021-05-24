@@ -3,22 +3,22 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-btn-v">
-				<button @click="navigateTo">跳转新页面，并传递数据</button>
-				<button @click="navigateBack">返回上一页</button>
-				<button @click="redirectTo">在当前页面打开</button>
-				<button @click="switchTab">切换到模板选项卡</button>
-				<button v-if="!hasLeftWin" @click="reLaunch">关闭所有页面，打开首页</button>
+				<button @tap="navigateTo">跳转新页面，并传递数据</button>
+				<button @tap="navigateBack">返回上一页</button>
+				<button @tap="redirectTo">在当前页面打开</button>
+				<button @tap="switchTab">切换到模板选项卡</button>
+				<button v-if="!hasLeftWin" @tap="reLaunch">关闭所有页面，打开首页</button>
 				<!-- #ifdef APP-PLUS -->
-				<button @click="customAnimation">使用自定义动画打开页面</button>
+				<button @tap="customAnimation">使用自定义动画打开页面</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS || H5 -->
-				<button @click="preloadPage">预载复杂页面</button>
+				<button @tap="preloadPage">预载复杂页面</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS -->
-				<button @click="unPreloadPage">取消页面预载</button>
+				<button @tap="unPreloadPage">取消页面预载</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS || H5 -->
-				<button @click="navigateToPreloadPage">打开复杂页面</button>
+				<button @tap="navigateToPreloadPage">打开复杂页面</button>
 				<!-- #endif -->
 			</view>
 		</view>

@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "Link 链接",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-link": "/components/uni-link/uni-link"
+  }
+}

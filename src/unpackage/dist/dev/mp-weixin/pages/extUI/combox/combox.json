@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Combox 组合框",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-combox": "/components/uni-combox/uni-combox"
+  }
+}

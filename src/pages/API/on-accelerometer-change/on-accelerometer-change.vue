@@ -4,12 +4,12 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<!-- #ifdef APP-PLUS -->
 			<view class="uni-btn-v">
-				<button class="shake" @click="shake">摇一摇</button>
+				<button class="shake" @tap="shake">摇一摇</button>
 			</view>
 			<!-- #endif -->
 			<view class="uni-btn-v">
-				<button type="primary" @click="watchAcce">监听设备的加速度变化</button>
-				<button type="primary" @click="stopAcce">停止监听设备的加速度变化</button>
+				<button type="primary" @tap="watchAcce">监听设备的加速度变化</button>
+				<button type="primary" @tap="stopAcce">停止监听设备的加速度变化</button>
 			</view>
 			<view class="uni-textarea uni-common-mt">
 				<textarea class="acc-show" :value="value" />

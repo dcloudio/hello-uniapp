@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Pagination 分页器",
+  "component": true,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-pagination": "/components/uni-pagination/uni-pagination"
+  }
+}

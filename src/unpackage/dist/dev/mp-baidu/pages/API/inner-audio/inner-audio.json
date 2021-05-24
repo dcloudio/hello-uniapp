@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "音频",
+  "component": true,
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

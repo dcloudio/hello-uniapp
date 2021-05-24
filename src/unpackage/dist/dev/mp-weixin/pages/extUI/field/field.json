@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Field 字段",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-field": "/components/uni-field/uni-field"
+  }
+}

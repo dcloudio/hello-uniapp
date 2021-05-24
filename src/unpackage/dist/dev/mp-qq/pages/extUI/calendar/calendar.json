@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Calendar 日历",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-calendar": "/components/uni-calendar/uni-calendar"
+  }
+}

@@ -22,6 +22,7 @@
 			</view>
 		</view>
 	</view>
+	</view>
 </template>
 
 <script>

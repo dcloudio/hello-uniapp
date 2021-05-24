@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-data-indexed-list": "/components/uni-data-indexed-list/uni-data-indexed-list"
+  }
+}

@@ -1,0 +1,115 @@
+
+page {
+	background: #fff;
+	/* width: 750rpx; */
+	/* width: 100%; */
+	overflow-x: hidden;
+}
+.qiun-padding {
+	padding: 2%;
+	width: 96%;
+}
+.qiun-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.qiun-rows {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal !important;
+	-webkit-box-direction: normal !important;
+	-webkit-flex-direction: row !important;
+	        flex-direction: row !important;
+}
+.qiun-columns {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical !important;
+	-webkit-box-direction: normal !important;
+	-webkit-flex-direction: column !important;
+	        flex-direction: column !important;
+}
+.qiun-common-mt {
+	margin-top: 10rpx;
+}
+.qiun-bg-white {
+	background: #FFFFFF;
+}
+.qiun-title-bar {
+	width: 96%;
+	padding: 10rpx 2%;
+	-webkit-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+}
+.qiun-title-dot-light {
+	border-left: 10rpx solid #0ea391;
+	padding-left: 10rpx;
+	font-size: 32rpx;
+	color: #000000
+}
+
+/* 通用样式 */
+.qiun-charts {
+	/* width: 750rpx; */
+	/* width:100%; */
+	height: 500rpx;
+	background-color: #FFFFFF;
+}
+.charts {
+	/* width: 750rpx; */
+	width:100%;
+	height: 500rpx;
+	background-color: #FFFFFF;
+}
+
+/* 横屏样式 */
+.qiun-charts-rotate {
+	width: 700rpx;
+	height: 1100rpx;
+	background-color: #FFFFFF;
+	padding: 25rpx;
+}
+.charts-rotate {
+	width: 700rpx;
+	height: 1100rpx;
+	background-color: #FFFFFF;
+}
+
+/* 圆弧进度样式 */
+.qiun-charts3 {
+	/* width: 750rpx;
+	width:100%; */
+	height: 250rpx;
+	background-color: #FFFFFF;
+	position: relative;
+}
+.charts3 {
+	position: absolute;
+	width: 250rpx;
+	height: 250rpx;
+	background-color: #FFFFFF;
+}
+.qiun-tip {
+	display: block;
+	width: auto;
+	overflow: hidden;
+	padding: 15rpx;
+	height: 30rpx;
+	line-height: 30rpx;
+	margin: 10rpx;
+	background: #ff9933;
+	font-size: 30rpx;
+	border-radius: 8rpx;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	text-align: center;
+	border: 1px solid #dc7004;
+	color: #FFFFFF;
+}
+

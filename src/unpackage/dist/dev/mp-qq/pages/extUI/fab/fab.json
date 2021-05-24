@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Fab 悬浮按钮",
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
+}

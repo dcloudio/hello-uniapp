@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "日期时间",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-datetime-picker": "/components/uni-datetime-picker/uni-datetime-picker"
+  }
+}

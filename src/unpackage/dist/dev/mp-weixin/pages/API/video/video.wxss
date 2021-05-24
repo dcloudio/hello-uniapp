@@ -1,0 +1,8 @@
+
+.video {
+	width: 100%;
+}
+.camera-tips {
+	padding: 10rpx 30rpx;
+}
+

@@ -1,0 +1,1 @@
+<view><page-head vue-id="e1fcea16-1" title="{{title}}" bind:__l="__l"></page-head><view class="uni-padding-wrap"><view class="uni-btn-v"><button class="target" type="default" data-event-opts="{{[['tap',[['actionSheetTap',['$event']]]]]}}" bindtap="__e">弹出action sheet</button></view></view></view>

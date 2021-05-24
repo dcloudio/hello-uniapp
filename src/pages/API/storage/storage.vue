@@ -8,7 +8,7 @@
 						<view class="uni-label">key</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"/>
+						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"></input>
 					</view>
 				</view>
 				<view class="uni-list-cell">
@@ -16,15 +16,15 @@
 						<view class="uni-label">value</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"/>
+						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"></input>
 					</view>
 				</view>
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
-					<button type="primary" class="btn-setstorage" @click="setStorage">存储数据</button>
-					<button @click="getStorage">读取数据</button>
-					<button @click="clearStorage">清理数据</button>
+					<button type="primary" class="btn-setstorage" @tap="setStorage">存储数据</button>
+					<button @tap="getStorage">读取数据</button>
+					<button @tap="clearStorage">清理数据</button>
 				</view>
 			</view>
 		</view>

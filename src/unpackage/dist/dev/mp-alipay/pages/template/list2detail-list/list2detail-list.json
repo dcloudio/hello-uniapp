@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "列表到详情示例",
+  "pullRefresh": true,
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

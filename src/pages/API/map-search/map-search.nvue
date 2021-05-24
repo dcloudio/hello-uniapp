@@ -1,6 +1,6 @@
 <template>
     <view class="content">
-        <map class="map" ref="dcmap" :markers="markers" @click="selectPoint"></map>
+        <map class="map" ref="dcmap" :markers="markers" @tap="selectPoint"></map>
         <scroll-view class="scrollview" scroll-y="true">
             <button class="button" @click="reverseGeocode">reverseGeocode</button>
             <button class="button" @click="poiSearchNearBy">poiSearchNearBy</button>

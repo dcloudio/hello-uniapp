@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "扫码",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

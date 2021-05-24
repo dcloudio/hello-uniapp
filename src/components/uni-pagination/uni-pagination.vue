@@ -1,6 +1,8 @@
 <template>
 	<view class="uni-pagination">
+		<!-- #ifndef APP-NVUE -->
 		<view class="uni-pagination__total is-phone-hide">共 {{ total }} 条</view>
+		<!-- #endif -->
 		<view class="uni-pagination__btn" :class="currentIndex === 1 ? 'uni-pagination--disabled' : 'uni-pagination--enabled'" :hover-class="currentIndex === 1 ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickLeft">
 			<template v-if="showIcon === true || showIcon === 'true'">
 				<uni-icons color="#666" size="16" type="arrowleft" />
@@ -13,10 +15,12 @@
 			<view class="uni-pagination__num-current">
 				<text class="uni-pagination__num-current-text is-pc-hide" style="color:#409EFF">{{ currentIndex }}</text>
 				<text class="uni-pagination__num-current-text is-pc-hide">/{{ maxPage || 0 }}</text>
-
+				<!-- #ifndef APP-NVUE -->
 				<view v-for="(item, index) in paper" :key="index" :class="{ 'page--active': item === currentIndex }" class="uni-pagination__num-tag tag--active is-phone-hide" @click.top="selectPage(item, index)">
 					<text>{{ item }}</text>
 				</view>
+				<!-- #endif -->
+
 			</view>
 		</view>
 		<view class="uni-pagination__btn" :class="currentIndex >= maxPage ? 'uni-pagination--disabled' : 'uni-pagination--enabled'" :hover-class="currentIndex === maxPage ? '' : 'uni-pagination--hover'" :hover-start-time="20" :hover-stay-time="70" @click="clickRight">
@@ -332,7 +336,7 @@
 		color: #fff;
 	}
 
-	/* #ifdef H5 */
+	/* #ifndef APP-NVUE */
 	.is-pc-hide {
 		display: block;
 	}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "List 列表",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-list": "/components/uni-list/uni-list",
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "uni-badge": "/components/uni-badge/uni-badge"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="test"><uni-test vue-id="36d70536-1" bind:__l="__l"></uni-test></view>

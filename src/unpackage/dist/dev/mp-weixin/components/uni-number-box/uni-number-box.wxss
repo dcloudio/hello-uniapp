@@ -1,0 +1,91 @@
+
+.uni-numbox.data-v-15947278 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	height: 35px;
+	line-height: 35px;
+	width: 120px;
+}
+.uni-cursor-point.data-v-15947278 {
+}
+.uni-numbox__value.data-v-15947278 {
+	background-color: #ffffff;
+	width: 40px;
+	height: 35px;
+	text-align: center;
+	font-size: 16px;
+	border-width: 1rpx;
+	border-style: solid;
+	border-color: #e5e5e5;
+	border-left-width: 0;
+	border-right-width: 0;
+}
+.uni-numbox__minus.data-v-15947278 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 35px;
+	height: 35px;
+	font-size: 20px;
+	color: #333;
+	background-color: #f8f8f8;
+	border-width: 1rpx;
+	border-style: solid;
+	border-color: #e5e5e5;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-right-width: 0;
+}
+.uni-numbox__plus.data-v-15947278 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	width: 35px;
+	height: 35px;
+	border-width: 1rpx;
+	border-style: solid;
+	border-color: #e5e5e5;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background-color: #f8f8f8;
+	border-left-width: 0;
+}
+.uni-numbox--text.data-v-15947278 {
+	font-size: 20px;
+	color: #333;
+}
+.uni-numbox--disabled.data-v-15947278 {
+	color: #c0c0c0;
+}
+

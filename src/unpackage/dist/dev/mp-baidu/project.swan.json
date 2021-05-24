@@ -1,0 +1,19 @@
+{
+    "appid": "17767960",
+    "appInfo": {},
+    "appkey": "",
+    "condition": {},
+    "setting": {
+        "urlCheck": true,
+        "es6": true
+    },
+    "libVersion": "",
+    "projectname": "hello uni-app",
+    "host": "baiduboxapp",
+    "swan": {
+        "baiduboxapp": {
+            "swanJsVersion": "3.230.99-rc",
+            "extensionJsVersion": "1.19.2"
+        }
+    }
+}

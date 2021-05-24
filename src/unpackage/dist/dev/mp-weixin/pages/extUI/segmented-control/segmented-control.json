@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "SegmentedControl 分段器",
+  "usingComponents": {
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control",
+    "uni-section": "/components/uni-section/uni-section"
+  }
+}

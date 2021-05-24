@@ -1,0 +1,11 @@
+
+.page-body-wrapper {
+    text-align: center;
+}
+.canvas {
+    width: 610rpx;
+    height: 610rpx;
+    margin: auto;
+    background-color: #fff;
+}
+

@@ -1,0 +1,28 @@
+
+.uni-rate.data-v-b7a28ab8 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	line-height: 1;
+	font-size: 0;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+}
+.uni-rate__icon.data-v-b7a28ab8 {
+	position: relative;
+	line-height: 1;
+	font-size: 0;
+}
+.uni-rate__icon-on.data-v-b7a28ab8 {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 1;
+	text-align: left;
+}
+

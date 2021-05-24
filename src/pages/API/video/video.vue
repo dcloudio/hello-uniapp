@@ -27,7 +27,7 @@
 		</view>
 		<!-- #endif -->
 		<template v-if="!src">
-			<view class="uni-hello-addfile" @click="chooseVideo">+ 添加视频</view>
+			<view class="uni-hello-addfile" @tap="chooseVideo">+ 添加视频</view>
 		</template>
 		<template v-else>
 			<video :src="src" class="video"></video>

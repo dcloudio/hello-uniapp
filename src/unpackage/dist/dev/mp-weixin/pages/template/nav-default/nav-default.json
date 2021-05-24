@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "默认导航栏",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

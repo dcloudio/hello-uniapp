@@ -1,0 +1,1 @@
+<view><page-head vue-id="799647dc-1" title="{{title}}" bind:__l="__l"></page-head><view class="page-body"><view class="page-body-wrapper"><canvas class="canvas" canvas-id="canvas" id="canvas"></canvas></view></view></view>

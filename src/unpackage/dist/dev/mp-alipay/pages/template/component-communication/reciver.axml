@@ -1,0 +1,1 @@
+<view><view class="reciver">{{''+(msg===''?'等待发送':'收到消息：')+msg+''}}</view></view>

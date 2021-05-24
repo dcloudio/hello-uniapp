@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "分享",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

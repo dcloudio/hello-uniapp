@@ -1,0 +1,1 @@
+<text style="text-decoration:underline;" href="{{href}}" inWhiteList="{{inWhiteList}}" data-event-opts="{{[['tap',[['openURL',['$event']]]]]}}" bindtap="__e">{{text}}</text>

@@ -5,7 +5,7 @@
 			<view class="uni-hello-text uni-center">请在下方输入电话号码</view>
 			<input class="input uni-common-mt" type="number" name="input" @input="bindInput" />
 			<view class="uni-btn-v uni-common-mt">
-				<button @click="makePhoneCall" type="primary" :disabled="disabled">拨打</button>
+				<button @tap="makePhoneCall" type="primary" :disabled="disabled">拨打</button>
 			</view>
 		</view>
 	</view>

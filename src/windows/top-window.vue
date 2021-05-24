@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  console.log('top-window')
 	export default {
 		data() {
 			return {

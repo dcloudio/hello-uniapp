@@ -1,0 +1,18 @@
+
+.img {
+	width: 500rpx;
+	height: 500rpx;
+	margin: 0 auto;
+}
+.image-container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+

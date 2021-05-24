@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "消息提示框",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

@@ -18,14 +18,14 @@
 				</block>
 			</view>
 			<view class="uni-btn-v">
-				<button type="primary" @click="chooseLocation">选择位置</button>
-				<button @click="clear">清空</button>
+				<button type="primary" @tap="chooseLocation">选择位置</button>
+				<button @tap="clear">清空</button>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
-	import util from '../../../common/util.js'
+	var util = require('../../../common/util.js');
 	var formatLocation = util.formatLocation;
 
 	export default {

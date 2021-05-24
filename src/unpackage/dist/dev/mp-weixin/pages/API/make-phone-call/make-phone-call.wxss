@@ -1,0 +1,9 @@
+
+.input {
+	height: 119rpx;
+	line-height: 119rpx;
+	font-size: 78rpx;
+	border-bottom: 1rpx solid #E2E2E2;
+	text-align:center;
+}
+

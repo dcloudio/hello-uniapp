@@ -1,0 +1,66 @@
+
+.uni-popup-message.data-v-14c67ed0 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.uni-popup-message__box.data-v-14c67ed0 {
+	background-color: #e1f3d8;
+	padding: 10px 15px;
+	border-color: #eee;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+@media screen and (min-width: 500px) {
+.fixforpc-width.data-v-14c67ed0 {
+		margin-top: 20px;
+		border-radius: 4px;
+		-webkit-box-flex: 0;
+		-webkit-flex: none;
+		        flex: none;
+		min-width: 380px;
+
+		max-width: 50%;
+}
+}
+.uni-popup-message-text.data-v-14c67ed0 {
+	font-size: 14px;
+	padding: 0;
+}
+.uni-popup__success.data-v-14c67ed0 {
+	background-color: #e1f3d8;
+}
+.uni-popup__success-text.data-v-14c67ed0 {
+	color: #67C23A;
+}
+.uni-popup__warn.data-v-14c67ed0 {
+	background-color: #faecd8;
+}
+.uni-popup__warn-text.data-v-14c67ed0 {
+	color: #E6A23C;
+}
+.uni-popup__error.data-v-14c67ed0 {
+	background-color: #fde2e2;
+}
+.uni-popup__error-text.data-v-14c67ed0 {
+	color: #F56C6C;
+}
+.uni-popup__info.data-v-14c67ed0 {
+	background-color: #F2F6FC;
+}
+.uni-popup__info-text.data-v-14c67ed0 {
+	color: #909399;
+}
+

@@ -50,11 +50,11 @@
 								<view class="uni-uploader__files">
 									<block v-for="(image,index) in imageList" :key="index">
 										<view class="uni-uploader__file">
-											<image class="uni-uploader__img" :src="image" :data-src="image" @click="previewImage"></image>
+											<image class="uni-uploader__img" :src="image" :data-src="image" @tap="previewImage"></image>
 										</view>
 									</block>
 									<view class="uni-uploader__input-box">
-										<view class="uni-uploader__input" @click="chooseImage"></view>
+										<view class="uni-uploader__input" @tap="chooseImage"></view>
 									</view>
 								</view>
 							</view>

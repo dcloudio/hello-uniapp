@@ -717,7 +717,6 @@
 			/**
 			 * 触发或关闭弹框
 			 */
-
 			tiggerTimePicker(e) {
 				this.visible = !this.visible
 			},

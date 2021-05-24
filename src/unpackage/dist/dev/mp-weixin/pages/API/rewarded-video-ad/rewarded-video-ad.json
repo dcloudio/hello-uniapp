@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "激励视频广告",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

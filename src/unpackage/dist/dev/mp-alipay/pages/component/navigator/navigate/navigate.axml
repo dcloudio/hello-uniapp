@@ -1,0 +1,1 @@
+<view><page-head vue-id="08037200-1" title="{{title}}" onVueInit="__l"></page-head></view>

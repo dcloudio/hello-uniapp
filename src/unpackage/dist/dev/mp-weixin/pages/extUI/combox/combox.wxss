@@ -1,0 +1,112 @@
+
+@charset "UTF-8";
+
+/* 头条小程序组件内不能引入字体 */
+page {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	box-sizing: border-box;
+	background-color: #efeff4;
+	min-height: 100%;
+	height: auto;
+}
+view {
+	font-size: 14px;
+	line-height: inherit;
+}
+.example {
+	padding: 0 15px 15px;
+}
+.example-info {
+	padding: 15px;
+	color: #3b4144;
+	background: #ffffff;
+}
+.example-body {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	padding: 0;
+	font-size: 14px;
+	background-color: #ffffff;
+}
+.example {
+	padding: 0 15px;
+}
+.example-info {
+
+	display: block;
+
+	padding: 15px;
+	color: #3b4144;
+	background-color: #ffffff;
+	font-size: 14px;
+	line-height: 20px;
+}
+.example-info-text {
+	font-size: 14px;
+	line-height: 20px;
+	color: #3b4144;
+}
+.example-body {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	padding: 15px;
+	background-color: #ffffff;
+}
+.word-btn-white {
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.word-btn {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	border-radius: 6px;
+	height: 48px;
+	margin: 15px;
+	background-color: #007AFF;
+}
+.word-btn--hover {
+	background-color: #4ca2ff;
+}
+.example-body {
+	padding: 0px 12px;
+	background-color: #FFFFFF;
+}
+.result-box {
+	text-align: center;
+	padding: 20px 0px;
+	font-size: 16px;
+}
+

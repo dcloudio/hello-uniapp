@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "模版",
+  "usingComponents": {
+    "u-link": "/components/u-link/u-link"
+  }
+}

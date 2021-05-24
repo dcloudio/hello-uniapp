@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "列表到详情示例",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

@@ -1,0 +1,1 @@
+<block a:if="{{isShow}}"><view ref="__r" data-ref="ani" data-event-opts="{{[['tap',[['change',['$event']]]]]}}" class="{{(('uni-transition data-v-cce16df8')+' '+ani.in)}}" style="{{('transform:'+transform+';'+stylesObject)}}" onTap="__e"><slot></slot></view></block>

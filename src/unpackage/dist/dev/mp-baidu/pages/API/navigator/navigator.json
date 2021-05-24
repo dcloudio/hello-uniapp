@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "页面跳转",
+  "component": true,
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

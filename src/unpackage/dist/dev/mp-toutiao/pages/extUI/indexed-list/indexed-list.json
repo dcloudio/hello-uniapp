@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "IndexedList 索引列表",
+  "usingComponents": {
+    "uni-indexed-list": "/components/uni-indexed-list/uni-indexed-list"
+  }
+}

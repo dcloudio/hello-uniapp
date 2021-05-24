@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  },
+  "component": true
+}

@@ -1,0 +1,53 @@
+
+.banner {
+	height: 360rpx;
+	overflow: hidden;
+	position: relative;
+	background-color: #ccc;
+}
+.banner-img {
+	width: 100%;
+}
+.banner-title {
+	max-height: 84rpx;
+	overflow: hidden;
+	position: absolute;
+	left: 30rpx;
+	bottom: 30rpx;
+	width: 90%;
+	font-size: 32rpx;
+	font-weight: 400;
+	line-height: 42rpx;
+	color: white;
+	z-index: 11;
+}
+.article-meta {
+	padding: 20rpx 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
+	color: gray;
+}
+.article-text {
+	font-size: 26rpx;
+	line-height: 50rpx;
+	margin: 0 20rpx;
+}
+.article-author,
+.article-time {
+	font-size: 30rpx;
+}
+.article-content {
+	padding: 0 30rpx;
+	overflow: hidden;
+	font-size: 30rpx;
+	margin-bottom: 30rpx;
+}
+

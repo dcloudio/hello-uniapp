@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "微信自定义组件示例",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head",
+    "van-button": "/wxcomponents/vant/button/index"
+  }
+}

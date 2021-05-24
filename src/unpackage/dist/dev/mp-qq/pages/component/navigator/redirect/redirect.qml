@@ -1,0 +1,1 @@
+<view><page-head vue-id="3267abf4-1" title="{{title}}" bind:__l="__l"></page-head></view>

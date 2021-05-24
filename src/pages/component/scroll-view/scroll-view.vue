@@ -14,7 +14,7 @@
 					<view id="demo3" class="scroll-view-item uni-bg-blue">C</view>
 				</scroll-view>
 			</view>
-			<view @click="goTop" class="uni-link uni-center uni-common-mt">
+			<view @tap="goTop" class="uni-link uni-center uni-common-mt">
 				点击这里返回顶部
 			</view>
 			

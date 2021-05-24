@@ -1,0 +1,9 @@
+{
+  "defaultTitle": "NavBar 导航栏",
+  "pullRefresh": true,
+  "usingComponents": {
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-icons": "/components/uni-icons/uni-icons"
+  }
+}

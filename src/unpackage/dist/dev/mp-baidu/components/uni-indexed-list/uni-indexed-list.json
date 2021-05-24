@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "uni-icons": "/components/uni-icons/uni-icons",
+    "uni-indexed-list-item": "/components/uni-indexed-list/uni-indexed-list-item"
+  }
+}

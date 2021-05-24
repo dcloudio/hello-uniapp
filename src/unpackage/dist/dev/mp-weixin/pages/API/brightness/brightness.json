@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "屏幕亮度",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

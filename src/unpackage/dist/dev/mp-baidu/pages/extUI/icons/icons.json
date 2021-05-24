@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Icons 图标",
+  "component": true,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-icons": "/components/uni-icons/uni-icons"
+  }
+}

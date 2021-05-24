@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "SwipeAction 滑动操作",
+  "component": true,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-swipe-action": "/components/uni-swipe-action/uni-swipe-action",
+    "uni-swipe-action-item": "/components/uni-swipe-action-item/uni-swipe-action-item"
+  }
+}

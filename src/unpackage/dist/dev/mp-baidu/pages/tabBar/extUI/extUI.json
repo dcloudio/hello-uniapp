@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "扩展组件",
+  "component": true,
+  "usingComponents": {
+    "u-link": "/components/u-link/u-link"
+  }
+}

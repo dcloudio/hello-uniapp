@@ -1,0 +1,5 @@
+
+.uni-list-cell-left {
+	padding: 0 30rpx;
+}
+

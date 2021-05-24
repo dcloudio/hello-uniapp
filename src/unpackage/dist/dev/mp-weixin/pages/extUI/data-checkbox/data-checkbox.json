@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-group": "/components/uni-group/uni-group",
+    "uni-data-checkbox": "/components/uni-data-checkbox/uni-data-checkbox"
+  }
+}

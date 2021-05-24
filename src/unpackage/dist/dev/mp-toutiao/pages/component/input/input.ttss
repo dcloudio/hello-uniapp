@@ -1,0 +1,122 @@
+
+view,
+swiper-item,
+scroll-view {
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -webkit-flex-direction:column;
+          flex-direction:column;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+          flex-grow: 0;
+  -webkit-flex-basis: auto;
+          flex-basis: auto;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+
+
+.nvue-page-root.data-v-86086558 {
+    background-color: #F8F8F8;
+    padding-bottom: 20px;
+}
+.page-title.data-v-86086558 {
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    padding: 35rpx;
+}
+.page-title__wrapper.data-v-86086558 {
+    padding: 0px 20px;
+    border-bottom-color: #D8D8D8;
+    border-bottom-width: 1px;
+}
+.page-title__text.data-v-86086558 {
+    font-size: 16px;
+    height: 48px;
+    line-height: 48px;
+    color: #BEBEBE;
+}
+.title.data-v-86086558 {
+    padding: 5px 13px;
+}
+.uni-form-item__title.data-v-86086558 {
+    font-size: 16px;
+    line-height: 24px;
+}
+.uni-input-wrapper.data-v-86086558 {
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+
+    padding: 8px 13px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    background-color: #FFFFFF;
+}
+.uni-input.data-v-86086558 {
+    height: 28px;
+    line-height: 28px;
+    font-size: 15px;
+    padding: 0px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    background-color: #FFFFFF;
+}
+.uni-icon.data-v-86086558 {
+    font-family: uniicons;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    color: #999999;
+}
+.uni-eye-active.data-v-86086558 {
+    color: #007AFF;
+}
+

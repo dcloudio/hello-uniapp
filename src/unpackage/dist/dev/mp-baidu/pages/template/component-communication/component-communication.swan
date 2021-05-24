@@ -1,0 +1,1 @@
+<view><page-head vue-id="ca1af8d4-1" title="组件通讯示例"></page-head><view class="uni-padding-wrap"><view class="uni-btn-v"><reciver vue-id="ca1af8d4-2"></reciver><sender vue-id="ca1af8d4-3"></sender><sender-bus vue-id="ca1af8d4-4"></sender-bus></view></view></view>

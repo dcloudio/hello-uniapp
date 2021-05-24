@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "slider",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

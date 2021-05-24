@@ -1,0 +1,33 @@
+
+.rmbLogo {
+	font-size: 40rpx;
+}
+button {
+	background-color: #007aff;
+	color: #ffffff;
+}
+.uni-h1.uni-center {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	        align-items: flex-end;
+}
+.price {
+	border-bottom: 1px solid #eee;
+	width: 200rpx;
+	height: 80rpx;
+	padding-bottom: 4rpx;
+}
+.ipaPayBtn {
+	margin-top: 30rpx;
+}
+

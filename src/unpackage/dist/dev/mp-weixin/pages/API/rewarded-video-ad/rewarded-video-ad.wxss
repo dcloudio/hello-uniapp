@@ -1,0 +1,10 @@
+
+.btn {
+    margin-bottom: 20px;
+}
+.ad-tips {
+    color: #999;
+    padding: 30px 0;
+    text-align: center;
+}
+

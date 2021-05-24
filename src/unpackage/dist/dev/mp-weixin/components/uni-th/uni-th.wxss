@@ -1,0 +1,14 @@
+
+.uni-table-th.data-v-17a4af24 {
+	padding: 12px 10px;
+	display: table-cell;
+	color: #333;
+	font-weight: 500;
+	border-bottom: 1px #ddd solid;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.table--border.data-v-17a4af24 {
+	border-right: 1px #ddd solid;
+}
+

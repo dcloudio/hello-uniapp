@@ -1,0 +1,113 @@
+
+.uni-popup-dialog.data-v-7be665c4 {
+	width: 300px;
+	border-radius: 15px;
+	background-color: #fff;
+}
+.uni-dialog-title.data-v-7be665c4 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+.uni-dialog-title-text.data-v-7be665c4 {
+	font-size: 16px;
+	font-weight: 500;
+}
+.uni-dialog-content.data-v-7be665c4 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 5px 15px 15px 15px;
+}
+.uni-dialog-content-text.data-v-7be665c4 {
+	font-size: 14px;
+	color: #6e6e6e;
+}
+.uni-dialog-button-group.data-v-7be665c4 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	border-top-color: #f5f5f5;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+.uni-dialog-button.data-v-7be665c4 {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	height: 45px;
+}
+.uni-border-left.data-v-7be665c4 {
+	border-left-color: #f0f0f0;
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+.uni-dialog-button-text.data-v-7be665c4 {
+	font-size: 14px;
+}
+.uni-button-color.data-v-7be665c4 {
+	color: #007aff;
+}
+.uni-dialog-input.data-v-7be665c4 {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	font-size: 14px;
+}
+.uni-popup__success.data-v-7be665c4 {
+	color: #4cd964;
+}
+.uni-popup__warn.data-v-7be665c4 {
+	color: #f0ad4e;
+}
+.uni-popup__error.data-v-7be665c4 {
+	color: #dd524d;
+}
+.uni-popup__info.data-v-7be665c4 {
+	color: #909399;
+}
+

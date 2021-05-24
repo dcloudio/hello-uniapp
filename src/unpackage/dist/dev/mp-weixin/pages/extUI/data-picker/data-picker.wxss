@@ -1,0 +1,23 @@
+
+.container {
+	height: 100%;
+	padding: 0 15px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	max-width: 500px;
+}
+.title {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 20px 0 5px 0;
+}
+.data-pickerview {
+	height: 400px;
+	border: 1px #e5e5e5 solid;
+}
+

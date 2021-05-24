@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "获取设备系统信息",
+  "component": true,
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

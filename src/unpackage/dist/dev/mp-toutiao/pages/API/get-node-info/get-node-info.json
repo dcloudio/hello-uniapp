@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "节点信息",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

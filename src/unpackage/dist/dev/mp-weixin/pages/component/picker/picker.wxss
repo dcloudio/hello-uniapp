@@ -1,0 +1,9 @@
+
+.uni-picker-tips {
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 15px;
+	padding: 0 15px;
+	/* text-align: right; */
+}
+

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "swiper",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

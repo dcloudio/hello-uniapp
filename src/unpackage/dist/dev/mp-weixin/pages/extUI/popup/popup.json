@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "Popup 弹出层",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-popup-message": "/components/uni-popup-message/uni-popup-message",
+    "uni-popup-dialog": "/components/uni-popup-dialog/uni-popup-dialog",
+    "uni-popup-share": "/components/uni-popup-share/uni-popup-share"
+  }
+}

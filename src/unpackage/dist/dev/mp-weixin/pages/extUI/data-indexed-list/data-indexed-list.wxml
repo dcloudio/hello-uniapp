@@ -1,0 +1,1 @@
+<uni-data-indexed-list vue-id="0ff42b44-1" collection="opendb-china-cities" field="code as value, name as text, letter as group" page-size="{{500}}" where="type==1" orderby="group asc" show-select="{{true}}" data-event-opts="{{[['^click',[['bindClick']]]]}}" bind:click="__e" bind:__l="__l"></uni-data-indexed-list>

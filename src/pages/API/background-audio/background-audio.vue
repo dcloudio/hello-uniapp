@@ -15,16 +15,16 @@
 			<view class="uni-hello-text">注意：离开当前页面后背景音乐将保持播放，但退出uni-app将停止</view>
 			<view class="page-body-buttons">
 				<block v-if="playing">
-					<view class="page-body-button" @click="stop">
+					<view class="page-body-button" @tap="stop">
 						<image src="/static/stop.png"></image>
 					</view>
-					<view class="page-body-button" @click="pause">
+					<view class="page-body-button" @tap="pause">
 						<image src="/static/pause.png"></image>
 					</view>
 				</block>
 				<block v-if="!playing">
 					<view class="page-body-button"></view>
-					<view class="page-body-button" @click="play">
+					<view class="page-body-button" @tap="play">
 						<image src="/static/play.png"></image>
 					</view>
 				</block>
@@ -61,7 +61,7 @@
 				bgAudioMannager.singer = '暂无';
 			}
 			if(!bgAudioMannager.coverImgUrl){
-				bgAudioMannager.coverImgUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/e61b5e30-2bcf-11eb-b680-7980c8a877b8.jpg';
+				bgAudioMannager.coverImgUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c517b410-5184-11eb-b997-9918a5dda011.jpeg';
 			}
 
 			bgAudioMannager.onPlay(() => {

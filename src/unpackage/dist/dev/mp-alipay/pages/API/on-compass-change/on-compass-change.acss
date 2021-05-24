@@ -1,0 +1,50 @@
+
+.direction {
+	position: relative;
+	margin-top: 70rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 540rpx;
+	height: 540rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	margin:0 auto;
+}
+.direction-value {
+	position: relative;
+	font-size: 200rpx;
+	color: #353535;
+	line-height: 1;
+	z-index: 1;
+}
+.direction-degree {
+	position: absolute;
+	top: 0;
+	right: -40rpx;
+	font-size: 60rpx;
+}
+.bg-compass {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 540rpx;
+	height: 540rpx;
+	-webkit-transition: .1s;
+	transition: .1s;
+}
+.bg-compass-line {
+	position: absolute;
+	left: 267rpx;
+	top: -10rpx;
+	width: 6rpx;
+	height: 56rpx;
+	background-color: #1AAD19;
+	border-radius: 999rpx;
+	z-index: 1;
+}
+

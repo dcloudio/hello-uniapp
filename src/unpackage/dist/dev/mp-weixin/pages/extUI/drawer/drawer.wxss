@@ -1,0 +1,259 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -webkit-flex-direction:column;
+          flex-direction:column;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+          flex-grow: 0;
+  -webkit-flex-basis: auto;
+          flex-basis: auto;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+
+@charset "UTF-8";
+
+/* 头条小程序组件内不能引入字体 */
+page {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	box-sizing: border-box;
+	background-color: #efeff4;
+	min-height: 100%;
+	height: auto;
+}
+view {
+	font-size: 14px;
+	line-height: inherit;
+}
+.example {
+	padding: 0 15px 15px;
+}
+.example-info {
+	padding: 15px;
+	color: #3b4144;
+	background: #ffffff;
+}
+.example-body {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	padding: 0;
+	font-size: 14px;
+	background-color: #ffffff;
+}
+.example {
+	padding: 0 15px;
+}
+.example-info {
+
+	display: block;
+
+	padding: 15px;
+	color: #3b4144;
+	background-color: #ffffff;
+	font-size: 14px;
+	line-height: 20px;
+}
+.example-info-text {
+	font-size: 14px;
+	line-height: 20px;
+	color: #3b4144;
+}
+.example-body {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	padding: 15px;
+	background-color: #ffffff;
+}
+.word-btn-white {
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.word-btn {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	border-radius: 6px;
+	height: 48px;
+	margin: 15px;
+	background-color: #007AFF;
+}
+.word-btn--hover {
+	background-color: #4ca2ff;
+}
+.header {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	padding: 10px 15px;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	border-top-width: 1px;
+	border-top-color: #f5f5f5;
+	border-top-style: solid;
+	background-color: #ffffff;
+}
+.input-view {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	background-color: #e7e7e7;
+	height: 30px;
+	border-radius: 15px;
+	padding: 0 10px;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	background-color: #f5f5f5;
+}
+.uni-drawer-info {
+	background-color: #ffffff;
+	padding: 15px;
+	padding-top: 5px;
+	color: #3b4144;
+}
+.uni-padding-wrap {
+	padding: 0 15px;
+	line-height: 1.8;
+}
+.input {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	padding: 0 5px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	background-color: transparent;
+}
+.close {
+	padding: 15px;
+}
+.example-body {
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	padding: 0;
+}
+.draw-cotrol-btn {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+.info {
+	padding: 15px;
+	color: #666;
+}
+.info-text {
+	font-size: 14px;
+	color: #666;
+}
+.scroll-view {
+
+	width: 100%;
+	height: 100%;
+
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+.scroll-view-box {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.info-content {
+	padding: 5px 15px;
+}
+

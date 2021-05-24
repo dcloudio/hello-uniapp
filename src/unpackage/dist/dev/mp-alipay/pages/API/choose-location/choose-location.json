@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "使用地图选择位置",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "IndexedList 索引列表",
+  "allowsBounceVertical": "NO",
+  "usingComponents": {
+    "uni-indexed-list": "/components/uni-indexed-list/uni-indexed-list"
+  }
+}

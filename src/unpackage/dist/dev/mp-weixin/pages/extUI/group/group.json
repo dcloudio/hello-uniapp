@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Group 分组",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-group": "/components/uni-group/uni-group"
+  }
+}

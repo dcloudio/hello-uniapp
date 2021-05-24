@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "模版",
+  "component": true,
+  "usingComponents": {
+    "u-link": "/components/u-link/u-link"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "打电话",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

@@ -3,10 +3,10 @@
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap" v-if="provider[0]">
             <view class="uni-btn-v uni-common-mt">
-                <button type="primary" @click="listenTranMsg">监听透传数据</button>
+                <button type="primary" @tap="listenTranMsg">监听透传数据</button>
             </view>
             <view class="uni-btn-v uni-common-mt">
-                <button type="primary" @click="requireTranMsg">发送"透传数据"消息</button>
+                <button type="primary" @tap="requireTranMsg">发送"透传数据"消息</button>
             </view>
             <view class="uni-title uni-common-mt">透传内容：</view>
             <view class="uni-textarea">

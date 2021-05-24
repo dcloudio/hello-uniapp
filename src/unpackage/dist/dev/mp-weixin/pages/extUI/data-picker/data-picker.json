@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "级联选择",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-data-picker": "/components/uni-data-picker/uni-data-picker"
+  }
+}

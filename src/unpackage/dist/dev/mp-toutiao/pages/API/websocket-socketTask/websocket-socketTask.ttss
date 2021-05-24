@@ -1,0 +1,22 @@
+
+.uni-btn-v {
+		padding: 10rpx 0;
+}
+.uni-btn-v button {
+		margin: 20rpx 0;
+}
+.websocket-msg {
+		padding: 40px 0px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 40px;
+		color: #666666;
+}
+.websocket-tips{
+        padding: 40px 0px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 24px;
+        color: #666666;
+}
+

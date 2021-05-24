@@ -128,7 +128,7 @@
             replaceInput: function(event) {
                 var value = event.detail.value;
                 if (value === '11') {
-                  this.changeValue = '2';
+                    this.changeValue = '2';
                 }
             },
             hideKeyboard: function(event) {

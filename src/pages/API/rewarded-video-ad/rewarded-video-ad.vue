@@ -25,13 +25,16 @@
             }
         },
         onReady() {
-            // #ifdef APP-PLUS || MP-WEIXIN
+            // #ifdef APP-PLUS
             this.adOption = {
-                adpid: '1507000689',//App广告位ID
-                adUnitId: '' //TODO 请更换为自己的微信广告位ID
+                adpid: '1507000689'
             };
             // #endif
-
+            // #ifdef MP-WEIXIN
+            this.adOption = {
+                adUnitId: ''
+            };
+            // #endif
             this.createAd();
         },
         methods: {

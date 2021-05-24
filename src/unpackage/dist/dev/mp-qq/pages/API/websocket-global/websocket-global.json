@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "websocket-global",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

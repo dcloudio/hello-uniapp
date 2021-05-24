@@ -1,0 +1,1 @@
+<text data-event-opts="{{[['tap',[['openURL',['$event']]]]]}}" class="{{['uni-link data-v-2ad2f7e4',(showUnderLine===true||showUnderLine==='true')?'uni-link--withline':'']}}" style="{{'color:'+(color)+';'+('font-size:'+(fontSize+'px')+';')}}" bindtap="__e">{{text}}</text>

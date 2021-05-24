@@ -1,0 +1,33 @@
+
+.canvas-element-wrapper {
+	display: block;
+	margin-bottom: 100rpx;
+}
+.canvas-element {
+	width: 100%;
+	height: 500rpx;
+	background-color: #ffffff;
+}
+.canvas-buttons {
+	padding: 30rpx 50rpx 10rpx;
+	width: 100%;
+	height: 360rpx;
+	box-sizing: border-box;
+}
+.canvas-button {
+	float: left;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	height: 40px;
+	line-height: 1;
+	width: 300rpx;
+	margin: 15rpx 12rpx;
+}
+

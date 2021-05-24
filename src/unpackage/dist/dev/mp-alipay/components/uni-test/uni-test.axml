@@ -1,0 +1,1 @@
+<view class="data-v-506722e4">测试插件</view>

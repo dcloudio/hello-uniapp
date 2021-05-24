@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Title 章节标题",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-title": "/components/uni-title/uni-title"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Grid 宫格",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-grid": "/components/uni-grid/uni-grid",
+    "uni-grid-item": "/components/uni-grid-item/uni-grid-item",
+    "uni-badge": "/components/uni-badge/uni-badge"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "navigatePage",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}

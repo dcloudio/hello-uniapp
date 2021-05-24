@@ -1,0 +1,27 @@
+
+movable-view {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	height: 150rpx;
+	width: 150rpx;
+	background-color: #007AFF;
+	color: #fff;
+}
+movable-area {
+	height: 300rpx;
+	width: 100%;
+	background-color: #D8D8D8;
+	overflow: hidden;
+}
+.max {
+	width:500rpx;
+	height: 500rpx;
+}
+

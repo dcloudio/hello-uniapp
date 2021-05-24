@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Card 卡片",
+  "usingComponents": {
+    "uni-section": "/components/uni-section/uni-section",
+    "uni-card": "/components/uni-card/uni-card"
+  }
+}

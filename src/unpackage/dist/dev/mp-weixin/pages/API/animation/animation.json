@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "创建动画",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head"
+  }
+}
