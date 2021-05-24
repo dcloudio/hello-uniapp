@@ -1,0 +1,291 @@
+<template>
+	<view class="uni-container">
+		<view v-if="!hasLeftWin" class="uni-header-logo">
+			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
+		</view>
+		<view v-if="!hasLeftWin" class="uni-hello-text">
+			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
+			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
+		</view>
+		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel" v-for="item in lists" :key="item.url">
+			<view :class="{'left-win-active': leftWinActive ===  item.url && hasLeftWin}" class="uni-panel-h" @click="goDetailPage(item.url)">
+				<text class="uni-panel-text">{{item.name}}</text>
+				<text class="uni-panel-icon uni-icon">&#xe470;</text>
+			</view>
+		</view>
+	</view>
+</template>
+<script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	export default {
+		data() {
+			return {
+				hideList: [
+					'load-more'
+				],
+				lists: [{
+						name: "badge 数字角标",
+						url: "badge"
+					},
+					{
+						name: "calendar 日历",
+						url: "calendar"
+					},
+					{
+						name: "card 卡片",
+						url: "card"
+					},
+					{
+						name: "collapse 折叠面板",
+						url: "collapse"
+					},
+
+					// #ifndef APP-NVUE 
+					{
+						name: "combox 组合框",
+						url: "combox"
+					},
+					// #endif 
+					{
+						name: "countdown 倒计时",
+						url: "countdown"
+					},
+					{
+						name: "dataCheckbox 数据选择器",
+						url: "data-checkbox"
+					},
+					{
+						name: "dataPicker 数据驱动的picker选择器",
+						url: "data-picker"
+					},
+
+					// #ifndef APP-NVUE 
+					{
+						name: "datePicker 日期选择器",
+						url: "date-picker"
+					},
+					// #endif 
+					{
+						name: "dateformat 日期格式化",
+						url: "dateformat"
+					},
+
+					// #ifndef APP-NVUE 
+					{
+						name: "datetimePicker 日期选择器",
+						url: "datetime-picker"
+					},
+					// #endif 
+					{
+						name: "drawer 抽屉",
+						url: "drawer"
+					},
+					{
+						name: "easyinput 增强输入框",
+						url: "easyinput"
+					},
+					{
+						name: "fab 悬浮按钮",
+						url: "fab"
+					},
+					{
+						name: "fav 收藏按钮",
+						url: "fav"
+					},
+
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
+					{
+						name: "field 输入框",
+						url: "field"
+					},
+					// #endif 
+
+					// #ifndef APP-NVUE 
+					{
+						name: "filePicker 文件选择上传",
+						url: "file-picker"
+					},
+					// #endif 
+					{
+						name: "forms 表单",
+						url: "forms"
+					},
+					{
+						name: "goodsNav 商品导航",
+						url: "goods-nav"
+					},
+					{
+						name: "grid 宫格",
+						url: "grid"
+					},
+					{
+						name: "group 分组",
+						url: "group"
+					},
+					{
+						name: "icons 图标",
+						url: "icons"
+					},
+					{
+						name: "indexedList 索引列表",
+						url: "indexed-list"
+					},
+					{
+						name: "link 超链接",
+						url: "link"
+					},
+					{
+						name: "list 列表",
+						url: "list"
+					},
+					{
+						name: "loadMore 加载更多",
+						url: "load-more"
+					},
+					{
+						name: "navBar 自定义导航栏",
+						url: "nav-bar"
+					},
+					// #ifndef QUICKAPP-WEBVIEW
+					{
+						name: "noticeBar 通告栏",
+						url: "notice-bar"
+					},
+					// #endif
+					{
+						name: "numberBox 数字输入框",
+						url: "number-box"
+					},
+					{
+						name: "pagination 分页器",
+						url: "pagination"
+					},
+					// #ifndef QUICKAPP-WEBVIEW-HUAWEI
+					{
+						name: "popUp 弹出层",
+						url: "popup"
+					},
+					// #endif
+
+					{
+						name: "rate 评分",
+						url: "rate"
+					},
+					{
+						name: "row 布局-行",
+						url: "row"
+					},
+					{
+						name: "searchBar 搜索栏",
+						url: "search-bar"
+					},
+
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
+					{
+						name: "section 标题栏",
+						url: "section"
+					},
+					// #endif 
+					{
+						name: "segmentedControl 分段器",
+						url: "segmented-control"
+					},
+					{
+						name: "steps 步骤条",
+						url: "steps"
+					},
+					{
+						name: "swipeAction 滑动操作",
+						url: "swipe-action"
+					},
+					{
+						name: "swiperDot 轮播图指示点",
+						url: "swiper-dot"
+					},
+					// #ifndef APP-NVUE || MP-TOUTIAO 
+					{
+						name: "table 表格",
+						url: "table"
+					},
+					// #endif
+					{
+						name: "tag 标签",
+						url: "tag"
+					},
+					{
+						name: "title 章节标题",
+						url: "title"
+					},
+					{
+						name: "transition 过渡动画",
+						url: "transition"
+					},
+				]
+			};
+		},
+		onLoad() {},
+		onReady() {
+			// #ifdef APP-NVUE
+			uni.preloadPage({
+				url: "/pages/extUI/calendar/calendar",
+				success() {
+					console.log("preloadPage /pages/extUI/calendar/calendar")
+				},
+				fail() {}
+			})
+			// #endif
+		},
+		onShareAppMessage() {
+			return {
+				title: '欢迎体验uni-app',
+				path: '/pages/tabBar/extUI/extUI'
+			}
+		},
+		onNavigationBarButtonTap(e) {
+			uni.navigateTo({
+				url: '/pages/about/about'
+			});
+		},
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		// #ifdef H5
+		watch: {
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+					}
+				}
+			}
+		},
+		// #endif
+		methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+			goDetailPage(path) {
+				const url = '/pages/extUI/' + path + '/' + path
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+	@import '../../../common/uni-nvue.css';
+</style>

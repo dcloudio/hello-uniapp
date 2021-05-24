@@ -1,0 +1,114 @@
+<template>
+	<div class="wrapper">
+		<list class="list">
+			<cell v-for="(item, index) in lists" :key="index" :ref="'item' + index" class="cell">
+				<text class="name">{{item.name}}:</text>
+				<text class="content">{{item.content}}</text>
+			</cell>
+		</list>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				lists: [],
+				interval: null,
+				yourTexts: [
+					{
+						name: '学员A',
+						content: '老师讲的真好',
+					}, {
+						name: '学员B',
+						content: 'uni-app值得学习',
+					}, {
+						name: '学员C',
+						content: '老师，还有实战例子吗？',
+					}, {
+						name: '学员D',
+						content: '老师，请问是不是要先学会vue才能学uni-app？',
+					}, {
+						name: '学员E',
+						content: '受教了，uni-app太牛了',
+					}
+				],
+			}
+		},
+		created() {
+			const vm = this;
+			uni.$on('play-video', (data) => {
+				if(data.status === 'open'){
+					this.addItem();
+				}else{
+					this.closeItem();
+				}
+			})
+		},
+		beforeDestroy(){
+			uni.$off('play-video')
+			this.closeItem()
+		},
+		methods: {
+			addItem() {
+				const vm = this;
+				vm.lists = [{
+					name: '学员E',
+					content: '受教了，uni-app太牛了',
+				}];
+				const dom = weex.requireModule('dom')
+				vm.interval = setInterval(() => {
+					if(vm.lists.length > 15) {
+						vm.lists.unshift();
+					}
+					vm.lists.push({
+						name: vm.yourTexts[vm.lists.length%4].name,
+						content: vm.yourTexts[vm.lists.length%4].content
+					});
+					if(vm.lists.length > 5) {
+						vm.$nextTick(() => {
+							if(vm.$refs['item' + (vm.lists.length - 1)]){
+								dom.scrollToElement(vm.$refs['item' + (vm.lists.length - 1)][0]);
+							}
+						});
+					}
+				}, 3500);
+			},
+			closeItem() {
+				if(this.interval) clearInterval(this.interval);
+			}
+		}
+	}
+</script>
+
+<style>
+	.wrapper {
+		position: relative;
+		flex: 1;
+		background-color: transparent;
+	}
+	.list {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	.cell {
+		padding: 10rpx 0;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	.name {
+		flex: 0;
+		font-size: 20rpx;
+		margin-right: 20rpx;
+		color: #FF5A5F;
+	}
+	.content {
+		flex: 1;
+		font-size: 20rpx;
+		color: #F4F5F6;
+	}
+</style>

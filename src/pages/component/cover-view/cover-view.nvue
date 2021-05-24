@@ -1,0 +1,63 @@
+<template>
+    <view>
+        <video ref="video" id="myVideo" class="video" :src="src" controls="true">
+            <cover-view class="coverview" style="overflow-y: scroll;">
+                <text class="text">{{ '\uEA06\uEA0E\uEA0C\uEA0A 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view 我是可以滚动的cover-view' }}</text>
+            </cover-view>
+        </video>
+    </view>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                title: 'cover-view',
+                src: "https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126-lite.m4v"
+            }
+        },
+        onLoad() {
+        },
+        methods: {
+        }
+    }
+</script>
+
+<style>
+    .content {
+        text-align: center;
+        height: 400rpx;
+    }
+
+    .logo {
+        height: 200rpx;
+        width: 200rpx;
+        margin-top: 200rpx;
+    }
+
+    .title {
+        font-size: 36rpx;
+        color: #8f8f94;
+    }
+
+    .text {
+        color: #4CD964;
+        font-family: unincomponents;
+    }
+
+    .video {
+        width: 750rpx;
+        height: 400rpx;
+        background-color: #808080;
+    }
+
+    .coverview {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0rpx;
+        height: 150rpx;
+        border-width: 10rpx;
+        border-color: #4CD964;
+    }
+</style>

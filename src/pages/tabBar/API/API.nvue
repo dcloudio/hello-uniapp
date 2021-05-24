@@ -1,0 +1,486 @@
+<template>
+    <view class="uni-container">
+        <template v-if="showSetTabBarPage">
+            <set-tab-bar @unmount="leaveSetTabBarPage"></set-tab-bar>
+        </template>
+        <template v-else>
+            <view v-if="!hasLeftWin" class="uni-header-logo">
+                <image class="uni-header-image" src="/static/apiIndex.png"></image>
+            </view>
+            <view v-if="!hasLeftWin" class="uni-hello-text">
+                <text class="hello-text">以下将演示uni-app接口能力，详细文档见：</text>
+                <u-link class="hello-link" :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'"
+                    :inWhiteList="true"></u-link>
+            </view>
+            <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
+                <view class="uni-panel-h" :class="activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
+                    <text class="uni-panel-text">{{item.name}}</text>
+                    <text class="uni-panel-icon uni-icon" :class="activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+                </view>
+                <view class="uni-panel-c" v-if="activeOpen === item.id">
+                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin, 'pc-hide': item2.name === '设置TabBar' && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
+                        <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
+                        <text class="uni-navigate-icon uni-icon">&#xe470;</text>
+                    </view>
+                </view>
+            </view>
+        </template>
+    </view>
+</template>
+<script>
+    import setTabBar from '@/components/api-set-tabbar.nvue';
+	import { mapState, mapMutations } from 'vuex';
+    export default {
+        components: {
+            setTabBar
+        },
+        data() {
+            // 暂时这么写，后面看怎么优化。
+            let mediaPages = [{
+                    name: '图片',
+                    url: 'image'
+                },
+				{
+				    name: '音频',
+				    url: 'inner-audio'
+				},
+                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
+                {
+                    name: '录音',
+                    url: 'voice'
+                },
+                {
+                    name: '背景音频',
+                    url: 'background-audio'
+                },
+                // #endif
+                // #ifndef MP-ALIPAY
+                {
+                    name: '视频',
+                    url: 'video'
+                },
+                // #endif
+                // #ifndef H5
+                {
+                    name: '文件',
+                    url: 'file'
+                },
+                // #endif
+                // #ifndef H5 || MP-ALIPAY
+                {
+                    name: '保存媒体到本地',
+                    url: 'save-media'
+                }
+                // #endif
+            ];
+
+            const list = [{
+                    id: 'page',
+                    name: '界面',
+                    open: false,
+                    pages: [{
+                            name: '设置导航条',
+                            url: 'set-navigation-bar-title'
+                        },
+                        //#ifdef APP-PLUS
+                        {
+                            name: '原生子窗体',
+                            url: 'subnvue'
+                        },
+                        //#endif
+                        {
+                            name: '页面跳转',
+                            url: 'navigator'
+                        },
+                        //#ifndef MP-TOUTIAO
+                        {
+                            name: '设置TabBar',
+                            url: 'set-tabbar'
+                        },
+                        //#endif
+                        {
+                            name: '下拉刷新',
+                            url: 'pull-down-refresh'
+                        },
+                        {
+                            name: '创建动画',
+                            url: 'animation'
+                        },
+						// #ifndef QUICKAPP-WEBVIEW-UNION
+                        {
+                            name: '创建绘画',
+                            url: 'canvas'
+                        },
+						// #endif
+                        {
+                            name: '节点信息',
+                            url: 'get-node-info'
+                        },
+                        {
+                            name: '节点布局交互状态',
+                            url: 'intersection-observer'
+                        },
+                        {
+                            name: '显示操作菜单',
+                            url: 'action-sheet'
+                        },
+                        {
+                            name: '显示模态弹窗',
+                            url: 'modal'
+                        },
+                        {
+                            name: '显示加载提示框',
+                            url: 'show-loading'
+                        },
+                        {
+                            name: '显示消息提示框',
+                            url: 'toast'
+                        }
+                    ]
+                },
+                {
+                    id: 'device',
+                    name: '设备',
+                    open: false,
+                    pages: [{
+                            name: '获取设备网络状态',
+                            url: 'get-network-type'
+                        },
+                        {
+                            name: '获取设备系统信息',
+                            url: 'get-system-info'
+                        },
+                        {
+                            name: '打电话',
+                            url: 'make-phone-call'
+                        },
+                        //#ifndef H5
+                        {
+                            name: '震动',
+                            url: 'vibrate'
+                        },
+                        {
+                            name: '添加手机联系人',
+                            url: 'add-phone-contact'
+                        },
+                        {
+                            name: '扫码',
+                            url: 'scan-code'
+                        },
+                        {
+                            name: '剪贴板',
+                            url: 'clipboard'
+                        },
+                        //#endif
+                        // #ifndef H5 || MP-ALIPAY
+                        {
+                            name: '屏幕亮度',
+                            url: 'brightness'
+                        },
+                        // #endif
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+                        {
+                            name: '蓝牙',
+                            url: 'bluetooth'
+                        },
+                        {
+                            name: '生物认证',
+                            url: 'soter'
+                        },
+                        // #endif
+                        // #ifdef APP-PLUS || MP-WEIXIN
+                        {
+                            name: 'iBeacon',
+                            url: 'ibeacon'
+                        },
+                        // #endif
+						// #ifndef H5
+                        {
+                            name: '监听加速度传感器',
+                            url: 'on-accelerometer-change'
+                        },
+                        {
+                            name: '监听罗盘数据',
+                            url: 'on-compass-change'
+                        },
+						// #endif
+                        //#ifdef APP-PLUS
+                        {
+                            name: '监听距离传感器',
+                            url: '/platforms/app-plus/proximity/proximity'
+                        },
+                        {
+                            name: '监听方向传感器',
+                            url: '/platforms/app-plus/orientation/orientation'
+                        }
+                        //#endif
+                    ]
+                },
+                {
+                    id: 'network',
+                    name: '网络',
+                    open: false,
+                    pages: [{
+                            name: '发起一个请求',
+                            url: 'request'
+                        },
+                        {
+                            name: '上传文件',
+                            url: 'upload-file'
+                        },
+                        {
+                            name: '下载文件',
+                            url: 'download-file'
+                        }
+                    ]
+                },
+                {
+                    id: 'websocket',
+                    name: 'websocket',
+                    open: false,
+                    pages: [
+                        // #ifndef MP-ALIPAY
+                        {
+                            name: 'socketTask',
+                            url: 'websocket-socketTask'
+                        },
+                        // #endif
+                        {
+                            name: '全局websocket',
+                            url: 'websocket-global'
+                        }
+                    ]
+                },
+                {
+                    id: 'media',
+                    name: '媒体',
+                    open: false,
+                    pages: mediaPages
+                },
+                {
+                    id: 'location',
+                    name: '位置',
+                    open: false,
+                    pages: [{
+                            name: '获取当前位置',
+                            url: 'get-location'
+                        },
+                        {
+                            name: '使用地图查看位置',
+                            url: 'open-location'
+                        },
+                        // #ifndef MP-TOUTIAO
+                        {
+                            name: '使用地图选择位置',
+                            url: 'choose-location'
+                        }
+                        // #endif
+                        // #ifndef MP-QQ || MP-TOUTIAO
+                        ,
+                        {
+                            name: '地图控制',
+                            url: 'map'
+                        }
+                        // #endif
+                        // #ifdef APP-PLUS
+                        ,
+                        {
+                            name: '地图搜索',
+                            url: 'map-search'
+                        }
+                        // #endif
+                    ]
+                },
+                {
+                    id: 'storage',
+                    name: '数据',
+                    open: false,
+                    pages: [{
+                            name: '数据存储（key-value）',
+                            url: 'storage'
+                        },
+                        // #ifdef APP-PLUS
+                        {
+                            name: 'SQLite',
+                            url: 'sqlite'
+                        }
+                        // #endif
+                    ]
+                },
+                // #ifdef APP-PLUS || MP-WEIXIN
+                {
+                    url: 'rewarded-video-ad',
+                    name: '激励视频广告',
+                    open: false
+                },
+				// #endif
+				// #ifdef APP-PLUS
+                {
+                    url: 'full-screen-video-ad',
+                    name: '全屏视频广告',
+                    open: false
+                },
+                // #endif
+                // #ifndef H5 || QUICKAPP-WEBVIEW
+                {
+                    id: 'login',
+                    name: '登录',
+                    open: false,
+                    pages: [{
+                            name: '登录',
+                            url: 'login'
+                        },
+                        {
+                            name: '获取用户信息',
+                            url: 'get-user-info'
+                        }
+                    ]
+                },
+				// #endif
+				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
+                {
+                    id: 'share',
+                    name: '分享',
+                    open: false,
+                    pages: [{
+                        name: '分享',
+                        url: 'share'
+                    }]
+                },
+                // #endif
+                // #ifdef APP-PLUS || MP-WEIXIN
+                {
+                    id: 'payment',
+                    name: '支付',
+                    open: false,
+                    pages: [{
+                        name: '发起支付',
+                        url: 'request-payment'
+                    }]
+                },
+                // #endif
+                // #ifdef APP-PLUS
+                {
+                    id: 'speech',
+                    name: '语音',
+                    open: false,
+                    pages: [{
+                        name: '语音识别',
+                        url: '/platforms/app-plus/speech/speech'
+                    }]
+                },
+                {
+                    id: 'push',
+                    name: '推送',
+                    open: false,
+                    pages: [{
+                        name: '推送',
+                        url: '/platforms/app-plus/push/push'
+                    }]
+                }
+                //#endif
+            ];
+            return {
+                showSetTabBarPage: false,
+                list: list,
+				notForPc: [{
+						name: '设置TabBar',
+						url: 'set-tabbar'
+				}]
+            };
+        },
+		mounted() {
+			uni.setStorageSync('menuList', this.list)
+		},
+        onShareAppMessage() {
+            return {
+                title: '欢迎体验uni-app',
+                path: '/pages/tabBar/API/API'
+            };
+        },
+        onNavigationBarButtonTap(e) {
+            uni.navigateTo({
+                url: '/pages/about/about'
+            });
+        },
+        onLoad() {
+        },
+        onReady() {
+        },
+        onShow() {
+            this.navigateFlag = false;
+            this.leaveSetTabBarPage();
+        },
+        onHide() {
+            this.leaveSetTabBarPage();
+        },
+		computed: {
+			...mapState({
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
+				activeOpen: state => state.activeOpen
+			})
+		},
+		// #ifdef H5
+		watch:{
+			$route: {
+				immediate: true,
+				handler(newRoute) {
+					if (newRoute.matched.length) {
+						this.setLeftWinActive(newRoute.path)
+						let path = newRoute.path.split('/')[3]
+						for (const item of this.list) {
+							if (Array.isArray(item.pages)) {
+								for (const page of item.pages) {
+									if (page === path) {
+										this.setActiveOpen(item.id)
+									}
+									if (page.url && page.url === path) {
+										this.setActiveOpen(item.id)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		// #endif
+        methods: {
+			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+            triggerCollapse(e, id) {
+                if (!this.list[e].pages) {
+                    this.goDetailPage('', this.list[e].url);
+                    return;
+                }
+				if (id === this.activeOpen) {
+					id = ''
+				}
+				this.setActiveOpen(id)
+            },
+            goDetailPage(panel, e) {
+				if (e === 'set-tabbar') {
+					this.showSetTabBarPage = true;
+					return;
+				}
+				let url = ~e.indexOf('platform') ? e : '/pages/API/' + e + '/' + e;
+				if (this.hasLeftWin) {
+					uni.reLaunch({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
+            },
+            leaveSetTabBarPage() {
+                this.showSetTabBarPage = false;
+            }
+        }
+    };
+</script>
+
+<style>
+    @import '../../../common/uni-nvue.css';
+</style>

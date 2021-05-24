@@ -1,0 +1,103 @@
+<template>
+    <div class="wrapper">
+		<text class="nav-text">左侧列表</text>
+		<list class="list-wrapper">
+			<cell v-for="item in lists" :key="item.id">
+				<div class="text-wrapper" @click="clickitem(item.id)">
+					<text style="font-size: 30rpx; ">{{item.name}}</text>
+					<text class="icon">&#xe583;</text>
+				</div>
+			</cell>
+		</list>
+		<div style="flex: 1; text-align: center;">
+			<div class="close-drawer" @click="hideDrawer">
+				<text style="font-size: 34rpx; text-align: center;">关闭抽屉</text>
+			</div>
+		</div>
+    </div>
+</template>
+
+<script>
+    export default {
+		data() {
+			return {
+				lists: [],
+			}
+		},
+		beforeCreate() {
+			const domModule = weex.requireModule('dom')
+			domModule.addRule('fontFace', {
+				fontFamily: "unibtn",
+				'src': "url('../../../../static/uni.ttf')"
+			});
+		},
+		created() {
+			for(let i = 0; i < 5; i++){
+				this.lists.push({
+					id: i,
+					name: 'Item' + i,
+				});
+			}
+		},
+        methods: {
+            hideDrawer() {
+                uni.getCurrentSubNVue().hide('auto')
+            },
+			clickitem(e) {
+				uni.$emit('drawer-page', e);
+			}
+        }
+    }
+</script>
+
+<style>
+	.wrapper {
+		flex-direction: column;
+		flex: 1;
+		text-align: center;
+		padding: 60rpx 0rpx 0rpx 20rpx;
+		background-color: #F4F5F6;
+	}
+	.nav-text {
+		color: #8f8f94; 
+		/* #ifndef APP-PLUS-NVUE */
+		margin-bottom: 40px;
+		/* #endif */
+		/* #ifdef APP-PLUS-NVUE */
+		margin-bottom: 40rpx;
+		/* #endif */
+	}
+	.list-wrapper {
+		/* #ifdef APP-PLUS-NVUE */
+		height: 450rpx;
+		/* #endif */
+		/* #ifndef APP-PLUS-NVUE */
+		height: 450px;
+		/* #endif */
+	}
+	.text-wrapper {
+		justify-content: center;
+		border-bottom-style: solid;
+		border-bottom-width: 1rpx;
+		border-bottom-color: rgba(0,0,0,.2);
+		margin-bottom: 35rpx;
+		padding-bottom: 15rpx;
+	}
+	.close-drawer {
+		background-color: #f8f8f8;
+		width: 300rpx;
+		padding: 15rpx;
+		border-radius: 20rpx;
+		border-style: solid;
+		border-width: 1rpx;
+		border-color: rgba(0,0,0,.2);
+	}
+	.icon {
+		position: absolute;
+		right: 10rpx;
+		color: #000000;
+		font-family: unibtn;
+		font-size: 30rpx;
+		font-weight: 400;
+	}
+</style>

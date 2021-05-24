@@ -1,0 +1,303 @@
+<template>
+    <view class="content">
+        <map class="map" ref="map1" :controls="controls" :scale="scale" :longitude="location.longitude" :latitude="location.latitude"
+            :show-location="showLocation" :enable-3D="enable3D" :rotate="rotate" :skew="skew" :show-compass="showCompass"
+            :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom" :enable-scroll="enableScroll"
+            :enable-rotate="enableRotate" :enable-satellite="enableSatellite" :enable-traffic="enableTraffic" :markers="markers"
+            :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"></map>
+        <view class="line"></view>
+        <uni-list class="scrollview">
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enable3D" title="显示3D楼块" @switchChange="enableThreeD" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showCompass" title="显示指南针" @switchChange="changeShowCompass" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="开启俯视" @switchChange="changeEnableOverlooking" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableZoom" title="是否支持缩放" @switchChange="changeEnableZoom" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableScroll" title="是否支持拖动" @switchChange="changeEnableScroll" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="是否支持旋转" @switchChange="changeEnableRotate" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableSatellite" title="是否开启卫星图" @switchChange="changeEnableSatellite" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableTraffic" title="是否开启实时路况" @switchChange="changeEnableTraffic" />
+        </uni-list>
+    </view>
+</template>
+
+<script>
+    import uniList from '@/components/uni-list/uni-list.vue'
+    import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+    const testMarkers = [{
+            id: 0,
+            latitude: 39.989631,
+            longitude: 116.481018,
+            title: '方恒国际 阜通东大街6号',
+            zIndex: '1',
+            rotate: 0,
+            width: 20,
+            height: 20,
+            anchor: {
+                x: 0.5,
+                y: 1
+            },
+            callout: {
+                content: '方恒国际 阜通东大街6号',
+                color: '#00BFFF',
+                fontSize: 10,
+                borderRadius: 4,
+                borderWidth: 1,
+                borderColor: '#333300',
+                bgColor: '#CCFF99',
+                padding: '5',
+                display: 'ALWAYS'
+            }
+        },
+        {
+            id: 1,
+            latitude: 39.9086920000,
+            longitude: 116.3974770000,
+            title: '天安门',
+            zIndex: '1',
+            iconPath: '/static/location.png',
+            width: 40,
+            height: 40,
+            anchor: {
+                x: 0.5,
+                y: 1
+            },
+            callout: {
+                content: '首都北京\n天安门',
+                color: '#00BFFF',
+                fontSize: 12,
+                borderRadius: 2,
+                borderWidth: 0,
+                borderColor: '#333300',
+                bgColor: '#CCFF11',
+                padding: '1',
+                display: 'ALWAYS'
+            }
+        }
+    ];
+    const testPolyline = [{
+            points: [{
+                    latitude: 39.925539,
+                    longitude: 116.279037
+                },
+                {
+                    latitude: 39.925539,
+                    longitude: 116.520285
+                }
+            ],
+            color: '#FFCCFF',
+            width: 7,
+            dottedLine: true,
+            arrowLine: true,
+            borderColor: '#000000',
+            borderWidth: 2
+        },
+        {
+            points: [{
+                    latitude: 39.938698,
+                    longitude: 116.275177
+                },
+                {
+                    latitude: 39.966069,
+                    longitude: 116.289253
+                },
+                {
+                    latitude: 39.944226,
+                    longitude: 116.306076
+                },
+                {
+                    latitude: 39.966069,
+                    longitude: 116.322899
+                },
+                {
+                    latitude: 39.938698,
+                    longitude: 116.336975
+                }
+            ],
+            color: '#CCFFFF',
+            width: 5,
+            dottedLine: true,
+            arrowLine: true,
+            borderColor: '#CC0000',
+            borderWidth: 3
+        }
+    ];
+    const testPolygons = [{
+            points: [{
+                    latitude: 39.781892,
+                    longitude: 116.293413
+                },
+                {
+                    latitude: 39.787600,
+                    longitude: 116.391842
+                },
+                {
+                    latitude: 39.733187,
+                    longitude: 116.417932
+                },
+                {
+                    latitude: 39.704653,
+                    longitude: 116.338255
+                }
+            ],
+            fillColor: '#FFCCFF',
+            strokeWidth: 3,
+            strokeColor: '#CC99CC',
+            zIndex: 11
+        },
+        {
+            points: [{
+                    latitude: 39.887600,
+                    longitude: 116.518932
+                },
+                {
+                    latitude: 39.781892,
+                    longitude: 116.518932
+                },
+                {
+                    latitude: 39.781892,
+                    longitude: 116.428932
+                },
+                {
+                    latitude: 39.887600,
+                    longitude: 116.428932
+                }
+            ],
+            fillColor: '#CCFFFF',
+            strokeWidth: 5,
+            strokeColor: '#CC0000',
+            zIndex: 3
+        }
+    ];
+    const testCircles = [{
+            latitude: 39.996441,
+            longitude: 116.411146,
+            radius: 15000,
+            strokeWidth: 5,
+            color: '#CCFFFF',
+            fillColor: '#CC0000'
+        },
+        {
+            latitude: 40.096441,
+            longitude: 116.511146,
+            radius: 12000,
+            strokeWidth: 3,
+            color: '#CCFFFF',
+            fillColor: '#FFCCFF'
+        },
+        {
+            latitude: 39.896441,
+            longitude: 116.311146,
+            radius: 9000,
+            strokeWidth: 1,
+            color: '#CCFFFF',
+            fillColor: '#CC0000'
+        }
+    ];
+    const testIncludePoints = [{
+            latitude: 39.989631,
+            longitude: 116.481018,
+        },
+        {
+            latitude: 39.9086920000,
+            longitude: 116.3974770000,
+        }
+    ];
+    module.exports = {
+        components: {
+            uniList,
+            uniListItem
+        },
+        data() {
+            return {
+                location: {
+                    longitude: 116.3974770000,
+                    latitude: 39.9086920000
+                },
+                controls: [{
+                    id: 1,
+                    position: {
+                        left: 5,
+                        top: 180,
+                        width: 30,
+                        height: 30
+                    },
+                    iconPath: '/static/logo.png',
+                    clickable: true
+                }],
+                showLocation: false,
+                scale: 13,
+                showCompass: true,
+                enable3D: true,
+                enableOverlooking: true,
+                enableOverlooking: true,
+                enableZoom: true,
+                enableScroll: true,
+                enableRotate: true,
+                enableSatellite: false,
+                enableTraffic: false,
+                polyline: [],
+                markers: [],
+                polygons: [],
+                circles: [],
+                includePoints: [],
+                rotate: 0,
+                skew: 0
+            }
+        },
+        onLoad() {},
+        methods: {
+            changeScale() {
+                this.scale = this.scale == 9 ? 15 : 9;
+            },
+            changeRotate() {
+                this.rotate = this.rotate == 90 ? 0 : 90;
+            },
+            changeSkew() {
+                this.skew = this.skew == 30 ? 0 : 30;
+            },
+            enableThreeD(e) {
+                this.enable3D = e.value;
+            },
+            changeShowCompass(e) {
+                this.showCompass = e.value;
+            },
+            changeEnableOverlooking(e) {
+                this.enableOverlooking = e.value;
+            },
+            changeEnableZoom(e) {
+                this.enableZoom = e.value;
+            },
+            changeEnableScroll(e) {
+                this.enableScroll = e.value;
+            },
+            changeEnableRotate(e) {
+                this.enableRotate = e.value;
+            },
+            changeEnableSatellite(e) {
+                this.enableSatellite = e.value;
+            },
+            changeEnableTraffic(e) {
+                this.enableTraffic = e.value;
+            }
+        }
+    }
+</script>
+
+<style>
+    .content {
+        flex: 1;
+    }
+
+    .map {
+        width: 750rpx;
+        height: 250px;
+        background-color: #f0f0f0;
+    }
+
+    .line {
+        height: 4px;
+    }
+
+    .scrollview {
+        flex: 1;
+    }
+</style>
