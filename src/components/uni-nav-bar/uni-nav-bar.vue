@@ -3,7 +3,7 @@
 		<view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ 'background-color': backgroundColor }" class="uni-navbar__content">
 			<status-bar v-if="statusBar" />
 			<view :style="{ color: color,backgroundColor: backgroundColor }" class="uni-navbar__header uni-navbar__content_view">
-				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
+				<view @click="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="leftIcon.length">
 						<uni-icons :color="color" :type="leftIcon" size="24" />
 					</view>
@@ -12,14 +12,14 @@
 					</view>
 					<slot name="left" />
 				</view>
-				<view class="uni-navbar__header-container uni-navbar__content_view" @tap="onClickTitle">
+				<view class="uni-navbar__header-container uni-navbar__content_view" @click="onClickTitle">
 					<view class="uni-navbar__header-container-inner uni-navbar__content_view" v-if="title.length">
 						<text class="uni-nav-bar-text" :style="{color: color }">{{ title }}</text>
 					</view>
 					<!-- 标题插槽 -->
 					<slot />
 				</view>
-				<view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @tap="onClickRight" class="uni-navbar__header-btns uni-navbar__content_view">
+				<view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @click="onClickRight" class="uni-navbar__header-btns uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="rightIcon.length">
 						<uni-icons :color="color" :type="rightIcon" size="24" />
 					</view>
@@ -219,13 +219,9 @@
 	.uni-navbar--fixed {
 		position: fixed;
 		z-index: 998;
-		/* #ifdef H5 */
+		/* #ifndef APP-NVUE */
 		left: var(--window-left);
 		right: var(--window-right);
-		/* #endif */
-		/* #ifndef H5 */
-		left: 0;
-		right: 0;
 		/* #endif */
 	}
 

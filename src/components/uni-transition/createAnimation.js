@@ -94,8 +94,6 @@ class MPAnimation {
 		// #endif
 		// #ifdef APP-NVUE
 		this.isEnd = false
-		let ref = this.$.$refs['ani'] && this.$.$refs['ani'].ref
-		if(!ref) return
 		this._nvueNextAnimate(this.currentStepAnimates, 0, fn)
 		this.next = 0
 		// #endif

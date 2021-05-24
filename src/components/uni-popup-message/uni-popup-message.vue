@@ -1,15 +1,12 @@
 <template>
 	<view class="uni-popup-message">
-		<view class="uni-popup-message__box fixforpc-width" :class="'uni-popup__'+type">
-			<slot>
-				<text class="uni-popup-message-text" :class="'uni-popup__'+type+'-text'">{{message}}</text>
-			</slot>
+		<view class="uni-popup-message__box fixforpc-width" :class="'uni-popup__'+[type]">
+			<text class="uni-popup-message-text" :class="'uni-popup__'+[type]+'-text'">{{message}}</text>
 		</view>
 	</view>
 </template>
 
 <script>
-	import popup from '../uni-popup/popup.js'
 	/**
 	 * PopUp 弹出层-消息提示
 	 * @description 弹出层-消息提示
@@ -24,8 +21,7 @@
 	 */
 
 	export default {
-		name: 'uniPopupMessage',
-		mixins:[popup],
+		name: 'UniPopupMessage',
 		props: {
 			/**
 			 * 主题 success/warning/info/error	  默认 success
@@ -47,26 +43,25 @@
 			duration: {
 				type: Number,
 				default: 3000
-			},
-			maskShow:{
-				type:Boolean,
-				default:false
 			}
 		},
+		inject: ['popup'],
 		data() {
 			return {}
 		},
 		created() {
-			this.popup.maskShow = this.maskShow
-			this.popup.messageChild = this
+			this.popup.childrenMsg = this
 		},
 		methods: {
-			timerClose(){
-				if(this.duration === 0) return
-				clearTimeout(this.timer) 
-				this.timer = setTimeout(()=>{
+			open() {
+				if (this.duration === 0) return
+				clearTimeout(this.popuptimer)
+				this.popuptimer = setTimeout(() => {
 					this.popup.close()
-				},this.duration)
+				}, this.duration)
+			},
+			close() {
+				clearTimeout(this.popuptimer)
 			}
 		}
 	}

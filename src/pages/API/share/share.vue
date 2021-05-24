@@ -8,7 +8,7 @@
 				</view>
 			<view class="uni-title">分享图片：</view>
 			<view class="uni-uploader" style="padding:15rpx; background:#FFF;">
-				<view class="uni-uploader__input-box" v-if="!image" @tap="chooseImage"></view>
+				<view class="uni-uploader__input-box" v-if="!image" @click="chooseImage"></view>
 				<image class="uni-uploader__img" v-if="image" :src="image"></image>
 			</view>
 			<!-- #ifdef APP-PLUS -->
@@ -31,7 +31,7 @@
 			</view>
 			<view class="uni-btn-v uni-common-mt" v-if="providerList.length > 0">
 				<block v-for="(value,index) in providerList" :key="index">
-					<button type="primary" v-if="value" :disabled="isDisableButton(value)" @tap="share(value)">{{value.name}}</button>
+					<button type="primary" v-if="value" :disabled="isDisableButton(value)" @click="share(value)">{{value.name}}</button>
 				</block>
 			</view>
 			<!-- #endif -->

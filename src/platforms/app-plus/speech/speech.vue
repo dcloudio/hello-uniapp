@@ -6,8 +6,8 @@
                 <textarea :value="value" placeholder="语音识别内容展示区域" disabled />
                 </view>
 			<view class="uni-common-mt uni-btn-v">
-				<button type="primary" @tap="startRecognize">开始语音识别</button>
-				<button type="primary" @tap="startRecognizeEnglish">开始语音识别（英语）</button>
+				<button type="primary" @click="startRecognize">开始语音识别</button>
+				<button type="primary" @click="startRecognizeEnglish">开始语音识别（英语）</button>
 			</view>
 		</view>
 	</view>

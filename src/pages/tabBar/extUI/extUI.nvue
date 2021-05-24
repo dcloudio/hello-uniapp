@@ -96,6 +96,13 @@
 						url: "fav"
 					},
 
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
+					{
+						name: "field 输入框",
+						url: "field"
+					},
+					// #endif 
+
 					// #ifndef APP-NVUE 
 					{
 						name: "filePicker 文件选择上传",
@@ -142,10 +149,12 @@
 						name: "navBar 自定义导航栏",
 						url: "nav-bar"
 					},
+					// #ifndef QUICKAPP-WEBVIEW
 					{
 						name: "noticeBar 通告栏",
 						url: "notice-bar"
 					},
+					// #endif
 					{
 						name: "numberBox 数字输入框",
 						url: "number-box"
@@ -154,10 +163,13 @@
 						name: "pagination 分页器",
 						url: "pagination"
 					},
+					// #ifndef QUICKAPP-WEBVIEW-HUAWEI
 					{
 						name: "popUp 弹出层",
 						url: "popup"
 					},
+					// #endif
+
 					{
 						name: "rate 评分",
 						url: "rate"
@@ -193,13 +205,12 @@
 						name: "swiperDot 轮播图指示点",
 						url: "swiper-dot"
 					},
-
 					// #ifndef APP-NVUE || MP-TOUTIAO 
 					{
 						name: "table 表格",
 						url: "table"
 					},
-					// #endif 
+					// #endif
 					{
 						name: "tag 标签",
 						url: "tag"

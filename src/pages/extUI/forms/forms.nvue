@@ -11,6 +11,9 @@
 				<uni-forms-item name="age" required label="年龄">
 					<input type="text" v-model="formData.age" class="uni-input-border" @blur="binddata('age', $event.detail.value)" placeholder="请输入年龄" />
 				</uni-forms-item>
+				<uni-forms-item name="weight" label="体重">
+					<slider min="0" max="200" step="5" show-value v-model="formData.weight" @change="binddata('weight', $event.detail.value)"></slider>
+				</uni-forms-item>
 				<uni-forms-item name="email" label="邮箱">
 					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
 				</uni-forms-item>
@@ -73,6 +76,7 @@
 					remarks: '',
 					checked: false,
 					country: -1,
+					weight: 0,
 					birth: ''
 				},
 				sex: [{
@@ -132,6 +136,18 @@
 							}
 						]
 					},
+					weight: {
+						rules: [{
+								format: 'number',
+								errorMessage: '体重必须是数字'
+							},
+							{
+								minimum: 100,
+								maximum: 200,
+								errorMessage: '体重应该大于 {minimum} 斤，小于 {maximum} 斤'
+							}
+						]
+					},
 					birth: {
 						rules: [{
 							required: true,
@@ -185,6 +201,7 @@
 					remarks: '热爱学习，热爱生活',
 					checked: false,
 					country: 2,
+					weight: 120,
 					birth: ''
 				}
 				uni.hideLoading()

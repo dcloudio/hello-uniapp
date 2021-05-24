@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="page-body">
 			<view class='wrapper'>
-				<view class='toolbar' @tap="format" style="height: 120px;overflow-y: auto;">
+				<view class='toolbar' @click="format" style="height: 120px;overflow-y: auto;">
 					<view :class="formats.bold ? 'ql-active' : ''" class="iconfont icon-zitijiacu" data-name="bold"></view>
 					<view :class="formats.italic ? 'ql-active' : ''" class="iconfont icon-zitixieti" data-name="italic"></view>
 					<view :class="formats.underline ? 'ql-active' : ''" class="iconfont icon-zitixiahuaxian" data-name="underline"></view>
@@ -23,7 +23,7 @@
 					 data-value="20px"></view>
 					<view :class="formats.previewarginBottom ? 'ql-active' : ''" class="iconfont icon-723bianjiqi_duanhouju" data-name="marginBottom"
 					 data-value="20px"></view>
-					<view class="iconfont icon-clearedformat" @tap="removeFormat"></view>
+					<view class="iconfont icon-clearedformat" @click="removeFormat"></view>
 					<view :class="formats.fontFamily ? 'ql-active' : ''" class="iconfont icon-font" data-name="fontFamily" data-value="Pacifico"></view>
 					<view :class="formats.fontSize === '24px' ? 'ql-active' : ''" class="iconfont icon-fontsize" data-name="fontSize"
 					 data-value="24px"></view>
@@ -33,26 +33,26 @@
 					<view :class="formats.backgroundColor === '#00ff00' ? 'ql-active' : ''" class="iconfont icon-fontbgcolor"
 					 data-name="backgroundColor" data-value="#00ff00"></view>
 
-					<view class="iconfont icon-date" @tap="insertDate"></view>
+					<view class="iconfont icon-date" @click="insertDate"></view>
 					<view class="iconfont icon--checklist" data-name="list" data-value="check"></view>
 					<view :class="formats.list === 'ordered' ? 'ql-active' : ''" class="iconfont icon-youxupailie" data-name="list"
 					 data-value="ordered"></view>
 					<view :class="formats.list === 'bullet' ? 'ql-active' : ''" class="iconfont icon-wuxupailie" data-name="list"
 					 data-value="bullet"></view>
-					<view class="iconfont icon-undo" @tap="undo"></view>
-					<view class="iconfont icon-redo" @tap="redo"></view>
+					<view class="iconfont icon-undo" @click="undo"></view>
+					<view class="iconfont icon-redo" @click="redo"></view>
 
 					<view class="iconfont icon-outdent" data-name="indent" data-value="-1"></view>
 					<view class="iconfont icon-indent" data-name="indent" data-value="+1"></view>
-					<view class="iconfont icon-fengexian" @tap="insertDivider"></view>
-					<view class="iconfont icon-charutupian" @tap="insertImage"></view>
+					<view class="iconfont icon-fengexian" @click="insertDivider"></view>
+					<view class="iconfont icon-charutupian" @click="insertImage"></view>
 					<view :class="formats.header === 1 ? 'ql-active' : ''" class="iconfont icon-format-header-1" data-name="header"
 					 :data-value="1"></view>
 					<view :class="formats.script === 'sub' ? 'ql-active' : ''" class="iconfont icon-zitixiabiao" data-name="script"
 					 data-value="sub"></view>
 					<view :class="formats.script === 'super' ? 'ql-active' : ''" class="iconfont icon-zitishangbiao" data-name="script"
 					 data-value="super"></view>
-					<view class="iconfont icon-shanchu" @tap="clear"></view>
+					<view class="iconfont icon-shanchu" @click="clear"></view>
 					<view :class="formats.direction === 'rtl' ? 'ql-active' : ''" class="iconfont icon-direction-rtl" data-name="direction"
 					 data-value="rtl"></view>
 
@@ -93,12 +93,13 @@
 				this.editorCtx.redo()
 			},
 			format(e) {
+        console.log(e)
 				let {
 					name,
 					value
 				} = e.target.dataset
 				if (!name) return
-				// console.log('format', name, value)
+				console.log('format', name, value)
 				this.editorCtx.format(name, value)
 
 			},

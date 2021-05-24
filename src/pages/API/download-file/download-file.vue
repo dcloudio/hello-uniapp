@@ -10,7 +10,7 @@
 					点击按钮下载服务端示例图片（下载网络文件到本地临时目录）
 				</view>
 				<view class="uni-btn-v">
-					<button type="primary" @tap="downloadImage">下载</button>
+					<button type="primary" @click="downloadImage">下载</button>
 				</view>
 			</block>
 		</view>

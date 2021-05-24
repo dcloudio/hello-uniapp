@@ -1,9 +1,7 @@
 <template>
 	<view>
 		<uni-nav-bar :fixed="true" color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft" left-text="返回" title="uni-nav-bar 标题" @clickLeft="back" />
-		<text class="example-info">
-			本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921
-		</text>
+		<text class="example-info">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
 			<uni-nav-bar left-icon="arrowleft" title="标题" @clickLeft="back" />
@@ -18,15 +16,13 @@
 			<uni-nav-bar :fixed="false" color="#333333" background-color="#FFFFFF" right-icon="scan" @clickLeft="showCity" @clickRight="scan">
 				<block slot="left">
 					<view class="city">
-						<view>
-							<text class="uni-nav-bar-text">{{ city }}</text>
-						</view>
+						<view><text class="uni-nav-bar-text">{{ city }}</text></view>
 						<uni-icons type="arrowdown" color="#333333" size="22" />
 					</view>
 				</block>
 				<view class="input-view">
 					<uni-icons class="input-uni-icon" type="search" size="22" color="#666666" />
-					<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm" />
+					<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 				</view>
 			</uni-nav-bar>
 		</view>
@@ -53,6 +49,7 @@
 				})
 			},
 			clickLeft() {
+
 				uni.showToast({
 					title: '左侧按钮'
 				})
@@ -63,6 +60,7 @@
 				})
 			},
 			showCity() {
+
 				uni.showToast({
 					title: '选择城市'
 				})
@@ -188,12 +186,10 @@
 		background-color: #4ca2ff;
 	}
 
-	/* #ifndef APP-NVUE */
 	page {
 		height: 120%;
 	}
 
-	/* #endif */
 	.uni-nav-bar-text {
 		font-size: 14px;
 	}

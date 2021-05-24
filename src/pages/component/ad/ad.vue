@@ -2,6 +2,7 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="ad-view">
+			<!-- TODO 请更换为自己的广告位ID -->
             <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload" @error="aderror"></ad>
             <!-- #ifdef APP-PLUS -->
             <view class="ad-tips" v-if="!isLoad">

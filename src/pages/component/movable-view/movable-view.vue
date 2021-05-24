@@ -9,7 +9,7 @@
 			<movable-area>
 				<movable-view :x="x" :y="y" direction="all" @change="onChange">text</movable-view>
 			</movable-area>
-			<view @tap="tap" class="uni-link uni-center uni-common-mt">
+			<view @click="tap" class="uni-link uni-center uni-common-mt">
 				点击这里移动至 (30px, 30px)
 			</view>
 			<view class="uni-title uni-common-mt">
@@ -54,7 +54,7 @@
 			<movable-area scale-area>
 				<movable-view direction="all" @scale="onScale" scale scale-min="0.5" scale-max="4" :scale-value="scale">text</movable-view>
 			</movable-area>
-			<view @tap="tap2" class="uni-link uni-center uni-common-mt" style="padding-bottom:80rpx;">
+			<view @click="tap2" class="uni-link uni-center uni-common-mt" style="padding-bottom:80rpx;">
 				点击这里放大3倍
 			</view>
 		</view>
@@ -65,8 +65,8 @@
 	export default {
 		data() {
 			return {
-				x: 0,
-				y: 0,
+				x: 10,
+				y: 10,
 				scale: 2,
 				old: {
 					x: 0,

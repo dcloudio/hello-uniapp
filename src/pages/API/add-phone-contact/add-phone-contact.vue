@@ -22,7 +22,7 @@
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
-					<button type="primary" class="btn-setstorage" @tap="add">添加联系人</button>
+					<button type="primary" class="btn-setstorage" @click="add">添加联系人</button>
 				</view>
 			</view>
 		</view>

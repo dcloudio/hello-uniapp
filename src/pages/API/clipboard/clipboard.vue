@@ -10,7 +10,7 @@
 			</view>
 			<view class="uni-btn-v">
 				<button type="primary" @click="setClipboard">存储数据</button>
-				<button @tap="getClipboard">读取数据</button>
+				<button @click="getClipboard">读取数据</button>
 			</view>
 		</view>
 	</view>

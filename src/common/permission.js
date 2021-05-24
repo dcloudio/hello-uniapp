@@ -242,4 +242,4 @@ const permission = {
     gotoAppSetting: gotoAppPermissionSetting
 }
 
-module.exports = permission
+export default permission

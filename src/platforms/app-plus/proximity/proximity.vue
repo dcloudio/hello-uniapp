@@ -6,9 +6,9 @@
 				手机顶部听筒处有传感器监听距离手机屏幕的障碍物，覆盖该传感器会触发本事件变化
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary" @tap="getProximity">获取距离传感器信息</button>
-				<button type="primary" @tap="watchProximity">监听距离传感器变化</button>
-				<button type="primary" @tap="watchStop">停止监听</button>
+				<button type="primary" @click="getProximity">获取距离传感器信息</button>
+				<button type="primary" @click="watchProximity">监听距离传感器变化</button>
+				<button type="primary" @click="watchStop">停止监听</button>
 			</view>
 			<view class="uni-textarea uni-common-mt">
 				<textarea :value="value" />

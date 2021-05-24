@@ -3,30 +3,31 @@
 		<view class="uni-dialog-title">
 			<text class="uni-dialog-title-text" :class="['uni-popup__'+dialogType]">{{title}}</text>
 		</view>
-		<view v-if="mode === 'base'" class="uni-dialog-content">
-			<slot>
-				<text class="uni-dialog-content-text">{{content}}</text>
-			</slot>
-		</view>
-		<view v-else class="uni-dialog-content">
-			<slot>
-				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus" >
-			</slot>
+		<view class="uni-dialog-content">
+			<text class="uni-dialog-content-text" v-if="mode === 'base'">{{content}}</text>
+			<input v-else class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus">
 		</view>
 		<view class="uni-dialog-button-group">
-			<view class="uni-dialog-button" @click="closeDialog">
+			<view class="uni-dialog-button" @click="close">
 				<text class="uni-dialog-button-text">取消</text>
 			</view>
 			<view class="uni-dialog-button uni-border-left" @click="onOk">
 				<text class="uni-dialog-button-text uni-button-color">确定</text>
 			</view>
 		</view>
-
+		<view v-if="popup.isDesktop" class="uni-popup-dialog__close" @click="close">
+			<span class="uni-popup-dialog__close-icon "></span>
+		</view>
+		<!-- #ifdef H5 -->
+		<keypress @esc="close" @enter="onOk"/>
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
-	import popup from '../uni-popup/popup.js'
+	// #ifdef H5
+	import keypress from './keypress.js'
+	// #endif
 	/**
 	 * PopUp 弹出层-对话框样式
 	 * @description 弹出层-对话框样式
@@ -49,7 +50,11 @@
 
 	export default {
 		name: "uniPopupDialog",
-		mixins: [popup],
+		components: {
+			// #ifdef H5
+			keypress
+			// #endif
+		},
 		props: {
 			value: {
 				type: [String, Number],
@@ -59,22 +64,37 @@
 				type: [String, Number],
 				default: '请输入内容'
 			},
+			/**
+			 * 对话框主题 success/warning/info/error	  默认 success
+			 */
 			type: {
 				type: String,
 				default: 'error'
 			},
+			/**
+			 * 对话框模式 base/input
+			 */
 			mode: {
 				type: String,
 				default: 'base'
 			},
+			/**
+			 * 对话框标题
+			 */
 			title: {
 				type: String,
 				default: '提示'
 			},
+			/**
+			 * 对话框内容
+			 */
 			content: {
 				type: String,
 				default: ''
 			},
+			/**
+			 * 拦截取消事件 ，如果拦截取消事件，必须监听close事件，执行 done()
+			 */
 			beforeClose: {
 				type: Boolean,
 				default: false
@@ -87,6 +107,7 @@
 				val: ""
 			}
 		},
+		inject: ['popup'],
 		watch: {
 			type(val) {
 				this.dialogType = val
@@ -102,8 +123,7 @@
 		},
 		created() {
 			// 对话框遮罩不可点击
-			this.popup.disableMask()
-			// this.popup.closeMask()
+			this.popup.mkclick = false
 			if (this.mode === 'input') {
 				this.dialogType = 'info'
 				this.val = this.value
@@ -119,23 +139,21 @@
 			 * 点击确认按钮
 			 */
 			onOk() {
-				if (this.mode === 'input'){
-					this.$emit('confirm', this.val)
-				}else{
-					this.$emit('confirm')
-				}
-				if(this.beforeClose) return
-				this.popup.close()
+				this.$emit('confirm', () => {
+					this.popup.close()
+					if (this.mode === 'input') this.val = this.value
+				}, this.mode === 'input' ? this.val : '')
 			},
 			/**
 			 * 点击取消按钮
 			 */
-			closeDialog() {
-				this.$emit('close')
-				if(this.beforeClose) return
-				this.popup.close()
-			},
-			close(){
+			close() {
+				if (this.beforeClose) {
+					this.$emit('close', () => {
+						this.popup.close()
+					})
+					return
+				}
 				this.popup.close()
 			}
 		}
@@ -145,7 +163,7 @@
 <style lang="scss" scoped>
 	.uni-popup-dialog {
 		width: 300px;
-		border-radius: 15px;
+		border-radius: 5px;
 		background-color: #fff;
 	}
 
@@ -199,6 +217,9 @@
 		justify-content: center;
 		align-items: center;
 		height: 45px;
+		/* #ifdef H5 */
+		cursor: pointer;
+		/* #endif */
 	}
 
 	.uni-border-left {
@@ -212,32 +233,58 @@
 	}
 
 	.uni-button-color {
-		color: #007aff;
+		color: $uni-color-primary;
 	}
 
 	.uni-dialog-input {
 		flex: 1;
 		font-size: 14px;
-		border: 1px #eee solid;
-		height: 40px;
-		padding: 0 10px;
-		border-radius: 5px;
-		color: #555;
 	}
 
 	.uni-popup__success {
-		color: #4cd964;
+		color: $uni-color-success;
 	}
 
 	.uni-popup__warn {
-		color: #f0ad4e;
+		color: $uni-color-warning;
 	}
 
 	.uni-popup__error {
-		color: #dd524d;
+		color: $uni-color-error;
 	}
 
 	.uni-popup__info {
 		color: #909399;
+	}
+
+	.uni-popup-dialog__close {
+		/* #ifndef APP-NVUE */
+		display: block;
+		cursor: pointer;
+		/* #endif */
+		position: absolute;
+		top: 9px;
+		right: 17px;
+	}
+
+	.uni-popup-dialog__close-icon {
+		/* #ifndef APP-NVUE */
+		display: inline-block;
+		/* #endif */
+		width: 13px;
+		height: 1px;
+		background: #909399;
+		transform: rotate(45deg);
+	}
+
+	.uni-popup-dialog__close-icon::after {
+		/* #ifndef APP-NVUE */
+		content: '';
+		display: block;
+		/* #endif */
+		width: 13px;
+		height: 1px;
+		background: #909399;
+		transform: rotate(-90deg);
 	}
 </style>

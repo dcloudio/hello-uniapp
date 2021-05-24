@@ -5,7 +5,7 @@
             :show-compass="showCompass" :enable-overlooking="enableOverlooking" :enable-zoom="enableZoom"
             :enable-scroll="enableScroll" :enable-rotate="enableRotate" :enable-satellite="enableSatellite"
             :enable-traffic="enableTraffic" :markers="markers" :polyline="polyline" :circles="circles" :polygons="polygons"
-            :include-points="includePoints" @tap="maptap" @controltap="oncontroltap" @markertap="onmarkertap"
+            :include-points="includePoints" @click="maptap" @controltap="oncontroltap" @markertap="onmarkertap"
             @callouttap="oncallouttap" @poitap="onpoitap" @updated="onupdated" @regionchange="onregionchange"></map>
         <scroll-view class="scrollview" scroll-y="true">
             <!-- <view class="list-item">

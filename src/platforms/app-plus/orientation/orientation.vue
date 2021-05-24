@@ -3,9 +3,9 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-btn-v">
-				<button type="primary" @tap="getOrient">获取设备的方向信息</button>
-				<button type="primary" @tap="watchOrient">监听设备的方向变化</button>
-				<button type="primary" @tap="watchStop">停止监听</button>
+				<button type="primary" @click="getOrient">获取设备的方向信息</button>
+				<button type="primary" @click="watchOrient">监听设备的方向变化</button>
+				<button type="primary" @click="watchStop">停止监听</button>
 			</view>
 			<view class="uni-textarea">
 				<textarea :value="value" />

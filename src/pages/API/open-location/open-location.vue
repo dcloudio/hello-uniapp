@@ -9,7 +9,7 @@
 							<view class="uni-label">经度</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="116.39747" name="longitude"></input>
+							<input class="uni-input" type="text" :disabled="true" value="116.39747" name="longitude"/>
 						</view>
 					</view>
 					<view class="uni-list-cell">
@@ -17,7 +17,7 @@
 							<view class="uni-label">纬度</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="39.9085" name="latitude"></input>
+							<input class="uni-input" type="text" :disabled="true" value="39.9085" name="latitude"/>
 						</view>
 					</view>
 					<view class="uni-list-cell">
@@ -25,7 +25,7 @@
 							<view class="uni-label">位置名称</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="天安门" name="name"></input>
+							<input class="uni-input" type="text" :disabled="true" value="天安门" name="name"/>
 						</view>
 					</view>
 					<view class="uni-list-cell">
@@ -33,7 +33,7 @@
 							<view class="uni-label">详细位置</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="北京市东城区东长安街" name="address"></input>
+							<input class="uni-input" type="text" :disabled="true" value="北京市东城区东长安街" name="address"/>
 						</view>
 					</view>
 				</view>

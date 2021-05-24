@@ -4,7 +4,7 @@
 			<text>{{tips}}</text>
 		</view>
 		<view class="qiun-padding">
-			<view class="qiun-tip" @tap="changeData()">更新柱状图数据</view>
+			<view class="qiun-tip" @click="changeData()">更新柱状图数据</view>
 		</view>
 		<view class="qiun-title-bar" style="background-color: #E5FDC3;">
 			<view class="qiun-title-dot-light">柱状图</view>
@@ -61,7 +61,7 @@
 			<!--#endif-->
 		</view>
 		<view class="qiun-padding">
-			<view class="qiun-tip" @tap="changeGaugeData()">更新仪表盘数据</view>
+			<view class="qiun-tip" @click="changeGaugeData()">更新仪表盘数据</view>
 		</view>
 		<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
 			<view class="qiun-title-dot-light">仪表盘</view>

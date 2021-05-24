@@ -2,7 +2,7 @@
 	<view class="page">
 		<view class="feedback-title">
 			<text>问题和意见</text>
-			<text class="feedback-quick" @tap="chooseMsg">快速键入</text>
+			<text class="feedback-quick" @click="chooseMsg">快速键入</text>
 		</view>
 		<view class="feedback-body"><textarea placeholder="请详细描述你的问题和意见..." v-model="sendDate.content" class="feedback-textare"></textarea></view>
 		<view class="feedback-title"><text>图片(选填,提供问题截图,总大小10M以下)</text></view>
@@ -16,11 +16,11 @@
 					<view class="uni-uploader__files">
 						<block v-for="(image, index) in imageList" :key="index">
 							<view class="uni-uploader__file" style="position: relative;">
-								<image class="uni-uploader__img" :src="image" @tap="previewImage(index)"></image>
+								<image class="uni-uploader__img" :src="image" @click="previewImage(index)"></image>
 								<view class="close-view" @click="close(index)">x</view>
 							</view>
 						</block>
-						<view class="uni-uploader__input-box" v-show="imageList.length < 5"><view class="uni-uploader__input" @tap="chooseImg"></view></view>
+						<view class="uni-uploader__input-box" v-show="imageList.length < 5"><view class="uni-uploader__input" @click="chooseImg"></view></view>
 					</view>
 				</view>
 			</view>
@@ -31,7 +31,7 @@
 			<text>应用评分</text>
 			<view class="feedback-star-view"><uni-rate v-model="sendDate.score" color="#bbb"></uni-rate></view>
 		</view>
-		<button type="default" class="feedback-submit" @tap="send">提交</button>
+		<button type="default" class="feedback-submit" @click="send">提交</button>
 		<view class="feedback-title"><text>用户反馈的结果可在app打包后于DCloud开发者中心查看</text></view>
 	</view>
 </template>

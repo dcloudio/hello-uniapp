@@ -3,7 +3,7 @@
 来自 grace.hcoder.net 
 作者 hcoder 深海
 */
-module.exports = {
+export default {
 	error:'',
 	check : function (data, rule){
 		for(var i = 0; i < rule.length; i++){
