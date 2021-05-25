@@ -8,7 +8,7 @@
 						<view class="uni-label">名称</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入联系人名称" name="name" :value="name" @input="nameChange"></input>
+						<input class="uni-input" type="text" placeholder="请输入联系人名称" name="name" :value="name" @input="nameChange"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
@@ -16,7 +16,7 @@
 						<view class="uni-label">手机号</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入联系人手机号" name="phone" :value="phone" @input="phoneChange"></input>
+						<input class="uni-input" type="text" placeholder="请输入联系人手机号" name="phone" :value="phone" @input="phoneChange" />
 					</view>
 				</view>
 			</view>

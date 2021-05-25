@@ -56,51 +56,51 @@
 			...mapState(['hasLogin', 'isUniverifyLogin', 'univerifyErrorMsg'])
 		},
 		onLoad() {
-			uni.getProvider({
-				service: 'oauth',
-				success: (result) => {
-					this.providerList = result.provider.map((value) => {
-						let providerName = '';
-						switch (value) {
-							case 'weixin':
-								providerName = '微信登录'
-								break;
-							case 'qq':
-								providerName = 'QQ登录'
-								break;
-							case 'sinaweibo':
-								providerName = '新浪微博登录'
-								break;
-							case 'xiaomi':
-								providerName = '小米登录'
-								break;
-							case 'alipay':
-								providerName = '支付宝登录'
-								break;
-							case 'baidu':
-								providerName = '百度登录'
-								break;
-							case 'toutiao':
-								providerName = '头条登录'
-								break;
-							case 'apple':
-								providerName = '苹果登录'
-								break;
-							case 'univerify':
-								providerName = '一键登录'
-								break;
-						}
-						return {
-							name: providerName,
-							id: value
-						}
-					});
+			// uni.getProvider({
+			// 	service: 'oauth',
+			// 	success: (result) => {
+			// 		this.providerList = result.provider.map((value) => {
+			// 			let providerName = '';
+			// 			switch (value) {
+			// 				case 'weixin':
+			// 					providerName = '微信登录'
+			// 					break;
+			// 				case 'qq':
+			// 					providerName = 'QQ登录'
+			// 					break;
+			// 				case 'sinaweibo':
+			// 					providerName = '新浪微博登录'
+			// 					break;
+			// 				case 'xiaomi':
+			// 					providerName = '小米登录'
+			// 					break;
+			// 				case 'alipay':
+			// 					providerName = '支付宝登录'
+			// 					break;
+			// 				case 'baidu':
+			// 					providerName = '百度登录'
+			// 					break;
+			// 				case 'toutiao':
+			// 					providerName = '头条登录'
+			// 					break;
+			// 				case 'apple':
+			// 					providerName = '苹果登录'
+			// 					break;
+			// 				case 'univerify':
+			// 					providerName = '一键登录'
+			// 					break;
+			// 			}
+			// 			return {
+			// 				name: providerName,
+			// 				id: value
+			// 			}
+			// 		});
 
-				},
-				fail: (error) => {
-					console.log('获取登录通道失败', error);
-				}
-			});
+			// 	},
+			// 	fail: (error) => {
+			// 		console.log('获取登录通道失败', error);
+			// 	}
+			// });
 
 			if (this.hasLogin && this.isUniverifyLogin) {
 				this.getPhoneNumber(uni.getStorageSync(univerifyInfoKey)).then((phoneNumber) => {

@@ -5,12 +5,11 @@
 </template>
 
 <script>
-    import bus from './bus.js'
     export default {
         methods: {
             send() {
                 let num = parseInt(Math.random() * 10000)
-                bus.$emit('cc', {
+                uni.$emit('cc', {
                     msg: 'From event bus -> ' + num
                 })
             }

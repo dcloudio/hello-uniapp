@@ -9,7 +9,7 @@
 				<navigator url="redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">
 					<button type="default">在当前页打开</button>
 				</navigator>
-				<navigator v-if="!hasLeftWin" url="/pages/tabBar/extUI/extUI" open-type="switchTab" hover-class="other-navigator-hover">
+				<navigator v-if="!hasLeftWin" url="/pages/tabBar/API/API" open-type="switchTab" hover-class="other-navigator-hover">
 					<button type="default">跳转tab页面</button>
 				</navigator>
 			</view>

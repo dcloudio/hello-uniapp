@@ -21,10 +21,10 @@
     to-fast-properties "^2.0.0"
 
 "@dcloudio/uni-app@../uni-app-next/packages/uni-app":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/uni-cli-shared@../uni-app-next/packages/uni-cli-shared":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
   dependencies:
     debug "^4.3.1"
     jsonc-parser "^3.0.0"
@@ -33,16 +33,16 @@
     xregexp "3.1.0"
 
 "@dcloudio/uni-cloud@../uni-app-next/packages/uni-cloud":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/uni-components@../uni-app-next/packages/uni-components":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/uni-h5-vue@../uni-app-next/packages/uni-h5-vue":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/uni-h5@../uni-app-next/packages/uni-h5":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
   dependencies:
     localstorage-polyfill "^1.0.1"
     pako "^2.0.3"
@@ -50,13 +50,13 @@
     xmlhttprequest "^1.8.0"
 
 "@dcloudio/uni-i18n@../uni-app-next/packages/uni-i18n":
-  version "0.0.5"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/uni-shared@../uni-app-next/packages/uni-shared":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
 
 "@dcloudio/vite-plugin-uni@../uni-app-next/packages/vite-plugin-uni":
-  version "3.0.0"
+  version "3.0.0-alpha-3000020210524001"
   dependencies:
     "@rollup/pluginutils" "^4.1.0"
     autoprefixer "^10.2.5"

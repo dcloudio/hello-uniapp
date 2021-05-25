@@ -46,10 +46,10 @@
 								name: '导航栏带红点和角标',
 								url: 'nav-dot'
 							},
-							{
-								name: '导航栏带城市选择',
-								url: 'nav-city-dropdown'
-							},
+							//{
+							//	name: '导航栏带城市选择',
+							//	url: 'nav-city-dropdown'
+							//},
 							{
 								name: '导航栏带搜索框',
 								url: 'nav-search-input'
@@ -79,10 +79,10 @@
 						url: 'component-communication'
 					},
 					// #ifndef MP-QQ || QUICKAPP-WEBVIEW
-					{
-						name: 'uCharts 图表',
-						url: 'ucharts'
-					},
+					//{
+					//	name: 'uCharts 图表',
+					//	url: 'ucharts'
+					//},
 					// #endif
 					// #ifndef QUICKAPP-WEBVIEW
 					{
@@ -117,10 +117,10 @@
 					},
 					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
-					{
-					    name: '微信自定义组件示例（vant ui）',
-					    url: 'vant-button'
-					}
+					//{
+					//    name: '微信自定义组件示例（vant ui）',
+					//    url: 'vant-button'
+					//}
 					// #endif
 				]
 			}

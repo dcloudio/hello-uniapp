@@ -31,7 +31,7 @@
 
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
-	var dateUtils = require('../../../common/util.js').dateUtils;
+	import { dateUtils } from  '../../../common/util.js';
 
 	export default {
 		components: {
@@ -117,17 +117,17 @@
 				// 				if (!/前|刚刚/.test(e.published_at)) {
 				// 					e.published_at = dateUtils.format(e.published_at);
 				// 				}
-				let detail = {
-					author_name: e.author_name,
-					cover: e.cover,
-					id: e.id,
-					post_id: e.post_id,
-					published_at: e.published_at,
-					title: e.title
-				};
-				uni.navigateTo({
-					url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
-				});
+				// let detail = {
+				// 	author_name: e.author_name,
+				// 	cover: e.cover,
+				// 	id: e.id,
+				// 	post_id: e.post_id,
+				// 	published_at: e.published_at,
+				// 	title: e.title
+				// };
+				// uni.navigateTo({
+				// 	url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
+				// });
 			},
 			setTime: function(items) {
 				var newItems = [];

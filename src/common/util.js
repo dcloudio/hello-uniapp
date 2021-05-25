@@ -66,8 +66,8 @@ var dateUtils = {
 	}
 };
 
-export default {
-	formatTime: formatTime,
-	formatLocation: formatLocation,
-	dateUtils: dateUtils
+export {
+	formatTime,
+	formatLocation,
+	dateUtils
 }

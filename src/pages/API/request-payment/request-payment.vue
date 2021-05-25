@@ -3,7 +3,7 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view style="background:#FFF; padding:50rpx 0;">
-				<view class="uni-hello-text uni-center">支付金额</text></view>
+				<view class="uni-hello-text uni-center"><text>支付金额</text></view>
 				<view class="uni-h1 uni-center uni-common-mt">
 					<text class="rmbLogo">￥</text>
 					<input class="price" type="digit" :value="price" maxlength="4" @input="priceChange" />
@@ -20,7 +20,6 @@
 				<!-- #endif -->
 			</view>
 		</view>
-	</view>
 	</view>
 </template>
 <script>

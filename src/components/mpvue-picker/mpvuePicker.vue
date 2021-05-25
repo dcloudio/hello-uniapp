@@ -8,45 +8,40 @@
             </view>
             <!-- 单列 -->
             <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChange" v-if="mode==='selector' && pickerValueSingleArray.length > 0">
-                <block>
+                <!-- <block> -->
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueSingleArray" :key="index">{{item.label}}</view>
                     </picker-view-column>
-                </block>
+                <!-- </block> -->
             </picker-view>
             <!-- 时间选择器 -->
             <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChange" v-if="mode==='timeSelector'">
-                <block>
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueHour" :key="index">{{item.label}}</view>
                     </picker-view-column>
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueMinute" :key="index">{{item.label}}</view>
                     </picker-view-column>
-                </block>
             </picker-view>
             <!-- 多列选择 -->
-            <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChange" v-if="mode==='multiSelector'">
-                <block v-for="(n,index) in pickerValueMulArray.length" :key="index">
+            <picker-view indicator-style="height: 40px;" class="wmpvue-picker-view" :value="pickerValue" @change="pickerChange" v-if="mode==='multiSelector'">
+                <template v-for="(n,index) in pickerValueMulArray.length" :key="index">
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index1) in pickerValueMulArray[n]" :key="index1">{{item.label}}</view>
                     </picker-view-column>
-                </block>
+                </template>
             </picker-view>
             <!-- 二级联动 -->
             <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChangeMul" v-if="mode==='multiLinkageSelector' && deepLength===2">
-                <block>
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueMulTwoOne" :key="index">{{item.label}}</view>
                     </picker-view-column>
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueMulTwoTwo" :key="index">{{item.label}}</view>
                     </picker-view-column>
-                </block>
             </picker-view>
             <!-- 三级联动 -->
             <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChangeMul" v-if="mode==='multiLinkageSelector' && deepLength===3">
-                <block>
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueMulThreeOne" :key="index">{{item.label}}</view>
                     </picker-view-column>
@@ -56,7 +51,6 @@
                     <picker-view-column>
                         <view class="picker-item" v-for="(item,index) in pickerValueMulThreeThree" :key="index">{{item.label}}</view>
                     </picker-view-column>
-                </block>
             </picker-view>
         </view>
     </view>

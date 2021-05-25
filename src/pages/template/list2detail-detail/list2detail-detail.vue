@@ -82,40 +82,40 @@
 			if (buttonIndex === 0) {
 				// 分享 H5 的页面
 				const shareProviders = [];
-				uni.getProvider({
-					service: 'share',
-					success: (result) => {
-						// 目前仅考虑分享到微信
-						if (result.provider && result.provider.length && ~result.provider.indexOf('weixin')) {
-							const channels = _handleShareChannels(result.provider);
-							uni.showActionSheet({
-								itemList: channels.map(channel => {
-									return channel.text;
-								}),
-								success: (result) => {
-									const tapIndex = result.tapIndex;
-									uni.share({
-										provider: 'weixin',
-										type: 0,
-										title: this.banner.title,
-										scene: tapIndex === 0 ? 'WXSceneSession' : 'WXSenceTimeline',
-										href: 'https://uniapp.dcloud.io/h5' + DETAIL_PAGE_PATH + '?detailDate=' + JSON.stringify(this.banner),
-										imageUrl: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
-									});
-								}
-							});
-						} else {
-							uni.showToast({
-								title: '未检测到可用的微信分享服务'
-							});
-						}
-					},
-					fail: (error) => {
-						uni.showToast({
-							title: '获取分享服务失败'
-						});
-					}
-				});
+				// uni.getProvider({
+				// 	service: 'share',
+				// 	success: (result) => {
+				// 		// 目前仅考虑分享到微信
+				// 		if (result.provider && result.provider.length && ~result.provider.indexOf('weixin')) {
+				// 			const channels = _handleShareChannels(result.provider);
+				// 			uni.showActionSheet({
+				// 				itemList: channels.map(channel => {
+				// 					return channel.text;
+				// 				}),
+				// 				success: (result) => {
+				// 					const tapIndex = result.tapIndex;
+				// 					uni.share({
+				// 						provider: 'weixin',
+				// 						type: 0,
+				// 						title: this.banner.title,
+				// 						scene: tapIndex === 0 ? 'WXSceneSession' : 'WXSenceTimeline',
+				// 						href: 'https://uniapp.dcloud.io/h5' + DETAIL_PAGE_PATH + '?detailDate=' + JSON.stringify(this.banner),
+				// 						imageUrl: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
+				// 					});
+				// 				}
+				// 			});
+				// 		} else {
+				// 			uni.showToast({
+				// 				title: '未检测到可用的微信分享服务'
+				// 			});
+				// 		}
+				// 	},
+				// 	fail: (error) => {
+				// 		uni.showToast({
+				// 			title: '获取分享服务失败'
+				// 		});
+				// 	}
+				// });
 			}
 		},
 		methods: {

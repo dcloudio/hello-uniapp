@@ -246,12 +246,12 @@
 			}
 		},
 		// #endif
-		{
-			"path": "pages/component/canvas/canvas",
-			"style": {
-				"navigationBarTitleText": "canvas"
-			}
-		},
+		// {
+		// 	"path": "pages/component/canvas/canvas",
+		// 	"style": {
+		// 		"navigationBarTitleText": "canvas"
+		// 	}
+		// },
 		{
 			"path": "pages/component/web-view/web-view",
 			"style": {
@@ -319,12 +319,13 @@
 	],
 	"subPackages": [{
 			"root": "pages/API",
-			"pages": [{
-					"path": "login/login",
-					"style": {
-						"navigationBarTitleText": "授权登录"
-					}
-				},
+			"pages": [
+				// {
+				// 	"path": "login/login",
+				// 	"style": {
+				// 		"navigationBarTitleText": "授权登录"
+				// 	}
+				// },
 				// #ifdef APP-PLUS
 				{
 					"path": "subnvue/subnvue",
@@ -369,18 +370,18 @@
 						"navigationBarTitleText": "获取用户信息"
 					}
 				},
-				{
-					"path": "request-payment/request-payment",
-					"style": {
-						"navigationBarTitleText": "发起支付"
-					}
-				},
-				{
-					"path": "share/share",
-					"style": {
-						"navigationBarTitleText": "分享"
-					}
-				},
+				// {
+				// 	"path": "request-payment/request-payment",
+				// 	"style": {
+				// 		"navigationBarTitleText": "发起支付"
+				// 	}
+				// },
+				// {
+				// 	"path": "share/share",
+				// 	"style": {
+				// 		"navigationBarTitleText": "分享"
+				// 	}
+				// },
 				{
 					"path": "set-navigation-bar-title/set-navigation-bar-title",
 					"style": {
@@ -484,12 +485,14 @@
 						"navigationBarTitleText": "获取设备系统信息"
 					}
 				},
+				// #ifndef H5
 				{
 					"path": "add-phone-contact/add-phone-contact",
 					"style": {
 						"navigationBarTitleText": "添加手机联系人"
 					}
 				},
+				//#endif
 				{
 					"path": "on-accelerometer-change/on-accelerometer-change",
 					"style": {
@@ -508,6 +511,8 @@
 						"navigationBarTitleText": "打电话"
 					}
 				},
+				
+				// #ifndef H5
 				{
 					"path": "scan-code/scan-code",
 					"style": {
@@ -520,6 +525,7 @@
 						"navigationBarTitleText": "剪贴板"
 					}
 				},
+				//#endif
 				{
 					"path": "request/request",
 					"style": {
@@ -544,16 +550,11 @@
 						"navigationBarTitleText": "图片"
 					}
 				},
+				// #ifndef H5
 				{
 					"path": "voice/voice",
 					"style": {
 						"navigationBarTitleText": "录音"
-					}
-				},
-				{
-					"path": "inner-audio/inner-audio",
-					"style": {
-						"navigationBarTitleText": "音频"
 					}
 				},
 				{
@@ -563,15 +564,22 @@
 					}
 				},
 				{
-					"path": "video/video",
-					"style": {
-						"navigationBarTitleText": "视频"
-					}
-				},
-				{
 					"path": "file/file",
 					"style": {
 						"navigationBarTitleText": "文件"
+					}
+				},
+				//#endif
+				{
+					"path": "inner-audio/inner-audio",
+					"style": {
+						"navigationBarTitleText": "音频"
+					}
+				},
+				{
+					"path": "video/video",
+					"style": {
+						"navigationBarTitleText": "视频"
 					}
 				},
 				// #ifndef MP-QQ || MP-TOUTIAO
@@ -590,12 +598,14 @@
 					}
 				},
 				// #endif
+				// #ifndef H5
 				{
 					"path": "get-location/get-location",
 					"style": {
 						"navigationBarTitleText": "获取位置"
 					}
 				},
+				//#endif
 				{
 					"path": "open-location/open-location",
 					"style": {
@@ -698,328 +708,331 @@
 				}
 			]
 		},
-		{
-			"root": "pages/extUI",
-			"pages": [{
-					"path": "forms/forms",
-					"style": {
-						"navigationBarTitleText": "Form 表单"
-					}
-				},
-				{
-					"path": "group/group",
-					"style": {
-						"navigationBarTitleText": "Group 分组"
-					}
-				},
-				{
-					"path": "badge/badge",
-					"style": {
-						"navigationBarTitleText": "Badge 数字角标"
-					}
-				},
-				{
-					"path": "countdown/countdown",
-					"style": {
-						"navigationBarTitleText": "Countdown 倒计时"
-					}
-				},
-				{
-					"path": "drawer/drawer",
-					"style": {
-						"navigationBarTitleText": "Drawer 抽屉",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-									"text": "\ue563",
-									"fontSrc": "/static/uni.ttf",
-									"fontSize": "22px"
-								}]
-							},
-							"bounce": "none"
-						}
-					}
-				},
-				{
-					"path": "icons/icons",
-					"style": {
-						"navigationBarTitleText": "Icons 图标"
-					}
-				},
-				{
-					"path": "load-more/load-more",
-					"style": {
-						"navigationBarTitleText": "LoadMore 加载更多"
-					}
-				},
-				{
-					"path": "nav-bar/nav-bar",
-					"style": {
-						"navigationBarTitleText": "NavBar 导航栏",
-						"navigationStyle": "custom",
-						"enablePullDownRefresh": true,
-						"app-plus": {
-							"titleNView": false,
-							"bounce": "none",
-							"pullToRefresh": {
-								"style": "circle",
-								"offset": "70px"
-							}
-						}
-					}
-				},
-				{
-					"path": "number-box/number-box",
-					"style": {
-						"navigationBarTitleText": "NumberBox 数字输入框"
-					}
-				},
-				{
-					"path": "popup/popup",
-					"style": {
-						"navigationBarTitleText": "Popup 弹出层",
-						"app-plus": {
-							"softinputMode": "adjustResize"
-						}
-					}
-				},
-				{
-					"path": "segmented-control/segmented-control",
-					"style": {
-						"navigationBarTitleText": "SegmentedControl 分段器"
-					}
-				},
-				{
-					"path": "tag/tag",
-					"style": {
-						"navigationBarTitleText": "Tag 标签"
-					}
-				},
-				{
-					"path": "list/list",
-					"style": {
-						"navigationBarTitleText": "List 列表"
-					}
-				},
-				{
-					"path": "card/card",
-					"style": {
-						"navigationBarTitleText": "Card 卡片"
-					}
-				},
-				{
-					"path": "collapse/collapse",
-					"style": {
-						"navigationBarTitleText": "Collapse 折叠面板"
-					}
-				},
-				{
-					"path": "pagination/pagination",
-					"style": {
-						"navigationBarTitleText": "Pagination 分页器"
-					}
-				},
-				{
-					"path": "swiper-dot/swiper-dot",
-					"style": {
-						"navigationBarTitleText": "SwiperDot 轮播图指示点",
-						"mp-baidu": {
-							"disableSwipeBack": true
-						}
-					}
-				},
-				{
-					"path": "grid/grid",
-					"style": {
-						"navigationBarTitleText": "Grid 宫格"
-					}
-				},
-				{
-					"path": "rate/rate",
-					"style": {
-						"navigationBarTitleText": "Rate 评分"
-					}
-				},
-				{
-					"path": "steps/steps",
-					"style": {
-						"navigationBarTitleText": "Steps 步骤条"
-					}
-				},
-				{
-					"path": "notice-bar/notice-bar",
-					"style": {
-						"navigationBarTitleText": "NoticeBar 通告栏"
-					}
-				},
-				{
-					"path": "swipe-action/swipe-action",
-					"style": {
-						"navigationBarTitleText": "SwipeAction 滑动操作",
-						"app-plus": {
-							"bounce": "none"
-						}
-					}
-				},
-				{
-					"path": "search-bar/search-bar",
-					"style": {
-						"navigationBarTitleText": "SearchBar 搜索栏"
-					}
-				},
-				{
-					"path": "calendar/calendar",
-					"style": {
-						"navigationBarTitleText": "Calendar 日历"
-					}
-				},
-				{
-					"path": "indexed-list/indexed-list",
-					"style": {
-						"navigationBarTitleText": "IndexedList 索引列表",
-						"mp-weixin": {
-							"disableScroll": true
-						},
-						"app-plus": {
-							"bounce": "none"
-						},
-						"mp-alipay": {
-							"allowsBounceVertical": "NO"
-						},
-						"mp-baidu": {
-							"disableScroll": true
-						}
-					}
-				},
-				{
-					"path": "fab/fab",
-					"style": {
-						"navigationBarTitleText": "Fab 悬浮按钮"
-					}
-				},
-				{
-					"path": "fav/fav",
-					"style": {
-						"navigationBarTitleText": "Fav 收藏按钮"
-					}
-				},
-				{
-					"path": "goods-nav/goods-nav",
-					"style": {
-						"navigationBarTitleText": "GoodsNav 商品导航"
-					}
-				},
-				{
-					"path": "section/section",
-					"style": {
-						"navigationBarTitleText": "Section 章节标题"
-					}
-				},
-				{
-					"path": "transition/transition",
-					"style": {
-						"navigationBarTitleText": "Transition 过渡动画"
-					}
-				},
-				{
-					"path": "title/title",
-					"style": {
-						"navigationBarTitleText": "Title 章节标题"
-					}
-				},
-				{
-					"path": "link/link",
-					"style": {
-						"navigationBarTitleText": "Link 链接"
-					}
-				},
-				{
-					"path": "combox/combox",
-					"style": {
-						"navigationBarTitleText": "Combox 组合框"
-					}
-				},
-				{
-					"path": "list/ad",
-					"style": {}
-				},
-				{
-					"path": "list/chat",
-					"style": {}
-				},
-				{
-					"path": "table/table",
-					"style": {
-						"navigationBarTitleText": "",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "dateformat/dateformat",
-					"style": {
-						"navigationBarTitleText": "Dateformat 日期格式化",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "data-checkbox/data-checkbox",
-					"style": {
-						"navigationBarTitleText": "",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "easyinput/easyinput",
-					"style": {
-						"navigationBarTitleText": "",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "data-picker/data-picker",
-					"style": {
-						"navigationBarTitleText": "级联选择",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "date-picker/date-picker",
-					"style": {
-						"navigationBarTitleText": "日期选择",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "datetime-picker/datetime-picker",
-					"style": {
-						"navigationBarTitleText": "日期时间",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "row/row",
-					"style": {
-						"navigationBarTitleText": "layout 布局",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
-					"path": "file-picker/file-picker",
-					"style": {
-						"navigationBarTitleText": "",
-						"enablePullDownRefresh": false
-					}
-				}
-			]
-		},
+		// {
+		// 	"root": "pages/extUI",
+		// 	"pages": [{
+		// 			"path": "forms/forms",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Form 表单"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "group/group",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Group 分组"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "badge/badge",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Badge 数字角标"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "countdown/countdown",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Countdown 倒计时"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "drawer/drawer",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Drawer 抽屉",
+		// 				"app-plus": {
+		// 					"titleNView": {
+		// 						"buttons": [{
+		// 							"text": "\ue563",
+		// 							"fontSrc": "/static/uni.ttf",
+		// 							"fontSize": "22px"
+		// 						}]
+		// 					},
+		// 					"bounce": "none"
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "icons/icons",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Icons 图标"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "load-more/load-more",
+		// 			"style": {
+		// 				"navigationBarTitleText": "LoadMore 加载更多"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "nav-bar/nav-bar",
+		// 			"style": {
+		// 				"navigationBarTitleText": "NavBar 导航栏",
+		// 				"navigationStyle": "custom",
+		// 				"enablePullDownRefresh": true,
+		// 				"app-plus": {
+		// 					"titleNView": false,
+		// 					"bounce": "none",
+		// 					"pullToRefresh": {
+		// 						"style": "circle",
+		// 						"offset": "70px"
+		// 					}
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "number-box/number-box",
+		// 			"style": {
+		// 				"navigationBarTitleText": "NumberBox 数字输入框"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "popup/popup",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Popup 弹出层",
+		// 				"app-plus": {
+		// 					"softinputMode": "adjustResize"
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "segmented-control/segmented-control",
+		// 			"style": {
+		// 				"navigationBarTitleText": "SegmentedControl 分段器"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "tag/tag",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Tag 标签"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "list/list",
+		// 			"style": {
+		// 				"navigationBarTitleText": "List 列表"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "card/card",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Card 卡片"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "collapse/collapse",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Collapse 折叠面板"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "pagination/pagination",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Pagination 分页器"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "swiper-dot/swiper-dot",
+		// 			"style": {
+		// 				"navigationBarTitleText": "SwiperDot 轮播图指示点",
+		// 				"mp-baidu": {
+		// 					"disableSwipeBack": true
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "grid/grid",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Grid 宫格"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "rate/rate",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Rate 评分"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "steps/steps",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Steps 步骤条"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "notice-bar/notice-bar",
+		// 			"style": {
+		// 				"navigationBarTitleText": "NoticeBar 通告栏"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "swipe-action/swipe-action",
+		// 			"style": {
+		// 				"navigationBarTitleText": "SwipeAction 滑动操作",
+		// 				"app-plus": {
+		// 					"bounce": "none"
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "search-bar/search-bar",
+		// 			"style": {
+		// 				"navigationBarTitleText": "SearchBar 搜索栏"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "calendar/calendar",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Calendar 日历"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "indexed-list/indexed-list",
+		// 			"style": {
+		// 				"navigationBarTitleText": "IndexedList 索引列表",
+		// 				"mp-weixin": {
+		// 					"disableScroll": true
+		// 				},
+		// 				"app-plus": {
+		// 					"bounce": "none"
+		// 				},
+		// 				"mp-alipay": {
+		// 					"allowsBounceVertical": "NO"
+		// 				},
+		// 				"mp-baidu": {
+		// 					"disableScroll": true
+		// 				}
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "fab/fab",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Fab 悬浮按钮"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "fav/fav",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Fav 收藏按钮"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "goods-nav/goods-nav",
+		// 			"style": {
+		// 				"navigationBarTitleText": "GoodsNav 商品导航"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "section/section",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Section 章节标题"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "transition/transition",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Transition 过渡动画"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "title/title",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Title 章节标题"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "link/link",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Link 链接"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "combox/combox",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Combox 组合框"
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "list/ad",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "list/chat",
+		// 			"style": {}
+		// 		},
+		// 		{
+		// 			"path": "table/table",
+		// 			"style": {
+		// 				"navigationBarTitleText": "",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "dateformat/dateformat",
+		// 			"style": {
+		// 				"navigationBarTitleText": "Dateformat 日期格式化",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "data-checkbox/data-checkbox",
+		// 			"style": {
+		// 				"navigationBarTitleText": "",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "easyinput/easyinput",
+		// 			"style": {
+		// 				"navigationBarTitleText": "",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "data-picker/data-picker",
+		// 			"style": {
+		// 				"navigationBarTitleText": "级联选择",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "date-picker/date-picker",
+		// 			"style": {
+		// 				"navigationBarTitleText": "日期选择",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "datetime-picker/datetime-picker",
+		// 			"style": {
+		// 				"navigationBarTitleText": "日期时间",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "row/row",
+		// 			"style": {
+		// 				"navigationBarTitleText": "layout 布局",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		},
+		// 		{
+		// 			"path": "file-picker/file-picker",
+		// 			"style": {
+		// 				"navigationBarTitleText": "",
+		// 				"enablePullDownRefresh": false
+		// 			}
+		// 		}
+		// 	]
+		// },
 		{
 			"root": "pages/template",
-			"pages": [{
+			"pages": [
+				// #ifndef H5
+				{
 					"path": "ucharts/ucharts",
 					"style": {
 						"navigationBarTitleText": "uCharts 图表"
 					}
 				},
+				//#endif	
 				{
 					"path": "nav-default/nav-default",
 					"style": {
@@ -1046,7 +1059,7 @@
 					"path": "nav-button/nav-button",
 					"style": {
 						"navigationBarTitleText": "导航栏带自定义按钮",
-						"app-plus": {
+						"app": {
 							"titleNView": {
 								"buttons": [{
 										"type": "share"
@@ -1071,27 +1084,27 @@
 				},
 				// #endif
 				// #ifdef APP-PLUS || H5
-				{
-					"path": "nav-city-dropdown/nav-city-dropdown",
-					"style": {
-						"navigationBarTitleText": "导航栏带城市选择",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-									"text": "北京市",
-									"fontSize": "14",
-									"select": true,
-									"width": "auto"
-								}]
-							}
-						}
-					}
-				},
+				// {
+				// 	"path": "nav-city-dropdown/nav-city-dropdown",
+				// 	"style": {
+				// 		"navigationBarTitleText": "导航栏带城市选择",
+				// 		"app": {
+				// 			"titleNView": {
+				// 				"buttons": [{
+				// 					"text": "北京市",
+				// 					"fontSize": "14",
+				// 					"select": true,
+				// 					"width": "auto"
+				// 				}]
+				// 			}
+				// 		}
+				// 	}
+				// },
 				{
 					"path": "nav-dot/nav-dot",
 					"style": {
 						"navigationBarTitleText": "导航栏带红点和角标",
-						"app-plus": {
+						"app": {
 							"titleNView": {
 								"buttons": [{
 										"text": "消息",
@@ -1112,7 +1125,7 @@
 					"path": "nav-search-input/nav-search-input",
 					"style": {
 						"navigationBarTitleText": "导航栏带搜索框",
-						"app-plus": {
+						"app": {
 							"titleNView": {
 								"type": "transparent",
 								"titleColor": "#fff",
@@ -1139,7 +1152,7 @@
 					"path": "nav-search-input/detail/detail",
 					"style": {
 						"navigationBarTitleText": "搜索",
-						"app-plus": {
+						"app": {
 							"titleNView": {
 								"titleColor": "#fff",
 								"backgroundColor": "#007AFF",
@@ -1285,12 +1298,8 @@
 				"iconPath": "static/api.png",
 				"selectedIconPath": "static/apiHL.png",
 				"text": "接口"
-			}, {
-				"pagePath": "pages/tabBar/extUI/extUI",
-				"iconPath": "static/extui.png",
-				"selectedIconPath": "static/extuiHL.png",
-				"text": "扩展组件"
-			}, {
+			}, 
+			{
 				"pagePath": "pages/tabBar/template/template",
 				"iconPath": "static/template.png",
 				"selectedIconPath": "static/templateHL.png",

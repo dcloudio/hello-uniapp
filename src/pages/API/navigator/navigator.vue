@@ -91,9 +91,9 @@
 				})
 			},
 			unPreloadPage(){
-				uni.unPreloadPage({
-					url: preloadPageUrl
-				})
+				// uni.unPreloadPage({
+				// 	url: preloadPageUrl
+				// })
 			},
 			navigateToPreloadPage(){
 				uni.navigateTo({

@@ -54,12 +54,15 @@
 						switch (action) {
 							case 'switchTab':
 								uni.switchTab({
-									url: '/pages/tabBar/API/API'
+									url: '/src/pages/tabBar/API/API',
+									fail(w){
+										console.log(222, w)
+									}
 								});
 								break;
 							case 'reLaunch':
 								uni.reLaunch({
-									url: '/pages/tabBar/API/API'
+									url: '/src/pages/tabBar/API/API'
 								});
 								break;
 							case 'navigateBack':
@@ -69,7 +72,7 @@
 								break;
 							default:
 								uni[action]({
-									url: '/pages/component/button/button'
+									url: '/src/pages/component/button/button'
 								});
 								break;
 						}

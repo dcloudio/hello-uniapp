@@ -8,7 +8,7 @@
 	export default {
 		data() {
 			return {
-				url: 'https://uniapp.dcloud.io/static/web-view.html'
+				url: 'https://uniapp.dcloud.net.cn/'
 			}
 		},
 		onLoad(options) {

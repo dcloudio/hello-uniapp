@@ -26,16 +26,16 @@
 			}
 		},
 		onLoad: function () {
-			uni.getProvider({
-				service: "push",
-				success: (e) => {
-					console.log("success", e);
-					this.provider = e.provider;
-				},
-				fail: (e) => {
-					console.log("获取推送通道失败", e);
-				}
-			});
+			// uni.getProvider({
+			// 	service: "push",
+			// 	success: (e) => {
+			// 		console.log("success", e);
+			// 		this.provider = e.provider;
+			// 	},
+			// 	fail: (e) => {
+			// 		console.log("获取推送通道失败", e);
+			// 	}
+			// });
 		},
 		onUnload:function(){
 			this.tranMsg = ''

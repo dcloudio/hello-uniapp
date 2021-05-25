@@ -5,7 +5,7 @@
 			<view class="uni-title">请输入剪贴板内容</view>
 			<view class="uni-list">
 				<view class="uni-list-cell">
-					<input class="uni-input" type="text" placeholder="请输入剪贴板内容" :value="data" @input="dataChange"></input>
+					<input class="uni-input" type="text" placeholder="请输入剪贴板内容" :value="data" @input="dataChange" />
 				</view>
 			</view>
 			<view class="uni-btn-v">

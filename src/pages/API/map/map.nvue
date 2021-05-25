@@ -235,7 +235,7 @@
             longitude: 116.3974770000,
         }
     ];
-    module.exports = {
+    export default {
         data() {
             return {
                 location: {
@@ -411,9 +411,6 @@
     }
 
     .scrollview {
-		/* #ifdef H5 */
-		margin-top: 240px;
-		/* #endif */
         flex: 1;
         padding: 10px;
     }

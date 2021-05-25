@@ -93,12 +93,12 @@
 					},
 					// #endif
 					// #ifndef QUICKAPP-WEBVIEW-UNION
-					{
-						id: 'canvas',
-						name: '画布',
-						open: false,
-						pages: ['canvas']
-					},
+					//{
+					//	id: 'canvas',
+					//	name: '画布',
+					//	open: false,
+					//	pages: ['canvas']
+					//},
 					// #endif
 					// #ifdef APP-PLUS || H5
 					{
@@ -108,10 +108,12 @@
 						pages: [{
 							name: '网络网页',
 							url: '/pages/component/web-view/web-view'
-						}, {
-							name: '本地网页',
-							url: '/pages/component/web-view-local/web-view-local'
-						}]
+						},
+						//{
+						//	name: '本地网页',
+						//	url: '/pages/component/web-view-local/web-view-local'
+						//}
+						]
 					},
 					// #endif
 					// #ifndef APP-PLUS || H5

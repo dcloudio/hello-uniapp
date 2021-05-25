@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view src="/hybrid/html/local.html" @message="getMessage"></web-view>
+		<web-view src="/src/hybrid/html/local.html" @message="getMessage"></web-view>
 	</view>
 </template>
 

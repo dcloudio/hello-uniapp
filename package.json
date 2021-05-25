@@ -2,7 +2,7 @@
    "name": "uni-preset-vue",
    "version": "0.0.0",
    "scripts": {
-      "dev": "uni",
+      "dev": "uni -d DEBUG=uni:*",
       "build": "uni build",
       "dev:ssr": "uni --ssr",
       "build:ssr": "uni build --ssr"
