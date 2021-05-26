@@ -4,8 +4,7 @@
 		<!-- #endif -->
 		<view class="uni-list-ad">
 			<view v-if="borderShow" :class="{'uni-list--border':border,'uni-list-item--first':isFirstChild}"></view>
-			<ad style="width: 200px;height: 300px;border-width: 1px;border-color: red;border-style: solid;" adpid="1111111111"
-			 unit-id="" appid="" apid="" type="feed" @error="aderror" @close="closeAd"></ad>
+			<ad style="width: 200px;height: 300px;border-width: 1px;border-color: red;border-style: solid;" adpid="1111111111" unit-id="" appid="" apid="" type="feed" @error="aderror" @close="closeAd"></ad>
 		</view>
 		<!-- #ifdef APP-NVUE -->
 	</cell>
@@ -69,7 +68,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-list-ad {
 		position: relative;
 		border: 1px red solid;
@@ -79,11 +78,11 @@
 		position: relative;
 		padding-bottom: 1px;
 		/* #ifdef APP-PLUS */
-		border-top-color: $uni-border-color;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 0.5px;
 		/* #endif */
-		margin-left: $uni-spacing-row-lg;
+		margin-left: 15px;
 	}
 
 	/* #ifndef APP-NVUE */
@@ -93,10 +92,10 @@
 		right: 0;
 		left: 0;
 		height: 1px;
-		content: '';
-		-webkit-transform: scaleY(.5);
-		transform: scaleY(.5);
-		background-color: $uni-border-color;
+		content: "";
+		-webkit-transform: scaleY(0.5);
+		transform: scaleY(0.5);
+		background-color: #e5e5e5;
 	}
 
 	.uni-list-item--first:after {

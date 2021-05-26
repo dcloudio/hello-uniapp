@@ -999,13 +999,6 @@
 					}
 				},
 				{
-					"path": "date-picker/date-picker",
-					"style": {
-						"navigationBarTitleText": "日期选择",
-						"enablePullDownRefresh": false
-					}
-				},
-				{
 					"path": "datetime-picker/datetime-picker",
 					"style": {
 						"navigationBarTitleText": "日期时间",

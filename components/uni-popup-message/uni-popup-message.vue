@@ -25,7 +25,7 @@
 
 	export default {
 		name: 'uniPopupMessage',
-		mixins:[popup],
+		mixins: [popup],
 		props: {
 			/**
 			 * 主题 success/warning/info/error	  默认 success
@@ -48,9 +48,9 @@
 				type: Number,
 				default: 3000
 			},
-			maskShow:{
-				type:Boolean,
-				default:false
+			maskShow: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -61,17 +61,17 @@
 			this.popup.messageChild = this
 		},
 		methods: {
-			timerClose(){
-				if(this.duration === 0) return
-				clearTimeout(this.timer) 
-				this.timer = setTimeout(()=>{
+			timerClose() {
+				if (this.duration === 0) return
+				clearTimeout(this.timer)
+				this.timer = setTimeout(() => {
 					this.popup.close()
-				},this.duration)
+				}, this.duration)
 			}
 		}
 	}
 </script>
-<style lang="scss" scoped>
+<style scoped>
 	.uni-popup-message {
 		/* #ifndef APP-NVUE */
 		display: flex;

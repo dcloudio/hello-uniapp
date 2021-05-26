@@ -101,6 +101,8 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		align-items: flex-end;
+		margin-bottom: 8px;
 	}
 
 	.uni-steps__column-text-container {

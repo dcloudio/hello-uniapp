@@ -20,7 +20,7 @@
 	import popup from '../uni-popup/popup.js'
 	export default {
 		name: 'UniPopupShare',
-		mixins:[popup],
+		mixins: [popup],
 		props: {
 			title: {
 				type: String,
@@ -77,22 +77,23 @@
 					index
 				})
 				this.close()
-				
+
 			},
 			/**
 			 * 关闭窗口
 			 */
 			close() {
-				if(this.beforeClose) return
+				if (this.beforeClose) return
 				this.popup.close()
 			}
 		}
 	}
 </script>
-<style lang="scss" scoped>
+<style scoped>
 	.uni-popup-share {
 		background-color: #fff;
 	}
+
 	.uni-share-title {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -102,10 +103,12 @@
 		justify-content: center;
 		height: 40px;
 	}
+
 	.uni-share-title-text {
 		font-size: 14px;
 		color: #666;
 	}
+
 	.uni-share-content {
 		/* #ifndef APP-NVUE */
 		display: flex;

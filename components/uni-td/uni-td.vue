@@ -10,14 +10,14 @@
 		<slot></slot>
 	</view>
 	<!-- #endif -->
-	
+
 </template>
 
 <script>
 	/**
 	 * Td 单元格
 	 * @description 表格中的标准单元格组件
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3270
 	 * @property {Number} 	align = [left|center|right]	单元格对齐方式
 	 */
 	export default {
@@ -35,11 +35,11 @@
 				default: 'left'
 			},
 			rowspan: {
-				type: [Number,String],
+				type: [Number, String],
 				default: 1
 			},
 			colspan: {
-					type: [Number,String],
+				type: [Number, String],
 				default: 1
 			}
 		},
@@ -70,14 +70,12 @@
 	}
 </script>
 
-<style lang="scss">
-	$border-color:#EBEEF5;
-
+<style scoped>
 	.uni-table-td {
 		display: table-cell;
 		padding: 8px 10px;
 		font-size: 14px;
-		border-bottom: 1px $border-color solid;
+		border-bottom: 1px #EBEEF5 solid;
 		font-weight: 400;
 		color: #606266;
 		line-height: 23px;
@@ -85,6 +83,6 @@
 	}
 
 	.table--border {
-		border-right: 1px $border-color solid;
+		border-right: 1px #EBEEF5 solid;
 	}
 </style>

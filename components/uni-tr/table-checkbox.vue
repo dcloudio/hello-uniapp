@@ -18,7 +18,7 @@
 				default: false
 			},
 			checked: {
-				type: [Boolean,String],
+				type: [Boolean, String],
 				default: false
 			},
 			disabled: {
@@ -36,15 +36,15 @@
 				}
 			}
 		},
-		watch:{
-			checked(newVal){
-				if(typeof this.checked === 'boolean'){
+		watch: {
+			checked(newVal) {
+				if (typeof this.checked === 'boolean') {
 					this.isChecked = newVal
-				}else{
+				} else {
 					this.isChecked = true
 				}
 			},
-			indeterminate(newVal){
+			indeterminate(newVal) {
 				this.isIndeterminate = newVal
 			}
 		},
@@ -52,11 +52,11 @@
 			return {
 				isChecked: false,
 				isDisabled: false,
-				isIndeterminate:false
+				isIndeterminate: false
 			}
 		},
 		created() {
-			if(typeof this.checked === 'boolean'){
+			if (typeof this.checked === 'boolean') {
 				this.isChecked = this.checked
 			}
 			this.isDisabled = this.disabled
@@ -75,11 +75,7 @@
 	}
 </script>
 
-<style lang="scss">
-	$checked-color: #007aff;
-	$border-color: #DCDFE6;
-	$disable:0.4;
-
+<style scoped>
 	.uni-table-checkbox {
 		display: flex;
 		flex-direction: row;
@@ -88,91 +84,88 @@
 		position: relative;
 		margin: 5px 0;
 		cursor: pointer;
+	}
 
-		// 多选样式
-		.checkbox__inner {
-			/* #ifndef APP-NVUE */
-			flex-shrink: 0;
-			box-sizing: border-box;
-			/* #endif */
-			position: relative;
-			width: 16px;
-			height: 16px;
-			border: 1px solid $border-color;
-			border-radius: 2px;
-			background-color: #fff;
-			z-index: 1;
+	.uni-table-checkbox .checkbox__inner {
+		/* #ifndef APP-NVUE */
+		flex-shrink: 0;
+		box-sizing: border-box;
+		/* #endif */
+		position: relative;
+		width: 16px;
+		height: 16px;
+		border: 1px solid #DCDFE6;
+		border-radius: 2px;
+		background-color: #fff;
+		z-index: 1;
+	}
 
-			.checkbox__inner-icon {
-				position: absolute;
-				/* #ifdef APP-NVUE */
-				top: 2px;
-				/* #endif */
-				/* #ifndef APP-NVUE */
-				top: 2px;
-				/* #endif */
-				left: 5px;
-				height: 7px;
-				width: 3px;
-				border: 1px solid #fff;
-				border-left: 0;
-				border-top: 0;
-				opacity: 0;
-				transform-origin: center;
-				transform: rotate(45deg);
-				box-sizing: content-box;
-			}
+	.uni-table-checkbox .checkbox__inner .checkbox__inner-icon {
+		position: absolute;
+		/* #ifdef APP-NVUE */
+		top: 2px;
+		/* #endif */
+		/* #ifndef APP-NVUE */
+		top: 2px;
+		/* #endif */
+		left: 5px;
+		height: 7px;
+		width: 3px;
+		border: 1px solid #fff;
+		border-left: 0;
+		border-top: 0;
+		opacity: 0;
+		transform-origin: center;
+		transform: rotate(45deg);
+		box-sizing: content-box;
+	}
 
-			&.checkbox--indeterminate {
-				border-color: $checked-color;
-				background-color: $checked-color;
+	.uni-table-checkbox .checkbox__inner.checkbox--indeterminate {
+		border-color: #007aff;
+		background-color: #007aff;
+	}
 
-				.checkbox__inner-icon {
-					position: absolute;
-					opacity: 1;
-					transform: rotate(0deg);
-					height: 2px;
-					top: 0;
-					bottom: 0;
-					margin: auto;
-					left: 0px;
-					right: 0px;
-					bottom: 0;
-					width: auto;
-					border: none;
-					border-radius: 2px;
-					transform: scale(0.5);
-					background-color: #fff;
-				}
-			}
-			&:hover{
-				border-color: $checked-color;
-			}
-			// 禁用
-			&.is-disable {
-				/* #ifdef H5 */
-				cursor: not-allowed;
-				/* #endif */
-				background-color: #F2F6FC;
-				border-color: $border-color;
-			}
+	.uni-table-checkbox .checkbox__inner.checkbox--indeterminate .checkbox__inner-icon {
+		position: absolute;
+		opacity: 1;
+		transform: rotate(0deg);
+		height: 2px;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		left: 0px;
+		right: 0px;
+		bottom: 0;
+		width: auto;
+		border: none;
+		border-radius: 2px;
+		transform: scale(0.5);
+		background-color: #fff;
+	}
 
-			// 选中
-			&.is-checked {
-				border-color: $checked-color;
-				background-color: $checked-color;
+	.uni-table-checkbox .checkbox__inner:hover {
+		border-color: #007aff;
+	}
 
-				.checkbox__inner-icon {
-					opacity: 1;
-					transform: rotate(45deg);
-				}
+	.uni-table-checkbox .checkbox__inner.is-disable {
+		/* #ifdef H5 */
+		cursor: not-allowed;
+		/* #endif */
+		background-color: #F2F6FC;
+		border-color: #DCDFE6;
+	}
 
-				// 选中禁用
-				&.is-disable {
-					opacity: $disable;
-				}
-			}
-			
-		}
+	.uni-table-checkbox .checkbox__inner.is-checked {
+		border-color: #007aff;
+		background-color: #007aff;
+	}
+
+	.uni-table-checkbox .checkbox__inner.is-checked .checkbox__inner-icon {
+		opacity: 1;
+		transform: rotate(45deg);
+	}
+
+	.uni-table-checkbox .checkbox__inner.is-checked.is-disable {
+		opacity: 0.4;
 	}
 </style>

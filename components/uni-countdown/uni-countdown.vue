@@ -39,6 +39,10 @@
 				type: Boolean,
 				default: true
 			},
+			start: {
+				type: Boolean,
+				default: true
+			},
 			backgroundColor: {
 				type: String,
 				default: '#FFFFFF'
@@ -100,10 +104,23 @@
 			},
 			second(val) {
 				this.changeFlag()
+			},
+			start: {
+				immediate: true,
+				handler(newVal, oldVal) {
+					if (newVal) {
+						this.startData();
+					} else {
+						if (!oldVal) return
+						clearInterval(this.timer)
+					}
+				}
+
 			}
 		},
 		created: function(e) {
-			this.startData();
+			this.seconds = this.toSeconds(this.timestamp, this.day, this.hour, this.minute, this.second)
+			this.countDown()
 		},
 		beforeDestroy() {
 			clearInterval(this.timer)

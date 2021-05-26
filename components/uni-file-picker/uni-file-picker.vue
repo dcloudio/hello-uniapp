@@ -19,10 +19,13 @@
 </template>
 
 <script>
+	import uploadImage from './upload-image.vue'
+	import uploadFile from './upload-file.vue'
+	let fileInput = null
 	/**
-	 * FilePicker
+	 * FilePicker 文件选择上传
 	 * @description 文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=-1
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=4079
 	 * @property {Object|Array}	value	组件数据，通常用来回显 ,类型由return-type属性决定
 	 * @property {Boolean}	disabled=[true|false]	组件禁用
 	 * 	@value true 	禁用
@@ -60,13 +63,6 @@
 	 * @event {Function} fail 		上传失败触发
 	 * @event {Function} delete 	文件从列表移除时触发
 	 */
-
-	import {
-		chooseAndUploadFile
-	} from './choose-and-upload-file.js'
-	import uploadImage from './upload-image.vue'
-	import uploadFile from './upload-file.vue'
-	let fileInput = null
 	export default {
 		name: 'uniFilePicker',
 		components: {
@@ -276,10 +272,6 @@
 			 * 选择文件并上传
 			 */
 			chooseFiles() {
-				// API 正式发布前，使用本地API上传函数
-				if (!uniCloud.chooseAndUploadFile) {
-					uniCloud.chooseAndUploadFile = chooseAndUploadFile
-				}
 
 				uniCloud
 					.chooseAndUploadFile({
@@ -451,6 +443,9 @@
 					tempFilePath: this.files[index].url
 				})
 				this.files.splice(index, 1)
+				this.$nextTick(() => {
+					this.setEmit()
+				})
 			},
 
 			/**

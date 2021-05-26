@@ -8,10 +8,12 @@
 </template>
 
 <script>
+	const ComponentClass = 'uni-row';
+	const modifierSeparator = '--';
 	/**
-	 * uni-row	布局-行
+	 * Row	布局-行
 	 * @description	流式栅格系统，随着屏幕或视口分为 24 份，可以迅速简便地创建布局。
-	 * @tutorial	https://ext.dcloud.net.cn/plugin?id=
+	 * @tutorial	https://ext.dcloud.net.cn/plugin?id=3958
 	 *
 	 * @property	{gutter} type = Number 栅格间隔
 	 * @property	{justify} type = String flex 布局下的水平排列方式
@@ -23,8 +25,7 @@
 	 * @property	{width} type = String|Number nvue下需要自行配置宽度用于计算
 	 * 						默认值 750
 	 */
-	const ComponentClass = 'uni-row';
-	const modifierSeparator = '--';
+
 
 	export default {
 		name: 'uniRow',

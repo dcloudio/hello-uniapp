@@ -10,7 +10,7 @@
 		</view>
 		<view v-else class="uni-dialog-content">
 			<slot>
-				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus" >
+				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus">
 			</slot>
 		</view>
 		<view class="uni-dialog-button-group">
@@ -119,12 +119,12 @@
 			 * 点击确认按钮
 			 */
 			onOk() {
-				if (this.mode === 'input'){
+				if (this.mode === 'input') {
 					this.$emit('confirm', this.val)
-				}else{
+				} else {
 					this.$emit('confirm')
 				}
-				if(this.beforeClose) return
+				if (this.beforeClose) return
 				this.popup.close()
 			},
 			/**
@@ -132,17 +132,17 @@
 			 */
 			closeDialog() {
 				this.$emit('close')
-				if(this.beforeClose) return
+				if (this.beforeClose) return
 				this.popup.close()
 			},
-			close(){
+			close() {
 				this.popup.close()
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-popup-dialog {
 		width: 300px;
 		border-radius: 15px;
@@ -193,7 +193,6 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-
 		flex: 1;
 		flex-direction: row;
 		justify-content: center;
