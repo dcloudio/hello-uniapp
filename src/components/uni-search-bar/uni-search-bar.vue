@@ -79,6 +79,10 @@
 				type: [Number, String],
 				default: ""
 			},
+			modelValue: {
+				type: [Number, String],
+				default: ""
+			},
 			focus: {
 				type: Boolean,
 				default: false
@@ -101,6 +105,15 @@
 					}
 				}
 			},
+			modelValue: {
+				immediate: true,
+				handler(newVal) {
+					this.searchVal = newVal
+					if (newVal) {
+						this.show = true
+					}
+				}
+			},
 			focus: {
 				immediate: true,
 				handler(newVal) {
@@ -113,7 +126,10 @@
 				}
 			},
 			searchVal(newVal, oldVal) {
+				// TODO 兼容 vue2
 				this.$emit("input", newVal)
+				// TODO 兼容 vue3
+				this.$emit("update:modelValue", newVal)
 			}
 		},
 		methods: {
@@ -182,7 +198,7 @@
 		/* #endif */
 		flex-direction: row;
 		position: relative;
-		padding: 8px;
+		padding: 16rpx;
 	}
 
 	.uni-searchbar__box {
@@ -200,7 +216,7 @@
 		padding: 5px 8px 5px 0px;
 		border-width: 0.5px;
 		border-style: solid;
-		border-color: #e5e5e5;
+		border-color: #c8c7cc;
 	}
 
 	.uni-searchbar__box-icon-search {
@@ -216,7 +232,7 @@
 
 	.uni-searchbar__box-search-input {
 		flex: 1;
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #333;
 	}
 
@@ -230,7 +246,7 @@
 	}
 
 	.uni-searchbar__text-placeholder {
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #808080;
 		margin-left: 5px;
 	}

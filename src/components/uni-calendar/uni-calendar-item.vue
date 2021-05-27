@@ -95,12 +95,12 @@
 	}
 
 	.uni-calendar-item__weeks-box-text {
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #333;
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
-		font-size: 12px;
+		font-size: 24rpx;
 		color: #333;
 	}
 

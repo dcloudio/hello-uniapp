@@ -248,7 +248,7 @@
 		align-items: center;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #c8c7cc;
 	}
 
 	.uni-list-item__content-title {

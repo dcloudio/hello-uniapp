@@ -22,32 +22,33 @@
 
 <script>
 	/**
-	 * Field 输入框
+	 * FormsItem 表单子组件
 	 * @description 此组件可以实现表单的输入与校验，包括 "text" 和 "textarea" 类型。
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=21001
-	 * @property {Boolean} 	required 			是否必填，左边显示红色"*"号（默认false）
-	 * @property {String} validateTrigger = [bind|submit]	校验触发器方式 默认 submit 可选
-	 * 	@value bind 	发生变化时触发
-	 * 	@value submit 	提交时触发
-	 * @property {String } 	leftIcon 			label左边的图标，限 uni-ui 的图标名称
-	 * @property {String } 	iconColor 			左边通过icon配置的图标的颜色（默认#606266）
-	 * @property {String } 	label 				输入框左边的文字提示
-	 * @property {Number } 	labelWidth 			label的宽度，单位px（默认65）
-	 * @property {String } 	labelAlign = [left|center|right] label的文字对齐方式（默认left）
-	 * 	@value left		label 左侧显示
-	 * 	@value center	label 居中
-	 * 	@value right	label 右侧对齐
-	 * @property {String } 	labelPosition = [top|left] label的文字的位置（默认left）
-	 * 	@value top	顶部显示 label
-	 * 	@value left	左侧显示 label
-	 * @property {String } 	errorMessage 		显示的错误提示内容，如果为空字符串或者false，则不显示错误信息
-	 * @property {String } 	name 				表单域的属性名，在使用校验规则时必填
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=2773
+	 * @property {String}	name	表单域的属性名，在使用校验规则时必填
+	 * @property {Boolean} required	左边显示红色"*"号，样式显示不会对校验规则产生效果（默认 false）
+	 * @property {String} validate-trigger = [bind|submit]	表单校验时机（默认 submit）
+	 * @value	bind		数据发生变化时触发
+	 * @value submit 	提交表单是触发
+	 * @property {String} left-icon	label左边的图标，限uni-ui的图标名称
+	 * @property {String} icon-color	左边通过icon配置的图标的颜色	（默认 #606266）
+	 * @property {String} label	输入框左边的文字提示
+	 * @property {Number} label-width	label的宽度，单位px
+	 * @property {String} label-align = [left|center|right]	label的文字对齐方式（默认 left）
+	 * @value left 		左对齐
+	 * @value center	居中对齐
+	 * @value right  	右对齐
+	 * @property {String} label-position = [top|left]	label的文字的位置（默认 left）
+	 * @value top 	顶部显示 label
+	 * @value left 	左侧显示 label
+	 * @property {String} error-message	显示的错误提示内容，如果为空字符串或者false，则不显示错误信息
 	 */
-
-
-
 	export default {
 		name: "uniFormsItem",
+		compatConfig: {
+			MODE: 3,
+			OPTIONS_DESTROYED: 'suppress-warning'
+		},
 		props: {
 			// 自定义内容
 			custom: {
@@ -150,11 +151,25 @@
 			this.formRules = []
 			this.formTrigger = this.validateTrigger
 			if (this.form) {
-			this.form.childrens.push(this)
+				this.form.childrens.push(this)
 			}
 			this.init()
 		},
+		// TODO vue2
 		destroyed() {
+			if (this.__isUnmounted) return
+			if (this.form) {
+				this.form.childrens.forEach((item, index) => {
+					if (item === this) {
+						this.form.childrens.splice(index, 1)
+						delete this.form.formData[item.name]
+					}
+				})
+			}
+		},
+		// TODO vue3
+		unmounted() {
+			this.__isUnmounted = true
 			if (this.form) {
 				this.form.childrens.forEach((item, index) => {
 					if (item === this) {
@@ -171,7 +186,7 @@
 						formRules,
 						validator,
 						formData,
-						value,
+						modelValue,
 						labelPosition,
 						labelWidth,
 						labelAlign,
@@ -179,7 +194,7 @@
 					} = this.form
 
 					this.labelPos = this.labelPosition ? this.labelPosition : labelPosition
-					this.labelWid = this.label ? (this.labelWidth ? this.labelWidth : labelWidth):0
+					this.labelWid = this.label ? (this.labelWidth ? this.labelWidth : labelWidth) : 0
 					this.labelAli = this.labelAlign ? this.labelAlign : labelAlign
 
 					// 判断第一个 item
@@ -231,11 +246,11 @@
 				this.errMsg = ''
 			},
 
-			setValue(value){
+			setValue(value) {
 				if (this.name) {
-					if(this.errMsg) this.errMsg = ''
-					this.form.formData[this.name] =  this.form._getValue(this.name, value)
-					if(!this.formRules || (typeof(this.formRules) && JSON.stringify(this.formRules) === '{}')) return
+					if (this.errMsg) this.errMsg = ''
+					this.form.formData[this.name] = this.form._getValue(this.name, value)
+					if (!this.formRules || (typeof(this.formRules) && JSON.stringify(this.formRules) === '{}')) return
 					this.triggerCheck(this.form._getValue(this.name, value))
 				}
 			},
@@ -335,27 +350,24 @@
 	};
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-forms-item {
 		position: relative;
 		padding: 0px;
 		text-align: left;
 		color: #333;
 		font-size: 14px;
-		// margin-bottom: 22px;
 	}
+
 	.uni-forms-item__box {
 		position: relative;
-
 	}
+
 	.uni-forms-item__inner {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		// flex-direction: row;
-		// align-items: center;
 		padding-bottom: 22px;
-		// margin-bottom: 22px;
 	}
 
 	.is-direction-left {
@@ -375,15 +387,14 @@
 		flex-direction: row;
 		align-items: center;
 		width: 65px;
-		// line-height: 2;
-		// margin-top: 3px;
 		padding: 5px 0;
 		height: 36px;
 		margin-right: 5px;
-		.label-text {
-			font-size: 14px;
-			color: #333;
-		}
+	}
+
+	.uni-forms-item__label .label-text {
+		font-size: 14px;
+		color: #333;
 	}
 
 	.uni-forms-item__content {
@@ -395,15 +406,13 @@
 		flex: 1;
 	}
 
-
 	.label-icon {
 		margin-right: 5px;
 		margin-top: -1px;
 	}
 
-	// 必填
 	.is-required {
-		color: $uni-color-error;
+		color: #dd524d;
 	}
 
 	.uni-error-message {
@@ -412,9 +421,10 @@
 		left: 0;
 		text-align: left;
 	}
+
 	.uni-error-message-text {
 		line-height: 22px;
-		color: $uni-color-error;
+		color: #dd524d;
 		font-size: 12px;
 	}
 
@@ -425,17 +435,17 @@
 	}
 
 	.is-input-error-border {
-		border-color: $uni-color-error;
+		border-color: #dd524d;
 	}
 
 	.uni-forms-item--border {
 		margin-bottom: 0;
 		padding: 10px 0;
-		// padding-bottom: 0;
 		border-top: 1px #eee solid;
-		.uni-forms-item__inner {
-			padding: 0;
-		}
+	}
+
+	.uni-forms-item--border .uni-forms-item__inner {
+		padding: 0;
 	}
 
 	.uni-forms-item-error {

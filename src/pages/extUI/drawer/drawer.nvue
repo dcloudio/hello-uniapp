@@ -229,7 +229,7 @@
 		padding: 0 5px;
 		height: 24px;
 		line-height: 24px;
-		font-size: 14px;
+		font-size: 28rpx;
 		background-color: transparent;
 	}
 

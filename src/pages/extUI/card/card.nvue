@@ -18,13 +18,11 @@
 		<view class="example-body">
 			<uni-card :is-shadow="true" title="标题文字" mode="style" thumbnail="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" extra="额外信息" note="true" @click="clickCard">
 				<text class="content-box-text">图文卡片支持传入一张图片，在最上方显示，标题作为图片描述，额外信息作为内容标题，通常作用为作者信息或发布时间描述，自行配置是否需要底部信息</text>
-				<block slot="footer">
-					<view class="footer-box">
-						<view class="" @click.stop="footerClick('喜欢')"><text class="footer-box__item">喜欢</text></view>
-						<view class="" @click.stop="footerClick('评论')"><text class="footer-box__item">评论</text></view>
-						<view class="" @click.stop="footerClick('分享')"><text class="footer-box__item">分享</text></view>
-					</view>
-				</block>
+				<view v-slot:footer class="footer-box">
+					<view class="" @click.stop="footerClick('喜欢')"><text class="footer-box__item">喜欢</text></view>
+					<view class="" @click.stop="footerClick('评论')"><text class="footer-box__item">评论</text></view>
+					<view class="" @click.stop="footerClick('分享')"><text class="footer-box__item">分享</text></view>
+				</view>
 			</uni-card>
 		</view>
 		<uni-section title="标题卡片" type="line"></uni-section>
@@ -38,13 +36,11 @@
 						<text class="content-box-text">标题卡片带有一个双标题头部，右侧为额外描述信息 ，内容可自定义实现</text>
 					</view>
 				</view>
-				<template slot="footer">
-					<view class="footer-box">
-						<view @click.stop="footerClick('喜欢')"><text class="footer-box__item">喜欢</text></view>
-						<view @click.stop="footerClick('评论')"><text class="footer-box__item">评论</text></view>
-						<view @click.stop="footerClick('分享')"><text class="footer-box__item">分享</text></view>
-					</view>
-				</template>
+				<view v-slot:footer class="footer-box">
+					<view @click.stop="footerClick('喜欢')"><text class="footer-box__item">喜欢</text></view>
+					<view @click.stop="footerClick('评论')"><text class="footer-box__item">评论</text></view>
+					<view @click.stop="footerClick('分享')"><text class="footer-box__item">分享</text></view>
+				</view>
 			</uni-card>
 		</view>
 	</view>

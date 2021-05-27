@@ -24,6 +24,7 @@
 	 * @property {Boolean} stat = [true|false] 是否开启统计功能呢，如不填写type值，默认为开启，填写 type 属性，默认为关闭
 	 */
 	export default {
+		name: "UniTitle",
 		props: {
 			type: {
 				type: String,

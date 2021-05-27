@@ -3,7 +3,7 @@
 		<view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ 'background-color': backgroundColor }" class="uni-navbar__content">
 			<status-bar v-if="statusBar" />
 			<view :style="{ color: color,backgroundColor: backgroundColor }" class="uni-navbar__header uni-navbar__content_view">
-				<view @click="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
+				<view @click.stop="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="leftIcon.length">
 						<uni-icons :color="color" :type="leftIcon" size="24" />
 					</view>
@@ -135,12 +135,12 @@
 		font-size: 34rpx;
 		/* #endif */
 		/* #ifndef APP-PLUS */
-		font-size: 16px;
+		font-size: 32rpx;
 		/* #endif */
 	}
 
 	.uni-nav-bar-right-text {
-		font-size: 14px;
+		font-size: 28rpx;
 	}
 
 	.uni-navbar__content {
@@ -209,7 +209,7 @@
 		flex: 1;
 		align-items: center;
 		justify-content: center;
-		font-size: 14px;
+		font-size: 28rpx;
 	}
 
 	.uni-navbar__placeholder-view {
@@ -219,9 +219,13 @@
 	.uni-navbar--fixed {
 		position: fixed;
 		z-index: 998;
-		/* #ifndef APP-NVUE */
+		/* #ifdef H5 */
 		left: var(--window-left);
 		right: var(--window-right);
+		/* #endif */
+		/* #ifndef H5 */
+		left: 0;
+		right: 0;
 		/* #endif */
 	}
 
@@ -234,6 +238,6 @@
 	.uni-navbar--border {
 		border-bottom-width: 1rpx;
 		border-bottom-style: solid;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #c8c7cc;
 	}
 </style>

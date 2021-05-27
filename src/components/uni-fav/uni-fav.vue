@@ -129,6 +129,6 @@
 		line-height: 25px;
 		align-items: center;
 		justify-content: center;
-		font-size: 14px;
+		font-size: 28rpx;
 	}
 </style>

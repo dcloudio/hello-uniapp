@@ -184,7 +184,7 @@
 		/* overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; */
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #fff;
 		margin: 0 15px;
 	}
@@ -199,6 +199,6 @@
 
 	.uni-swiper__dots-indexes-text {
 		color: #fff;
-		font-size: 12px;
+		font-size: 24rpx;
 	}
 </style>

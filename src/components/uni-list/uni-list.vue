@@ -69,10 +69,10 @@
 	.uni-list--border {
 		position: relative;
 		/* #ifdef APP-NVUE */
-		border-top-color: #e5e5e5;
+		border-top-color: #c8c7cc;
 		border-top-style: solid;
 		border-top-width: 0.5px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #c8c7cc;
 		border-bottom-style: solid;
 		border-bottom-width: 0.5px;
 		/* #endif */
@@ -88,7 +88,7 @@
 		height: 1px;
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
-		background-color: #e5e5e5;
+		background-color: #c8c7cc;
 		z-index: 1;
 	}
 
@@ -100,7 +100,7 @@
 		height: 1px;
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
-		background-color: #e5e5e5;
+		background-color: #c8c7cc;
 	}
 
 	/* #endif */

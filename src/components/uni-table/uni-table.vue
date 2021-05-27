@@ -29,7 +29,7 @@
 	/**
 	 * Table 表格
 	 * @description 用于展示多条结构类似的数据
-	 * @tutorial https://ext.dcloud.net.cn/plugin?id=
+	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3270
 	 * @property {Boolean} 	border 				是否带有纵向边框
 	 * @property {Boolean} 	stripe 				是否显示斑马线
 	 * @property {Boolean} 	type 					是否开启多选

@@ -1,18 +1,15 @@
 <template>
-	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }"
-	 class="uni-collapse-cell">
-		<view :class="{ 'uni-collapse-cell--disabled': disabled}" class="uni-collapse-cell__title"  @click="onClick">
+	<view :class="{ 'uni-collapse-cell--disabled': disabled,'uni-collapse-cell--notdisabled': !disabled, 'uni-collapse-cell--open': isOpen,'uni-collapse-cell--hide':!isOpen }" class="uni-collapse-cell">
+		<view :class="{ 'uni-collapse-cell--disabled': disabled}" class="uni-collapse-cell__title" @click="onClick">
 			<image v-if="thumb" :src="thumb" class="uni-collapse-cell__title-img" />
 			<text class="uni-collapse-cell__title-text">{{ title }}</text>
 			<!-- #ifdef MP-ALIPAY -->
-			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }"
-			 class="uni-collapse-cell__title-arrow">
+			<view :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow">
 				<uni-icons color="#bbb" size="20" type="arrowdown" />
 			</view>
 			<!-- #endif -->
 			<!-- #ifndef MP-ALIPAY -->
-			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }"
-			 class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
+			<uni-icons :class="{ 'uni-collapse-cell__title-arrow-active': isOpen, 'uni-collapse-cell--animation': showAnimation === true }" class="uni-collapse-cell__title-arrow" color="#bbb" size="20" type="arrowdown" />
 			<!-- #endif -->
 		</view>
 		<view :class="{'uni-collapse-cell__content--hide':!isOpen}" class="uni-collapse-cell__content">
@@ -111,38 +108,34 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	.uni-collapse-cell {
 		flex-direction: column;
-		border-color: $uni-border-color;
+		border-color: #c8c7cc;
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
 	}
 
-
 	.uni-collapse-cell--hover {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell--open {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell--disabled {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 		/* #ifdef H5 */
 		cursor: not-allowed !important;
 		/* #endif */
-		// opacity: 0.3;
 	}
-
 
 	.uni-collapse-cell--hide {
 		height: 48px;
 	}
 
 	.uni-collapse-cell--animation {
-		// transition: transform 0.3s ease;
 		transition-property: transform;
 		transition-duration: 0.3s;
 		transition-timing-function: ease;
@@ -167,12 +160,12 @@
 	}
 
 	.uni-collapse-cell__title:active {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 	}
 
 	.uni-collapse-cell__title-img {
-		height: $uni-img-size-base;
-		width: $uni-img-size-base;
+		height: 52rpx;
+		width: 52rpx;
 		margin-right: 10px;
 	}
 
@@ -181,7 +174,6 @@
 		height: 20px;
 		transform: rotate(0deg);
 		transform-origin: center center;
-
 	}
 
 	.uni-collapse-cell__title-arrow-active {
@@ -190,7 +182,7 @@
 
 	.uni-collapse-cell__title-text {
 		flex: 1;
-		font-size: $uni-font-size-base;
+		font-size: 28rpx;
 		/* #ifndef APP-NVUE */
 		white-space: nowrap;
 		color: inherit;

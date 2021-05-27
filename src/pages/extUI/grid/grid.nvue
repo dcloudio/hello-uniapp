@@ -67,7 +67,7 @@
 		<uni-section title="无边框带角标（3列）" type="line"></uni-section>
 		<view class="example-body">
 			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
-				<uni-grid-item v-if="index < 6" v-for="(item ,index) in list" :index="index" :key="index">
+				<uni-grid-item v-for="(item ,index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<image class="image" :src="item.url" mode="aspectFill" />
 						<text class="text">{{item.text}}</text>

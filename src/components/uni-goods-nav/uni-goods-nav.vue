@@ -70,14 +70,15 @@
 			fill: {
 				type: Boolean,
 				default: false
-			}
+			},
+
 		},
+		emits: ['click', 'buttonClick'],
 		methods: {
 			onClick(index, item) {
 				this.$emit('click', {
 					index,
 					content: item,
-
 				})
 			},
 			buttonClick(index, item) {
@@ -157,7 +158,7 @@
 
 	.uni-tab__text {
 		margin-top: 3px;
-		font-size: 12px;
+		font-size: 24rpx;
 		color: #646566;
 	}
 
@@ -175,7 +176,7 @@
 	}
 
 	.uni-tab__cart-button-right-text {
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #fff;
 	}
 

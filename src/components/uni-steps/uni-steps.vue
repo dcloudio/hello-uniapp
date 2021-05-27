@@ -101,6 +101,8 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
+		align-items: flex-end;
+		margin-bottom: 8px;
 	}
 
 	.uni-steps__column-text-container {
@@ -123,7 +125,7 @@
 		padding: 6px 0px;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #c8c7cc;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -131,13 +133,13 @@
 	}
 
 	.uni-steps__row-title {
-		font-size: 14px;
+		font-size: 28rpx;
 		line-height: 16px;
 		text-align: center;
 	}
 
 	.uni-steps__column-title {
-		font-size: 14px;
+		font-size: 28rpx;
 		text-align: left;
 		line-height: 18px;
 	}
@@ -149,7 +151,7 @@
 	}
 
 	.uni-steps__column-desc {
-		font-size: 12px;
+		font-size: 24rpx;
 		text-align: left;
 		line-height: 18px;
 	}

@@ -14,9 +14,9 @@
 		<uni-section title="在自定义导航栏使用" type="line"></uni-section>
 		<view class="example-body example-body-fullWidth">
 			<uni-nav-bar style="width: 100%;" :fixed="false" left-icon="arrowleft" title="标题" color="#333333" background-color="#FFFFFF">
-				<block slot="right">
+				<template v-slot:right>
 					<uni-fav :checked="checkList[5]" class="favBtn-nav" :circle="true" @click="favClick(5)" />
-				</block>
+				</template>
 			</uni-nav-bar>
 		</view>
 	</view>

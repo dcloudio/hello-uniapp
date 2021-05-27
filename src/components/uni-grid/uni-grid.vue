@@ -128,13 +128,13 @@
 	.uni-grid--border {
 		position: relative;
 		/* #ifdef APP-NVUE */
-		border-left-color: #e5e5e5;
+		border-left-color: #c8c7cc;
 		border-left-style: solid;
 		border-left-width: 0.5px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		z-index: 1;
-		border-left: 1px #e5e5e5 solid;
+		border-left: 1px #c8c7cc solid;
 		/* #endif */
 	}
 </style>

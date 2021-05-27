@@ -20,11 +20,15 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
-"@dcloudio/uni-app@../uni-app-next/packages/uni-app":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/uni-app@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-app/-/uni-app-3.0.0-alpha-3000020210521001.tgz#ecf1608930beb20692b0178294c8083cbe7bf241"
+  integrity sha512-Knjp8TbOtJgwE/THx32YuidATTIZzmGktYUAzvACl497It6crOWpcyTp9j58Kw5n3HzMl7iB0FSuFtleRyL4hw==
 
-"@dcloudio/uni-cli-shared@../uni-app-next/packages/uni-cli-shared":
+"@dcloudio/uni-cli-shared@^3.0.0-alpha-3000020210521001":
   version "3.0.0-alpha-3000020210524001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-cli-shared/-/uni-cli-shared-3.0.0-alpha-3000020210524001.tgz#c273d8f58547bfdc0e8af18880f9c67b595cba5e"
+  integrity sha512-xqc7JRALTzAgsjQFpFmhtfuwYPT8mCE8YlEC8Lhiowwt5UW2ArP2nYcn8ypJ99FEucdpvSmLOZcLkm8bj5SBzg==
   dependencies:
     debug "^4.3.1"
     jsonc-parser "^3.0.0"
@@ -32,31 +36,45 @@
     tapable "^2.2.0"
     xregexp "3.1.0"
 
-"@dcloudio/uni-cloud@../uni-app-next/packages/uni-cloud":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/uni-cloud@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521002"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-cloud/-/uni-cloud-3.0.0-alpha-3000020210521002.tgz#bf780c4a9e385a09a9e3a20ca59074eb00ef4288"
+  integrity sha512-E7atnW9UHRmgMKbTITPBGEh4n5ETml5RO5BHP4GHA+sRWb6rMQOrHhQXjs1cgwvWiU9/HKFLb8Hq6HZ5Vszl/g==
 
-"@dcloudio/uni-components@../uni-app-next/packages/uni-components":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/uni-components@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-components/-/uni-components-3.0.0-alpha-3000020210521001.tgz#50fc2ad5fa4536160f08f55467afb3291f72a620"
+  integrity sha512-FxCzOPgOqE5V9owpogIZc0UvvfSlrzL77YVoKFWXB6BRJwAzc2bEpzA0+vUA+2V+RajWN6HrK9/czKjsArTS1A==
 
-"@dcloudio/uni-h5-vue@../uni-app-next/packages/uni-h5-vue":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/uni-h5-vue@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-h5-vue/-/uni-h5-vue-3.0.0-alpha-3000020210521001.tgz#e64eae1bd3c4f5e7445606a33eef2a41af3736ed"
+  integrity sha512-jff+RvYSm1b/FotU5GkoLro7m+Pa3INrVG2dRAQ+54+FSfpPlph0pNkUJAmz5+CWWMZFPjTWdXf2rl4ZAIAZPQ==
 
-"@dcloudio/uni-h5@../uni-app-next/packages/uni-h5":
+"@dcloudio/uni-h5@^3.0.0-alpha-3000020210521001":
   version "3.0.0-alpha-3000020210524001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-h5/-/uni-h5-3.0.0-alpha-3000020210524001.tgz#315ce07654efa05655cbe3021a342bc35f6598d3"
+  integrity sha512-vHzlV4ZebSF1z3/3SXWLV27DR/Itslno4Z3dMcPqwmZCdF4IOGB4FY6DqP88uhJy5GWe/9hvW/6YHB5vNJDqgg==
   dependencies:
     localstorage-polyfill "^1.0.1"
     pako "^2.0.3"
     safe-area-insets "^1.4.1"
     xmlhttprequest "^1.8.0"
 
-"@dcloudio/uni-i18n@../uni-app-next/packages/uni-i18n":
+"@dcloudio/uni-i18n@^3.0.0-alpha-3000020210521001":
   version "3.0.0-alpha-3000020210524001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-i18n/-/uni-i18n-3.0.0-alpha-3000020210524001.tgz#25b3d99a1a98ed2fc30f6cf5da6d2836130f6ea3"
+  integrity sha512-8dXpbQ9mSINSHbtnMgiq4xeMsvc7hS880NifNR8q2LA6S9JZT8JjKy1PIqyv41bkzdJRNpc78gSgHlizL4U6gw==
 
-"@dcloudio/uni-shared@../uni-app-next/packages/uni-shared":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/uni-shared@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/uni-shared/-/uni-shared-3.0.0-alpha-3000020210521001.tgz#edb23072d1d3764b33296f066c9321616c8d27a6"
+  integrity sha512-AVPRPZl5fZNR/ElJ4RA3zyaoaNWdAeqOMOvx1F9RbZPj/GiwDXmY0XO59iA1NihS69usvydU9kctAd5C69ciCg==
 
-"@dcloudio/vite-plugin-uni@../uni-app-next/packages/vite-plugin-uni":
-  version "3.0.0-alpha-3000020210524001"
+"@dcloudio/vite-plugin-uni@^3.0.0-alpha-3000020210521001":
+  version "3.0.0-alpha-3000020210521001"
+  resolved "https://registry.yarnpkg.com/@dcloudio/vite-plugin-uni/-/vite-plugin-uni-3.0.0-alpha-3000020210521001.tgz#2e93fe90fc91609e49d0e5c685af4bd76751f081"
+  integrity sha512-wJn71UxgqH55aFEiw0NOGFbEIGpAdp3NPiSPhMTqtJMhZSkQkfN3KnLEWm+/CFBVlqA2TCmjehFeO9U3Z3JQKQ==
   dependencies:
     "@rollup/pluginutils" "^4.1.0"
     autoprefixer "^10.2.5"

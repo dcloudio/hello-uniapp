@@ -371,7 +371,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 50px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #c8c7cc;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 	}
@@ -382,7 +382,7 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: space-between;
-		border-top-color: #e5e5e5;
+		border-top-color: #c8c7cc;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
@@ -409,7 +409,7 @@
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: 14px;
+		font-size: 28rpx;
 		color: #333;
 	}
 

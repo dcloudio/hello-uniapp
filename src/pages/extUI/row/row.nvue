@@ -287,7 +287,7 @@
 	/* #endif */
 	.demo-uni-col {
 		height: 36px;
-		border-radius: 3px;
+		border-radius: 6rpx;
 	}
 
 	.dark_deep {

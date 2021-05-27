@@ -29,6 +29,10 @@
 				type: [Number, String],
 				default: 1
 			},
+			modelValue: {
+				type: [Number, String],
+				default: 1
+			},
 			min: {
 				type: Number,
 				default: 0
@@ -54,10 +58,14 @@
 		watch: {
 			value(val) {
 				this.inputValue = +val;
+			},
+			modelValue(val) {
+				this.inputValue = +val;
 			}
 		},
 		created() {
 			this.inputValue = +this.value;
+			this.inputValue = +this.modelValue;
 		},
 		methods: {
 			_calcValue(type) {
@@ -89,7 +97,10 @@
 
 				this.inputValue = (value / scale).toFixed(String(scale).length - 1);
 				this.$emit("change", +this.inputValue);
+				// TODO vue2 兼容
 				this.$emit("input", +this.inputValue);
+				// TODO vue3 兼容
+				this.$emit("update:modelValue", +this.inputValue);
 			},
 			_getDecimalScale() {
 
@@ -148,10 +159,10 @@
 		width: 50px;
 		height: 35px;
 		text-align: center;
-		font-size: 16px;
+		font-size: 32rpx;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: #e5e5e5;
+		border-color: #c8c7cc;
 		border-left-width: 0;
 		border-right-width: 0;
 	}
@@ -170,9 +181,9 @@
 		background-color: #f8f8f8;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: #e5e5e5;
-		border-top-left-radius: 3px;
-		border-bottom-left-radius: 3px;
+		border-color: #c8c7cc;
+		border-top-left-radius: 6rpx;
+		border-bottom-left-radius: 6rpx;
 		border-right-width: 0;
 	}
 
@@ -187,9 +198,9 @@
 		height: 35px;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: #e5e5e5;
-		border-top-right-radius: 3px;
-		border-bottom-right-radius: 3px;
+		border-color: #c8c7cc;
+		border-top-right-radius: 6rpx;
+		border-bottom-right-radius: 6rpx;
 		background-color: #f8f8f8;
 		border-left-width: 0;
 	}
