@@ -60,6 +60,12 @@ export default {
         return []
       }
     },
+	modelValue: {
+		type: [Array, String, Number],
+		default () {
+		  return []
+		}
+	},
     preload: {
       type: Boolean,
       default: false
@@ -102,7 +108,7 @@ export default {
   },
   computed: {
     isLocaldata() {
-      return this.localdata.length > 0
+      return !this.collection.length
     },
     postField() {
 			let fields = [this.field];
@@ -110,7 +116,18 @@ export default {
 				fields.push(`${this.parentField} as parent_value`);
 			}
       return fields.join(',');
-    }
+    },
+	dataValue(){
+		let isarr = Array.isArray(this.value) && this.value.length === 0
+		let isstr = typeof this.value === 'string' && !this.value
+		let isnum = typeof this.value === 'number' && !this.value
+		
+		if(isarr || isstr || isnum){
+			return this.modelValue
+		}
+		
+		return this.value
+	}
   },
   created() {
     this.$watch(() => {
@@ -118,6 +135,7 @@ export default {
       ['pageCurrent',
         'pageSize',
         'value',
+        'modelValue',
         'localdata',
         'collection',
         'action',
@@ -222,7 +240,7 @@ export default {
       this.getCommand({
         field: this.postField,
         getTreePath: {
-          startWith: `${this.selfField}=='${this.value}'`
+          startWith: `${this.selfField}=='${this.dataValue}'`
         }
       }).then((res) => {
         this.loading = false
@@ -241,7 +259,7 @@ export default {
         return
       }
 
-      if (this.value.length) {
+      if (this.dataValue.length) {
         this._loadNodeData((data) => {
           this._treeData = data
           this._updateBindData()
@@ -272,7 +290,7 @@ export default {
       this.getCommand({
         field: this.postField,
         gettree: true,
-        startwith: `${this.selfField}=='${this.value}'`
+        startwith: `${this.selfField}=='${this.dataValue}'`
       }).then((res) => {
         this.loading = false
         callback(res.result.data)
@@ -305,7 +323,7 @@ export default {
       let result = []
       let where_field = this._getParentNameByField();
       if (where_field) {
-        result.push(`${where_field} == '${this.value}'`)
+        result.push(`${where_field} == '${this.dataValue}'`)
       }
 
       if (this.where) {
@@ -508,8 +526,8 @@ export default {
     _processLocalData() {
       this._treeData = []
       this._extractTree(this.localdata, this._treeData)
-
-      var inputValue = this.value
+	
+      var inputValue = this.dataValue
       if (inputValue === undefined) {
         return
       }

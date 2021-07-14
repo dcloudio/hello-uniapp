@@ -1,12 +1,15 @@
 <template>
 	<!-- #ifdef H5 -->
 	<th :rowspan="rowspan" :colspan="colspan" class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: width + 'px', 'text-align': align }">
-		<view class="uni-table-th-content" :style="{ 'justify-content': contentAlign }" @click="sort">
-			<slot></slot>
-			<view v-if="sortable" class="arrow-box">
-				<text class="arrow up" :class="{ active: ascending }" @click.stop="ascendingFn"></text>
-				<text class="arrow down" :class="{ active: descending }" @click.stop="descendingFn"></text>
+		<view class="uni-table-th-row">
+			<view class="uni-table-th-content" :style="{ 'justify-content': contentAlign }" @click="sort">
+				<slot></slot>
+				<view v-if="sortable" class="arrow-box">
+					<text class="arrow up" :class="{ active: ascending }" @click.stop="ascendingFn"></text>
+					<text class="arrow down" :class="{ active: descending }" @click.stop="descendingFn"></text>
+				</view>
 			</view>
+			<dropdown v-if="filterType || filterData.length" :filterData="filterData" :filterType="filterType" @change="ondropdown"></dropdown>
 		</view>
 	</th>
 	<!-- #endif -->
@@ -18,6 +21,7 @@
 </template>
 
 <script>
+	import dropdown from './filter-dropdown.vue'
 	/**
 	 * Th 表头
 	 * @description 表格内的表头单元格组件
@@ -28,13 +32,19 @@
 	 * @value left   	单元格文字左侧对齐
 	 * @value center	单元格文字居中
 	 * @value right		单元格文字右侧对齐
-	 * @event {Function} sort-change 排序触发事件 
+	 * @property {Array}	filterData 筛选数据
+	 * @property {String}	filterType	[search|select] 筛选类型
+	 * @value search	关键字搜素
+	 * @value select	条件选择
+	 * @event {Function} sort-change 排序触发事件
 	 */
-
 	export default {
 		name: 'uniTh',
 		options: {
 			virtualHost: true
+		},
+		components: {
+			dropdown
 		},
 		props: {
 			width: {
@@ -56,6 +66,16 @@
 			sortable: {
 				type: Boolean,
 				default: false
+			},
+			filterType: {
+				type: String,
+				default: ""
+			},
+			filterData: {
+				type: Array,
+				default () {
+					return []
+				}
 			}
 		},
 		data() {
@@ -142,6 +162,9 @@
 					return item
 				})
 			},
+			ondropdown(e) {
+				this.$emit("filter-change", e)
+			},
 			/**
 			 * 获取父元素实例
 			 */
@@ -172,6 +195,13 @@
 		border-bottom: 1px #ebeef5 solid;
 	}
 
+	.uni-table-th-row {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+	}
+
 	.table--border {
 		border-right: 1px #ebeef5 solid;
 	}
@@ -179,6 +209,7 @@
 	.uni-table-th-content {
 		display: flex;
 		align-items: center;
+		flex: 1;
 	}
 
 	.arrow {

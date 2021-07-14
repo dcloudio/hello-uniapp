@@ -103,6 +103,9 @@ export function friendlyDate(time, {
 	threshold = [60000, 3600000],
 	format = 'yyyy/MM/dd hh:mm:ss'
 }) {
+	if (time === '-') {
+		return time
+	}
 	if (!time && time !== 0) {
 		return ''
 	}

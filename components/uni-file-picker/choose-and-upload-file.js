@@ -1,11 +1,11 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
+// Object.defineProperty(exports, '__esModule', { value: true });
 
 const ERR_MSG_OK = 'chooseAndUploadFile:ok';
 const ERR_MSG_FAIL = 'chooseAndUploadFile:fail';
 function chooseImage(opts) {
-    const { count, sizeType, sourceType, extension } = opts;
+		const { count, sizeType, sourceType = ['album', 'camera'], extension } = opts
     return new Promise((resolve, reject) => {
         uni.chooseImage({
             count,
@@ -24,7 +24,7 @@ function chooseImage(opts) {
     });
 }
 function chooseVideo(opts) {
-    const { camera, compressed, maxDuration, sourceType, extension } = opts;
+    const { camera, compressed, maxDuration, sourceType = ['album', 'camera'], extension } = opts;
     return new Promise((resolve, reject) => {
         uni.chooseVideo({
             camera,
@@ -105,52 +105,7 @@ function normalizeChooseAndUploadFileRes(res, fileType) {
     }
     return res;
 }
-function uploadCloudFiles(res, max = 5, onUploadProgress) {
-    res = Object.assign({}, res);
-    res.errMsg = ERR_MSG_OK;
-    const files = res.tempFiles;
-    const len = files.length;
-    let count = 0;
-    return new Promise((resolve) => {
-        while (count < max) {
-            next();
-        }
-        function next() {
-            let cur = count++;
-            if (cur >= len) {
-                !files.find((item) => !item.url && !item.errMsg) && resolve(res);
-                return;
-            }
-            const fileItem = files[cur];
-            uniCloud
-                .uploadFile({
-                filePath: fileItem.path,
-                cloudPath: fileItem.cloudPath,
-                fileType: fileItem.fileType,
-                onUploadProgress(res) {
-                    res.index = cur;
-                    res.tempFile = fileItem;
-                    res.tempFilePath = fileItem.path;
-                    onUploadProgress &&
-                        onUploadProgress(res);
-                },
-            })
-                .then((res) => {
-                fileItem.url = res.fileID;
-                if (cur < len) {
-                    next();
-                }
-            })
-                .catch((res) => {
-                // fileItem.errMsg = res.message;
-								fileItem.errMsg =  res.errMsg || res.message;
-                if (cur < len) {
-                    next();
-                }
-            });
-        }
-    });
-}
+function uploadCloudFiles(res, max = 5, onUploadProgress) {}
 function uploadFiles(choosePromise, { onChooseFile, onUploadProgress }) {
     return choosePromise
         .then((res) => {
@@ -170,8 +125,9 @@ function uploadFiles(choosePromise, { onChooseFile, onUploadProgress }) {
                 tempFiles: [],
             };
         }
-        return uploadCloudFiles(res, 5, onUploadProgress);
-    });
+		return res
+        // return uploadCloudFiles(res, 5, onUploadProgress);
+    })
 }
 function chooseAndUploadFile(opts = { type: 'all' }) {
     if (opts.type === 'image') {
@@ -183,4 +139,4 @@ function chooseAndUploadFile(opts = { type: 'all' }) {
     return uploadFiles(chooseAll(opts), opts);
 }
 
-exports.chooseAndUploadFile = chooseAndUploadFile;
+export {chooseAndUploadFile};

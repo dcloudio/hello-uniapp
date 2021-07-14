@@ -2,7 +2,7 @@
 	<view>
 		<text class="example-info">uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
 
-		<uni-forms :rules="rules" :value="formData" ref="form" validate-trigger="bind" err-show-type="undertext">
+		<uni-forms :value="formData" ref="form" validate-trigger="bind" err-show-type="undertext">
 			<uni-group title="基本信息" top="0">
 				<uni-forms-item name="name" required label="用户名">
 					<uni-easyinput type="text" :inputBorder="true" v-model="formData.name" placeholder="请输入用户名"></uni-easyinput>
@@ -15,9 +15,7 @@
 					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
 				</uni-forms-item>
 				<!-- #ifndef APP-NVUE -->
-				<uni-forms-item required name="birth" label="出生日期">
-					<uni-datetime-picker type="date" v-model="formData.birth" start="2000-06-01 06:30:30" end="2030-6-1" return-type="timestamp"></uni-datetime-picker>
-				</uni-forms-item>
+				<!-- 	<uni-forms-item required name="birth" label="出生日期"><uni-datetime-picker type="date" v-model="formData.birth" start="2000-06-01 06:30:30" end="2030-6-1" return-type="timestamp"></uni-datetime-picker></uni-forms-item> -->
 				<uni-forms-item name="checked" label="详细信息">
 					<switch :checked="formData.checked" @change="change('checked', $event.detail.value)" />
 				</uni-forms-item>
@@ -151,7 +149,8 @@
 					},
 					sex: {
 						rules: [{
-							format: 'string'
+							required: true,
+							errorMessage: '请选择性别'
 						}]
 					},
 					hobby: {
@@ -177,6 +176,7 @@
 			// 模拟异步请求数据
 			setTimeout(() => {
 				this.formData = {
+					id: 'testId',
 					name: 'DCloud',
 					age: 21,
 					email: '',
@@ -207,9 +207,8 @@
 			 * @param {Object} form
 			 */
 			submitForm(form) {
-				// console.log(this.formData);
 				this.$refs[form]
-					.submit()
+					.validate(['id', 'remarks'])
 					.then(res => {
 						console.log('表单的值：', res)
 						uni.showToast({

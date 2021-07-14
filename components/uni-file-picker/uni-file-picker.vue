@@ -19,6 +19,9 @@
 </template>
 
 <script>
+	import {
+		chooseAndUploadFile
+	} from './choose-and-upload-file.js'
 	import uploadImage from './upload-image.vue'
 	import uploadFile from './upload-file.vue'
 	let fileInput = null
@@ -170,6 +173,13 @@
 						}
 						newFils.push(files ? files : v)
 					})
+					let data = null
+					if (this.returnType === 'object') {
+						data = this.backObject(newFils)[0]
+					} else {
+						data = this.backObject(newFils)
+					}
+					this.formItem && this.formItem.setValue(data)
 					this.files = newFils
 				},
 				immediate: true
@@ -217,11 +227,35 @@
 			}
 		},
 		created() {
-			// this.files = Object.assign([], this.value)
+			// TODO 兼容不开通服务空间的情况
+			if (!(uniCloud.config && uniCloud.config.provider)) {
+				this.noSpace = true
+				uniCloud.chooseAndUploadFile = chooseAndUploadFile
+			}
 			this.tempData = {}
-
+			this.form = this.getForm('uniForms')
+			this.formItem = this.getForm('uniFormsItem')
+			if (this.form && this.formItem) {
+				if (this.formItem.name) {
+					this.rename = this.formItem.name
+					this.form.inputChildrens.push(this)
+				}
+			}
 		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniForms') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false;
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			/**
 			 * 继续上传
 			 */
@@ -248,6 +282,7 @@
 			 * 选择文件
 			 */
 			choose() {
+
 				if (this.disabled) return
 				if (this.files.length >= Number(this.limitLength) && this.showType !== 'grid' && this.returnType === 'array') {
 					uni.showToast({
@@ -312,6 +347,7 @@
 								if (this.limitLength - this.files.length <= 0) break
 								files[i].uuid = Date.now()
 								let filedata = await this.getFileData(files[i], this.fileMediatype)
+								filedata.file = files[i]
 								filedata.progress = 0
 								filedata.status = 'ready'
 								this.files.push(filedata)
@@ -323,7 +359,7 @@
 							})
 							res.tempFiles = files
 							// 停止自动上传
-							if (!this.autoUpload) {
+							if (!this.autoUpload || this.noSpace) {
 								res.tempFiles = []
 								// TODO 先放弃这个实现 ，不能全部上传
 								// return new Promise((resolve) => {
@@ -380,13 +416,14 @@
 						this.files[index].url = item.path
 						this.files[index].status = 'error'
 						this.files[index].errMsg = item.errMsg
-						this.files[index].progress = -1
+						// this.files[index].progress = -1
 						errorData.push(this.files[index])
 						errorTempFilePath.push(this.files[index].url)
 					} else {
 						this.files[index].errMsg = ''
 						this.files[index].url = item.url
 						this.files[index].status = 'success'
+						this.files[index].progress += 1
 						successData.push(this.files[index])
 						tempFilePath.push(this.files[index].url)
 					}
@@ -424,7 +461,8 @@
 					idx = this.files.findIndex(p => p.uuid === progressEvent.tempFile.uuid)
 				}
 				if (idx === -1 || !this.files[idx]) return
-				this.files[idx].progress = percentCompleted
+				// fix by mehaotian 100 就会消失，-1 是为了让进度条消失
+				this.files[idx].progress = percentCompleted - 1
 				// 上传中
 				this.$emit('progress', {
 					index: idx,
@@ -491,6 +529,7 @@
 					uuid: files.uuid,
 					extname: extname || '',
 					cloudPath: files.cloudPath,
+					file: files.file,
 					fileType: files.fileType,
 					url: files.path || files.path,
 					size: files.size, //单位是字节
@@ -500,9 +539,12 @@
 				}
 				if (type === 'image') {
 					const imageinfo = await this.getFileInfo(files.path)
+					delete filedata.video
 					filedata.image.width = imageinfo.width
 					filedata.image.height = imageinfo.height
 					filedata.image.location = imageinfo.path
+				} else {
+					delete filedata.image
 				}
 				return filedata
 			},

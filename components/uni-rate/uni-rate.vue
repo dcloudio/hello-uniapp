@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view ref="uni-rate" class="uni-rate">
-			<view v-if="" class="uni-rate__icon" :class="{'uni-cursor-not-allowed': disabled}" :style="{ 'margin-right': marginNumber + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
+			<view class="uni-rate__icon" :class="{'uni-cursor-not-allowed': disabled}" :style="{ 'margin-right': marginNumber + 'px' }" v-for="(star, index) in stars" :key="index" @touchstart.stop="touchstart" @touchmove.stop="touchmove" @mousedown.stop="mousedown" @mousemove.stop="mousemove" @mouseleave="mouseleave">
 				<uni-icons :color="color" :size="size" :type="isFill ? 'star-filled' : 'star'" />
 				<!-- #ifdef APP-NVUE -->
 				<view :style="{ width: star.activeWitch.replace('%','')*size/100+'px'}" class="uni-rate__icon-on">

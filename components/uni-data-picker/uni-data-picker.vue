@@ -32,7 +32,7 @@
 					<view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
 				</view>
 			</view>
-			<data-picker-view class="picker-view" ref="pickerView" v-model="value" :localdata="localdata" :preload="preload" :collection="collection" :field="field" :orderby="orderby" :where="where" :step-searh="stepSearh" :self-field="selfField" :parent-field="parentField" :managed-mode="true" @change="onchange" @datachange="ondatachange" @nodeclick="onnodeclick"></data-picker-view>
+			<data-picker-view class="picker-view" ref="pickerView" v-model="dataValue" :localdata="localdata" :preload="preload" :collection="collection" :field="field" :orderby="orderby" :where="where" :step-searh="stepSearh" :self-field="selfField" :parent-field="parentField" :managed-mode="true" @change="onchange" @datachange="ondatachange" @nodeclick="onnodeclick"></data-picker-view>
 		</view>
 	</view>
 </template>
@@ -66,6 +66,7 @@
 	 */
 	export default {
 		name: 'UniDataPicker',
+		emits: ['popupopened', 'popupclosed', 'nodeclick', 'input', 'change', 'update:modelValue'],
 		mixins: [dataPicker],
 		components: {
 			DataPickerView
@@ -130,18 +131,18 @@
 			},
 			load() {
 				if (this.readonly) {
-					this._processReadonly(this.localdata, this.value)
+					this._processReadonly(this.localdata, this.dataValue)
 					return
 				}
 
 				if (this.isLocaldata) {
 					this.loadData()
 					this.inputSelected = this.selected.slice(0)
-				} else if (!this.parentField && !this.selfField && this.value) {
+				} else if (!this.parentField && !this.selfField && this.dataValue) {
 					this.getNodeData(() => {
 						this.inputSelected = this.selected.slice(0)
 					})
-				} else if (this.value.length) {
+				} else if (this.dataValue.length) {
 					this.getTreePath(() => {
 						this.inputSelected = this.selected.slice(0)
 					})
@@ -240,11 +241,14 @@
 					value[i] = selected[i].value
 				}
 
+				const item = selected[selected.length - 1]
+
 				if (this.formItem) {
-					const item = selected[selected.length - 1]
 					this.formItem.setValue(item.value)
 				}
 
+				this.$emit('input', item.value)
+				this.$emit('update:modelValue', item.value)
 				this.$emit('change', {
 					detail: {
 						value: selected

@@ -77,11 +77,11 @@
 	}
 
 	.uni-calendar-item__weeks-box-text {
-		font-size: 28rpx;
+		font-size: 14px;
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
-		font-size: 24rpx;
+		font-size: 12px;
 		color: #333;
 	}
 
@@ -93,8 +93,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 100rpx;
-		height: 100rpx;
+		width: 43px;
+		height: 43px;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
@@ -149,14 +149,14 @@
 
 	.uni-calendar-item--multiple .uni-calendar-item--before-checked {
 		background-color: #409eff;
-		color: #fff;
+		color: #fff !important;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;
 	}
 
 	.uni-calendar-item--multiple .uni-calendar-item--after-checked {
 		background-color: #409eff;
-		color: #fff;
+		color: #fff !important;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;
 	}

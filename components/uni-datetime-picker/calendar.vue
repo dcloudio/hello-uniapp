@@ -84,7 +84,7 @@
 
 <script>
 	import Calendar from './util.js';
-	import calendarItem from './uni-calendar-item.vue'
+	import calendarItem from './calendar-item.vue'
 	import timePicker from './time-picker.vue'
 	/**
 	 * Calendar 日历
@@ -560,7 +560,7 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: space-between;
-		border-top-color: #c8c7cc;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
@@ -587,16 +587,18 @@
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: 28rpx;
+		font-size: 14px;
 		color: #333;
 	}
 
 	.uni-calendar__button-text {
 		text-align: center;
 		width: 100px;
-		font-size: 28rpx;
+		font-size: 14px;
 		color: #007aff;
+		/* #ifndef APP-NVUE */
 		letter-spacing: 3px;
+		/* #endif */
 	}
 
 	.uni-calendar__header-btn-box {
@@ -691,33 +693,23 @@
 		padding: 0 10px;
 		text-align: center;
 		color: #333;
-		border-top-color: #c8c7cc;
+		border-top-color: #e5e5e5;
 		border-top-style: solid;
 		border-top-width: 1px;
-	}
-
-	.uni-date-changed--time text {
-		line-height: 50px;
-	}
-
-	.uni-date-changed {
-		flex: 1;
-	}
-
-	.uni-date-changed--time {
-		display: flex;
 		flex: 1;
 	}
 
 	.uni-date-changed--time-start {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		justify-content: right;
+		/* #endif */
 		align-items: center;
 	}
 
 	.uni-date-changed--time-end {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		justify-content: left;
+		/* #endif */
 		align-items: center;
 	}
 
@@ -728,7 +720,9 @@
 
 	.time-picker-style {
 		width: 62px;
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
 	}

@@ -1,38 +1,50 @@
 <template>
 	<view class="uni-card uni-border" :class="{ 'uni-card--full': isFull === true || isFull === 'true', 'uni-card--shadow': isShadow === true || isShadow === 'true'}">
 		<!-- 基础 -->
-		<view v-if="mode === 'basic' && title" class="uni-card__header uni-border-bottom" @click.stop="onClick">
-			<view v-if="thumbnail" class="uni-card__header-extra-img-view">
-				<image :src="thumbnail" class="uni-card__header-extra-img" />
+		<view v-if="mode === 'basic' && title" @click.stop="onClick" class="uni-card__head-padding">
+			<view class="uni-card__header uni-border-bottom">
+				<slot name="header">
+					<view v-if="thumbnail" class="uni-card__header-extra-img-view">
+						<image :src="thumbnail" class="uni-card__header-extra-img" />
+					</view>
+					<text class="uni-card__header-title-text">{{ title }}</text>
+					<text v-if="extra" class="uni-card__header-extra-text">{{ extra }}</text>
+				</slot>
 			</view>
-			<text class="uni-card__header-title-text">{{ title }}</text>
-			<text v-if="extra" class="uni-card__header-extra-text">{{ extra }}</text>
 		</view>
 		<!-- 标题 -->
-		<view v-if="mode === 'title'" class="uni-card__title uni-border-bottom" @click.stop="onClick">
-			<view class="uni-card__title-box">
-				<view class="uni-card__title-header">
-					<image class="uni-card__title-header-image" :src="thumbnail" mode="scaleToFill" />
-				</view>
-				<view class="uni-card__title-content">
-					<text class="uni-card__title-content-title uni-ellipsis">{{ title }}</text>
-					<text class="uni-card__title-content-extra uni-ellipsis">{{ subTitle }}</text>
-				</view>
-			</view>
-			<view v-if="extra">
-				<text class="uni-card__header-extra-text">{{ extra }}</text>
+		<view v-if="mode === 'title'" @click.stop="onClick" class="uni-card__head-padding">
+			<view class="uni-card__title uni-border-bottom">
+				<slot name="header">
+					<view class="uni-card__title-box">
+						<view v-if="thumbnail" class="uni-card__title-header">
+							<image class="uni-card__title-header-image" :src="thumbnail" mode="scaleToFill" />
+						</view>
+						<view class="uni-card__title-content">
+							<text class="uni-card__title-content-title uni-ellipsis">{{ title }}</text>
+							<text class="uni-card__title-content-extra uni-ellipsis">{{ subTitle }}</text>
+						</view>
+					</view>
+					<view v-if="extra">
+						<text class="uni-card__header-extra-text">{{ extra }}</text>
+					</view>
+				</slot>
 			</view>
 		</view>
 		<!-- 图文 -->
 		<view v-if="mode === 'style'" class="uni-card__thumbnailimage" @click.stop="onClick">
 			<view class="uni-card__thumbnailimage-box">
-				<image class="uni-card__thumbnailimage-image" :src="thumbnail" mode="aspectFill" />
+				<image v-if="thumbnail" class="uni-card__thumbnailimage-image" :src="thumbnail" mode="aspectFill" />
+				<uni-icons v-if="!thumbnail" type="image" size="30" color="#999" />
 			</view>
-			<view v-if="title" class="uni-card__thumbnailimage-title"><text class="uni-card__thumbnailimage-title-text">{{ title }}</text></view>
+			<view v-if="title" class="uni-card__thumbnailimage-title">
+				<text class="uni-card__thumbnailimage-title-text">{{ title }}</text>
+			</view>
 		</view>
 		<!-- 内容 -->
 		<view class="uni-card__content uni-card__content--pd" @click.stop="onClick">
-			<view v-if="mode === 'style' && extra" class=""><text class="uni-card__content-extra">{{ extra }}</text></view>
+			<view v-if="mode === 'style' && extra" class=""><text class="uni-card__content-extra">{{ extra }}</text>
+			</view>
 			<slot />
 		</view>
 		<!-- 底部 -->
@@ -52,8 +64,8 @@
 	 * @property {String} title 标题文字
 	 * @property {String} subTitle 副标题（仅仅mode=title下生效）
 	 * @property {String} extra 标题额外信息
-	 * @property {String} note 标题左侧缩略图
-	 * @property {String} thumbnail 底部信息
+	 * @property {String} note 底部信息
+	 * @property {String} thumbnail 标题左侧缩略图
 	 * @property {String} mode = [basic|style|title] 卡片模式
 	 * 	@value basic 基础卡片
 	 * 	@value style 图文卡片
@@ -214,9 +226,12 @@
 	/* #endif */
 	.uni-card__thumbnailimage {
 		position: relative;
+		/* #ifndef APP-NVUE */
+		/* #endif */
 		flex-direction: column;
 		justify-content: center;
 		height: 150px;
+		background-color: #F1F1F1;
 		overflow: hidden;
 	}
 
@@ -225,7 +240,10 @@
 		display: flex;
 		/* #endif */
 		flex: 1;
+		height: 150px;
 		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 		overflow: hidden;
 	}
 
@@ -276,6 +294,7 @@
 		height: 40px;
 		overflow: hidden;
 		border-radius: 5px;
+		padding-right: 10px;
 	}
 
 	.uni-card__title-header-image {
@@ -290,7 +309,6 @@
 		flex-direction: column;
 		justify-content: center;
 		flex: 1;
-		padding-left: 10px;
 		height: 40px;
 		overflow: hidden;
 	}

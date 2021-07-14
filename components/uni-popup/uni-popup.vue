@@ -2,13 +2,12 @@
 	<view v-if="showPopup" class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']" @touchmove.stop.prevent="clear">
 		<view @touchstart="touchstart">
 			<uni-transition key="1" v-if="maskShow" name="mask" mode-class="fade" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
+			<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
+				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
+					<slot />
+				</view>
+			</uni-transition>
 		</view>
-
-		<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
-			<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
-				<slot />
-			</view>
-		</uni-transition>
 		<!-- #ifdef H5 -->
 		<keypress v-if="maskShow" @esc="onTap" />
 		<!-- #endif -->
@@ -169,10 +168,10 @@
 			}
 			fixSize()
 			// #ifdef H5
-			window.addEventListener('resize', fixSize)
-			this.$once('hook:beforeDestroy', () => {
-				window.removeEventListener('resize', fixSize)
-			})
+			// window.addEventListener('resize', fixSize)
+			// this.$once('hook:beforeDestroy', () => {
+			// 	window.removeEventListener('resize', fixSize)
+			// })
 			// #endif
 		},
 		created() {
@@ -242,7 +241,12 @@
 			},
 
 			onTap() {
-				if (this.clearPropagation) return
+				if (this.clearPropagation) {
+					// fix by mehaotian 兼容 nvue
+					this.clearPropagation = false
+					return
+				}
+				this.$emit('maskClick')
 				if (!this.mkclick) return
 				this.close()
 			},
@@ -381,8 +385,6 @@
 		position: relative;
 		/* iphonex 等安全区设置，底部安全区适配 */
 		/* #ifndef APP-NVUE */
-		padding-bottom: constant(safe-area-inset-bottom);
-		padding-bottom: env(safe-area-inset-bottom);
 		/* #endif */
 	}
 

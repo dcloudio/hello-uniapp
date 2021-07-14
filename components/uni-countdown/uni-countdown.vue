@@ -169,6 +169,7 @@
 				if (this.seconds <= 0) {
 					return
 				}
+				clearInterval(this.timer)
 				this.countDown()
 				this.timer = setInterval(() => {
 					this.seconds--
