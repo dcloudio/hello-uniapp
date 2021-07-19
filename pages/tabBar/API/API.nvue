@@ -389,9 +389,6 @@
 				}]
             };
         },
-		mounted() {
-			uni.setStorageSync('menuList', this.list)
-		},
         onShareAppMessage() {
             return {
                 title: '欢迎体验uni-app',
