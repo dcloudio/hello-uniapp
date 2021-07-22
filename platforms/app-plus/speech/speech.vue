@@ -7,7 +7,7 @@
                 </view>
 			<view class="uni-common-mt uni-btn-v">
 				<button type="primary" @tap="startRecognize">开始语音识别</button>
-				<button type="primary" @tap="startRecognizeEnglish">开始语音识别（英语）</button>
+				<!-- <button type="primary" @tap="startRecognizeEnglish">开始语音识别（英语）</button> -->
 			</view>
 		</view>
 	</view>
