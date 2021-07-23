@@ -1,4 +1,4 @@
-module.exports ={
+export default {
     "list": [{
         "letter": "A",
         "data": [

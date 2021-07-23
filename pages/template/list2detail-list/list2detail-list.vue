@@ -31,7 +31,7 @@
 
 <script>
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
-	var dateUtils = require('../../../common/util.js').dateUtils;
+	import { dateUtils } from  '../../../common/util.js';
 
 	export default {
 		components: {

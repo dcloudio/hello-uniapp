@@ -7,7 +7,6 @@
 </template>
 
 <script>
-    import bus from './bus.js'
     export default {
         data() {
             return {
@@ -16,11 +15,9 @@
         },
         created() {
             uni.$on('cc', this.recive)
-            bus.$on('cc', this.recive)
         },
         beforeDestroy() {
             uni.$off('cc',this.recive)
-            bus.$off('cc', this.recive)
         },
         methods: {
             recive(e) {

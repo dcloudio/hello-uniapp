@@ -9,7 +9,7 @@
     "app-plus" : {
         "usingComponents" : true,
         "nvueCompiler" : "uni-app",
-		"nvueStyleCompiler" : "uni-app",
+        "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
         "nvueLaunchMode" : "fast",
         "splashscreen" : {
@@ -136,5 +136,6 @@
         "async" : {
             "timeout" : 20000
         }
-    }
+    },
+    "vueVersion" : "2"
 }

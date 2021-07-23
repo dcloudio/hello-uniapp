@@ -1,7 +1,7 @@
 <template name="page-foot">
 	<view class="page-share-title">
 		<text>感谢{{name}}提供本示例，</text>
-		<text class="submit" @tap="submit">我也提交</text>
+		<text class="submit" @click="submit">我也提交</text>
 	</view>
 </template>
 
