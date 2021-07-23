@@ -2,7 +2,7 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="ad-view">
-            <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload" @error="aderror"></ad>
+            <ad adpid="1111111111" :unit-id="unitId" type="feed" @load="adload" @error="aderror"/>
             <!-- #ifdef APP-PLUS -->
             <view class="ad-tips" v-if="!isLoad">
                 <text>{{adMessage}}</text>

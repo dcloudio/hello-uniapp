@@ -81,7 +81,7 @@
 						pages: [
 							'image',
 							'video',
-							// #ifndef MP-ALIPAY || MP-TOUTIAO
+							// #ifndef MP-ALIPAY || MP-TOUTIAO || VUE3
 							'audio',
 							// #endif
 						],
@@ -95,7 +95,7 @@
 
 					},
 					// #endif
-					// #ifndef QUICKAPP-WEBVIEW-UNION
+					// #ifndef QUICKAPP-WEBVIEW-UNION || VUE3
 					{
 						id: 'canvas',
 						name: '画布',

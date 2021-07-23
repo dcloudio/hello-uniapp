@@ -48,7 +48,7 @@
 	</view>
 </template>
 <script>
-	var  graceChecker = require("../../../common/graceChecker.js");
+	import graceChecker from "../../../common/graceChecker.js"
 	export default {
 		data() {
 			return {

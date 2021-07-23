@@ -8,7 +8,7 @@
 						<view class="uni-label">key</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"></input>
+						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
@@ -16,7 +16,7 @@
 						<view class="uni-label">value</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"></input>
+						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"/>
 					</view>
 				</view>
 			</view>

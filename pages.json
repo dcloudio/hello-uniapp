@@ -238,13 +238,13 @@
 				"navigationBarTitleText": "video"
 			}
 		},
-		// #ifndef MP-ALIPAY || MP-TOUTIAO
-		{
-			"path": "pages/component/audio/audio",
-			"style": {
-				"navigationBarTitleText": "audio"
-			}
-		},
+		// #ifndef MP-ALIPAY || MP-TOUTIAO || VUE3
+		// {
+		// 	"path": "pages/component/audio/audio",
+		// 	"style": {
+		// 		"navigationBarTitleText": "audio"
+		// 	}
+		// },
 		// #endif
 		// #ifndef MP-TOUTIAO
 		{
@@ -254,19 +254,21 @@
 			}
 		},
 		// #endif
+		// #ifndef VUE3
 		{
 			"path": "pages/component/canvas/canvas",
 			"style": {
 				"navigationBarTitleText": "canvas"
 			}
 		},
+		// #endif
 		{
 			"path": "pages/component/web-view/web-view",
 			"style": {
 				"navigationBarTitleText": "web-view"
 			}
 		},
-		// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
+		// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || VUE3
 		{
 			"path": "pages/component/ad/ad",
 			"style": {
@@ -955,10 +957,12 @@
 						"navigationBarTitleText": "Combox 组合框"
 					}
 				},
+				// #ifndef VUE3
 				{
 					"path": "list/ad",
 					"style": {}
 				},
+				// #endif
 				{
 					"path": "list/chat",
 					"style": {}
@@ -1023,12 +1027,15 @@
 		},
 		{
 			"root": "pages/template",
-			"pages": [{
+			"pages": [
+				// #ifndef VUE3
+				{
 					"path": "ucharts/ucharts",
 					"style": {
 						"navigationBarTitleText": "uCharts 图表"
 					}
 				},
+				// #endif
 				{
 					"path": "nav-default/nav-default",
 					"style": {
