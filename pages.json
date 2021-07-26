@@ -254,14 +254,12 @@
 			}
 		},
 		// #endif
-		// #ifndef VUE3
 		{
 			"path": "pages/component/canvas/canvas",
 			"style": {
 				"navigationBarTitleText": "canvas"
 			}
 		},
-		// #endif
 		{
 			"path": "pages/component/web-view/web-view",
 			"style": {
