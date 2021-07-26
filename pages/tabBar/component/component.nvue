@@ -95,7 +95,7 @@
 
 					},
 					// #endif
-					// #ifndef QUICKAPP-WEBVIEW-UNION || VUE3
+					// #ifndef QUICKAPP-WEBVIEW-UNION
 					{
 						id: 'canvas',
 						name: '画布',
