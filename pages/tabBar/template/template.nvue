@@ -79,10 +79,10 @@
 						url: 'component-communication'
 					},
 					// #ifndef MP-QQ || QUICKAPP-WEBVIEW
-					{
-						name: 'uCharts 图表',
-						url: 'ucharts'
-					},
+					// {
+					// 	name: 'uCharts 图表',
+					// 	url: 'ucharts'
+					// },
 					// #endif
 					// #ifndef QUICKAPP-WEBVIEW
 					{

@@ -80,10 +80,7 @@
 						open: false,
 						pages: [
 							'image',
-							'video',
-							// #ifndef MP-ALIPAY || MP-TOUTIAO || VUE3
-							'audio',
-							// #endif
+							'video'
 						],
 					},
 					// #ifndef MP-TOUTIAO
