@@ -250,9 +250,23 @@
 			},
 			async loginByApple(provider, res) {
 				// 获取用户信息
-				const [getUserInfoErr, result] = await uni.getUserInfo({
+				let getUserInfoErr, result
+				// #ifndef VUE3
+				[getUserInfoErr, result] = await uni.getUserInfo({
 					provider
 				});
+				// #endif
+				
+				// #ifdef VUE3
+				try {
+					result = await uni.getUserInfo({
+						provider
+					});
+				} catch(e) {
+					getUserInfoErr = e
+				}
+				// #endif
+				
 				if (getUserInfoErr) {
 					let content = getUserInfoErr.errMsg;
 					if (~content.indexOf('uni.login')) {

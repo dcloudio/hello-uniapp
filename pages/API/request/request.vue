@@ -72,6 +72,7 @@
 				});
 			},
 			_requestPromise() {
+				// #ifndef VUE3
 				uni.request({
 					url: requestUrl,
 					dataType: 'text',
@@ -87,6 +88,34 @@
 						duration: duration
 					});
 					this.res = '请求结果 : ' + JSON.stringify(res[1]);
+					this.loading = false;
+				}).catch(err => {
+					console.log('request fail', err);
+					uni.showModal({
+						content: err.errMsg,
+						showCancel: false
+					});
+
+					this.loading = false;
+				});
+				// #endif
+
+				// #ifdef VUE3
+				uni.request({
+					url: requestUrl,
+					dataType: 'text',
+					data: {
+						noncestr: Date.now()
+					}
+				}).then(res => {
+					console.log('request success', res);
+					uni.showToast({
+						title: '请求成功',
+						icon: 'success',
+						mask: true,
+						duration: duration
+					});
+					this.res = '请求结果 : ' + JSON.stringify(res);
 
 					this.loading = false;
 				}).catch(err => {
@@ -98,15 +127,32 @@
 
 					this.loading = false;
 				});
+				// #endif
 			},
 			async _requestAwait() {
-				const [err, res] = await uni.request({
+				let res, err
+				// #ifndef VUE3
+				[err, res] = await uni.request({
 					url: requestUrl,
 					dataType: 'text',
 					data: {
 						noncestr: Date.now()
 					}
 				});
+				// #endif
+				// #ifdef VUE3
+				try {
+				res = await uni.request({
+					url: requestUrl,
+					dataType: 'text',
+					data: {
+						noncestr: Date.now()
+					}
+				});
+				} catch(e){
+					err=e
+				}
+				// #endif
 				if (err) {
 					console.log('request fail', err);
 					uni.showModal({
