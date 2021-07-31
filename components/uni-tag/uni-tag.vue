@@ -29,6 +29,7 @@
 
 	export default {
 		name: "UniTag",
+		emits: ['click'],
 		props: {
 			type: {
 				// 标签类型default、primary、success、warning、error、royal

@@ -2,7 +2,7 @@
 	<view>
 		<uni-section title="基本用法" type="line"></uni-section>
 		<view class="example-body">
-			<uni-search-bar @confirm="search" :focus="true" v-model="searchValue" @blur="blur" @focus="focus" @input="input" @cancel="cancel" @change="change" @clear="clear">
+			<uni-search-bar @confirm="search" :focus="true" v-model="searchValue" @blur="blur" @focus="focus" @input="input" @cancel="cancel" @clear="clear">
 			</uni-search-bar>
 			<view class="search-result">
 				<text class="search-result-text">当前输入为：{{ searchValue }}</text>

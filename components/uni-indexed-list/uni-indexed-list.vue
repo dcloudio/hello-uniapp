@@ -85,6 +85,7 @@
 		components: {
 			indexedListItem
 		},
+		emits: ['click'],
 		props: {
 			options: {
 				type: Array,

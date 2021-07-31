@@ -18,9 +18,11 @@
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3281
 	 * @property {String} title 主标题
 	 * @property {Number} top 分组间隔
+	 * @property {Number} mode 模式
 	 */
 	export default {
 		name: 'uniGroup',
+		emits: ['click'],
 		props: {
 			title: {
 				type: String,

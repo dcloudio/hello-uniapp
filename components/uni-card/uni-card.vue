@@ -77,6 +77,7 @@
 	 */
 	export default {
 		name: 'UniCard',
+		emits: ['click'],
 		props: {
 			title: {
 				type: String,

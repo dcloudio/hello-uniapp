@@ -9,7 +9,9 @@
 					<view v-for="(item,index) in leftOptions" :data-button="btn" :key="index" :style="{
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 					  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'left')" @click.stop="onClickForPC(index,item,'left')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'left')" @click.stop="onClickForPC(index,item,'left')">
+						<text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+					</view>
 				</slot>
 			</view>
 			<view class="uni-swipe_text--center">
@@ -20,7 +22,8 @@
 					<view v-for="(item,index) in rightOptions" :data-button="btn" :key="index" :style="{
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 					  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'right')" @click.stop="onClickForPC(index,item,'right')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'right')" @click.stop="onClickForPC(index,item,'right')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+					</view>
 				</slot>
 			</view>
 		</view>
@@ -34,7 +37,8 @@
 				<view v-for="(item,index) in leftOptions" :data-button="btn" :key="index" :style="{
 				  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 				  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'left')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'left')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+				</view>
 			</slot>
 		</view>
 		<view ref='selector-right-button--hock' class="uni-swipe_button-group button-group--right">
@@ -42,7 +46,8 @@
 				<view v-for="(item,index) in rightOptions" :data-button="btn" :key="index" :style="{
 				  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 				  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'right')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+				}" class="uni-swipe_button button-hock" @click.stop="onClick(index,item,'right')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+				</view>
 			</slot>
 		</view>
 		<view ref='selector-content--hock' class="uni-swipe_box">
@@ -59,7 +64,8 @@
 					<view v-for="(item,index) in leftOptions" :data-button="btn" :key="index" :style="{
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 					  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'left')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+					}" class="uni-swipe_button button-hock" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'left')"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+					</view>
 				</slot>
 			</view>
 			<slot></slot>
@@ -68,7 +74,8 @@
 					<view v-for="(item,index) in rightOptions" :data-button="btn" :key="index" :style="{
 					  backgroundColor: item.style && item.style.backgroundColor ? item.style.backgroundColor : '#C7C6CD',
 					  fontSize: item.style && item.style.fontSize ? item.style.fontSize : '16px'
-					}" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'right')" class="uni-swipe_button button-hock"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text></view>
+					}" @touchstart="appTouchStart" @touchend="appTouchEnd($event,index,item,'right')" class="uni-swipe_button button-hock"><text class="uni-swipe_button-text" :style="{color: item.style && item.style.color ? item.style.color : '#FFFFFF',}">{{ item.text }}</text>
+					</view>
 				</slot>
 			</view>
 		</view>
@@ -159,7 +166,45 @@
 			}
 
 		},
-		inject: ['swipeaction']
+		// #ifndef VUE3
+		// TODO vue2
+		destroyed() {
+			if (this.__isUnmounted) return
+			this.uninstall()
+		},
+		// #endif
+		// #ifdef VUE3
+		// TODO vue3
+		unmounted() {
+			this.__isUnmounted = true
+			this.uninstall()
+		},
+		// #endif
+
+		methods: {
+			uninstall() {
+				if (this.swipeaction) {
+					this.swipeaction.children.forEach((item, index) => {
+						if (item === this) {
+							this.swipeaction.children.splice(index, 1)
+						}
+					})
+				}
+			},
+			/**
+			 * 获取父元素实例
+			 */
+			getSwipeAction(name = 'uniSwipeAction') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false;
+					parentName = parent.$options.name;
+				}
+				return parent;
+			}
+		}
 	}
 </script>
 <style scoped>

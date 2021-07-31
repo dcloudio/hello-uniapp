@@ -24,6 +24,7 @@
 	 */
 	export default {
 		name: 'UniGrid',
+		emits: ['change'],
 		props: {
 			// 每列显示个数
 			column: {

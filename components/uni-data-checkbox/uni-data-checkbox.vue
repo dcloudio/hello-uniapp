@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-data-checklist">
+	<view class="uni-data-checklist" :style="{'margin-top':isTop+'px'}">
 		<template v-if="!isLocal">
 			<view class="uni-data-loading">
 				<uni-load-more v-if="!mixinDatacomErrorMessage" status="loading" iconType="snow" :iconSize="18" :content-text="contentText"></uni-load-more>
@@ -71,6 +71,7 @@
 		// 	prop: 'modelValue',
 		// 	event: 'update:modelValue'
 		// },
+		emits: ['input', 'update:modelValue', 'change'],
 		props: {
 			mode: {
 				type: String,
@@ -176,12 +177,15 @@
 				styles: {
 					selectedColor: '#007aff',
 					selectedTextColor: '#333',
-				}
+				},
+				isTop: 0
 			};
 		},
 		computed: {
 			dataValue() {
-				return this.value || this.modelValue
+				if (this.value === '') return this.modelValue
+				if (this.modelValue === '') return this.value
+				return this.value
 			}
 		},
 		created() {
@@ -190,6 +194,7 @@
 			// this.formItem && this.formItem.setValue(this.value)
 
 			if (this.formItem) {
+				this.isTop = 6
 				if (this.formItem.name) {
 					this.rename = this.formItem.name
 					this.form.inputChildrens.push(this)

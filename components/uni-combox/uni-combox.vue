@@ -34,6 +34,7 @@
 	 */
 	export default {
 		name: 'uniCombox',
+		emits: ['input', 'update:modelValue'],
 		props: {
 			label: {
 				type: String,
@@ -57,10 +58,18 @@
 				type: String,
 				default: '无匹配项'
 			},
+			// #ifndef VUE3
 			value: {
 				type: [String, Number],
 				default: ''
-			}
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				type: [String, Number],
+				default: ''
+			},
+			// #endif
 		},
 		data() {
 			return {
@@ -87,12 +96,22 @@
 			}
 		},
 		watch: {
+			// #ifndef VUE3
 			value: {
 				handler(newVal) {
 					this.inputVal = newVal
 				},
 				immediate: true
-			}
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				handler(newVal) {
+					this.inputVal = newVal
+				},
+				immediate: true
+			},
+			// #endif
 		},
 		methods: {
 			toggleSelector() {
@@ -110,10 +129,12 @@
 				this.inputVal = this.filterCandidates[index]
 				this.showSelector = false
 				this.$emit('input', this.inputVal)
+				this.$emit('update:modelValue', this.inputVal)
 			},
 			onInput() {
 				setTimeout(() => {
 					this.$emit('input', this.inputVal)
+					this.$emit('update:modelValue', this.inputVal)
 				})
 			}
 		}

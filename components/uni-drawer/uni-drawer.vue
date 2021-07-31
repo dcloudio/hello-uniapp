@@ -33,6 +33,7 @@
 			keypress
 			// #endif
 		},
+		emits: ['change'],
 		props: {
 			/**
 			 * 显示模式（左、右），只在初始化生效

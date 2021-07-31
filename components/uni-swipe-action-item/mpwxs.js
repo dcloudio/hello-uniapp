@@ -7,14 +7,6 @@ export default {
 			btn: "[]"
 		}
 	},
-	// computed: {
-	// 	pos() {
-	// 		return JSON.stringify(this.position)
-	// 	},
-	// 	btn() {
-	// 		return JSON.stringify(this.button)
-	// 	}
-	// },
 	watch: {
 		button: {
 			handler(newVal) {
@@ -38,6 +30,7 @@ export default {
 		}
 	},
 	created() {
+		this.swipeaction = this.getSwipeAction()
 		if (this.swipeaction.children !== undefined) {
 			this.swipeaction.children.push(this)
 		}
@@ -45,12 +38,9 @@ export default {
 	mounted() {
 		this.init()
 	},
-	beforeDestroy() {
-		this.swipeaction.children.forEach((item, index) => {
-			if (item === this) {
-				this.swipeaction.children.splice(index, 1)
-			}
-		})
+	// fixme by mehaotian 在页面激活的时候需要重新获取元素信息
+	activated(){
+		this.init()
 	},
 	methods: {
 		init() {

@@ -51,6 +51,7 @@
 
 <script>
 	export default {
+		emits: ['change'],
 		props: {
 			weeks: {
 				type: Object,

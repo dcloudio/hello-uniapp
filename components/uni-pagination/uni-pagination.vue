@@ -50,8 +50,13 @@
 
 	export default {
 		name: 'UniPagination',
+		emits: ['update:modelValue', 'input', 'change'],
 		props: {
 			value: {
+				type: [Number, String],
+				default: 1
+			},
+			modelValue: {
 				type: [Number, String],
 				default: 1
 			},
@@ -163,6 +168,13 @@
 				} else {
 					this.currentIndex = val
 				}
+			},
+			modelValue(val) {
+				if (val < 1) {
+					this.currentIndex = 1
+				} else {
+					this.currentIndex = val
+				}
 			}
 		},
 		created() {
@@ -213,6 +225,7 @@
 			},
 			change(e) {
 				this.$emit('input', this.currentIndex)
+				this.$emit('update:modelValue', this.currentIndex)
 				this.$emit('change', {
 					type: e,
 					current: this.currentIndex

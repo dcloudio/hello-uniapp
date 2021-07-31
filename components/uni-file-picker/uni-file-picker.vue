@@ -20,8 +20,16 @@
 
 <script>
 	import {
-		chooseAndUploadFile
+		chooseAndUploadFile,
+		uploadCloudFiles
 	} from './choose-and-upload-file.js'
+	import {
+		get_file_ext,
+		get_extname,
+		get_files_and_is_max,
+		get_file_info,
+		get_file_data
+	} from './utils.js'
 	import uploadImage from './upload-image.vue'
 	import uploadFile from './upload-file.vue'
 	let fileInput = null
@@ -30,30 +38,30 @@
 	 * @description 文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=4079
 	 * @property {Object|Array}	value	组件数据，通常用来回显 ,类型由return-type属性决定
-	 * @property {Boolean}	disabled=[true|false]	组件禁用
+	 * @property {Boolean}	disabled = [true|false]	组件禁用
 	 * 	@value true 	禁用
 	 * 	@value false 	取消禁用
-	 * @property {Boolean}	readonly=[true|false]	组件只读，不可选择，不显示进度，不显示删除按钮
+	 * @property {Boolean}	readonly = [true|false]	组件只读，不可选择，不显示进度，不显示删除按钮
 	 * 	@value true 	只读
 	 * 	@value false 	取消只读
-	 * @property {String}	return-type=[array|object]	限制 value 格式，当为 object 时 ，组件只能单选，且会覆盖
+	 * @property {String}	return-type = [array|object]	限制 value 格式，当为 object 时 ，组件只能单选，且会覆盖
 	 * 	@value array	规定 value 属性的类型为数组
 	 * 	@value object	规定 value 属性的类型为对象
-	 * @property {Boolean}	disable-preview=[true|false]	禁用图片预览，仅 mode:grid 时生效
+	 * @property {Boolean}	disable-preview = [true|false]	禁用图片预览，仅 mode:grid 时生效
 	 * 	@value true 	禁用图片预览
 	 * 	@value false 	取消禁用图片预览
-	 * @property {Boolean}	del-icon=[true|false]	是否显示删除按钮
+	 * @property {Boolean}	del-icon = [true|false]	是否显示删除按钮
 	 * 	@value true 	显示删除按钮
 	 * 	@value false 	不显示删除按钮
-	 * @property {Boolean}	auto-upload=[true|false]	是否自动上传，值为true则只触发@select,可自行上传
+	 * @property {Boolean}	auto-upload = [true|false]	是否自动上传，值为true则只触发@select,可自行上传
 	 * 	@value true 	自动上传
 	 * 	@value false 	取消自动上传
 	 * @property {Number|String}	limit	最大选择个数 ，h5 会自动忽略多选的部分
 	 * @property {String}	title	组件标题，右侧显示上传计数
-	 * @property {String}	mode=[list|grid]	选择文件后的文件列表样式
+	 * @property {String}	mode = [list|grid]	选择文件后的文件列表样式
 	 * 	@value list 	列表显示
 	 * 	@value grid 	宫格显示
-	 * @property {String}	file-mediatype=[image|video|all]	选择文件类型
+	 * @property {String}	file-mediatype = [image|video|all]	选择文件类型
 	 * 	@value image	只选择图片
 	 * 	@value video	只选择视频
 	 * 	@value all		选择所有文件
@@ -72,13 +80,26 @@
 			uploadImage,
 			uploadFile
 		},
+		emits: ['select', 'success', 'fail', 'progress', 'delete', 'update:modelValue', 'input'],
 		props: {
+			// #ifdef VUE3
+			modelValue: {
+				type: [Array, Object],
+				default () {
+					return []
+				}
+			},
+			// #endif
+
+			// #ifndef VUE3
 			value: {
 				type: [Array, Object],
 				default () {
 					return []
 				}
 			},
+			// #endif
+
 			disabled: {
 				type: Boolean,
 				default: false
@@ -106,10 +127,6 @@
 				type: String,
 				default: 'grid'
 			},
-			// inputUrl: {
-			// 	type: Boolean,
-			// 	default: false
-			// },
 			// 选择文件类型  image/video/all
 			fileMediatype: {
 				type: String,
@@ -155,39 +172,39 @@
 			returnType: {
 				type: String,
 				default: 'array'
-			}
-		},
-		watch: {
-			value: {
-				handler(newVal) {
-					let newFils = []
-					let newData = [].concat(newVal || [])
-					newData.forEach(v => {
-						const files = this.files.find(i => i.url === v.url)
-						const reg = /cloud:\/\/([\w.]+\/?)\S*/
-						if (!v.path) {
-							v.path = v.url
-						}
-						if (reg.test(v.url)) {
-							this.getTempFileURL(v, v.url)
-						}
-						newFils.push(files ? files : v)
-					})
-					let data = null
-					if (this.returnType === 'object') {
-						data = this.backObject(newFils)[0]
-					} else {
-						data = this.backObject(newFils)
-					}
-					this.formItem && this.formItem.setValue(data)
-					this.files = newFils
-				},
-				immediate: true
+			},
+			sizeType: {
+				type: Array,
+				default () {
+					return ['original', 'compressed']
+				}
 			}
 		},
 		data() {
 			return {
 				files: [],
+				localValue: []
+			}
+		},
+		watch: {
+			// #ifndef VUE3
+			value: {
+				handler(newVal, oldVal) {
+					this.localValue = newVal
+				},
+				immediate: true
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				handler(newVal, oldVal) {
+					this.localValue = newVal
+				},
+				immediate: true
+			},
+			// #endif
+			localValue(newVal, oldVal) {
+				this.setValue(newVal, oldVal)
 			}
 		},
 		computed: {
@@ -215,15 +232,6 @@
 					return 9
 				}
 				return this.limit
-			},
-			extname() {
-				if (!Array.isArray(this.fileExtname)) {
-					let extname = this.fileExtname.replace(/(\[|\])/g, '')
-					return extname.split(',')
-				} else {
-					return this.fileExtname
-				}
-				return []
 			}
 		},
 		created() {
@@ -243,32 +251,35 @@
 			}
 		},
 		methods: {
-			/**
-			 * 获取父元素实例
-			 */
-			getForm(name = 'uniForms') {
-				let parent = this.$parent;
-				let parentName = parent.$options.name;
-				while (parentName !== name) {
-					parent = parent.$parent;
-					if (!parent) return false;
-					parentName = parent.$options.name;
+			setValue(newVal, oldVal) {
+				const newData = (v) => {
+					const files = this.files.find(i => i.url === v.url)
+					const reg = /cloud:\/\/([\w.]+\/?)\S*/
+					if (!v.path) {
+						v.path = v.url
+					}
+					if (reg.test(v.url)) {
+						this.getTempFileURL(v, v.url)
+					}
+					return v
 				}
-				return parent;
+				// let data = null
+				if (this.returnType === 'object') {
+					newData(newData)
+				} else {
+					newVal.forEach(v => {
+						newData(v)
+					})
+				}
+
+				this.formItem && this.formItem.setValue(newVal)
+				this.files = [].concat(newVal || [])
 			},
+
 			/**
 			 * 继续上传
 			 */
 			upload() {
-				// TODO 先放弃这个实现 ，不能全部上传
-				// if (this.$uploadFiles) {
-				// 	this.$uploadFiles()
-				// } else {
-				// 	uni.showToast({
-				// 		title: '请先选择文件',
-				// 		icon: 'none'
-				// 	})
-				// }
 				let files = []
 				this.files.forEach((v, index) => {
 					if (v.status === 'ready' || v.status === 'error') {
@@ -284,22 +295,14 @@
 			choose() {
 
 				if (this.disabled) return
-				if (this.files.length >= Number(this.limitLength) && this.showType !== 'grid' && this.returnType === 'array') {
+				if (this.files.length >= Number(this.limitLength) && this.showType !== 'grid' && this.returnType ===
+					'array') {
 					uni.showToast({
 						title: `您最多选择 ${this.limitLength} 个文件`,
 						icon: 'none'
 					})
 					return
 				}
-				// uni.showActionSheet({
-				// 	itemList: ['填写 url 地址', '选择文件'],
-				// 	success: (res) => {
-				// 		if (res.tapIndex === 1) {
-				// 			this.chooseFiles()
-				// 		}
-				// 	},
-				// 	fail: function(res) {}
-				// });
 				this.chooseFiles()
 			},
 
@@ -307,69 +310,17 @@
 			 * 选择文件并上传
 			 */
 			chooseFiles() {
-
+				const _extname = get_extname(this.fileExtname)
+				// 获取后缀
 				uniCloud
 					.chooseAndUploadFile({
 						type: this.fileMediatype,
 						compressed: false,
+						sizeType: this.sizeType,
 						// TODO 如果为空，video 有问题
-						extension: this.extname.length > 0 ? this.extname : undefined,
+						extension: _extname.length > 0 ? _extname : undefined,
 						count: this.limitLength - this.files.length, //默认9
-						onChooseFile: async res => {
-							if ((Number(this.limitLength) === 1 && this.disablePreview && !this.disabled) || this.returnType === 'object') {
-								this.files = []
-							}
-							let filePaths = []
-							let files = []
-							if (this.extname && this.extname.length > 0) {
-								res.tempFiles.forEach(v => {
-									let fileFullName = this.getFileExt(v.name)
-									const extname = fileFullName.ext.toLowerCase()
-									if (this.extname.indexOf(extname) !== -1) {
-										files.push(v)
-										filePaths.push(v.path)
-									}
-								})
-								if (files.length !== res.tempFiles.length) {
-									uni.showToast({
-										title: `当前选择了${res.tempFiles.length}个文件 ，${res.tempFiles.length - files.length} 个文件格式不正确`,
-										icon: 'none',
-										duration: 5000
-									})
-								}
-							} else {
-								filePaths = res.tempFilePaths
-								files = res.tempFiles
-							}
-
-							let currentData = []
-							for (let i = 0; i < files.length; i++) {
-								if (this.limitLength - this.files.length <= 0) break
-								files[i].uuid = Date.now()
-								let filedata = await this.getFileData(files[i], this.fileMediatype)
-								filedata.file = files[i]
-								filedata.progress = 0
-								filedata.status = 'ready'
-								this.files.push(filedata)
-								currentData.push(filedata)
-							}
-							this.$emit('select', {
-								tempFiles: currentData,
-								tempFilePaths: filePaths
-							})
-							res.tempFiles = files
-							// 停止自动上传
-							if (!this.autoUpload || this.noSpace) {
-								res.tempFiles = []
-								// TODO 先放弃这个实现 ，不能全部上传
-								// return new Promise((resolve) => {
-								// 	this.$uploadFiles = () => {
-								// 		// this._is_uploading = true
-								// 		resolve(res)
-								// 	}
-								// })
-							}
-						},
+						onChooseFile: this.chooseFileCallback,
 						onUploadProgress: progressEvent => {
 							this.setProgress(progressEvent, progressEvent.index)
 						}
@@ -383,12 +334,60 @@
 			},
 
 			/**
+			 * 选择文件回调
+			 * @param {Object} res
+			 */
+			async chooseFileCallback(res) {
+				const _extname = get_extname(this.fileExtname)
+				const is_one = (Number(this.limitLength) === 1 &&
+						this.disablePreview &&
+						!this.disabled) ||
+					this.returnType === 'object'
+				// 如果这有一个文件 ，需要清空本地缓存数据
+				if (is_one) {
+					this.files = []
+				}
+
+				let {
+					filePaths,
+					files
+				} = get_files_and_is_max(res, _extname)
+				if (!(_extname && _extname.length > 0)) {
+					filePaths = res.tempFilePaths
+					files = res.tempFiles
+				}
+
+				let currentData = []
+				for (let i = 0; i < files.length; i++) {
+					if (this.limitLength - this.files.length <= 0) break
+					files[i].uuid = Date.now()
+					let filedata = await get_file_data(files[i], this.fileMediatype)
+					filedata.progress = 100
+					filedata.status = 'ready'
+					this.files.push(filedata)
+					currentData.push({
+						...filedata,
+						file: files[i]
+					})
+				}
+				this.$emit('select', {
+					tempFiles: currentData,
+					tempFilePaths: filePaths
+				})
+				res.tempFiles = files
+				// 停止自动上传
+				if (!this.autoUpload || this.noSpace) {
+					res.tempFiles = []
+				}
+			},
+
+			/**
 			 * 批传
 			 * @param {Object} e
 			 */
 			uploadFiles(files) {
 				files = [].concat(files)
-				this.uploadCloudFiles(files, 5, res => {
+				uploadCloudFiles.call(this, files, 5, res => {
 						this.setProgress(res, res.index, true)
 					})
 					.then(result => {
@@ -472,7 +471,7 @@
 			},
 
 			/**
-			 * 删除
+			 * 删除文件
 			 * @param {Object} index
 			 */
 			delFile(index) {
@@ -500,126 +499,45 @@
 			},
 
 			/**
-			 * 获取图片信息
-			 * @param {Object} filepath
+			 * 处理返回事件
 			 */
-			getFileInfo(filepath) {
-				return new Promise((resolve, reject) => {
-					uni.getImageInfo({
-						src: filepath,
-						success(res) {
-							resolve(res)
-						},
-						fail(err) {
-							reject(err)
-						}
-					})
-				})
-			},
-
-			/**
-			 * 获取封装数据
-			 */
-			async getFileData(files, type = 'image') {
-				// 最终需要上传数据库的数据
-				let fileFullName = this.getFileExt(files.name)
-				const extname = fileFullName.ext.toLowerCase()
-				let filedata = {
-					name: files.name,
-					uuid: files.uuid,
-					extname: extname || '',
-					cloudPath: files.cloudPath,
-					file: files.file,
-					fileType: files.fileType,
-					url: files.path || files.path,
-					size: files.size, //单位是字节
-					image: {},
-					path: files.path,
-					video: {}
-				}
-				if (type === 'image') {
-					const imageinfo = await this.getFileInfo(files.path)
-					delete filedata.video
-					filedata.image.width = imageinfo.width
-					filedata.image.height = imageinfo.height
-					filedata.image.location = imageinfo.path
-				} else {
-					delete filedata.image
-				}
-				return filedata
-			},
-
-			/**
-			 * 批量上传
-			 */
-			uploadCloudFiles(files, max = 5, onUploadProgress) {
-				files = JSON.parse(JSON.stringify(files))
-				const len = files.length
-				let count = 0
-				let self = this
-				return new Promise(resolve => {
-					while (count < max) {
-						next()
-					}
-
-					function next() {
-						let cur = count++
-						if (cur >= len) {
-							!files.find(item => !item.url && !item.errMsg) && resolve(files)
-							return
-						}
-						const fileItem = files[cur]
-						const index = self.files.findIndex(v => v.uuid === fileItem.uuid)
-						fileItem.url = ''
-						delete fileItem.errMsg
-
-						uniCloud
-							.uploadFile({
-								filePath: fileItem.path,
-								cloudPath: fileItem.cloudPath,
-								fileType: fileItem.fileType,
-								onUploadProgress: res => {
-									res.index = index
-									onUploadProgress && onUploadProgress(res)
-								}
-							})
-							.then(res => {
-								fileItem.url = res.fileID
-								fileItem.index = index
-								if (cur < len) {
-									next()
-								}
-							})
-							.catch(res => {
-								fileItem.errMsg = res.errMsg || res.message
-								fileItem.index = index
-								if (cur < len) {
-									next()
-								}
-							})
-					}
-				})
-			},
 			setEmit() {
 				let data = []
 				if (this.returnType === 'object') {
 					data = this.backObject(this.files)[0]
+					this.localValue = {}
+					Object.assign(this.localValue, data)
 				} else {
 					data = this.backObject(this.files)
+					if (!this.localValue) {
+						this.localValue = []
+					}
+					this.localValue = [...data]
 				}
-				this.$emit('input', data)
+				// #ifdef VUE3
+				this.$emit('update:modelValue', this.localValue)
+				// #endif
+				// #ifndef VUE3
+				this.$emit('input', this.localValue)
+				// #endif
 			},
+
+			/**
+			 * 处理返回参数
+			 * @param {Object} files
+			 */
 			backObject(files) {
-				let newFilesData = JSON.parse(JSON.stringify(files))
-				newFilesData.map(v => {
-					delete v.path
-					delete v.uuid
-					delete v.video
-					delete v.progress
-					delete v.errMsg
-					delete v.status
-					delete v.cloudPath
-					return v
+				let newFilesData = []
+				files.forEach(v => {
+					newFilesData.push({
+						extname: v.extname,
+						fileType: v.fileType,
+						image: v.image,
+						name: v.name,
+						path: v.path,
+						size: v.size,
+						url: v.url
+					})
 				})
 				return newFilesData
 			},
@@ -633,6 +551,19 @@
 				if (index !== -1) {
 					this.$set(this.files, index, file)
 				}
+			},
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniForms') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false;
+					parentName = parent.$options.name;
+				}
+				return parent;
 			}
 		}
 	}

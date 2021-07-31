@@ -21,6 +21,7 @@
 <script>
 	export default {
 		name: 'UniIndexedList',
+		emits: ['itemClick'],
 		props: {
 			loaded: {
 				type: Boolean,

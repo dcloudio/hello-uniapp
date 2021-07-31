@@ -64,6 +64,7 @@
 		components: {
 			statusBar
 		},
+		emits: ['clickLeft', 'clickRight', 'clickTitle'],
 		props: {
 			title: {
 				type: String,

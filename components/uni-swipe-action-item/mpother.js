@@ -29,19 +29,20 @@ export default {
 		}
 	},
 	mounted() {
+		this.swipeaction = this.getSwipeAction()
 		// this.position = {}
 		if (this.swipeaction.children !== undefined) {
 			this.swipeaction.children.push(this)
 		}
 		this.init()
 	},
-	beforeDestoy() {
-		this.swipeaction.children.forEach((item, index) => {
-			if (item === this) {
-				this.swipeaction.children.splice(index, 1)
-			}
-		})
-	},
+	// beforeDestoy() {
+	// 	this.swipeaction.children.forEach((item, index) => {
+	// 		if (item === this) {
+	// 			this.swipeaction.children.splice(index, 1)
+	// 		}
+	// 	})
+	// },
 	methods: {
 		init(){
 			clearTimeout(this.timer)

@@ -50,6 +50,7 @@
 	 */
 	export default {
 		name: 'UniLoadMore',
+		emits: ['clickLoadMore'],
 		props: {
 			status: {
 				// 上拉的状态：more-loading前；loading-loading中；noMore-没有更多了

@@ -30,6 +30,7 @@
 	 */
 	export default {
 		name: 'UniCountdown',
+		emits: ['timeup'],
 		props: {
 			showDay: {
 				type: Boolean,
@@ -122,9 +123,16 @@
 			this.seconds = this.toSeconds(this.timestamp, this.day, this.hour, this.minute, this.second)
 			this.countDown()
 		},
-		beforeDestroy() {
+		// #ifndef VUE3
+		destroyed() {
 			clearInterval(this.timer)
 		},
+		// #endif
+		// #ifdef VUE3
+		unmounted() {
+			clearInterval(this.timer)
+		},
+		// #endif
 		methods: {
 			toSeconds(timestamp, day, hours, minutes, seconds) {
 				if (timestamp) {

@@ -1,60 +1,99 @@
 <template>
 	<view>
 		<text class="example-info">uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
-
-		<uni-forms :value="formData" ref="form" validate-trigger="bind" err-show-type="undertext">
-			<uni-group title="基本信息" top="0">
-				<uni-forms-item name="name" required label="用户名">
-					<uni-easyinput type="text" :inputBorder="true" v-model="formData.name" placeholder="请输入用户名"></uni-easyinput>
+		<uni-section title="基本用法" type="line"></uni-section>
+		<view class="example">
+			<!-- 基础用法，不包含校验规则 -->
+			<uni-forms ref="baseForm" :modelValue="baseFormData">
+				<uni-forms-item label="姓名" required>
+					<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
 				</uni-forms-item>
-				<!-- 使用原生input，需要绑定binddata -->
-				<uni-forms-item name="age" required label="年龄">
-					<input type="text" v-model="formData.age" class="uni-input-border" @blur="binddata('age', $event.detail.value)" placeholder="请输入年龄" />
+				<uni-forms-item label="年龄" required>
+					<uni-easyinput v-model="baseFormData.age" placeholder="请输入年龄" />
 				</uni-forms-item>
-				<uni-forms-item name="email" label="邮箱">
-					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入邮箱"></uni-easyinput>
+				<uni-forms-item label="性别" required>
+					<uni-data-checkbox v-model="baseFormData.sex" :localdata="sexs" />
 				</uni-forms-item>
-				<!-- #ifndef APP-NVUE -->
-				<!-- 	<uni-forms-item required name="birth" label="出生日期"><uni-datetime-picker type="date" v-model="formData.birth" start="2000-06-01 06:30:30" end="2030-6-1" return-type="timestamp"></uni-datetime-picker></uni-forms-item> -->
-				<uni-forms-item name="checked" label="详细信息">
-					<switch :checked="formData.checked" @change="change('checked', $event.detail.value)" />
+				<uni-forms-item label="兴趣爱好" required>
+					<uni-data-checkbox v-model="baseFormData.hobby" multiple :localdata="hobbys" />
 				</uni-forms-item>
-				<!-- #endif -->
-			</uni-group>
-			<!-- #ifndef APP-NVUE -->
-			<template v-if="formData.checked">
-				<uni-group title="详细信息">
-					<uni-forms-item required name="sex" label="性别">
-						<uni-data-checkbox v-model="formData.sex" :localdata="sex"></uni-data-checkbox>
-					</uni-forms-item>
-					<uni-forms-item name="country" label="国家">
-						<picker :value="formData.country" :range="range" @change="binddata('country', $event.detail.value)">
-							<view>{{ formData.country === '' ? '请选择国家' : range[formData.country] }}</view>
-						</picker>
-					</uni-forms-item>
-					<uni-forms-item required name="hobby" label="兴趣爱好">
-						<uni-data-checkbox multiple v-model="formData.hobby" :localdata="hobby" />
-					</uni-forms-item>
-					<uni-forms-item name="remarks" label="备注">
-						<uni-easyinput type="textarea" v-model="formData.remarks" :maxlength="50" placeholder="请输入备注"></uni-easyinput>
-					</uni-forms-item>
-				</uni-group>
-			</template>
-			<!-- #endif -->
-
-
-			<!-- 直接使用组件自带submit、reset 方法，小程序不生效 -->
-			<!-- 			<button class="button" form-type="submit">Submit</button>
-				<button class="button" form-type="reset">Reset</button> -->
-
-			<view class="example">
-				<button class="button" @click="submitForm('form')">校验表单</button>
-				<button class="button" @click="validateField('form')">只校验用户名和邮箱项</button>
-				<button class="button" @click="clearValidate('form', 'name')">移除用户名的校验结果</button>
-				<button class="button" @click="clearValidate('form')">移除全部表单校验结果</button>
-				<button class="button" @click="resetForm">重置表单</button>
+				<uni-forms-item label="自我介绍">
+					<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="请输入自我介绍" />
+				</uni-forms-item>
+			</uni-forms>
+		</view>
+		<uni-section title="对齐方式" type="line"></uni-section>
+		<view class="example">
+			<view class="segmented-control">
+				<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" styleType="button">
+				</uni-segmented-control>
 			</view>
-		</uni-forms>
+			<!-- 展示不同的排列方式 -->
+			<uni-forms ref="baseForm" :modelValue="alignmentFormData" :label-position="alignment">
+				<uni-forms-item label="姓名" required>
+					<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
+				</uni-forms-item>
+				<uni-forms-item label="年龄" required>
+					<uni-easyinput v-model="baseFormData.age" placeholder="请输入年龄" />
+				</uni-forms-item>
+			</uni-forms>
+		</view>
+		<uni-section title="表单校验" type="line"></uni-section>
+		<view class="example">
+			<!-- 基础表单校验 -->
+			<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
+				<uni-forms-item label="姓名" required name="name">
+					<uni-easyinput v-model="valiFormData.name" placeholder="请输入姓名" />
+				</uni-forms-item>
+				<uni-forms-item label="年龄" required name="age">
+					<uni-easyinput v-model="valiFormData.age" placeholder="请输入年龄" />
+				</uni-forms-item>
+				<uni-forms-item label="自我介绍" name="introduction">
+					<uni-easyinput type="textarea" v-model="valiFormData.introduction" placeholder="请输入自我介绍" />
+				</uni-forms-item>
+			</uni-forms>
+			<button type="primary" @click="submit('valiForm')">提交</button>
+		</view>
+		<uni-section title="自定义校验规则" type="line"></uni-section>
+		<view class="example">
+			<!-- 自定义表单校验 -->
+			<uni-forms ref="customForm" :rules="customRules" :modelValue="customFormData">
+				<uni-forms-item label="姓名" required name="name">
+					<uni-easyinput v-model="customFormData.name" placeholder="请输入姓名" />
+				</uni-forms-item>
+				<uni-forms-item label="年龄" required name="age">
+					<uni-easyinput v-model="customFormData.age" placeholder="请输入年龄" />
+				</uni-forms-item>
+				<uni-forms-item label="兴趣爱好" required name="hobby">
+					<uni-data-checkbox v-model="customFormData.hobby" multiple :localdata="hobbys" />
+				</uni-forms-item>
+			</uni-forms>
+			<button type="primary" @click="submit('customForm')">提交</button>
+		</view>
+
+		<uni-section title="动态表单" type="line"></uni-section>
+		<view class="example">
+			<!-- 动态表单校验 -->
+			<uni-forms ref="dynamicForm" :rules="dynamicRules" :modelValue="dynamicFormData">
+				<uni-forms-item label="邮箱" required name="email">
+					<uni-easyinput v-model="dynamicFormData.email" placeholder="请输入姓名" />
+				</uni-forms-item>
+				<template v-for="(item,index) in dynamicLists" :key="item.id">
+					<uni-forms-item :label="item.label+' '+index" required :rules="item.rules" :name="'domains[' + item.id + ']'">
+						<view class="form-item">
+							<uni-easyinput v-model="dynamicFormData.domains[item.id]" placeholder="请输入域名" />
+							<button class="button" size="mini" type="default" @click="del(item.id)">删除</button>
+						</view>
+					</uni-forms-item>
+				</template>
+
+			</uni-forms>
+			<view class="button-group">
+				<button type="primary" size="mini" @click="add">新增域名</button>
+				<button type="primary" size="mini" @click="submit('dynamicForm')">提交</button>
+			</view>
+		</view>
+
 	</view>
 </template>
 
@@ -62,95 +101,95 @@
 	export default {
 		data() {
 			return {
-				formData: {
+				// 基础表单数据 
+				baseFormData: {
 					name: '',
 					age: '',
-					email: '',
-					sex: '',
-					hobby: [],
-					remarks: '',
-					checked: false,
-					country: -1,
-					birth: ''
+					introduction: '',
+					sex: 2,
+					hobby: [5]
 				},
-				sex: [{
-						text: '男',
-						value: '0'
-					},
-					{
-						text: '女',
-						value: '1'
-					},
-					{
-						text: '未知',
-						value: '2'
-					}
-				],
-				hobby: [{
-						text: '足球',
-						value: 0
-					},
-					{
-						text: '篮球',
-						value: 1
-					},
-					{
-						text: '游泳',
-						value: 2
-					}
-				],
-				range: ['中国', '美国', '澳大利亚'],
-				show: false,
+				// 表单数据
+				alignmentFormData: {
+					name: '',
+					age: '',
+				},
+				// 单选数据源
+				sexs: [{
+					text: '男',
+					value: 0
+				}, {
+					text: '女',
+					value: 1
+				}, {
+					text: '保密',
+					value: 2
+				}],
+				// 多选数据源
+				hobbys: [{
+					text: '跑步',
+					value: 0
+				}, {
+					text: '游泳',
+					value: 1
+				}, {
+					text: '绘画',
+					value: 2
+				}, {
+					text: '足球',
+					value: 3
+				}, {
+					text: '篮球',
+					value: 4
+				}, {
+					text: '其他',
+					value: 5
+				}],
+				// 分段器数据
+				current: 0,
+				items: ['左对齐', '顶部对齐'],
+				// 校验表单数据 
+				valiFormData: {
+					name: '',
+					age: '',
+					introduction: '',
+				},
+				// 校验规则
 				rules: {
 					name: {
 						rules: [{
-								required: true,
-								errorMessage: '请输入用户名'
-							},
-							{
-								minLength: 3,
-								maxLength: 15,
-								errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符'
-							}
-						]
+							required: true,
+							errorMessage: '姓名不能为空'
+						}]
 					},
 					age: {
 						rules: [{
-								required: true,
-								errorMessage: '请输入年龄'
-							},
-							{
-								format: 'int',
-								errorMessage: '年龄必须是数字'
-							},
-							{
-								minimum: 18,
-								maximum: 30,
-								errorMessage: '年龄应该大于 {minimum} 岁，小于 {maximum} 岁'
-							}
-						]
-					},
-					birth: {
+							required: true,
+							errorMessage: '年龄不能为空'
+						}, {
+							format: 'number',
+							errorMessage: '年龄只能输入数字'
+						}]
+					}
+				},
+				// 自定义表单数据
+				customFormData: {
+					name: '',
+					age: '',
+					hobby: []
+				},
+				// 自定义表单校验规则
+				customRules: {
+					name: {
 						rules: [{
 							required: true,
-							errorMessage: '请选择时间'
+							errorMessage: '姓名不能为空'
 						}]
 					},
-					email: {
-						rules: [{
-							format: 'email',
-							errorMessage: '请输入正确的邮箱地址'
-						}]
-					},
-					checked: {
-						rules: [{
-							format: 'bool'
-						}]
-					},
-					sex: {
+					age: {
 						rules: [{
 							required: true,
-							errorMessage: '请选择性别'
+							errorMessage: '年龄不能为空'
 						}]
 					},
 					hobby: {
@@ -167,92 +206,68 @@
 							}
 						]
 					}
+
+				},
+				dynamicFormData: {
+					email: '',
+					domains: {}
+				},
+				dynamicLists: [],
+				dynamicRules: {
+					email: {
+						rules: [{
+							required: true,
+							errorMessage: '域名不能为空'
+						}, {
+							format: 'email',
+							errorMessage: '域名格式错误'
+						}]
+					}
 				}
 			}
 		},
-		onLoad() {
-			uni.showLoading()
-			// this.formData 应该包含所有需要校验的表单
-			// 模拟异步请求数据
-			setTimeout(() => {
-				this.formData = {
-					id: 'testId',
-					name: 'DCloud',
-					age: 21,
-					email: '',
-					sex: '0',
-					hobby: [],
-					remarks: '热爱学习，热爱生活',
-					checked: false,
-					country: 2,
-					birth: ''
-				}
-				uni.hideLoading()
-			}, 500)
+		computed: {
+			// 处理表单排列切换
+			alignment() {
+				if (this.current === 0) return 'left'
+				if (this.current === 1) return 'top'
+				return 'left'
+			}
 		},
+		onLoad() {},
 		onReady() {
-			this.$refs.form.setRules(this.rules)
+			// 设置自定义表单校验规则，必须在节点渲染完毕后执行
+			this.$refs.customForm.setRules(this.customRules)
 		},
 		methods: {
-			birthChange(e) {
-				console.log(e)
+			onClickItem(e) {
+				console.log(e);
+				this.current = e.currentIndex
 			},
-			change(name, value) {
-				this.formData.checked = value
-				this.$refs.form.setValue(name, value)
+			add() {
+				this.dynamicLists.push({
+					label: '域名',
+					rules: [{
+						'required': true,
+						errorMessage: '域名项必填'
+					}],
+					id: Date.now()
+				})
 			},
-
-			/**
-			 * 手动提交
-			 * @param {Object} form
-			 */
-			submitForm(form) {
-				this.$refs[form]
-					.validate(['id', 'remarks'])
-					.then(res => {
-						console.log('表单的值：', res)
-						uni.showToast({
-							title: '验证成功'
-						})
+			del(id) {
+				let index = this.dynamicLists.findIndex(v => v.id === id)
+				this.dynamicLists.splice(index, 1)
+			},
+			submit(ref) {
+				this.$refs[ref].validate().then(res => {
+					console.log('success', res);
+					uni.showToast({
+						title: `校验通过`
 					})
-					.catch(errors => {
-						console.error('验证失败：', errors)
-					})
+				}).catch(err => {
+					console.log('err', err);
+				})
 			},
-
-			/**
-			 * 手动重置表单
-			 */
-			resetForm() {
-				this.$refs.form.resetFields()
-			},
-			/**
-			 * 部分表单校验
-			 * @param {Object} form
-			 */
-			validateField(form) {
-				this.$refs[form]
-					.validateField(['name', 'email'])
-					.then(res => {
-						uni.showToast({
-							title: '验证成功'
-						})
-						console.log('表单的值：', res)
-					})
-					.catch(errors => {
-						console.error('验证失败：', errors)
-					})
-			},
-
-			/**
-			 * 清除表单校验
-			 * @param {Object} form
-			 * @param {Object} name
-			 */
-			clearValidate(form, name) {
-				if (!name) name = []
-				this.$refs[form].clearValidate(name)
-			}
 		}
 	}
 </script>
@@ -358,40 +373,29 @@
 	}
 
 	.example {
-		padding: 0 10px 10px;
+		padding: 15px;
+		background-color: #fff;
 	}
 
-	.uni-input-border,
-	.uni-textarea-border {
-		flex: 1;
-		font-size: 14px;
-		color: #666;
-		border: 1px #e5e5e5 solid;
-		border-radius: 5px;
-		/* #ifndef APP-NVUE */
-		box-sizing: border-box;
-		/* #endif */
+	.segmented-control {
+		margin-bottom: 15px;
 	}
 
-	.uni-input-border {
-		padding: 0 10px;
-		height: 35px;
+	.button-group {
+		margin-top: 15px;
+		display: flex;
+		justify-content: space-around;
 	}
 
-	.uni-textarea-border {
-		padding: 10px;
-		height: 80px;
-	}
-
-	.label-box {
-		margin-right: 10px;
-	}
-
-	.transform-scale {
-		transform: scale(0.7);
+	.form-item {
+		display: flex;
+		align-items: center;
 	}
 
 	.button {
-		margin: 5px 10px;
+		display: flex;
+		align-items: center;
+		height: 35px;
+		margin-left: 10px;
 	}
 </style>

@@ -70,6 +70,7 @@
 
 	export default {
 		name: 'uni-easyinput',
+		emits: ['click', 'iconClick', 'update:modelValue', 'input', 'focus', 'blur', 'confirm'],
 		model: {
 			prop: 'modelValue',
 			event: 'update:modelValue'
@@ -143,7 +144,7 @@
 				}
 			},
 			errorMessage: {
-				type: String,
+				type: [String, Boolean],
 				default: ''
 			}
 		},

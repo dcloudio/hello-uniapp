@@ -149,7 +149,7 @@
 				if (this.labelAli === 'right') return 'flex-end';
 			},
 			labelLeft() {
-				return (this.labelPos === 'left' ? parseInt(this.labelWid) + 5 : 5) + 'px'
+				return (this.labelPos === 'left' ? parseInt(this.labelWid) : 0) + 'px'
 			}
 		},
 		watch: {
@@ -163,44 +163,31 @@
 			this.formRules = [];
 			this.formTrigger = this.validateTrigger;
 			// 处理 name，是否数组
-			if (this.name.indexOf('[') !== -1 && this.name.indexOf(']') !== -1) {
+			if (this.name && this.name.indexOf('[') !== -1 && this.name.indexOf(']') !== -1) {
 				this.isArray = true;
-				// const fieldData = this.name.split('[');
-				// const fieldName = fieldData[0];
-				// const fieldValue = fieldData[1].replace(']', '');
-				// this.arrayField = `${fieldName}_${fieldValue}`;
 				this.arrayField = this.name
+				// fix by mehaotian 修改不修改的情况，动态值不检验的问题
+				this.form.formData[this.name] = this.form._getValue(this.name, '')
 			}
-
+		},
+		mounted() {
 			if (this.form) {
 				this.form.childrens.push(this);
 			}
 			this.init();
 		},
-		// TODO vue2
+		// #ifndef VUE3
 		destroyed() {
 			if (this.__isUnmounted) return
-			if (this.form) {
-				this.form.childrens.forEach((item, index) => {
-					if (item === this) {
-						this.form.childrens.splice(index, 1)
-						delete this.form.formData[item.name]
-					}
-				})
-			}
+			this.unInit()
 		},
-		// TODO vue3
+		// #endif
+		// #ifdef VUE3
 		unmounted() {
 			this.__isUnmounted = true
-			if (this.form) {
-				this.form.childrens.forEach((item, index) => {
-					if (item === this) {
-						this.form.childrens.splice(index, 1)
-						delete this.form.formData[item.name]
-					}
-				})
-			}
+			this.unInit()
 		},
+		// #endif
 		methods: {
 			init() {
 				if (this.form) {
@@ -217,15 +204,13 @@
 					this.labelPos = this.labelPosition ? this.labelPosition : labelPosition;
 
 					if (this.label) {
-						this.labelWid = (this.labelWidth ? this.labelWidth : (labelWidth || 65))
+						this.labelWid = (this.labelWidth ? this.labelWidth : (labelWidth || 70))
 					} else {
 						this.labelWid = (this.labelWidth ? this.labelWidth : (labelWidth || 'auto'))
 					}
 					if (this.labelWid && this.labelWid !== 'auto') {
 						this.labelWid += 'px'
 					}
-					// this.labelWid = (this.labelWidth ? this.labelWidth : labelWidth) + 'px'
-					// this.labelWid = this.label ? (this.labelWidth ? this.labelWidth : labelWidth) : 0;
 					this.labelAli = this.labelAlign ? this.labelAlign : labelAlign;
 
 					// 判断第一个 item
@@ -256,14 +241,22 @@
 					if (this.rules.length > 0) {
 						validator.updateSchema(formRules);
 					}
-					// if (name) {
-					// 	this.form.formData[name] = this.form._getValue(name, '');
-					// }
+
 					this.validator = validator;
 				} else {
 					this.labelPos = this.labelPosition || 'left';
 					this.labelWid = this.labelWidth || 65;
 					this.labelAli = this.labelAlign || 'left';
+				}
+			},
+			unInit() {
+				if (this.form) {
+					this.form.childrens.forEach((item, index) => {
+						if (item === this) {
+							this.form.childrens.splice(index, 1)
+							delete this.form.formData[item.name]
+						}
+					})
 				}
 			},
 			/**

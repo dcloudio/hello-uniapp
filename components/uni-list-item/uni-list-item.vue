@@ -3,7 +3,7 @@
 	<cell>
 		<!-- #endif -->
 
-		<view :class="{ 'uni-list-item--disabled': disabled }" :hover-class="(!clickable && !link) || disabled || showSwitch ? '' : 'uni-list-item--hover'" class="uni-list-item" @click.stop="onClick">
+		<view :class="{ 'uni-list-item--disabled': disabled }" :hover-class="(!clickable && !link) || disabled || showSwitch ? '' : 'uni-list-item--hover'" class="uni-list-item" @click="onClick">
 			<view v-if="!isFirstChild" class="border--left" :class="{ 'uni-list--border': border }"></view>
 			<view class="uni-list-item__container" :class="{ 'container--right': showArrow || link, 'flex--direction': direction === 'column' }">
 				<slot name="header">
@@ -73,6 +73,7 @@
 	 */
 	export default {
 		name: 'UniListItem',
+		emits: ['click', 'switchChange'],
 		props: {
 			direction: {
 				type: String,
