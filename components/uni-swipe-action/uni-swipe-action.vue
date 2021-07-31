@@ -11,14 +11,9 @@
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=181
 	 */
 	export default {
-		name: "UniSwipeAction",
+		name: "uniSwipeAction",
 		data() {
 			return {};
-		},
-		provide() {
-			return {
-				swipeaction: this
-			};
 		},
 		created() {
 			this.children = [];

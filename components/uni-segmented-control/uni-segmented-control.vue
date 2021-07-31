@@ -31,6 +31,7 @@
 
 	export default {
 		name: 'UniSegmentedControl',
+		emits: ['clickItem'],
 		props: {
 			current: {
 				type: Number,

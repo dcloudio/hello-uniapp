@@ -84,6 +84,7 @@
 
 	export default {
 		name: 'FilterDropdown',
+		emits: ['change'],
 		components: {
 			checkBox
 		},

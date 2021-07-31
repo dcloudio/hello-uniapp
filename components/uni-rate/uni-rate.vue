@@ -74,6 +74,11 @@
 				type: [Number, String],
 				default: 1
 			},
+			modelValue: {
+				// 当前评分
+				type: [Number, String],
+				default: 1
+			},
 			max: {
 				// 最大评分
 				type: [Number, String],
@@ -117,6 +122,9 @@
 			value(newVal) {
 				this.valueSync = Number(newVal);
 			},
+			modelValue(newVal) {
+				this.valueSync = Number(newVal);
+			},
 		},
 		computed: {
 			stars() {
@@ -147,7 +155,7 @@
 			}
 		},
 		created() {
-			this.valueSync = Number(this.value);
+			this.valueSync = Number(this.value || this.modelValue);
 			this._rateBoxLeft = 0
 			this._oldValue = null
 		},
@@ -280,6 +288,7 @@
 			_onChange() {
 
 				this.$emit("input", this.valueSync);
+				this.$emit("update:modelValue", this.valueSync);
 				this.$emit("change", {
 					value: this.valueSync
 				});

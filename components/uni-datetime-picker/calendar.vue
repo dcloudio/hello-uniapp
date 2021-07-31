@@ -209,28 +209,28 @@
 			}
 		},
 		watch: {
-			date(newVal, oldVal) {
-				// this.cale.setDate(newVal)
-				this.init(newVal)
+			date: {
+				immediate: true,
+				handler(newVal, oldVal) {
+					setTimeout(() => {
+						this.init(newVal)
+					}, 100)
+				}
 			},
 			startDate(val) {
 				this.cale.resetSatrtDate(val)
+				this.cale.setDate(this.nowDate.fullDate)
+				this.weeks = this.cale.weeks
 			},
 			endDate(val) {
 				this.cale.resetEndDate(val)
+				this.cale.setDate(this.nowDate.fullDate)
+				this.weeks = this.cale.weeks
 			},
 			selected(newVal) {
 				this.cale.setSelectInfo(this.nowDate.fullDate, newVal)
 				this.weeks = this.cale.weeks
 			},
-			// tempRange: {
-			// 	immediate: true,
-			// 	handler(newVal, oldVal) {debugger
-			// 		if (!oldVal) return
-			// 		if (!newVal.before) this.timeRange.startTime = ''
-			// 		if (!newVal.after) this.timeRange.endTime = ''
-			// 	}
-			// },
 			pleStatus: {
 				immediate: true,
 				handler(newVal, oldVal) {
@@ -260,8 +260,10 @@
 							this.cale.setDefaultMultiple(before, after)
 							if (which === 'left') {
 								this.setDate(before)
+								this.weeks = this.cale.weeks
 							} else {
 								this.setDate(after)
+								this.weeks = this.cale.weeks
 							}
 							this.cale.lastHover = true
 						}
@@ -345,6 +347,17 @@
 				this.weeks = this.cale.weeks
 				this.nowDate = this.calendar = this.cale.getInfo(date)
 			},
+			// choiceDate(weeks) {
+			// 	if (weeks.disable) return
+			// 	this.calendar = weeks
+			// 	// 设置多选
+			// 	this.cale.setMultiple(this.calendar.fullDate, true)
+			// 	this.weeks = this.cale.weeks
+			// 	this.tempSingleDate = this.calendar.fullDate
+			// 	this.tempRange.before = this.cale.multipleStatus.before
+			// 	this.tempRange.after = this.cale.multipleStatus.after
+			// 	this.change()
+			// },
 			/**
 			 * 打开日历弹窗
 			 */

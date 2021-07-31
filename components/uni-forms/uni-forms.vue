@@ -60,6 +60,7 @@
 			prop: 'modelValue',
 			event: 'update:modelValue'
 		},
+		emits: ['update:modelValue', 'input', 'reset', 'validate', 'submit'],
 		props: {
 			// 即将弃用
 			value: {
@@ -129,6 +130,11 @@
 			rules(newVal) {
 				// 如果规则发生变化，要初始化组件
 				this.init(newVal);
+			},
+			labelPosition() {
+				this.childrens.forEach(vm => {
+					vm.init()
+				})
 			}
 		},
 		created() {
@@ -172,7 +178,10 @@
 		methods: {
 			init(formRules) {
 				// 判断是否有规则
-				if (Object.keys(formRules).length === 0) return;
+				if (Object.keys(formRules).length === 0) {
+					this.formData = this.dataValue
+					return
+				};
 				this.formRules = formRules;
 				this.validator = new Validator(formRules);
 				this.registerWatch();
@@ -200,7 +209,8 @@
 								this.formData[key] = this._getValue(key, value);
 							}
 						}, {
-							deep: true
+							deep: true,
+							immediate: true
 						}
 					);
 					this.unwatchs.push(watch);
@@ -242,6 +252,7 @@
 					if (inputComp) {
 						inputComp.errMsg = '';
 						inputComp.$emit('input', inputComp.multiple ? [] : '');
+						inputComp.$emit('update:modelValue', inputComp.multiple ? [] : '');
 					}
 				});
 
@@ -268,7 +279,6 @@
 			 * 校验所有或者部分表单
 			 */
 			async validateAll(invalidFields, type, keepitem, callback) {
-				// const childrens = this.childrens;
 				let childrens = []
 				for (let i in invalidFields) {
 					const item = this.childrens.find(v => v.name === i)
@@ -276,9 +286,7 @@
 						childrens.push(item)
 					}
 				}
-				// childrens.forEach(item => {
-				// 	item.errMsg = '';
-				// });
+
 				if (!callback && typeof keepitem === 'function') {
 					callback = keepitem;
 				}
@@ -317,6 +325,8 @@
 							if (this.errShowType === 'toast' || this.errShowType === 'modal') break;
 						}
 					}
+				} else {
+					newFormData = invalidFields
 				}
 				if (Array.isArray(results)) {
 					if (results.length === 0) results = null;

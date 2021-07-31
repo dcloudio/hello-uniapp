@@ -12,6 +12,7 @@
 <script>
 	export default {
 		name: 'TableCheckbox',
+		emits: ['checkboxSelected'],
 		props: {
 			indeterminate: {
 				type: Boolean,

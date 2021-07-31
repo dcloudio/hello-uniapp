@@ -23,6 +23,7 @@
 	 */
 	export default {
 		name: 'UniIcons',
+		emits: ['click'],
 		props: {
 			type: {
 				type: String,

@@ -35,6 +35,7 @@
 <script>
 	export default {
 		name: "uploadFile",
+		emits: ['uploadFiles', 'choose', 'delFile'],
 		props: {
 			filesList: {
 				type: Array,

@@ -46,6 +46,7 @@
 			keypress
 			// #endif
 		},
+		emits: ['change', 'maskClick'],
 		props: {
 			// 开启动画
 			animation: {

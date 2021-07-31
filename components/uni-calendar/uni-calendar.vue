@@ -87,6 +87,7 @@
 		components: {
 			calendarItem
 		},
+		emits: ['close', 'confirm', 'change', 'monthSwitch'],
 		props: {
 			date: {
 				type: String,
