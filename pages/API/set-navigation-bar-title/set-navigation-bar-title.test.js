@@ -1,4 +1,3 @@
-//var cv = require('opencv/lib/opencv');
 
 describe('pages/API/set-navigation-bar-title/set-navigation-bar-title.vue', () => {
     let page
