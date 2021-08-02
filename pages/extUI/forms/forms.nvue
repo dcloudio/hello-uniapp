@@ -99,7 +99,7 @@
 	export default {
 		data() {
 			return {
-				// 基础表单数据 
+				// 基础表单数据
 				baseFormData: {
 					name: '',
 					age: '',
@@ -146,7 +146,7 @@
 				// 分段器数据
 				current: 0,
 				items: ['左对齐', '顶部对齐'],
-				// 校验表单数据 
+				// 校验表单数据
 				valiFormData: {
 					name: '',
 					age: '',

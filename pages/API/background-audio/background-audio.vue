@@ -35,7 +35,7 @@
 </template>
 <script>
 
-	var util = require('../../../common/util.js');
+	import * as util from '../../../common/util.js';
 
 	export default {
 		data() {

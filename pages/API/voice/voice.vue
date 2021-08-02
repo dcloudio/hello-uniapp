@@ -61,7 +61,7 @@
 	// #ifdef APP-PLUS
 	import permision from "@/common/permission.js"
 	// #endif
-    var util = require('../../../common/util.js')
+    import * as util from '../../../common/util.js'
     var playTimeInterval = null;
     var recordTimeInterval = null;
     var recorderManager = null;

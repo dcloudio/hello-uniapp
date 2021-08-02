@@ -1246,6 +1246,7 @@
 					}
 				},
 				// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
+				// #ifndef VUE3
 				{
 					"path": "vant-button/vant-button",
 					"style": {
@@ -1255,6 +1256,7 @@
 						}
 					}
 				},
+				// #endif
 				// #endif
 				{
 					"path": "global/global",

@@ -1,1 +1,1 @@
-module.exports = require('./lib/marked');
+export default './lib/marked'
