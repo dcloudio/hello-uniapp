@@ -114,7 +114,7 @@ const store = new Vuex.Store({
 
 					},
 					fail: (err) => {
-						reject(res)
+						reject(err)
 					}
 				})
 			})
