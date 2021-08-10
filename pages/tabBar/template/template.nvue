@@ -117,10 +117,12 @@
 					},
 					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
+					// #ifndef VUE3
 					{
 					    name: '微信自定义组件示例（vant ui）',
 					    url: 'vant-button'
 					}
+					// #endif
 					// #endif
 				]
 			}

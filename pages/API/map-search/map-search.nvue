@@ -11,7 +11,7 @@
 <script>
     // 116.397477,39.908692
     let mapSearch = weex.requireModule('mapSearch')
-    module.exports = {
+    export default {
         data() {
             return {
                 markers: [{

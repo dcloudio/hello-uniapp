@@ -201,7 +201,7 @@
             longitude: 116.3974770000,
         }
     ];
-    module.exports = {
+    export default {
         components: {
             uniList,
             uniListItem
