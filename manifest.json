@@ -1,6 +1,6 @@
 {
     "name" : "hello uni-app",
-    "appid" : "",
+    "appid" : "__UNI__HelloUniApp",
     "description" : "应用描述",
     "versionName" : "1.0.0",
     "versionCode" : "100",
