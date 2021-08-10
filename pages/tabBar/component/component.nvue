@@ -83,7 +83,7 @@
 							'video'
 						],
 					},
-					// #ifndef MP-TOUTIAO
+					// #ifndef MP-TOUTIAO || MP-KUAISHOU
 					{
 						id: 'map',
 						name: '地图',

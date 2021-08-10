@@ -295,7 +295,7 @@
         flex-direction: column;
         overflow: hidden;
         background-color: #ffffff;
-        /* #ifdef MP-ALIPAY || MP-BAIDU */
+        /* #ifndef APP-PLUS */
         height: 100vh;
         /* #endif */
     }
