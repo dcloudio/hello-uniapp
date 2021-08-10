@@ -210,9 +210,7 @@
 	.box {
 		width: 40px;
 		height: 40px;
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		justify-content: center;
 		align-items: center;
 		text-align: center;

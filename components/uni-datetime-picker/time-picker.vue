@@ -146,6 +146,10 @@
 				type: [String, Number],
 				default: ''
 			},
+			modelValue: {
+				type: [String, Number],
+				default: ''
+			},
 			start: {
 				type: [Number, String],
 				default: ''
@@ -229,17 +233,6 @@
 			},
 			seconds(newVal) {
 				this.checkValue('second', this.second, newVal)
-			}
-		},
-		created() {
-			this.form = this.getForm('uniForms')
-			this.formItem = this.getForm('uniFormsItem')
-
-			if (this.formItem) {
-				if (this.formItem.name) {
-					this.rename = this.formItem.name
-					this.form.inputChildrens.push(this)
-				}
 			}
 		},
 		computed: {
@@ -429,20 +422,6 @@
 
 			lessThanTen(item) {
 				return item < 10 ? '0' + item : item
-			},
-
-			/**
-			 * 获取父元素实例
-			 */
-			getForm(name = 'uniForms') {
-				let parent = this.$parent;
-				let parentName = parent.$options.name;
-				while (parentName !== name) {
-					parent = parent.$parent;
-					if (!parent) return false
-					parentName = parent.$options.name;
-				}
-				return parent;
 			},
 
 			/**
@@ -697,13 +676,13 @@
 				this.time = this.createDomSting()
 				if (!emit) return
 				if (this.returnType === 'timestamp' && this.type !== 'time') {
-					this.formItem && this.formItem.setValue(this.createTimeStamp(this.time))
 					this.$emit('change', this.createTimeStamp(this.time))
 					this.$emit('input', this.createTimeStamp(this.time))
+					this.$emit('update:modelValue', this.createTimeStamp(this.time))
 				} else {
-					this.formItem && this.formItem.setValue(this.time)
 					this.$emit('change', this.time)
 					this.$emit('input', this.time)
+					this.$emit('update:modelValue', this.time)
 				}
 			},
 
@@ -746,9 +725,9 @@
 			 */
 			clearTime() {
 				this.time = ''
-				this.formItem && this.formItem.setValue(this.time)
 				this.$emit('change', this.time)
 				this.$emit('input', this.time)
+				this.$emit('update:modelValue', this.time)
 				this.tiggerTimePicker()
 			},
 

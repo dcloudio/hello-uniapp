@@ -20,7 +20,7 @@ export const get_extname = (fileExtname) => {
 		let extname = fileExtname.replace(/(\[|\])/g, '')
 		return extname.split(',')
 	} else {
-		return this.fileExtname
+		return fileExtname
 	}
 	return []
 }
@@ -31,6 +31,12 @@ export const get_extname = (fileExtname) => {
 export const get_files_and_is_max = (res, _extname) => {
 	let filePaths = []
 	let files = []
+	if(!_extname || _extname.length === 0){
+		return {
+			filePaths,
+			files
+		}
+	}
 	res.tempFiles.forEach(v => {
 		let fileFullName = get_file_ext(v.name)
 		const extname = fileFullName.ext.toLowerCase()

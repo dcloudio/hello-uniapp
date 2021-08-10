@@ -9,6 +9,10 @@
 		<view class="example-body">
 			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/" showUnderLine="false" color="#0000FF"></uni-link>
 		</view>
+		<uni-section title="支持插槽" type="line"></uni-section>
+		<view class="example-body">
+			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/" showUnderLine="false" color="#0000FF">插槽内容</uni-link>
+		</view>
 	</view>
 </template>
 

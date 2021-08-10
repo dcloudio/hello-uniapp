@@ -2,7 +2,7 @@
 	<view class="uni-file-picker__container">
 		<view class="file-picker__box" v-for="(item,index) in filesList" :key="index" :style="boxStyle">
 			<view class="file-picker__box-content" :style="borderStyle">
-				<image class="file-image" :src="item.path" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
+				<image class="file-image" :src="item.url" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
 				<view v-if="delIcon && !readonly" class="icon-del-box" @click.stop="delFile(index)">
 					<view class="icon-del"></view>
 					<view class="icon-del rotate"></view>

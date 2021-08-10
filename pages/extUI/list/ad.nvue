@@ -5,7 +5,7 @@
 		<uni-list>
 			<template v-for="(item,index) in listData">
 				<!-- <uni-list-ad v-if="(index > 0 && (index+1) % 10 == 0)"></uni-list-ad> -->
-				<ad adpid="1111111111" v-if="(index > 0 && (index+1) % 10 == 0)" unit-id="" appid="" apid="" type="feed"/>
+				<ad adpid="1111111111" v-if="(index > 0 && (index+1) % 10 == 0)" unit-id="" appid="" apid="" type="feed"></ad>
 				<uni-list-item v-else :title="item.title" :note="item.author_name" :thumb="item.cover" thumb-size="lg" />
 			</template>
 		</uni-list>

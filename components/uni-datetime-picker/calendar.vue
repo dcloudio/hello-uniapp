@@ -212,9 +212,10 @@
 			date: {
 				immediate: true,
 				handler(newVal, oldVal) {
-					setTimeout(() => {
-						this.init(newVal)
-					}, 100)
+					if (!this.range)
+						setTimeout(() => {
+							this.init(newVal)
+						}, 100)
 				}
 			},
 			startDate(val) {
@@ -537,7 +538,7 @@
 
 	.uni-calendar--fixed {
 		position: fixed;
-		bottom: 0;
+		bottom: calc(var(--window-bottom));
 		left: 0;
 		right: 0;
 		transition-property: transform;
