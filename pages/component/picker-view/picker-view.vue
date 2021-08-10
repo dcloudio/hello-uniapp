@@ -6,7 +6,7 @@
 				日期：{{year}}年{{month}}月{{day}}日
 			</view>
 		</view>
-        <picker-view v-if="visible" :indicator-style="indicatorStyle" :value="value" @change="bindChange">
+        <picker-view v-if="visible" :indicator-style="indicatorStyle" mask-style="maskStyle" :value="value" @change="bindChange">
             <picker-view-column>
                 <view class="item" v-for="(item,index) in years" :key="index">{{item}}年</view>
             </picker-view-column>
@@ -56,7 +56,10 @@
 				 */
                 visible: true,
                 // indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`
-                indicatorStyle: `height: 50px;`
+                indicatorStyle: `height: 50px;`,
+				// #ifdef MP-KUAISHOU
+				maskStyle: "padding:10px 0"
+				// #endif
             }
         },
         methods: {

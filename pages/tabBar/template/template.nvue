@@ -68,7 +68,7 @@
 						]
 					},
 					// #endif
-					// #ifndef QUICKAPP-WEBVIEW
+					// #ifndef QUICKAPP-WEBVIEW || MP-KUAISHOU
 					{
 						name: '顶部选项卡',
 						url: 'tabbar'

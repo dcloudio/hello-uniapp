@@ -257,6 +257,7 @@
                     open: false,
                     pages: mediaPages
                 },
+				// #ifndef MP-KUAISHOU
                 {
                     id: 'location',
                     name: '位置',
@@ -291,6 +292,7 @@
                         // #endif
                     ]
                 },
+				// #endif
                 {
                     id: 'storage',
                     name: '数据',
@@ -321,7 +323,7 @@
                     open: false
                 },
                 // #endif
-                // #ifndef H5 || QUICKAPP-WEBVIEW
+                // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU
                 {
                     id: 'login',
                     name: '登录',
