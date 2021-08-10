@@ -148,6 +148,7 @@
 				popover: null,
 				isEmitValue: false,
 				isPhone: false,
+				isFirstShow: true,
 				iconBase64: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACVklEQVRoge2Zv2vTQRTAP4oWJQQskmolBAnSQVMcSxbp4ubmIEWETu0oIjg5iIOgpLNunfQfMHToUgpOVgfRqRAL4q8WRLQVq4sOdyHPL9/7evfNJReS+8DB433v7r37fl/eu9xBJBKUB0BLt+uDaOOQZb8SUNXyuKuRftg46NeXcBww6M8AC0ANOAycAyb1s7e6+SbNxi/gBfAQ2HadcA7YB/4MUPsKzLos4jzwewAcNy3mhMnx5I/9BiqUAD4DDWAXmAfqWt8Enlq+GBfSbEwAt4AicAxYBO7aTPaGzhu4KvTLQn/Hh9cpmGzcFvqmaXAyaxWE/MGTg93yXsgFUyfbOrJCJ2s8y+tRP21s0fmMTlmih8zT8WnN1GloCmJWaF0CpvrlSAb1/3fJXshNT470hZEIrZeoahqaU8BZ10Exa4XGtiCaKKL+EIHaMX8U81ZEP7ntrwi7n4CfWi7p+UCFdFdh7Rpaps9+mn93rjY2THut0QqtoVlIkpi1QjNyCzEdnl0W+idCXxb6VmKudaGfsbBhRbcHdEWhf5eYt0o6FVR6BjhqYcOKoQkt2y/SAB5rWVbpVeCilmUl3hb6JNeAI1p+ZWEjFzH9hsY2tEwHdHX9DGATWNLyceCeGL/YhY+58LWhy9o0uhJDKw3T4dlr4L6WZab5JvRBGJqs9UPI5R44lQfpx56pUzK0NlA3R6AK1Engu1+/nGhfK7R5bjtwGnXdFfpSJ6190Quz5grqQCC048lFXMhy2nQZWkUVsRowZv8OvLOPCvdHwE5APyKRSMQzfwE22DtT3T5PPwAAAABJRU5ErkJggg=='
 			}
 		},
@@ -157,7 +158,11 @@
 				default: 'datetime'
 			},
 			value: {
-				type: [String, Number, Array],
+				type: [String, Number, Array, Date],
+				default: ''
+			},
+			modelValue: {
+				type: [String, Number, Array, Date],
 				default: ''
 			},
 			start: {
@@ -207,6 +212,8 @@
 				handler(newVal, oldVal) {
 					if (newVal.indexOf('time') !== -1) {
 						this.hasTime = true
+					} else {
+						this.hasTime = false
 					}
 					if (newVal.indexOf('range') !== -1) {
 						this.isRange = true
@@ -284,10 +291,34 @@
 				return this.isRange ? 653 : 301
 			}
 		},
+		created() {
+			this.form = this.getForm('uniForms')
+			this.formItem = this.getForm('uniFormsItem')
+
+			// if (this.formItem) {
+			// 	if (this.formItem.name) {
+			// 		this.rename = this.formItem.name
+			// 		this.form.inputChildrens.push(this)
+			// 	}
+			// }
+		},
 		mounted() {
 			this.platform()
 		},
 		methods: {
+			/**
+			 * 获取父元素实例
+			 */
+			getForm(name = 'uniForms') {
+				let parent = this.$parent;
+				let parentName = parent.$options.name;
+				while (parentName !== name) {
+					parent = parent.$parent;
+					if (!parent) return false
+					parentName = parent.$options.name;
+				}
+				return parent;
+			},
 			initPicker(newVal) {
 				if (!newVal || Array.isArray(newVal) && !newVal.length) {
 					this.$nextTick(() => {
@@ -316,17 +347,6 @@
 					const endDate = defAfter.defDate
 					this.range.startDate = this.tempRange.startDate = startDate
 					this.range.endDate = this.tempRange.endDate = endDate
-
-					setTimeout(() => {
-						if (startDate && endDate) {
-							if (this.diffDate(startDate, endDate) < 30) {
-								this.$refs.right.next()
-							}
-						} else {
-							this.$refs.right.next()
-							this.$refs.right.cale.lastHover = false
-						}
-					}, 100)
 
 					if (this.hasTime) {
 						this.range.startDate = defBefore.defDate + ' ' + defBefore.defTime
@@ -383,6 +403,22 @@
 				}).exec()
 				setTimeout(() => {
 					this.popup = !this.popup
+					if (!this.isPhone && this.isRange && this.isFirstShow) {
+						this.isFirstShow = false
+						const {
+							startDate,
+							endDate
+						} = this.range
+						if (startDate && endDate) {
+							if (this.diffDate(startDate, endDate) < 30) {
+								this.$refs.right.next()
+							}
+						} else {
+							this.$refs.right.next()
+							this.$refs.right.cale.lastHover = false
+						}
+					}
+
 				}, 20)
 			},
 
@@ -393,12 +429,15 @@
 				}, 20)
 			},
 			setEmit(value) {
-				if (this.returnType === "timestamp") {
+				if (this.returnType === "timestamp" || this.returnType === "date") {
 					if (!Array.isArray(value)) {
 						if (!this.hasTime) {
 							value = value + ' ' + '00:00:00'
 						}
 						value = this.createTimestamp(value)
+						if (this.returnType === "date") {
+							value = new Date(value)
+						}
 					} else {
 						if (!this.hasTime) {
 							value[0] = value[0] + ' ' + '00:00:00'
@@ -406,10 +445,16 @@
 						}
 						value[0] = this.createTimestamp(value[0])
 						value[1] = this.createTimestamp(value[1])
+						if (this.returnType === "date") {
+							value[0] = new Date(value[0])
+							value[1] = new Date(value[1])
+						}
 					}
 				}
+				this.formItem && this.formItem.setValue(value)
 				this.$emit('change', value)
 				this.$emit('input', value)
+				this.$emit('update:modelValue', value)
 				this.isEmitValue = true
 			},
 			createTimestamp(date) {
@@ -563,30 +608,49 @@
 			clear(needEmit = true) {
 				if (!this.isRange) {
 					this.singleVal = ''
-					this.$refs.pcSingle.calendar.fullDate = ''
-					this.$refs.pcSingle.setDate()
+					if (this.isPhone) {
+						this.defSingleDate = ''
+					} else {
+						this.$refs.pcSingle.calendar.fullDate = ''
+						this.$refs.pcSingle.setDate()
+					}
 					if (needEmit) {
+						this.formItem && this.formItem.setValue('')
 						this.$emit('change', '')
 						this.$emit('input', '')
+						this.$emit('update:modelValue', '')
 					}
 				} else {
 					this.range.startDate = ''
 					this.range.endDate = ''
 					this.tempRange = {}
-					this.$refs.left.cale.multipleStatus.before = ''
-					this.$refs.left.cale.multipleStatus.after = ''
-					this.$refs.left.cale.multipleStatus.data = []
-					this.$refs.left.cale.lastHover = false
-					this.$refs.left.setDate()
-					this.$refs.right.cale.multipleStatus.before = ''
-					this.$refs.right.cale.multipleStatus.after = ''
-					this.$refs.right.cale.multipleStatus.data = []
-					this.$refs.right.cale.lastHover = false
-					this.$refs.right.setDate()
-					this.$refs.right.next()
+					if (this.isPhone) {
+						this.endMultipleStatus = Object.assign({}, this.endMultipleStatus, {
+							before: '',
+							after: '',
+							data: [],
+							fulldate: ''
+						}, {
+							which: 'left'
+						})
+					} else {
+						this.$refs.left.cale.multipleStatus.before = ''
+						this.$refs.left.cale.multipleStatus.after = ''
+						this.$refs.left.cale.multipleStatus.data = []
+						this.$refs.left.cale.lastHover = false
+						this.$refs.left.setDate()
+						this.$refs.right.cale.multipleStatus.before = ''
+						this.$refs.right.cale.multipleStatus.after = ''
+						this.$refs.right.cale.multipleStatus.data = []
+						this.$refs.right.cale.lastHover = false
+						this.$refs.right.setDate()
+						this.$refs.right.next()
+					}
 					if (needEmit) {
+						this.formItem && this.formItem.setValue([])
 						this.$emit('change', [])
 						this.$emit('input', [])
+						this.$emit('update:modelValue', [])
 					}
 				}
 			},
@@ -655,7 +719,7 @@
 		position: relative;
 	}
 
-	.uni-date-editor--x:hover .uni-date__icon-clear {
+	.uni-date-editor--x .uni-date__icon-clear {
 		position: absolute;
 		top: 5px;
 		right: 0;
@@ -666,10 +730,6 @@
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
-	}
-
-	.uni-date__icon-clear {
-		display: none;
 	}
 
 	.uni-date__input {

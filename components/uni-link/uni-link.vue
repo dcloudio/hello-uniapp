@@ -1,6 +1,10 @@
 <template>
-	<a v-if="isShowA" class="uni-link" :href="href" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}" :style="{color,fontSize:fontSize+'px'}" :download="download">{{text}}</a>
-	<text v-else class="uni-link" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}" :style="{color,fontSize:fontSize+'px'}" @click="openURL">{{text}}</text>
+	<a v-if="isShowA" class="uni-link" :href="href" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}" :style="{color,fontSize:fontSize+'px'}" :download="download">
+		<slot>{{text}}</slot>
+	</a>
+	<text v-else class="uni-link" :class="{'uni-link--withline':showUnderLine===true||showUnderLine==='true'}" :style="{color,fontSize:fontSize+'px'}" @click="openURL">
+		<slot>{{text}}</slot>
+	</text>
 </template>
 
 <script>

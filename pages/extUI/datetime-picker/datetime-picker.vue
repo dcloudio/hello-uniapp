@@ -3,19 +3,31 @@
 		<text class="example-info">可以同时选择日期和时间的选择器</text>
 		<uni-section :title="'日期用法：' + single" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker type="date" :clearIcon="false" :value="single" @maskClick="maskClick" />
-		</view>
-		<uni-section :title="'时间戳用法：' + single" type="line"></uni-section>
-		<view class="example-body">
-			<uni-datetime-picker returnType="timestamp" :value="single" @change="changeLog($event)" start="2021-3-20" end="2021-5-20" />
+			<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @maskClick="maskClick" />
 		</view>
 		<uni-section :title="'日期时间用法：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker type="datetime" v-model="datetimesingle" @change="changeLog" />
 		</view>
+		<uni-section :title="'日期范围用法：' + '[' + range + ']'" type="line"></uni-section>
+		<view class="example-body">
+			<uni-datetime-picker v-model="range" type="daterange" rangeSeparator="至" @maskClick="maskClick" />
+		</view>
+		<uni-section :title="'日期时间范围用法：' + '[' + datetimerange + ']' " type="line"></uni-section>
+		<view class="example-body">
+			<uni-datetime-picker v-model="datetimerange" type="datetimerange" rangeSeparator="至" />
+		</view>
 		<uni-section :title="'v-model用法：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" />
+		</view>
+		<uni-section :title="'时间戳用法：' + single" type="line"></uni-section>
+		<view class="example-body">
+			<uni-datetime-picker returnType="timestamp" v-model="single" @change="changeLog($event)" start="2021-3-20" end="2021-5-20" />
+		</view>
+		<uni-section :title="'date 对象用法：' + datetimesingle" type="line"></uni-section>
+		<view class="example-body">
+			<uni-datetime-picker type="datetime" returnType="date" v-model="datetimesingle" @change="changeLog" />
 		</view>
 		<uni-section :title="'插槽用法：' + single" type="line"></uni-section>
 		<view class="example-body">
@@ -28,14 +40,6 @@
 		<uni-section :title="'disabled用法：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" disabled />
-		</view>
-		<uni-section :title="'日期范围用法：' + '[' + range + ']'" type="line"></uni-section>
-		<view class="example-body">
-			<uni-datetime-picker v-model="range" type="daterange" rangeSeparator="至" @maskClick="maskClick" />
-		</view>
-		<uni-section :title="'日期时间范围用法：' + '[' + datetimerange + ']' " type="line"></uni-section>
-		<view class="example-body">
-			<uni-datetime-picker v-model="datetimerange" type="datetimerange" rangeSeparator="至" />
 		</view>
 	</view>
 </template>
@@ -67,9 +71,9 @@
 		mounted() {
 			setTimeout(() => {
 				// this.datetimesingle = '2021-7-10'
-				this.single = '2021-2-12'
-				this.range = ['2021-03-1', '2021-4-28']
-				this.datetimerange = ["2021-07-08 0:00:00", "2021-08-08 23:59:59"]
+				// this.single = '2021-2-12'
+				// this.range = ['2021-03-1', '2021-4-28']
+				// this.datetimerange = ["2021-07-08 0:00:00", "2021-08-08 23:59:59"]
 				// this.start = '2021-07-10'
 				// this.end = '2021-07-20'
 			}, 3000)

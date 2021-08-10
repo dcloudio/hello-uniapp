@@ -76,11 +76,20 @@
 				this.root.minWidth = this.widthThArr.reduce((a, b) => Number(a) + Number(b)) + selectionWidth
 			}
 		},
+		// #ifndef VUE3
 		destroyed() {
 			const index = this.root.trChildren.findIndex(i => i === this)
 			this.root.trChildren.splice(index, 1)
 			this.root.isNodata()
 		},
+		// #endif
+		// #ifdef VUE3
+		unmounted() {
+			const index = this.root.trChildren.findIndex(i => i === this)
+			this.root.trChildren.splice(index, 1)
+			this.root.isNodata()
+		},
+		// #endif
 		methods: {
 			minWidthUpdate(width) {
 				this.widthThArr.push(width)
