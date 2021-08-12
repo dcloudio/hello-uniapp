@@ -257,7 +257,7 @@
 		},
 		// #endif
 		methods: {
-			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+			...mapMutations(['setLeftWinActive']),
 			goDetailPage(path) {
 				const url = '/pages/extUI/' + path + '/' + path
 				if (this.hasLeftWin) {
