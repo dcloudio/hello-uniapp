@@ -60,6 +60,9 @@
 				// #ifdef MP-KUAISHOU
 				maskStyle: "padding:10px 0"
 				// #endif
+				// #ifndef MP-KUAISHOU
+				maskStyle: ""
+				// #endif
             }
         },
         methods: {
