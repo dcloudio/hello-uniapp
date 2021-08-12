@@ -180,7 +180,7 @@
 		},
 		// #endif
 		methods: {
-			...mapMutations(['setMenu', 'setMatchLeftWindow', 'setLeftWinActive', 'setActiveOpen']),
+			...mapMutations(['setLeftWinActive', 'setActiveOpen']),
 			triggerCollapse(e, id) {
 				if (!this.list[e].pages) {
 					this.goDetailPage('', this.list[e].url);
