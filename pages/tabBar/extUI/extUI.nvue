@@ -16,11 +16,15 @@
 	</view>
 </template>
 <script>
-	import {
-		mapState,
-		mapMutations
-	} from 'vuex';
 	export default {
+		props: {
+			hasLeftWin: {
+				type: Boolean
+			},
+			leftWinActive: {
+				type: String
+			}
+		},
 		data() {
 			return {
 				hideList: [
@@ -237,27 +241,7 @@
 				url: '/pages/about/about'
 			});
 		},
-		computed: {
-			...mapState({
-				hasLeftWin: state => !state.noMatchLeftWindow,
-				leftWinActive: state => state.leftWinActive.split('/')[3],
-				activeOpen: state => state.activeOpen
-			})
-		},
-		// #ifdef H5
-		watch: {
-			$route: {
-				immediate: true,
-				handler(newRoute) {
-					if (newRoute.matched.length) {
-						this.setLeftWinActive(newRoute.path)
-					}
-				}
-			}
-		},
-		// #endif
 		methods: {
-			...mapMutations(['setLeftWinActive']),
 			goDetailPage(path) {
 				const url = '/pages/extUI/' + path + '/' + path
 				if (this.hasLeftWin) {
