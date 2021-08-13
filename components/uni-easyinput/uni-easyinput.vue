@@ -173,14 +173,17 @@
 			value(newVal) {
 				if (this.errMsg) this.errMsg = ''
 				this.val = newVal
-				if (this.form && this.formItem) {
+				// fix by mehaotian is_reset 在 uni-forms 中定义
+				if (this.form && this.formItem && !this.is_reset) {
+					this.is_reset = false
 					this.formItem.setValue(newVal)
 				}
 			},
 			modelValue(newVal) {
 				if (this.errMsg) this.errMsg = ''
 				this.val = newVal
-				if (this.form && this.formItem) {
+				if (this.form && this.formItem && !this.is_reset) {
+					this.is_reset = false
 					this.formItem.setValue(newVal)
 				}
 			},

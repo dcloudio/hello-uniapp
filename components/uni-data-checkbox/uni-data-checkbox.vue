@@ -157,11 +157,18 @@
 			},
 			value(newVal) {
 				this.dataList = this.getDataList(newVal)
-				this.formItem && this.formItem.setValue(newVal)
+				// fix by mehaotian is_reset 在 uni-forms 中定义
+				if (!this.is_reset) {
+					this.is_reset = false
+					this.formItem && this.formItem.setValue(newVal)
+				}
 			},
 			modelValue(newVal) {
 				this.dataList = this.getDataList(newVal);
-				this.formItem && this.formItem.setValue(newVal);
+				if (!this.is_reset) {
+					this.is_reset = false
+					this.formItem && this.formItem.setValue(newVal)
+				}
 			}
 		},
 		data() {

@@ -269,6 +269,8 @@
 				this.localValue = newVal
 				this.formItem && this.formItem.setValue(this.localValue)
 				this.files = [].concat(newVal || [])
+				let filesData = Object.keys(newVal).length > 0 ? newVal : []
+				this.files = [].concat(filesData)
 			},
 
 			/**

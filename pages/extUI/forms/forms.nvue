@@ -21,7 +21,7 @@
 					<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="请输入自我介绍" />
 				</uni-forms-item>
 				<uni-forms-item label="日期时间">
-					<uni-datetime-picker type="datetime" return-type="timestamp" v-model="baseFormData.datetimesingle" @change="changeLog" />
+					<uni-datetime-picker type="datetime" return-type="timestamp" v-model="baseFormData.datetimesingle" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>

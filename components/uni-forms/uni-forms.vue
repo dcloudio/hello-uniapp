@@ -56,11 +56,7 @@
 	export default {
 		name: 'uniForms',
 		components: {},
-		model: {
-			prop: 'modelValue',
-			event: 'update:modelValue'
-		},
-		emits: ['update:modelValue', 'input', 'reset', 'validate', 'submit'],
+		emits: ['input', 'reset', 'validate', 'submit'],
 		props: {
 			// 即将弃用
 			value: {
@@ -236,8 +232,6 @@
 				value = this._getValue(example.name, value);
 				this.formData[name] = value;
 				example.val = value;
-				this.$emit('input', Object.assign({}, this.value, this.formData));
-				this.$emit('update:modelValue', Object.assign({}, this.value, this.formData));
 				return example.triggerCheck(value, callback);
 			},
 
@@ -251,6 +245,8 @@
 					const inputComp = this.inputChildrens.find(child => child.rename === item.name);
 					if (inputComp) {
 						inputComp.errMsg = '';
+						// fix by mehaotian 不触发其他组件的 setValue
+						inputComp.is_reset = true
 						inputComp.$emit('input', inputComp.multiple ? [] : '');
 						inputComp.$emit('update:modelValue', inputComp.multiple ? [] : '');
 					}
@@ -262,8 +258,6 @@
 					}
 				});
 
-				this.$emit('input', this.formData);
-				this.$emit('update:modelValue', this.formData);
 				this.$emit('reset', event);
 			},
 
