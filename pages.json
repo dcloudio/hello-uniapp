@@ -427,6 +427,7 @@
 						"navigationBarTitleText": "新VUE页面2"
 					}
 				},
+				// #ifndef VUE3
 				{
 					"path": "navigator/new-page/new-nvue-page-1",
 					"style": {
@@ -439,6 +440,7 @@
 						"navigationBarTitleText": "新NVUE页面2"
 					}
 				},
+				// #endif
 				{
 					"path": "pull-down-refresh/pull-down-refresh",
 					"style": {
