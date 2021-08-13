@@ -1,7 +1,9 @@
 <template>
 	<view class="left-window-style">
 		<view class="second-menu">
-			<component v-bind:is="active"></component>
+			<!-- <keep-alive> -->
+			<component v-bind:is="active" :hasLeftWin="hasLeftWin" :leftWinActive="leftWinActive"></component>
+			<!-- </keep-alive> -->
 		</view>
 	</view>
 </template>
@@ -40,6 +42,8 @@
 		computed: {
 			...mapState({
 				active: state => state.active,
+				hasLeftWin: state => !state.noMatchLeftWindow,
+				leftWinActive: state => state.leftWinActive.split('/')[3],
 			})
 		},
 		watch: {
@@ -49,36 +53,48 @@
 					this.setMatchLeftWindow(newMatches)
 				}
 			},
+			// #ifndef VUE3
 			$route: {
 				immediate: true,
 				handler(newRoute) {
-					if (this.matchLeftWindow) {
-						if (newRoute.path === '/') {
-							uni.redirectTo({
-								url: 'pages/component/view/view'
-							})
-						} else if (!newRoute.matched.length) {
-							uni.redirectTo({
-								url: 'pages/error/404'
-							})
-						} else {
-							let active = newRoute.path.split('/')[2]
-							if (this.nav.includes(active)) {
-								if (active === 'component') {
-									active = 'componentPage'
-								}
-								if (active === 'template') {
-									active = 'templatePage'
-								}
-								this.setActive(active)
+					this.handlerRoute(newRoute)
+				}
+			},
+			// #endif
+			// #ifdef VUE3
+			$route(newRoute) {
+				this.handlerRoute(newRoute)
+			}
+			// #endif
+		},
+		methods: {
+			...mapMutations(['setMatchLeftWindow', 'setActive', 'setLeftWinActive']),
+
+			handlerRoute(newRoute) {
+				if (this.matchLeftWindow) {
+					if (newRoute.path === '/') {
+						uni.redirectTo({
+							url: 'pages/component/view/view'
+						})
+					} else if (!newRoute.matched.length) {
+						uni.redirectTo({
+							url: 'pages/error/404'
+						})
+					} else {
+						this.setLeftWinActive(newRoute.path)
+						let active = newRoute.path.split('/')[2]
+						if (this.nav.includes(active)) {
+							if (active === 'component') {
+								active = 'componentPage'
 							}
+							if (active === 'template') {
+								active = 'templatePage'
+							}
+							this.setActive(active)
 						}
 					}
 				}
 			}
-		},
-		methods: {
-			...mapMutations(['setMatchLeftWindow', 'setActive']),
 		}
 	}
 </script>
