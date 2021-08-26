@@ -72,7 +72,7 @@
 						url: "dateformat"
 					},
 
-					// #ifndef APP-NVUE || MP-KUAISHOU
+					// #ifndef  MP-KUAISHOU
 					{
 						name: "uni-datetime-picker 日期选择器",
 						url: "datetime-picker"
