@@ -104,11 +104,13 @@
 						url: 'list2detail-list'
 					},
 					// #endif
-					// #ifdef APP-PLUS || H5 || MP-WEIXIN  || MP-QQ
-					{
-						name: '上下滑动切换视频',
-						url: 'swiper-vertical'
-					},
+					// #ifndef VUE3
+					// #ifdef APP-PLUS
+					// {
+					// 	name: '上下滑动切换视频',
+					// 	url: 'swiper-vertical'
+					// },
+					// #endif
 					// #endif
 					// #ifdef APP-NVUE
 					{
@@ -131,12 +133,10 @@
 					},
 					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
-					// #ifndef VUE3
-					{
-						name: '微信自定义组件示例（vant ui）',
-						url: 'vant-button'
-					}
-					// #endif
+					// {
+					// 	name: '微信自定义组件示例（vant ui）',
+					// 	url: 'vant-button'
+					// }
 					// #endif
 				]
 			}

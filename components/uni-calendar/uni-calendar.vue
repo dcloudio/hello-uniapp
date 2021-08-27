@@ -344,7 +344,12 @@
 
 	.uni-calendar--fixed {
 		position: fixed;
+		/* #ifndef APP-NVUE */
 		bottom: calc(var(--window-bottom));
+		/* #endif */
+		/* #ifdef APP-NVUE */
+		bottom: 0;
+		/* #endif */
 		left: 0;
 		right: 0;
 		transition-property: transform;

@@ -201,10 +201,12 @@
 						url: "table"
 					},
 					// #endif
+					// #ifndef APP-NVUE
 					{
 						name: "uni-tag 标签",
 						url: "tag"
 					},
+					// #endif
 					{
 						name: "uni-title 章节标题",
 						url: "title"

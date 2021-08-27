@@ -111,10 +111,10 @@
 <style scoped>
 	.uni-tag {
 		/* #ifndef APP-NVUE */
-		display: inline-block;
+		/* display: inline-block; */
 		/* #endif */
 		/* #ifdef APP-NVUE */
-		align-self: flex-start;
+		/* align-self: flex-start; */
 		/* #endif */
 		padding: 0px 16px;
 		line-height: 30px;
