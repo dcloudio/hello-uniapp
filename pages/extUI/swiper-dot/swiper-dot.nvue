@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-swiper-dot class="uni-swiper-dot-box" @clickItem=clickItem :info="info" :current="current" :mode="mode" :dots-styles="dotsStyles" field="content">
+		<uni-swiper-dot class="uni-swiper-dot-box" @clickItem="clickItem" :info="info" :current="current" :mode="mode" :dots-styles="dotsStyles" field="content">
 			<swiper class="swiper-box" @change="change" :current="swiperDotIndex">
 				<swiper-item v-for="(item, index) in info" :key="index">
 					<view :class="item.colorClass" class="swiper-item">
@@ -89,7 +89,7 @@
 		onLoad() {},
 		methods: {
 			change(e) {
-				this.current = e.detail.current
+				this.swiperDotIndex = this.current = e.detail.current
 			},
 			selectStyle(index) {
 				this.dotsStyles = this.dotStyle[index]
