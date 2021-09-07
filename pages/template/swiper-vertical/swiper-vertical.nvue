@@ -144,12 +144,12 @@
 </script>
 
 <style>
-    /* #ifndef APP-PLUS */
-    page {
+    /* #ifndef H5 */
+/*    page {
         width: 100%;
         min-height: 100%;
         display: flex;
-    }
+    } */
     /* #endif */
 
     .page {

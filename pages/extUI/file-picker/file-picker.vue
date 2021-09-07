@@ -72,8 +72,6 @@
 </script>
 
 <style>
-	@charset "UTF-8";
-
 	/* 头条小程序组件内不能引入字体 */
 	/* #ifdef MP-TOUTIAO */
 	@font-face {

@@ -6,7 +6,7 @@
 					<uni-icons color="#999999" size="18" type="search" />
 				</slot>
 			</view>
-			<input v-if="show || searchVal" :focus="showSync" :placeholder="placeholder" :maxlength="maxlength" class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal" @confirm="confirm" @blur="blur" @focus="emitFocus" />
+			<input v-if="show || searchVal" :focus="showSync" :placeholder="placeholderText" :maxlength="maxlength" class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal" @confirm="confirm" @blur="blur" @focus="emitFocus" />
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear" @click="clear">
 				<slot name="clearIcon">
@@ -14,11 +14,19 @@
 				</slot>
 			</view>
 		</view>
-		<text @click="cancel" class="uni-searchbar__cancel" v-if="cancelButton ==='always' || show && cancelButton ==='auto'">{{cancelText}}</text>
+		<text @click="cancel" class="uni-searchbar__cancel" v-if="cancelButton ==='always' || show && cancelButton ==='auto'">{{cancelTextI18n}}</text>
 	</view>
 </template>
 
 <script>
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
+
 	/**
 	 * SearchBar 搜索栏
 	 * @description 评分组件
@@ -50,7 +58,7 @@
 		props: {
 			placeholder: {
 				type: String,
-				default: "请输入搜索内容"
+				default: ""
 			},
 			radius: {
 				type: [Number, String],
@@ -96,7 +104,16 @@
 				searchVal: ''
 			}
 		},
+		computed: {
+			cancelTextI18n() {
+				return this.cancelText || t("uni-search-bar.cancel")
+			},
+			placeholderText() {
+				return this.placeholder || t("uni-search-bar.placeholder")
+			}
+		},
 		watch: {
+			// #ifndef VUE3
 			value: {
 				immediate: true,
 				handler(newVal) {
@@ -106,6 +123,8 @@
 					}
 				}
 			},
+			// #endif
+			// #ifdef VUE3
 			modelValue: {
 				immediate: true,
 				handler(newVal) {
@@ -115,6 +134,7 @@
 					}
 				}
 			},
+			// #endif
 			focus: {
 				immediate: true,
 				handler(newVal) {
@@ -127,8 +147,12 @@
 				}
 			},
 			searchVal(newVal, oldVal) {
+				// #ifndef VUE3
 				this.$emit("input", newVal)
+				// #endif
+				// #ifdef VUE3
 				this.$emit("update:modelValue", newVal)
+				// #endif
 			}
 		},
 		methods: {

@@ -1,6 +1,6 @@
 <template>
 	<view class="uni-popup-share">
-		<view class="uni-share-title"><text class="uni-share-title-text">{{title}}</text></view>
+		<view class="uni-share-title"><text class="uni-share-title-text">{{shareTitleText}}</text></view>
 		<view class="uni-share-content">
 			<view class="uni-share-content-box">
 				<view class="uni-share-content-item" v-for="(item,index) in bottomData" :key="index" @click.stop="select(item,index)">
@@ -11,13 +11,20 @@
 			</view>
 		</view>
 		<view class="uni-share-button-box">
-			<button class="uni-share-button" @click="close">取消</button>
+			<button class="uni-share-button" @click="close">{{cancelText}}</button>
 		</view>
 	</view>
 </template>
 
 <script>
 	import popup from '../uni-popup/popup.js'
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from '../uni-popup/i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 	export default {
 		name: 'UniPopupShare',
 		mixins: [popup],
@@ -25,7 +32,7 @@
 		props: {
 			title: {
 				type: String,
-				default: '分享到'
+				default: ''
 			},
 			beforeClose: {
 				type: Boolean,
@@ -68,6 +75,14 @@
 			}
 		},
 		created() {},
+		computed: {
+			cancelText() {
+				return t("uni-popup.cancel")
+			},
+			shareTitleText() {
+				return this.title || t("uni-popup.shareTitle")
+			}
+		},
 		methods: {
 			/**
 			 * 选择内容

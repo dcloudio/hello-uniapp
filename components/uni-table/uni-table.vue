@@ -305,8 +305,6 @@
 </script>
 
 <style scoped>
-	@charset "UTF-8";
-
 	.uni-table-scroll {
 		width: 100%;
 		/* #ifndef APP-NVUE */

@@ -1,3 +1,4 @@
+// #ifdef APP-NVUE
 const BindingX = uni.requireNativePlugin('bindingx');
 const dom = uni.requireNativePlugin('dom');
 const animation = uni.requireNativePlugin('animation');
@@ -291,3 +292,9 @@ export default {
 		}
 	}
 }
+
+// #endif
+
+// #ifndef APP-NVUE
+export default {}
+// #endif

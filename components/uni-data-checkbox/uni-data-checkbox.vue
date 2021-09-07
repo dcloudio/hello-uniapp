@@ -157,11 +157,18 @@
 			},
 			value(newVal) {
 				this.dataList = this.getDataList(newVal)
-				this.formItem && this.formItem.setValue(newVal)
+				// fix by mehaotian is_reset 在 uni-forms 中定义
+				if (!this.is_reset) {
+					this.is_reset = false
+					this.formItem && this.formItem.setValue(newVal)
+				}
 			},
 			modelValue(newVal) {
 				this.dataList = this.getDataList(newVal);
-				this.formItem && this.formItem.setValue(newVal);
+				if (!this.is_reset) {
+					this.is_reset = false
+					this.formItem && this.formItem.setValue(newVal)
+				}
 			}
 		},
 		data() {
@@ -196,6 +203,11 @@
 			if (this.formItem) {
 				this.isTop = 6
 				if (this.formItem.name) {
+					// 如果存在name添加默认值,否则formData 中不存在这个字段不校验
+					if (!this.is_reset) {
+						this.is_reset = false
+						this.formItem.setValue(this.dataValue)
+					}
 					this.rename = this.formItem.name
 					this.form.inputChildrens.push(this)
 				}
@@ -771,6 +783,10 @@
 	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checkbox__inner .checkbox__inner-icon {
 		opacity: 1;
 		transform: rotate(45deg);
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .radio__inner .radio__inner-icon {
+		opacity: 1;
 	}
 
 	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checklist-text {

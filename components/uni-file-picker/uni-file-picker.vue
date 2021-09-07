@@ -237,7 +237,6 @@
 				this.noSpace = true
 				uniCloud.chooseAndUploadFile = chooseAndUploadFile
 			}
-			this.tempData = {}
 			this.form = this.getForm('uniForms')
 			this.formItem = this.getForm('uniFormsItem')
 			if (this.form && this.formItem) {
@@ -248,31 +247,25 @@
 			}
 		},
 		methods: {
-			setValue(newVal, oldVal) {
-				const newData = (v) => {
-					const files = this.files.find(i => i.url === v.url)
-					const reg = /cloud:\/\/([\w.]+\/?)\S*/
-					v.path = v.url
-					if (reg.test(v.url)) {
-						this.getTempFileURL(v, v.url)
-					}
-					return v
-				}
-				// let data = null
-				if (this.returnType === 'object') {
-					newData(newData)
-				} else {
-					newVal.forEach(v => {
-						newData(v)
-					})
-				}
-				this.localValue = newVal
-				this.formItem && this.formItem.setValue(this.localValue)
-				this.files = [].concat(newVal || [])
-			},
-
 			/**
-			 * 继续上传
+			 * 公开用户使用，清空文件
+			 * @param {Object} index
+			 */
+			clearFiles(index) {
+				if (index !== 0 && !index) {
+					this.files = []
+					this.$nextTick(() => {
+						this.setEmit()
+					})
+				} else {
+					this.files.splice(index, 1)
+				}
+				this.$nextTick(() => {
+					this.setEmit()
+				})
+			},
+			/**
+			 * 公开用户使用，继续上传
 			 */
 			upload() {
 				let files = []
@@ -281,9 +274,46 @@
 						files.push(Object.assign({}, v))
 					}
 				})
-
 				this.uploadFiles(files)
 			},
+			async setValue(newVal, oldVal) {
+				const newData = async (v) => {
+					const reg = /cloud:\/\/([\w.]+\/?)\S*/
+					let url = ''
+					if (v.fileID) {
+						url = v.fileID
+					} else {
+						url = v.url
+					}
+					if (reg.test(url)) {
+						v.fileID = url
+						v.url = await this.getTempFileURL(url)
+					}
+					v.path = v.url
+					return v
+				}
+				if (this.returnType === 'object') {
+					if (newVal) {
+						await newData(newVal)
+					} else {
+						newVal = {}
+					}
+				} else {
+					if (!newVal) newVal = []
+					for (let i = 0; i < newVal.length; i++) {
+						let v = newVal[i]
+						await newData(v)
+					}
+				}
+				this.localValue = newVal
+				if (this.form && this.formItem && !this.is_reset) {
+					this.is_reset = false
+					this.formItem.setValue(this.localValue)
+				}
+				let filesData = Object.keys(newVal).length > 0 ? newVal : [];
+				this.files = [].concat(filesData)
+			},
+
 			/**
 			 * 选择文件
 			 */
@@ -357,7 +387,7 @@
 					if (this.limitLength - this.files.length <= 0) break
 					files[i].uuid = Date.now()
 					let filedata = await get_file_data(files[i], this.fileMediatype)
-					filedata.progress = 100
+					filedata.progress = 0
 					filedata.status = 'ready'
 					this.files.push(filedata)
 					currentData.push({
@@ -389,7 +419,7 @@
 						this.setSuccessAndError(result)
 					})
 					.catch(err => {
-						console.log('err', err)
+						console.log(err)
 					})
 			},
 
@@ -402,9 +432,9 @@
 				let tempFilePath = []
 				let errorTempFilePath = []
 				for (let i = 0; i < res.length; i++) {
-					// const index  = item.index
 					const item = res[i]
 					const index = item.uuid ? this.files.findIndex(p => p.uuid === item.uuid) : item.index
+
 					if (index === -1 || !this.files) break
 					if (item.errMsg === 'request:fail') {
 						this.files[index].url = item.path
@@ -415,11 +445,18 @@
 						errorTempFilePath.push(this.files[index].url)
 					} else {
 						this.files[index].errMsg = ''
-						this.files[index].url = item.url
+						this.files[index].fileID = item.url
+						const reg = /cloud:\/\/([\w.]+\/?)\S*/
+						if (reg.test(item.url)) {
+							this.files[index].url = await this.getTempFileURL(item.url)
+						} else {
+							this.files[index].url = item.url
+						}
+
 						this.files[index].status = 'success'
 						this.files[index].progress += 1
 						successData.push(this.files[index])
-						tempFilePath.push(this.files[index].url)
+						tempFilePath.push(this.files[index].fileID)
 					}
 				}
 
@@ -500,8 +537,7 @@
 				let data = []
 				if (this.returnType === 'object') {
 					data = this.backObject(this.files)[0]
-					this.localValue = {}
-					Object.assign(this.localValue, data)
+					this.localValue = data ? data : null
 				} else {
 					data = this.backObject(this.files)
 					if (!this.localValue) {
@@ -531,22 +567,18 @@
 						name: v.name,
 						path: v.path,
 						size: v.size,
+						fileID: v.fileID,
 						url: v.url
 					})
 				})
 				return newFilesData
 			},
-			async getTempFileURL(file, fileList) {
+			async getTempFileURL(fileList) {
 				fileList = {
 					fileList: [].concat(fileList)
 				}
 				const urls = await uniCloud.getTempFileURL(fileList)
-				file.url = urls.fileList[0].tempFileURL || ''
-				file.path = file.url
-				const index = this.files.findIndex(v => v.path === file.path)
-				if (index !== -1) {
-					this.$set(this.files, index, file)
-				}
+				return urls.fileList[0].tempFileURL || ''
 			},
 			/**
 			 * 获取父元素实例

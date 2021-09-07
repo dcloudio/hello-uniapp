@@ -12,7 +12,9 @@
                 <text class="new-page__text">点击上方色块使用vuex在页面之间进行通讯</text>
             </view>
             <view class="new-page__button">
+				<!-- #ifndef VUE3-->
                 <button class="new-page__button-item" @click="navToNvue">跳转NVUE页面</button>
+				<!-- #endif -->
                 <button class="new-page__button-item" @click="navToVue">跳转VUE页面</button>
             </view>
 		</view>
@@ -61,11 +63,6 @@
 	}
 </script>
 <style>
-	page{
-		display: flex;
-		min-height: 100%;
-	}
-
     .new-page__text {
         font-size: 14px;
         color: #666666;
@@ -78,7 +75,7 @@
 	}
 
 	.page-body{
-		flex: 1;
+		/* flex: 1; */
 		display: flex;
         flex-direction: column;
 		justify-content: flex-start;

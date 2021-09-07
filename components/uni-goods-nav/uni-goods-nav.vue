@@ -25,6 +25,13 @@
 </template>
 
 <script>
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 	/**
 	 * GoodsNav 商品导航
 	 * @description 商品加入购物车、立即购买等
@@ -45,10 +52,10 @@
 				default () {
 					return [{
 						icon: 'shop',
-						text: '店铺',
+						text: t("uni-goods-nav.options.shop"),
 					}, {
 						icon: 'cart',
-						text: '购物车'
+						text: t("uni-goods-nav.options.cart")
 					}]
 				}
 			},
@@ -56,12 +63,12 @@
 				type: Array,
 				default () {
 					return [{
-							text: '加入购物车',
+							text: t("uni-goods-nav.buttonGroup.addToCart"),
 							backgroundColor: '#ffa200',
 							color: '#fff'
 						},
 						{
-							text: '立即购买',
+							text: t("uni-goods-nav.buttonGroup.buyNow"),
 							backgroundColor: '#ff0000',
 							color: '#fff'
 						}

@@ -175,7 +175,8 @@ class Calendar {
 				month: full.month,
 				lunar: this.getlunar(full.year, full.month, i),
 				disable: !(disableBefore && disableAfter),
-				isDay
+				isDay,
+				userChecked: false
 			}
 			if (info) {
 				data.extraInfo = info
@@ -294,7 +295,7 @@ class Calendar {
 				this.lastHover = true
 				return
 			}
-			this.multipleStatus.before = ''
+			this.multipleStatus.before = fullDate
 			this.multipleStatus.after = ''
 			this.multipleStatus.data = []
 			this.multipleStatus.fulldate = ''

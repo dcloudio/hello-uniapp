@@ -21,7 +21,7 @@
 <script>
 	const DETAIL_PAGE_PATH = '/pages/template/list2detail-detail/list2detail-detail';
 
-	import htmlParser from '@/common/html-parser'
+	import htmlParser from '@/common/html-parser.js'
 
 	function _handleShareChannels(provider) {
 		let channels = [];

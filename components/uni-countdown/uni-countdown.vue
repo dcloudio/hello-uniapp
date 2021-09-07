@@ -1,16 +1,23 @@
 <template>
 	<view class="uni-countdown">
 		<text v-if="showDay" :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ d }}</text>
-		<text v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">天</text>
+		<text v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">{{dayText}}</text>
 		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ h }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '时' }}</text>
+		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : hourText }}</text>
 		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ i }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : '分' }}</text>
+		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : minuteText }}</text>
 		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }" class="uni-countdown__number">{{ s }}</text>
-		<text v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">秒</text>
+		<text v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">{{secondText}}</text>
 	</view>
 </template>
 <script>
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 	/**
 	 * Countdown 倒计时
 	 * @description 倒计时组件
@@ -92,6 +99,20 @@
 				leftTime: 0,
 				seconds: 0
 			}
+		},
+		computed: {
+			dayText() {
+				return t("uni-countdown.day")
+			},
+			hourText(val) {
+				return t("uni-countdown.h")
+			},
+			minuteText(val) {
+				return t("uni-countdown.m")
+			},
+			secondText(val) {
+				return t("uni-countdown.s")
+			},
 		},
 		watch: {
 			day(val) {

@@ -9,11 +9,11 @@
 			 :inWhiteList="true"></u-link>
 		</view>
 		<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-			<view class="uni-panel-h" :class="item.open || activeOpen === item.id ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
+			<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
 				<text class="uni-panel-text">{{item.name}}</text>
-				<text class="uni-panel-icon uni-icon" :class="item.open || activeOpen === item.id ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+				<text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
 			</view>
-			<view class="uni-panel-c" v-if="item.open || activeOpen === item.id">
+			<view class="uni-panel-c" v-if="item.open">
 				<view :class="{'left-win-active': leftWinActive === (item2.url ? item2.url.split('/')[3] : item2) && hasLeftWin}"
 				 class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item.id, item2)">
 					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
@@ -32,11 +32,15 @@
 		'src': "url('/static/uni.ttf')"
 	});
 	// #endif
-	import {
-		mapState,
-		mapMutations
-	} from 'vuex';
 	export default {
+		props: {
+			hasLeftWin: {
+				type: Boolean
+			},
+			leftWinActive: {
+				type: String
+			}
+		},
 		data() {
 			return {
 				list: [{
@@ -144,32 +148,18 @@
 				url: '/pages/about/about'
 			});
 		},
-		// #ifndef APP-NVUE
-		computed: {
-			...mapState({
-				hasLeftWin: state => !state.noMatchLeftWindow,
-				leftWinActive: state => state.leftWinActive.split('/')[3],
-				activeOpen: state => state.activeOpen
-			})
-		},
-		// #endif
-
 		// #ifdef H5
 		watch: {
 			$route: {
 				immediate: true,
 				handler(newRoute) {
 					if (newRoute.matched.length) {
-						this.setLeftWinActive(newRoute.path)
 						let path = newRoute.path.split('/')[3]
 						for (const item of this.list) {
 							if (Array.isArray(item.pages)) {
 								for (const page of item.pages) {
-									if (page === path) {
-										this.setActiveOpen(item.id)
-									}
-									if (page.url && page.url === newRoute.path) {
-										this.setActiveOpen(item.id)
+									if (page === path || page.url && page.url === newRoute.path) {
+										item.open = true
 									}
 								}
 							}
@@ -180,29 +170,18 @@
 		},
 		// #endif
 		methods: {
-			...mapMutations(['setLeftWinActive', 'setActiveOpen']),
 			triggerCollapse(e, id) {
 				if (!this.list[e].pages) {
 					this.goDetailPage('', this.list[e].url);
 					return;
 				}
-				// #ifdef APP-NVUE
 				for (var i = 0; i < this.list.length; ++i) {
 					if (e === i) {
-						this.list[i].open = !this.list[e].open;
+						this.list[i].open = !this.list[i].open;
 					} else {
 						this.list[i].open = false;
 					}
 				}
-				// #endif
-				// #ifndef APP-NVUE
-				if (id === this.activeOpen) {
-						id = ''
-					}
-					this.setActiveOpen(id)
-
-				// #endif
-
 			},
 			goDetailPage(panel, e) {
 				if (typeof e === 'string') {

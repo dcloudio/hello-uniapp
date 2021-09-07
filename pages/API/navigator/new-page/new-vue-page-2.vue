@@ -38,11 +38,6 @@
     }
 </script>
 <style>
-    page {
-        display: flex;
-        min-height: 100%;
-    }
-
     .new-page__text {
         font-size: 14px;
         color: #666666;
