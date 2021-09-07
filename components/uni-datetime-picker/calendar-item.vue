@@ -7,7 +7,7 @@
 		}" @click="choiceDate(weeks)" @mouseenter="handleMousemove(weeks)">
 		<view class="uni-calendar-item__weeks-box-item" :class="{
 				'uni-calendar-item--isDay-text': weeks.isDay,
-				'uni-calendar-item--checked':calendar.fullDate === weeks.fullDate && !weeks.isDay,
+				'uni-calendar-item--checked':calendar.fullDate === weeks.fullDate && calendar.userChecked,
 				'uni-calendar-item--checked-range-text': checkHover,
 				'uni-calendar-item--before-checked':weeks.beforeMultiple,
 				'uni-calendar-item--multiple': weeks.multiple,
@@ -77,7 +77,7 @@
 	}
 
 	.uni-calendar-item__weeks-box-text {
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
@@ -93,8 +93,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 43px;
-		height: 43px;
+		width: 40px;
+		height: 40px;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
@@ -115,8 +115,8 @@
 		cursor: default;
 	}
 
-	.uni-calendar-item--isDay-text {
-		color: #007aff !important;
+	.uni-calendar-item__weeks-box .uni-calendar-item--isDay-text {
+		color: #007aff;
 	}
 
 	.uni-calendar-item--isDay {
@@ -130,7 +130,7 @@
 		opacity: 0.8;
 	}
 
-	.uni-calendar-item--checked {
+	.uni-calendar-item__weeks-box .uni-calendar-item--checked {
 		background-color: #007aff;
 		box-sizing: border-box;
 		border: 6px solid #f2f6fc;

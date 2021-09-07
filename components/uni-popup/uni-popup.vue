@@ -37,6 +37,7 @@
 	 * @property {String}  backgroundColor 					主窗口背景色
 	 * @property {Boolean} safeArea									是否适配底部安全区
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
+	 * @event {Function} maskClick 点击遮罩触发
 	 */
 
 	export default {
@@ -359,8 +360,6 @@
 	}
 </script>
 <style scoped>
-	@charset "UTF-8";
-
 	.uni-popup {
 		position: fixed;
 		/* #ifndef APP-NVUE */

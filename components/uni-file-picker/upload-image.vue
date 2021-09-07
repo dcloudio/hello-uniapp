@@ -154,7 +154,7 @@
 				}
 				if (this.disablePreview) return
 				this.filesList.forEach(i => {
-					urls.push(i.path)
+					urls.push(i.url)
 				})
 
 				uni.previewImage({

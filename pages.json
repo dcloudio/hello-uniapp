@@ -957,10 +957,12 @@
 						"navigationBarTitleText": "Combox 组合框"
 					}
 				},
+				// #ifndef H5
 				{
 					"path": "list/ad",
 					"style": {}
 				},
+				// #endif
 				{
 					"path": "list/chat",
 					"style": {}

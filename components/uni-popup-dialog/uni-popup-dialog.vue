@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-popup-dialog">
 		<view class="uni-dialog-title">
-			<text class="uni-dialog-title-text" :class="['uni-popup__'+dialogType]">{{title}}</text>
+			<text class="uni-dialog-title-text" :class="['uni-popup__'+dialogType]">{{titleText}}</text>
 		</view>
 		<view v-if="mode === 'base'" class="uni-dialog-content">
 			<slot>
@@ -10,15 +10,15 @@
 		</view>
 		<view v-else class="uni-dialog-content">
 			<slot>
-				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholder" :focus="focus">
+				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholderText" :focus="focus">
 			</slot>
 		</view>
 		<view class="uni-dialog-button-group">
 			<view class="uni-dialog-button" @click="closeDialog">
-				<text class="uni-dialog-button-text">取消</text>
+				<text class="uni-dialog-button-text">{{cancelText}}</text>
 			</view>
 			<view class="uni-dialog-button uni-border-left" @click="onOk">
-				<text class="uni-dialog-button-text uni-button-color">确定</text>
+				<text class="uni-dialog-button-text uni-button-color">{{okText}}</text>
 			</view>
 		</view>
 
@@ -27,6 +27,13 @@
 
 <script>
 	import popup from '../uni-popup/popup.js'
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from '../uni-popup/i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 	/**
 	 * PopUp 弹出层-对话框样式
 	 * @description 弹出层-对话框样式
@@ -58,7 +65,7 @@
 			},
 			placeholder: {
 				type: [String, Number],
-				default: '请输入内容'
+				default: ''
 			},
 			type: {
 				type: String,
@@ -70,7 +77,7 @@
 			},
 			title: {
 				type: String,
-				default: '提示'
+				default: ''
 			},
 			content: {
 				type: String,
@@ -86,6 +93,20 @@
 				dialogType: 'error',
 				focus: false,
 				val: ""
+			}
+		},
+		computed: {
+			okText() {
+				return t("uni-popup.ok")
+			},
+			cancelText() {
+				return t("uni-popup.cancel")
+			},
+			placeholderText() {
+				return this.placeholder || t("uni-popup.placeholder")
+			},
+			titleText() {
+				return this.title || t("uni-popup.title")
 			}
 		},
 		watch: {

@@ -10,7 +10,7 @@
 					</view>
 				</slot>
 			</view>
-			<view :class="{ 'uni-collapse-item__title-arrow-active': isOpen, 'uni-collapse-item--animation': showAnimation === true }" class="uni-collapse-item__title-arrow">
+			<view v-if="showArrow" :class="{ 'uni-collapse-item__title-arrow-active': isOpen, 'uni-collapse-item--animation': showAnimation === true }" class="uni-collapse-item__title-arrow">
 				<uni-icons :color="disabled?'#ddd':'#bbb'" size="14" type="arrowdown" />
 			</view>
 		</view>
@@ -33,8 +33,12 @@
 	 * @property {String} title 标题文字
 	 * @property {String} thumb 标题左侧缩略图
 	 * @property {String} name 唯一标志符
+	 * @property {Boolean} open = [true|false] 是否展开组件
+	 * @property {Boolean} titleBorder = [true|false] 是否显示标题分隔线
+	 * @property {Boolean} border = [true|false] 是否显示分隔线
 	 * @property {Boolean} disabled = [true|false] 是否展开面板
 	 * @property {Boolean} showAnimation = [true|false] 开启动画
+	 * @property {Boolean} showArrow = [true|false] 是否显示右侧箭头
 	 */
 	export default {
 		name: 'uniCollapseItem',
@@ -82,8 +86,11 @@
 				type: String,
 				default: 'auto'
 			},
-			// 是否显示分隔线
 			border: {
+				type: Boolean,
+				default: true
+			},
+			showArrow: {
 				type: Boolean,
 				default: true
 			}
@@ -128,9 +135,7 @@
 			this.uninstall()
 		},
 		// #endif
-
 		mounted() {
-
 			if (!this.collapse) return
 			if (this.name !== '') {
 				this.nameSync = this.name

@@ -8,7 +8,7 @@
 				<uni-icons color="#666" size="16" type="arrowleft" />
 			</template>
 			<template v-else>
-				<text class="uni-pagination__child-btn">{{ prevText }}</text>
+				<text class="uni-pagination__child-btn">{{ prevPageText }}</text>
 			</template>
 		</view>
 		<view class="uni-pagination__num uni-pagination__num-flex-none">
@@ -28,7 +28,7 @@
 				<uni-icons color="#666" size="16" type="arrowright" />
 			</template>
 			<template v-else>
-				<text class="uni-pagination__child-btn">{{ nextText }}</text>
+				<text class="uni-pagination__child-btn">{{ nextPageText }}</text>
 			</template>
 		</view>
 	</view>
@@ -48,6 +48,13 @@
 	 * @event {Function} change 点击页码按钮时触发 ,e={type,current} current为当前页，type值为：next/prev，表示点击的是上一页还是下一个
 	 */
 
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 	export default {
 		name: 'UniPagination',
 		emits: ['update:modelValue', 'input', 'change'],
@@ -62,11 +69,9 @@
 			},
 			prevText: {
 				type: String,
-				default: '上一页'
 			},
 			nextText: {
 				type: String,
-				default: '下一页'
 			},
 			current: {
 				type: [Number, String],
@@ -99,6 +104,12 @@
 			}
 		},
 		computed: {
+			prevPageText() {
+				return this.prevText || t('uni-pagination.prevText')
+			},
+			nextPageText() {
+				return this.nextText || t('uni-pagination.nextText')
+			},
 			maxPage() {
 				let maxPage = 1
 				let total = Number(this.total)
@@ -133,7 +144,8 @@
 							showPagerArr.push(item)
 						}
 					} else {
-						if ((item > num - (pagerCount + 1) / 2 || pagerNum - pagerCount < item) && item < totalArr[totalArr.length - 1]) {
+						if ((item > num - (pagerCount + 1) / 2 || pagerNum - pagerCount < item) && item < totalArr[
+								totalArr.length - 1]) {
 							showPagerArr.push(item)
 						}
 					}

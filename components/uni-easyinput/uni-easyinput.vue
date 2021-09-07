@@ -204,6 +204,10 @@
 			this.formItem = this.getForm('uniFormsItem')
 			if (this.form && this.formItem) {
 				if (this.formItem.name) {
+					if (!this.is_reset) {
+						this.is_reset = false
+						this.formItem.setValue(this.val)
+					}
 					this.rename = this.formItem.name
 					this.form.inputChildrens.push(this)
 				}

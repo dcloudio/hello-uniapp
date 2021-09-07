@@ -47,17 +47,16 @@
 						url: "collapse"
 					},
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "uni-combox 组合框",
 						url: "combox"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "uni-countdown 倒计时",
 						url: "countdown"
 					},
-					// #ifndef MP-KUAISHOU
 					{
 						name: "uni-data-checkbox 数据选择器",
 						url: "data-checkbox"
@@ -66,18 +65,14 @@
 						name: "uni-data-picker 数据驱动的picker选择器",
 						url: "data-picker"
 					},
-					// #endif
 					{
 						name: "uni-dateformat 日期格式化",
 						url: "dateformat"
 					},
-
-					// #ifndef  MP-KUAISHOU
 					{
 						name: "uni-datetime-picker 日期选择器",
 						url: "datetime-picker"
 					},
-					// #endif
 					{
 						name: "uni-drawer 抽屉",
 						url: "drawer"
@@ -95,12 +90,12 @@
 						url: "fav"
 					},
 
-					// #ifndef APP-NVUE
+					// #ifndef APP-NVUE 
 					{
 						name: "uni-file-picker 文件选择上传",
 						url: "file-picker"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "uni-forms 表单",
 						url: "forms"
@@ -153,31 +148,29 @@
 						name: "uni-pagination 分页器",
 						url: "pagination"
 					},
-					// #ifndef MP-KUAISHOU
 					{
 						name: "uni-popup 弹出层",
 						url: "popup"
 					},
 					{
-						name: "uni-row 布局-行",
-						url: "row"
-					},
-					// #endif
-					{
 						name: "uni-rate 评分",
 						url: "rate"
+					},
+					{
+						name: "uni-row 布局-行",
+						url: "row"
 					},
 					{
 						name: "uni-search-bar 搜索栏",
 						url: "search-bar"
 					},
 
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
 					{
 						name: "section 标题栏",
 						url: "section"
 					},
-					// #endif
+					// #endif 
 					{
 						name: "uni-segmented-control 分段器",
 						url: "segmented-control"
@@ -195,28 +188,24 @@
 						url: "swiper-dot"
 					},
 
-					// #ifndef APP-NVUE || MP-TOUTIAO
+					// #ifndef APP-NVUE || MP-TOUTIAO 
 					{
 						name: "uni-table 表格",
 						url: "table"
 					},
-					// #endif
-					// #ifndef APP-NVUE
+					// #endif 
 					{
 						name: "uni-tag 标签",
 						url: "tag"
 					},
-					// #endif
 					{
 						name: "uni-title 章节标题",
 						url: "title"
 					},
-					// #ifndef MP-KUAISHOU
 					{
 						name: "uni-transition 过渡动画",
 						url: "transition"
 					},
-					// #endif
 				]
 			};
 		},

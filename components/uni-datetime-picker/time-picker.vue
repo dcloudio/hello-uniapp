@@ -5,7 +5,7 @@
 				<view class="uni-datetime-picker-timebox-pointer" :class="{'uni-datetime-picker-disabled': disabled, 'uni-datetime-picker-timebox': border}">
 					<text class="uni-datetime-picker-text">{{time}}</text>
 					<view v-if="!time" class="uni-datetime-picker-time">
-						<text class="uni-datetime-picker-text">选择{{title}}</text>
+						<text class="uni-datetime-picker-text">{{selectTimeText}}</text>
 					</view>
 				</view>
 			</slot>
@@ -13,7 +13,7 @@
 		<view v-if="visible" id="mask" class="uni-datetime-picker-mask" @click="tiggerTimePicker"></view>
 		<view v-if="visible" class="uni-datetime-picker-popup" :class="[dateShow && timeShow ? '' : 'fix-nvue-height']" :style="fixNvueBug">
 			<view class="uni-title">
-				<text class="uni-datetime-picker-text">设置{{title}}</text>
+				<text class="uni-datetime-picker-text">{{selectTimeText}}</text>
 			</view>
 			<view v-if="dateShow" class="uni-datetime-picker__container-box">
 				<picker-view class="uni-datetime-picker-view" :indicator-style="indicatorStyle" :value="ymd" @change="bindDateChange">
@@ -61,14 +61,14 @@
 			</view>
 			<view class="uni-datetime-picker-btn">
 				<view @click="clearTime">
-					<text class="uni-datetime-picker-btn-text">清空</text>
+					<text class="uni-datetime-picker-btn-text">{{clearText}}</text>
 				</view>
 				<view class="uni-datetime-picker-btn-group">
 					<view class="uni-datetime-picker-cancel" @click="tiggerTimePicker">
-						<text class="uni-datetime-picker-btn-text">取消</text>
+						<text class="uni-datetime-picker-btn-text">{{cancelText}}</text>
 					</view>
 					<view @click="setTime">
-						<text class="uni-datetime-picker-btn-text">确定</text>
+						<text class="uni-datetime-picker-btn-text">{{okText}}</text>
 					</view>
 				</view>
 			</view>
@@ -83,6 +83,13 @@
 	// #ifdef H5
 	import keypress from './keypress'
 	// #endif
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
 
 	/**
 	 * DatetimePicker 时间选择器
@@ -115,7 +122,7 @@
 				// 输入框当前时间
 				time: '',
 				// 当前的年月日时分秒
-				year: 1900,
+				year: 1920,
 				month: 0,
 				day: 0,
 				hour: 0,
@@ -182,6 +189,7 @@
 						this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
 						this.initTime(false)
 					} else {
+						this.time = ''
 						this.parseValue(Date.now())
 					}
 				},
@@ -401,6 +409,22 @@
 						return 59
 					}
 				}
+			},
+
+			/**
+			 * for i18n
+			 */
+			selectTimeText() {
+				return t("uni-datetime-picker.selectTime")
+			},
+			okText() {
+				return t("uni-datetime-picker.ok")
+			},
+			clearText() {
+				return t("uni-datetime-picker.clear")
+			},
+			cancelText() {
+				return t("uni-datetime-picker.cancel")
 			}
 		},
 
@@ -513,7 +537,9 @@
 			 * @param {Object} defaultTime
 			 */
 			parseValue(value) {
-				if (!value) return
+				if (!value) {
+					return
+				}
 				if (this.type === 'time' && typeof value === "string") {
 					this.parseTimeType(value)
 				} else {
@@ -551,7 +577,7 @@
 						this.startSecond = 0
 					}
 					if (pointType === 'end') {
-						this.endYear = 120
+						this.endYear = 2120
 						this.endMonth = 12
 						this.endDay = 31
 						this.endHour = 23
@@ -743,11 +769,9 @@
 </script>
 
 <style scoped>
-	@charset "UTF-8";
-
 	.uni-datetime-picker {
 		/* #ifndef APP-NVUE */
-		width: 100%;
+		/* width: 100%; */
 		/* #endif */
 	}
 

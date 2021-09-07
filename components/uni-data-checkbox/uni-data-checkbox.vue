@@ -203,6 +203,11 @@
 			if (this.formItem) {
 				this.isTop = 6
 				if (this.formItem.name) {
+					// 如果存在name添加默认值,否则formData 中不存在这个字段不校验
+					if (!this.is_reset) {
+						this.is_reset = false
+						this.formItem.setValue(this.dataValue)
+					}
 					this.rename = this.formItem.name
 					this.form.inputChildrens.push(this)
 				}
@@ -778,6 +783,10 @@
 	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checkbox__inner .checkbox__inner-icon {
 		opacity: 1;
 		transform: rotate(45deg);
+	}
+
+	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .radio__inner .radio__inner-icon {
+		opacity: 1;
 	}
 
 	.uni-data-checklist .checklist-group .checklist-box.is--list.is-checked .checklist-text {
