@@ -31,7 +31,6 @@
     </view>
 </template>
 <script>
-    import uniPopup from '@/components/uni-popup/uni-popup.vue'
     import * as util from '../../../common/util.js'
     var formatLocation = util.formatLocation;
     // #ifdef APP-PLUS
@@ -39,9 +38,6 @@
     // #endif
 
     export default {
-        components: {
-            uniPopup
-        },
         data() {
             return {
                 title: 'getLocation',

@@ -23,16 +23,12 @@
     </view>
 </template>
 <script>
-    import uniIcons from '@/components/uni-icons/uni-icons.vue'
     export default {
         data() {
             return {
                 title: 'progress',
                 pgList: [0, 0, 0, 0]
             }
-        },
-        components: {
-            uniIcons
         },
         methods: {
             setProgress() {

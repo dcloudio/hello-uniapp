@@ -20,8 +20,6 @@
 </template>
 
 <script>
-    import uniList from '@/components/uni-list/uni-list.vue'
-    import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
     const testMarkers = [{
             id: 0,
             latitude: 39.989631,

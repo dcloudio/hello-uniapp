@@ -58,7 +58,6 @@
 	 * @event {Function} clickLoadMore 点击加载更多时触发
 	 */
 	export default {
-		name: 'UniLoadMore',
 		emits:['clickLoadMore'],
 		props: {
 			status: {

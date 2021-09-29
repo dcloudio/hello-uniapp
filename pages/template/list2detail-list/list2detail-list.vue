@@ -30,13 +30,9 @@
 </template>
 
 <script>
-	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue';
 	import { dateUtils } from  '../../../common/util.js';
 
 	export default {
-		components: {
-			uniLoadMore
-		},
 		data() {
 			return {
 				banner: {},

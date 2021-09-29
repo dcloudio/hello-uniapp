@@ -12,15 +12,11 @@
 	</view>
 </template>
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		data() {
 			return {
 				title: 'nav-image'
 			}
-		},
-		components:{
-			uniIcons
 		}
 	}
 </script>
