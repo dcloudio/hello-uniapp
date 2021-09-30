@@ -12,7 +12,6 @@
 	</view>
 </template>
 <script>
-	import uniIcons from '@/components/uni-icons/uni-icons.vue'
 	export default {
 		data() {
 			return {
@@ -24,9 +23,6 @@
 				title: e.index === 0 ? "你点了分享按钮" : "你点了收藏按钮",
 				icon: "none"
 			})
-		},
-		components:{
-			uniIcons
 		}
 	}
 </script>

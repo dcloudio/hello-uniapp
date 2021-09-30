@@ -1,0 +1,128 @@
+{
+  "id": "uni-ui",
+  "displayName": "uni-ui",
+  "version": "1.4.5",
+  "description": "uni-ui 是一个基于uni-app全端兼容的高性能UI框架",
+  "keywords": [
+    "uni-ui",
+    "uniui",
+    "UI组件库",
+    "ui框架",
+    "ui库"
+],
+  "repository": "https://github.com/dcloudio/uni-ui",
+  "engines": {
+    "HBuilderX": ""
+  },
+  "directories": {
+    "example": "../../temps/example_temps"
+  },
+  "dcloudext": {
+    "category": [
+      "前端组件",
+      "通用组件"
+    ],
+    "sale": {
+      "regular": {
+        "price": "0.00"
+      },
+      "sourcecode": {
+        "price": "0.00"
+      }
+    },
+    "contact": {
+      "qq": ""
+    },
+    "declaration": {
+      "ads": "无",
+      "data": "无",
+      "permissions": "无"
+    },
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+  },
+  "uni_modules": {
+    "dependencies": [
+      "uni-badge",
+      "uni-calendar",
+      "uni-card",
+      "uni-collapse",
+      "uni-combox",
+      "uni-countdown",
+      "uni-data-checkbox",
+      "uni-data-picker",
+      "uni-dateformat",
+      "uni-datetime-picker",
+      "uni-drawer",
+      "uni-easyinput",
+      "uni-fab",
+      "uni-fav",
+      "uni-file-picker",
+      "uni-forms",
+      "uni-goods-nav",
+      "uni-grid",
+      "uni-group",
+      "uni-icons",
+      "uni-indexed-list",
+      "uni-link",
+      "uni-list",
+      "uni-load-more",
+      "uni-nav-bar",
+      "uni-notice-bar",
+      "uni-number-box",
+      "uni-pagination",
+      "uni-popup",
+      "uni-rate",
+      "uni-row",
+      "uni-search-bar",
+      "uni-segmented-control",
+      "uni-steps",
+      "uni-swipe-action",
+      "uni-swiper-dot",
+      "uni-table",
+      "uni-tag",
+      "uni-title",
+      "uni-transition"
+    ],
+    "encrypt": [],
+    "platforms": {
+      "cloud": {
+        "tcb": "y",
+        "aliyun": "y"
+      },
+      "client": {
+        "App": {
+          "app-vue": "y",
+          "app-nvue": "y"
+        },
+        "H5-mobile": {
+          "Safari": "y",
+          "Android Browser": "y",
+          "微信浏览器(Android)": "y",
+          "QQ浏览器(Android)": "y"
+        },
+        "H5-pc": {
+          "Chrome": "y",
+          "IE": "y",
+          "Edge": "y",
+          "Firefox": "y",
+          "Safari": "y"
+        },
+        "小程序": {
+          "微信": "y",
+          "阿里": "y",
+          "百度": "y",
+          "字节跳动": "y",
+          "QQ": "y"
+        },
+        "快应用": {
+          "华为": "u",
+          "联盟": "u"
+        },
+        "Vue": {
+          "vue2": "y",
+          "vue3": "y"
+        }
+      }
+    }
+  }
+}
