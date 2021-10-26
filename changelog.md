@@ -1,3 +1,8 @@
+## 3.2.7（2021-10-26）
+- 修复 uni-popup 示例的 button 文字在 iPhone 5 上换行的 bug
+- 修复 uni-table 示例，页面顶部距离不对的 bug
+- 修复 GlobalData示例，在vue3是无效的 bug
+- 优化 删除无用的 project.swan.json 文件 
 ## 3.2.6（2021-10-08）
 - 由于体验问题，暂时撤销 uni-ui 以 uni_modules 方式引入的修改
 ## 3.2.5（2021-09-29）
