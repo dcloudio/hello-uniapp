@@ -51,7 +51,7 @@
 							'view',
 							'scroll-view',
 							'swiper'
-							// #ifndef MP-TOUTIAO
+							// #ifndef MP-TOUTIAO || MP-LARK
 							,
 							'movable-view',
 							'cover-view'
@@ -118,7 +118,7 @@
 						}]
 					},
 					// #endif
-					// #ifndef APP-PLUS || H5
+					// #ifndef APP-PLUS || H5 || MP-LARK
 					{
 						id: 'web-view',
 						name: '网页',
@@ -126,7 +126,7 @@
 						pages: ['web-view']
 					},
 					// #endif
-					// #ifdef APP-VUE || APP-NVUE
+					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
 					{
 						id: 'ad',
 						url: 'ad',
