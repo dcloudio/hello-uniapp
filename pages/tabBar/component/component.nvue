@@ -126,7 +126,7 @@
 						pages: ['web-view']
 					},
 					// #endif
-					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW
+					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK
 					{
 						id: 'ad',
 						url: 'ad',
