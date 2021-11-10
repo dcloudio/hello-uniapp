@@ -207,7 +207,7 @@
 
 	.example-body {
 		flex-direction: column;
-		padding: 15px;
+		padding: 5px;
 		background-color: #ffffff;
 	}
 

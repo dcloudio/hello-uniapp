@@ -73,6 +73,7 @@
 					uni.login({
 						provider: 'weixin',
 						success(res) {
+							console.warn('此处使用uni-id处理微信小程序登录，详情参考: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 							uni.request({
 								url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
 								method: 'POST',
@@ -189,6 +190,7 @@
 					if (!this.price) {
 						reject(new Error('请输入金额'))
 					}
+					console.warn('此处使用uni-pay处理支付，详情参考: https://uniapp.dcloud.io/uniCloud/unipay')
 					uni.request({
 						method: 'POST',
 						url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/pay',

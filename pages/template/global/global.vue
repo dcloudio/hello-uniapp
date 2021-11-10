@@ -35,7 +35,7 @@
 			...mapMutations(['setTestTrue']),
 			...mapMutations(['setTestFalse']),
 			setGD:function () {
-				getApp().globalData.test="123"
+				this.gd.test="123"
 			},
 			setVUEX:function (isTrue) {
 				// console.log("this.testvuex: " + this.testvuex);

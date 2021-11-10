@@ -47,10 +47,12 @@
                     name: '图片',
                     url: 'image'
                 },
+				// #ifndef MP-LARK
 				{
 				    name: '音频',
 				    url: 'inner-audio'
 				},
+                // #endif
                 // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
                 {
                     name: '录音',
@@ -119,10 +121,12 @@
                             url: 'canvas'
                         },
 						// #endif
+						// #ifndef MP-LARK
                         {
                             name: '节点信息',
                             url: 'get-node-info'
                         },
+						// #endif
                         {
                             name: '节点布局交互状态',
                             url: 'intersection-observer'
@@ -283,7 +287,7 @@
                             url: 'choose-location'
                         }
                         // #endif
-                        // #ifndef MP-QQ || MP-TOUTIAO
+                        // #ifndef MP-QQ || MP-TOUTIAO || MP-LARK
                         ,
                         {
                             name: '地图控制',
@@ -330,7 +334,7 @@
                     open: false
                 },
                 // #endif
-                // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU
+                // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU || MP-LARK
                 {
                     id: 'login',
                     name: '登录',
