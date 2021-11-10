@@ -72,10 +72,12 @@
 						name: "uni-dateformat 日期格式化",
 						url: "dateformat"
 					},
+					// #ifndef MP-LARK
 					{
 						name: "uni-datetime-picker 日期选择器",
 						url: "datetime-picker"
 					},
+					// #endif
 					{
 						name: "uni-drawer 抽屉",
 						url: "drawer"
@@ -193,7 +195,7 @@
 						url: "swiper-dot"
 					},
 
-					// #ifndef APP-NVUE || MP-TOUTIAO || MP-LARK
+					// #ifndef APP-NVUE || MP-TOUTIAO || MP-LARK || MP-QQ
 					{
 						name: "uni-table 表格",
 						url: "table"
