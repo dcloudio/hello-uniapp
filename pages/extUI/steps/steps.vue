@@ -19,7 +19,7 @@
 			return {
 				active: 1,
 				list1: [{
-					title: '事件一事件一事件一事件一事件一事件一'
+					title: '事件一'
 				}, {
 					title: '事件二'
 				}, {

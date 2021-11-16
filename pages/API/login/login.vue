@@ -279,6 +279,7 @@
 					});
 				}
 				// uni-id 苹果登录
+				console.warn('此处使用uni-id处理苹果登录，详情参考: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 				uni.request({
 					url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
 					method: 'POST',

@@ -125,12 +125,6 @@
 </script>
 
 <style>
-	/* #ifndef H5 */
-	page {
-		padding-top: 85px;
-	}
-
-	/* #endif */
 	.uni-group {
 		display: flex;
 		align-items: center;
