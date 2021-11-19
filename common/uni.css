@@ -274,7 +274,7 @@ radio-group label, checkbox-group label{
 	border-radius: 8rpx;
 	margin:20rpx 0;
 	position: relative;
-	box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .3);
+	/* box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .3); */
 }
 .uni-card-content {
 	font-size: 30rpx;
