@@ -3,7 +3,7 @@
 		<slot />
 		<view v-if="mode === 'default'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='default'>
 			<view v-for="(item,index) in info" @click="clickItem(index)" :style="{
-        'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.width/3 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border-radius':'0px'}"
+        'width': (index === current? dots.width*2:dots.width ) + 'px','height':dots.width/2 +'px' ,'background-color':index !== current?dots.backgroundColor:dots.selectedBackgroundColor,'border-radius':'0px'}"
 			 :key="index" class="uni-swiper__dots-item uni-swiper__dots-bar" />
 		</view>
 		<view v-if="mode === 'dot'" :style="{'bottom':dots.bottom + 'px'}" class="uni-swiper__dots-box" key='dot'>
@@ -79,8 +79,8 @@
 		data() {
 			return {
 				dots: {
-					width: 8,
-					height: 8,
+					width: 6,
+					height: 6,
 					bottom: 10,
 					color: '#fff',
 					backgroundColor: 'rgba(0, 0, 0, .3)',
@@ -96,19 +96,19 @@
 			},
 			mode(newVal) {
 				if (newVal === 'indexes') {
-					this.dots.width = 20
-					this.dots.height = 20
+					this.dots.width = 14
+					this.dots.height = 14
 				} else {
-					this.dots.width = 8
-					this.dots.height = 8
+					this.dots.width = 6
+					this.dots.height = 6
 				}
 			}
 
 		},
 		created() {
 			if (this.mode === 'indexes') {
-				this.dots.width = 20
-				this.dots.height = 20
+				this.dots.width = 12
+				this.dots.height = 12
 			}
 			this.dots = Object.assign(this.dots, this.dotsStyles)
 		},
@@ -149,7 +149,7 @@
 		width: 8px;
 		border-radius: 100px;
 		margin-left: 6px;
-		background-color: $uni-bg-color-mask;
+		background-color: rgba(0, 0, 0, 0.4);
 		/* #ifndef APP-NVUE */
 		cursor: pointer;
 		/* #endif */
@@ -180,7 +180,8 @@
 
 	.uni-swiper__dots-nav {
 		bottom: 0px;
-		height: 40px;
+		// height: 26px;
+		padding: 8px 0;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -195,7 +196,7 @@
 		/* overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; */
-		font-size: $uni-font-size-base;
+		font-size: 14px;
 		color: #fff;
 		margin: 0 15px;
 	}
@@ -211,6 +212,7 @@
 
 	.uni-swiper__dots-indexes-text {
 		color: #fff;
-		font-size: $uni-font-size-sm;
+		font-size: 12px;
+		line-height: 14px;
 	}
 </style>

@@ -1,11 +1,12 @@
 <template>
 	<view class="uni-numbox">
-		<view @click="_calcValue('minus')" class="uni-numbox__minus uni-cursor-point">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
+		<view @click="_calcValue('minus')" class="uni-numbox__minus uni-numbox-btns" :style="{background}">
+			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }" :style="{color}">-</text>
 		</view>
-		<input :disabled="disabled" @focus="_onFocus" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue"/>
-		<view @click="_calcValue('plus')" class="uni-numbox__plus uni-cursor-point">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
+		<input :disabled="disabled" @focus="_onFocus" @blur="_onBlur" class="uni-numbox__value" type="number"
+			v-model="inputValue" :style="{background, color}" />
+		<view @click="_calcValue('plus')" class="uni-numbox__plus uni-numbox-btns" :style="{background}">
+			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }" :style="{color}">+</text>
 		</view>
 	</view>
 </template>
@@ -18,19 +19,23 @@
 	 * @property {Number} min 最小值
 	 * @property {Number} max 最大值
 	 * @property {Number} step 每次点击改变的间隔大小
+	 * @property {String} background 背景色
+	 * @property {String} color 字体颜色（前景色）
 	 * @property {Boolean} disabled = [true|false] 是否为禁用状态
 	 * @event {Function} change 输入框值改变时触发的事件，参数为输入框当前的 value
+	 * @event {Function} focus 输入框聚焦时触发的事件，参数为 event 对象
+	 * @event {Function} blur 输入框失焦时触发的事件，参数为 event 对象
 	 */
 
 	export default {
 		name: "UniNumberBox",
-		emits:['change','input','update:modelValue','blur','focus'],
+		emits: ['change', 'input', 'update:modelValue', 'blur', 'focus'],
 		props: {
 			value: {
 				type: [Number, String],
 				default: 1
 			},
-			modelValue:{
+			modelValue: {
 				type: [Number, String],
 				default: 1
 			},
@@ -46,6 +51,14 @@
 				type: Number,
 				default: 1
 			},
+			background: {
+				type: String,
+				default: '#f5f5f5'
+			},
+			color: {
+				type: String,
+				default: '#333'
+			},
 			disabled: {
 				type: Boolean,
 				default: false
@@ -60,15 +73,15 @@
 			value(val) {
 				this.inputValue = +val;
 			},
-			modelValue(val){
+			modelValue(val) {
 				this.inputValue = +val;
 			}
 		},
 		created() {
-			if(this.value === 1){
+			if (this.value === 1) {
 				this.inputValue = +this.modelValue;
 			}
-			if(this.modelValue === 1){
+			if (this.modelValue === 1) {
 				this.inputValue = +this.value;
 			}
 		},
@@ -141,89 +154,65 @@
 	};
 </script>
 <style lang="scss" scoped>
-	$box-height: 35px;
-	/* #ifdef APP-NVUE */
-	$box-line-height: 35px;
-	/* #endif */
-	$box-line-height: 26px;
-	$box-width: 35px;
+	$box-height: 26px;
+	$bg: #f5f5f5;
+	$br: 2px;
+	$color: #333;
 
 	.uni-numbox {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		height: $box-height;
-		line-height: $box-height;
-		width: 120px;
 	}
 
-	.uni-cursor-point {
+	.uni-numbox-btns {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 0 8px;
+		background-color: $bg;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
 	}
 
 	.uni-numbox__value {
-		background-color: $uni-bg-color;
-		width: 50px;
+		margin: 0 2px;
+		background-color: $bg;
+		width: 40px;
 		height: $box-height;
 		text-align: center;
 		font-size: $uni-font-size-lg;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-border-color;
 		border-left-width: 0;
 		border-right-width: 0;
+		color: $color;
 	}
 
 	.uni-numbox__minus {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: $box-width;
-		height: $box-height;
-		// line-height: $box-line-height;
-		// text-align: center;
-		font-size: 20px;
-		color: $uni-text-color;
-		background-color: $uni-bg-color-grey;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-border-color;
-		border-top-left-radius: $uni-border-radius-base;
-		border-bottom-left-radius: $uni-border-radius-base;
-		border-right-width: 0;
+		border-top-left-radius: $br;
+		border-bottom-left-radius: $br;
 	}
 
 	.uni-numbox__plus {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: $box-width;
-		height: $box-height;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-border-color;
-		border-top-right-radius: $uni-border-radius-base;
-		border-bottom-right-radius: $uni-border-radius-base;
-		background-color: $uni-bg-color-grey;
-		border-left-width: 0;
+		border-top-right-radius: $br;
+		border-bottom-right-radius: $br;
 	}
 
 	.uni-numbox--text {
+		// fix nvue
+		line-height: 20px;
+
 		font-size: 20px;
-		color: $uni-text-color;
+		font-weight: 300;
+		color: $color;
 	}
 
-	.uni-numbox--disabled {
-		color: $uni-text-color-disable;
+	.uni-numbox .uni-numbox--disabled {
+		color: #c0c0c0 !important;
 		/* #ifdef H5 */
 		cursor: not-allowed;
 		/* #endif */

@@ -1,3 +1,6 @@
+## 1.2.0（2021-11-19）
+- 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
+- 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-search-bar](https://uniapp.dcloud.io/component/uniui/uni-search-bar)
 ## 1.1.2（2021-08-30）
 - 修复 value 属性与 modelValue 属性不兼容的Bug
 ## 1.1.1（2021-08-24）

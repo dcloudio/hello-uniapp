@@ -1,9 +1,9 @@
-<template>
+s<template>
 	<view class="uni-searchbar">
 		<view :style="{borderRadius:radius+'px',backgroundColor: bgColor}" class="uni-searchbar__box" @click="searchClick">
 			<view class="uni-searchbar__box-icon-search">
 				<slot name="searchIcon">
-					<uni-icons color="#999999" size="18" type="search" />
+					<uni-icons color="#c0c4cc" size="18" type="search" />
 				</slot>
 			</view>
 			<input v-if="show || searchVal" :focus="showSync" :placeholder="placeholderText" :maxlength="maxlength" class="uni-searchbar__box-search-input"
@@ -12,7 +12,7 @@
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear"
 			 @click="clear">
 				<slot name="clearIcon">
-					<uni-icons color="#c0c4cc" size="15" type="clear" />
+					<uni-icons color="#c0c4cc" size="20" type="clear" />
 				</slot>
 			</view>
 		</view>
@@ -29,7 +29,7 @@
 
 	/**
 	 * SearchBar 搜索栏
-	 * @description 评分组件
+	 * @description 搜索栏组件，通常用于搜索商品、文章等
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=866
 	 * @property {Number} radius 搜索栏圆角
 	 * @property {Number} maxlength 输入最大长度
@@ -223,8 +223,8 @@
 		/* #endif */
 		flex-direction: row;
 		position: relative;
-		padding: $uni-spacing-col-base;
-		// background-color: $uni-bg-color;
+		padding: 10px;
+		// background-color: #fff;
 	}
 
 	.uni-searchbar__box {
@@ -240,9 +240,6 @@
 		align-items: center;
 		height: $uni-searchbar-height;
 		padding: 5px 8px 5px 0px;
-		border-width: 0.5px;
-		border-style: solid;
-		border-color: $uni-border-color;
 	}
 
 	.uni-searchbar__box-icon-search {
@@ -254,13 +251,13 @@
 		padding: 0 8px;
 		justify-content: center;
 		align-items: center;
-		color: $uni-text-color-placeholder;
+		color: #B3B3B3;
 	}
 
 	.uni-searchbar__box-search-input {
 		flex: 1;
-		font-size: $uni-font-size-base;
-		color: $uni-text-color;
+		font-size: 14px;
+		color: #333;
 	}
 
 	.uni-searchbar__box-icon-clear {
@@ -273,8 +270,8 @@
 	}
 
 	.uni-searchbar__text-placeholder {
-		font-size: $uni-font-size-base;
-		color: $uni-text-color-placeholder;
+		font-size: 14px;
+		color: #B3B3B3;
 		margin-left: 5px;
 	}
 
@@ -282,7 +279,7 @@
 		padding-left: 10px;
 		line-height: $uni-searchbar-height;
 		font-size: 14px;
-		color: $uni-text-color;
+		color: #333333;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */

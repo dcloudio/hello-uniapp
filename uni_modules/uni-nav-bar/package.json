@@ -1,7 +1,7 @@
 {
   "id": "uni-nav-bar",
   "displayName": "uni-nav-bar 自定义导航栏",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "自定义导航栏组件，主要用于头部导航。",
   "keywords": [
     "uni-ui",
@@ -41,6 +41,7 @@
   },
   "uni_modules": {
     "dependencies": [
+			"uni-scss",
 			"uni-icons"
 		],
     "encrypt": [],
@@ -77,6 +78,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

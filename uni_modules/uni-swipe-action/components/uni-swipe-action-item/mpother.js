@@ -1,7 +1,8 @@
-// #ifndef APP-PLUS|| MP-WEIXIN  ||  H5
+let otherMixins = {}
 
+// #ifndef APP-PLUS|| MP-WEIXIN  ||  H5
 const MIN_DISTANCE = 10;
-export default {
+otherMixins =  {
 	data() {
 		// TODO 随机生生元素ID，解决百度小程序获取同一个元素位置信息的bug
 		const elClass = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
@@ -50,7 +51,7 @@ export default {
 			this.left = 0
 			this.x = 0
 		},
-		
+
 		closeSwipe(e) {
 			if (!this.autoClose) return
 			this.swipeaction.closeOther(this)
@@ -253,6 +254,4 @@ export default {
 
 // #endif
 
-// #ifdef APP-PLUS|| MP-WEIXIN  ||  H5
-export default { }
-// #endif
+export default otherMixins

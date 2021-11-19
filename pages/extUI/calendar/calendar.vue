@@ -10,7 +10,8 @@
 		<view class="example-body hideOnPc">
 			<button class="calendar-button" type="button" @click="open">打开日历</button>
 		</view>
-		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate" :endDate="info.endDate" :range="info.range" @confirm="confirm" @close="close" />
+		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :date="info.date" :insert="info.insert" :lunar="info.lunar" :startDate="info.startDate"
+		 :endDate="info.endDate" :range="info.range" @confirm="confirm" @close="close"/>
 	</view>
 </template>
 
@@ -59,15 +60,15 @@
 			})
 			// TODO 模拟请求异步同步数据
 			setTimeout(() => {
-				this.info.date = getDate(new Date(), -30).fullDate
-				this.info.startDate = getDate(new Date(), -60).fullDate
-				this.info.endDate = getDate(new Date(), 30).fullDate
+				this.info.date = getDate(new Date(),-30).fullDate
+				this.info.startDate = getDate(new Date(),-60).fullDate
+				this.info.endDate =  getDate(new Date(),30).fullDate
 				this.info.selected = [{
-						date: getDate(new Date(), -3).fullDate,
+						date: getDate(new Date(),-3).fullDate,
 						info: '打卡'
 					},
 					{
-						date: getDate(new Date(), -2).fullDate,
+						date: getDate(new Date(),-2).fullDate,
 						info: '签到',
 						data: {
 							custom: '自定义信息',
@@ -75,7 +76,7 @@
 						}
 					},
 					{
-						date: getDate(new Date(), -1).fullDate,
+						date: getDate(new Date(),-1).fullDate,
 						info: '已打卡'
 					}
 				]
@@ -85,7 +86,7 @@
 			open() {
 				this.$refs.calendar.open()
 			},
-			close() {
+			close(){
 				console.log('弹窗关闭');
 			},
 			change(e) {
@@ -107,111 +108,13 @@
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
-
+<style lang="scss">
 	.example-body {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
 	}
-
 	.calendar-button {
 		flex: 1;
 		font-weight: bold;

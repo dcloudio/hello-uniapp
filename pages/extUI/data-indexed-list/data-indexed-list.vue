@@ -1,14 +1,11 @@
 <template>
-	<uni-indexed-list :options="list" :show-select="true" @click="bindClick" />
+	<uni-data-indexed-list collection="opendb-china-cities" field="code as value, name as text, letter as group" :page-size="500" where="type==1" orderby="group asc" :show-select="true" @click="bindClick" />
 </template>
 
 <script>
-	import airport from '@/common/airport.js'
 	export default {
-		components: {},
 		data() {
 			return {
-				list: airport.list
 			}
 		},
 		methods: {

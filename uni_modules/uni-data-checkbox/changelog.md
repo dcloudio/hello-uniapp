@@ -1,3 +1,6 @@
+## 1.0.0（2021-11-19）
+- 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
+- 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-data-checkbox](https://uniapp.dcloud.io/component/uniui/uni-data-checkbox)
 ## 0.2.5（2021-08-23）
 - 修复 在uni-forms中 modelValue 中不存在当前字段，当前字段必填写也不参与校验的问题
 ## 0.2.4（2021-08-17）

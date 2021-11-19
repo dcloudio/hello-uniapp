@@ -151,6 +151,6 @@
 		line-height: $fav-height;
 		align-items: center;
 		justify-content: center;
-		font-size: $uni-font-size-base;
+		font-size: 12px;
 	}
 </style>

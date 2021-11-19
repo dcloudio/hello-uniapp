@@ -34,10 +34,10 @@
 						name: "uni-badge 数字角标",
 						url: "badge"
 					},
-					{
-						name: "uni-calendar 日历",
-						url: "calendar"
-					},
+					// {
+					// 	name: "uni-calendar 日历",
+					// 	url: "calendar"
+					// },
 					{
 						name: "uni-card 卡片",
 						url: "card"

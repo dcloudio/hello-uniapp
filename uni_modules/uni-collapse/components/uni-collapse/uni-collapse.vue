@@ -141,6 +141,6 @@
 		flex: 1;
 		/* #endif */
 		flex-direction: column;
-		background-color: $uni-bg-color;
+		background-color: #fff;
 	}
 </style>

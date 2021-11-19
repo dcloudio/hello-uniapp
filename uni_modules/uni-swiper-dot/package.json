@@ -1,7 +1,7 @@
 {
   "id": "uni-swiper-dot",
   "displayName": "uni-swiper-dot 轮播图指示点",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "自定义轮播图指示点组件",
   "keywords": [
     "uni-ui",
@@ -41,7 +41,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -76,6 +76,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

@@ -1,7 +1,7 @@
 {
   "id": "uni-title",
   "displayName": "uni-title 章节标题",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "章节标题，通常用于记录页面标题，使用当前组件，uni-app 如果开启统计，将会自动统计页面标题",
   "keywords": [
     "uni-ui",
@@ -42,7 +42,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -77,6 +77,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

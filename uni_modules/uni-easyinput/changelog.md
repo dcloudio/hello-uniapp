@@ -1,3 +1,6 @@
+## 1.0.0（2021-11-19）
+- 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
+- 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-easyinput](https://uniapp.dcloud.io/component/uniui/uni-easyinput)
 ## 0.1.4（2021-08-20）
 - 修复 在 uni-forms 的动态表单中默认值校验不通过的 bug
 ## 0.1.3（2021-08-11）

@@ -1,27 +1,44 @@
 <template>
-	<view>
-		<text class="example-info">文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间</text>
-		<uni-group title="只选择图片">
-			<uni-file-picker limit="9" title="最多选择9张图片"></uni-file-picker>
-		</uni-group>
-		<uni-group title="只选择视频">
-			<uni-file-picker limit="9" file-mediatype="video" title="最多选择9个视频"></uni-file-picker>
-		</uni-group>
-		<!-- #ifdef H5 || MP-WEIXIN -->
-		<uni-group title="选择任意文件">
-			<uni-file-picker limit="5" file-mediatype="all" title="最多选择5个文件"></uni-file-picker>
-		</uni-group>
-		<!-- #endif -->
-		<uni-group title="自定义图片大小">
-			<view class="custom-image-box">
-				<text class="text">选择头像</text>
-				<uni-file-picker limit="1" :del-icon="false" disable-preview :imageStyles="imageStyles" file-mediatype="image">选择</uni-file-picker>
+	<view class="container">
+		<uni-card :is-shadow="false" is-full>
+			<text class="uni-h6">文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间。</text>
+		</uni-card>
+		<uni-section title="只选择图片" type="line">
+			<view class="example-body">
+				<uni-file-picker limit="9" title="最多选择9张图片"></uni-file-picker>
 			</view>
-		</uni-group>
-		<uni-group title="只读并自定义样式">
-			<uni-file-picker readonly :value="fileLists" :imageStyles="imageStyles" file-mediatype="image"></uni-file-picker>
-			<uni-file-picker readonly :value="fileLists" :listStyles="listStyles" file-mediatype="all"></uni-file-picker>
-		</uni-group>
+		</uni-section>
+		<uni-section title="只选择视频" type="line">
+			<view class="example-body">
+				<uni-file-picker limit="9" file-mediatype="video" title="最多选择9个视频"></uni-file-picker>
+			</view>
+		</uni-section>
+
+
+		<!-- #ifdef H5 || MP-WEIXIN -->
+		<uni-section title="选择任意文件" type="line">
+			<view class="example-body">
+				<uni-file-picker limit="5" file-mediatype="all" title="最多选择5个文件"></uni-file-picker>
+			</view>
+		</uni-section>
+		<!-- #endif -->
+
+		<uni-section title="自定义图片大小" type="line">
+			<view class="example-body custom-image-box">
+				<text class="text">选择头像</text>
+				<uni-file-picker limit="1" :del-icon="false" disable-preview :imageStyles="imageStyles"
+					file-mediatype="image">选择</uni-file-picker>
+			</view>
+		</uni-section>
+		
+		<uni-section title="自定义图片大小" type="line">
+			<view class="example-body ">
+				<uni-file-picker readonly :value="fileLists" :imageStyles="imageStyles" file-mediatype="image">
+				</uni-file-picker>
+				<uni-file-picker readonly :value="fileLists" :listStyles="listStyles" file-mediatype="all">
+				</uni-file-picker>
+			</view>
+		</uni-section>
 
 	</view>
 </template>
@@ -71,104 +88,11 @@
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
+<style lang="scss">
 	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
+		padding:10px;
+		padding-top: 0;
 	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
-
 	.custom-image-box {
 		/* #ifndef APP-NVUE */
 		display: flex;

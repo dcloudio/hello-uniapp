@@ -1,7 +1,7 @@
 {
   "id": "uni-link",
   "displayName": "uni-link 超链接",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "uni-link是一个外部网页超链接组件，在小程序内复制url，在app内打开外部浏览器，在h5端打",
   "keywords": [
     "uni-ui",
@@ -41,7 +41,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {

@@ -1,9 +1,11 @@
 <template>
-	<view class="page">
-		<text class="example-info">可以同时选择日期和时间的选择器</text>
+	<view class="page container">
+		<uni-card is-full>
+			<text class="uni-h6">可以同时选择日期和时间的选择器</text>
+		</uni-card>
 		<uni-section :title="'日期用法：' + single" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker type="date" v-model="single" @maskClick="maskClick" />
+			<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @maskClick="maskClick" />
 		</view>
 		<uni-section :title="'日期时间用法：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
@@ -11,7 +13,7 @@
 		</view>
 		<uni-section :title="'日期范围用法：' + '[' + range + ']'" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" />
+			<uni-datetime-picker v-model="range" type="daterange" rangeSeparator="至" @maskClick="maskClick" />
 		</view>
 		<uni-section :title="'日期时间范围用法：' + '[' + datetimerange + ']' " type="line"></uni-section>
 		<view class="example-body">
@@ -23,7 +25,7 @@
 		</view>
 		<uni-section :title="'时间戳用法：' + single" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker returnType="timestamp" v-model="single" @change="changeLog($event)" start="2021-3-20" end="2021-5-20" />
+			<uni-datetime-picker returnType="timestamp" v-model="single" @change="changeLog($event)" />
 		</view>
 		<uni-section :title="'date 对象用法：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
@@ -37,10 +39,6 @@
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" :border="false" />
 		</view>
-		<uni-section :title="'隐藏清除按钮用法：' + single" type="line"></uni-section>
-		<view class="example-body">
-			<uni-datetime-picker v-model="single" :clearIcon="false" />
-		</view>
 		<uni-section :title="'disabled用法：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" disabled />
@@ -52,8 +50,8 @@
 	export default {
 		data() {
 			return {
-				single: '',
-				datetimesingle: '',
+				single: '2021-5-3',
+				datetimesingle: '2021-07-3',
 				range: ['2021-02-1', '2021-3-28'],
 				datetimerange: [],
 				start: '2021-7-2',
@@ -80,10 +78,10 @@
 				// this.datetimerange = ["2021-07-08 0:00:00", "2021-08-08 23:59:59"]
 				// this.start = '2021-07-10'
 				// this.end = '2021-07-20'
-			}, 3000)
+			},3000)
 		},
 
-		methods: {
+		methods:{
 			change(e) {
 				this.single = e
 				console.log('----change事件:', this.single = e);
@@ -91,108 +89,16 @@
 			changeLog(e) {
 				console.log('----change事件:', e);
 			},
-			maskClick(e) {
+			maskClick(e){
 				console.log('----maskClick事件:', e);
 			}
 		}
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
+<style lang="scss">
 	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
+		background-color: #fff;
+		padding: 10px;
 	}
 </style>

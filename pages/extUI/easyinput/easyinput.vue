@@ -1,46 +1,50 @@
 <template>
 	<view>
-		<text class="example-info"> easyinput 组件是对原生input组件的增强 ，是专门为配合表单组件 uni-forms 而设计的，easyinput 内置了边框，图标等，同时包含 input 所有功能</text>
-		<uni-section title="默认" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
-		</view>
+		<uni-card :is-shadow="false" is-full>
+			<text class="uni-h6">easyinput 组件是对原生input组件的增强 ，是专门为配合表单组件 uni-forms 而设计的，easyinput 内置了边框，图标等，同时包含 input
+				所有功能</text>
+		</uni-card>
+		<uni-section title="默认" subTitle="使用 focus 属性自动获取输入框焦点" type="line" padding>
+				<uni-easyinput errorMessage v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
+		</uni-section>
 
-		<uni-section title="去除空格" type="line"></uni-section>
-		<view class="example">
-			<text class="text">输入内容：{{ '"'+value+'"' }}</text>
-			<uni-easyinput trim="all" v-model="value" placeholder="请输入内容" @input="input"></uni-easyinput>
-		</view>
+		<uni-section title="去除空格" subTitle="使用 trim 属性 ,可以控制返回内容的空格 " type="line" padding>
+				<text class="uni-subtitle">输入内容：{{ '"'+value+'"' }}</text>
+				<uni-easyinput class="uni-mt-5" trim="all" v-model="value" placeholder="请输入内容" @input="input"></uni-easyinput>
+		</uni-section>
 
-		<uni-section title="自定义样式" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" placeholder="请输入内容" @input="input"></uni-easyinput>
-		</view>
-		<uni-section title="左图标" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput prefixIcon="search" v-model="value" placeholder="请输入内容" @iconClick="iconClick"></uni-easyinput>
-		</view>
-		<uni-section title="右图标" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput suffixIcon="search" v-model="value" placeholder="请输入内容" @iconClick="iconClick"></uni-easyinput>
-		</view>
-		<uni-section title="禁用" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput disabled value="已禁用" placeholder="请输入内容"></uni-easyinput>
-		</view>
-		<uni-section title="密码框" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput type="password" v-model="password" placeholder="请输入密码"></uni-easyinput>
-		</view>
-		<uni-section title="多行文本" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput type="textarea" v-model="value" placeholder="请输入内容"></uni-easyinput>
-		</view>
 
-		<uni-section title="多行文本自动高度" type="line"></uni-section>
-		<view class="example">
-			<uni-easyinput type="textarea" autoHeight v-model="value" placeholder="请输入内容"></uni-easyinput>
-		</view>
+		<uni-section title="自定义样式" subTitle="使用 styles 属性 ,可以自定义输入框样式" type="line" padding>
+				<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" placeholder="请输入内容"
+					@input="input"></uni-easyinput>
+		</uni-section>
+
+		<uni-section title="图标" subTitle="使用 prefixIcon / suffixIcon 属性 ,可以自定义输入框左右侧图标" type="line" padding>
+				<uni-easyinput prefixIcon="search" v-model="value" placeholder="左侧图标" @iconClick="iconClick">
+				</uni-easyinput>
+				<uni-easyinput class="uni-mt-5" suffixIcon="search" v-model="value" placeholder="右侧图标"
+					@iconClick="iconClick">
+				</uni-easyinput>
+		</uni-section>
+
+
+		<uni-section title="禁用" subTitle="使用 disabled 属性禁用输入框" type="line" padding>
+				<uni-easyinput disabled value="已禁用" placeholder="请输入内容"></uni-easyinput>
+		</uni-section>
+
+		<uni-section title="密码框" subTitle="指定属性 type=password 使用密码框,右侧会显示眼睛图标" type="line" padding>
+				<uni-easyinput type="password" v-model="password" placeholder="请输入密码"></uni-easyinput>
+		</uni-section>
+
+		<uni-section title="多行文本" subTitle="指定属性 type=textarea 使用多行文本框" type="line" padding>
+				<uni-easyinput type="textarea" v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</uni-section>
+
+
+		<uni-section title="多行文本自动高度" subTitle="使用属性 autoHeight 使多行文本框自动增高" type="line" padding>
+				<uni-easyinput type="textarea" autoHeight v-model="value" placeholder="请输入内容"></uni-easyinput>
+		</uni-section>
+
 
 	</view>
 </template>
@@ -51,10 +55,10 @@
 			return {
 				value: '',
 				password: '',
-				placeholderStyle: "color:#499721;font-size:16px",
+				placeholderStyle: "color:#2979FF;font-size:14px",
 				styles: {
-					color: 'blue',
-					borderColor: '#499721'
+					color: '#2979FF',
+					borderColor: '#2979FF'
 				}
 			}
 
@@ -75,112 +79,8 @@
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
-
-	.example {
-		padding: 10px;
-		background-color: #fff;
-	}
-
-	.text {
-		font-size: 14px;
-		color: #333;
-		margin-bottom: 10px;
-	}
+<style lang="scss">
+.uni-mt-5 {
+	margin-top: 5px;
+}
 </style>

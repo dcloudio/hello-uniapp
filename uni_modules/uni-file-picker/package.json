@@ -1,7 +1,7 @@
 {
   "id": "uni-file-picker",
   "displayName": "uni-file-picker 文件选择上传",
-  "version": "0.2.15",
+  "version": "1.0.0",
   "description": "文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间",
   "keywords": [
     "uni-ui",
@@ -40,7 +40,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -78,7 +78,7 @@
         },
         "Vue": {
             "vue2": "y",
-            "vue3": "u"
+            "vue3": "y"
         }
       }
     }

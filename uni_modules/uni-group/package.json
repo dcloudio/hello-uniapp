@@ -1,7 +1,7 @@
 {
   "id": "uni-group",
   "displayName": "uni-group 分组",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "分组组件可用于将组件用于分组，添加间隔，以产生明显的区块",
   "keywords": [
     "uni-ui",
@@ -41,7 +41,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -76,6 +76,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

@@ -1,7 +1,7 @@
 {
   "id": "uni-steps",
   "displayName": "uni-steps 步骤条",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "步骤条组件，提供横向和纵向两种布局格式。",
   "keywords": [
     "uni-ui",
@@ -41,6 +41,7 @@
   },
   "uni_modules": {
     "dependencies": [
+			"uni-scss",
 			"uni-icons"
 		],
     "encrypt": [],
@@ -77,6 +78,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

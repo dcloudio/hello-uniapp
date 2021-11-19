@@ -2,8 +2,7 @@
 	<view class="uni-badge--x">
 		<slot />
 		<text v-if="text" :class="classNames" :style="[badgeWidth, positionStyle, customStyle, dotStyle]"
-			class="uni-badge"
-			@click="onClick()">{{displayValue}}</text>
+			class="uni-badge" @click="onClick()">{{displayValue}}</text>
 	</view>
 </template>
 
@@ -13,26 +12,33 @@
 	 * @description 数字角标一般和其它控件（列表、9宫格等）配合使用，用于进行数量提示，默认为实心灰色背景
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=21
 	 * @property {String} text 角标内容
-	 * @property {String} type = [default|primary|success|warning|error] 颜色类型
-	 * 	@value default 灰色
+	 * @property {String} size = [normal|small] 角标内容
+	 * @property {String} type = [info|primary|success|warning|error] 颜色类型
+	 * 	@value info 灰色
 	 * 	@value primary 蓝色
 	 * 	@value success 绿色
 	 * 	@value warning 黄色
 	 * 	@value error 红色
-	 * @property {String} size = [normal|small] Badge 大小
-	 * 	@value normal 一般尺寸
-	 * 	@value small 小尺寸
 	 * @property {String} inverted = [true|false] 是否无需背景颜色
+	 * @property {Number} maxNum 展示封顶的数字值，超过 99 显示 99+
+	 * @property {String} absolute = [rightTop|rightBottom|leftBottom|leftTop] 开启绝对定位, 角标将定位到其包裹的标签的四角上		
+	 * 	@value rightTop 右上
+	 * 	@value rightBottom 右下
+	 * 	@value leftTop 左上
+	 * 	@value leftBottom 左下
+	 * @property {Array[number]} offset	距定位角中心点的偏移量，只有存在 absolute 属性时有效，例如：[-10, -10] 表示向外偏移 10px，[10, 10] 表示向 absolute 指定的内偏移 10px
+	 * @property {String} isDot = [true|false] 是否显示为一个小点
 	 * @event {Function} click 点击 Badge 触发事件
 	 * @example <uni-badge text="1"></uni-badge>
 	 */
+
 	export default {
 		name: 'UniBadge',
-		emits:['click'],
+		emits: ['click'],
 		props: {
 			type: {
 				type: String,
-				default: 'default'
+				default: 'error'
 			},
 			inverted: {
 				type: Boolean,
@@ -62,7 +68,7 @@
 			},
 			size: {
 				type: String,
-				default: 'normal'
+				default: 'small'
 			},
 			customStyle: {
 				type: Object,
@@ -138,7 +144,11 @@
 				}
 			},
 			displayValue() {
-				const { isDot, text, maxNum } = this
+				const {
+					isDot,
+					text,
+					maxNum
+				} = this
 				return isDot ? '' : (Number(text) > maxNum ? `${maxNum}+` : text)
 			}
 		},
@@ -151,9 +161,15 @@
 </script>
 
 <style lang="scss" scoped>
+	$uni-primary: #2979ff !default;
+	$uni-success: #4cd964 !default;
+	$uni-warning: #f0ad4e !default;
+	$uni-error: #dd524d !default;
+	$uni-info: #909399 !default;
+
+
 	$bage-size: 12px;
 	$bage-small: scale(0.8);
-	$bage-height: 20px;
 
 	.uni-badge--x {
 		/* #ifdef APP-NVUE */
@@ -169,6 +185,11 @@
 		position: absolute;
 	}
 
+	.uni-badge--small {
+		transform: $bage-small;
+		transform-origin: center center;
+	}
+
 	.uni-badge {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -177,77 +198,71 @@
 		/* #endif */
 		justify-content: center;
 		flex-direction: row;
-		height: $bage-height;
-		line-height: $bage-height;
-		color: $uni-text-color;
+		height: 20px;
+		line-height: 18px;
+		color: #fff;
 		border-radius: 100px;
-		background-color: $uni-bg-color-hover;
+		background-color: $uni-info;
 		background-color: transparent;
+		border: 1px solid #fff;
 		text-align: center;
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-size: $bage-size;
 		/* #ifdef H5 */
+		z-index: 999;
 		cursor: pointer;
 		/* #endif */
-	}
 
-	.uni-badge--inverted {
-		padding: 0 5px 0 0;
-		color: $uni-bg-color-hover;
-	}
+		&--info {
+			color: #fff;
+			background-color: $uni-info;
+		}
 
-	.uni-badge--default {
-		color: $uni-text-color;
-		background-color: $uni-bg-color-hover;
-	}
+		&--primary {
+			background-color: $uni-primary;
+		}
 
-	.uni-badge--default-inverted {
-		color: $uni-text-color-grey;
-		background-color: transparent;
-	}
+		&--success {
+			background-color: $uni-success;
+		}
 
-	.uni-badge--primary {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-primary;
-	}
+		&--warning {
+			background-color: $uni-warning;
+		}
 
-	.uni-badge--primary-inverted {
-		color: $uni-color-primary;
-		background-color: transparent;
-	}
+		&--error {
+			background-color: $uni-error;
+		}
 
-	.uni-badge--success {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-success;
-	}
+		&--inverted {
+			padding: 0 5px 0 0;
+			color: $uni-info;
+		}
 
-	.uni-badge--success-inverted {
-		color: $uni-color-success;
-		background-color: transparent;
-	}
+		&--info-inverted {
+			color: $uni-info;
+			background-color: transparent;
+		}
 
-	.uni-badge--warning {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-warning;
-	}
+		&--primary-inverted {
+			color: $uni-primary;
+			background-color: transparent;
+		}
 
-	.uni-badge--warning-inverted {
-		color: $uni-color-warning;
-		background-color: transparent;
-	}
+		&--success-inverted {
+			color: $uni-success;
+			background-color: transparent;
+		}
 
-	.uni-badge--error {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-error;
-	}
+		&--warning-inverted {
+			color: $uni-warning;
+			background-color: transparent;
+		}
 
-	.uni-badge--error-inverted {
-		color: $uni-color-error;
-		background-color: transparent;
-	}
+		&--error-inverted {
+			color: $uni-error;
+			background-color: transparent;
+		}
 
-	.uni-badge--small {
-		transform: $bage-small;
-		transform-origin: center center;
 	}
 </style>

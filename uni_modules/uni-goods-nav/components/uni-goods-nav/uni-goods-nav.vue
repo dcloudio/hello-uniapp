@@ -18,7 +18,7 @@
 				</view>
 			</view>
 			<view :class="{'uni-tab__right':fill}" class="flex uni-tab__cart-sub-right ">
-				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}"
+				<view v-for="(item,index) in buttonGroup" :key="index" :style="{background:item.backgroundColor,color:item.color}"
 				 class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)"><text :style="{color:item.color}" class="uni-tab__cart-button-right-text">{{ item.text }}</text></view>
 			</view>
 		</view>
@@ -63,12 +63,12 @@
 				default () {
 					return [{
 							text: t("uni-goods-nav.buttonGroup.addToCart"),
-							backgroundColor: '#ffa200',
+							backgroundColor: 'linear-gradient(90deg, #FFCD1E, #FF8A18)',
 							color: '#fff'
 						},
 						{
 							text: t("uni-goods-nav.buttonGroup.buyNow"),
-							backgroundColor: '#ff0000',
+							backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
 							color: '#fff'
 						}
 					]
@@ -164,7 +164,7 @@
 
 	.uni-tab__text {
 		margin-top: 3px;
-		font-size: $uni-font-size-sm;
+		font-size: 12px;
 		color: #646566;
 	}
 
@@ -182,7 +182,7 @@
 	}
 
 	.uni-tab__cart-button-right-text {
-		font-size: $uni-font-size-base;
+		font-size: 14px;
 		color: #fff;
 	}
 
@@ -220,13 +220,5 @@
 		padding: 0 4px;
 		// width: auto;
 		border-radius: 15px;
-	}
-
-	.uni-tab__color-y {
-		background-color: #ffa200;
-	}
-
-	.uni-tab__color-r {
-		background-color: #ff0000;
 	}
 </style>

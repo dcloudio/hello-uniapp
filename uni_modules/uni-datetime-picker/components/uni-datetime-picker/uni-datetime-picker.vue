@@ -5,16 +5,12 @@
 				<view class="uni-date-editor--x" :class="{'uni-date-editor--x__disabled': disabled,
 		'uni-date-x--border': border}">
 					<view v-if="!isRange" class="uni-date-x uni-date-single">
-						<view class="uni-date__icon-logo">
-							<image class="uni-date-editor--logo" :src="iconBase64" mode=""></image>
-						</view>
+						<uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons>
 						<input class="uni-date__x-input" type="text" v-model="singleVal"
 							:placeholder="singlePlaceholderText" :disabled="true" />
 					</view>
 					<view v-else class="uni-date-x uni-date-range">
-						<view class="uni-date__icon-logo">
-							<image class="uni-date-editor--logo" :src="iconBase64" mode=""></image>
-						</view>
+						<uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons>
 						<input class="uni-date__x-input t-c" type="text" v-model="range.startDate"
 							:placeholder="startPlaceholderText" :disabled="true" />
 						<slot>
@@ -25,7 +21,7 @@
 					</view>
 					<view v-show="clearIcon && !disabled && (singleVal || (range.startDate && range.endDate))"
 						class="uni-date__icon-clear" @click.stop="clear">
-						<uni-icons type="clear" color="#e1e1e1" size="14"></uni-icons>
+						<uni-icons type="clear" color="#e1e1e1" size="18"></uni-icons>
 					</view>
 				</view>
 			</slot>
@@ -34,7 +30,8 @@
 		<view v-show="popup" class="uni-date-mask" @click="close"></view>
 		<view v-if="!isPhone" ref="datePicker" v-show="popup" class="uni-date-picker__container">
 			<view v-if="!isRange" class="uni-date-single--x" :style="popover">
-				<view v-show="hasTime" class="uni-date-changed popup-x-header">
+				<view class="uni-popper__arrow"></view>
+				<view v-if="hasTime" class="uni-date-changed popup-x-header">
 					<input class="uni-date__input t-c" type="text" v-model="tempSingleDate"
 						:placeholder="selectDateText" />
 					<time-picker type="time" v-model="time" :border="false" :disabled="!tempSingleDate"
@@ -43,9 +40,9 @@
 							:disabled="!tempSingleDate" />
 					</time-picker>
 				</view>
-				<calendar ref="pcSingle" class="uni-date_calendar-pc" :showMonth="false"
+				<calendar ref="pcSingle" :showMonth="false"
 					:start-date="caleRange.startDate" :end-date="caleRange.endDate" :date="defSingleDate"
-					@change="singleChange" />
+					@change="singleChange" style="padding: 0 8px;" />
 				<view v-if="hasTime" class="popup-x-footer">
 					<!-- <text class="">此刻</text> -->
 					<text class="confirm" @click="confirmSingleChange">{{okText}}</text>
@@ -54,7 +51,8 @@
 			</view>
 
 			<view v-else class="uni-date-range--x" :style="popover">
-				<view v-show="hasTime" class="popup-x-header uni-date-changed">
+				<view class="uni-popper__arrow"></view>
+				<view v-if="hasTime" class="popup-x-header uni-date-changed">
 					<view class="popup-x-header--datetime">
 						<input class="uni-date__input uni-date-range__input" type="text" v-model="tempRange.startDate"
 							:placeholder="startDateText" />
@@ -77,14 +75,14 @@
 					</view>
 				</view>
 				<view class="popup-x-body">
-					<calendar ref="left" class="uni-date_calendar-pc" :showMonth="false"
+					<calendar ref="left" :showMonth="false"
 						:start-date="caleRange.startDate" :end-date="caleRange.endDate" :range="true"
 						@change="leftChange" :pleStatus="endMultipleStatus" @firstEnterCale="updateRightCale"
-						@monthSwitch="leftMonthSwitch" />
-					<calendar ref="right" class="uni-date_calendar-pc" :showMonth="false"
+						@monthSwitch="leftMonthSwitch" style="padding: 0 8px;" />
+					<calendar ref="right" :showMonth="false"
 						:start-date="caleRange.startDate" :end-date="caleRange.endDate" :range="true"
 						@change="rightChange" :pleStatus="startMultipleStatus" @firstEnterCale="updateLeftCale"
-						@monthSwitch="rightMonthSwitch" style="border-left: 1px solid #F1F1F1;" />
+						@monthSwitch="rightMonthSwitch" style="padding: 0 8px;border-left: 1px solid #F1F1F1;" />
 				</view>
 				<view v-if="hasTime" class="popup-x-footer">
 					<text class="" @click="clear">{{clearText}}</text>
@@ -92,7 +90,7 @@
 				</view>
 			</view>
 		</view>
-		<calendar v-if="isPhone" ref="mobile" :clearDate="false" :date="defSingleDate" :defTime="reactMobDefTime"
+		<calendar v-show="isPhone" ref="mobile" :clearDate="false" :date="defSingleDate" :defTime="reactMobDefTime"
 			:start-date="caleRange.startDate" :end-date="caleRange.endDate" :selectableTimes="mobSelectableTime"
 			:pleStatus="endMultipleStatus" :showMonth="false" :range="isRange" :typeHasTime="hasTime" :insert="false"
 			:hideSecond="hideSecond" @confirm="mobileChange" />
@@ -104,10 +102,10 @@
 	 * @description 同时支持 PC 和移动端使用日历选择日期和日期范围
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=3962
 	 * @property {String} type 选择器类型
-	 * @property {String|Array} value 绑定值
+	 * @property {String|Number|Array|Date} value 绑定值
 	 * @property {String} placeholder 单选择时的占位内容
 	 * @property {String} start 起始时间
-	 * @property {String} start 终止时间
+	 * @property {String} end 终止时间
 	 * @property {String} start-placeholder 范围选择时开始日期的占位内容
 	 * @property {String} end-placeholder 范围选择时结束日期的占位内容
 	 * @property {String} range-separator 选择范围时的分隔符
@@ -115,6 +113,9 @@
 	 * @property {Boolean} disabled = [true|false] 是否禁用
 	 * @property {Boolean} clearIcon = [true|false] 是否显示清除按钮（仅PC端适用）
 	 * @event {Function} change 确定日期时触发的事件
+	 * @event {Function} show 打开弹出层
+	 * @event {Function} close 关闭弹出层
+	 * @event {Function} clear 清除上次选中的状态和值
 	 **/
 	import calendar from './calendar.vue'
 	import timePicker from './time-picker.vue'
@@ -180,7 +181,6 @@
 				isEmitValue: false,
 				isPhone: false,
 				isFirstShow: true,
-				iconBase64: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACVklEQVRoge2Zv2vTQRTAP4oWJQQskmolBAnSQVMcSxbp4ubmIEWETu0oIjg5iIOgpLNunfQfMHToUgpOVgfRqRAL4q8WRLQVq4sOdyHPL9/7evfNJReS+8DB433v7r37fl/eu9xBJBKUB0BLt+uDaOOQZb8SUNXyuKuRftg46NeXcBww6M8AC0ANOAycAyb1s7e6+SbNxi/gBfAQ2HadcA7YB/4MUPsKzLos4jzwewAcNy3mhMnx5I/9BiqUAD4DDWAXmAfqWt8Enlq+GBfSbEwAt4AicAxYBO7aTPaGzhu4KvTLQn/Hh9cpmGzcFvqmaXAyaxWE/MGTg93yXsgFUyfbOrJCJ2s8y+tRP21s0fmMTlmih8zT8WnN1GloCmJWaF0CpvrlSAb1/3fJXshNT470hZEIrZeoahqaU8BZ10Exa4XGtiCaKKL+EIHaMX8U81ZEP7ntrwi7n4CfWi7p+UCFdFdh7Rpaps9+mn93rjY2THut0QqtoVlIkpi1QjNyCzEdnl0W+idCXxb6VmKudaGfsbBhRbcHdEWhf5eYt0o6FVR6BjhqYcOKoQkt2y/SAB5rWVbpVeCilmUl3hb6JNeAI1p+ZWEjFzH9hsY2tEwHdHX9DGATWNLyceCeGL/YhY+58LWhy9o0uhJDKw3T4dlr4L6WZab5JvRBGJqs9UPI5R44lQfpx56pUzK0NlA3R6AK1Engu1+/nGhfK7R5bjtwGnXdFfpSJ6190Quz5grqQCC048lFXMhy2nQZWkUVsRowZv8OvLOPCvdHwE5APyKRSMQzfwE22DtT3T5PPwAAAABJRU5ErkJggg=='
 			}
 		},
 		props: {
@@ -685,9 +685,9 @@
 					this.tempSingleDate = ''
 					this.time = ''
 					if (this.isPhone) {
-						this.$refs.mobile.clearCalender()
+						this.$refs.mobile && this.$refs.mobile.clearCalender()
 					} else {
-						this.$refs.pcSingle.clearCalender()
+						this.$refs.pcSingle && this.$refs.pcSingle.clearCalender()
 					}
 					if (needEmit) {
 						this.formItem && this.formItem.setValue('')
@@ -698,16 +698,16 @@
 				} else {
 					this.range.startDate = ''
 					this.range.endDate = ''
-					this.tempRange.startDate= ''
-					this.tempRange.startTime= ''
-					this.tempRange.endDate= ''
-					this.tempRange.endTime= ''
+					this.tempRange.startDate = ''
+					this.tempRange.startTime = ''
+					this.tempRange.endDate = ''
+					this.tempRange.endTime = ''
 					if (this.isPhone) {
-						this.$refs.mobile.clearCalender()
+						this.$refs.mobile && this.$refs.mobile.clearCalender()
 					} else {
-						this.$refs.left.clearCalender()
-						this.$refs.right.clearCalender()
-						this.$refs.right.next()
+						this.$refs.left && this.$refs.left.clearCalender()
+						this.$refs.right && this.$refs.right.clearCalender()
+						this.$refs.right && this.$refs.right.next()
 					}
 					if (needEmit) {
 						this.formItem && this.formItem.setValue([])
@@ -728,7 +728,8 @@
 				const minute = defVal.getMinutes()
 				const second = defVal.getSeconds()
 				const defDate = year + '-' + this.lessTen(month) + '-' + this.lessTen(day)
-				const defTime = this.lessTen(hour) + ':' + this.lessTen(minute) + (this.hideSecond ? '' : (':' + this.lessTen(second)))
+				const defTime = this.lessTen(hour) + ':' + this.lessTen(minute) + (this.hideSecond ? '' : (':' + this
+					.lessTen(second)))
 				return {
 					defDate,
 					defTime
@@ -782,12 +783,11 @@
 
 	.uni-date-editor--x .uni-date__icon-clear {
 		position: absolute;
-		top: 5px;
+		top: 0;
 		right: 0;
 		display: inline-block;
 		box-sizing: border-box;
-		border: 6px solid transparent;
-		margin-right: 6px;
+		border: 9px solid transparent;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
@@ -846,8 +846,8 @@
 		position: absolute;
 		top: 0;
 		z-index: 999;
-		border: 1px solid #e4e7ed;
-		box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+		border: 1px solid #EBEEF5;
+		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
 	}
 
@@ -857,8 +857,8 @@
 		position: absolute;
 		top: 0;
 		z-index: 999;
-		border: 1px solid #e4e7ed;
-		box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+		border: 1px solid #EBEEF5;
+		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
 	}
 
@@ -899,7 +899,7 @@
 		border-top-color: #F1F1F1;
 		border-top-style: solid;
 		border-top-width: 1px;
-		background-color: #fff;
+		/* background-color: #fff; */
 		line-height: 40px;
 		text-align: right;
 		color: #666;
@@ -917,7 +917,7 @@
 	}
 
 	.uni-date-changed {
-		background-color: #fff;
+		/* background-color: #fff; */
 		text-align: center;
 		color: #333;
 		border-bottom-color: #F1F1F1;
@@ -946,7 +946,32 @@
 		margin-right: 50px;
 	}
 
-	.uni-date_calendar-pc {
-		padding: 0 6px;
+	/* picker 弹出层通用的指示小三角, todo：扩展至上下左右方向定位 */
+	.uni-popper__arrow,
+	.uni-popper__arrow::after {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		border-color: transparent;
+		border-style: solid;
+		border-width: 6px;
+	}
+
+	.uni-popper__arrow {
+		filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+		top: -6px;
+		left: 10%;
+		margin-right: 3px;
+		border-top-width: 0;
+		border-bottom-color: #EBEEF5;
+	}
+
+	.uni-popper__arrow::after {
+		content: " ";
+		top: 1px;
+		margin-left: -6px;
+		border-top-width: 0;
+		border-bottom-color: #fff;
 	}
 </style>
