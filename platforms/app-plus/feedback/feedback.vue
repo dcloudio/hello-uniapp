@@ -37,9 +37,7 @@
 </template>
 
 <script>
-import uniRate from '@/components/uni-rate/uni-rate.vue';
 export default {
-	components: { uniRate },
 	data() {
 		return {
 			msgContents: ['界面显示错乱', '启动缓慢，卡出翔了', 'UI无法直视，丑哭了', '偶发性崩溃'],

@@ -12,7 +12,6 @@
 	</view>
 </template>
 <script>
-import uniIcons from '@/components/uni-icons/uni-icons.vue';
 export default {
 	data() {
 		return {
@@ -60,9 +59,6 @@ export default {
 		});
 		// 取消红点或者角标 
 		this.setStyle(e.index,false);
-	},
-	components: {
-		uniIcons
 	}
 };
 </script>
