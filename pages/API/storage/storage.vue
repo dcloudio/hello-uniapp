@@ -91,7 +91,12 @@
 						success: (res) => {
 							uni.showModal({
 								title: '存储数据成功',
+								// #ifndef MP-ALIPAY
 								content: JSON.stringify(res.errMsg),
+								// #endif
+								// #ifdef MP-ALIPAY
+								content: data,
+								// #endif
 								showCancel:false
 							})
 						},

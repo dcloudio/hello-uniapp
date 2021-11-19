@@ -1,10 +1,10 @@
 <template>
-	<view class="uni-easyinput" :class="{'uni-easyinput-error':msg}" :style="{color:inputBorder && msg?'#dd524d':styles.color}">
+	<view class="uni-easyinput" :class="{'uni-easyinput-error':msg}" :style="{color:inputBorder && msg?'#e43d33':styles.color}">
 		<view class="uni-easyinput__content" :class="{'is-input-border':inputBorder ,'is-input-error-border':inputBorder && msg,'is-textarea':type==='textarea','is-disabled':disabled}"
 		 :style="{'border-color':inputBorder && msg?'#dd524d':styles.borderColor,'background-color':disabled?styles.disableColor:''}">
 			<uni-icons v-if="prefixIcon" class="content-clear-icon" :type="prefixIcon" color="#c0c4cc" @click="onClickIcon('prefix')"></uni-icons>
 			<textarea v-if="type === 'textarea'" class="uni-easyinput__content-textarea" :class="{'input-padding':inputBorder}"
-			 :name="name" :value="val" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled"
+			 :name="name" :value="val" :placeholder="placeholder" :placeholderStyle="placeholderStyle" :disabled="disabled" placeholder-class="uni-easyinput__placeholder-class"
 			 :maxlength="inputMaxlength" :focus="focused" :autoHeight="autoHeight" @input="onInput" @blur="onBlur"  @focus="onFocus"
 			 @confirm="onConfirm"></textarea>
 			<input v-else :type="type === 'password'?'text':type" class="uni-easyinput__content-input" :style="{
@@ -12,7 +12,7 @@
 				 'padding-left':prefixIcon?'':'10px'
 			 }"
 			 :name="name" :value="val" :password="!showPassword && type === 'password'" :placeholder="placeholder"
-			 :placeholderStyle="placeholderStyle" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" :confirmType="confirmType" @focus="onFocus"
+			 :placeholderStyle="placeholderStyle" placeholder-class="uni-easyinput__placeholder-class" :disabled="disabled" :maxlength="inputMaxlength" :focus="focused" :confirmType="confirmType" @focus="onFocus"
 			 @blur="onBlur" @input="onInput" @confirm="onConfirm" />
 			<template v-if="type === 'password' && passwordIcon" >
 				<uni-icons v-if="val != '' " class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}" :type="showPassword?'eye-slash-filled':'eye-filled'"
@@ -77,7 +77,7 @@
 	 * @example <uni-easyinput v-model="mobile"></uni-easyinput>
 	 */
 
-	export default {
+	 export default {
 		name: 'uni-easyinput',
 		emits:['click','iconClick','update:modelValue','input','focus','blur','confirm'],
 		model:{
@@ -147,7 +147,7 @@
 				default () {
 					return {
 						color: '#333',
-						disableColor: '#eee',
+						disableColor: '#F7F6F6',
 						borderColor: '#e5e5e5'
 					}
 				}
@@ -173,7 +173,7 @@
 			msg() {
 				return this.errorMessage || this.errMsg;
 			},
-			// 因为uniapp的input组件的maxlength组件必须要数值，这里转为数值，给用户可以传入字符串数值
+			// 因为uniapp的input组件的maxlength组件必须要数值，这里转为数值，用户可以传入字符串数值
 			inputMaxlength() {
 				return Number(this.maxlength);
 			},
@@ -223,10 +223,7 @@
 			}
 		},
 		mounted() {
-			// this.onInput = throttle(this.input, 500)
 			this.$nextTick(() => {
-				// setTimeout(()=>{
-				// },1000)
 				this.focused = this.focus
 			})
 		},
@@ -277,14 +274,10 @@
 			},
 
 			onFocus(event) {
-				// this.focused = true;
 				this.$emit('focus', event);
 			},
 			onBlur(event) {
 				let value = event.detail.value;
-				// setTimeout(() => {
-				// this.focused = false;
-				// }, 100);
 				this.$emit('blur', event);
 			},
 			onConfirm(e) {
@@ -324,6 +317,8 @@
 </script>
 
 <style lang="scss" scoped>
+	$uni-error: #e43d33;
+	$uni-border-1: #DCDFE6 !default;
 	.uni-easyinput {
 		/* #ifndef APP-NVUE */
 		width: 100%;
@@ -357,7 +352,11 @@
 		line-height: 1;
 		font-size: 14px;
 	}
-
+	.uni-easyinput__placeholder-class {
+		color: #999;
+		font-size: 12px;
+		font-weight: 200;
+	}
 	.is-textarea {
 		align-items: flex-start;
 	}
@@ -402,17 +401,8 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		border: 1px solid $uni-border-color;
+		border: 1px solid $uni-border-1;
 		border-radius: 4px;
-	}
-
-	.uni-easyinput__right {
-		// margin-left: 5px;
-	}
-
-	// 必填
-	.is-required {
-		color: $uni-color-error;
 	}
 
 	.uni-error-message {
@@ -420,7 +410,7 @@
 		bottom: -17px;
 		left: 0;
 		line-height: 12px;
-		color: $uni-color-error;
+		color: $uni-error;
 		font-size: 12px;
 		text-align: left;
 	}
@@ -432,8 +422,12 @@
 	}
 
 	.is-input-error-border {
-		border-color: $uni-color-error;
+		border-color: $uni-error;
+		.uni-easyinput__placeholder-class {
+			color: mix(#fff, $uni-error, 50%);;
+		}
 	}
+
 
 	.uni-easyinput--border {
 		margin-bottom: 0;
@@ -456,6 +450,12 @@
 	}
 
 	.is-disabled {
-		background-color: #eee;
+		border-color: red;
+		background-color: #F7F6F6;
+		color: #D5D5D5;
+		.uni-easyinput__placeholder-class {
+			color: #D5D5D5;
+			font-size: 12px;
+		}
 	}
 </style>

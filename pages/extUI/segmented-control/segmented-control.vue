@@ -1,16 +1,24 @@
 <template>
 	<view>
-		<view class="uni-padding-wrap uni-common-mt">
-			<uni-segmented-control :current="current" :values="items" :style-type="styleType" :active-color="activeColor" @clickItem="onClickItem" />
-		</view>
-		<view class="content">
-			<view v-if="current === 0"><text class="content-text">选项卡1的内容</text></view>
-			<view v-if="current === 1"><text class="content-text">选项卡2的内容</text></view>
-			<view v-if="current === 2"><text class="content-text">选项卡3的内容</text></view>
-		</view>
+		<uni-card is-full>
+			<text class="uni-h6">标签组件多用于商品分类、重点内容显示等场景。</text>
+		</uni-card>
+
+		<uni-section title="实心标签" type="line">
+			<view class="uni-padding-wrap uni-common-mt">
+				<uni-segmented-control :current="current" :values="items" :style-type="styleType"
+					:active-color="activeColor" @clickItem="onClickItem" />
+			</view>
+			<view class="content">
+				<view v-if="current === 0"><text class="content-text">选项卡1的内容</text></view>
+				<view v-if="current === 1"><text class="content-text">选项卡2的内容</text></view>
+				<view v-if="current === 2"><text class="content-text">选项卡3的内容</text></view>
+			</view>
+		</uni-section>
+
 		<uni-section title="Style" type="line"></uni-section>
 		<view class="example-body">
-			<radio-group class="uni-list " @change="styleChange">
+			<radio-group class="uni-list" @change="styleChange">
 				<view v-for="(item, index) in styles" :key="index" class="uni-list-item">
 					<view class="uni-list-item__container">
 						<view class="uni-list-item__content">
@@ -85,104 +93,7 @@
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
-
+<style lang="scss">
 	.example-body {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -196,6 +107,7 @@
 	}
 
 	.uni-padding-wrap {
+		// width: 750rpx;
 		padding: 0px 30px;
 	}
 
@@ -210,8 +122,8 @@
 	}
 
 	.content-text {
-		font-size: 18px;
-		color: #333;
+		font-size: 14px;
+		color: $uni-text-color;
 	}
 
 	.color-tag {
@@ -232,6 +144,7 @@
 		background-color: #FFFFFF;
 	}
 
+
 	.uni-list-item__container {
 		padding: 12px 15px;
 		width: 100%;
@@ -246,10 +159,10 @@
 		align-items: center;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-bottom-color: #e5e5e5;
+		border-bottom-color: #eee;
 	}
 
 	.uni-list-item__content-title {
-		font-size: 16px;
+		font-size: 14px;
 	}
 </style>

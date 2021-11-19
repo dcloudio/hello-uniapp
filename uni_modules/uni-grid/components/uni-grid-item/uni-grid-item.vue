@@ -94,34 +94,34 @@
 	.uni-grid-item--border {
 		position: relative;
 		/* #ifdef APP-NVUE */
-		border-bottom-color: $uni-border-color;
+		border-bottom-color: #D2D2D2;
 		border-bottom-style: solid;
 		border-bottom-width: 0.5px;
-		border-right-color: $uni-border-color;
+		border-right-color: #D2D2D2;
 		border-right-style: solid;
 		border-right-width: 0.5px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		z-index: 0;
-		border-bottom: 1px $uni-border-color solid;
-		border-right: 1px $uni-border-color solid;
+		border-bottom: 1px #D2D2D2 solid;
+		border-right: 1px #D2D2D2 solid;
 		/* #endif */
 	}
 	.uni-grid-item--border-top {
 		position: relative;
 		/* #ifdef APP-NVUE */
-		border-top-color: $uni-border-color;
+		border-top-color: #D2D2D2;
 		border-top-style: solid;
 		border-top-width: 0.5px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
-		border-top: 1px $uni-border-color solid;
+		border-top: 1px #D2D2D2 solid;
 		z-index: 0;
 		/* #endif */
 	}
 
 
 	.uni-highlight:active {
-		background-color: $uni-bg-color-hover;
+		background-color: #f1f1f1;
 	}
 </style>

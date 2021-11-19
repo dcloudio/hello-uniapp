@@ -1,7 +1,7 @@
 {
   "id": "uni-collapse",
   "displayName": "uni-collapse 折叠面板",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Collapse 组件，可以折叠 / 展开的内容区域。",
   "keywords": [
     "uni-ui",
@@ -41,6 +41,7 @@
   },
   "uni_modules": {
     "dependencies": [
+			"uni-scss",
       "uni-icons"
     ],
     "encrypt": [],
@@ -80,7 +81,7 @@
         },
         "Vue": {
             "vue2": "y",
-            "vue3": "u"
+            "vue3": "y"
         }
       }
     }

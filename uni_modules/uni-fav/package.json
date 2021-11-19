@@ -1,7 +1,7 @@
 {
   "id": "uni-fav",
   "displayName": "uni-fav 收藏按钮",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": " Fav 收藏组件，可自定义颜色、大小。",
   "keywords": [
     "fav",
@@ -41,6 +41,7 @@
   },
   "uni_modules": {
     "dependencies": [
+			"uni-scss",
 			"uni-icons"
 		],
     "encrypt": [],
@@ -80,7 +81,7 @@
         },
         "Vue": {
             "vue2": "y",
-            "vue3": "u"
+            "vue3": "y"
         }
       }
     }

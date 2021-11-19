@@ -6,11 +6,11 @@
 			<view :style="{ color: color,backgroundColor: backgroundColor }" class="uni-navbar__header uni-navbar__content_view">
 				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="leftIcon.length">
-						<uni-icons :color="color" :type="leftIcon" size="24" />
+						<uni-icons :color="color" :type="leftIcon" size="22" color="#333"/>
 					</view>
 					<view :class="{ 'uni-navbar-btn-icon-left': !leftIcon.length }" class="uni-navbar-btn-text uni-navbar__content_view"
 					 v-if="leftText.length">
-						<text :style="{ color: color, fontSize: '14px' }">{{ leftText }}</text>
+						<text :style="{ color: color, fontSize: '12px' }">{{ leftText }}</text>
 					</view>
 					<slot name="left" />
 				</view>
@@ -22,8 +22,8 @@
 					<slot />
 				</view>
 				<view :class="title.length ? 'uni-navbar__header-btns-right' : ''" @tap="onClickRight" class="uni-navbar__header-btns uni-navbar__content_view">
-					<view class="uni-navbar__content_view" v-if="rightIcon.length">
-						<uni-icons :color="color" :type="rightIcon" size="24" />
+					<view class="uni-navbar__content_view uni-navbar__header-btns-right" v-if="rightIcon.length">
+						<uni-icons :color="color" :type="rightIcon" size="22" />
 					</view>
 					<!-- 优先显示图标 -->
 					<view class="uni-navbar-btn-text uni-navbar__content_view" v-if="rightText.length && !rightIcon.length">
@@ -134,22 +134,23 @@
 
 <style lang="scss" scoped>
 	$nav-height: 44px;
+
 	.uni-nav-bar-text {
 		/* #ifdef APP-PLUS */
 		font-size: 34rpx;
 		/* #endif */
 		/* #ifndef APP-PLUS */
-		font-size: $uni-font-size-lg;
+		font-size: 14px;
 		/* #endif */
 	}
 
 	.uni-nav-bar-right-text {
-		font-size: $uni-font-size-base;
+		font-size: 12px;
 	}
 
 	.uni-navbar__content {
 		position: relative;
-		background-color: $uni-bg-color;
+		background-color: #fff;
 		overflow: hidden;
 		// width: 750rpx;
 	}
@@ -164,13 +165,14 @@
 	}
 
 	.uni-navbar__header {
+		padding: 0 10px;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: row;
 		height: $nav-height;
 		line-height: $nav-height;
-		font-size: 16px;
+		font-size: 12px;
 		// background-color: #ffffff;
 	}
 
@@ -180,7 +182,7 @@
 		/* #endif */
 		flex-wrap: nowrap;
 		width: 120rpx;
-		padding: 0 6px;
+		// padding: 0 6px;
 		justify-content: center;
 		align-items: center;
 		/* #ifdef H5 */
@@ -192,7 +194,7 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		width: 150rpx;
+		width: 120rpx;
 		justify-content: flex-start;
 	}
 
@@ -216,7 +218,7 @@
 		flex: 1;
 		align-items: center;
 		justify-content: center;
-		font-size: $uni-font-size-base;
+		font-size: 12px;
 	}
 
 
@@ -247,6 +249,6 @@
 	.uni-navbar--border {
 		border-bottom-width: 1rpx;
 		border-bottom-style: solid;
-		border-bottom-color: $uni-border-color;
+		border-bottom-color: #eee;
 	}
 </style>

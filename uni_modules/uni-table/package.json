@@ -1,7 +1,7 @@
 {
   "id": "uni-table",
   "displayName": "uni-table 表格",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "表格组件，多用于展示多条结构类似的数据，如",
   "keywords": [
     "uni-ui",
@@ -40,7 +40,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": ["uni-datetime-picker"],
+    "dependencies": ["uni-scss","uni-datetime-picker"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -75,6 +75,10 @@
         "快应用": {
           "华为": "n",
           "联盟": "n"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

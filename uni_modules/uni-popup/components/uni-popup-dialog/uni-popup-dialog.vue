@@ -165,7 +165,7 @@
 <style lang="scss" scoped>
 	.uni-popup-dialog {
 		width: 300px;
-		border-radius: 15px;
+		border-radius: 11px;
 		background-color: #fff;
 	}
 
@@ -175,8 +175,7 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: center;
-		padding-top: 15px;
-		padding-bottom: 5px;
+		padding-top: 25px;
 	}
 
 	.uni-dialog-title-text {
@@ -191,12 +190,12 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		padding: 5px 15px 15px 15px;
+		padding: 20px;
 	}
 
 	.uni-dialog-content-text {
 		font-size: 14px;
-		color: #6e6e6e;
+		color: #6C6C6C;
 	}
 
 	.uni-dialog-button-group {
@@ -228,7 +227,8 @@
 	}
 
 	.uni-dialog-button-text {
-		font-size: 14px;
+		font-size: 16px;
+		color: #333;
 	}
 
 	.uni-button-color {

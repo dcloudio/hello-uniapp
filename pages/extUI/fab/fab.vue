@@ -1,13 +1,22 @@
 <template>
-	<view class="uni-fab-box">
-		<view class="uni-padding-wrap">
-			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn(0)"><text class="word-btn-white">切换菜单({{ directionStr }}显示)</text></view>
-			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'bottom')"><text class="word-btn-white">左下角显示</text></view>
-			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'bottom')"><text class="word-btn-white">右下角显示</text></view>
-			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'top')"><text class="word-btn-white">左上角显示</text></view>
-			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'top')"><text class="word-btn-white">右上角显示</text></view>
-		</view>
-		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" @fabClick="fabClick" />
+	<view class="container">
+		<uni-card :is-shadow="false" is-full>
+			<text class="uni-h6">uni-ui 规范颜色色板，通过内置样式快速指定元素前景和背景色。</text>
+		</uni-card>
+
+		<uni-section title="基本功能" subTitle="点击按钮,切换 fab 不同状态" type="line">
+			<view class="warp">
+				<button class="button" type="primary" @click="switchBtn(0)">切换菜单方向({{ directionStr }})</button>
+				<button class="button" type="primary" @click="switchBtn('left', 'bottom')">左下角显示</button>
+				<button class="button" type="primary" @click="switchBtn('right', 'bottom')">右下角显示</button>
+				<button class="button" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
+				<button class="button" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
+				<button class="button" type="primary" @click="switchBtn('right', 'top')">右上角显示</button>
+				<button class="button" type="primary" @click="switchColor">修改颜色</button>
+			</view>
+		</uni-section>
+		<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical"
+			:direction="direction" @trigger="trigger" @fabClick="fabClick" />
 	</view>
 </template>
 
@@ -25,26 +34,28 @@
 					color: '#7A7E83',
 					backgroundColor: '#fff',
 					selectedColor: '#007AFF',
+					buttonColor: '#007AFF',
+					iconColor: '#fff'
 				},
+				is_color_type:false,
 				content: [{
-						iconPath: '/static/component.png',
-						selectedIconPath: '/static/componentHL.png',
-						text: '组件',
-						active: false
-					},
-					{
-						iconPath: '/static/api.png',
-						selectedIconPath: '/static/apiHL.png',
-						text: 'API',
-						active: false
-					},
-					{
-						iconPath: '/static/template.png',
-						selectedIconPath: '/static/templateHL.png',
-						text: '模版',
-						active: false
-					}
-				]
+					iconPath: '/static/image.png',
+					selectedIconPath: '/static/image-active.png',
+					text: '相册',
+					active: false
+				},
+				{
+					iconPath: '/static/home.png',
+					selectedIconPath: '/static/home-active.png',
+					text: '首页',
+					active: false
+				},
+				{
+					iconPath: '/static/star.png',
+					selectedIconPath: '/static/star-active.png',
+					text: '收藏',
+					active: false
+				}]
 			}
 		},
 		onBackPress() {
@@ -85,138 +96,27 @@
 					this.vertical = ver
 				}
 				this.$forceUpdate()
+			},
+			switchColor(){
+				this.is_color_type = !this.is_color_type
+				if(this.is_color_type) {
+					this.pattern.iconColor = '#aaa'
+					this.pattern.buttonColor = '#fff'
+				}else{
+					this.pattern.iconColor = '#fff'
+					this.pattern.buttonColor = '#007AFF'
+				}
 			}
 		}
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
+<style lang="scss">
+	.warp {
+		padding: 10px;
 	}
 
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
-
-	/* #ifndef APP-NVUE || H5 */
-	page {
-		height: 100vh;
-	}
-
-	/* #endif */
-	.uni-fab-box {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		justify-content: center;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-	}
-
-	.uni-padding-wrap {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.word-btn {
-		width: 250px;
+	.button {
+		margin-bottom: 10px;
 	}
 </style>

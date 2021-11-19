@@ -5,8 +5,7 @@
         'uni-fab--rightBottom': rightBottom,
         'uni-fab--leftTop': leftTop,
         'uni-fab--rightTop': rightTop
-      }"
-		 class="uni-fab">
+      }" class="uni-fab">
 			<view :class="{
           'uni-fab__content--left': horizontal === 'left',
           'uni-fab__content--right': horizontal === 'right',
@@ -14,14 +13,15 @@
           'uni-fab__content--flexDirectionStart': flexDirectionStart,
           'uni-fab__content--flexDirectionEnd': flexDirectionEnd,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-        }"
-			 :style="{ width: boxWidth, height: boxHeight, backgroundColor: styles.backgroundColor }" class="uni-fab__content"
-			 elevation="5">
+        }" :style="{ width: boxWidth, height: boxHeight, backgroundColor: styles.backgroundColor }"
+				class="uni-fab__content" elevation="5">
 				<view v-if="flexDirectionStart || horizontalLeft" class="uni-fab__item uni-fab__item--first" />
-				<view v-for="(item, index) in content" :key="index" :class="{ 'uni-fab__item--active': isShow }" class="uni-fab__item"
-				 @click="_onItemClick(index, item)">
-					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="uni-fab__item-image" mode="widthFix" />
-					<text class="uni-fab__item-text" :style="{ color: item.active ? styles.selectedColor : styles.color }">{{ item.text }}</text>
+				<view v-for="(item, index) in content" :key="index" :class="{ 'uni-fab__item--active': isShow }"
+					class="uni-fab__item" @click="_onItemClick(index, item)">
+					<image :src="item.active ? item.selectedIconPath : item.iconPath" class="uni-fab__item-image"
+						mode="aspectFit" />
+					<text class="uni-fab__item-text"
+						:style="{ color: item.active ? styles.selectedColor : styles.color }">{{ item.text }}</text>
 				</view>
 				<view v-if="flexDirectionEnd || horizontalRight" class="uni-fab__item uni-fab__item--first" />
 			</view>
@@ -32,10 +32,11 @@
 		  'uni-fab__circle--leftTop': leftTop,
 		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-		}"
-		 class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
-			<view class="fab-circle-v"  :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
-			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow  && content.length > 0}"></view>
+		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
+			<uni-icons class="fab-circle-icon" type="plusempty" :color="styles.iconColor" size="32"
+				:class="{'uni-fab__plus--active': isShow && content.length > 0}"></uni-icons>
+			<!-- <view class="fab-circle-v"  :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
+			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow  && content.length > 0}"></view> -->
 		</view>
 	</view>
 </template>
@@ -67,7 +68,7 @@
 	 */
 	export default {
 		name: 'UniFab',
-		emits:['fabClick','trigger'],
+		emits: ['fabClick', 'trigger'],
 		props: {
 			pattern: {
 				type: Object,
@@ -111,16 +112,17 @@
 					color: '#3c3e49',
 					selectedColor: '#007AFF',
 					backgroundColor: '#fff',
-					buttonColor: '#007AFF'
+					buttonColor: '#007AFF',
+					iconColor: '#fff'
 				}
 			}
 		},
 		computed: {
 			contentWidth(e) {
-				return (this.content.length + 1) * 55 + 10 + 'px'
+				return (this.content.length + 1) * 55 + 15 + 'px'
 			},
 			contentWidthMin() {
-				return 55 + 'px'
+				return '55px'
 			},
 			// 动态计算宽度
 			boxWidth() {
@@ -159,9 +161,11 @@
 			}
 		},
 		watch: {
-			pattern(newValue, oldValue) {
-				//console.log(JSON.stringify(newValue))
-				this.styles = Object.assign({}, this.styles, newValue)
+			pattern: {
+				handler(val, oldVal) {
+					this.styles = Object.assign({}, this.styles, val)
+				},
+				deep: true
 			}
 		},
 		created() {
@@ -214,6 +218,8 @@
 </script>
 
 <style lang="scss" scoped>
+	$uni-shadow-base:0 1px 5px 2px rgba($color: #000000, $alpha: 0.3) !default;
+
 	.uni-fab {
 		position: fixed;
 		/* #ifndef APP-NVUE */
@@ -222,8 +228,10 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 10;
+		border-radius: 45px;
+		box-shadow: $uni-shadow-base;
 	}
-	
+
 	.uni-cursor-point {
 		/* #ifdef H5 */
 		cursor: pointer;
@@ -235,43 +243,43 @@
 	}
 
 	.uni-fab--leftBottom {
-		left: 5px;
-		bottom: 20px;
+		left: 15px;
+		bottom: 30px;
 		/* #ifdef H5 */
-		left: calc(5px + var(--window-left));
-		bottom: calc(20px + var(--window-bottom));
+		left: calc(15px + var(--window-left));
+		bottom: calc(30px + var(--window-bottom));
 		/* #endif */
-		padding: 10px;
+		// padding: 10px;
 	}
 
 	.uni-fab--leftTop {
-		left: 5px;
+		left: 15px;
 		top: 30px;
 		/* #ifdef H5 */
-		left: calc(5px + var(--window-left));
+		left: calc(15px + var(--window-left));
 		top: calc(30px + var(--window-top));
 		/* #endif */
-		padding: 10px;
+		// padding: 10px;
 	}
 
 	.uni-fab--rightBottom {
-		right: 5px;
-		bottom: 20px;
+		right: 15px;
+		bottom: 30px;
 		/* #ifdef H5 */
-		right: calc(5px + var(--window-right));
-		bottom: calc(20px + var(--window-bottom));
+		right: calc(15px + var(--window-right));
+		bottom: calc(30px + var(--window-bottom));
 		/* #endif */
-		padding: 10px;
+		// padding: 10px;
 	}
 
 	.uni-fab--rightTop {
-		right: 5px;
+		right: 15px;
 		top: 30px;
 		/* #ifdef H5 */
-		right: calc(5px + var(--window-right));
+		right: calc(15px + var(--window-right));
 		top: calc(30px + var(--window-top));
 		/* #endif */
-		padding: 10px;
+		// padding: 10px;
 	}
 
 	.uni-fab__circle {
@@ -284,8 +292,9 @@
 		width: 55px;
 		height: 55px;
 		background-color: #3c3e49;
-		border-radius: 55px;
+		border-radius: 45px;
 		z-index: 11;
+		// box-shadow: $uni-shadow-base;
 	}
 
 	.uni-fab__circle--leftBottom {
@@ -299,10 +308,10 @@
 
 	.uni-fab__circle--leftTop {
 		left: 15px;
-		top: 40px;
+		top: 30px;
 		/* #ifdef H5 */
 		left: calc(15px + var(--window-left));
-		top: calc(40px + var(--window-top));
+		top: calc(30px + var(--window-top));
 		/* #endif */
 	}
 
@@ -317,10 +326,10 @@
 
 	.uni-fab__circle--rightTop {
 		right: 15px;
-		top: 40px;
+		top: 30px;
 		/* #ifdef H5 */
 		right: calc(15px + var(--window-right));
-		top: calc(40px + var(--window-top));
+		top: calc(30px + var(--window-top));
 		/* #endif */
 	}
 
@@ -344,26 +353,42 @@
 		font-weight: bold;
 	}
 
-	.fab-circle-v {
-		position: absolute;
-		width: 3px;
-		height: 31px;
-		left: 26px;
-		top: 12px;
-		background-color: white;
-		transform: rotate(0deg);
-		transition: transform 0.3s;
-	}
+	// .fab-circle-v {
+	// 	position: absolute;
+	// 	width: 2px;
+	// 	height: 24px;
+	// 	left: 0;
+	// 	top: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	/* #ifndef APP-NVUE */
+	// 	margin: auto;
+	// 	/* #endif */
+	// 	background-color: white;
+	// 	transform: rotate(0deg);
+	// 	transition: transform 0.3s;
+	// }
 
-	.fab-circle-h {
-		position: absolute;
-		width: 31px;
-		height: 3px;
-		left: 12px;
-		top: 26px;
-		background-color: white;
+	// .fab-circle-h {
+	// 	position: absolute;
+	// 	width: 24px;
+	// 	height: 2px;
+	// 	left: 0;
+	// 	top: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	/* #ifndef APP-NVUE */
+	// 	margin: auto;
+	// 	/* #endif */
+	// 	background-color: white;
+	// 	transform: rotate(0deg);
+	// 	transition: transform 0.3s;
+	// }
+
+	.fab-circle-icon {
 		transform: rotate(0deg);
 		transition: transform 0.3s;
+		font-weight: 200;
 	}
 
 	.uni-fab__plus--active {
@@ -388,7 +413,7 @@
 
 	.uni-fab__content--other-platform {
 		border-width: 0px;
-		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+		box-shadow: $uni-shadow-base;
 	}
 
 	.uni-fab__content--left {
@@ -432,14 +457,16 @@
 	}
 
 	.uni-fab__item-image {
-		width: 25px;
-		height: 25px;
-		margin-bottom: 3px;
+		width: 20px;
+		height: 20px;
+		margin-bottom: 4px;
 	}
 
 	.uni-fab__item-text {
 		color: #FFFFFF;
 		font-size: 12px;
+		line-height: 12px;
+		margin-top: 2px;
 	}
 
 	.uni-fab__item--first {

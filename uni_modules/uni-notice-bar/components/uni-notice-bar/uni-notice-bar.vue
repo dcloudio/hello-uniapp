@@ -1,28 +1,24 @@
 <template>
 	<view v-if="show" class="uni-noticebar" :style="{ backgroundColor: backgroundColor }" @click="onClick">
-		<!-- #ifdef MP-ALIPAY -->
-		<view v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close uni-cursor-point" @click="close">
-			<uni-icons type="closeempty" :color="color" size="12" />
-		</view>
-		<view v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon">
-			<uni-icons type="sound" :color="color" size="14" />
-		</view>
-		<!-- #endif -->
-		<!-- #ifndef MP-ALIPAY -->
-		<uni-icons v-if="showClose === true || showClose === 'true'" class="uni-noticebar-close uni-cursor-point" type="closeempty" :color="color"
-		 size="12" @click="close" />
-		<uni-icons v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon" type="sound" :color="color"
-		 size="14" />
-		<!-- #endif -->
-		<view ref="textBox" class="uni-noticebar__content-wrapper" :class="{'uni-noticebar__content-wrapper--scrollable':scrollable, 'uni-noticebar__content-wrapper--single':!scrollable && (single || moreText)}">
-			<view :id="elIdBox" class="uni-noticebar__content" :class="{'uni-noticebar__content--scrollable':scrollable, 'uni-noticebar__content--single':!scrollable && (single || moreText)}">
-				<text :id="elId" ref="animationEle" class="uni-noticebar__content-text" :class="{'uni-noticebar__content-text--scrollable':scrollable,'uni-noticebar__content-text--single':!scrollable && (single || moreText)}"
-				 :style="{color:color, width:wrapWidth+'px', 'animationDuration': animationDuration, '-webkit-animationDuration': animationDuration ,animationPlayState: webviewHide?'paused':animationPlayState,'-webkit-animationPlayState':webviewHide?'paused':animationPlayState, animationDelay: animationDelay, '-webkit-animationDelay':animationDelay}">{{text}}</text>
+		<uni-icons v-if="showIcon === true || showIcon === 'true'" class="uni-noticebar-icon" type="sound"
+			:color="color" size="22" />
+		<view ref="textBox" class="uni-noticebar__content-wrapper"
+			:class="{'uni-noticebar__content-wrapper--scrollable':scrollable, 'uni-noticebar__content-wrapper--single':!scrollable && (single || moreText)}">
+			<view :id="elIdBox" class="uni-noticebar__content"
+				:class="{'uni-noticebar__content--scrollable':scrollable, 'uni-noticebar__content--single':!scrollable && (single || moreText)}">
+				<text :id="elId" ref="animationEle" class="uni-noticebar__content-text"
+					:class="{'uni-noticebar__content-text--scrollable':scrollable,'uni-noticebar__content-text--single':!scrollable && (single || showGetMore)}"
+					:style="{color:color, width:wrapWidth+'px', 'animationDuration': animationDuration, '-webkit-animationDuration': animationDuration ,animationPlayState: webviewHide?'paused':animationPlayState,'-webkit-animationPlayState':webviewHide?'paused':animationPlayState, animationDelay: animationDelay, '-webkit-animationDelay':animationDelay}">{{text}}</text>
 			</view>
 		</view>
-		<view v-if="showGetMore === true || showGetMore === 'true'" class="uni-noticebar__more uni-cursor-point" @click="clickMore">
-			<text v-if="moreText" :style="{ color: moreColor }" class="uni-noticebar__more-text">{{ moreText }}</text>
-			<uni-icons type="arrowright" :color="moreColor" size="14" />
+		<view v-if="showGetMore === true || showGetMore === 'true'" class="uni-noticebar__more uni-cursor-point"
+			@click="clickMore">
+			<text v-if="moreText.length > 0" :style="{ color: moreColor }" class="uni-noticebar__more-text">{{ moreText }}</text>
+			<uni-icons v-else type="right" :color="moreColor" size="16" />
+		</view>
+		<view class="uni-noticebar-close uni-cursor-point" v-if="(showClose === true || showClose === 'true') && (showGetMore === false || showGetMore === 'false')">
+			<uni-icons
+				type="closeempty" :color="color" size="16" @click="close" />
 		</view>
 	</view>
 </template>
@@ -55,7 +51,7 @@
 
 	export default {
 		name: 'UniNoticeBar',
-		emits:['click','getmore','close'],
+		emits: ['click', 'getmore', 'close'],
 		props: {
 			text: {
 				type: String,
@@ -67,7 +63,7 @@
 			},
 			backgroundColor: {
 				type: String,
-				default: '#fffbe8'
+				default: '#FFF9EA'
 			},
 			speed: {
 				// 默认1s滚动100px
@@ -76,11 +72,11 @@
 			},
 			color: {
 				type: String,
-				default: '#de8c17'
+				default: '#FF9A43'
 			},
 			moreColor: {
 				type: String,
-				default: '#999999'
+				default: '#FF9A43'
 			},
 			single: {
 				// 是否单行
@@ -132,10 +128,10 @@
 			var pages = getCurrentPages();
 			var page = pages[pages.length - 1];
 			var currentWebview = page.$getAppWebview();
-			currentWebview.addEventListener('hide',()=>{
+			currentWebview.addEventListener('hide', () => {
 				this.webviewHide = true
 			})
-			currentWebview.addEventListener('show',()=>{
+			currentWebview.addEventListener('show', () => {
 				this.webviewHide = false
 			})
 			// #endif
@@ -267,7 +263,6 @@
 </script>
 
 <style lang="scss" scoped>
-
 	.uni-noticebar {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -276,7 +271,7 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		padding: 6px 12px;
+		padding: 10px 12px;
 		margin-bottom: 10px;
 	}
 
@@ -287,6 +282,7 @@
 	}
 
 	.uni-noticebar-close {
+		margin-left: 8px;
 		margin-right: 5px;
 	}
 
@@ -316,6 +312,7 @@
 		position: relative;
 		height: 18px;
 	}
+
 	/* #endif */
 
 	.uni-noticebar__content--scrollable {

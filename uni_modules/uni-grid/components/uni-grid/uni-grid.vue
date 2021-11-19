@@ -39,7 +39,7 @@
 			// 边框颜色
 			borderColor: {
 				type: String,
-				default: '#e5e5e5'
+				default: '#D2D2D2'
 			},
 			// 是否正方形显示,默认为 true
 			square: {
@@ -130,13 +130,13 @@
 	.uni-grid--border {
 		position: relative;
 		/* #ifdef APP-NVUE */
-		border-left-color: $uni-border-color;
+		border-left-color: #D2D2D2;
 		border-left-style: solid;
 		border-left-width: 0.5px;
 		/* #endif */
 		/* #ifndef APP-NVUE */
 		z-index: 1;
-		border-left: 1px $uni-border-color solid;
+		border-left: 1px #D2D2D2 solid;
 		/* #endif */
 	}
 </style>

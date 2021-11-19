@@ -8,7 +8,7 @@
 				<view class="uni-indexed-list__item-container" @click="onClick(idx, index)">
 					<view class="uni-indexed-list__item-border" :class="{'uni-indexed-list__item-border--last':index===list.items.length-1}">
 						<view v-if="showSelect" style="margin-right: 20rpx;">
-							<uni-icons :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#aaa'" size="24" />
+							<uni-icons :type="item.checked ? 'checkbox-filled' : 'circle'" :color="item.checked ? '#007aff' : '#C0C0C0'" size="24" />
 						</view>
 						<text class="uni-indexed-list__item-content">{{ item.name }}</text>
 					</view>
@@ -62,7 +62,7 @@
 		flex-direction: column;
 		border-top-style: solid;
 		border-top-width: 1px;
-		border-top-color: $uni-border-color;
+		border-top-color: #DEDEDE;
 	}
 
 	.uni-indexed-list__item {
@@ -103,11 +103,11 @@
 		justify-content: space-between;
 		align-items: center;
 		height: 50px;
-		padding: $uni-spacing-row-lg;
+		padding: 25px;
 		padding-left: 0;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-bottom-color: $uni-border-color;
+		border-bottom-color:  #DEDEDE;
 	}
 
 	.uni-indexed-list__item-border--last {
@@ -117,6 +117,7 @@
 	.uni-indexed-list__item-content {
 		flex: 1;
 		font-size: 14px;
+		color: #191919;
 	}
 
 	.uni-indexed-list {
@@ -137,6 +138,7 @@
 	.uni-indexed-list__title {
 		padding: 6px 12px;
 		line-height: 24px;
-		font-size: $uni-font-size-sm;
+		font-size: 16px;
+		font-weight: 500;
 	}
 </style>

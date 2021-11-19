@@ -48,11 +48,14 @@
 					duration: 5000
 				})
 				// #ifdef MP-ALIPAY
-				this._showTimer && clearTimeout(this._showTimer);
 				this._showTimer = setTimeout(() => {
-					this.hideToast()
+					// icon 是 loading 时，showToast 实际执行的是 showLoading
+					my.hideLoading()
+					// 执行完所有代码再清除定时器
+					clearTimeout(this._showTimer);
 				}, 3000)
 				// #endif
+
 			},
 			toast4Tap: function () {
 				uni.showToast({

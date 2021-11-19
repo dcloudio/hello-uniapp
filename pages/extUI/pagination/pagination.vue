@@ -1,28 +1,30 @@
 <template>
 	<view>
-		<uni-section title="默认样式" type="line"></uni-section>
-		<view class="example-body">
+		<uni-card is-full :is-shadow="false">
+			<text class="uni-h6">分页器组件，用于展示页码、请求数据等</text>
+		</uni-card>
+		<uni-section title="默认样式" type="line" padding>
 			<uni-pagination :total="50" title="标题文字" />
-		</view>
-		<uni-section title="修改按钮文字" type="line"></uni-section>
-		<view class="example-body">
+		</uni-section>
+		<uni-section title="修改按钮文字" subTitle="使用 prev-text / next-text 属性修改按钮文字" type="line" padding>
 			<uni-pagination :total="50" title="标题文字" prev-text="前一页" next-text="后一页" />
-		</view>
-		<uni-section title="图标样式" type="line"></uni-section>
-		<view class="example-body">
+		</uni-section>
+		<uni-section title="图标样式" subTitle="使用 show-icon 属性显示图标按钮" type="line" padding>
 			<uni-pagination :show-icon="true" :total="50" title="标题文字" />
-		</view>
-		<uni-section title="修改数据长度" type="line"></uni-section>
-		<view class="example-body">
+		</uni-section>
+		<uni-section title="修改数据长度" type="line" padding>
 			<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
-		</view>
-		<view class="btn-view">
-			<view>
-				<text class="example-info">当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>
+			<view class="btn-view">
+				<view>
+					<text class="example-info">当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>
+				</view>
+				<view class="btn-flex">
+					<button class="button word-btn" hover-class="word-btn--hover" :hover-start-time="20"
+						:hover-stay-time="70" @click="add"><text class="word-btn-white">增加10条数据</text></button>
+					<button class="button" type="default" @click="reset">重置数据</button>
+				</view>
 			</view>
-			<view class="button word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="add"><text class="word-btn-white">增加10条数据</text></view>
-			<button class="button" type="default" @click="reset">重置数据</button>
-		</view>
+		</uni-section>
 	</view>
 </template>
 
@@ -52,103 +54,7 @@
 	}
 </script>
 
-<style>
-	/* 头条小程序组件内不能引入字体 */
-	/* #ifdef MP-TOUTIAO */
-	@font-face {
-		font-family: uniicons;
-		font-weight: normal;
-		font-style: normal;
-		src: url("~@/static/uni.ttf") format("truetype");
-	}
-
-	/* #endif */
-	/* #ifndef APP-NVUE */
-	page {
-		display: flex;
-		flex-direction: column;
-		box-sizing: border-box;
-		background-color: #efeff4;
-		min-height: 100%;
-		height: auto;
-	}
-
-	view {
-		font-size: 14px;
-		line-height: inherit;
-	}
-
-	.example {
-		padding: 0 15px 15px;
-	}
-
-	.example-info {
-		padding: 15px;
-		color: #3b4144;
-		background: #ffffff;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14px;
-		background-color: #ffffff;
-	}
-
-	/* #endif */
-	.example {
-		padding: 0 15px;
-	}
-
-	.example-info {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 15px;
-		color: #3b4144;
-		background-color: #ffffff;
-		font-size: 14px;
-		line-height: 20px;
-	}
-
-	.example-info-text {
-		font-size: 14px;
-		line-height: 20px;
-		color: #3b4144;
-	}
-
-	.example-body {
-		flex-direction: column;
-		padding: 15px;
-		background-color: #ffffff;
-	}
-
-	.word-btn-white {
-		font-size: 18px;
-		color: #FFFFFF;
-	}
-
-	.word-btn {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		border-radius: 6px;
-		height: 48px;
-		margin: 15px;
-		background-color: #007AFF;
-	}
-
-	.word-btn--hover {
-		background-color: #4ca2ff;
-	}
+<style lang="scss" scoped>
 
 	.example-body {
 		/* #ifndef APP-NVUE */
@@ -168,8 +74,17 @@
 		align-items: center;
 	}
 
+	.btn-flex {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.button {
-		margin-bottom: 20px;
-		width: 350px;
+		margin: 20px;
+		width: 150px;
+		font-size: 14px;
+		color: #333;
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<text class="uni-tag" v-if="text" :class="classes" :style="customStyle" @click="onClick" ><slot/>{{text}}<slot name="right" /></text>
+	<text class="uni-tag" v-if="text" :class="classes" :style="customStyle" @click="onClick">{{text}}</text>
 </template>
 
 <script>
@@ -8,16 +8,16 @@
 	 * @description 用于展示1个或多个文字标签，可点击切换选中、不选中的状态
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=35
 	 * @property {String} text 标签内容
-	 * @property {String} size = [normal|small] 大小尺寸
-	 * 	@value normal 正常
+	 * @property {String} size = [default|small|mini] 大小尺寸
+	 * 	@value default 正常
 	 * 	@value small 小尺寸
-	 * @property {String} type = [default|primary|success｜warning｜error｜royal]  颜色类型
+	 * 	@value mini 迷你尺寸
+	 * @property {String} type = [default|primary|success｜warning｜error]  颜色类型
 	 * 	@value default 灰色
 	 * 	@value primary 蓝色
 	 * 	@value success 绿色
 	 * 	@value warning 黄色
 	 * 	@value error 红色
-	 * 	@value royal 紫色
 	 * @property {Boolean} disabled = [true|false] 是否为禁用状态
 	 * @property {Boolean} inverted = [true|false] 是否无需背景颜色（空心标签）
 	 * @property {Boolean} circle = [true|false] 是否为圆角
@@ -26,7 +26,7 @@
 
 	export default {
 		name: "UniTag",
-		emits:['click'],
+		emits: ['click'],
 		props: {
 			type: {
 				// 标签类型default、primary、success、warning、error、royal
@@ -70,18 +70,27 @@
 		},
 		computed: {
 			classes() {
-				const { type, disabled, inverted, circle, mark, size, isTrue } = this
+				const {
+					type,
+					disabled,
+					inverted,
+					circle,
+					mark,
+					size,
+					isTrue
+				} = this
 				const classArr = [
 					'uni-tag--' + type,
+					'uni-tag--' + size,
 					isTrue(disabled) ? 'uni-tag--disabled' : '',
-					isTrue(inverted) ? type + '-uni-tag--inverted' : '',
+					isTrue(inverted) ? 'uni-tag--' + type + '--inverted' : '',
 					isTrue(circle) ? 'uni-tag--circle' : '',
 					isTrue(mark) ? 'uni-tag--mark' : '',
-					'uni-tag--' + size,
 					// type === 'default' ? 'uni-tag--default' : 'uni-tag-text',
-					isTrue(inverted) ? 'uni-tag-text--' + type : '',
+					isTrue(inverted) ? 'uni-tag--inverted uni-tag-text--' + type : '',
 					size === 'small' ? 'uni-tag-text--small' : ''
 				]
+				// 返回类的字符串，兼容字节小程序
 				return classArr.join(' ')
 			}
 		},
@@ -98,182 +107,146 @@
 </script>
 
 <style lang="scss" scoped>
-	$tag-pd: 0px 16px;
-	$tag-small-pd: 0px 8px;
-	$uni-color-royal: #4335d6;
+	$uni-primary: #2979ff !default;
+	$uni-success: #18bc37 !default;
+	$uni-warning: #f3a73f !default;
+	$uni-error: #e43d33 !default;
+	$uni-info: #8f939c !default;
 
+
+	$tag-default-pd: 4px 7px;
+	$tag-small-pd: 2px 5px;
+	$tag-mini-pd: 1px 3px;
 
 	.uni-tag {
-		/* #ifndef APP-NVUE */
-		display: inline-block;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		align-self: flex-start;
-		/* #endif */
-		padding: $tag-pd;
-		line-height: 30px;
-		color: $uni-text-color;
-		border-radius: $uni-border-radius-base;
-		background-color: $uni-bg-color-grey;
+		line-height: 14px;
+		font-size: 12px;
+		font-weight: 200;
+		padding: $tag-default-pd;
+		color: #fff;
+		border-radius: 3px;
+		background-color: $uni-info;
 		border-width: 1rpx;
 		border-style: solid;
-		border-color: $uni-bg-color-grey;
+		border-color: $uni-info;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
+
+		// size attr
+		&--default {
+			font-size: 12px;
+		}
+
+		&--default--inverted {
+			color: $uni-info;
+			border-color: $uni-info;
+		}
+
+		&--small {
+			padding: $tag-small-pd;
+			font-size: 12px;
+			border-radius: 2px;
+		}
+
+		&--mini {
+			padding: $tag-mini-pd;
+			font-size: 12px;
+			border-radius: 2px;
+		}
+
+		// type attr
+		&--primary {
+			background-color: $uni-primary;
+			border-color: $uni-primary;
+			color: #fff;
+		}
+
+		&--success {
+			color: #fff;
+			background-color: $uni-success;
+			border-color: $uni-success;
+		}
+
+		&--warning {
+			color: #fff;
+			background-color: $uni-warning;
+			border-color: $uni-warning;
+		}
+
+		&--error {
+			color: #fff;
+			background-color: $uni-error;
+			border-color: $uni-error;
+		}
+
+		&--primary--inverted {
+			color: $uni-primary;
+			border-color: $uni-primary;
+		}
+
+		&--success--inverted {
+			color: $uni-success;
+			border-color: $uni-success;
+		}
+
+		&--warning--inverted {
+			color: $uni-warning;
+			border-color: $uni-warning;
+		}
+
+		&--error--inverted {
+			color: $uni-error;
+			border-color: $uni-error;
+		}
+
+		&--inverted {
+			background-color: #fff;
+		}
+
+		// other attr
+		&--circle {
+			border-radius: 15px !important;
+		}
+
+		&--mark {
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			border-top-right-radius: 15px !important;
+			border-bottom-right-radius: 15px !important;
+		}
+
+		&--disabled {
+			opacity: 0.5;
+			/* #ifdef H5 */
+			cursor: not-allowed;
+			/* #endif */
+		}
 	}
 
-	.uni-tag--circle {
-		border-radius: 15px;
-	}
-
-	.uni-tag--mark {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		border-top-right-radius: 15px;
-		border-bottom-right-radius: 15px;
-	}
-
-	.uni-tag--disabled {
-		opacity: 0.5;
-		/* #ifdef H5 */
-		cursor: not-allowed;
-		/* #endif */
-
-	}
-
-	.uni-tag--small {
-		height: 20px;
-		padding: $tag-small-pd;
-		line-height: 20px;
-		font-size: $uni-font-size-sm;
-	}
-
-	.uni-tag--default {
-		color: $uni-text-color;
-		font-size: $uni-font-size-base;
-	}
-
-	.uni-tag--royal {
-		color: $uni-text-color;
-		font-size: $uni-font-size-base;
-	}
-
-	.uni-tag-text--small {
-		font-size: $uni-font-size-sm;
-	}
 
 	.uni-tag-text {
-		color: $uni-text-color-inverse;
-		font-size: $uni-font-size-base;
-	}
+		color: #fff;
+		font-size: 14px;
 
-	.uni-tag-text--primary {
-		color: $uni-color-primary;
-	}
+		&--primary {
+			color: $uni-primary;
+		}
 
-	.uni-tag-text--success {
-		color: $uni-color-success;
-	}
+		&--success {
+			color: $uni-success;
+		}
 
-	.uni-tag-text--warning {
-		color: $uni-color-warning;
-	}
+		&--warning {
+			color: $uni-warning;
+		}
 
-	.uni-tag-text--error {
-		color: $uni-color-error;
-	}
+		&--error {
+			color: $uni-error;
+		}
 
-	.uni-tag-text--royal {
-		color: $uni-color-royal;
-	}
-
-
-	.uni-tag--primary {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-primary;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-primary;
-	}
-
-	.primary-uni-tag--inverted {
-		color: $uni-color-primary;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-primary;
-	}
-
-	.uni-tag--success {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-success;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-success;
-	}
-
-	.success-uni-tag--inverted {
-		color: $uni-color-success;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-success;
-	}
-
-	.uni-tag--warning {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-warning;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-warning;
-	}
-
-	.warning-uni-tag--inverted {
-		color: $uni-color-warning;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-warning;
-	}
-
-	.uni-tag--error {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-error;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-error;
-	}
-
-	.error-uni-tag--inverted {
-		color: $uni-color-error;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-error;
-	}
-
-	.uni-tag--royal {
-		color: $uni-text-color-inverse;
-		background-color: $uni-color-royal;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-royal;
-	}
-
-	.royal-uni-tag--inverted {
-		color: $uni-color-royal;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-color-royal;
-	}
-
-	.uni-tag--inverted {
-		color: $uni-text-color;
-		background-color: $uni-bg-color;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-bg-color-grey;
+		&--small {
+			font-size: 12px;
+		}
 	}
 </style>

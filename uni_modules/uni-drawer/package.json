@@ -1,7 +1,7 @@
 {
   "id": "uni-drawer",
   "displayName": "uni-drawer 抽屉",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "抽屉式导航，用于展示侧滑菜单，侧滑导航。",
   "keywords": [
     "uni-ui",
@@ -41,7 +41,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -76,6 +76,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

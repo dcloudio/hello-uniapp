@@ -1,0 +1,53 @@
+<template>
+	<view class="container">
+		<uni-card :is-shadow="false" is-full>
+			<text class="uni-h6">字体辅助样式提供了常见的字体样式类</text>
+		</uni-card>
+		<uni-section title=".uni-h1" type="line">
+			<view class="uni-ma-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h1">一级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-h2" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h2">二级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-h3" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h3">三级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-h4" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h4">四级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-h5" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h5">五级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-h6" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-h6">六级标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-subtitle" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-subtitle">副标题</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-body" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-body">uni-ui 是 DCloud 官方面向 uni-app 开发者提供的一套 ui 解决方案</text>
+			</view>
+		</uni-section>
+		<uni-section title=".uni-caption" type="line">
+			<view class="uni-mx-5 uni-mb-5 uni-pl-10">
+				<text class="uni-caption">标注说明文字</text>
+			</view>
+		</uni-section>
+	</view>
+</template>
+<style></style>

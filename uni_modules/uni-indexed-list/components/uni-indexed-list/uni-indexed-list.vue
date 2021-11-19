@@ -8,7 +8,8 @@
 				<scroll-view :scroll-into-view="scrollViewId" class="uni-indexed-list__scroll" scroll-y>
 					<view v-for="(list, idx) in lists" :key="idx" :id="'uni-indexed-list-' + idx">
 						<!-- #endif -->
-						<indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect" @itemClick="onClick"></indexed-list-item>
+						<indexed-list-item :list="list" :loaded="loaded" :idx="idx" :showSelect="showSelect"
+							@itemClick="onClick"></indexed-list-item>
 						<!-- #ifndef APP-NVUE -->
 					</view>
 				</scroll-view>
@@ -17,11 +18,13 @@
 			</cell>
 		</list>
 		<!-- #endif -->
-		<view class="uni-indexed-list__menu" :class="touchmove ? 'uni-indexed-list__menu--active' : ''" @touchstart="touchStart"
-		 @touchmove.stop.prevent="touchMove" @touchend="touchEnd" @mousedown.stop="mousedown" @mousemove.stop.prevent="mousemove"
-		 @mouseleave.stop="mouseleave">
-			<view v-for="(list, key) in lists" :key="key" class="uni-indexed-list__menu-item">
-				<text class="uni-indexed-list__menu-text" :class="touchmoveIndex == key ? 'uni-indexed-list__menu-text--active' : ''">{{ list.key }}</text>
+		<view class="uni-indexed-list__menu" @touchstart="touchStart" @touchmove.stop.prevent="touchMove"
+			@touchend="touchEnd" @mousedown.stop="mousedown" @mousemove.stop.prevent="mousemove"
+			@mouseleave.stop="mouseleave">
+			<view v-for="(list, key) in lists" :key="key" class="uni-indexed-list__menu-item"
+				:class="touchmoveIndex == key ? 'uni-indexed-list__menu--active' : ''">
+				<text class="uni-indexed-list__menu-text"
+					:class="touchmoveIndex == key ? 'uni-indexed-list__menu-text--active' : ''">{{ list.key }}</text>
 			</view>
 		</view>
 		<view v-if="touchmove" class="uni-indexed-list__alert-wrapper">
@@ -87,7 +90,7 @@
 		components: {
 			indexedListItem
 		},
-		emits:['click'],
+		emits: ['click'],
 		props: {
 			options: {
 				type: Array,
@@ -211,7 +214,7 @@
 			},
 			touchEnd() {
 				this.touchmove = false
-				this.touchmoveIndex = -1
+				// this.touchmoveIndex = -1
 			},
 
 			/**
@@ -298,7 +301,6 @@
 
 	.uni-indexed-list__menu {
 		width: 24px;
-		background-color: lightgrey;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -318,18 +320,24 @@
 	}
 
 	.uni-indexed-list__menu-text {
-		line-height: 20px;
 		font-size: 12px;
 		text-align: center;
 		color: #aaa;
 	}
 
 	.uni-indexed-list__menu--active {
-		background-color: rgb(200, 200, 200);
+		// background-color: rgb(200, 200, 200);
 	}
 
+	.uni-indexed-list__menu--active {}
+
 	.uni-indexed-list__menu-text--active {
-		color: #007aff;
+		border-radius: 16px;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+		background-color: #007aff;
+		color: #fff;
 	}
 
 	.uni-indexed-list__alert-wrapper {

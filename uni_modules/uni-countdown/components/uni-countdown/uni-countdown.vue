@@ -1,25 +1,23 @@
 <template>
 	<view class="uni-countdown">
-		<text v-if="showDay" :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }"
-			class="uni-countdown__number">{{ d }}</text>
-		<text v-if="showDay" :style="{ color: splitorColor }" class="uni-countdown__splitor">{{dayText}}</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }"
-			class="uni-countdown__number">{{ h }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : hourText }}</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }"
-			class="uni-countdown__number">{{ i }}</text>
-		<text :style="{ color: splitorColor }" class="uni-countdown__splitor">{{ showColon ? ':' : minuteText }}</text>
-		<text :style="{ borderColor: borderColor, color: color, backgroundColor: backgroundColor }"
-			class="uni-countdown__number">{{ s }}</text>
-		<text v-if="!showColon" :style="{ color: splitorColor }" class="uni-countdown__splitor">{{secondText}}</text>
+		<text v-if="showDay" :style="timeStyle" class="uni-countdown__number">{{ d }}</text>
+		<text v-if="showDay" :style="splitorStyle" class="uni-countdown__splitor">{{dayText}}</text>
+		<text :style="timeStyle" class="uni-countdown__number">{{ h }}</text>
+		<text :style="splitorStyle" class="uni-countdown__splitor">{{ showColon ? ':' : hourText }}</text>
+		<text :style="timeStyle" class="uni-countdown__number">{{ i }}</text>
+		<text :style="splitorStyle" class="uni-countdown__splitor">{{ showColon ? ':' : minuteText }}</text>
+		<text :style="timeStyle" class="uni-countdown__number">{{ s }}</text>
+		<text v-if="!showColon" :style="splitorStyle" class="uni-countdown__splitor">{{secondText}}</text>
 	</view>
 </template>
 <script>
 	import {
-	initVueI18n
+		initVueI18n
 	} from '@dcloudio/uni-i18n'
 	import messages from './i18n/index.js'
-	const {	t	} = initVueI18n(messages)
+	const {
+		t
+	} = initVueI18n(messages)
 	/**
 	 * Countdown 倒计时
 	 * @description 倒计时组件
@@ -32,14 +30,14 @@
 	 * @property {Number} second 秒
 	 * @property {Number} timestamp 时间戳
 	 * @property {Boolean} showDay = [true|false] 是否显示天数
-	 * @property {Boolean} showColon = [true|false] 是否以冒号为分隔符
+	 * @property {Boolean} show-colon = [true|false] 是否以冒号为分隔符
 	 * @property {String} splitorColor 分割符号颜色
 	 * @event {Function} timeup 倒计时时间到触发事件
 	 * @example <uni-countdown :day="1" :hour="1" :minute="12" :second="40"></uni-countdown>
 	 */
 	export default {
 		name: 'UniCountdown',
-		emits:['timeup'],
+		emits: ['timeup'],
 		props: {
 			showDay: {
 				type: Boolean,
@@ -55,19 +53,19 @@
 			},
 			backgroundColor: {
 				type: String,
-				default: '#FFFFFF'
-			},
-			borderColor: {
-				type: String,
-				default: '#000000'
+				default: ''
 			},
 			color: {
 				type: String,
-				default: '#000000'
+				default: '#333'
+			},
+			fontSize: {
+				type: Number,
+				default: 14
 			},
 			splitorColor: {
 				type: String,
-				default: '#000000'
+				default: '#333'
 			},
 			day: {
 				type: Number,
@@ -115,6 +113,29 @@
 			secondText(val) {
 				return t("uni-countdown.s")
 			},
+			timeStyle() {
+				const {
+					color,
+					backgroundColor,
+					fontSize
+				} = this
+				return {
+					color,
+					backgroundColor,
+					fontSize: `${fontSize}px`,
+					width: `${fontSize * 22 / 14}px`, // 按字体大小为 14px 时的比例缩放
+ 					lineHeight: `${fontSize * 20 / 14}px`,
+					borderRadius: `${fontSize * 3 / 14}px`,
+				}
+			},
+			splitorStyle() {
+				const { splitorColor, fontSize, backgroundColor } = this
+				return {
+					color: splitorColor,
+					fontSize: `${fontSize * 12 / 14}px`,
+					margin: backgroundColor ? `${fontSize * 4 / 14}px` : ''
+				}
+			}
 		},
 		watch: {
 			day(val) {
@@ -222,39 +243,24 @@
 	}
 </script>
 <style lang="scss" scoped>
-	$countdown-height: 48rpx;
-	$countdown-width: 52rpx;
+	$font-size: 14px;
 
 	.uni-countdown {
-		/* #ifndef APP-NVUE */
 		display: flex;
-		/* #endif */
 		flex-direction: row;
 		justify-content: flex-start;
-		padding: 2rpx 0;
-	}
-
-	.uni-countdown__splitor {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		justify-content: center;
-		line-height: $countdown-height;
-		padding: 5rpx;
-		font-size: $uni-font-size-sm;
-	}
-
-	.uni-countdown__number {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		justify-content: center;
 		align-items: center;
-		width: $countdown-width;
-		height: $countdown-height;
-		line-height: $countdown-height;
-		margin: 5rpx;
-		text-align: center;
-		font-size: $uni-font-size-sm;
+
+		&__splitor {
+			margin: 0 2px;
+			font-size: $font-size;
+			color: #333;
+		}
+
+		&__number {
+			border-radius: 3px;
+			text-align: center;
+			font-size: $font-size;
+		}
 	}
 </style>

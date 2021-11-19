@@ -30,17 +30,14 @@
 				hideList: [
 					'load-more'
 				],
-				lists: [
-					// #ifndef MP-LARK
-					{
+				lists: [{
 						name: "uni-badge 数字角标",
 						url: "badge"
 					},
-					// #endif 
-					{
-						name: "uni-calendar 日历",
-						url: "calendar"
-					},
+					// {
+					// 	name: "uni-calendar 日历",
+					// 	url: "calendar"
+					// },
 					{
 						name: "uni-card 卡片",
 						url: "card"
@@ -50,7 +47,7 @@
 						url: "collapse"
 					},
 
-					// #ifndef APP-NVUE || MP-LARK
+					// #ifndef APP-NVUE 
 					{
 						name: "uni-combox 组合框",
 						url: "combox"
@@ -72,12 +69,10 @@
 						name: "uni-dateformat 日期格式化",
 						url: "dateformat"
 					},
-					// #ifndef MP-LARK
 					{
 						name: "uni-datetime-picker 日期选择器",
 						url: "datetime-picker"
 					},
-					// #endif
 					{
 						name: "uni-drawer 抽屉",
 						url: "drawer"
@@ -184,18 +179,16 @@
 						name: "uni-steps 步骤条",
 						url: "steps"
 					},
-					// #ifndef MP-LARK
 					{
 						name: "uni-swipe-action 滑动操作",
 						url: "swipe-action"
 					},
-					// #endif 
 					{
 						name: "uni-swiper-dot 轮播图指示点",
 						url: "swiper-dot"
 					},
 
-					// #ifndef APP-NVUE || MP-TOUTIAO || MP-LARK || MP-QQ
+					// #ifndef APP-NVUE || MP-TOUTIAO || MP-BAIDU
 					{
 						name: "uni-table 表格",
 						url: "table"

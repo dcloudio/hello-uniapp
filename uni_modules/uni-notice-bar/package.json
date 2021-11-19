@@ -1,7 +1,7 @@
 {
   "id": "uni-notice-bar",
   "displayName": "uni-notice-bar 通告栏",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "NoticeBar 通告栏组件，常用于展示公告信息，可设为滚动公告",
   "keywords": [
     "uni-ui",
@@ -42,6 +42,7 @@
   },
   "uni_modules": {
     "dependencies": [
+			"uni-scss",
 			"uni-icons"
 		],
     "encrypt": [],
@@ -78,6 +79,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

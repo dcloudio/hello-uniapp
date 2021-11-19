@@ -1,7 +1,7 @@
 {
   "id": "uni-dateformat",
   "displayName": "uni-dateformat 日期格式化",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "日期格式化组件，可以将日期格式化为1分钟前、刚刚等形式",
   "keywords": [
     "uni-ui",
@@ -42,7 +42,7 @@
     "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": ["uni-scss"],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -77,6 +77,10 @@
         "快应用": {
           "华为": "y",
           "联盟": "y"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "y"
         }
       }
     }

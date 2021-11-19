@@ -278,6 +278,7 @@
 						files.push(Object.assign({}, v))
 					}
 				})
+			
 				this.uploadFiles(files)
 			},
 			async setValue(newVal, oldVal) {
@@ -438,7 +439,7 @@
 				for (let i = 0; i < res.length; i++) {
 					const item = res[i]
 					const index = item.uuid ? this.files.findIndex(p => p.uuid === item.uuid) : item.index
-
+					
 					if (index === -1 || !this.files) break
 					if (item.errMsg === 'request:fail') {
 						this.files[index].url = item.path
@@ -456,7 +457,7 @@
 						}else{
 							this.files[index].url = item.url
 						}
-
+						
 						this.files[index].status = 'success'
 						this.files[index].progress += 1
 						successData.push(this.files[index])
@@ -520,7 +521,7 @@
 					this.setEmit()
 				})
 			},
-
+			
 			/**
 			 * 获取文件名和后缀
 			 * @param {Object} name
@@ -541,7 +542,8 @@
 				let data = []
 				if (this.returnType === 'object') {
 					data = this.backObject(this.files)[0]
-					this.localValue = data?data:null
+					this.localValue = {}
+					Object.assign(this.localValue, data)
 				} else {
 					data = this.backObject(this.files)
 					if (!this.localValue) {

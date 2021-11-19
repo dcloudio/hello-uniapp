@@ -3,26 +3,30 @@
 		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}"
 			@click="clean"></view>
 		<view v-if="insert || show" class="uni-calendar__content"
-			:class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow}">
-
-			<view class="uni-calendar__header">
+			:class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow, 'uni-calendar__content-mobile': aniMaskShow}">
+			<view class="uni-calendar__header" :class="{'uni-calendar__header-mobile' :!insert}">
 				<view v-if="left" class="uni-calendar__header-btn-box" @click.stop="pre">
 					<view class="uni-calendar__header-btn uni-calendar--left"></view>
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
-					<text class="uni-calendar__header-text">{{ (nowDate.year||'') +' / '+( nowDate.month||'')}}</text>
+					<text
+						class="uni-calendar__header-text">{{ (nowDate.year||'') + ' 年 ' + ( nowDate.month||'') +' 月'}}</text>
 				</picker>
 				<view v-if="right" class="uni-calendar__header-btn-box" @click.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
 				</view>
-				<!-- <text class="uni-calendar__backtoday" @click="backtoday">回到今天</text> -->
+				<view v-if="!insert" class="dialog-close" @click="clean">
+					<view class="dialog-close-plus" data-id="close"></view>
+					<view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
+				</view>
 
+				<!-- <text class="uni-calendar__backtoday" @click="backtoday">回到今天</text> -->
 			</view>
 			<view class="uni-calendar__box">
 				<view v-if="showMonth" class="uni-calendar__box-bg">
 					<text class="uni-calendar__box-bg-text">{{nowDate.month}}</text>
 				</view>
-				<view class="uni-calendar__weeks">
+				<view class="uni-calendar__weeks" style="padding-bottom: 7px;">
 					<view class="uni-calendar__weeks-day">
 						<text class="uni-calendar__weeks-day-text">{{SUNText}}</text>
 					</view>
@@ -66,22 +70,23 @@
 				<view class="uni-date-changed--time-start">
 					<view class="uni-date-changed--time-date">{{tempRange.before ? tempRange.before : startDateText}}
 					</view>
-					<time-picker type="time" :start="reactStartTime" v-model="timeRange.startTime" :border="false" :hide-second="hideSecond"
-						:disabled="!tempRange.before" class="time-picker-style">
+					<time-picker type="time" :start="reactStartTime" v-model="timeRange.startTime" :border="false"
+						:hide-second="hideSecond" :disabled="!tempRange.before" class="time-picker-style">
 					</time-picker>
 				</view>
 				<uni-icons type="arrowthinright" color="#999" style="line-height: 50px;"></uni-icons>
 				<view class="uni-date-changed--time-end">
 					<view class="uni-date-changed--time-date">{{tempRange.after ? tempRange.after : endDateText}}</view>
-					<time-picker type="time" :end="reactEndTime" v-model="timeRange.endTime" :border="false" :hide-second="hideSecond"
-						:disabled="!tempRange.after" class="time-picker-style">
+					<time-picker type="time" :end="reactEndTime" v-model="timeRange.endTime" :border="false"
+						:hide-second="hideSecond" :disabled="!tempRange.after" class="time-picker-style">
 					</time-picker>
 				</view>
 			</view>
-			<view v-if="!insert" class="uni-date-changed uni-calendar__header" @click="confirm">
-				<view class="uni-calendar__header-btn-box">
+			<view v-if="!insert" class="uni-date-changed uni-date-btn--ok">
+				<!-- <view class="uni-calendar__header-btn-box">
 					<text class="uni-calendar__button-text uni-calendar--fixed-width">{{okText}}</text>
-				</view>
+				</view> -->
+				<view class="uni-datetime-picker--btn" @click="confirm">确认</view>
 			</view>
 		</view>
 	</view>
@@ -361,7 +366,6 @@
 			})
 			// 选中某一天
 			// this.cale.setDate(this.date)
-
 			this.init(this.date)
 			// this.setDay
 		},
@@ -425,7 +429,6 @@
 			 * @param {Object} date
 			 */
 			init(date) {
-
 				this.cale.setDate(date)
 				this.weeks = this.cale.weeks
 				this.nowDate = this.calendar = this.cale.getInfo(date)
@@ -605,7 +608,7 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background-color: $uni-bg-color-mask;
+		background-color: rgba(0, 0, 0, 0.4);
 		transition-property: opacity;
 		transition-duration: 0.3s;
 		opacity: 0;
@@ -639,6 +642,12 @@
 		background-color: #fff;
 	}
 
+	.uni-calendar__content-mobile {
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+	}
+
 	.uni-calendar__header {
 		position: relative;
 		/* #ifndef APP-NVUE */
@@ -648,9 +657,11 @@
 		justify-content: center;
 		align-items: center;
 		height: 50px;
-		// border-bottom-color: $uni-border-color;
-		// border-bottom-style: solid;
-		// border-bottom-width: 1px;
+	}
+
+	.uni-calendar__header-mobile {
+		padding: 10px;
+		padding-bottom: 0;
 	}
 
 	.uni-calendar--fixed-top {
@@ -659,14 +670,13 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: space-between;
-		border-top-color: $uni-border-color;
+		border-top-color: rgba(0, 0, 0, 0.4);
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
 
 	.uni-calendar--fixed-width {
 		width: 50px;
-		// padding: 0 15px;
 	}
 
 	.uni-calendar__backtoday {
@@ -680,21 +690,21 @@
 		font-size: 12px;
 		border-top-left-radius: 25px;
 		border-bottom-left-radius: 25px;
-		color: $uni-text-color;
-		background-color: $uni-bg-color-hover;
+		color: #fff;
+		background-color: #f1f1f1;
 	}
 
 	.uni-calendar__header-text {
 		text-align: center;
 		width: 100px;
-		font-size: $uni-font-size-base;
-		color: $uni-text-color;
+		font-size: 15px;
+		color: #666;
 	}
 
 	.uni-calendar__button-text {
 		text-align: center;
 		width: 100px;
-		font-size: $uni-font-size-base;
+		font-size: 14px;
 		color: #007aff;
 		/* #ifndef APP-NVUE */
 		letter-spacing: 3px;
@@ -713,12 +723,12 @@
 	}
 
 	.uni-calendar__header-btn {
-		width: 8px;
-		height: 8px;
-		border-left-color: $uni-text-color-placeholder;
+		width: 9px;
+		height: 9px;
+		border-left-color: #808080;
 		border-left-style: solid;
 		border-left-width: 1px;
-		border-top-color: $uni-color-subtitle;
+		border-top-color: #555555;
 		border-top-style: solid;
 		border-top-width: 1px;
 	}
@@ -760,10 +770,13 @@
 
 	.uni-calendar__weeks-day-text {
 		font-size: 12px;
+		color: #B2B2B2;
 	}
 
 	.uni-calendar__box {
 		position: relative;
+		// padding: 0 10px;
+		padding-bottom: 7px;
 	}
 
 	.uni-calendar__box-bg {
@@ -782,7 +795,7 @@
 	.uni-calendar__box-bg-text {
 		font-size: 200px;
 		font-weight: bold;
-		color: $uni-text-color-grey;
+		color: #999;
 		opacity: 0.1;
 		text-align: center;
 		/* #ifndef APP-NVUE */
@@ -795,10 +808,15 @@
 		// line-height: 50px;
 		text-align: center;
 		color: #333;
-		border-top-color: $uni-border-color;
+		border-top-color: #DCDCDC;
+		;
 		border-top-style: solid;
 		border-top-width: 1px;
 		flex: 1;
+	}
+
+	.uni-date-btn--ok {
+		padding: 20px 15px;
 	}
 
 	.uni-date-changed--time-start {
@@ -834,4 +852,47 @@
 	.mr-10 {
 		margin-right: 10px;
 	}
+
+	.dialog-close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		align-items: center;
+		padding: 0 25px;
+		margin-top: 10px;
+	}
+
+	.dialog-close-plus {
+		width: 16px;
+		height: 2px;
+		background-color: #737987;
+		border-radius: 2px;
+		transform: rotate(45deg);
+	}
+
+	.dialog-close-rotate {
+		position: absolute;
+		transform: rotate(-45deg);
+	}
+
+	.uni-datetime-picker--btn {
+		border-radius: 100px;
+		height: 40px;
+		line-height: 40px;
+		background-color: #007aff;
+		color: #fff;
+		font-size: 16px;
+		letter-spacing: 5px;
+	}
+
+	/* #ifndef APP-NVUE */
+	.uni-datetime-picker--btn:active {
+		opacity: 0.7;
+	}
+	/* #endif */
 </style>

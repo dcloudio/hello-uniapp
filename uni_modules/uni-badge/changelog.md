@@ -1,3 +1,10 @@
+## 1.2.0（2021-11-19）
+- 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
+- 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-badge](https://uniapp.dcloud.io/component/uniui/uni-badge)
+## 1.1.7（2021-11-08）
+- 优化 升级ui
+- 修改 size 属性默认值调整为 small
+- 修改 type 属性，默认值调整为 error，info 替换 default
 ## 1.1.6（2021-09-22）
 - 修复 在字节小程序上样式不生效的 bug
 ## 1.1.5（2021-07-30）
