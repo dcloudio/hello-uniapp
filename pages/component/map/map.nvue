@@ -18,7 +18,6 @@
         </uni-list>
     </view>
 </template>
-
 <script>
     const testMarkers = [{
             id: 0,
@@ -200,10 +199,6 @@
         }
     ];
     export default {
-        components: {
-            uniList,
-            uniListItem
-        },
         data() {
             return {
                 location: {
