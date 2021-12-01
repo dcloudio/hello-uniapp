@@ -9,10 +9,9 @@
 		onLaunch: function() {
 			// #ifdef H5
 			console.log(
-				`%c hello uniapp %c v${version} %c`,
+				`%c hello uniapp %c v${version} `,
 				'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-				'background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;',
-				'background:transparent'
+				'background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;'
 			)
 			// #endif
 			// 线上示例使用
