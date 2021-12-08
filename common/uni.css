@@ -366,7 +366,7 @@ radio-group label, checkbox-group label{
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
 }
-.uni-list::before {
+/* .uni-list::before {
 	position: absolute;
 	z-index: 10;
 	right: 0;
@@ -377,7 +377,7 @@ radio-group label, checkbox-group label{
 	-webkit-transform: scaleY(.5);
 	transform: scaleY(.5);
 	background-color: #c8c7cc;
-}
+} */
 .uni-list-cell {
 	position: relative;
 	display: flex;

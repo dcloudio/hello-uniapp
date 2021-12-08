@@ -162,7 +162,7 @@
 							success(res) {
 								console.log(res);
 								if (res.data.code !== 0) {
-									console.log('获取openid失败：', res.result.msg);
+									console.log('获取openid失败：', res.data.errMsg);
 									return
 								}
 								uni.setStorageSync('openid', res.data.openid)

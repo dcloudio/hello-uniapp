@@ -21,7 +21,7 @@
 		</uni-section>
 
 		<uni-section title="在自定义导航栏使用" type="line">
-			<uni-nav-bar style="width: 100%;" :fixed="false" left-icon="arrowleft" title="标题" color="#333333" background-color="#FFFFFF">
+			<uni-nav-bar style="width: 100%;" :fixed="false" left-icon="left" title="标题" color="#333333" background-color="#FFFFFF">
 				<template v-slot:right>
 					<uni-fav :checked="checkList[5]"  :circle="true" @click="favClick(5)" />
 				</template>
