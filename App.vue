@@ -61,7 +61,7 @@
 	/* #ifndef APP-PLUS-NVUE */
 	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 	@import './common/uni.css';
-
+	@import '@/static/customicons.css';
 	/* H5 兼容 pc 所需 */
 	/* #ifdef H5 */
 	@media screen and (min-width: 768px) {
@@ -97,7 +97,7 @@
 		background-color: #efeff4;
 		height: 100%;
 		font-size: 28rpx;
-		line-height: 1.8;
+		/* line-height: 1.8; */
 	}
 
 	.fix-pc-padding {
