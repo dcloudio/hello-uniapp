@@ -5,6 +5,8 @@
 	import {
 		version
 	} from './package.json'
+	import checkUpdate from '@/uni_modules/uni-upgrade-center-app/utils/check-update';
+
 	export default {
 		onLaunch: function() {
 			// #ifdef H5
@@ -18,30 +20,9 @@
 			// console.log('%c uni-app官方团队诚邀优秀前端工程师加盟，一起打造更卓越的uni-app & uniCloud，欢迎投递简历到 hr2013@dcloud.io', 'color: red');
 			console.log('App Launch');
 			// #ifdef APP-PLUS
-			// App平台检测升级，服务端代码是通过uniCloud的云函数实现的，详情可参考：https://ext.dcloud.net.cn/plugin?id=2226
+			// App平台检测升级，服务端代码是通过uniCloud的云函数实现的，详情可参考：https://ext.dcloud.net.cn/plugin?id=4542
 			if (plus.runtime.appid !== 'HBuilder') { // 真机运行不需要检查更新，真机运行时appid固定为'HBuilder'，这是调试基座的appid
-				uni.request({
-					url: 'https://7a3e3fa9-7820-41d0-be80-11927ac2026c.bspapp.com/http/update', //检查更新的服务器地址
-					data: {
-						appid: plus.runtime.appid,
-						version: plus.runtime.version,
-						imei: plus.device.imei
-					},
-					success: (res) => {
-						if (res.statusCode == 200 && res.data.isUpdate) {
-							// 提醒用户更新
-							uni.showModal({
-								title: '更新提示',
-								content: res.data.note ? res.data.note : '是否选择更新',
-								success: (ee) => {
-									if (ee.confirm) {
-										plus.runtime.openURL(res.data.url);
-									}
-								}
-							})
-						}
-					}
-				})
+				checkUpdate()
 			}
 
 			// 一键登录预登陆，可以显著提高登录速度
