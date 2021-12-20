@@ -15,7 +15,7 @@
 		</uni-section>
 
 
-		<!-- #ifdef H5 || MP-WEIXIN -->
+		<!-- #ifdef H5 || MP-WEIXIN || MP-JD -->
 		<uni-section title="选择任意文件" type="line">
 			<view class="example-body">
 				<uni-file-picker limit="5" file-mediatype="all" title="最多选择5个文件"></uni-file-picker>
