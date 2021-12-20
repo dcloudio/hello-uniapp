@@ -19,7 +19,7 @@
 				<!-- #ifdef APP-PLUS || MP-ALIPAY || MP-TOUTIAO -->
 				<button type="primary" :loading="btnLoading" @click="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
-				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-QQ -->
+				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-QQ  || MP-JD -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
 				<!-- #endif -->
 				<button @click="clear">清空</button>
@@ -141,6 +141,9 @@
 				}
 				this.hasUserInfo = true;
 				this.userInfo = result.detail.userInfo;
+				// #ifdef MP-JD
+				this.userInfo = result.detail.user_info;
+				// #endif
 			},
 			clear() {
 				this.hasUserInfo = false;
