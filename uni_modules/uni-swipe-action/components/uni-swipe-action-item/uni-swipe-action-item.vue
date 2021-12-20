@@ -72,7 +72,7 @@
 	</view>
 	<!-- #endif -->
 	<!-- 其他平台使用 js ，长列表性能可能会有影响-->
-	<!-- #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ -->
+	<!-- #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ || MP-JD -->
 	<view class="uni-swipe"> 
 		<view class="uni-swipe_box" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend"
 			:style="{transform:moveLeft}" :class="{ani:ani}">

@@ -53,7 +53,7 @@
 				    url: 'inner-audio'
 				},
                 // #endif
-                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
+                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ|| MP-JD 
                 {
                     name: '录音',
                     url: 'voice'
@@ -189,7 +189,7 @@
                             url: 'brightness'
                         },
                         // #endif
-                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ|| MP-JD 
                         {
                             name: '蓝牙',
                             url: 'bluetooth'

@@ -22,7 +22,7 @@
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
-				<!-- #ifdef MP-TOUTIAO -->
+				<!-- #ifdef MP-TOUTIAO  || MP-JD-->
 				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">
 					登录
 				</button>
@@ -80,6 +80,9 @@
 							case 'baidu':
 								providerName = '百度登录'
 								break;
+							case 'jd':
+							  providerName = '京东登录'
+							  break;
 							case 'toutiao':
 								providerName = '头条登录'
 								break;
