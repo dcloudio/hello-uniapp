@@ -41,23 +41,23 @@
 				}]
 			}
 		},
-		props: {
-			matchLeftWindow: {
-				type: Boolean
-			},
-			showLeftWindow: {
-				type: Boolean
-			}
-		},
 		watch: {
 			$route: {
 				immediate: true,
 				handler(newRoute) {
-					if ( this.showLeftWindow ) {
-						let comp = newRoute.path.split('/')[2]
-							this.current = this.selected[comp]
+					const width = uni.getSystemInfoSync().screenWidth
+					if ( width >= 768 ) {
+						let path = newRoute.path
+						let comp
+						if (path === '/') {
+							comp = 'component'
+							path = '/pages/tabBar/component/component'
+						} else {
+							comp = path.split('/')[2]
+						}
+						this.current = this.selected[comp]
 						for(const item of this.indexPage) {
-							if (newRoute.path === item.tabBar) {
+							if (path === item.tabBar) {
 								uni.redirectTo({
 									url: item.index
 								})
