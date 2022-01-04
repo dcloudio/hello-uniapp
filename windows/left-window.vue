@@ -17,6 +17,7 @@
 		mapMutations,
 		mapState
 	} from 'vuex'
+	let isPcObserver, isPhoneObserver
 	export default {
 		data() {
 			return {
@@ -25,12 +26,8 @@
 					'API',
 					'extUI',
 					'template'
-				]
-			}
-		},
-		props: {
-			matchLeftWindow: {
-				type: Boolean
+				],
+				isPC: false
 			}
 		},
 		components: {
@@ -46,11 +43,61 @@
 				leftWinActive: state => state.leftWinActive.split('/')[3],
 			})
 		},
+		mounted() {
+			isPcObserver = uni.createMediaQueryObserver(this)
+			isPhoneObserver = uni.createMediaQueryObserver(this)
+
+			isPcObserver.observe({
+				minWidth: 768
+			}, matched => {
+				this.isPC = matched
+				const pageUrl = this.$route.path
+				if (!pageUrl) return
+				const pageName = this.$route.path.split('/')[4]
+				if (pageUrl === '/' || this.nav.includes(pageName)) {
+					const tabbarUrl = pageName ? (pageName === 'component' ? '/' : `/pages/tabBar/${pageName}/${pageName}`) : '/'
+					if (pageUrl === '/' || pageUrl === tabbarUrl) {
+						uni.switchTab({
+							url: pageUrl,
+						})
+					}
+				} else {
+					uni.reLaunch({
+						url: pageUrl
+					})
+				}
+			})
+
+			isPhoneObserver.observe({
+				maxWidth: 767
+			}, matched => {
+				this.isPC = !matched
+				if (matched) {
+					const pageUrl = this.$route.path
+					const tabbarName = this.$route.path.split('/')[2]
+					const tabbarUrl = tabbarName && (tabbarName === 'component' ? '/' : `/pages/tabBar/${tabbarName}/${tabbarName}`)
+					uni.switchTab({
+						url: tabbarUrl,
+						success(e) {
+							uni.navigateTo({
+								url: pageUrl
+							})
+						}
+					})
+				}
+
+			})
+		},
+		unmounted() {
+			isPcObserver.disconnect()
+			isPhoneObserver.disconnect()
+		},
 		watch: {
-			matchLeftWindow: {
+			isPC: {
 				immediate: true,
 				handler(newMatches) {
 					this.setMatchLeftWindow(newMatches)
+					// this.handlerRoute(this.$route)
 				}
 			},
 			// #ifndef VUE3
@@ -67,18 +114,19 @@
 			}
 			// #endif
 		},
+
 		methods: {
 			...mapMutations(['setMatchLeftWindow', 'setActive', 'setLeftWinActive']),
 
 			handlerRoute(newRoute) {
-				if (this.matchLeftWindow) {
+				if (this.isPC) {
 					if (newRoute.path === '/') {
-						uni.redirectTo({
-							url: 'pages/component/view/view'
-						})
+						// uni.redirectTo({
+						// 	url: '/pages/component/view/view'
+						// })
 					} else if (!newRoute.matched.length) {
 						uni.redirectTo({
-							url: 'pages/error/404'
+							url: '/pages/error/404'
 						})
 					} else {
 						this.setLeftWinActive(newRoute.path)
@@ -94,6 +142,10 @@
 						}
 					}
 				}
+			},
+
+			switchTab() {
+
 			}
 		}
 	}
