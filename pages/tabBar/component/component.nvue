@@ -118,7 +118,7 @@
 						}]
 					},
 					// #endif
-					// #ifndef APP-PLUS || H5 || MP-LARK
+					// #ifndef APP-PLUS || H5 || MP-LARK || MP-JD
 					{
 						id: 'web-view',
 						name: '网页',
@@ -126,7 +126,7 @@
 						pages: ['web-view']
 					},
 					// #endif
-					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK
+					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK || MP-JD
 					{
 						id: 'ad',
 						url: 'ad',

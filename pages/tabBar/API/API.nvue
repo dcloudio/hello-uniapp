@@ -178,6 +178,8 @@
                             name: '扫码',
                             url: 'scan-code'
                         },
+								//#endif
+								//#ifndef H5 || MP-JD 
                         {
                             name: '剪贴板',
                             url: 'clipboard'
@@ -189,11 +191,13 @@
                             url: 'brightness'
                         },
                         // #endif
-                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ|| MP-JD 
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || MP-JD 
                         {
                             name: '蓝牙',
                             url: 'bluetooth'
                         },
+								// #endif
+								// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
                         {
                             name: '生物认证',
                             url: 'soter'
@@ -205,16 +209,18 @@
                             url: 'ibeacon'
                         },
                         // #endif
-						// #ifndef H5
-                        {
-                            name: '监听加速度传感器',
-                            url: 'on-accelerometer-change'
-                        },
-                        {
-                            name: '监听罗盘数据',
-                            url: 'on-compass-change'
-                        },
-						// #endif
+								// #ifndef H5
+								{
+								    name: '监听加速度传感器',
+								    url: 'on-accelerometer-change'
+								},
+								// #endif
+								// #ifndef H5 || MP-JD 
+								{
+								    name: '监听罗盘数据',
+								    url: 'on-compass-change'
+								},
+								// #endif
                         //#ifdef APP-PLUS
                         {
                             name: '监听距离传感器',

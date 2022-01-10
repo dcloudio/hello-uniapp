@@ -58,7 +58,7 @@
 				this.networkType = '',
 				this.connectedWifi = ''
 			},
-			// #ifdef MP-WEIXIN
+			// #ifdef MP-WEIXIN || MP-JD
 			getConnectedWifi() {
 				const that = this
 				uni.startWifi({

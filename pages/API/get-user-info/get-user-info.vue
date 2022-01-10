@@ -9,9 +9,9 @@
 					</view>
 				</block>
 				<block v-if="hasUserInfo === true">
-					<view class="uni-h4 uni-center uni-common-mt">{{userInfo.nickName || userInfo.email || userInfo.phoneNumber}}</view>
-					<view v-if="userInfo.avatarUrl" style="padding:30rpx 0; text-align:center;">
-						<image class="userinfo-avatar" :src="userInfo.avatarUrl"></image>
+					<view class="uni-h4 uni-center uni-common-mt">{{userInfo.nickName || userInfo.nickname || userInfo.gender || userInfo.email || userInfo.phoneNumber}}</view>
+					<view v-if="userInfo.avatarUrl || userInfo.avatar_url " style="padding:30rpx 0; text-align:center;">
+						<image class="userinfo-avatar" :src="userInfo.avatarUrl||userInfo.avatar_url"></image>
 					</view>
 				</block>
 			</view>
@@ -140,10 +140,13 @@
 					return;
 				}
 				this.hasUserInfo = true;
-				this.userInfo = result.detail.userInfo;
-				// #ifdef MP-JD
-				this.userInfo = result.detail.user_info;
-				// #endif
+				if(result.detail && result.detail.userInfo){
+					this.userInfo = result.detail.userInfo;
+				}else{
+					// #ifdef MP-JD
+					this.userInfo = result.detail.user_info;
+					// #endif
+				}
 			},
 			clear() {
 				this.hasUserInfo = false;

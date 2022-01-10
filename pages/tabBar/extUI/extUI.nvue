@@ -89,7 +89,6 @@
 						name: "uni-fav 收藏按钮",
 						url: "fav"
 					},
-
 					// #ifndef APP-NVUE 
 					{
 						name: "uni-file-picker 文件选择上传",
@@ -128,10 +127,12 @@
 						name: "uni-list 列表",
 						url: "list"
 					},
+					// #ifndef MP-JD
 					{
 						name: "uni-load-more 加载更多",
 						url: "load-more"
 					},
+					// #endif
 					{
 						name: "uni-nav-bar 自定义导航栏",
 						url: "nav-bar"
@@ -164,7 +165,6 @@
 						name: "uni-search-bar 搜索栏",
 						url: "search-bar"
 					},
-
 					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
 					{
 						name: "section 标题栏",
@@ -187,7 +187,6 @@
 						name: "uni-swiper-dot 轮播图指示点",
 						url: "swiper-dot"
 					},
-
 					// #ifndef APP-NVUE || MP-TOUTIAO || MP-BAIDU
 					{
 						name: "uni-table 表格",
