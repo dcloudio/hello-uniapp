@@ -40,17 +40,23 @@
                 <text class="list-text">是否开启实时路况</text>
                 <switch :checked="enableTraffic" @change="changeEnableTraffic" />
             </view> -->
+				<!-- #ifndef MP-JD -->
             <button class="button" @click="changeScale">changeScale</button>
             <button class="button" @click="changeRotate">changeRotate</button>
-            <button class="button" @click="changeSkew">skew</button>
+				<button class="button" @click="changeSkew">skew</button>
+				<!-- #endif -->
             <button class="button" @click="addMarkers">addMarkers</button>
             <button class="button" @click="addPolyline">addPolyline</button>
+				<!-- #ifndef MP-JD -->
             <button class="button" @click="addPolygons">addPolygons</button>
+				<!-- #endif -->
             <button class="button" @click="addCircles">addCircles</button>
             <button class="button" @click="includePoint">includePoints</button>
             <button class="button" @click="handleGetCenterLocation">getCenterLocation</button>
             <button class="button" @click="handleGetRegion">getRegion</button>
+				<!-- #ifndef MP-JD -->
             <button class="button" @click="handleTranslateMarker">translateMarker</button>
+				<!-- #endif -->
         </scroll-view>
     </view>
 </template>
@@ -278,15 +284,17 @@
             this.map = uni.createMapContext("map1", this);
         },
         methods: {
+			  // #ifndef MP-JD
             changeScale() {
                 this.scale = this.scale == 9 ? 15 : 9;
             },
             changeRotate() {
                 this.rotate = this.rotate == 90 ? 0 : 90;
             },
-            changeSkew() {
-                this.skew = this.skew == 30 ? 0 : 30;
-            },
+				changeSkew() {
+				    this.skew = this.skew == 30 ? 0 : 30;
+				},
+				// #endif
             enableThreeD(e) {
                 this.enable3D = e.detail.value;
             },
@@ -317,9 +325,11 @@
             addPolyline() {
                 this.polyline = testPolyline;
             },
+				// #ifndef MP-JD
             addPolygons() {
                 this.polygons = testPolygons;
             },
+				// #endif
             addCircles() {
                 this.circles = testCircles;
             },
@@ -346,6 +356,7 @@
                     }
                 })
             },
+				// #ifndef MP-JD
             handleTranslateMarker() {
                 this.map.translateMarker({
                     markerId: 1,
@@ -361,6 +372,7 @@
                     })
                 });
             },
+				// #endif
             maptap(e) {
                 uni.showModal({
                     content: JSON.stringify(e)
