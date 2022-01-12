@@ -22,7 +22,7 @@
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
-				<!-- #ifdef MP-TOUTIAO  || MP-JD-->
+				<!-- #ifdef MP-TOUTIAO  -->
 				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">
 					登录
 				</button>
