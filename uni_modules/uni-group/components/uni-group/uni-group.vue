@@ -96,9 +96,9 @@
 		align-items: center;
 		padding-left: 15px;
 		height: 40px;
-		background-color: $uni-bg-color-grey;
+		background-color: #eee;
 		font-weight: normal;
-		color: $uni-text-color;
+		color: #666;
 	}
 
 	.uni-group__content {
@@ -112,8 +112,8 @@
 	}
 
 	.uni-group__title-text {
-		font-size: $uni-font-size-base;
-		color: $uni-text-color;
+		font-size: 14px;
+		color: #666;
 	}
 
 	.distraction {

@@ -1,7 +1,7 @@
 {
   "id": "uni-datetime-picker",
   "displayName": "uni-datetime-picker 日期选择器",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "uni-datetime-picker 日期时间选择器，支持日历，支持范围选择",
   "keywords": [
     "uni-datetime-picker",

@@ -1,14 +1,18 @@
 <template>
 	<!-- #ifdef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': size + 'px' }" class="uni-icons" @click="_onClick">{{unicode}}</text>
+	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" @click="_onClick">{{unicode}}</text>
 	<!-- #endif -->
 	<!-- #ifndef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': size + 'px' }" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @click="_onClick"></text>
+	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @click="_onClick"></text>
 	<!-- #endif -->
 </template>
 
 <script>
 	import icons from './icons.js';
+	const getVal = (val) => {
+		const reg = /^[0-9]*$/g
+		return (typeof val === 'number' ||　reg.test(val) )? val + 'px' : val;
+	} 
 	// #ifdef APP-NVUE
 	var domModule = weex.requireModule('dom');
 	import iconUrl from './uniicons.ttf'
@@ -61,6 +65,9 @@
 					return unescape(`%u${code.unicode}`)
 				}
 				return ''
+			},
+			iconSize(){
+				return getVal(this.size)
 			}
 		},
 		methods: {

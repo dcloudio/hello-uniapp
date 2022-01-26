@@ -30,9 +30,9 @@
 
 @each $key, $child in $uni-radius {
 	@if($key){
-		.uni-radius-#{$key} {
+		.uni-radius-#{"" + $key} {
 				@include radius($key)
-		} 
+		}
 	}@else{
 		.uni-radius {
 				@include radius($key)
@@ -43,7 +43,7 @@
 @each $direction in t, r, b, l,tl, tr, br, bl {
 	@each $key, $child in $uni-radius {
 		@if($key){
-			.uni-radius-#{$direction}-#{$key} {
+			.uni-radius-#{"" + $direction}-#{"" + $key} {
 				@include radius($key,$direction,false)
 			}
 		}@else{

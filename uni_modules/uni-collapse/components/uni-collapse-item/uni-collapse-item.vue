@@ -11,8 +11,7 @@
 					</view>
 				</slot>
 			</view>
-			<view
-				v-if="showArrow"
+			<view v-if="showArrow"
 				:class="{ 'uni-collapse-item__title-arrow-active': isOpen, 'uni-collapse-item--animation': showAnimation === true }"
 				class="uni-collapse-item__title-arrow">
 				<uni-icons :color="disabled?'#ddd':'#bbb'" size="14" type="bottom" />
@@ -96,7 +95,7 @@
 				type: Boolean,
 				default: true
 			},
-			showArrow:{
+			showArrow: {
 				type: Boolean,
 				default: true
 			}
@@ -115,17 +114,18 @@
 		watch: {
 			open(val) {
 				this.isOpen = val
-				this.onClick(val,'init')
+				this.onClick(val, 'init')
 			}
 		},
 		updated(e) {
-			this.$nextTick(()=> {
+			this.$nextTick(() => {
 				this.init(true)
 			})
 		},
-		created(){
+		created() {
 			this.collapse = this.getCollapse()
 			this.oldHeight = 0
+			this.onClick(this.open, 'init')
 		},
 		// #ifndef VUE3
 		// TODO vue2
@@ -181,14 +181,14 @@
 					})
 				}
 			},
-			onClick(isOpen,type) {
+			onClick(isOpen, type) {
 				if (this.disabled) return
 				this.isOpen = isOpen
 				if (this.isOpen && this.collapse) {
 					this.collapse.setAccordion(this)
 				}
-				if(type !== 'init'){
-					this.collapse.onChange(isOpen,this)
+				if (type !== 'init') {
+					this.collapse.onChange(isOpen, this)
 				}
 			},
 			getCollapseHeight(type, index = 0) {
@@ -213,7 +213,7 @@
 						// #endif
 						this.isheight = true
 						if (type) return
-						this.onClick(this.open,'init')
+						this.onClick(this.isOpen, 'init')
 					})
 					.exec()
 			},
@@ -228,7 +228,7 @@
 						// #endif
 						this.isheight = true
 						if (type) return
-						this.onClick(this.open,'init')
+						this.onClick(this.open, 'init')
 					}
 				})
 			},
@@ -249,7 +249,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.uni-collapse-item {
 		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
@@ -296,7 +296,7 @@
 				/* #endif */
 				&.is-disabled {
 					.uni-collapse-item__title-text {
-						color: $uni-text-color-disable;
+						color: #999;
 					}
 				}
 
@@ -311,14 +311,14 @@
 			}
 
 			&-img {
-				height: $uni-img-size-base;
-				width: $uni-img-size-base;
+				height: 22px;
+				width: 22px;
 				margin-right: 10px;
 			}
 
 			&-text {
 				flex: 1;
-				font-size: $uni-font-size-base;
+				font-size: 14px;
 				/* #ifndef APP-NVUE */
 				white-space: nowrap;
 				color: inherit;

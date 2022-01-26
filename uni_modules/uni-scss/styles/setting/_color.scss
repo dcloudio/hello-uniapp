@@ -45,10 +45,10 @@ $uni-ui-color:(
 	transparent:$uni-transparent
 ) !default;
 @each $key, $child in $uni-ui-color {
-	.uni-#{$key} {
+	.uni-#{"" + $key} {
 		color: $child;
 	}
-	.uni-#{$key}-bg {
+	.uni-#{"" + $key}-bg {
 		background-color: $child;
 	}
 }

@@ -30,10 +30,12 @@ import keypress from './keypress.js'
  * 	@value message 消息提示
  * 	@value dialog 对话框
  * 	@value share 底部分享示例
- * @property {Boolean} animation = [ture|false] 是否开启动画
- * @property {Boolean} maskClick = [ture|false] 蒙版点击是否关闭弹窗
- * @property {String}  backgroundColor 					主窗口背景色
- * @property {Boolean} safeArea									是否适配底部安全区
+ * @property {Boolean} animation = [true|false] 是否开启动画
+ * @property {Boolean} maskClick = [true|false] 蒙版点击是否关闭弹窗(废弃)
+ * @property {Boolean} isMaskClick = [true|false] 蒙版点击是否关闭弹窗
+ * @property {String}  backgroundColor 主窗口背景色
+ * @property {String}  maskBackgroundColor 蒙版颜色
+ * @property {Boolean} safeArea		   是否适配底部安全区
  * @event {Function} change 打开关闭弹窗触发，e={show: false}
  * @event {Function} maskClick 点击遮罩触发
  */
@@ -59,9 +61,14 @@ export default {
 			default: 'center'
 		},
 		// maskClick
+		isMaskClick: {
+			type: Boolean,
+			default: null
+		},
+		// TODO 2 个版本后废弃属性 ，使用 isMaskClick
 		maskClick: {
 			type: Boolean,
-			default: true
+			default: null
 		},
 		backgroundColor: {
 			type: String,
@@ -70,7 +77,11 @@ export default {
 		safeArea:{
 			type: Boolean,
 			default: true
-		}
+		},
+		maskBackgroundColor: {
+			type: String,
+			default: 'rgba(0, 0, 0, 0.4)'
+		},
 	},
 
 	watch: {
@@ -100,6 +111,19 @@ export default {
 				this.mkclick = val
 			},
 			immediate: true
+		},
+		isMaskClick: {
+			handler: function(val) {
+				this.mkclick = val
+			},
+			immediate: true
+		},
+		// H5 下禁止底部滚动
+		showPopup(show) {
+			// #ifdef H5
+			// fix by mehaotian 处理 h5 滚动穿透的问题
+			document.getElementsByTagName('body')[0].style.overflow = show ? 'hidden' : 'visible'
+			// #endif
 		}
 	},
 	data() {
@@ -151,12 +175,17 @@ export default {
 	},
 	mounted() {
 		const fixSize = () => {
-			const { windowWidth, windowHeight, windowTop, safeAreaInsets } = uni.getSystemInfoSync()
+			const { windowWidth, windowHeight, windowTop, safeArea,screenHeight ,safeAreaInsets } = uni.getSystemInfoSync()
 			this.popupWidth = windowWidth
 			this.popupHeight = windowHeight + windowTop
-			// 是否适配底部安全区
-			if(this.safeArea){
-				this.safeAreaInsets = safeAreaInsets
+			// TODO fix by mehaotian 是否适配底部安全区 ,目前微信ios 、和 app ios 计算有差异，需要框架修复
+			if(safeArea){
+				// #ifdef MP-WEIXIN
+				this.safeAreaInsets = screenHeight - safeArea.bottom
+				// #endif
+				// #ifndef MP-WEIXIN
+				this.safeAreaInsets = safeAreaInsets.bottom
+				// #endif
 			}else{
 				this.safeAreaInsets = 0
 			}
@@ -170,7 +199,12 @@ export default {
 		// #endif
 	},
 	created() {
-		this.mkclick = this.maskClick
+		// this.mkclick =  this.isMaskClick || this.maskClick
+		if(this.isMaskClick === null && this.maskClick === null){
+			this.mkclick  = true
+		}else{
+			this.mkclick = this.isMaskClick !== null ? this.isMaskClick : this.maskClick
+		}
 		if (this.animation) {
 			this.duration = 300
 		} else {
@@ -180,6 +214,7 @@ export default {
 		this.messageChild = null
 		// TODO 解决头条冒泡的问题
 		this.clearPropagation = false
+		this.maskClass.backgroundColor = this.maskBackgroundColor
 	},
 	methods: {
 		/**
@@ -273,13 +308,12 @@ export default {
 		bottom(type) {
 			this.popupstyle = 'bottom'
 			this.ani = ['slide-bottom']
-
 			this.transClass = {
 				position: 'fixed',
 				left: 0,
 				right: 0,
 				bottom: 0,
-				paddingBottom: (this.safeAreaInsets && this.safeAreaInsets.bottom) || 0,
+				paddingBottom: this.safeAreaInsets+'px',
 				backgroundColor: this.bg
 			}
 			// TODO 兼容 type 属性 ，后续会废弃
@@ -352,7 +386,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .uni-popup {
 	position: fixed;
 	/* #ifndef APP-NVUE */

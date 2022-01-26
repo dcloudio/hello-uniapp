@@ -94,7 +94,15 @@
   content: "\e6bb";
 }
 
+.uniui-arrowthinright:before {
+  content: "\e6bb";
+}
+
 .uniui-arrow-left:before {
+  content: "\e6bc";
+}
+
+.uniui-arrowthinleft:before {
   content: "\e6bc";
 }
 
@@ -102,7 +110,15 @@
   content: "\e6bd";
 }
 
+.uniui-arrowthinup:before {
+  content: "\e6bd";
+}
+
 .uniui-arrow-down:before {
+  content: "\e6be";
+}
+
+.uniui-arrowthindown:before {
   content: "\e6be";
 }
 
@@ -110,7 +126,15 @@
   content: "\e6b8";
 }
 
+.uniui-arrowdown:before {
+  content: "\e6b8";
+}
+
 .uniui-right:before {
+  content: "\e6b5";
+}
+
+.uniui-arrowright:before {
   content: "\e6b5";
 }
 
@@ -118,7 +142,15 @@
   content: "\e6b6";
 }
 
+.uniui-arrowup:before {
+  content: "\e6b6";
+}
+
 .uniui-left:before {
+  content: "\e6b7";
+}
+
+.uniui-arrowleft:before {
   content: "\e6b7";
 }
 

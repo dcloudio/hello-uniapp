@@ -95,7 +95,7 @@
 				default: ''
 			},
 			ellipsis: {
-				type: [Number],
+				type: [Number,String],
 				default: 0
 			},
 			disabled: {
@@ -256,6 +256,17 @@
 </script>
 
 <style lang="scss">
+	$uni-font-size-sm:12px;
+	$uni-font-size-base:14px;
+	$uni-font-size-lg:16px;
+	$uni-spacing-col-lg: 12px;
+	$uni-spacing-row-lg: 15px;
+	$uni-img-size-sm:20px;
+	$uni-img-size-base:26px;
+	$uni-img-size-lg:40px;
+	$uni-border-color:#e5e5e5;
+	$uni-bg-color-hover:#f1f1f1;
+	$uni-text-color-grey:#999;
 	$list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 
 	.uni-list-item {
@@ -442,6 +453,7 @@
 		/* #endif */
 		/* #ifdef APP-NVUE */
 		lines: 1;
+		text-overflow:ellipsis;
 		/* #endif */
 	}
 
@@ -456,6 +468,7 @@
 
 		/* #ifdef APP-NVUE */
 		lines: 2;
+		text-overflow:ellipsis;
 		/* #endif */
 	}
 </style>

@@ -103,7 +103,7 @@
 		}
 	}
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 	.uni-popup-share {
 		background-color: #fff;
 		border-top-left-radius: 11px;

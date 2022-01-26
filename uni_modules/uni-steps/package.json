@@ -1,7 +1,7 @@
 {
   "id": "uni-steps",
   "displayName": "uni-steps 步骤条",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "步骤条组件，提供横向和纵向两种布局格式。",
   "keywords": [
     "uni-ui",

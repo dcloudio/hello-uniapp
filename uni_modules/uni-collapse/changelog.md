@@ -1,3 +1,9 @@
+## 1.4.3（2022-01-25）
+- 修复 初始化的时候 ，open 属性失效的bug
+## 1.4.2（2022-01-21）
+- 修复 微信小程序resize后组件收起的bug
+## 1.4.1（2021-11-22）
+- 修复 vue3中个别scss变量无法找到的问题
 ## 1.4.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-collapse](https://uniapp.dcloud.io/component/uniui/uni-collapse)

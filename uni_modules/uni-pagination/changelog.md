@@ -1,3 +1,5 @@
+## 1.2.1（2021-11-22）
+- 修复 vue3中某些scss变量无法找到的问题
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-pagination](https://uniapp.dcloud.io/component/uniui/uni-pagination)

@@ -1,3 +1,5 @@
+## 1.0.1（2021-11-23）
+- 优化 label、label-width 属性
 ## 1.0.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-combox](https://uniapp.dcloud.io/component/uniui/uni-combox)

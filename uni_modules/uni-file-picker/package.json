@@ -1,7 +1,7 @@
 {
   "id": "uni-file-picker",
   "displayName": "uni-file-picker 文件选择上传",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间",
   "keywords": [
     "uni-ui",

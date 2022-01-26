@@ -1,9 +1,12 @@
 <template>
 	<view class="uni-combox" :class="border ? '' : 'uni-combox__no-border'">
+		<view v-if="label" class="uni-combox__label" :style="labelStyle">
+			<text>{{label}}</text>
+		</view>
 		<view class="uni-combox__input-box">
-			<input class="uni-combox__input" type="text" :placeholder="placeholder"
-				placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus"
-				@blur="onBlur" />
+			<input class="uni-combox__input" type="text" :placeholder="placeholder" 
+			placeholder-class="uni-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus" 
+@blur="onBlur" />
 			<uni-icons :type="showSelector? 'top' : 'bottom'" size="14" color="#999" @click="toggleSelector">
 			</uni-icons>
 		</view>
@@ -13,8 +16,8 @@
 				<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
 					<text>{{emptyTips}}</text>
 				</view>
-				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index"
-					@click="onSelectorClick(index)">
+				<view class="uni-combox__selector-item" v-for="(item,index) in filterCandidates" :key="index" 
+				@click="onSelectorClick(index)">
 					<text>{{item}}</text>
 				</view>
 			</scroll-view>
@@ -27,6 +30,8 @@
 	 * Combox 组合输入框
 	 * @description 组合输入框一般用于既可以输入也可以选择的场景
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=1261
+	 * @property {String} label 左侧文字
+	 * @property {String} labelWidth 左侧内容宽度
 	 * @property {String} placeholder 输入框占位符
 	 * @property {Array} candidates 候选项列表
 	 * @property {String} emptyTips 筛选结果为空时显示的文字
@@ -39,6 +44,14 @@
 			border: {
 				type: Boolean,
 				default: true
+			},
+			label: {
+				type: String,
+				default: ''
+			},
+			labelWidth: {
+				type: String,
+				default: 'auto'
 			},
 			placeholder: {
 				type: String,
@@ -74,6 +87,12 @@
 			}
 		},
 		computed: {
+			labelStyle() {
+				if (this.labelWidth === 'auto') {
+					return ""
+				}
+				return `width: ${this.labelWidth}`
+			},
 			filterCandidates() {
 				return this.candidates.filter((item) => {
 					return item.toString().indexOf(this.inputVal) > -1
@@ -136,6 +155,20 @@
 		border-radius: 4px;
 		padding: 6px 10px;
 		position: relative;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		// height: 40px;
+		flex-direction: row;
+		align-items: center;
+		// border-bottom: solid 1px #DDDDDD;
+	}
+
+	.uni-combox__label {
+		font-size: 16px;
+		line-height: 22px;
+		padding-right: 10px;
+		color: #999999;
 	}
 
 	.uni-combox__input-box {
@@ -207,7 +240,7 @@
 		/* #endif */
 	}
 
-// picker 弹出层通用的指示小三角
+	// picker 弹出层通用的指示小三角
 	.uni-popper__arrow,
 	.uni-popper__arrow::after {
 		position: absolute;

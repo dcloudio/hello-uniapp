@@ -1,7 +1,7 @@
 {
   "id": "uni-collapse",
   "displayName": "uni-collapse 折叠面板",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "description": "Collapse 组件，可以折叠 / 展开的内容区域。",
   "keywords": [
     "uni-ui",

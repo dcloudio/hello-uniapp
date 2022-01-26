@@ -459,7 +459,7 @@
 	};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 	.uni-forms {
 		// overflow: hidden;
 		// padding: 10px 15px;

@@ -1,7 +1,7 @@
 {
   "id": "uni-load-more",
   "displayName": "uni-load-more 加载更多",
-  "version": "1.3.0",
+  "version": "1.3.3",
   "description": "LoadMore 组件，常用在列表里面，做滚动加载使用。",
   "keywords": [
     "uni-ui",

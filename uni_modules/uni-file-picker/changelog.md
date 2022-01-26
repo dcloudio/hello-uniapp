@@ -1,6 +1,12 @@
+## 1.0.1（2021-11-23）
+- 修复 参数为对象的情况下，url在某些情况显示错误的bug
 ## 1.0.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-file-picker](https://uniapp.dcloud.io/component/uniui/uni-file-picker)
+## 0.2.16（2021-11-08）
+- 修复 传入空对象 ，显示错误的Bug
+## 0.2.15（2021-08-30）
+- 修复 return-type="object" 时且存在v-model时，无法删除文件的Bug
 ## 0.2.14（2021-08-23）
 - 新增 参数中返回 fileID 字段
 ## 0.2.13（2021-08-23）

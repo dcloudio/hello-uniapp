@@ -89,7 +89,7 @@
 
 <style lang="scss">
 	$uni-primary: #2979ff !default;
-
+	$uni-border-color:#EDEDED;
 	.uni-steps {
 		/* #ifndef APP-NVUE */
 		display: flex;
