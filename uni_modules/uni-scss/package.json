@@ -1,21 +1,21 @@
 {
   "id": "uni-scss",
   "displayName": "uni-scss 辅助样式",
-  "version": "1.0.0",
-  "description": "`uni-sass` 是 `uni-ui`提供的一套全局样式 ，通过一些简单的类名和`sass`变量，实现简单的页面布局操作，比如颜色、边距、圆角等。",
+  "version": "1.0.3",
+  "description": "uni-sass是uni-ui提供的一套全局样式 ，通过一些简单的类名和sass变量，实现简单的页面布局操作，比如颜色、边距、圆角等。",
   "keywords": [
     "uni-scss",
     "uni-ui",
     "辅助样式"
 ],
-  "repository": "",
+  "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
     "HBuilderX": "^3.1.0"
   },
   "dcloudext": {
     "category": [
-        "uni-app前端模板",
-        "前端页面模板"
+        "JS SDK",
+        "通用 SDK"
     ],
     "sale": {
       "regular": {
@@ -33,7 +33,7 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": ""
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
   },
   "uni_modules": {
     "dependencies": [],

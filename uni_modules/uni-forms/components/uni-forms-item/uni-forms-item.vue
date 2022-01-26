@@ -3,7 +3,7 @@
 		<view class="uni-forms-item__box">
 			<view class="uni-forms-item__inner" :class="['is-direction-' + labelPos]">
 				<view class="uni-forms-item__label" :style="{ width: labelWid , justifyContent: justifyContent }">
-					<slot name="left">
+					<slot name="label">
 						<text v-if="required" class="is-required">*</text>
 						<uni-icons v-if="leftIcon" class="label-icon" size="16" :type="leftIcon" :color="iconColor" />
 						<text class="label-text">{{ label }}</text>
@@ -379,7 +379,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .uni-forms-item {
 	position: relative;
 	padding: 0px;

@@ -66,7 +66,7 @@
 	}
 
 	.uni-indexed-list__item {
-		font-size: $uni-font-size-lg;
+		font-size: 14px;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -77,7 +77,7 @@
 	}
 
 	.uni-indexed-list__item-container {
-		padding-left: $uni-spacing-row-lg;
+		padding-left: 15px;
 		flex: 1;
 		position: relative;
 		/* #ifndef APP-NVUE */

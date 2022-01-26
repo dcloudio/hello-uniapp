@@ -1,7 +1,7 @@
 {
   "id": "uni-icons",
   "displayName": "uni-icons 图标",
-  "version": "1.3.0",
+  "version": "1.3.5",
   "description": "图标组件，用于展示移动端常见的图标，可自定义颜色、大小。",
   "keywords": [
     "uni-ui",
@@ -11,7 +11,7 @@
 ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
-    "HBuilderX": ""
+    "HBuilderX": "^3.2.14"
   },
   "directories": {
     "example": "../../temps/example_temps"

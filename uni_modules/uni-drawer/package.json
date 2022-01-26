@@ -1,7 +1,7 @@
 {
   "id": "uni-drawer",
   "displayName": "uni-drawer 抽屉",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "抽屉式导航，用于展示侧滑菜单，侧滑导航。",
   "keywords": [
     "uni-ui",

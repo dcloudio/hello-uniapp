@@ -6,6 +6,12 @@ export default {
         return []
       }
     },
+    spaceInfo: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
     collection: {
       type: String,
       default: ''
@@ -60,12 +66,12 @@ export default {
         return []
       }
     },
-	modelValue: {
-		type: [Array, String, Number],
-		default () {
-		  return []
-		}
-	},
+    modelValue: {
+      type: [Array, String, Number],
+      default () {
+        return []
+      }
+    },
     preload: {
       type: Boolean,
       default: false
@@ -85,6 +91,15 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    map: {
+      type: Object,
+      default() {
+        return {
+          text: "text",
+          value: "value"
+        }
+      }
     }
   },
   data() {
@@ -111,29 +126,29 @@ export default {
       return !this.collection.length
     },
     postField() {
-			let fields = [this.field];
-			if (this.parentField) {
-				fields.push(`${this.parentField} as parent_value`);
-			}
+      let fields = [this.field];
+      if (this.parentField) {
+        fields.push(`${this.parentField} as parent_value`);
+      }
       return fields.join(',');
     },
-	dataValue(){
-		let isarr = Array.isArray(this.value) && this.value.length === 0
-		let isstr = typeof this.value === 'string' && !this.value
-		let isnum = typeof this.value === 'number' && !this.value
-		
-		if(isarr || isstr || isnum){
-			return this.modelValue
-		}
-		
-		return this.value
-	}
+    dataValue() {
+      let isModelValue = Array.isArray(this.modelValue) ? (this.modelValue.length > 0) : (this.modelValue !== null || this.modelValue !== undefined)
+      return isModelValue ? this.modelValue : this.value
+    },
+    hasValue() {
+      if (typeof this.dataValue === 'number') {
+        return true
+      }
+      return (this.dataValue != null) && (this.dataValue.length > 0)
+    }
   },
   created() {
     this.$watch(() => {
       var al = [];
       ['pageCurrent',
         'pageSize',
+        'spaceInfo',
         'value',
         'modelValue',
         'localdata',
@@ -172,7 +187,7 @@ export default {
     },
     getCommand(options = {}) {
       /* eslint-disable no-undef */
-      let db = uniCloud.database()
+      let db = uniCloud.database(this.spaceInfo)
 
       const action = options.action || this.action
       if (action) {
@@ -259,7 +274,7 @@ export default {
         return
       }
 
-      if (this.dataValue.length) {
+      if (this.dataValue != null) {
         this._loadNodeData((data) => {
           this._treeData = data
           this._updateBindData()
@@ -389,13 +404,15 @@ export default {
     _updateSelected() {
       var dl = this.dataList
       var sl = this.selected
+      let textField = this.map.text
+      let valueField = this.map.value
       for (var i = 0; i < sl.length; i++) {
         var value = sl[i].value
         var dl2 = dl[i]
         for (var j = 0; j < dl2.length; j++) {
           var item2 = dl2[j]
-          if (item2.value === value) {
-            sl[i].text = item2.text
+          if (item2[valueField] === value) {
+            sl[i].text = item2[textField]
             break
           }
         }
@@ -430,11 +447,10 @@ export default {
     },
     _filterData(data, paths) {
       let dataList = []
-
       let hasNodes = true
 
       dataList.push(data.filter((item) => {
-        return item.parent_value === undefined
+        return (item.parent_value === null || item.parent_value === undefined || item.parent_value === '')
       }))
       for (let i = 0; i < paths.length; i++) {
         var value = paths[i].value
@@ -456,6 +472,7 @@ export default {
     },
     _extractTree(nodes, result, parent_value) {
       let list = result || []
+      let valueField = this.map.value
       for (let i = 0; i < nodes.length; i++) {
         let node = nodes[i]
 
@@ -465,14 +482,14 @@ export default {
             child[key] = node[key]
           }
         }
-        if (parent_value !== undefined) {
+        if (parent_value !== null && parent_value !== undefined && parent_value !== '') {
           child.parent_value = parent_value
         }
         result.push(child)
 
         let children = node.children
         if (children) {
-          this._extractTree(children, result, node.value)
+          this._extractTree(children, result, node[valueField])
         }
       }
     },
@@ -496,12 +513,13 @@ export default {
       }
     },
     _findNodePath(key, nodes, path = []) {
+      let textField = this.map.text
+      let valueField = this.map.value
       for (let i = 0; i < nodes.length; i++) {
-        let {
-          value,
-          text,
-          children
-        } = nodes[i]
+        let node = nodes[i]
+        let children = node.children
+        let text = node[textField]
+        let value = node[valueField]
 
         path.push({
           value,
@@ -526,7 +544,7 @@ export default {
     _processLocalData() {
       this._treeData = []
       this._extractTree(this.localdata, this._treeData)
-	
+
       var inputValue = this.dataValue
       if (inputValue === undefined) {
         return
@@ -534,8 +552,8 @@ export default {
 
       if (Array.isArray(inputValue)) {
         inputValue = inputValue[inputValue.length - 1]
-        if (typeof inputValue === 'object' && inputValue.value) {
-          inputValue = inputValue.value
+        if (typeof inputValue === 'object' && inputValue[this.map.value]) {
+          inputValue = inputValue[this.map.value]
         }
       }
 

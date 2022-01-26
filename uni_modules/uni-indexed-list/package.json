@@ -1,7 +1,7 @@
 {
   "id": "uni-indexed-list",
   "displayName": "uni-indexed-list 索引列表",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "索引列表组件，右侧带索引的列表，方便快速定位到具体内容，通常用于城市/机场选择等场景",
   "keywords": [
     "uni-ui",

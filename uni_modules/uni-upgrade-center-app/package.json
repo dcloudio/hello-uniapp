@@ -1,11 +1,10 @@
 {
   "id": "uni-upgrade-center-app",
   "displayName": "升级中心 uni-upgrade-center - App",
-  "version": "0.3.1",
-  "description": "升级中心前台检查更新",
+  "version": "0.3.2",
+  "description": "uni升级中心 - 客户端检查更新",
   "keywords": [
     "uniCloud",
-    "admin",
     "update",
     "升级",
     "wgt"
@@ -47,21 +46,21 @@
       },
       "client": {
         "App": {
-          "app-vue": "u",
+          "app-vue": "y",
           "app-nvue": "u"
         },
         "H5-mobile": {
-          "Safari": "u",
-          "Android Browser": "u",
-          "微信浏览器(Android)": "u",
-          "QQ浏览器(Android)": "u"
+          "Safari": "y",
+          "Android Browser": "y",
+          "微信浏览器(Android)": "y",
+          "QQ浏览器(Android)": "y"
         },
         "H5-pc": {
-          "Chrome": "u",
-          "IE": "u",
-          "Edge": "u",
-          "Firefox": "u",
-          "Safari": "u"
+          "Chrome": "y",
+          "IE": "y",
+          "Edge": "y",
+          "Firefox": "y",
+          "Safari": "y"
         },
         "小程序": {
           "微信": "u",
@@ -76,7 +75,7 @@
         },
         "Vue": {
             "vue2": "y",
-            "vue3": "u"
+            "vue3": "y"
         }
       }
     }

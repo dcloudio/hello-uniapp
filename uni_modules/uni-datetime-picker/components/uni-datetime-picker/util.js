@@ -301,9 +301,9 @@ class Calendar {
 			this.multipleStatus.fulldate = ''
 			this.lastHover = false
 		} else {
-			this.lastHover = false
 			if (!before) {
 				this.multipleStatus.before = fullDate
+				this.lastHover = false
 			} else {
 				this.multipleStatus.after = fullDate
 				if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
@@ -313,6 +313,7 @@ class Calendar {
 					this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus
 						.before);
 				}
+				this.lastHover = true
 			}
 		}
 		this._getWeek(fullDate)

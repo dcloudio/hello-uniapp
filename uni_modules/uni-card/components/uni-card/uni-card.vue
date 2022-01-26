@@ -184,6 +184,7 @@
 				.uni-card__header-avatar-image {
 					flex: 1;
 					width: 40px;
+					height: 40px;
 				}
 			}
 

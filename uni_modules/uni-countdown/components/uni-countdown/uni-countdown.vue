@@ -1,13 +1,13 @@
 <template>
 	<view class="uni-countdown">
-		<text v-if="showDay" :style="timeStyle" class="uni-countdown__number">{{ d }}</text>
-		<text v-if="showDay" :style="splitorStyle" class="uni-countdown__splitor">{{dayText}}</text>
-		<text :style="timeStyle" class="uni-countdown__number">{{ h }}</text>
-		<text :style="splitorStyle" class="uni-countdown__splitor">{{ showColon ? ':' : hourText }}</text>
-		<text :style="timeStyle" class="uni-countdown__number">{{ i }}</text>
-		<text :style="splitorStyle" class="uni-countdown__splitor">{{ showColon ? ':' : minuteText }}</text>
-		<text :style="timeStyle" class="uni-countdown__number">{{ s }}</text>
-		<text v-if="!showColon" :style="splitorStyle" class="uni-countdown__splitor">{{secondText}}</text>
+		<text v-if="showDay" :style="[timeStyle]" class="uni-countdown__number">{{ d }}</text>
+		<text v-if="showDay" :style="[splitorStyle]" class="uni-countdown__splitor">{{dayText}}</text>
+		<text :style="[timeStyle]" class="uni-countdown__number">{{ h }}</text>
+		<text :style="[splitorStyle]" class="uni-countdown__splitor">{{ showColon ? ':' : hourText }}</text>
+		<text :style="[timeStyle]" class="uni-countdown__number">{{ i }}</text>
+		<text :style="[splitorStyle]" class="uni-countdown__splitor">{{ showColon ? ':' : minuteText }}</text>
+		<text :style="[timeStyle]" class="uni-countdown__number">{{ s }}</text>
+		<text v-if="!showColon" :style="[splitorStyle]" class="uni-countdown__splitor">{{secondText}}</text>
 	</view>
 </template>
 <script>
@@ -219,6 +219,8 @@
 			startData() {
 				this.seconds = this.toSeconds(this.timestamp, this.day, this.hour, this.minute, this.second)
 				if (this.seconds <= 0) {
+					this.seconds = this.toSeconds(0, 0, 0, 0, 0)
+					this.countDown()
 					return
 				}
 				clearInterval(this.timer)
@@ -231,6 +233,9 @@
 					}
 					this.countDown()
 				}, 1000)
+			},
+			update(){
+				this.startData();
 			},
 			changeFlag() {
 				if (!this.syncFlag) {

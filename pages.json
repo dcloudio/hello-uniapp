@@ -745,17 +745,7 @@
 				{
 					"path": "drawer/drawer",
 					"style": {
-						"navigationBarTitleText": "Drawer 抽屉",
-						"app-plus": {
-							"titleNView": {
-								"buttons": [{
-									"text": "\ue563",
-									"fontSrc": "/static/uni.ttf",
-									"fontSize": "22px"
-								}]
-							},
-							"bounce": "none"
-						}
+						"navigationBarTitleText": "Drawer 抽屉"
 					}
 				},
 				{
@@ -957,12 +947,6 @@
 						"navigationBarTitleText": "Combox 组合框"
 					}
 				},
-				// #ifndef H5
-				{
-					"path": "list/ad",
-					"style": {}
-				},
-				// #endif
 				{
 					"path": "list/chat",
 					"style": {}
@@ -984,40 +968,75 @@
 				{
 					"path": "data-checkbox/data-checkbox",
 					"style": {
-						"navigationBarTitleText": "",
+						"navigationBarTitleText": "DataCheckbox 单选复选框",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
 					"path": "easyinput/easyinput",
 					"style": {
-						"navigationBarTitleText": "",
+						"navigationBarTitleText": "Easyinput 增强输入框",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
 					"path": "data-picker/data-picker",
 					"style": {
-						"navigationBarTitleText": "级联选择",
+						"navigationBarTitleText": "DataPicker 级联选择",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
 					"path": "datetime-picker/datetime-picker",
 					"style": {
-						"navigationBarTitleText": "日期时间",
+						"navigationBarTitleText": "DatetimePicker 日期时间",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
 					"path": "row/row",
 					"style": {
-						"navigationBarTitleText": "layout 布局",
+						"navigationBarTitleText": "Layout 布局",
 						"enablePullDownRefresh": false
 					}
 				},
 				{
 					"path": "file-picker/file-picker",
+					"style": {
+						"navigationBarTitleText": "FilePicker 文件选择上传",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "space/space",
+					"style": {
+						"navigationBarTitleText": "间距",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "font/font",
+					"style": {
+						"navigationBarTitleText": "字体",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "color/color",
+					"style": {
+						"navigationBarTitleText": "颜色",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "radius/radius",
+					"style": {
+						"navigationBarTitleText": "圆角",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "button/button",
 					"style": {
 						"navigationBarTitleText": "",
 						"enablePullDownRefresh": false

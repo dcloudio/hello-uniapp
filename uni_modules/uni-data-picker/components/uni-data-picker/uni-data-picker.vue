@@ -160,7 +160,7 @@
 				if (this.isLocaldata) {
 					this.loadData()
 					this.inputSelected = this.selected.slice(0)
-				} else if (!this.parentField && !this.selfField && this.dataValue) {
+				} else if (!this.parentField && !this.selfField && this.hasValue) {
 					this.getNodeData(() => {
 						this.inputSelected = this.selected.slice(0)
 					})
@@ -505,7 +505,7 @@
 	}
 
 	/* #endif */
-
+	
 	/* picker 弹出层通用的指示小三角, todo：扩展至上下左右方向定位 */
 	.uni-popper__arrow,
 	.uni-popper__arrow::after {
@@ -534,4 +534,4 @@
 		border-top-width: 0;
 		border-bottom-color: #fff;
 	}
-</style>
+	</style>

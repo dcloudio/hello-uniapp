@@ -1,7 +1,7 @@
 {
   "id": "uni-card",
   "displayName": "uni-card 卡片",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Card 组件，提供常见的卡片样式。",
   "keywords": [
     "uni-ui",

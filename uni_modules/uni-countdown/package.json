@@ -1,7 +1,7 @@
 {
   "id": "uni-countdown",
   "displayName": "uni-countdown 倒计时",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "CountDown 倒计时组件",
   "keywords": [
     "uni-ui",

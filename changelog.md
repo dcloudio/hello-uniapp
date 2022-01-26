@@ -1,3 +1,21 @@
+## 3.3.1（2022-01-04）
+- 新增 同步 uni-ui@1.4.11
+	- uni-collapse 修复 微信小程序resize后组件收起的bug
+	- uni-countdown 修复 在微信小程序中样式不生效的bug
+	- uni-countdown 新增 update 方法 ，在动态更新时间后，刷新组件
+	- uni-load-more 新增 showText属性 ，是否显示文本
+	- uni-load-more 修复 nvue 平台下不显示文本的bug
+	- uni-load-more 修复 微信小程序平台样式选择器报警告的问题
+	- uni-nav-bar 修复 在vue下，标题不垂直居中的bug
+	- uni-nav-bar 修复 height 属性类型错误
+	- uni-nav-bar 新增 height 属性,可修改组件高度
+	- uni-nav-bar 新增 dark 属性可可开启暗黑模式
+	- uni-nav-bar 优化 标题字数过多显示省略号
+	- uni-nav-bar 优化 插槽，插入内容可完全覆盖
+	- uni-popup 修复 isMaskClick 失效的bug
+	- uni-popup 新增 cancelText \ confirmText 属性 ，可自定义文本
+	- uni-popup 新增 maskBackgroundColor 属性 ，可以修改蒙版颜色
+	- uni-popup 优化 maskClick属性 更新为 isMaskClick ，解决微信小程序警告的问题
 ## 3.3.0（2022-01-04）
 - 修复 开发时在 vue3 下由 pc 端切换到手机端，不能返回上一级页面的 bug
 - 优化 去掉 pc 端 topwindow 右上角用于演示的 url 导航

@@ -1,3 +1,7 @@
+## 1.2.2（2022-01-19）
+- 修复 在微信小程序中样式不生效的bug
+## 1.2.1（2022-01-18）
+- 新增 update 方法 ，在动态更新时间后，刷新组件
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-countdown](https://uniapp.dcloud.io/component/uniui/uni-countdown)

@@ -106,6 +106,7 @@
 </script>
 
 <style lang="scss" scoped>
+	$uni-mask: rgba($color: #000000, $alpha: 0.4) ;
 	// 抽屉宽度
 	$drawer-width: 220px;
 
@@ -169,7 +170,7 @@
 		left: 0;
 		bottom: 0;
 		right: 0;
-		background-color: $uni-bg-color-mask;
+		background-color: $uni-mask;
 		transition: opacity 0.3s;
 	}
 

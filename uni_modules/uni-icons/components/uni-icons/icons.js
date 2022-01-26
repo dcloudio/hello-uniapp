@@ -173,6 +173,13 @@ export default {
       "unicode": "e6bb",
       "unicode_decimal": 59067
     },
+		{
+		  "icon_id": "24923353",
+		  "name": "arrowthinright",
+		  "font_class": "arrowthinright",
+		  "unicode": "e6bb",
+		  "unicode_decimal": 59067
+		},
     {
       "icon_id": "24923354",
       "name": "arrowthinleft",
@@ -180,6 +187,13 @@ export default {
       "unicode": "e6bc",
       "unicode_decimal": 59068
     },
+		{
+		  "icon_id": "24923354",
+		  "name": "arrowthinleft",
+		  "font_class": "arrowthinleft",
+		  "unicode": "e6bc",
+		  "unicode_decimal": 59068
+		},
     {
       "icon_id": "24923355",
       "name": "arrowthinup",
@@ -187,10 +201,23 @@ export default {
       "unicode": "e6bd",
       "unicode_decimal": 59069
     },
+		{
+		  "icon_id": "24923355",
+		  "name": "arrowthinup",
+		  "font_class": "arrowthinup",
+		  "unicode": "e6bd",
+		  "unicode_decimal": 59069
+		},
     {
       "icon_id": "24923356",
       "name": "arrowthindown",
       "font_class": "arrow-down",
+      "unicode": "e6be",
+      "unicode_decimal": 59070
+    },{
+      "icon_id": "24923356",
+      "name": "arrowthindown",
+      "font_class": "arrowthindown",
       "unicode": "e6be",
       "unicode_decimal": 59070
     },
@@ -198,6 +225,12 @@ export default {
       "icon_id": "24923349",
       "name": "arrowdown",
       "font_class": "bottom",
+      "unicode": "e6b8",
+      "unicode_decimal": 59064
+    },{
+      "icon_id": "24923349",
+      "name": "arrowdown",
+      "font_class": "arrowdown",
       "unicode": "e6b8",
       "unicode_decimal": 59064
     },
@@ -208,6 +241,13 @@ export default {
       "unicode": "e6b5",
       "unicode_decimal": 59061
     },
+		{
+		  "icon_id": "24923346",
+		  "name": "arrowright",
+		  "font_class": "arrowright",
+		  "unicode": "e6b5",
+		  "unicode_decimal": 59061
+		},
     {
       "icon_id": "24923347",
       "name": "arrowup",
@@ -215,6 +255,13 @@ export default {
       "unicode": "e6b6",
       "unicode_decimal": 59062
     },
+		{
+		  "icon_id": "24923347",
+		  "name": "arrowup",
+		  "font_class": "arrowup",
+		  "unicode": "e6b6",
+		  "unicode_decimal": 59062
+		},
     {
       "icon_id": "24923348",
       "name": "arrowleft",
@@ -222,6 +269,13 @@ export default {
       "unicode": "e6b7",
       "unicode_decimal": 59063
     },
+		{
+		  "icon_id": "24923348",
+		  "name": "arrowleft",
+		  "font_class": "arrowleft",
+		  "unicode": "e6b7",
+		  "unicode_decimal": 59063
+		},
     {
       "icon_id": "24923334",
       "name": "eye",

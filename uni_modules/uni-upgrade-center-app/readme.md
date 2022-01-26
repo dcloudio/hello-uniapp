@@ -4,19 +4,21 @@
 
 > 统一管理App及App在`Android`、`iOS`平台上`App安装包`和`wgt资源包`的发布升级
 
-> 本插件为升级中心前台检查更新，后台Admin管理系统请点击查看 [uni-upgrade-center](https://ext.dcloud.net.cn/plugin?id=4470)
+> 本插件为uni升级中心客户端检查更新，后台管理系统请点击查看 [uni-upgrade-center - Admin](https://ext.dcloud.net.cn/plugin?id=4470)
 
-### 基于uni-upgrade-center的App前台检查升级插件
-  - 一键式检查更新，统一整包与wgt资源包更新
-  - 好看、实用、可自定义、可拓展的前台更新弹框
+### uni升级中心 - 客户端检查更新插件
+  - 一键式检查更新，同时支持整包升级与wgt资源包更新
+  - 好看、实用、可自定义的客户端提示框
 
 ## 安装指引
 
-0. 依赖数据库`opendb-app-versions`，如果没有此库，请在云服务空间中创建。
+1. 依赖数据库`opendb-app-versions`，如果没有此库，请在云服务空间中创建。
 
-1. 使用`HBuilderX 3.1.0+`，因为要使用到`uni_modules`
+2. 使用`HBuilderX 3.1.0+`，因为要使用到`uni_modules`
 
 3. 在插件市场打开本插件页面，在右侧点击`使用 HBuilderX 导入插件`，选择要导入的项目点击确定
+
+4. 绑定一个服务空间
 
 5. 找到`/uni_modules/uni-upgrade-center-app/uniCloud/cloudfunctions/check-version`，右键上传部署
 

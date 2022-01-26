@@ -140,5 +140,5 @@
             "timeout" : 20000
         }
     },
-    "vueVersion" : "2"
+    "vueVersion" : "3"
 }

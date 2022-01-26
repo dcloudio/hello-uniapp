@@ -19,8 +19,7 @@
 						<input class="uni-date__x-input t-c" type="text" v-model="range.endDate"
 							:placeholder="endPlaceholderText" :disabled="true" />
 					</view>
-					<view v-show="clearIcon && !disabled && (singleVal || (range.startDate && range.endDate))"
-						class="uni-date__icon-clear" @click.stop="clear">
+					<view v-if="showClearIcon" class="uni-date__icon-clear" @click.stop="clear">
 						<uni-icons type="clear" color="#e1e1e1" size="18"></uni-icons>
 					</view>
 				</view>
@@ -363,6 +362,11 @@
 			},
 			clearText() {
 				return t("uni-datetime-picker.clear")
+			},
+			showClearIcon() {
+				const { clearIcon, disabled, singleVal, range } = this
+				const bool = clearIcon && !disabled && (singleVal || (range.startDate && range.endDate))
+				return bool
 			}
 		},
 		created() {
@@ -493,7 +497,7 @@
 						}
 					}
 
-				}, 20)
+				}, 50)
 			},
 
 			close() {

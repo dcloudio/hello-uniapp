@@ -1,3 +1,9 @@
+## 1.3.3（2022-01-20）
+- 新增 showText属性 ，是否显示文本
+## 1.3.2（2022-01-19）
+- 修复 nvue 平台下不显示文本的bug
+## 1.3.1（2022-01-19）
+- 修复 微信小程序平台样式选择器报警告的问题
 ## 1.3.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-load-more](https://uniapp.dcloud.io/component/uniui/uni-load-more)

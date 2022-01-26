@@ -186,7 +186,7 @@
 		width: 40px;
 		height: $box-height;
 		text-align: center;
-		font-size: $uni-font-size-lg;
+		font-size: 14px;
 		border-left-width: 0;
 		border-right-width: 0;
 		color: $color;

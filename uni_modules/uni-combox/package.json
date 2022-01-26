@@ -1,7 +1,7 @@
 {
   "id": "uni-combox",
   "displayName": "uni-combox 组合框",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "可以选择也可以输入的表单项 ",
   "keywords": [
     "uni-ui",
