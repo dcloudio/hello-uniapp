@@ -264,7 +264,6 @@
                 showCompass: true,
                 enable3D: true,
                 enableOverlooking: true,
-                enableOverlooking: true,
                 enableZoom: true,
                 enableScroll: true,
                 enableRotate: true,

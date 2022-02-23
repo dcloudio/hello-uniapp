@@ -157,8 +157,7 @@
 		-o-user-drag: none;
 		user-drag: none;
 	}
-	/* #endif */
-
+	
 	@media screen and (min-width: 500px) {
 				.uni-swiper-dot-box {
 					width: 400px;
@@ -170,6 +169,7 @@
 					width: 100%;
 				}
 	}
+	/* #endif */
 
 	.uni-bg-red {
 		background-color: #ff5a5f;

@@ -9,7 +9,7 @@
         <uni-list class="scrollview">
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enable3D" title="显示3D楼块" @switchChange="enableThreeD" />
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showCompass" title="显示指南针" @switchChange="changeShowCompass" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="开启俯视" @switchChange="changeEnableOverlooking" />
+            <!-- <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="开启俯视" @switchChange="changeEnableOverlooking" /> -->
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableZoom" title="是否支持缩放" @switchChange="changeEnableZoom" />
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableScroll" title="是否支持拖动" @switchChange="changeEnableScroll" />
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="是否支持旋转" @switchChange="changeEnableRotate" />
@@ -220,7 +220,6 @@
                 scale: 13,
                 showCompass: true,
                 enable3D: true,
-                enableOverlooking: true,
                 enableOverlooking: true,
                 enableZoom: true,
                 enableScroll: true,
