@@ -268,7 +268,8 @@
 				this.showPicker = true;
 			},
 			pickerChange(e) {
-				this.pickerValue = e.mp.detail.value;
+				console.log(11111111, e);
+				this.pickerValue = e.detail.value;
 				let pickObj = {
 					index: this.pickerValue,
 					value: this._getPickerLabelAndValue(this.pickerValue, this.mode).value,
@@ -279,7 +280,7 @@
 			pickerChangeMul(e) {
 				if (this.deepLength === 2) {
 					let pickerValueArray = this.pickerValueArray;
-					let changeValue = e.mp.detail.value;
+					let changeValue = e.detail.value;
 					// 处理第一列滚动
 					if (changeValue[0] !== this.pickerValue[0]) {
 						let pickerValueMulTwoTwo = [];
@@ -294,7 +295,7 @@
 					this.pickerValue = changeValue;
 				} else if (this.deepLength === 3) {
 					let pickerValueArray = this.pickerValueArray;
-					let changeValue = e.mp.detail.value;
+					let changeValue = e.detail.value;
 					let pickerValueMulThreeTwo = [];
 					let pickerValueMulThreeThree = [];
 					// 重新渲染第二列
