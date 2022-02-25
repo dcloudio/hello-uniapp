@@ -7,14 +7,14 @@
             :polyline="polyline" :circles="circles" :polygons="polygons" :include-points="includePoints"></map>
         <view class="line"></view>
         <uni-list class="scrollview">
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enable3D" title="显示3D楼块" @switchChange="enableThreeD" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showCompass" title="显示指南针" @switchChange="changeShowCompass" />
-            <!-- <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="开启俯视" @switchChange="changeEnableOverlooking" /> -->
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableZoom" title="是否支持缩放" @switchChange="changeEnableZoom" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableScroll" title="是否支持拖动" @switchChange="changeEnableScroll" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="是否支持旋转" @switchChange="changeEnableRotate" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableSatellite" title="是否开启卫星图" @switchChange="changeEnableSatellite" />
-            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableTraffic" title="是否开启实时路况" @switchChange="changeEnableTraffic" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enable3D" title="enable 3D" @switchChange="enableThreeD" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showCompass" title="show Compass" @switchChange="changeShowCompass" />
+            <!-- <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableOverlooking" title="enableOverlooking" @switchChange="changeEnableOverlooking" /> -->
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableZoom" title="enable Zoom" @switchChange="changeEnableZoom" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableScroll" title="enable Scroll" @switchChange="changeEnableScroll" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="enable Rotate" @switchChange="changeEnableRotate" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableSatellite" title="enable Satellite" @switchChange="changeEnableSatellite" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableTraffic" title="enable Traffic" @switchChange="changeEnableTraffic" />
         </uni-list>
     </view>
 </template>
@@ -23,7 +23,7 @@
             id: 0,
             latitude: 39.989631,
             longitude: 116.481018,
-            title: '方恒国际 阜通东大街6号',
+            title: 'Fangheng International No.6 Futong East Street',
             zIndex: '1',
             rotate: 0,
             width: 20,
@@ -33,7 +33,7 @@
                 y: 1
             },
             callout: {
-                content: '方恒国际 阜通东大街6号',
+                content: 'Fangheng International No.6 Futong East Street',
                 color: '#00BFFF',
                 fontSize: 10,
                 borderRadius: 4,
@@ -48,7 +48,7 @@
             id: 1,
             latitude: 39.9086920000,
             longitude: 116.3974770000,
-            title: '天安门',
+            title: 'Tiananmen',
             zIndex: '1',
             iconPath: '/static/location.png',
             width: 40,
@@ -58,7 +58,7 @@
                 y: 1
             },
             callout: {
-                content: '首都北京\n天安门',
+                content: 'Capital Beijing\nTiananmen',
                 color: '#00BFFF',
                 fontSize: 12,
                 borderRadius: 2,

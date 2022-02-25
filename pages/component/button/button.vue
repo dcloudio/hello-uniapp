@@ -2,30 +2,30 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap uni-common-mt">
-            <button type="primary">页面主操作 Normal</button>
-            <button type="primary" :loading="loading">页面主操作 Loading</button>
-            <button type="primary" disabled="true">页面主操作 Disabled</button>
+            <button type="primary">Page Master Operation Normal</button>
+            <button type="primary" :loading="loading">Page Master Operation Loading</button>
+            <button type="primary" disabled="true">Page Master Operation Disabled</button>
 
-            <button type="default">页面次要操作 Normal</button>
-            <button type="default" disabled="true">页面次要操作 Disabled</button>
+            <button type="default">Page secondary operations Normal</button>
+            <button type="default" disabled="true">Page secondary operations Disabled</button>
 
-            <button type="warn">警告类操作 Normal</button>
-            <button type="warn" disabled="true">警告类操作 Disabled</button>
+            <button type="warn">Warning type operation Normal</button>
+            <button type="warn" disabled="true">Warning type operation Disabled</button>
 
             <view class="button-sp-area">
-                <button type="primary" plain="true">按钮</button>
-                <button type="primary" disabled="true" plain="true">不可点击的按钮</button>
+                <button type="primary" plain="true">Botton</button>
+                <button type="primary" disabled="true" plain="true">Disabled Botton</button>
 
-                <button type="default" plain="true">按钮</button>
-                <button type="default" disabled="true" plain="true">按钮</button>
+                <button type="default" plain="true">Botton</button>
+                <button type="default" disabled="true" plain="true">Botton</button>
 
-                <button class="mini-btn" type="primary" size="mini">按钮</button>
-                <button class="mini-btn" type="default" size="mini">按钮</button>
-                <button class="mini-btn" type="warn" size="mini">按钮</button>
+                <button class="mini-btn" type="primary" size="mini">Botton</button>
+                <button class="mini-btn" type="default" size="mini">Botton</button>
+                <button class="mini-btn" type="warn" size="mini">Botton</button>
             </view>
             <!-- #ifdef MP-WEIXIN || MP-QQ || MP-JD -->
-            <button open-type="launchApp" app-parameter="uni-app" @error="openTypeError">打开APP</button>
-            <button open-type="feedback">意见反馈</button>
+            <button open-type="launchApp" app-parameter="uni-app" @error="openTypeError">Open APP</button>
+            <button open-type="feedback">feedback</button>
             <!-- #endif -->
         </view>
     </view>

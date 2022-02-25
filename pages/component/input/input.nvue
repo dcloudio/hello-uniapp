@@ -7,98 +7,98 @@
         </view>
         <view class="uni-common-mt">
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">可自动聚焦的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Auto-focusable input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" focus placeholder="自动获得焦点" />
+                    <input class="uni-input" focus placeholder="Automatically gain focus" />
                 </view>
             </view>
             <!-- #ifdef APP-PLUS -->
             <view v-if="platform==='ios'&&!isNvue" class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">隐藏 iOS 软键盘上的导航条</text></view>
+                <view class="title"><text class="uni-form-item__title">Hide iOS Navigation bar on the soft keyboard</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" placeholder="触摸其他地方收起键盘" @focus="onFocus" @blur="onBlur" />
+                    <input class="uni-input" placeholder="Touch elsewhere to put away the keyboard" @focus="onFocus" @blur="onBlur" />
                 </view>
             </view>
             <!-- #endif -->
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">键盘右下角按钮显示为搜索</text></view>
+                <view class="title"><text class="uni-form-item__title">The button in the lower right corner of the keyboard is displayed as Search</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" confirm-type="search" placeholder="键盘右下角按钮显示为搜索" />
+                    <input class="uni-input" confirm-type="search" placeholder="The button in the lower right corner of the keyboard is displayed as Search" />
                 </view>
             </view>
             <!-- #ifndef H5 -->
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">键盘右下角按钮显示为发送</text></view>
+                <view class="title"><text class="uni-form-item__title">The button in the lower right corner of the keyboard is displayed as Send</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" confirm-type="send" placeholder="键盘右下角按钮显示为发送" />
+                    <input class="uni-input" confirm-type="send" placeholder="The button in the lower right corner of the keyboard is displayed as Send" />
                 </view>
             </view>
             <!-- #endif -->
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">控制最大输入长度的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Control the maximum input length of input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" maxlength="10" placeholder="最大输入长度为10" />
+                    <input class="uni-input" maxlength="10" placeholder="The maximum input length is 10" />
                 </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">实时获取输入值：{{inputValue}}</text></view>
+                <view class="title"><text class="uni-form-item__title">Get input values in real time：{{inputValue}}</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" @input="onKeyInput" placeholder="输入同步到view中" />
+                    <input class="uni-input" @input="onKeyInput" placeholder="Input synchronization to view" />
                 </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">控制输入的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Control of the input input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" @input="replaceInput" v-model="changeValue" placeholder="连续的两个1会变成2" />
+                    <input class="uni-input" @input="replaceInput" v-model="changeValue" placeholder="Two consecutive 1 will become 2" />
                 </view>
             </view>
             <!-- #ifndef MP-BAIDU -->
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">控制键盘的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Control keypad for input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" ref="input1" @input="hideKeyboard" placeholder="输入123自动收起键盘" />
+                    <input class="uni-input" ref="input1" @input="hideKeyboard" placeholder="Type 123 to automatically put away the keyboard" />
                 </view>
             </view>
             <!-- #endif -->
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">数字输入的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Digital input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" type="number" placeholder="这是一个数字输入框" />
+                    <input class="uni-input" type="number" placeholder="This is a numeric input box" />
                 </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">密码输入的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Password input's input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" password type="text" placeholder="这是一个密码输入框" />
+                    <input class="uni-input" password type="text" placeholder="This is a password entry box" />
                 </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">带小数点的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">with decimal point input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" type="digit" placeholder="带小数点的数字键盘" /> </view>
+                    <input class="uni-input" type="digit" placeholder="Numeric keypad with decimal point" /> </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">身份证输入的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">ID entered by input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" type="idcard" placeholder="身份证输入键盘" /> </view>
+                    <input class="uni-input" type="idcard" placeholder="ID card input keyboard" /> </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">控制占位符颜色的 input</text></view>
+                <view class="title"><text class="uni-form-item__title">Controls the color of the placeholder's input</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" placeholder-style="color:#F76260" placeholder="占位符字体是红色的" />
+                    <input class="uni-input" placeholder-style="color:#F76260" placeholder="Placeholder font is red" />
                 </view>
             </view>
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">带清除按钮的输入框</text></view>
+                <view class="title"><text class="uni-form-item__title">Input box with clear button</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" placeholder="带清除按钮的输入框" :value="inputClearValue" @input="clearInput" />
+                    <input class="uni-input" placeholder="Input box with clear button" :value="inputClearValue" @input="clearInput" />
                     <text class="uni-icon" v-if="showClearIcon" @click="clearIcon">&#xe434;</text>
                 </view>
             </view> 
             <view class="uni-form-item uni-column">
-                <view class="title"><text class="uni-form-item__title">可查看密码的输入框</text></view>
+                <view class="title"><text class="uni-form-item__title">Input box for viewing passwords</text></view>
                 <view class="uni-input-wrapper">
-                    <input class="uni-input" placeholder="请输入密码" :password="showPassword" />
+                    <input class="uni-input" placeholder="Please enter your password" :password="showPassword" />
                     <text class="uni-icon" :class="[!showPassword ? 'uni-eye-active' : '']" @click="changePassword">&#xe568;</text>
                 </view>
             </view>

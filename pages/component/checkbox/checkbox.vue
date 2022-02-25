@@ -2,25 +2,25 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-title uni-common-mt">默认样式</view>
+			<view class="uni-title uni-common-mt">Default Style</view>
 			<view>
 				<checkbox-group>
 					<label>
-						<checkbox value="cb1" checked="true" />选中
+						<checkbox value="cb1" checked="true" />Checked
 					</label>
 					<label>
-						<checkbox value="cb" />未选中
+						<checkbox value="cb" />Unchecked
 					</label>
 				</checkbox-group>
 			</view>
-			<view class="uni-title uni-common-mt">不同颜色和尺寸的checkbox</view>
+			<view class="uni-title uni-common-mt">Different colors and sizes checkbox</view>
 			<view>
 				<checkbox-group>
 					<label>
-						<checkbox value="cb1" checked="true" color="#FFCC33" style="transform:scale(0.7)" />选中
+						<checkbox value="cb1" checked="true" color="#FFCC33" style="transform:scale(0.7)" />Checked
 					</label>
 					<label>
-						<checkbox value="cb" color="#FFCC33" style="transform:scale(0.7)" />未选中
+						<checkbox value="cb" color="#FFCC33" style="transform:scale(0.7)" />Unchecked
 					</label>
 				</checkbox-group>
 			</view>
@@ -28,8 +28,8 @@
 
 		<view class="uni-padding-wrap">
 			<view class="uni-title uni-common-mt">
-				推荐展示样式
-				<text>\n使用 uni-list 布局</text>
+				Recommended display style
+				<text>\nUse uni-list layout</text>
 			</view>
 		</view>
 		<view class="uni-list">
@@ -48,31 +48,31 @@
 	export default {
 		data() {
 			return {
-				title: 'checkbox 复选框',
+				title: 'Checkbox',
 				items: [{
 						value: 'USA',
-						name: '美国'
+						name: 'USA'
 					},
 					{
 						value: 'CHN',
-						name: '中国',
+						name: 'China',
 						checked: 'true'
 					},
 					{
 						value: 'BRA',
-						name: '巴西'
+						name: 'Brazil'
 					},
 					{
 						value: 'JPN',
-						name: '日本'
+						name: 'Japan'
 					},
 					{
 						value: 'ENG',
-						name: '英国'
+						name: 'England'
 					},
 					{
 						value: 'FRA',
-						name: '法国'
+						name: 'France'
 					}
 				]
 			}

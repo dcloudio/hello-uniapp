@@ -3,59 +3,59 @@
 		<page-head title="movable-view,可拖动视图"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
-				示例 1
-				<text>\nmovable-view 区域小于 movable-area</text>
+				Example 1
+				<text>\nmovable-view area less than movable-area</text>
 			</view>
 			<movable-area>
 				<movable-view :x="x" :y="y" direction="all" @change="onChange">text</movable-view>
 			</movable-area>
 			<view @tap="tap" class="uni-link uni-center uni-common-mt">
-				点击这里移动至 (30px, 30px)
+				Click here to move to (30px, 30px)
 			</view>
 			<view class="uni-title uni-common-mt">
-				示例 2
-				<text>\nmovable-view区域大于movable-area</text>
+				Example 2
+				<text>\nmovable-view area greater than movable-area</text>
 			</view>
 			<movable-area>
 				<movable-view class="max" direction="all">text</movable-view>
 			</movable-area>
 			<view class="uni-title uni-common-mt">
-				示例 3
-				<text>\n只可以横向移动</text>
+				Example 3
+				<text>\nOnly lateral movement is possible</text>
 			</view>
 			<movable-area>
 				<movable-view direction="horizontal">text</movable-view>
 			</movable-area>
 			<view class="uni-title uni-common-mt">
-				示例 4
-				<text>\n只可以纵向移动</text>
+				Example 4
+				<text>\nOnly vertical movement is possible</text>
 			</view>
 			<movable-area>
 				<movable-view direction="vertical">text</movable-view>
 			</movable-area>
 			<view class="uni-title uni-common-mt">
-				示例 5
-				<text>\n可超出边界</text>
+				Example 5
+				<text>\nCan go beyond the boundary</text>
 			</view>
 			<movable-area>
 				<movable-view direction="all" out-of-bounds>text</movable-view>
 			</movable-area>
 			<view class="uni-title uni-common-mt">
-				示例 6
-				<text>\n带有惯性</text>
+				Example 6
+				<text>\nWith inertia</text>
 			</view>
 			<movable-area>
 				<movable-view direction="all" inertia>text</movable-view>
 			</movable-area>
 			<view class="uni-title uni-common-mt">
-				示例 7
-				<text>\n可放缩</text>
+				Example 7
+				<text>\nDeflatable</text>
 			</view>
 			<movable-area scale-area>
 				<movable-view direction="all" @scale="onScale" scale scale-min="0.5" scale-max="4" :scale-value="scale">text</movable-view>
 			</movable-area>
 			<view @tap="tap2" class="uni-link uni-center uni-common-mt" style="padding-bottom:80rpx;">
-				点击这里放大3倍
+				Click here to enlarge 3 times
 			</view>
 		</view>
 	</view>
@@ -77,7 +77,7 @@
 		},
 		methods: {
 			tap: function(e) {
-				// 解决view层不同步的问题
+				// Solve the problem of out-of-sync view layer
 				this.x = this.old.x
 				this.y = this.old.y
 				this.$nextTick(function() {
@@ -86,7 +86,7 @@
 				})
 			},
 			tap2() {
-				// 解决view层不同步的问题
+				// Solve the problem of out-of-sync view layer
 				this.scale = this.old.scale
 				this.scale = this.old.scale
 				this.$nextTick(function() {

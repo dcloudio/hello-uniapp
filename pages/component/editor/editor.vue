@@ -136,7 +136,7 @@
 					success: (res) => {
 						this.editorCtx.insertImage({
 							src: res.tempFilePaths[0],
-							alt: '图像',
+							alt: 'Images',
 							success: function() {
 								console.log('insert image success')
 							}

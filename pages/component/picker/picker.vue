@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<page-head :title="title"></page-head>
-		<view class="uni-title uni-common-pl">普通选择器</view>
+		<view class="uni-title uni-common-pl">General Selector</view>
 		<view class="uni-list">
 			<view class="uni-list-cell">
 				<view class="uni-list-cell-left">
-					当前选择
+					Current selection
 				</view>
 				<view class="uni-list-cell-db">
 					<picker @change="bindPickerChange" :value="index" :range="array" range-key="name">
@@ -16,11 +16,11 @@
 		</view>
 
 		<!-- #ifndef MP-ALIPAY -->
-		<view class="uni-title uni-common-pl">多列选择器</view>
+		<view class="uni-title uni-common-pl">Multi-Column Selector</view>
 		<view class="uni-list">
 			<view class="uni-list-cell">
 				<view class="uni-list-cell-left">
-					当前选择
+					Current selection
 				</view>
 				<view class="uni-list-cell-db">
 					<picker mode="multiSelector" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
@@ -31,11 +31,11 @@
 		</view>
 		<!-- #endif -->
 
-		<view class="uni-title uni-common-pl">时间选择器</view>
+		<view class="uni-title uni-common-pl">Time Selector</view>
 		<view class="uni-list">
 			<view class="uni-list-cell">
 				<view class="uni-list-cell-left">
-					当前选择
+					Current selection
 				</view>
 				<view class="uni-list-cell-db">
 					<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
@@ -45,14 +45,14 @@
 			</view>
 		</view>
 		<view class="uni-picker-tips">
-			注：选择 09:01 ~ 21:01 之间的时间, 不在区间内不能选中
+			Note: Select the time between 09:01 ~ 21:01, not in the interval can not be selected
 		</view>
 
-		<view class="uni-title uni-common-pl">日期选择器</view>
+		<view class="uni-title uni-common-pl">Date picker</view>
 		<view class="uni-list">
 			<view class="uni-list-cell">
 				<view class="uni-list-cell-left">
-					当前选择
+					Current selection
 				</view>
 				<view class="uni-list-cell-db">
 					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
@@ -62,7 +62,7 @@
 			</view>
 		</view>
 		<view class="uni-picker-tips">
-			注：选择当前时间 ±10 年之间的时间, 不在区间内不能选中
+			Note: Select the time between the current time ±10 years, not in the interval can not be selected
 		</view>
 	</view>
 </template>
@@ -89,12 +89,12 @@
 		data() {
 			return {
 				title: 'picker',
-				array: [{name:'中国'},{name: '美国'}, {name:'巴西'}, {name:'日本'}],
+				array: [{name:'China'},{name: 'USA'}, {name:'Brazil'}, {name:'Japan'}],
 				index: 0,
 				multiArray: [
-					['亚洲', '欧洲'],
-					['中国', '日本'],
-					['北京', '上海', '广州']
+					['Asia', 'Europe'],
+					['China', 'Japan'],
+					['Beijing', 'Shanghai', 'Guangzhou']
 				],
 				multiIndex: [0, 0, 0],
 				date: getDate({
@@ -117,7 +117,7 @@
 					case 0: //拖动第1列
 						switch (this.multiIndex[0]) {
 							case 0:
-								this.multiArray[1] = ['中国', '日本']
+								this.multiArray[1] = ['China', 'Japan']
 								this.multiArray[2] = ['北京', '上海', '广州']
 								break
 							case 1:

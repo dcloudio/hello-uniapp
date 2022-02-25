@@ -10,12 +10,12 @@
             <!-- #endif -->
             <!-- #ifndef APP-PLUS -->
             <view class="ad-tips">
-                <text>小程序端的广告ID由小程序平台提供</text>
+                <text>Ad IDs on the Mini Program platforms side are provided by themselves</text>
             </view>
             <!-- #endif -->
         </view>
         <view class="tips">
-            <text class="tips-text">本示例页面仅演示ad组件。另点此可体验</text><text class="tips-hl" @click="gotoapi">激励视频API</text><text class="tips-text">。</text>
+            <text class="tips-text">This sample page demonstrates the ad component only. Also click here to experience</text><text class="tips-hl" @click="gotoapi">Motivational Videos API</text><text class="tips-text">。</text>
         </view>
     </view>
 </template>
@@ -24,10 +24,10 @@
     export default {
         data() {
             return {
-                title: 'AD组件',
+                title: 'AD Components',
                 unitId: '',
                 isLoad: false,
-                adMessage: "广告加载中..."
+                adMessage: "Ad loading..."
             }
         },
         onLoad() {

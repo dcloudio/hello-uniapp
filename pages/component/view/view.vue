@@ -3,13 +3,12 @@
 		<page-head title="view"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-hello-text">
-				Flex是Flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性。当设置display: flex后，继续给view等容器组件设置flex-direction:
-				row或column，就可以在该容器内按行或列排布子组件。uni-app推荐使用flex布局。因为flex布局有利于跨更多平台，尤其是采用原生渲染的平台。
+				Flex is the abbreviation of Flexible Box, meaning is "flexible layout" and is used to provide maximum flexibility for Box Model. just set "display: flex" for container components, such as "view" etc., and set "flex-direction: row" or "flex-direction: column", you can arrange sub-components in rows or columns in the container. Uni-app recommends to use flex layout. Because flex layout is conducive to cross more platforms, especially platforms that use native rendering.
 			</view>
 
 			<view class="uni-title uni-common-mt">
 				flex-direction: row
-				<text>\n横向布局</text>
+				<text>\nHorizontal layout</text>
 			</view>
 			<view class="uni-flex uni-row">
 				<view class="flex-item uni-bg-red">A</view>
@@ -19,7 +18,7 @@
 
 			<view class="uni-title uni-common-mt">
 				flex-direction: column
-				<text>\n纵向布局</text>
+				<text>\nVertical layout</text>
 			</view>
 			<view class="uni-flex uni-column">
 				<view class="flex-item flex-item-V uni-bg-red">A</view>
@@ -28,62 +27,62 @@
 			</view>
 
 			<view class="uni-title uni-common-mt">
-				更多布局示例
-				<text>\nflex布局演示</text>
+				More layout examples
+				<text>\nflex Layout Demo</text>
 			</view>
 			<view>
-				<view class="text">纵向布局-自动宽度</view>
-				<view class="text" style="width: 300rpx;">纵向布局-固定宽度</view>
+				<view class="text">Vertical layout-Automatic width</view>
+				<view class="text" style="width: 300rpx;">Vertical layout-Fixed width</view>
 				<view class="uni-flex uni-row">
-					<view class="text">横向布局-自动宽度</view>
-					<view class="text">横向布局-自动宽度</view>
+					<view class="text">Horizontal layout - Automatic width</view>
+					<view class="text">Horizontal layout - Automatic width</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-justify-content: center;justify-content: center;">
-					<view class="text">横向布局-居中</view>
-					<view class="text">横向布局-居中</view>
+					<view class="text">Horizontal layout - Center</view>
+					<view class="text">Horizontal layout - Center</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-justify-content: flex-end;justify-content: flex-end;">
-					<view class="text">横向布局-居右</view>
-					<view class="text">横向布局-居右</view>
+					<view class="text">Horizontal layout - Right</view>
+					<view class="text">Horizontal layout - Right</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text" style="-webkit-flex: 1;flex: 1;">横向布局-平均分布</view>
-					<view class="text" style="-webkit-flex: 1;flex: 1;">横向布局-平均分布</view>
+					<view class="text" style="-webkit-flex: 1;flex: 1;">Horizontal layout - Average distribution</view>
+					<view class="text" style="-webkit-flex: 1;flex: 1;">Horizontal layout - Average distribution</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-justify-content: space-between;justify-content: space-between;">
-					<view class="text">横向布局-两端对齐</view>
-					<view class="text">横向布局-两端对齐</view>
+					<view class="text">Horizontal layout - Alignment of both ends</view>
+					<view class="text">Horizontal layout - Alignment of both ends</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text" style="width: 200rpx;">固定宽度</view>
-					<view class="text" style="-webkit-flex: 1;flex: 1;">自动占满余量</view>
+					<view class="text" style="width: 200rpx;">Fixed width</view>
+					<view class="text" style="-webkit-flex: 1;flex: 1;">Auto-occupy margin</view>
 				</view>
 				<view class="uni-flex uni-row">
-					<view class="text" style="width: 200rpx;">固定宽度</view>
-					<view class="text" style="-webkit-flex: 1;flex: 1;">自动占满</view>
-					<view class="text" style="width: 200rpx;">固定宽度</view>
+					<view class="text" style="width: 200rpx;">Fixed width</view>
+					<view class="text" style="-webkit-flex: 1;flex: 1;">Auto-occupy</view>
+					<view class="text" style="width: 200rpx;">Fixed width</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-flex-wrap: wrap;flex-wrap: wrap;">
-					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
-					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
-					<view class="text" style="width: 280rpx;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 140px; line-height: unset;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 280rpx; line-height: unset;">A line is not displayed in full, wrap fold line</view>
+					<view class="text" style="width: 280rpx; line-height: unset;">A line is not displayed in full, wrap fold line</view>
 				</view>
 				<view class="uni-flex uni-row">
 					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-start;align-items: flex-start;">
-						<text>垂直居顶</text>
+						<text>Vertical topping</text>
 					</view>
 					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
-						<text>垂直居中</text>
+						<text>Vertical centering</text>
 					</view>
 					<view class="text uni-flex" style="-webkit-flex: 1;flex: 1;height: 200rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: flex-end;align-items: flex-end;">
-						<text>垂直居底</text>
+						<text>Vertical bottoming</text>
 					</view>
 				</view>
 			</view>
 
 			<view class="uni-title uni-common-mt">
-				组合示例
-				<text>\nflex布局演示</text>
+				Combination example
+				<text>\nflex Layout Demo</text>
 			</view>
 			<view class="uni-flex uni-row">
 				<view class="text uni-flex" style="width: 200rpx;height: 220rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
@@ -91,11 +90,11 @@
 				</view>
 				<view class="uni-flex uni-column" style="-webkit-flex: 1;flex: 1;-webkit-justify-content: space-between;justify-content: space-between;">
 					<view class="text" style="height: 120rpx;text-align: left;padding-left: 20rpx;padding-top: 10rpx;">
-						文字居左，留出左间距
+						Text to the left, leaving left spacing
 					</view>
 					<view class="uni-flex uni-row">
-						<view class="text" style="-webkit-flex: 1;flex: 1;">剩余数量</view>
-						<view class="text" style="-webkit-flex: 1;flex: 1;">立即购买</view>
+						<view class="text" style="-webkit-flex: 1;flex: 1;">Remaining quantity</view>
+						<view class="text" style="-webkit-flex: 1;flex: 1;">Buy Now</view>
 					</view>
 				</view>
 			</view>

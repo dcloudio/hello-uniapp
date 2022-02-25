@@ -3,7 +3,7 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-common-mt">
 			<view class="uni-form-item uni-column">
-				<view class="title">表单组件在label内</view>
+				<view class="title">The form component is inside the label</view>
 				<checkbox-group class="uni-list" @change="checkboxChange">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="item in checkboxItems" :key="item.name">
 						<view>
@@ -15,7 +15,7 @@
 			</view>
 
 			<view class="uni-form-item uni-column">
-				<view class="title">label用for标识表单组件</view>
+				<view class="title">label identifies form components with for</view>
 				<radio-group class="uni-list" @change="radioChange">
 					<view class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItems" :key="index">
 						<view>
@@ -29,16 +29,16 @@
 			</view>
 
 			<view class="uni-form-item uni-column">
-				<view class="title">label内有多个时选中第一个</view>
+				<view class="title">label内Check the first one if there are more than one in label</view>
 				<checkbox-group class="uni-list" @change="checkboxChange">
 					<label class="label-3">
 						<view class="uni-list-cell uni-list-cell-pd">
-							<checkbox class="checkbox-3">选项一</checkbox>
+							<checkbox class="checkbox-3">Option 1</checkbox>
 						</view>
 						<view class="uni-list-cell uni-list-cell-pd">
-							<checkbox class="checkbox-3">选项二</checkbox>
+							<checkbox class="checkbox-3">Option 2</checkbox>
 						</view>
-						<view class="uni-link uni-center" style="margin-top:20rpx;">点击该label下的文字默认选中第一个checkbox</view>
+						<view class="uni-link uni-center" style="margin-top:20rpx;">Click on the text under the label to select the first checkbox by default</view>
 					</label>
 				</checkbox-group>
 			</view>
@@ -53,21 +53,21 @@
 				title: 'label',
 				checkboxItems: [{
 						name: 'USA',
-						value: '美国'
+						value: 'USA'
 					},
 					{
-						name: 'CHN',
-						value: '中国',
+						name: 'China',
+						value: 'China',
 						checked: 'true'
 					}
 				],
 				radioItems: [{
 						name: 'USA',
-						value: '美国'
+						value: 'USA'
 					},
 					{
-						name: 'CHN',
-						value: '中国',
+						name: 'China',
+						value: 'China',
 						checked: 'true'
 					}
 				],
@@ -96,7 +96,7 @@
 	.uni-list .label-3 {
 		padding: 0;
 	}
-    
+
     .label-2-text {
         flex: 1;
     }

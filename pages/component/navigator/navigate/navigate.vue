@@ -7,7 +7,7 @@
 	export default {
 		data() {
 			return {
-				title: '新建的页面'
+				title: 'New page created'
 			}
 		}
 	}
