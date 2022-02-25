@@ -101,7 +101,7 @@
 							<image slot='cover' class="slot-cover" :src="cover" mode="aspectFill">
 							</image>
 							<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
-							<view slot="actions" class="card-actions">
+							<view v-slot:actions class="card-actions">
 								<view class="card-actions-item">
 									<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
 									<text class="card-actions-item-text">分享</text>

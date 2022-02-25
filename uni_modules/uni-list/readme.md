@@ -259,17 +259,17 @@ footer	|	右/下内容插槽，可完全自定义右侧内容
 ```html
 <uni-list>
 	<uni-list-item title="自定义右侧插槽" note="列表描述信息" link>
-		<template slot="header">
+		<template v-slot:header>
 			<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 		</template>
 	</uni-list-item>
 	<uni-list-item>
 		<!-- 自定义 header -->
-		<view slot="header" class="slot-box"><image class="slot-image" src="/static/logo.png" mode="widthFix"></image></view>
+		<view v-slot:header class="slot-box"><image class="slot-image" src="/static/logo.png" mode="widthFix"></image></view>
 		<!-- 自定义 body -->
-		<text slot="body" class="slot-box slot-text">自定义插槽</text>
+		<text v-slot:body class="slot-box slot-text">自定义插槽</text>
 		<!-- 自定义 footer-->
-		<template slot="footer">
+		<template v-slot:footer>
 			<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 		</template>
 	</uni-list-item>

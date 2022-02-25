@@ -15,14 +15,14 @@
 		<uni-section title="插入slot" type="line" style="margin-bottom: 3px;">
 			<uni-nav-bar :fixed="false" color="#333333" background-color="#FFFFFF" right-icon="scan" @clickLeft="showCity"
 				@clickRight="scan">
-				<block slot="left">
+				<template v-slot:left>
 					<view class="city">
 						<view>
 							<text class="uni-nav-bar-text">{{ city }}</text>
 						</view>
 						<uni-icons type="arrowdown" color="#333333" size="22" />
 					</view>
-				</block>
+				</template>
 				<view class="input-view">
 					<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 					<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
@@ -30,7 +30,7 @@
 				</view>
 			</uni-nav-bar>
 		</uni-section>
-		
+
 	</view>
 </template>
 
