@@ -14,7 +14,7 @@
 			</uni-card>
 		</uni-section>
 
-		<uni-section title="双标题卡片" type="line" >
+		<uni-section title="双标题卡片" type="line">
 			<uni-card title="基础卡片" sub-title="副标题" extra="额外信息" :thumbnail="avatar" @click="onClick">
 				<text class="uni-body">这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
 			</uni-card>
@@ -30,46 +30,51 @@
 			<uni-card :cover="cover" @click="onClick">
 				<!-- <image slot='cover' style="width: 100%;" :src="cover"></image> -->
 				<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
-				<view v-slot:actions class="card-actions">
-					<view class="card-actions-item" @click="actionsClick('分享')">
-						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">分享</text>
+				<template v-slot:actions>
+					<view class="card-actions no-border">
+						<view class="card-actions-item" @click="actionsClick('分享')">
+							<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">分享</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('点赞')">
+							<uni-icons type="heart" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">点赞</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('评论')">
+							<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">评论</text>
+						</view>
 					</view>
-					<view class="card-actions-item" @click="actionsClick('点赞')">
-						<uni-icons type="heart" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">点赞</text>
-					</view>
-					<view class="card-actions-item" @click="actionsClick('评论')">
-						<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">评论</text>
-					</view>
-				</view>
+				</template>
 			</uni-card>
 		</uni-section>
 
 		<uni-section title="自定义卡片内容" type="line">
-			<uni-card title="基础卡片" sub-title="副标题" extra="额外信息" padding="10px 0" :thumbnail="avatar" >
+			<uni-card title="基础卡片" sub-title="副标题" extra="额外信息" padding="10px 0" :thumbnail="avatar">
 				<template v-slot:title>
 					<uni-list>
 						<uni-list-item :show-switch="true" title="自定义标题" @switchChange="switchChange" />
 					</uni-list>
 				</template>
 				<image style="width: 100%;" :src="cover"></image>
-				<text class="uni-body uni-mt-5">卡片组件通用来显示完整独立的一段信息，同时让用户理解他的作用。例如一篇文章的预览图、作者信息、时间等，卡片通常是更复杂和更详细信息的入口点。</text>
-				<view v-slot:actions class="card-actions">
-					<view class="card-actions-item" @click="actionsClick('分享')">
-						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">分享</text>
+				<text
+					class="uni-body uni-mt-5">卡片组件通用来显示完整独立的一段信息，同时让用户理解他的作用。例如一篇文章的预览图、作者信息、时间等，卡片通常是更复杂和更详细信息的入口点。</text>
+				<template v-slot:actions>
+					<view class="card-actions no-border">
+						<view class="card-actions-item" @click="actionsClick('分享')">
+							<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">分享</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('点赞')">
+							<uni-icons type="heart" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">点赞</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('评论')">
+							<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">评论</text>
+						</view>
 					</view>
-					<view class="card-actions-item" @click="actionsClick('点赞')">
-						<uni-icons type="heart" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">点赞</text>
-					</view>
-					<view class="card-actions-item" @click="actionsClick('评论')">
-						<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">评论</text>
-					</view>
-				</view>
+				</template>
 			</uni-card>
 		</uni-section>
 
@@ -88,20 +93,22 @@
 					<uni-list-item title="今日新闻" showArrow></uni-list-item>
 					<uni-list-item title="今日新闻" showArrow></uni-list-item>
 				</uni-list>
-				<view v-slot:actions class="card-actions no-border">
-					<view class="card-actions-item" @click="actionsClick('分享')">
-						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">分享</text>
+				<template v-slot:actions>
+					<view class="card-actions no-border">
+						<view class="card-actions-item" @click="actionsClick('分享')">
+							<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">分享</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('点赞')">
+							<uni-icons type="heart" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">点赞</text>
+						</view>
+						<view class="card-actions-item" @click="actionsClick('评论')">
+							<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
+							<text class="card-actions-item-text">评论</text>
+						</view>
 					</view>
-					<view class="card-actions-item" @click="actionsClick('点赞')">
-						<uni-icons type="heart" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">点赞</text>
-					</view>
-					<view class="card-actions-item" @click="actionsClick('评论')">
-						<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">评论</text>
-					</view>
-				</view>
+				</template>
 			</uni-card>
 		</uni-section>
 
@@ -116,7 +123,7 @@
 			return {
 				cover: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg',
 				avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
-				extraIcon:{
+				extraIcon: {
 					color: '#4cd964',
 					size: '22',
 					type: 'gear-filled'
@@ -124,13 +131,13 @@
 			}
 		},
 		methods: {
-			onClick(e){
+			onClick(e) {
 				console.log(e)
 			},
-			actionsClick(text){
+			actionsClick(text) {
 				uni.showToast({
-					title:text,
-					icon:'none'
+					title: text,
+					icon: 'none'
 				})
 			}
 		}
@@ -138,7 +145,6 @@
 </script>
 
 <style lang="scss">
-
 	.container {
 		overflow: hidden;
 	}
@@ -172,20 +178,24 @@
 		height: 45px;
 		border-top: 1px #eee solid;
 	}
+
 	.card-actions-item {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 	}
+
 	.card-actions-item-text {
 		font-size: 12px;
 		color: #666;
 		margin-left: 5px;
 	}
+
 	.cover-image {
 		flex: 1;
 		height: 150px;
 	}
+
 	.no-border {
 		border-width: 0;
 	}
