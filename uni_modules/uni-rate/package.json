@@ -1,7 +1,7 @@
 {
   "id": "uni-rate",
   "displayName": "uni-rate 评分",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Rate 评分组件，可自定义评分星星图标的大小、间隔、评分数。",
   "keywords": [
     "uni-ui",
