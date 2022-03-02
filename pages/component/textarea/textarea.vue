@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<page-head :title="title"></page-head>
-		<view class="uni-title uni-common-pl">输入区域高度自适应，不会出现滚动条</view>
+		<view class="uni-title uni-common-pl">Input area height adaptive, no scroll bars</view>
 		<view class="uni-textarea">
 			<textarea @blur="bindTextAreaBlur" auto-height />
 			</view>
-			<view class="uni-title uni-common-pl">占位符字体是红色的textarea</view>
+			<view class="uni-title uni-common-pl">The placeholder font is a red textarea</view>
 			<view class="uni-textarea">
-				<textarea placeholder-style="color:#F76260" placeholder="占位符字体是红色的"/>
+				<textarea placeholder-style="color:#F76260" placeholder="Placeholder font is red"/>
 			</view>
 		</view>
 </template>

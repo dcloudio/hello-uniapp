@@ -3,18 +3,18 @@
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap">
 			<view class="uni-title">
-				日期：{{year}}年{{month}}月{{day}}日
+				Date: {{year}}/{{month}}/{{day}}
 			</view>
 		</view>
         <picker-view v-if="visible" :indicator-style="indicatorStyle" :mask-style="maskStyle" :value="value" @change="bindChange">
             <picker-view-column>
-                <view class="item" v-for="(item,index) in years" :key="index">{{item}}年</view>
+                <view class="item" v-for="(item,index) in years" :key="index">{{item}} Year</view>
             </picker-view-column>
             <picker-view-column>
-                <view class="item" v-for="(item,index) in months" :key="index">{{item}}月</view>
+                <view class="item" v-for="(item,index) in months" :key="index">{{item}} Month</view>
             </picker-view-column>
             <picker-view-column>
-                <view class="item" v-for="(item,index) in days" :key="index">{{item}}日</view>
+                <view class="item" v-for="(item,index) in days" :key="index">{{item}} Day</view>
             </picker-view-column>
         </picker-view>
     </view>
@@ -58,7 +58,7 @@
                 // indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`
                 indicatorStyle: `height: 50px;`,
 				// #ifdef MP-KUAISHOU
-				maskStyle: "padding:10px 0"
+				maskStyle: "padding:10px 0",
 				// #endif
 				// #ifndef MP-KUAISHOU
 				maskStyle: ""

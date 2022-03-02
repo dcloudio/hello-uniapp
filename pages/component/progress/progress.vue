@@ -16,8 +16,8 @@
                 <progress :percent="pgList[3]" activeColor="#10AEFF" stroke-width="3" />
             </view>
             <view class="progress-control">
-                <button type="primary" @click="setProgress">设置进度</button>
-                <button type="warn" @click="clearProgress">清除进度</button>
+                <button type="primary" @click="setProgress">Setting progress</button>
+                <button type="warn" @click="clearProgress">Clear progress</button>
             </view>
         </view>
     </view>

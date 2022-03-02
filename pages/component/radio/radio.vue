@@ -2,28 +2,28 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<view class="uni-title">默认样式</view>
+			<view class="uni-title">Default Style</view>
 			<view>
 				<label class="radio" style="margin-right: 30rpx;">
-					<radio value="r1" checked="true" />选中
+					<radio value="r1" checked="true" />Checked
 				</label>
 				<label class="radio">
-					<radio value="r2" />未选中
+					<radio value="r2" />Unchecked
 				</label>
 			</view>
 		</view>
 		<view class="uni-padding-wrap">
-			<view class="uni-title">不同颜色和尺寸的radio</view>
+			<view class="uni-title">Different colors and sizes of radios</view>
 			<view>
 				<label class="radio" style="margin-right: 30rpx;">
-					<radio value="r1" checked="true" color="#FFCC33" style="transform:scale(0.7)"/>选中
+					<radio value="r1" checked="true" color="#FFCC33" style="transform:scale(0.7)"/>Checked
 				</label>
 				<label class="radio">
-					<radio value="r2" color="#FFCC33" style="transform:scale(0.7)"/>未选中
+					<radio value="r2" color="#FFCC33" style="transform:scale(0.7)"/>Unchecked
 				</label>
 			</view>
 		</view>
-		<view class="uni-title uni-common-mt uni-common-pl">推荐展示样式</view>
+		<view class="uni-title uni-common-mt uni-common-pl">Recommended display style</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
 				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="item.value">
@@ -40,31 +40,31 @@
 	export default {
 		data() {
 			return {
-				title: 'radio 单选框',
+				title: 'Radio',
 				items: [{
 						value: 'USA',
-						name: '美国'
+						name: 'USA'
 					},
 					{
 						value: 'CHN',
-						name: '中国',
+						name: 'China',
 						checked: 'true'
 					},
 					{
 						value: 'BRA',
-						name: '巴西'
+						name: 'Brazil'
 					},
 					{
 						value: 'JPN',
-						name: '日本'
+						name: 'Japan'
 					},
 					{
 						value: 'ENG',
-						name: '英国'
+						name: 'England'
 					},
 					{
 						value: 'FRA',
-						name: '法国'
+						name: 'France'
 					},
 				],
 				current: 0

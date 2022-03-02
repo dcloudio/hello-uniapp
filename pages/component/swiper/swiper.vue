@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<page-head title="swiper,可滑动视图"></page-head>
+		<page-head title="swiper"></page-head>
 		<view class="uni-margin-wrap">
 			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 				<swiper-item>
@@ -17,23 +17,23 @@
 
 		<view class="swiper-list">
 			<view class="uni-list-cell uni-list-cell-pd">
-				<view class="uni-list-cell-db">指示点</view>
+				<view class="uni-list-cell-db">Instruction Points</view>
 				<switch :checked="indicatorDots" @change="changeIndicatorDots" />
 			</view>
 			<view class="uni-list-cell uni-list-cell-pd">
-				<view class="uni-list-cell-db">自动播放</view>
+				<view class="uni-list-cell-db">Autoplay</view>
 				<switch :checked="autoplay" @change="changeAutoplay" />
 			</view>
 		</view>
 
 		<view class="uni-padding-wrap">
 			<view class="uni-common-mt">
-				<text>幻灯片切换时长(ms)</text>
+				<text>Slide switch length(ms)</text>
 				<text class="info">{{duration}}</text>
 			</view>
 			<slider @change="durationChange" :value="duration" min="500" max="2000" />
 			<view class="uni-common-mt">
-				<text>自动播放间隔时长(ms)</text>
+				<text>Auto-play interval length(ms)</text>
 				<text class="info">{{interval}}</text>
 			</view>
 			<slider @change="intervalChange" :value="interval" min="2000" max="10000" />

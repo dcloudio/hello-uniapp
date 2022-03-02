@@ -4,7 +4,7 @@
 			<image class="uni-header-image" src="/static/componentIndex.png"></image>
 		</view>
 		<view v-if="!hasLeftWin" class="uni-hello-text">
-			<text class="hello-text">uni-app内置组件，展示样式仅供参考，文档详见：</text>
+			<text class="hello-text">Uni-app Built-in components, display style is for reference only, documentation details see.</text>
 			<u-link class="hello-link" :href="'https://uniapp.dcloud.io/component/'" :text="'https://uniapp.dcloud.io/component/'"
 			 :inWhiteList="true"></u-link>
 		</view>
@@ -24,7 +24,7 @@
 	</view>
 </template>
 <script>
-	// TODO 修复Android v3 加载过慢问题
+	// TODO Fix the slow loading problem of Android v3
 	// #ifdef APP-PLUS
 	var domModule = weex.requireModule('dom');
 	domModule.addRule('fontFace', {
@@ -45,7 +45,7 @@
 			return {
 				list: [{
 						id: 'view',
-						name: '视图容器',
+						name: 'View Containers',
 						open: false,
 						pages: [
 							'view',
@@ -59,12 +59,12 @@
 						]
 					}, {
 						id: 'content',
-						name: '基础内容',
+						name: 'Basic Components',
 						open: false,
 						pages: ['text', 'rich-text', 'progress']
 					}, {
 						id: 'form',
-						name: '表单组件',
+						name: 'Form Components',
 						open: false,
 						pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
 							'slider',
@@ -75,12 +75,12 @@
 						]
 					}, {
 						id: 'nav',
-						name: '导航',
+						name: 'navigation',
 						open: false,
 						pages: ['navigator']
 					}, {
 						id: 'media',
-						name: '媒体组件',
+						name: 'Media Components',
 						open: false,
 						pages: [
 							'image',
@@ -90,7 +90,7 @@
 					// #ifndef MP-TOUTIAO || MP-KUAISHOU
 					{
 						id: 'map',
-						name: '地图',
+						name: 'map',
 						open: false,
 						pages: ['map']
 
@@ -99,7 +99,7 @@
 					// #ifndef QUICKAPP-WEBVIEW-UNION
 					{
 						id: 'canvas',
-						name: '画布',
+						name: 'canvas',
 						open: false,
 						pages: ['canvas']
 					},
@@ -107,13 +107,13 @@
 					// #ifdef APP-PLUS || H5
 					{
 						id: 'web-view',
-						name: '网页',
+						name: 'web-view',
 						open: false,
 						pages: [{
-							name: '网络网页',
+							name: 'Web page',
 							url: '/pages/component/web-view/web-view'
 						}, {
-							name: '本地网页',
+							name: 'Local Pages',
 							url: '/pages/component/web-view-local/web-view-local'
 						}]
 					},
@@ -121,7 +121,7 @@
 					// #ifndef APP-PLUS || H5 || MP-LARK || MP-JD
 					{
 						id: 'web-view',
-						name: '网页',
+						name: 'web-view',
 						open: false,
 						pages: ['web-view']
 					},
@@ -130,7 +130,7 @@
 					{
 						id: 'ad',
 						url: 'ad',
-						name: 'AD组件',
+						name: 'AD',
 						open: false
 					},
 					// #endif

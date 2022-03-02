@@ -4,7 +4,7 @@
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
 				Vertical Scroll
-				<text>\n纵向滚动</text>
+				<text>\nVertical scrolling</text>
 			</view>
 			<view>
 				<scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper" @scrolltolower="lower"
@@ -15,12 +15,12 @@
 				</scroll-view>
 			</view>
 			<view @tap="goTop" class="uni-link uni-center uni-common-mt">
-				点击这里返回顶部
+				Click here to return to the top
 			</view>
 			
 			<view class="uni-title uni-common-mt">
 				Horizontal Scroll
-				<text>\n横向滚动</text>
+				<text>\nHorizontal scrolling</text>
 			</view>
 			<view>
 				<scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="120">

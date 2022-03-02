@@ -3,16 +3,16 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-title uni-common-mt">
-				数组类型
-				<text>\nnodes属性为Array</text>
+				Array Type
+				<text>\nThe nodes property is Array</text>
 			</view>
 			<view class="uni-common-mt" style="background:#FFF; padding:20rpx;">
 				<rich-text :nodes="nodes"></rich-text>
 			</view>
 			<!-- #ifndef MP-ALIPAY -->
 			<view class="uni-title uni-common-mt">
-				字符串类型
-				<text>\nnodes属性为String</text>
+				String type
+				<text>\nThe nodes property is String</text>
 			</view>
 			<view class="uni-common-mt" style="background:#FFF; padding:20rpx;">
 				<rich-text :nodes="strings"></rich-text>
