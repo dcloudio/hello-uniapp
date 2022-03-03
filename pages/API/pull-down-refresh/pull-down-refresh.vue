@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view style="font-size: 12px; color: #666;">注：PC 不支持下拉刷新</view>
+			<view style="font-size: 12px; color: #666;">Note: PC does not support drop-down refresh</view>
 			<view class="text" v-for="(num,index) in data" :key="index">list - {{num}}</view>
 			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
 		</view>
@@ -12,9 +12,9 @@
 	export default {
 		data() {
 			return {
-				title: '下拉刷新 + 加载更多',
+				title: 'Drop down to refresh and load more',
 				data: [],
-				loadMoreText: "加载中...",
+				loadMoreText: "Loading...",
 				showLoadMore: false,
 				max: 0
 			}
@@ -25,13 +25,13 @@
 		onUnload() {
 			this.max = 0,
 			this.data = [],
-			this.loadMoreText = "加载更多",
+			this.loadMoreText = "Load More",
 			this.showLoadMore = false;
 		},
 		onReachBottom() {
 			console.log("onReachBottom");
 			if (this.max > 40) {
-				this.loadMoreText = "没有更多数据了!"
+				this.loadMoreText = "No more data available!"
 				return;
 			}
 			this.showLoadMore = true;

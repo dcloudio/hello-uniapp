@@ -3,15 +3,15 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-hello-text">
-				请点击按钮向服务器发起请求
+				Please click the button to initiate a request to the server
 			</view>
 			<view class="uni-textarea uni-common-mt">
 				<textarea :value="res"></textarea>
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary" @click="sendRequest" :loading="loading">发起请求（Callback）</button>
-				<button type="primary" @click="sendRequest('promise')" :loading="loading">发起请求（Promise）</button>
-				<button type="primary" @click="sendRequest('await')" :loading="loading">发起请求（Async/Await）</button>
+				<button type="primary" @click="sendRequest" :loading="loading">Initiate a request（Callback）</button>
+				<button type="primary" @click="sendRequest('promise')" :loading="loading">Initiate a request（Promise）</button>
+				<button type="primary" @click="sendRequest('await')" :loading="loading">Initiate a request（Async/Await）</button>
 			</view>
 		</view>
 	</view>
@@ -52,12 +52,12 @@
 					success: (res) => {
 						console.log('request success', res)
 						uni.showToast({
-							title: '请求成功',
+							title: 'Request successful',
 							icon: 'success',
 							mask: true,
 							duration: duration
 						});
-						this.res = '请求结果 : ' + JSON.stringify(res);
+						this.res = 'Request Results : ' + JSON.stringify(res);
 					},
 					fail: (err) => {
 						console.log('request fail', err);
@@ -82,12 +82,12 @@
 				}).then(res => {
 					console.log('request success', res[1]);
 					uni.showToast({
-						title: '请求成功',
+						title: 'Request successful',
 						icon: 'success',
 						mask: true,
 						duration: duration
 					});
-					this.res = '请求结果 : ' + JSON.stringify(res[1]);
+					this.res = 'Request Results : ' + JSON.stringify(res[1]);
 					this.loading = false;
 				}).catch(err => {
 					console.log('request fail', err);
@@ -110,12 +110,12 @@
 				}).then(res => {
 					console.log('request success', res);
 					uni.showToast({
-						title: '请求成功',
+						title: 'Request successful',
 						icon: 'success',
 						mask: true,
 						duration: duration
 					});
-					this.res = '请求结果 : ' + JSON.stringify(res);
+					this.res = 'Request Results : ' + JSON.stringify(res);
 
 					this.loading = false;
 				}).catch(err => {
@@ -162,12 +162,12 @@
 				} else {
 					console.log('request success', res)
 					uni.showToast({
-						title: '请求成功',
+						title: 'Request successful',
 						icon: 'success',
 						mask: true,
 						duration: duration
 					});
-					this.res = '请求结果 : ' + JSON.stringify(res);
+					this.res = 'Request Results : ' + JSON.stringify(res);
 				}
 				this.loading = false;
 			}

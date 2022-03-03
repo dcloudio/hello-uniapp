@@ -12,7 +12,7 @@
 				<text>00:00</text>
 				<text>00:21</text>
 			</view>
-			<view class="uni-hello-text">注意：离开当前页面后背景音乐将保持播放，但退出uni-app将停止</view>
+			<view class="uni-hello-text">Note: The background music will keep playing after you leave the current page, but will stop when you exit the uni-app</view>
 			<view class="page-body-buttons">
 				<block v-if="playing">
 					<view class="page-body-button" @tap="stop">
@@ -55,21 +55,21 @@
 
 			let bgAudioMannager = uni.getBackgroundAudioManager();
 			if(!bgAudioMannager.title){
-				bgAudioMannager.title = '致爱丽丝';
+				bgAudioMannager.title = 'Fur Elise';
 			}
 			if(!bgAudioMannager.singer) {
-				bgAudioMannager.singer = '暂无';
+				bgAudioMannager.singer = 'None';
 			}
 			if(!bgAudioMannager.coverImgUrl){
 				bgAudioMannager.coverImgUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c517b410-5184-11eb-b997-9918a5dda011.jpeg';
 			}
 
 			bgAudioMannager.onPlay(() => {
-				console.log("开始播放");
+				console.log("Start playing");
 				this.$backgroundAudioData.playing = this.playing = true;
 			})
 			bgAudioMannager.onPause(() => {
-				console.log("暂停播放");
+				console.log("Pause Play");
 				this.$backgroundAudioData.playing = this.playing = false;
 			})
 			bgAudioMannager.onEnded(() => {

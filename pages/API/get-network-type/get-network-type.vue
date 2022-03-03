@@ -3,10 +3,10 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view style="background:#FFFFFF; padding:40rpx;">
-				<view class="uni-hello-text uni-center">网络状态</view>
+				<view class="uni-hello-text uni-center">Network Status</view>
 				<block v-if="hasNetworkType === false">
-					<view class="uni-h2 uni-center uni-common-mt">未获取</view>
-					<view class="uni-hello-text uni-center uni-common-mt">请点击下面按钮获取网络状态</view>
+					<view class="uni-h2 uni-center uni-common-mt">Not acquired</view>
+					<view class="uni-hello-text uni-center uni-common-mt">Please click the button below to get the network status</view>
 				</block>
 				<block v-if="hasNetworkType === true">
 					<view class="uni-h2 uni-center uni-common-mt">{{networkType}}</view>
@@ -16,11 +16,11 @@
 				</view>
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary"  @tap="getNetworkType">获取设备网络状态</button>
+				<button type="primary"  @tap="getNetworkType">Get device network status</button>
 				<!-- #ifdef MP-WEIXIN  || MP-JD-->
-				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">获取 wifi 信息</button>
+				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">Get wifi information</button>
 				<!-- #endif -->
-				<button class="uni-common-mt" @tap="clear">清空</button>
+				<button class="uni-common-mt" @tap="clear">Clear</button>
 			</view>
 		</view>
 	</view>

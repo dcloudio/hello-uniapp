@@ -8,7 +8,7 @@
 						<view class="uni-label">key</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入key" name="key" :value="key" @input="keyChange"/>
+						<input class="uni-input" type="text" placeholder="Please enter key" name="key" :value="key" @input="keyChange"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
@@ -16,15 +16,15 @@
 						<view class="uni-label">value</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入value" name="data" :value="data" @input="dataChange"/>
+						<input class="uni-input" type="text" placeholder="Please enter value" name="data" :value="data" @input="dataChange"/>
 					</view>
 				</view>
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
-					<button type="primary" class="btn-setstorage" @tap="setStorage">存储数据</button>
-					<button @tap="getStorage">读取数据</button>
-					<button @tap="clearStorage">清理数据</button>
+					<button type="primary" class="btn-setstorage" @tap="setStorage">Storage Data</button>
+					<button @tap="getStorage">Read data </button>
+					<button @tap="clearStorage">Clean data</button>
 				</view>
 			</view>
 		</view>
@@ -51,8 +51,8 @@
 					data = this.data;
 				if (key.length === 0) {
 					uni.showModal({
-						title: '读取数据失败',
-						content: "key 不能为空",
+						title: 'Read data failure',
+						content: "key cannot be empty",
 						showCancel:false
 					})
 				} else {
@@ -60,15 +60,15 @@
 						key: key,
 						success: (res) => {
 							uni.showModal({
-								title: '读取数据成功',
+								title: 'Read data succeed',
 								content: "data: '" + res.data + "'",
 								showCancel:false
 							})
 						},
 						fail: () => {
 							uni.showModal({
-								title: '读取数据失败',
-								content: "找不到 key 对应的数据",
+								title: 'Read data failure',
+								content: "The data corresponding to the key is not found",
 								showCancel:false
 							})
 						}
@@ -80,8 +80,8 @@
 				var data = this.data
 				if (key.length === 0) {
 					uni.showModal({
-						title: '保存数据失败',
-						content: 'key 不能为空',
+						title: 'Save data failure',
+						content: 'key cannot be empty',
 						showCancel:false
 					})
 				} else {
@@ -90,7 +90,7 @@
 						data: data,
 						success: (res) => {
 							uni.showModal({
-								title: '存储数据成功',
+								title: 'Storage Data succeed',
 								// #ifndef MP-ALIPAY
 								content: JSON.stringify(res.errMsg),
 								// #endif
@@ -102,7 +102,7 @@
 						},
 						fail: () => {
 							uni.showModal({
-								title: '储存数据失败!',
+								title: 'Storage data failure!',
 								showCancel:false
 							})
 						}
@@ -114,7 +114,7 @@
 				this.key = '',
 					this.data = ''
 				uni.showModal({
-					title: '清除数据成功',
+					title: 'Clear data succeed',
 					content: ' ',
 					showCancel:false
 				})

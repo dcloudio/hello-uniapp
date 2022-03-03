@@ -5,24 +5,24 @@
 			<view class="uni-list">
 				<view class="uni-list-cell">
 					<view class="uni-list-cell-left">
-						<view class="uni-label">名称</view>
+						<view class="uni-label">Name</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入联系人名称" name="name" :value="name" @input="nameChange"/>
+						<input class="uni-input" type="text" placeholder="Please enter a contact name" name="name" :value="name" @input="nameChange"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-list-cell-left">
-						<view class="uni-label">手机号</view>
+						<view class="uni-label">Phone number</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" placeholder="请输入联系人手机号" name="phone" :value="phone" @input="phoneChange"/>
+						<input class="uni-input" type="text" placeholder="Please enter the phone number" name="phone" :value="phone" @input="phoneChange"/>
 					</view>
 				</view>
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
-					<button type="primary" class="btn-setstorage" @tap="add">添加联系人</button>
+					<button type="primary" class="btn-setstorage" @tap="add">Add contact</button>
 				</view>
 			</view>
 		</view>
@@ -60,13 +60,13 @@
 					mobilePhoneNumber: this.phone,
 					success: function() {
 						uni.showModal({
-							content: '已成功添加联系人！',
+							content: 'Contacts have been successfully added!',
 							showCancel: false
 						})
 					},
 					fail: function() {
 						uni.showModal({
-							content: '添加联系人失败！',
+							content: 'Add contact failed!',
 							showCancel: false
 						})
 					}
@@ -82,8 +82,8 @@
 					status = 1;
 				} else {
 					uni.showModal({
-						content: "需要联系人权限",
-						confirmText: "设置",
+						content: "Contact permission required",
+						confirmText: "Settings",
 						success: function(res) {
 							if (res.confirm) {
 								permision.gotoAppSetting();

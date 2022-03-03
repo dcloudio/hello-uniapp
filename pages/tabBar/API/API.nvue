@@ -8,7 +8,7 @@
                 <image class="uni-header-image" src="/static/apiIndex.png"></image>
             </view>
             <view v-if="!hasLeftWin" class="uni-hello-text">
-                <text class="hello-text">以下将演示uni-app接口能力，详细文档见：</text>
+                <text class="hello-text">The following will demonstrate the uni-app interface capabilities, for detailed documentation:</text>
                 <u-link class="hello-link" :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'"
                     :inWhiteList="true"></u-link>
             </view>
@@ -18,7 +18,7 @@
                     <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
                 </view>
                 <view class="uni-panel-c" v-if="item.open">
-                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin, 'pc-hide': item2.name === '设置TabBar' && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
+                    <view :class="{'left-win-active': leftWinActive === item2.url && hasLeftWin, 'pc-hide': item2.name === 'Set TabBar' && hasLeftWin}" class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item.id, item2.url)">
                         <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
                         <text class="uni-navigate-icon uni-icon">&#xe470;</text>
                     </view>
@@ -44,40 +44,40 @@
         data() {
             // 暂时这么写，后面看怎么优化。
             let mediaPages = [{
-                    name: '图片',
+                    name: 'image',
                     url: 'image'
                 },
 				// #ifndef MP-LARK
 				{
-				    name: '音频',
+				    name: 'audio',
 				    url: 'inner-audio'
 				},
                 // #endif
                 // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ|| MP-JD 
                 {
-                    name: '录音',
+                    name: 'voice',
                     url: 'voice'
                 },
                 {
-                    name: '背景音频',
+                    name: 'Background audio',
                     url: 'background-audio'
                 },
                 // #endif
                 // #ifndef MP-ALIPAY
                 {
-                    name: '视频',
+                    name: 'video',
                     url: 'video'
                 },
                 // #endif
                 // #ifndef H5
                 {
-                    name: '文件',
+                    name: 'file',
                     url: 'file'
                 },
                 // #endif
                 // #ifndef H5 || MP-ALIPAY
                 {
-                    name: '保存媒体到本地',
+                    name: 'Save media to local',
                     url: 'save-media'
                 }
                 // #endif
@@ -85,121 +85,121 @@
 
             const list = [{
                     id: 'page',
-                    name: '界面',
+                    name: 'Interface',
                     open: false,
                     pages: [{
-                            name: '设置导航条',
+                            name: 'Set navigation bar',
                             url: 'set-navigation-bar-title'
                         },
                         //#ifdef APP-PLUS
                         {
-                            name: '原生子窗体',
+                            name: 'Native subnvue',
                             url: 'subnvue'
                         },
                         //#endif
                         {
-                            name: '页面跳转',
+                            name: 'Page navigation',
                             url: 'navigator'
                         },
                         //#ifndef MP-TOUTIAO
                         {
-                            name: '设置TabBar',
+                            name: 'Settings TabBar',
                             url: 'set-tabbar'
                         },
                         //#endif
                         {
-                            name: '下拉刷新',
+                            name: 'Pull down refresh',
                             url: 'pull-down-refresh'
                         },
                         {
-                            name: '创建动画',
+                            name: 'Creating animation',
                             url: 'animation'
                         },
 						// #ifndef QUICKAPP-WEBVIEW-UNION
                         {
-                            name: '创建绘画',
+                            name: 'Creating paintings',
                             url: 'canvas'
                         },
 						// #endif
 						// #ifndef MP-LARK
                         {
-                            name: '节点信息',
+                            name: 'Node Information',
                             url: 'get-node-info'
                         },
 						// #endif
                         {
-                            name: '节点布局交互状态',
+                            name: 'Intersection observer',
                             url: 'intersection-observer'
                         },
                         {
-                            name: '显示操作菜单',
+                            name: 'Action sheet',
                             url: 'action-sheet'
                         },
                         {
-                            name: '显示模态弹窗',
+                            name: 'modal',
                             url: 'modal'
                         },
                         {
-                            name: '显示加载提示框',
+                            name: 'loading',
                             url: 'show-loading'
                         },
                         {
-                            name: '显示消息提示框',
+                            name: 'toast',
                             url: 'toast'
                         }
                     ]
                 },
                 {
                     id: 'device',
-                    name: '设备',
+                    name: 'Equipment',
                     open: false,
                     pages: [{
-                            name: '获取设备网络状态',
+                            name: 'Get device network status',
                             url: 'get-network-type'
                         },
                         {
-                            name: '获取设备系统信息',
+                            name: 'Get system info',
                             url: 'get-system-info'
                         },
                         {
-                            name: '打电话',
+                            name: 'Call',
                             url: 'make-phone-call'
                         },
                         //#ifndef H5
                         {
-                            name: '震动',
+                            name: 'vibrate',
                             url: 'vibrate'
                         },
                         {
-                            name: '添加手机联系人',
+                            name: 'Add phone contacts',
                             url: 'add-phone-contact'
                         },
                         {
-                            name: '扫码',
+                            name: 'Scan code',
                             url: 'scan-code'
                         },
 								//#endif
 								//#ifndef H5 || MP-JD 
                         {
-                            name: '剪贴板',
+                            name: 'clipboard',
                             url: 'clipboard'
                         },
                         //#endif
                         // #ifndef H5 || MP-ALIPAY
                         {
-                            name: '屏幕亮度',
+                            name: 'brightness',
                             url: 'brightness'
                         },
                         // #endif
                         // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || MP-JD 
                         {
-                            name: '蓝牙',
+                            name: 'Bluetooth',
                             url: 'bluetooth'
                         },
 								// #endif
 								// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
                         {
-                            name: '生物认证',
+                            name: 'Biological Certification',
                             url: 'soter'
                         },
                         // #endif
@@ -211,23 +211,23 @@
                         // #endif
 								// #ifndef H5
 								{
-								    name: '监听加速度传感器',
+								    name: 'On accelerometer change',
 								    url: 'on-accelerometer-change'
 								},
 								// #endif
 								// #ifndef H5 || MP-JD 
 								{
-								    name: '监听罗盘数据',
+								    name: 'On compass change',
 								    url: 'on-compass-change'
 								},
 								// #endif
                         //#ifdef APP-PLUS
                         {
-                            name: '监听距离传感器',
+                            name: 'Listening distance sensor',
                             url: '/platforms/app-plus/proximity/proximity'
                         },
                         {
-                            name: '监听方向传感器',
+                            name: 'Listening for directional sensors',
                             url: '/platforms/app-plus/orientation/orientation'
                         }
                         //#endif
@@ -235,18 +235,18 @@
                 },
                 {
                     id: 'network',
-                    name: '网络',
+                    name: 'network',
                     open: false,
                     pages: [{
-                            name: '发起一个请求',
+                            name: 'Http request',
                             url: 'request'
                         },
                         {
-                            name: '上传文件',
+                            name: 'Upload file',
                             url: 'upload-file'
                         },
                         {
-                            name: '下载文件',
+                            name: 'Download file',
                             url: 'download-file'
                         }
                     ]
@@ -263,47 +263,47 @@
                         },
                         // #endif
                         {
-                            name: '全局websocket',
+                            name: 'Global websocket',
                             url: 'websocket-global'
                         }
                     ]
                 },
                 {
                     id: 'media',
-                    name: '媒体',
+                    name: 'media',
                     open: false,
                     pages: mediaPages
                 },
 				// #ifndef MP-KUAISHOU
                 {
                     id: 'location',
-                    name: '位置',
+                    name: 'location',
                     open: false,
                     pages: [{
-                            name: '获取当前位置',
+                            name: 'Get current position',
                             url: 'get-location'
                         },
                         {
-                            name: '使用地图查看位置',
+                            name: 'Use the map to view the location',
                             url: 'open-location'
                         },
                         // #ifndef MP-TOUTIAO
                         {
-                            name: '使用地图选择位置',
+                            name: 'Use the map to select a location',
                             url: 'choose-location'
                         }
                         // #endif
                         // #ifndef MP-QQ || MP-TOUTIAO || MP-LARK
                         ,
                         {
-                            name: '地图控制',
+                            name: 'Map Control',
                             url: 'map'
                         }
                         // #endif
                         // #ifdef APP-PLUS
                         ,
                         {
-                            name: '地图搜索',
+                            name: 'Map Search',
                             url: 'map-search'
                         }
                         // #endif
@@ -312,10 +312,10 @@
 				// #endif
                 {
                     id: 'storage',
-                    name: '数据',
+                    name: 'storage',
                     open: false,
                     pages: [{
-                            name: '数据存储（key-value）',
+                            name: 'Data Storage（key-value）',
                             url: 'storage'
                         },
                         // #ifdef APP-PLUS
@@ -329,28 +329,28 @@
                 // #ifdef APP-PLUS || MP-WEIXIN
                 {
                     url: 'rewarded-video-ad',
-                    name: '激励视频广告',
+                    name: 'Motivational video ads',
                     open: false
                 },
 				// #endif
 				// #ifdef APP-PLUS
                 {
                     url: 'full-screen-video-ad',
-                    name: '全屏视频广告',
+                    name: 'Full-screen video ads',
                     open: false
                 },
                 // #endif
                 // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU || MP-LARK
                 {
                     id: 'login',
-                    name: '登录',
+                    name: 'login',
                     open: false,
                     pages: [{
-                            name: '登录',
+                            name: 'login',
                             url: 'login'
                         },
                         {
-                            name: '获取用户信息',
+                            name: 'login',
                             url: 'get-user-info'
                         }
                     ]
@@ -359,10 +359,10 @@
 				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
                 {
                     id: 'share',
-                    name: '分享',
+                    name: 'share',
                     open: false,
                     pages: [{
-                        name: '分享',
+                        name: 'share',
                         url: 'share'
                     }]
                 },
@@ -370,10 +370,10 @@
                 // #ifdef APP-PLUS || MP-WEIXIN
                 {
                     id: 'payment',
-                    name: '支付',
+                    name: 'payment',
                     open: false,
                     pages: [{
-                        name: '发起支付',
+                        name: 'Request payment',
                         url: 'request-payment'
                     }]
                 },
@@ -381,19 +381,19 @@
                 // #ifdef APP-PLUS
                 {
                     id: 'speech',
-                    name: '语音',
+                    name: 'speech',
                     open: false,
                     pages: [{
-                        name: '语音识别',
+                        name: 'Speech recognition',
                         url: '/platforms/app-plus/speech/speech'
                     }]
                 },
                 {
                     id: 'push',
-                    name: '推送',
+                    name: 'push',
                     open: false,
                     pages: [{
-                        name: '推送',
+                        name: 'push',
                         url: '/platforms/app-plus/push/push'
                     }]
                 }
@@ -403,14 +403,14 @@
                 showSetTabBarPage: false,
                 list: list,
 				notForPc: [{
-						name: '设置TabBar',
+						name: 'Set TabBar',
 						url: 'set-tabbar'
 				}]
             };
         },
         onShareAppMessage() {
             return {
-                title: '欢迎体验uni-app',
+                title: 'Welcome to experience uni-app',
                 path: '/pages/tabBar/API/API'
             };
         },

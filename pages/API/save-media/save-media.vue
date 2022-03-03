@@ -5,7 +5,7 @@
 			<view v-if="imagePath !== ''" class="media-box image">
 				<image class="image" mode="widthFix" :src="imagePath" />
 			</view>
-			<button type="primary"  class="uni-button" @click="saveImage">拍摄图片并保存到本地</button>
+			<button type="primary"  class="uni-button" @click="saveImage">Take pictures and save them locally</button>
 			<view v-if="videoPath !== ''" class="media-box">
 				<video
 					id="myVideo"
@@ -16,7 +16,7 @@
 					controls
 				></video>
 			</view>
-			<button type="primary" class="uni-button" @click="saveVideo">录制视频并保存到本地</button>
+			<button type="primary" class="uni-button" @click="saveVideo">Record video and save to local</button>
 		</view>
 	</view>
 </template>
@@ -33,7 +33,7 @@ export default {
 	methods: {
 		videoErrorCallback: function() {
 			uni.showModal({
-				content: '视频加载失败',
+				content: 'Video loading failure',
 				showCancel: false
 			});
 		},
@@ -52,8 +52,8 @@ export default {
 							let authStatus = res.authSetting['scope.camera'];
 							if (!authStatus) {
 								uni.showModal({
-									title: '授权失败',
-									content: 'Hello uni-app需要从您的相机获取图片，请在设置界面打开相关权限',
+									title: 'Authorization failure',
+									content: 'Hello uni-app to get pictures from your camera, please turn on the relevant permissions in the settings screen',
 									success: (res) => {
 										if (res.confirm) {
 											uni.openSetting()
@@ -85,7 +85,7 @@ export default {
 							if (!authStatus) {
 								uni.showModal({
 									title: '授权失败',
-									content: 'Hello uni-app需要从您的相机获取视频，请在设置界面打开相关权限',
+									content: 'Hello uni-app you need to get video from your camera, please turn on the relevant permissions in the settings screen',
 									success: (res) => {
 										if (res.confirm) {
 											uni.openSetting()
@@ -101,13 +101,13 @@ export default {
 		},
 
 		getTempFilePath(url, types) {
-			// 如果已经下载本地路径，那么直接储存
+			// If you have already downloaded the local path, then store it directly
 			let obj = {
 				filePath: url,
 				success: () => {
 					console.log('save success');
 					uni.showModal({
-						content: '保存成功',
+						content: 'Save successfully',
 						showCancel: false
 					});
 					uni.hideLoading();
@@ -115,13 +115,13 @@ export default {
 				fail: e => {
 					uni.hideLoading();
 					uni.showModal({
-						content: '保存失败',
+						content: 'Failed to save',
 						showCancel: false
 					});
 				}
 			};
 			uni.showLoading({
-				title: '保存中...'
+				title: 'Saving...'
 			});
 			if (types === 'videoTempPath') {
 				uni.saveVideoToPhotosAlbum(obj);

@@ -3,9 +3,9 @@
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap">
             <view style="background:#FFFFFF; padding:40rpx;">
-                <view class="uni-hello-text uni-center">当前位置经纬度</view>
+                <view class="uni-hello-text uni-center">Current location latitude and longitude</view>
                 <block v-if="hasLocation === false">
-                    <view class="uni-h2 uni-center uni-common-mt">未获取</view>
+                    <view class="uni-h2 uni-center uni-common-mt">Not acquired</view>
                 </block>
                 <block v-if="hasLocation === true">
                     <view class="uni-h2 uni-center uni-common-mt">
@@ -15,16 +15,16 @@
                 </block>
             </view>
             <view class="uni-btn-v">
-                <button type="primary" @tap="getLocation">获取位置</button>
-                <button @tap="clear">清空</button>
+                <button type="primary" @tap="getLocation">Get Location</button>
+                <button @tap="clear">Empty</button>
             </view>
         </view>
         <uni-popup :show="type === 'showpopup'" mode="fixed" @hidePopup="togglePopup('')">
             <view class="popup-view">
-                <text class="popup-title">需要用户授权位置权限</text>
+                <text class="popup-title">Requires user authorization for location permissions</text>
                 <view class="uni-flex popup-buttons">
-                    <button class="uni-flex-item" type="primary" open-type="openSetting" @tap="openSetting">设置</button>
-                    <button class="uni-flex-item" @tap="togglePopup('')">取消</button>
+                    <button class="uni-flex-item" type="primary" open-type="openSetting" @tap="openSetting">Settings</button>
+                    <button class="uni-flex-item" @tap="togglePopup('')">Cancel</button>
                 </view>
             </view>
         </uni-popup>
@@ -81,14 +81,14 @@
                     },
                     fail: (err) => {
                         // #ifdef MP-BAIDU
-                        if (err.errCode === 202 || err.errCode === 10003) { // 202模拟器 10003真机 user deny
+                        if (err.errCode === 202 || err.errCode === 10003) { // 202 emulator 10003 real user deny
                             this.showConfirm();
                         }
                         // #endif
                         // #ifndef MP-BAIDU
                         if (err.errMsg.indexOf("auth deny") >= 0) {
                             uni.showToast({
-                                title: "访问位置被拒绝"
+                                title: "Access to the location is denied"
                             })
                         } else {
                             uni.showToast({
@@ -135,8 +135,8 @@
                     status = 1;
                 } else if (status === 2) {
                     uni.showModal({
-                        content: "系统定位已关闭",
-                        confirmText: "确定",
+                        content: "System positioning is closed",
+                        confirmText: "Determine",
                         showCancel: false,
                         success: function(res) {
                         }
@@ -147,8 +147,8 @@
                     })
                 } else {
                     uni.showModal({
-                        content: "需要定位权限",
-                        confirmText: "设置",
+                        content: "Positioning permission required",
+                        confirmText: "Settings",
                         success: function(res) {
                             if (res.confirm) {
                                 permision.gotoAppSetting();

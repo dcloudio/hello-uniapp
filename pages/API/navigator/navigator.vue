@@ -3,22 +3,22 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-btn-v">
-				<button @tap="navigateTo">跳转新页面，并传递数据</button>
-				<button @tap="navigateBack">返回上一页</button>
-				<button @tap="redirectTo">在当前页面打开</button>
-				<button @tap="switchTab">切换到模板选项卡</button>
-				<button v-if="!hasLeftWin" @tap="reLaunch">关闭所有页面，打开首页</button>
+				<button @tap="navigateTo">Jump to new page and pass data</button>
+				<button @tap="navigateBack">Back to previous page</button>
+				<button @tap="redirectTo">Open in the current page</button>
+				<button @tap="switchTab">Switch to the Templates tab</button>
+				<button v-if="!hasLeftWin" @tap="reLaunch">Close all pages and open the home page</button>
 				<!-- #ifdef APP-PLUS -->
-				<button @tap="customAnimation">使用自定义动画打开页面</button>
+				<button @tap="customAnimation">Open page with custom animation</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS || H5 -->
-				<button @tap="preloadPage">预载复杂页面</button>
+				<button @tap="preloadPage">Preload complex pages</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS -->
-				<button @tap="unPreloadPage">取消页面预载</button>
+				<button @tap="unPreloadPage">Cancel page preloading</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS || H5 -->
-				<button @tap="navigateToPreloadPage">打开复杂页面</button>
+				<button @tap="navigateToPreloadPage">Open complex pages</button>
 				<!-- #endif -->
 			</view>
 		</view>
@@ -70,7 +70,7 @@
 			},
 			customAnimation(){
 				uni.navigateTo({
-					url: 'new-page/new-vue-page-1?data=使用自定义动画打开页面',
+					url: 'new-page/new-vue-page-1?data=Open_page_with_custom_animation',
 					animationType: 'slide-in-bottom',
 					animationDuration: 200
 				})
@@ -80,12 +80,12 @@
 					url: preloadPageUrl,
 					success(){
 						uni.showToast({
-							title:'页面预载成功'
+							title:'Page preloaded successfully'
 						})
 					},
 					fail(){
 						uni.showToast({
-							title:'页面预载失败'
+							title:'Page preload failure'
 						})
 					}
 				})

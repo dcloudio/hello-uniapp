@@ -9,35 +9,35 @@
             @callouttap="oncallouttap" @poitap="onpoitap" @updated="onupdated" @regionchange="onregionchange"></map>
         <scroll-view class="scrollview" scroll-y="true">
             <!-- <view class="list-item">
-                <text class="list-text">显示3D楼块</text>
+                <text class="list-text">enable 3D</text>
                 <switch :checked="enable3D" @change="enableThreeD" />
             </view>
             <view class="list-item">
-                <text class="list-text">显示指南针</text>
+                <text class="list-text">Show compass</text>
                 <switch :checked="showCompass" @change="changeShowCompass" />
             </view>
             <view class="list-item">
-                <text class="list-text">开启俯视</text>
+                <text class="list-text">Enable Overlooking</text>
                 <switch :checked="enableOverlooking" @change="changeEnableOverlooking" />
             </view>
             <view class="list-item">
-                <text class="list-text">是否支持缩放</text>
+                <text class="list-text">Enable Zoom</text>
                 <switch :checked="enableZoom" @change="changeEnableZoom" />
             </view>
             <view class="list-item">
-                <text class="list-text">是否支持拖动</text>
+                <text class="list-text">Enable Scroll</text>
                 <switch :checked="enableScroll" @change="changeEnableScroll" />
             </view>
             <view class="list-item">
-                <text class="list-text">是否支持旋转</text>
+                <text class="list-text">Enable Rotate</text>
                 <switch :checked="enableRotate" @change="changeEnableRotate" />
             </view>
             <view class="list-item">
-                <text class="list-text">是否开启卫星图</text>
+                <text class="list-text">Enable Satellite</text>
                 <switch :checked="enableSatellite" @change="changeEnableSatellite" />
             </view>
             <view class="list-item">
-                <text class="list-text">是否开启实时路况</text>
+                <text class="list-text">Enable Traffic</text>
                 <switch :checked="enableTraffic" @change="changeEnableTraffic" />
             </view> -->
 				<!-- #ifndef MP-JD -->
@@ -66,7 +66,7 @@
             id: 0,
             latitude: 39.989631,
             longitude: 116.481018,
-            title: '方恒国际 阜通东大街6号',
+            title: 'Fangheng International No.6 Futong East Street',
             zIndex: '1',
             rotate: 0,
             width: 20,
@@ -76,7 +76,7 @@
                 y: 1
             },
             callout: {
-                content: '方恒国际 阜通东大街6号',
+                content: 'Fangheng International No.6 Futong East Street',
                 color: '#00BFFF',
                 fontSize: 10,
                 borderRadius: 4,
@@ -91,7 +91,7 @@
             id: 1,
             latitude: 39.9086920000,
             longitude: 116.3974770000,
-            title: '天安门',
+            title: 'Tiananmen',
             zIndex: '1',
             iconPath: '/static/location.png',
             width: 40,
@@ -101,7 +101,7 @@
                 y: 1
             },
             callout: {
-                content: '首都北京\n天安门',
+                content: 'Capital Beijing\nTiananmen',
                 color: '#00BFFF',
                 fontSize: 12,
                 borderRadius: 2,

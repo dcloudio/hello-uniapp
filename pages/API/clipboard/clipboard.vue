@@ -2,15 +2,15 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<view class="uni-title">请输入剪贴板内容</view>
+			<view class="uni-title">Please enter the contents of the clipboard</view>
 			<view class="uni-list">
 				<view class="uni-list-cell">
-					<input class="uni-input" type="text" placeholder="请输入剪贴板内容" :value="data" @input="dataChange"/>
+					<input class="uni-input" type="text" placeholder="Please enter the contents of the clipboard" :value="data" @input="dataChange"/>
 				</view>
 			</view>
 			<view class="uni-btn-v">
-				<button type="primary" @click="setClipboard">存储数据</button>
-				<button @tap="getClipboard">读取数据</button>
+				<button type="primary" @click="setClipboard">Storage Data</button>
+				<button @tap="getClipboard">Read data</button>
 			</view>
 		</view>
 	</view>
@@ -31,16 +31,16 @@
 				uni.getClipboardData({
 					success: (res) => {
 						console.log(res.data);
-						const content = res.data ? '剪贴板内容为:' + res.data : '剪贴板暂无内容';
+						const content = res.data ? 'The contents of the clipboard are:' + res.data : 'Clipboard is not available';
 						uni.showModal({
 							content,
-							title: '读取剪贴板',
+							title: 'Read clipboard',
 							showCancel: false
 						})
 					},
 					fail: () => {
 						uni.showModal({
-							content: '读取剪贴板失败!',
+							content: 'Failed to read clipboard!',
 							showCancel: false
 						})
 					}
@@ -50,28 +50,28 @@
 				var data = this.data;
 				if (data.length === 0) {
 					uni.showModal({
-						title: '设置剪贴板失败',
-						content: '内容不能为空',
+						title: 'Failed to set the clipboard',
+						content: 'Content cannot be empty',
 						showCancel: false
 					})
 				} else {
 					uni.setClipboardData({
 						data: data,
 						success: () => {
-							// 成功处理
+							// Successful processing
 							// #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO
 							uni.showToast({
-								title: '设置剪贴板成功',
+								title: 'Set up clipboard successfully',
 								icon: "success",
 								mask: !1
 							})
 							// #endif
 						},
 						fail: () => {
-							// 失败处理
+							// Failure Handling
 							// #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO
 							uni.showToast({
-								title: '储存数据失败!',
+								title: 'Failed to store data!',
 								icon: "none",
 								mask: !1
 							})

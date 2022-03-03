@@ -6,7 +6,7 @@
 				<view class="uni-list">
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">经度</view>
+							<view class="uni-label">Longitude</view>
 						</view>
 						<view class="uni-list-cell-db">
 							<input class="uni-input" type="text" :disabled="true" value="116.39747" name="longitude"/>
@@ -14,7 +14,7 @@
 					</view>
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">纬度</view>
+							<view class="uni-label">Latitude</view>
 						</view>
 						<view class="uni-list-cell-db">
 							<input class="uni-input" type="text" :disabled="true" value="39.9085" name="latitude"/>
@@ -22,24 +22,24 @@
 					</view>
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">位置名称</view>
+							<view class="uni-label">location name</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="天安门" name="name"/>
+							<input class="uni-input" type="text" :disabled="true" value="Tiananmen" name="name"/>
 						</view>
 					</view>
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">详细位置</view>
+							<view class="uni-label">Detailed Location</view>
 						</view>
 						<view class="uni-list-cell-db">
-							<input class="uni-input" type="text" :disabled="true" value="北京市东城区东长安街" name="address"/>
+							<input class="uni-input" type="text" :disabled="true" value="East Chang'an Street, Dongcheng District, Beijing" name="address"/>
 						</view>
 					</view>
 				</view>
 				<view class="uni-padding-wrap">
 					<view class="uni-btn-v uni-common-mt">
-						<button type="primary" formType="submit">查看位置</button>
+						<button type="primary" formType="submit">View Location</button>
 					</view>
 				</view>
 			</form>

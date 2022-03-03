@@ -3,19 +3,19 @@
 		<page-head :title="title"></page-head>
 		<view class="page-body">
             <view class="new-page__text-box">
-                <text class="new-page__text">从上个页面接收到参数：{{data}}</text>
+                <text class="new-page__text">Receiving parameters from the previous page：{{data}}</text>
             </view>
             <view class="new-page__color" @click="setColorIndex(colorIndex>1?0:colorIndex+1)" :style="{backgroundColor:currentColor}">
-                <text class="new-page__color-text">点击改变颜色</text>
+                <text class="new-page__color-text">Click to change color</text>
             </view>
             <view class="new-page__text-box">
-                <text class="new-page__text">点击上方色块使用vuex在页面之间进行通讯</text>
+                <text class="new-page__text">Click on the color block above to use vuex to communicate between pages</text>
             </view>
             <view class="new-page__button">
 				<!-- #ifndef VUE3-->
-                <button class="new-page__button-item" @click="navToNvue">跳转NVUE页面</button>
+                <button class="new-page__button-item" @click="navToNvue">Jump to NVUE page</button>
 				<!-- #endif -->
-                <button class="new-page__button-item" @click="navToVue">跳转VUE页面</button>
+                <button class="new-page__button-item" @click="navToVue">Jump to VUE page</button>
             </view>
 		</view>
 	</view>
@@ -25,7 +25,7 @@
 	export default {
 		data() {
 			return {
-				title: '新页面',
+				title: 'New page',
 				data:""
 			}
 		},
@@ -39,7 +39,7 @@
 			}
             uni.$on('postMsg',(res)=>{
                 uni.showModal({
-                    content: `收到uni.$emit消息:${res.msg}`,
+                    content: `Receive uni.$emit message:${res.msg}`,
                     showCancel: false
                 })
             })

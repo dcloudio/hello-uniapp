@@ -3,11 +3,11 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-btn-v">
-                <button type="primary" @click="checkIsSupportSoterAuthentication">检查支持的认证方式</button>
-                <button type="primary" @click="checkIsSoterEnrolledInDeviceFingerPrint">检查是否录入指纹</button>
-                <button type="primary" @click="checkIsSoterEnrolledInDeviceFaceID">检查是否录入FaceID</button>
-                <button type="primary" @click="startSoterAuthenticationFingerPrint">开始指纹认证</button>
-                <button type="primary" @click="startSoterAuthenticationFaceID">开始FaceID认证</button>
+                <button type="primary" @click="checkIsSupportSoterAuthentication">Check the supported authentication methods</button>
+                <button type="primary" @click="checkIsSoterEnrolledInDeviceFingerPrint">Check if fingerprints are recorded</button>
+                <button type="primary" @click="checkIsSoterEnrolledInDeviceFaceID">Check if FaceID is entered</button>
+                <button type="primary" @click="startSoterAuthenticationFingerPrint">Start fingerprint authentication</button>
+                <button type="primary" @click="startSoterAuthenticationFaceID">Start FaceID authentication</button>
             </view>
 			<view style="width: 100%;text-align: center;">{{ result }}</view>
 		</view>
@@ -18,7 +18,7 @@
 export default {
 	data() {
 		return {
-			title: '生物认证',
+			title: 'Biological Certification',
 			result: ''
 		};
 	},
@@ -30,7 +30,7 @@ export default {
 			uni.checkIsSupportSoterAuthentication({
 				success(res) {
                     uni.showModal({
-                        content: '支持的认证方式：' + res.supportMode,
+                        content: 'Supported authentication methods：' + res.supportMode,
                         showCancel: false
                     })
 					console.log(res);
@@ -47,11 +47,11 @@ export default {
                     if(res.isEnrolled) {
                         uni.showToast({
                             icon: 'none',
-                            title: '已录入指纹'
+                            title: 'Fingerprinted'
                         })
                     }else {
                         uni.showModal({
-                            content: '未录入指纹',
+                            content: 'No fingerprinting',
                             showCancel: false
                         })
                     }
@@ -59,7 +59,7 @@ export default {
 				},
 				fail(err) {
                     uni.showModal({
-                        content: '未录入指纹',
+                        content: 'No fingerprinting',
                         showCancel: false
                     })
 					console.log(err);
@@ -73,11 +73,11 @@ export default {
                     if(res.isEnrolled) {
                         uni.showToast({
                             icon: 'none',
-                            title: '已录入FaceID'
+                            title: 'FaceID has been recorded'
                         })
                     }else {
                         uni.showModal({
-                            content: '未录入FaceID',
+                            content: 'Unrecorded FaceID',
                             showCancel: false
                         })
                     }
@@ -85,7 +85,7 @@ export default {
 				},
 				fail(err) {
                     uni.showModal({
-                        content: '未录入FaceID',
+                        content: 'Unrecorded FaceID',
                         showCancel: false
                     })
 					console.log(err);
@@ -96,17 +96,17 @@ export default {
 			uni.startSoterAuthentication({
 				requestAuthModes: ['fingerPrint'],
 				challenge: '123456',
-				authContent: '请用指纹解锁',
+				authContent: 'Please use your fingerprint to unlock',
 				success(res) {
                     uni.showToast({
                         icon: 'none',
-                        title: '指纹验证成功'
+                        title: 'Successful fingerprint verification'
                     })
 					console.log(res);
 				},
 				fail(err) {
                     uni.showModal({
-                        content: '指纹验证失败，errCode：' + err.errCode,
+                        content: 'Fingerprint verification failure，errCode：' + err.errCode,
                         showCancel: false
                     })
 					console.log(err);
@@ -117,17 +117,17 @@ export default {
 			uni.startSoterAuthentication({
 				requestAuthModes: ['facial'],
 				challenge: '123456',
-				authContent: '请用FaceID解锁',
+				authContent: 'Please use FaceID to unlock',
 				success(res) {
                     uni.showToast({
                         icon: 'none',
-                        title: 'FaceID验证成功'
+                        title: 'FaceID verification successful'
                     })
 					console.log(res);
 				},
 				fail(err) {
                     uni.showModal({
-                        content: 'FaceID验证失败，errCode：' + err.errCode,
+                        content: 'FaceID authentication failed，errCode：' + err.errCode,
                         showCancel: false
                     })
 					console.log(err);

@@ -3,8 +3,8 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-btn-v">
-				<button type="default" @tap="modalTap">有标题的modal</button>
-				<button type="default" @tap="noTitlemodalTap">无标题的modal</button>
+				<button type="default" @tap="modalTap">Modal with title</button>
+				<button type="default" @tap="noTitlemodalTap">untitled modal</button>
 			</view>
 		</view>
 	</view>
@@ -22,17 +22,17 @@
 		methods: {
 			modalTap: function (e) {
 				uni.showModal({
-					title: "弹窗标题",
-					content: "弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内",
+					title: "Pop-up window title",
+					content: "Pop-up content, inform the current status, information and solutions, try to control the description text within three lines",
 					showCancel: false,
-					confirmText: "确定"
+					confirmText: "OK"
 				})
 			},
 			noTitlemodalTap: function (e) {
 				uni.showModal({
-					content: "弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内",
-					confirmText: "确定",
-					cancelText: "取消"
+					content: "Pop-up content, inform the current status, information and solutions, try to control the description text within three lines",
+					confirmText: "OK",
+					cancelText: "Cancel"
 				})
 			}
 		}

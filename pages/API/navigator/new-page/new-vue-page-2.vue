@@ -2,13 +2,13 @@
     <view class="root">
         <view class="page-body">
             <view class="new-page__color" @click="setColorIndex(colorIndex>1?0:colorIndex+1)" :style="{backgroundColor:currentColor}">
-                <text class="new-page__color-text">点击改变颜色</text>
+                <text class="new-page__color-text">Click to change color</text>
             </view>
             <view class="new-page__text-box">
-                <text class="new-page__text">点击上方色块使用vuex在页面之间进行通讯</text>
+                <text class="new-page__text">Click on the color block above to use vuex to communicate between pages</text>
             </view>
             <view class="new-page__button">
-                <button class="new-page__button-item" @click="emitMsg">向上一页面传递数据</button>
+                <button class="new-page__button-item" @click="emitMsg">Passing data to the previous page</button>
             </view>
         </view>
     </view>

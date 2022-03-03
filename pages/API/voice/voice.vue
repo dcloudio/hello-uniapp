@@ -70,14 +70,14 @@
         data() {
             return {
                 title: 'start/stopRecord、play/stopVoice',
-                recording: false, //录音中
-                playing: false, //播放中
-                hasRecord: false, //是否有了一个
+                recording: false, //In the recording
+                playing: false, //During Playback
+                hasRecord: false, //Is there a
                 tempFilePath: '',
                 recordTime: 0,
                 playTime: 0,
-                formatedRecordTime: '00:00:00', //录音的总时间
-                formatedPlayTime: '00:00:00' //播放录音的当前时间
+                formatedRecordTime: '00:00:00', //Total time of recording
+                formatedPlayTime: '00:00:00' //Play the current time of the recording
             }
         },
         onUnload: function() {
@@ -115,7 +115,7 @@
             });
         },
         methods: {
-            async startRecord() { //开始录音
+            async startRecord() { //Start recording
                 // #ifdef APP-PLUS
                 let status = await this.checkPermission();
                 if (status !== 1) {
@@ -123,12 +123,12 @@
                 }
                 // #endif
 
-                // TODO ios 在没有请求过权限之前无法得知是否有相关权限，这种状态下需要直接调用录音，但没有状态或回调判断用户拒绝
+                // TODO ios there is no way to know if the permission is relevant until it has been requested, and this state requires a direct call to record, but there is no state or callback to determine that the user has refused
                 recorderManager.start({
                     format: 'mp3'
                 });
             },
-            stopRecord() { //停止录音
+            stopRecord() { //Stop Recording
                 recorderManager.stop();
                 clearInterval(recordTimeInterval);
             },
@@ -170,16 +170,16 @@
                     status = 1;
                 } else if (status === 2) {
                     uni.showModal({
-                        content: "系统麦克风已关闭",
-                        confirmText: "确定",
+                        content: "System microphone is turned off",
+                        confirmText: "Determine",
                         showCancel: false,
                         success: function(res) {
                         }
                     })
                 } else {
                     uni.showModal({
-                        content: "需要麦克风权限",
-                        confirmText: "设置",
+                        content: "Microphone access required",
+                        confirmText: "Settings",
                         success: function(res) {
                             if (res.confirm) {
                                 permision.gotoAppSetting();

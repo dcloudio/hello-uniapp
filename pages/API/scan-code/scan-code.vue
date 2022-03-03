@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-title">扫码结果：</view>
+			<view class="uni-title">Sweep results：</view>
 			<view class="uni-list" v-if="result">
 				<view class="uni-cell">
 					<view class="scan-result">
@@ -11,7 +11,7 @@
 				</view>
 			</view>
 			<view class="uni-btn-v">
-				<button type="primary" @click="scan">扫一扫</button>
+				<button type="primary" @click="scan">Swipe</button>
 			</view>
 		</view>
 	</view>
@@ -38,7 +38,7 @@
 						this.result = res.result
 					},
 					fail: (err) => {
-						// 需要注意的是小程序扫码不需要申请相机权限
+						// Note that you do not need to apply for camera privileges to scan the code of the applet
 					}
 				});
 			}
@@ -52,8 +52,8 @@
 					status = 1;
 				} else {
 					uni.showModal({
-						content: "需要相机权限",
-						confirmText: "设置",
+						content: "Camera access required",
+						confirmText: "Settings",
 						success: function(res) {
 							if (res.confirm) {
 								permision.gotoAppSetting();

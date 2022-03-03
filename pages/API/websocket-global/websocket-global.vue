@@ -4,10 +4,10 @@
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v">
 				<view class="websocket-msg">{{showMsg}}</view>
-				<button type="primary" @click="connect">连接websocket服务</button>
-				<button v-show="connected" type="primary" @click="send">发送一条消息</button>
-				<button type="primary" @click="close">断开websocket服务</button>
-				<view class="websocket-tips">发送消息后会收到一条服务器返回的消息（与发送的消息内容一致）</view>
+				<button type="primary" @click="connect">Connecting to websocket services</button>
+				<button v-show="connected" type="primary" @click="send">Send a message</button>
+				<button type="primary" @click="close">Disconnect websocket service</button>
+				<view class="websocket-tips">After sending a message you will receive a message back from the server (with the same content as the message sent)</view>
 			</view>
 		</view>
 	</view>
@@ -28,12 +28,12 @@
 			showMsg() {
 				if (this.connected) {
 					if (this.msg) {
-						return '收到消息：' + this.msg
+						return 'Receive message：' + this.msg
 					} else {
-						return '等待接收消息'
+						return 'Waiting to receive messages'
 					}
 				} else {
-					return '尚未连接'
+					return 'Not yet connected'
 				}
 			}
 		},
@@ -45,14 +45,14 @@
 			connect() {
 				if (this.connected || this.connecting) {
 					uni.showModal({
-						content: '正在连接或者已经连接，请勿重复连接',
+						content: 'Connecting or already connected, please do not connect again',
 						showCancel: false
 					})
 					return false
 				}
 				this.connecting = true
 				uni.showLoading({
-					title: '连接中...'
+					title: 'Connecting...'
 				})
 				uni.connectSocket({
 					url: 'wss://echo.websocket.org',
@@ -70,10 +70,12 @@
 					method: 'GET',
 					// #endif
 					success(res) {
-						// 这里是接口调用成功的回调，不是连接成功的回调，请注意
+						// Here is the callback of successful interface call, not the callback of successful connection, please note
+
 					},
 					fail(err) {
-						// 这里是接口调用失败的回调，不是连接失败的回调，请注意
+						// Here is the callback of failure interface call, not the callback of successful connection, please note
+
 					}
 				})
 				uni.onSocketOpen((res) => {
@@ -91,7 +93,7 @@
 					this.connected = false
 					uni.hideLoading()
 					uni.showModal({
-						content: '连接失败，可能是websocket服务不可用，请稍后再试',
+						content: 'Connection failed, websocket service may not be available, please try again later',
 						showCancel: false
 					})
 					console.log('onError', err);

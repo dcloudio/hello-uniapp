@@ -6,7 +6,7 @@
 				<view class="uni-list">
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">图片来源</view>
+							<view class="uni-label">Image source</view>
 						</view>
 						<view class="uni-list-cell-right">
 							<picker :range="sourceType" @change="sourceTypeChange" :value="sourceTypeIndex" mode="selector">
@@ -17,7 +17,7 @@
 
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">图片质量</view>
+							<view class="uni-label">Image Quality</view>
 						</view>
 						<view class="uni-list-cell-right">
 							<picker :range="sizeType" @change="sizeTypeChange" :value="sizeTypeIndex" mode="selector">
@@ -28,7 +28,7 @@
 
 					<view class="uni-list-cell">
 						<view class="uni-list-cell-left">
-							<view class="uni-label">数量限制</view>
+							<view class="uni-label">Quantity limit</view>
 						</view>
 						<view class="uni-list-cell-right">
 							<picker :range="count" @change="countChange" mode="selector">
@@ -43,7 +43,7 @@
 					<view class="uni-list-cell cell-pd">
 						<view class="uni-uploader">
 							<view class="uni-uploader-head">
-								<view class="uni-uploader-title">点击可预览选好的图片</view>
+								<view class="uni-uploader-title">Click to preview the selected image</view>
 								<view class="uni-uploader-info">{{imageList.length}}/9</view>
 							</view>
 							<view class="uni-uploader-body">
@@ -83,9 +83,9 @@
 				title: 'choose/previewImage',
 				imageList: [],
 				sourceTypeIndex: 2,
-				sourceType: ['拍照', '相册', '拍照或相册'],
+				sourceType: ['Photo', 'Album', 'Photo or Album'],
 				sizeTypeIndex: 2,
-				sizeType: ['压缩', '原图', '压缩或原图'],
+				sizeType: ['Compressed', 'Original', 'Compressed or Original'],
 				countIndex: 8,
 				count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 			}
@@ -93,9 +93,9 @@
 		onUnload() {
 			this.imageList = [],
 				this.sourceTypeIndex = 2,
-				this.sourceType = ['拍照', '相册', '拍照或相册'],
+				this.sourceType = ['Photo', 'Album', 'Photo or Album'],
 				this.sizeTypeIndex = 2,
-				this.sizeType = ['压缩', '原图', '压缩或原图'],
+				this.sizeType = ['Compressed', 'Original', 'Compressed or Original'],
 				this.countIndex = 8;
 		},
 		methods: {
@@ -110,7 +110,7 @@
 			},
 			chooseImage: async function() {
 				// #ifdef APP-PLUS
-				// TODO 选择相机或相册时 需要弹出actionsheet，目前无法获得是相机还是相册，在失败回调中处理
+				// TODO When you select camera or album, you need to pop up actionsheet, currently you can't get whether it's camera or album, it's handled in the failure callback.
 				if (this.sourceTypeIndex !== 2) {
 					let status = await this.checkPermission();
 					if (status !== 1) {
@@ -121,7 +121,7 @@
 
 				if (this.imageList.length === 9) {
 					let isContinue = await this.isFullImg();
-					console.log("是否继续?", isContinue);
+					console.log("Whether to continue?", isContinue);
 					if (!isContinue) {
 						return;
 					}
@@ -162,8 +162,8 @@
 								}
 								if (!authStatus) {
 									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要从您的相机或相册获取图片，请在设置界面打开相关权限',
+										title: 'Authorization failure',
+										content: 'Hello uni-app needs to get pictures from your camera or album, please open the relevant permission in the settings screen',
 										success: (res) => {
 											if (res.confirm) {
 												uni.openSetting()
@@ -180,7 +180,7 @@
 			isFullImg: function() {
 				return new Promise((res) => {
 					uni.showModal({
-						content: "已经有9张图片了,是否清空现有图片？",
+						content: "There are already 9 pictures, whether to clear the existing pictures？",
 						success: (e) => {
 							if (e.confirm) {
 								this.imageList = [];
@@ -212,8 +212,8 @@
 					status = 1;
 				} else {
 					uni.showModal({
-						content: "没有开启权限",
-						confirmText: "设置",
+						content: "No permission enabled",
+						confirmText: "Settings",
 						success: function(res) {
 							if (res.confirm) {
 								permision.gotoAppSetting();

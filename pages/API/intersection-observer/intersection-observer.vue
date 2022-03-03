@@ -3,11 +3,11 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
-				{{appear ? '小球出现' : '小球消失'}}
+				{{appear ? 'Small ball appears' : 'Small ball disappears'}}
 			</view>
 			<scroll-view class="scroll-view" scroll-y>
 				<view class="scroll-area">
-					<text class="notice">向下滚动让小球出现</text>
+					<text class="notice">Scroll down to make the ball appear</text>
 					<view class="ball"></view>
 				</view>
 			</scroll-view>

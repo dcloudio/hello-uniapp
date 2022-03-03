@@ -7,10 +7,10 @@
 			<view class="uni-slider"><slider :value="screen" @changing="sliderChange" step="1" /></view>
 			<!-- #endif -->
 			<button type="primary" @click="keep">
-				{{ keepScreenOn ? '保持常亮状态' : '关闭常亮状态' }}
+				{{ keepScreenOn ? 'Maintain constant light status' : 'Turn off the constant light state' }}
 			</button>
 			<view class="tips">
-				保持常亮时，屏幕不会熄灭。仅在当前应用生效，离开应用后设置失效。
+				The screen will not go off when it remains always on. Only works in the current application, the setting expires after leaving the application.
 			</view>
 		</view>
 	</view>
@@ -37,9 +37,9 @@ export default {
 	methods: {
 		sliderChange(e) {
 			let screen = e.detail.value;
-			// 判断是否重复
+			// Determine if there is a duplicate
 			if (this.screen !== screen) {
-				console.log('当前数值：' + e.detail.value);
+				console.log('Current value:' + e.detail.value);
 				uni.setScreenBrightness({
 					value: screen / 100,
 					success: function() {

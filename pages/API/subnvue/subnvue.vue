@@ -2,12 +2,12 @@
 	<view class="content">
 		<page-head :title="title"></page-head>
 		<view class="example">
-			<view class="example-title">从左侧滑出</view>
-			<button @click="showDrawer">显示抽屉</button>
+			<view class="example-title">Slide out from the left</view>
+			<button @click="showDrawer">Display Drawer</button>
 		</view>
 		<view class="example">
-			<view class="example-title">从上侧竖向滑出</view>
-			<button @click="showPopup">显示 弹出层</button>
+			<view class="example-title">Slide out vertically from the top side</view>
+			<button @click="showPopup">Show pop-up layer</button>
 		</view>
 		<view style="width: 100%;">
 			<video v-if="showVideo" id="video"
@@ -31,12 +31,12 @@
 		onLoad() {
 			this.closeMask();
 
-			// 接收 popup 的消息
+			// Receive a popup message
 			uni.$on('popup-page', (data) => {
 				switch(data.type){
 					case 'interactive':
 						uni.showModal({
-							title: '来自Popup的消息',
+							title: 'News from Popup',
 							content: data.info
 						})
 						break;
@@ -47,10 +47,10 @@
 						break;
 				}
 			})
-			// 监听 drawer 消息
+			// Listening to drawer messages
 			uni.$on('drawer-page', (data) => {
 				uni.showToast({
-					title: '点击了第' + data + '项',
+					title: 'Clicked on the' + data + 'item',
 					icon:"none"
 				});
 			})
@@ -69,15 +69,15 @@
 		    showPopup() {
 				// 向 popup 传递消息
 				uni.$emit('page-popup', {
-					title: '请阅读软件内容',
-					content: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。'
+					title: 'Please read the software content',
+					content: 'uni-app is a front-end framework for developing cross-platform applications using Vue.js, developers write a set of code that can be compiled to iOS, Android, H5, applets and many other platforms'
 				});
 				const subNVue = uni.getSubNVueById('popup')
 		        subNVue.show('slide-in-top', 250)
 		    },
 			videoErrorCallback: function() {
 				uni.showModal({
-					content: '视频加载失败',
+					content: 'Video loading failure',
 					showCancel: false
 				})
 			},

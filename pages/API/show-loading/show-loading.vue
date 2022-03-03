@@ -3,9 +3,9 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v">
-				<button class="btn-load" type="primary" @click="showLoading">显示 loading 提示框</button>
+				<button class="btn-load" type="primary" @click="showLoading">Show loading prompt box</button>
 				<!-- #ifndef MP-ALIPAY -->
-				<button @click="hideLoading">隐藏 loading 提示框</button>
+				<button @click="hideLoading">Hide loading prompt box</button>
 				<!-- #endif -->
 			</view>
 		</view>

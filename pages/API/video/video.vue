@@ -5,7 +5,7 @@
 			<view class="uni-list">
 				<view class="uni-list-cell">
 					<view class="uni-list-cell-left">
-						<view class="uni-label">视频来源</view>
+						<view class="uni-label">Video Source</view>
 					</view>
 					<view class="uni-list-cell-right">
 						<picker :range="sourceType" @change="sourceTypeChange" :value="sourceTypeIndex">
@@ -16,8 +16,8 @@
 			</view>
 		</view>
 		<!-- #ifdef APP-PLUS || MP-WEIXIN -->
-		<view class="uni-title uni-common-mt uni-common-pl">摄像头位置</view>
-		<view class="uni-hello-text camera-tips">注意：部分 Android 手机下由于系统 ROM 不支持无法生效，打开拍摄界面后可操作切换</view>
+		<view class="uni-title uni-common-mt uni-common-pl">Camera Location</view>
+		<view class="uni-hello-text camera-tips">Note: Some Android phones can not be effective due to the system ROM does not support, after opening the shooting interface can be operated to switch</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
 				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in cameraList" :key="item.value">
@@ -27,7 +27,7 @@
 		</view>
 		<!-- #endif -->
 		<template v-if="!src">
-			<view class="uni-hello-addfile" @tap="chooseVideo">+ 添加视频</view>
+			<view class="uni-hello-addfile" @tap="chooseVideo">+ Add video</view>
 		</template>
 		<template v-else>
 			<video :src="src" class="video"></video>
@@ -45,16 +45,16 @@
 			return {
 				title: 'chooseVideo',
 				sourceTypeIndex: 2,
-				sourceType: ['拍摄', '相册', '拍摄或相册'],
+				sourceType: ['Shot', 'Album', 'Shot or Album'],
 				src: '',
 				cameraList: [{
 						value: 'back',
-						name: '后置摄像头',
+						name: 'Rear camera',
 						checked: 'true'
 					},
 					{
 						value: 'front',
-						name: '前置摄像头'
+						name: 'Front camera'
 					},
 				],
 				cameraIndex: 0
@@ -63,7 +63,7 @@
 		onUnload() {
 			this.src = '',
 				this.sourceTypeIndex = 2,
-				this.sourceType = ['拍摄', '相册', '拍摄或相册'];
+				this.sourceType = ['Shot', 'Album', 'Shot or Album'];
 		},
 		methods: {
 			radioChange(evt) {
@@ -104,8 +104,8 @@
 								}
 								if (!authStatus) {
 									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要从您的相机或相册获取视频，请在设置界面打开相关权限',
+										title: 'Authorization failure',
+										content: 'Hello uni-app needs to get video from your camera or album, please turn on the relevant permission in the settings screen',
 										success: (res) => {
 											if (res.confirm) {
 												uni.openSetting()

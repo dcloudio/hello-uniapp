@@ -6,14 +6,14 @@
 				<text class="content">{{content}}</text>
 			</div>
 			<div>
-				<text style="color: red; font-size: 30rpx;">以下为 Popup 内部滚动示例：</text>
+				<text style="color: red; font-size: 30rpx;">The following are examples of Popup internal scrolling：</text>
 			</div>
 			<div class="cell" v-for="(item, index) in lists" @click="handle(item)" :key="index">
 				<text class="text">{{item}}</text>
 			</div>
 		</scroller>
 		<div class="message-wrapper">
-			<text class="send-message" @click="sendMessage">向页面发送消息</text>
+			<text class="send-message" @click="sendMessage">Sending a message to a page</text>
 		</div>
 	</div>
 </template>
@@ -44,14 +44,14 @@
 			sendMessage() {
 				const subNVue = uni.getCurrentSubNVue()
 				uni.$emit('popup-page', {
-					title: '已读完!',
+					title: 'Finished reading!',
 				})
 			},
 			handle(item, index) {
 				const subNVue = uni.getCurrentSubNVue()
 				uni.$emit('popup-page', {
 					type: 'interactive',
-					info: item + ' 该元素被点击了!',
+					info: item + ' The element was clicked on!',
 				})
 			}
 		}

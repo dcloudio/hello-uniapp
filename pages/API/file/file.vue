@@ -9,15 +9,15 @@
 				<image :src="savedFilePath" class="image" mode="aspectFit"></image>
 			</block>
 			<block v-if="!tempFilePath && !savedFilePath">
-				<view class="uni-hello-addfile" @click="chooseImage">+ 请选择文件</view>
+				<view class="uni-hello-addfile" @click="chooseImage">+ Please select the file</view>
 			</block>
 			<view class="uni-btn-v">
-				<button class="btn-savefile" @click="saveFile">保存文件</button>
-				<button @click="clear">删除文件</button>
+				<button class="btn-savefile" @click="saveFile">Save file</button>
+				<button @click="clear">Delete files</button>
 			</view>
 			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO -->
 			<view class="btn-area">
-				<button @click="openDocument">打开pdf文件</button>
+				<button @click="openDocument">Open pdf file</button>
 			</view>
 			<!-- #endif -->
 		</view>
@@ -49,8 +49,8 @@
 								let authStatus = res.authSetting['scope.album'] && res.authSetting['scope.camera'];
 								if (!authStatus) {
 									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要从您的相机或相册获取图片，请在设置界面打开相关权限',
+										title: 'Authorization failure',
+										content: 'Hello uni-app needs to get pictures from your camera or album, please open the relevant permission in the settings screen',
 										success: (res) => {
 											if (res.confirm) {
 												uni.openSetting()
@@ -72,22 +72,22 @@
 							this.savedFilePath = res.savedFilePath;
 							uni.setStorageSync('savedFilePath', res.savedFilePath);
 							uni.showModal({
-								title: '保存成功',
-								content: '下次进入页面时，此文件仍可用',
+								title: 'Save successfully',
+								content: 'This file will still be available the next time you go to the page',
 								showCancel: false
 							});
 						},
 						fail: (res) => {
 							uni.showModal({
-								title: '保存失败',
-								content: '失败原因: ' + JSON.stringify(res),
+								title: 'Failed to save',
+								content: 'Reasons for Failure: ' + JSON.stringify(res),
 								showCancel: false
 							});
 						}
 					})
 				} else {
 					uni.showModal({
-						content: '请选择文件',
+						content: 'Please select the file',
 						showCancel: false
 					});
 				}
@@ -105,7 +105,7 @@
 						uni.openDocument({
 							filePath: res.tempFilePath,
 							success: () => {
-								console.log('打开文档成功');
+								console.log('Open document successfully');
 							}
 						});
 					}

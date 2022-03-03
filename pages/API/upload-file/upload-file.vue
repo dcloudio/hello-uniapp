@@ -7,7 +7,7 @@
 					<image :src="imageSrc" class="image" mode="widthFix"></image>
 				</block>
 				<block v-else>
-					<view class="uni-hello-addfile" @click="chooseImage">+ 选择图片</view>
+					<view class="uni-hello-addfile" @click="chooseImage">+ Select image</view>
 				</block>
 			</view>
 		</view>
@@ -41,7 +41,7 @@
 							success: (res) => {
 								console.log('uploadImage success, res is:', res)
 								uni.showToast({
-									title: '上传成功',
+									title: 'Upload successful',
 									icon: 'success',
 									duration: 1000
 								})
@@ -64,8 +64,8 @@
 								let authStatus = res.authSetting['scope.album'];
 								if (!authStatus) {
 									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要从您的相册获取图片，请在设置界面打开相关权限',
+										title: 'Authorization failure',
+										content: 'Hello uni-app need to get pictures from your albums, please turn on the relevant permissions in the settings screen',
 										success: (res) => {
 											if (res.confirm) {
 												uni.openSetting()

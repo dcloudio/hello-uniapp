@@ -2,7 +2,7 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<button :loading="loading" :disabled="loading" type="primary" class="btn" @click="showAd">显示广告</button>
+			<button :loading="loading" :disabled="loading" type="primary" class="btn" @click="showAd">Show ads</button>
 		</view>
 	</view>
 </template>
@@ -11,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				title: '全屏视频广告',
+				title: 'Full-screen video ads',
 				loading: false,
 				loadError: false
 			}
@@ -34,18 +34,18 @@
 					console.log('onLoad event')
 				});
 				_ad.onClose((res) => {
-					// 用户点击了【关闭广告】按钮
+					// The user clicked the [Close Ads] button
 					if (res && res.isEnded) {
-						// 正常播放结束
+						// End of normal playback
 						console.log("onClose " + res.isEnded);
 					} else {
-						// 播放中途退出
+						// Quit in the middle of playback
 						console.log("onClose " + res.isEnded);
 					}
 
 					setTimeout(() => {
 						uni.showToast({
-							title: "全屏视频" + (res.isEnded ? "成功" : "未") + "播放完毕",
+							title: "Full Screen Video" + (res.isEnded ? "Success" : "Not") + "Finish playing",
 							duration: 10000,
 							position: 'bottom'
 						})

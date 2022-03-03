@@ -3,16 +3,16 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-btn-v">
-				<button type="default" @tap="toast1Tap">点击弹出默认toast</button>
-				<button type="default" @tap="toast2Tap">点击弹出设置duration的toast</button>
-				<button type="default" @tap="toast3Tap">点击弹出显示loading的toast</button>
+				<button type="default" @tap="toast1Tap">Click to bring up the default toast</button>
+				<button type="default" @tap="toast2Tap">Click on the toast to set the duration of the pop-up</button>
+				<button type="default" @tap="toast3Tap">Click on the toast that shows the loading pop-up</button>
 				<!-- #ifndef MP-ALIPAY -->
-				<button type="default" @tap="toast4Tap">点击弹出显示自定义图片的toast</button>
+				<button type="default" @tap="toast4Tap">Click on the toast that pops up to display a custom image</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS -->
-				<button type="default" @tap="toast5Tap">点击显示无图标的居底toast</button>
+				<button type="default" @tap="toast5Tap">Click to display the bottom toast without icon</button>
 				<!-- #endif -->
-				<button type="default" @tap="hideToast">点击隐藏toast</button>
+				<button type="default" @tap="hideToast">Click to hide toast</button>
 			</view>
 		</view>
 	</view>
@@ -32,7 +32,7 @@
 		methods: {
 			toast1Tap: function () {
 				uni.showToast({
-					title: "默认"
+					title: "Default"
 				})
 			},
 			toast2Tap: function () {
@@ -49,9 +49,9 @@
 				})
 				// #ifdef MP-ALIPAY
 				this._showTimer = setTimeout(() => {
-					// icon 是 loading 时，showToast 实际执行的是 showLoading
+					// When the icon is loading, showToast actually performs showLoading
 					my.hideLoading()
-					// 执行完所有代码再清除定时器
+					// Clear the timer after executing all the code
 					clearTimeout(this._showTimer);
 				}, 3000)
 				// #endif
@@ -66,7 +66,7 @@
 			// #ifdef APP-PLUS
 			toast5Tap: function () {
 				uni.showToast({
-					title: "显示一段轻提示",
+					title: "Display a light prompt",
 					position:'bottom'
 				})
 			},

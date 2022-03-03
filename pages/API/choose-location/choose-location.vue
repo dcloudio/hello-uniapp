@@ -3,9 +3,9 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view style="background:#FFFFFF; padding:40rpx;">
-				<view class="uni-hello-text uni-center">当前位置信息</view>
+				<view class="uni-hello-text uni-center">Current Location Information</view>
 				<block v-if="hasLocation === false">
-					<view class="uni-h2 uni-center uni-common-mt">未选择位置</view>
+					<view class="uni-h2 uni-center uni-common-mt">No location selected</view>
 				</block>
 				<block v-if="hasLocation === true">
 					<view class="uni-hello-text uni-center" style="margin-top:10px;">
@@ -18,8 +18,8 @@
 				</block>
 			</view>
 			<view class="uni-btn-v">
-				<button type="primary" @tap="chooseLocation">选择位置</button>
-				<button @tap="clear">清空</button>
+				<button type="primary" @tap="chooseLocation">Select a location</button>
+				<button @tap="clear">Empty</button>
 			</view>
 		</view>
 	</view>

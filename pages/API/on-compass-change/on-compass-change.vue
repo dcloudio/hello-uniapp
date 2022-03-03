@@ -3,7 +3,7 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view class="uni-hello-text uni-center" style="padding-bottom:50rpx;">
-				旋转手机即可获取方位信息
+				Rotate your phone to get directions
 			</view>
 			<view class="direction">
 				<view class="bg-compass-line"></view>

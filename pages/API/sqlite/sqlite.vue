@@ -2,16 +2,12 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
-			<view class="uni-btn-v"><button type="primary" @click="openDB">打开数据库test.db</button></view>
-			<view class="uni-btn-v"><button type="primary" @click="executeSQL">创建表database及插入数据</button></view>
-			<view class="uni-btn-v"><button type="primary" @click="selectSQL">查询表database的数据</button></view>
-			<view class="uni-btn-v"><button type="primary" @click="droptable">删除表database</button></view>
-			<view class="uni-btn-v"><button type="primary" @click="closeDB">关闭数据库test.db</button></view>
-			<view class="uni-btn-v"><button type="primary" @click="isOpenDB">查询是否打开数据库</button></view>
-			
-			
-			
-			
+			<view class="uni-btn-v"><button type="primary" @click="openDB">Open database  test.db</button></view>
+			<view class="uni-btn-v"><button type="primary" @click="executeSQL">Create Table database and insert data</button></view>
+			<view class="uni-btn-v"><button type="primary" @click="selectSQL">Inquiry Form database`s data</button></view>
+			<view class="uni-btn-v"><button type="primary" @click="droptable">Delete Table database</button></view>
+			<view class="uni-btn-v"><button type="primary" @click="closeDB">Close the database test.db</button></view>
+			<view class="uni-btn-v"><button type="primary" @click="isOpenDB">Check if Open database </button></view>
 		</view>
 	</view>
 </template>
@@ -29,10 +25,10 @@ export default {
 				name: 'first',
 				path: '_doc/test.db',
 				success: function(e) {
-					plus.nativeUI.alert('打开数据库test.db成功 ');
+					plus.nativeUI.alert('Open database test.db success');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('打开数据库test.db失败: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Open database test.db failure : ' + JSON.stringify(e));
 				}
 			});
 		},
@@ -44,55 +40,55 @@ export default {
 				success: function(e) {
 					plus.sqlite.executeSql({
 						name: 'first',
-						sql: "insert into database values('彦','女','7000')",
+						sql: "insert into database values('Hikari','Female','7000')",
 						success: function(e) {
-							plus.nativeUI.alert('创建表table和插入数据成功');
+							plus.nativeUI.alert('Create Table table and insert data success ');
 						},
 						fail: function(e) {
-							plus.nativeUI.alert('创建表table成功但插入数据失败: ' + JSON.stringify(e));
+							plus.nativeUI.alert('Create Table table success but insert data failure : ' + JSON.stringify(e));
 						}
 					});
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('创建表table失败: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Create Table table failure : ' + JSON.stringify(e));
 				}
 			});
 		},
-		// 查询SQL语句
+		// Query SQL Statements
 		selectSQL: function() {
 			plus.sqlite.selectSql({
 				name: 'first',
 				sql: 'select * from database',
 				success: function(e) {
-					plus.nativeUI.alert('查询SQL语句成功: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Query SQL Statements success : ' + JSON.stringify(e));
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('查询SQL语句失败: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Query SQL Statements failure : ' + JSON.stringify(e));
 				}
 			});
 		},
-		// 删除表
+		// Delete Table 
 		droptable: function() {
 			plus.sqlite.executeSql({
 				name: 'first',
 				sql: 'drop table database',
 				success: function(e) {
-					plus.nativeUI.alert('删除表database成功');
+					plus.nativeUI.alert('Delete Table database success ');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('删除表database失败: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Delete Table database failure : ' + JSON.stringify(e));
 				}
 			});
 		},
-		// 关闭数据库
+		// Close the database 
 		closeDB: function() {
 			plus.sqlite.closeDatabase({
 				name: 'first',
 				success: function(e) {
-					plus.nativeUI.alert('关闭数据库成功');
+					plus.nativeUI.alert('Close the database  success ');
 				},
 				fail: function(e) {
-					plus.nativeUI.alert('关闭数据库失败: ' + JSON.stringify(e));
+					plus.nativeUI.alert('Close the database  failure : ' + JSON.stringify(e));
 				}
 			});
 		},

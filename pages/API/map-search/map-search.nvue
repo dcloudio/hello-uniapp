@@ -18,7 +18,7 @@
                     id: '1',
                     latitude: 39.9086920000,
                     longitude: 116.3974770000,
-                    title: '天安门',
+                    title: 'Tiananmen',
                     zIndex: '1',
                     iconPath: '/static/gps.png',
                     width: 20,
@@ -28,7 +28,7 @@
                         y: 1
                     },
                     callout: {
-                        content: '首都北京\n天安门',
+                        content: 'Capital Beijing\nTiananmen',
                         color: '#00BFFF',
                         fontSize: 12,
                         borderRadius: 2,
@@ -66,7 +66,7 @@
                         latitude: point.latitude,
                         longitude: point.longitude
                     },
-                    key: '停车场',
+                    key: 'Parking',
                     radius: 1000
                 }, ret => {
                     console.log(ret);

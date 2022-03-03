@@ -4,27 +4,27 @@
 		<view class="uni-padding-wrap">
 			<view style="background:#FFF; padding:40rpx;">
 				<block v-if="hasLogin === true">
-					<view class="uni-h3 uni-center uni-common-mt">已登录
+					<view class="uni-h3 uni-center uni-common-mt">Logged in
 						<text v-if="isUniverifyLogin" style="font-size: 0.8em;">
 							<i v-if="!phoneNumber.length" class="uni-icon_toast uni-loading"></i>
 							<i v-else>（{{phoneNumber}}）</i>
 						</text>
 					</view>
 					<view class="uni-hello-text uni-center">
-						<text>每个账号仅需登录 1 次，\n后续每次进入页面即可自动拉取用户信息。</text>
+						<text>Each account only needs to log in 1 time, \n each subsequent entry page can automatically pull the user information.</text>
 					</view>
 				</block>
 				<block v-if="hasLogin === false">
-					<view class="uni-h3 uni-center uni-common-mt">未登录</view>
+					<view class="uni-h3 uni-center uni-common-mt">Not logged in</view>
 					<view class="uni-hello-text uni-center">
-						请点击按钮登录
+						Please click the button to log in
 					</view>
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
 				<!-- #ifdef MP-TOUTIAO  -->
 				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">
-					登录
+					Login
 				</button>
 				<!-- #endif -->
 				<!-- #ifndef MP-TOUTIAO -->
@@ -63,34 +63,34 @@
 						let providerName = '';
 						switch (value) {
 							case 'weixin':
-								providerName = '微信登录'
+								providerName = 'WeChat Login'
 								break;
 							case 'qq':
-								providerName = 'QQ登录'
+								providerName = 'QQ Login'
 								break;
 							case 'sinaweibo':
-								providerName = '新浪微博登录'
+								providerName = 'Sina Weibo Login'
 								break;
 							case 'xiaomi':
-								providerName = '小米登录'
+								providerName = 'Xiaomi Login'
 								break;
 							case 'alipay':
-								providerName = '支付宝登录'
+								providerName = 'Alipay Login'
 								break;
 							case 'baidu':
-								providerName = '百度登录'
+								providerName = 'Baidu Login'
 								break;
 							case 'jd':
-							  providerName = '京东登录'
+							  providerName = 'Jingdong Login'
 							  break;
 							case 'toutiao':
-								providerName = '头条登录'
+								providerName = 'toutiao Login'
 								break;
 							case 'apple':
-								providerName = '苹果登录'
+								providerName = 'Apple Login'
 								break;
 							case 'univerify':
-								providerName = '一键登录'
+								providerName = 'Univerify Login'
 								break;
 						}
 						return {
@@ -101,7 +101,7 @@
 
 				},
 				fail: (error) => {
-					console.log('获取登录通道失败', error);
+					console.log('Failed to get login channel', error);
 				}
 			});
 
@@ -124,18 +124,18 @@
 					this.univerifyBtnLoading = true;
 				}
 
-				// 一键登录已在APP onLaunch的时候进行了预登陆，可以显著提高登录速度。登录成功后，预登陆状态会重置
+				// Univerify Login Pre-login has been performed at the time of APP onLaunch, which can significantly improve the login speed. After a successful login, the pre-login status will be reset
 				uni.login({
 					provider: provider.id,
 					// #ifdef MP-ALIPAY
-					scopes: 'auth_user', //支付宝小程序需设置授权类型
+					scopes: 'auth_user', //Alipay small programs need to set the type of authorization
 					// #endif
 					success: async (res) => {
 						console.log('login success:', res);
 						this.Toast({
-							title: '登录成功'
+							title: 'Login successful'
 						})
-						// 更新保存在 store 中的登录状态
+						// Update the login status saved in the store
 						this.login(provider.id);
 
 						// #ifdef APP-PLUS
@@ -151,7 +151,7 @@
 						// #endif
 
 						// #ifdef MP-WEIXIN
-						console.warn('如需获取openid请参考uni-id: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
+						console.warn('To get the openid please refer to uni-id: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 						uni.request({
 							url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
 							method: 'POST',
@@ -165,13 +165,13 @@
 							success(res) {
 								console.log(res);
 								if (res.data.code !== 0) {
-									console.log('获取openid失败：', res.data.errMsg);
+									console.log('Failed to get openid：', res.data.errMsg);
 									return
 								}
 								uni.setStorageSync('openid', res.data.openid)
 							},
 							fail(err) {
-								console.log('获取openid失败：', err);
+								console.log('Failed to get openid：', err);
 							}
 						})
 						// #endif
@@ -179,11 +179,11 @@
 					fail: (err) => {
 						console.log('login fail:', err);
 
-						// 一键登录点击其他登录方式
+						// Univerify Login Click on other login methods
 						if (err.code == '30002') {
 							uni.closeAuthView();
 							this.Toast({
-								title: '其他登录方式'
+								title: 'Other login methods'
 							})
 							return;
 						}
@@ -191,10 +191,10 @@
 						// 未开通
 						if (err.code == 1000) {
 							uni.showModal({
-								title: '登录失败',
-								content: `${err.errMsg}\n，错误码：${err.code}`,
-								confirmText: '开通指南',
-								cancelText: '确定',
+								title: 'Login failure',
+								content: `${err.errMsg}\n，Error Code：${err.code}`,
+								confirmText: 'Opening Guide',
+								cancelText: 'OK',
 								success: (res) => {
 									if (res.confirm) {
 										setTimeout(() => {
@@ -206,7 +206,7 @@
 							return;
 						}
 
-						// 一键登录预登陆失败
+						// Univerify Login Pre-login failure
 						if (err.code == '30005') {
 							uni.showModal({
 								showCancel: false,
@@ -216,11 +216,11 @@
 							return;
 						}
 
-						// 一键登录用户关闭验证界面
+						// Univerify Login user closes the authentication screen
 						if (err.code != '30003') {
 							uni.showModal({
 								showCancel: false,
-								title: '登录失败',
+								title: 'Login failure',
 								content: JSON.stringify(err)
 							});
 						}
@@ -245,14 +245,14 @@
 				}).catch(err => {
 					uni.showModal({
 						showCancel: false,
-						title: '手机号获取失败',
-						content: `${err.errMsg}\n，错误码：${err.code}`
+						title: 'Cell phone number acquisition failure',
+						content: `${err.errMsg}\n，Error Code：${err.code}`
 					})
 					console.error(res);
 				})
 			},
 			async loginByApple(provider, res) {
-				// 获取用户信息
+				// Obtain user information
 				let getUserInfoErr, result
 				// #ifndef VUE3
 				[getUserInfoErr, result] = await uni.getUserInfo({
@@ -273,16 +273,16 @@
 				if (getUserInfoErr) {
 					let content = getUserInfoErr.errMsg;
 					if (~content.indexOf('uni.login')) {
-						content = '请在登录页面完成登录操作';
+						content = 'Please complete the login operation on the login page';
 					}
 					uni.showModal({
-						title: '获取用户信息失败',
-						content: '错误原因' + content,
+						title: 'Failed to get user information',
+						content: 'Reason for error' + content,
 						showCancel: false
 					});
 				}
-				// uni-id 苹果登录
-				console.warn('此处使用uni-id处理苹果登录，详情参考: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
+				// uni-id Apple Login
+				console.warn('This uses uni-id to handle Apple logins, for details refer to: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 				uni.request({
 					url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
 					method: 'POST',
@@ -295,7 +295,7 @@
 						if(res.data.code !== 0){
 							uni.showModal({
 								showCancel: false,
-								content: `苹果登录失败: ${JSON.stringify(res.data.msg)}`,
+								content: `Apple login failure: ${JSON.stringify(res.data.msg)}`,
 							})
 						} else {
 							uni.setStorageSync('openid', res.data.openid)
@@ -304,7 +304,7 @@
 					},
 					fail: (e) => {
 						uni.showModal({
-							content: `苹果登录失败: ${JSON.stringify(e)}`,
+							content: `Apple login failure: ${JSON.stringify(e)}`,
 							showCancel: false
 						})
 					}

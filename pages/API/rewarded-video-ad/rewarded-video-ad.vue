@@ -2,12 +2,12 @@
     <view>
         <page-head :title="title"></page-head>
         <view class="uni-padding-wrap uni-common-mt">
-            <button v-if="!loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="show">显示广告</button>
-            <button v-if="loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="reloadAd">重新加载广告</button>
+            <button v-if="!loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="show">Show ads</button>
+            <button v-if="loadError" :loading="loading" :disabled="loading" type="primary" class="btn" @click="reloadAd">Reload ads</button>
         </view>
         <!-- #ifndef APP-PLUS -->
         <view class="ad-tips">
-            <text>小程序端的广告ID由小程序平台提供</text>
+            <text>Ad IDs on the applet side are provided by the applet platform</text>
         </view>
         <!-- #endif -->
     </view>
@@ -19,7 +19,7 @@
     export default {
         data() {
             return {
-                title: '激励视频广告',
+                title: 'Motivational video ads',
                 loading: false,
                 loadError: false
             }
@@ -47,18 +47,18 @@
                 });
                 rewardedVideoAd.onClose((res) => {
                     this.loading = true;
-                    // 用户点击了【关闭广告】按钮
+                    // The user clicked the [Close Ads] button
                     if (res && res.isEnded) {
-                        // 正常播放结束
+                        // End of normal playback
                         console.log("onClose " + res.isEnded);
                     } else {
-                        // 播放中途退出
+                        // Quit in the middle of playback
                         console.log("onClose " + res.isEnded);
                     }
 
                     setTimeout(() => {
                         uni.showToast({
-                            title: "激励视频" + (res.isEnded ? "成功" : "未") + "播放完毕",
+                            title: "Motivational video" + (res.isEnded ? "Success" : "Not") + "Playback complete",
                             duration: 10000,
                             position: 'bottom'
                         })
@@ -79,7 +79,7 @@
                     rewardedVideoAd.load()
                         .then(() => rewardedVideoAd.show())
                         .catch(err => {
-                            console.log('激励视频 广告显示失败', err)
+                            console.log('Motivational video Ad display failure', err)
                             uni.showToast({
                                 title: err.errMsg || err.message,
                                 duration: 5000,

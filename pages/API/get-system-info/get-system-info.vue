@@ -5,90 +5,90 @@
 			<view class="uni-list">
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">设备型号</view>
+						<view class="uni-label" style="width:180px;">Equipment Model</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.model"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.model"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">客户端平台</view>
+						<view class="uni-label" style="width:180px;">Client Platform</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.platform"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.platform"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">操作系统版本</view>
+						<view class="uni-label" style="width:180px;">Operating system version</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.system"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.system"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">语言</view>
+						<view class="uni-label" style="width:180px;">Language</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.language"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.language"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">版本</view>
+						<view class="uni-label" style="width:180px;">Versions</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.version"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.version"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">屏幕宽度</view>
+						<view class="uni-label" style="width:180px;">Screen width</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.screenWidth"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.screenWidth"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">屏幕高度</view>
+						<view class="uni-label" style="width:180px;">Screen height</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.screenHeight"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.screenHeight"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">可使用窗口高度</view>
+						<view class="uni-label" style="width:180px;">Usable window height</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.windowHeight"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.windowHeight"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">可使用窗口的顶部位置</view>
+						<view class="uni-label" style="width:180px;">The top position of the window can be used</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.windowTop"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.windowTop"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">可使用窗口的底部位置</view>
+						<view class="uni-label" style="width:180px;">The bottom position of the window can be used</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.windowBottom"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.windowBottom"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">状态栏的高度</view>
+						<view class="uni-label" style="width:180px;">Height of the status bar</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.statusBarHeight"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.statusBarHeight"/>
 					</view>
 				</view>
 				<view class="uni-list-cell">
@@ -96,23 +96,23 @@
 						<view class="uni-label" style="width:180px;">DPI</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.pixelRatio"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.pixelRatio"/>
 					</view>
 				</view>
 				<!-- #ifdef MP -->
 				<view class="uni-list-cell">
 					<view class="uni-pd">
-						<view class="uni-label" style="width:180px;">基础库版本</view>
+						<view class="uni-label" style="width:180px;">Base Library Version</view>
 					</view>
 					<view class="uni-list-cell-db">
-						<input class="uni-input" type="text" :disabled="true" placeholder="未获取" :value="systemInfo.SDKVersion"/>
+						<input class="uni-input" type="text" :disabled="true" placeholder="Not acquired" :value="systemInfo.SDKVersion"/>
 					</view>
 				</view>
 				<!-- #endif -->
 			</view>
 			<view class="uni-padding-wrap">
 				<view class="uni-btn-v">
-					<button type="primary" @tap="getSystemInfo">获取设备系统信息</button>
+					<button type="primary" @tap="getSystemInfo">Obtain device system information</button>
 				</view>
 			</view>
 		</view>

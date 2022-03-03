@@ -2,13 +2,13 @@
 	<view>
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
-			<button class="uni-button" type="primary" @click="longshock">长震动</button>
-			<button class="uni-button" @click="shortshock">短震动</button>
+			<button class="uni-button" type="primary" @click="longshock">Long vibration</button>
+			<button class="uni-button" @click="shortshock">Short vibration</button>
 
 			<view class="uni-tips">
 				<view>Tips</view>
-				<view class="uni-tips-text">iOS上只有长震动，没有短震动</view>
-				<view class="uni-tips-text">iOS上需要手机设置“打开响铃时震动”或“静音时震动”，否则无法震动</view>
+				<view class="uni-tips-text">Only long vibrations on iOS, no short vibrations</view>
+				<view class="uni-tips-text">On iOS, you need to set the phone to "vibrate when open ring" or "vibrate when silent", otherwise it can't vibrate.</view>
 			</view>
 		</view>
 	</view>

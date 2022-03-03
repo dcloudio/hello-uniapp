@@ -7,10 +7,10 @@
 			</view>
 			<block v-else style="margin-top: 50px;">
 				<view class="uni-hello-text">
-					点击按钮下载服务端示例图片（下载网络文件到本地临时目录）
+					Click the button to download the server-side example image (download the network file to a local temporary directory)
 				</view>
 				<view class="uni-btn-v">
-					<button type="primary" @tap="downloadImage">下载</button>
+					<button type="primary" @tap="downloadImage">Download</button>
 				</view>
 			</block>
 		</view>
@@ -30,7 +30,7 @@
 		methods: {
 			downloadImage: function () {
 				uni.showLoading({
-					title:'下载中'
+					title:'Downloading'
 				})
 				var self = this
 				uni.downloadFile({

@@ -3,7 +3,7 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap">
 			<view style="background:#FFF; padding:50rpx 0;">
-				<view class="uni-hello-text uni-center"><text>支付金额</text></view>
+				<view class="uni-hello-text uni-center"><text>Payment amount</text></view>
 				<view class="uni-h1 uni-center uni-common-mt">
 					<text class="rmbLogo">￥</text>
 					<input class="price" type="digit" :value="price" maxlength="4" @input="priceChange" />
@@ -11,11 +11,11 @@
 			</view>
 			<view class="uni-btn-v uni-common-mt">
 				<!-- #ifdef MP-WEIXIN -->
-				<button type="primary" @click="weixinPay" :loading="loading">微信支付</button>
+				<button type="primary" @click="weixinPay" :loading="loading">WeChat Payment</button>
 				<!-- #endif -->
 				<!-- #ifdef APP-PLUS -->
 				<template v-if="providerList.length > 0">
-					<button v-for="(item,index) in providerList" :key="index" @click="requestPayment(item,index)" :loading="item.loading">{{item.name}}支付</button>
+					<button v-for="(item,index) in providerList" :key="index" @click="requestPayment(item,index)" :loading="item.loading">{{item.name}} Payments</button>
 				</template>
 				<!-- #endif -->
 			</view>
@@ -43,14 +43,14 @@
 						switch (value) {
 							case 'alipay':
 								providerList.push({
-									name: '支付宝',
+									name: 'Alipay',
 									id: value,
 									loading: false
 								});
 								break;
 							case 'wxpay':
 								providerList.push({
-									name: '微信',
+									name: 'WeChat',
 									id: value,
 									loading: false
 								});
@@ -62,7 +62,7 @@
 					this.providerList = providerList;
 				},
 				fail: (e) => {
-					console.log("获取支付通道失败：", e);
+					console.log("Failed to obtain payment channel:", e);
 				}
 			});
 			// #endif
@@ -73,7 +73,7 @@
 					uni.login({
 						provider: 'weixin',
 						success(res) {
-							console.warn('此处使用uni-id处理微信小程序登录，详情参考: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
+							console.warn('This uses uni-id to handle WeChat applet login, for details refer to: https://uniapp.dcloud.net.cn/uniCloud/uni-id')
 							uni.request({
 								url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/user-center',
 								method: 'POST',
@@ -86,14 +86,14 @@
 								},
 								success(res) {
 									if (res.data.code !== 0) {
-										reject(new Error('获取openid失败：', res.result.msg))
+										reject(new Error('Failed to get openid：', res.result.msg))
 										return
 									}
 									uni.setStorageSync('openid', res.data.openid)
 									resolve(res.data.openid)
 								},
 								fail(err) {
-									reject(new Error('获取openid失败：' + err))
+									reject(new Error('Failed to get openid：' + err))
 								}
 							})
 						},
@@ -105,7 +105,7 @@
 			},
 			async weixinPay() {
 				let openid = uni.getStorageSync('openid')
-				console.log("发起支付");
+				console.log("Initiate payment");
 				this.loading = true;
 				if (!openid) {
 					try {
@@ -116,7 +116,7 @@
 
 					if (!openid) {
 						uni.showModal({
-							content: '获取openid失败',
+							content: 'Failed to get openid',
 							showCancel: false
 						})
 						this.loading = false
@@ -127,7 +127,7 @@
 				let orderInfo = await this.getOrderInfo('wxpay')
 				if (!orderInfo) {
 					uni.showModal({
-						content: '获取支付信息失败',
+						content: 'Failed to get payment information',
 						showCancel: false
 					})
 					return
@@ -136,12 +136,12 @@
 					...orderInfo,
 					success: (res) => {
 						uni.showToast({
-							title: "感谢您的赞助!"
+							title: "Thank you for your sponsorship!"
 						})
 					},
 					fail: (res) => {
 						uni.showModal({
-							content: "支付失败,原因为: " + res
+							content: "The payment failed due to: " + res
 								.errMsg,
 							showCancel: false
 						})
@@ -157,7 +157,7 @@
 				let orderInfo = await this.getOrderInfo(provider);
 				if (!orderInfo) {
 					uni.showModal({
-						content: '获取支付信息失败',
+						content: 'Failed to get payment information',
 						showCancel: false
 					})
 					return
@@ -170,13 +170,13 @@
 					success: (e) => {
 						console.log("success", e);
 						uni.showToast({
-							title: "感谢您的赞助!"
+							title: "Thank you for your sponsorship!"
 						})
 					},
 					fail: (e) => {
 						console.log("fail", e);
 						uni.showModal({
-							content: "支付失败,原因为: " + e.errMsg,
+							content: "The payment failed due to: " + e.errMsg,
 							showCancel: false
 						})
 					},
@@ -188,16 +188,16 @@
 			getOrderInfo(provider) {
 				return new Promise((resolve, reject) => {
 					if (!this.price) {
-						reject(new Error('请输入金额'))
+						reject(new Error('Please enter the amount'))
 					}
-					console.warn('此处使用uni-pay处理支付，详情参考: https://uniapp.dcloud.io/uniCloud/unipay')
+					console.warn('This uses uni-pay to process payments, for details refer to: https://uniapp.dcloud.io/uniCloud/unipay')
 					uni.request({
 						method: 'POST',
 						url: 'https://97fca9f2-41f6-449f-a35e-3f135d4c3875.bspapp.com/http/pay',
 						data: {
 							provider,
 							openid: this.openid,
-							totalFee: Number(this.price) * 100, // 转为以分为单位
+							totalFee: Number(this.price) * 100, // Switch to a unit of division
 							// #ifdef APP-PLUS
 							platform: 'app-plus',
 							// #endif
@@ -209,11 +209,11 @@
 							if (res.data.code === 0) {
 								resolve(res.data.orderInfo)
 							} else {
-								reject(new Error('获取支付信息失败' + res.data.msg))
+								reject(new Error('Failed to get payment information' + res.data.msg))
 							}
 						},
 						fail(err) {
-							reject(new Error('请求支付接口失败' + err))
+							reject(new Error('Request for payment interface failed' + err))
 						}
 					})
 				})

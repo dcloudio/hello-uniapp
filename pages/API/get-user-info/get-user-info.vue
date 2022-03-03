@@ -5,7 +5,7 @@
 			<view style="background:#FFF; padding:40rpx;">
 				<block v-if="hasUserInfo === false">
 					<view class="uni-hello-text uni-center">
-						<text>请点击下方按钮获取用户头像及昵称或手机号</text>
+						<text>Please click the button below to get user avatar and nickname or cell phone number</text>
 					</view>
 				</block>
 				<block v-if="hasUserInfo === true">
@@ -17,12 +17,12 @@
 			</view>
 			<view class="uni-btn-v">
 				<!-- #ifdef APP-PLUS || MP-ALIPAY || MP-TOUTIAO -->
-				<button type="primary" :loading="btnLoading" @click="getUserInfo">获取用户信息</button>
+				<button type="primary" :loading="btnLoading" @click="getUserInfo">Obtain user information</button>
 				<!-- #endif -->
 				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-QQ  || MP-JD -->
-				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
+				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">Obtain user information</button>
 				<!-- #endif -->
-				<button @click="clear">清空</button>
+				<button @click="clear">Clear</button>
 			</view>
 		</view>
 	</view>
@@ -51,7 +51,7 @@
 		},
 		methods: {
 			...mapActions(['getPhoneNumber']),
-			// 获取用户信息 API 在小程序可直接使用，在 5+App 里面需要先登录才能调用
+			// Obtain user information API you can use it directly in the applet, but in the 5+App you need to sign in before you can call it.
 			getUserInfo() {
 				this.btnLoading = true;
 				if (this.isUniverifyLogin) {
@@ -90,7 +90,7 @@
 						console.log('getUserInfo fail', error);
 						let content = error.errMsg;
 						if (~content.indexOf('uni.login')) {
-							content = '请在登录页面完成登录操作';
+							content = 'Please complete the login operation on the login page';
 						}
 						// #ifndef APP-PLUS
 						uni.getSetting({
@@ -98,8 +98,8 @@
 								let authStatus = res.authSetting['scope.userInfo'];
 								if (!authStatus) {
 									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要获取您的用户信息，请在设置界面打开相关权限',
+										title: 'Authorization failure',
+										content: 'Hello uni-app You need to get your user information, please open the relevant permissions in the settings screen',
 										success: (res) => {
 											if (res.confirm) {
 												uni.openSetting()
@@ -108,8 +108,8 @@
 									})
 								} else {
 									uni.showModal({
-										title: '获取用户信息失败',
-										content: '错误原因' + content,
+										title: 'Failed to get user information',
+										content: 'Reason for error' + content,
 										showCancel: false
 									});
 								}
@@ -118,8 +118,8 @@
 						// #endif
 						// #ifdef APP-PLUS
 						uni.showModal({
-							title: '获取用户信息失败',
-							content: '错误原因' + content,
+							title: 'Failed to get user information',
+							content: 'Reason for error' + content,
 							showCancel: false
 						});
 						// #endif
@@ -133,8 +133,8 @@
 				console.log('mpGetUserInfo', result);
 				if (result.detail.errMsg !== 'getUserInfo:ok') {
 					uni.showModal({
-						title: '获取用户信息失败',
-						content: '错误原因' + result.detail.errMsg,
+						title: 'Failed to get user information',
+						content: 'Reason for error' + result.detail.errMsg,
 						showCancel: false
 					});
 					return;

@@ -6,15 +6,15 @@
 				<view class="animation-element" :animation="animationData"></view>
 			</view>
 			<scroll-view class="animation-buttons" scroll-y="true">
-				<button class="animation-button" @tap="rotate">旋转</button>
-				<button class="animation-button" @tap="scale">缩放</button>
-				<button class="animation-button" @tap="translate">移动</button>
-				<button class="animation-button" @tap="skew">倾斜</button>
-				<button class="animation-button" @tap="rotateAndScale">旋转并缩放</button>
-				<button class="animation-button" @tap="rotateThenScale">旋转后缩放</button>
-				<button class="animation-button" @tap="all">同时展示全部</button>
-				<button class="animation-button" @tap="allInQueue">顺序展示全部</button>
-				<button class="animation-button animation-button-reset" @tap="reset">还原</button>
+				<button class="animation-button" @tap="rotate">rotate</button>
+				<button class="animation-button" @tap="scale">scale</button>
+				<button class="animation-button" @tap="translate">translate</button>
+				<button class="animation-button" @tap="skew">skew</button>
+				<button class="animation-button" @tap="rotateAndScale">rotate and Scale</button>
+				<button class="animation-button" @tap="rotateAndScale">Rotate and zoom</button>
+				<button class="animation-button" @tap="all">Show all</button>
+				<button class="animation-button" @tap="allInQueue">Show all in order</button>
+				<button class="animation-button animation-button-reset" @tap="reset">reset</button>
 			</scroll-view>
 		</view>
 	</view>
@@ -56,7 +56,7 @@
 					.step()
 				this.animationData = this.animation.export()
 			},
-			rotateThenScale: function () {
+			rotateAndScale: function () {
 				this.animation.rotate(Math.random() * 720 - 360).step()
 					.scale(Math.random() * 2).step()
 				this.animationData = this.animation.export()

@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-		<text class="nav-text">左侧列表</text>
+		<text class="nav-text">Left side list</text>
 		<list class="list-wrapper">
 			<cell v-for="item in lists" :key="item.id">
 				<div class="text-wrapper" @click="clickitem(item.id)">
@@ -11,7 +11,7 @@
 		</list>
 		<div style="flex: 1; text-align: center;">
 			<div class="close-drawer" @click="hideDrawer">
-				<text style="font-size: 34rpx; text-align: center;">关闭抽屉</text>
+				<text style="font-size: 34rpx; text-align: center;">Close the drawer</text>
 			</div>
 		</div>
     </div>

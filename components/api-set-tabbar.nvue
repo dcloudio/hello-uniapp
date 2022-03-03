@@ -1,13 +1,13 @@
 <template>
 	<view class="uni-padding-wrap">
 		<page-head :title="title"></page-head>
-		<button class="button" @click="setTabBarBadge">{{ !hasSetTabBarBadge ? '设置tab徽标' : '移除tab徽标' }}</button>
-		<button class="button" @click="showTabBarRedDot">{{ !hasShownTabBarRedDot ?  '显示红点' : '移除红点'}}</button>
-		<button class="button" @click="customStyle">{{ !hasCustomedStyle ? '自定义Tab样式' : '移除自定义样式'}}</button>
-		<button class="button" @click="customItem">{{ !hasCustomedItem ? '自定义Tab信息' : '移除自定义信息' }}</button>
-		<button class="button" @click="hideTabBar">{{ !hasHiddenTabBar ? '隐藏TabBar' : '显示TabBar' }}</button>
+		<button class="button" @click="setTabBarBadge">{{ !hasSetTabBarBadge ? 'Set tab badge' : 'Remove tab badge' }}</button>
+		<button class="button" @click="showTabBarRedDot">{{ !hasShownTabBarRedDot ?  'Show red dot' : 'Remove red dot'}}</button>
+		<button class="button" @click="customStyle">{{ !hasCustomedStyle ? 'Custom Tab Style' : 'Remove custom styles'}}</button>
+		<button class="button" @click="customItem">{{ !hasCustomedItem ? 'Customize Tab information' : 'Remove custom messages' }}</button>
+		<button class="button" @click="hideTabBar">{{ !hasHiddenTabBar ? 'Hide TabBar' : 'Show TabBar' }}</button>
 		<view class="btn-area">
-			<button class="button" type="primary" @click="navigateBack">返回上一级</button>
+			<button class="button" type="primary" @click="navigateBack">Back to previous level</button>
 		</view>
 	</view>
 </template>
@@ -50,7 +50,7 @@
 			if (this.hasCustomedItem) {
 				let tabBarOptions = {
 					index: 1,
-					text: '接口',
+					text: 'Interface',
 					iconPath: '/static/api.png',
 					selectedIconPath: '/static/apiHL.png'
 				}
@@ -127,7 +127,7 @@
 			customItem() {
 				let tabBarOptions = {
 					index: 1,
-					text: '接口',
+					text: 'Interface',
 					iconPath: '/static/api.png',
 					selectedIconPath: '/static/apiHL.png'
 				}
