@@ -63,7 +63,7 @@
 					<view class="text" style="width: 200rpx;">Fixed width</view>
 				</view>
 				<view class="uni-flex uni-row" style="-webkit-flex-wrap: wrap;flex-wrap: wrap;">
-					<view class="text" style="width: 140px; line-height: unset;">一行显示不全,wrap折行</view>
+					<view class="text" style="width: 140px; line-height: unset;">A line is not displayed in full, wrap fold line</view>
 					<view class="text" style="width: 280rpx; line-height: unset;">A line is not displayed in full, wrap fold line</view>
 					<view class="text" style="width: 280rpx; line-height: unset;">A line is not displayed in full, wrap fold line</view>
 				</view>

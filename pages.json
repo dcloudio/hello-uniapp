@@ -400,7 +400,7 @@
 				{
 					"path": "set-navigation-bar-title/set-navigation-bar-title",
 					"style": {
-						"navigationBarTitleText": "设置界面标题"
+						"navigationBarTitleText": "Set the page title"
 					}
 				},
 				{
