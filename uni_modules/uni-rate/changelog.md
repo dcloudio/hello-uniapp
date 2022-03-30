@@ -1,3 +1,5 @@
+## 1.3.1（2022-02-25）
+- 修复 条件判断 `NaN` 错误的 bug
 ## 1.3.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-rate](https://uniapp.dcloud.io/component/uniui/uni-rate)

@@ -389,13 +389,16 @@
 
 	.uni-calendar--fixed {
 		position: fixed;
-		bottom: calc(var(--window-bottom));
+		/* #ifdef APP-NVUE */
+		bottom: 0;
+		/* #endif */
 		left: 0;
 		right: 0;
 		transition-property: transform;
 		transition-duration: 0.3s;
 		transform: translateY(460px);
 		/* #ifndef APP-NVUE */
+		bottom: calc(var(--window-bottom));
 		z-index: 99;
 		/* #endif */
 	}

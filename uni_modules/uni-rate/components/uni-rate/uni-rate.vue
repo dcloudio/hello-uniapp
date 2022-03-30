@@ -260,7 +260,7 @@
 			_getRateCount(clientX) {
 				this._getSize()
 				const size = Number(this.size)
-				if (size === NaN) {
+				if (isNaN(size)) {
 					return new Error('size 属性只能设置为数字')
 				}
 				const rateMoveRange = clientX - this._rateBoxLeft

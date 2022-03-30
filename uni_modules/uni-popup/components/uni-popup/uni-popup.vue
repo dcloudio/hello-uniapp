@@ -179,7 +179,7 @@ export default {
 			this.popupWidth = windowWidth
 			this.popupHeight = windowHeight + windowTop
 			// TODO fix by mehaotian 是否适配底部安全区 ,目前微信ios 、和 app ios 计算有差异，需要框架修复
-			if(safeArea){
+			if(safeArea && this.safeArea){
 				// #ifdef MP-WEIXIN
 				this.safeAreaInsets = screenHeight - safeArea.bottom
 				// #endif

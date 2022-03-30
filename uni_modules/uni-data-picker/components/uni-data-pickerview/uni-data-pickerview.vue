@@ -177,7 +177,7 @@
 		}
 	}
 </script>
-<style scoped>
+<style >
 	.uni-data-pickerview {
 		flex: 1;
 		/* #ifndef APP-NVUE */

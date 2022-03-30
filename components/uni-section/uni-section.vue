@@ -8,8 +8,11 @@
 				<text :class="{'distraction':!subTitle}" :style="{color:color}" class="uni-section__content-title">{{ title }}</text>
 				<text v-if="subTitle" class="uni-section__content-sub">{{ subTitle }}</text>
 			</view>
+			<view>
+				<slot name="right"></slot>
+			</view>
 		</view>
-		<view :style="{padding: padding ? '10px' : ''}">
+		<view :class="{'is--hidden':overflow}" :style="{padding: padding ? '10px' : ''}">
 			<slot/>
 		</view>
 	</view>
@@ -50,6 +53,10 @@
 			padding: {
 				type: Boolean,
 				default: false
+			},
+			overflow :{
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -69,9 +76,9 @@
 		}
 	}
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 	$uni-primary: #2979ff !default;
-	
+
 	.uni-section {
 		background-color: #fff;
 		// overflow: hidden;
@@ -136,5 +143,8 @@
 		color: #999;
 		line-height: 16px;
 		margin-top: 2px;
+	}
+	.is--hidden {
+		overflow: hidden;
 	}
 </style>
