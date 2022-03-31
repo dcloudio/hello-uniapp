@@ -158,7 +158,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 	.chat-custom-right {
 		flex: 1;
 		/* #ifndef APP-NVUE */

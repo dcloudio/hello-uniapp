@@ -43,44 +43,61 @@
 				<view class="box uni-mt-5 uni-radius">
 					<view class="item-box uni-info-bg uni-white"><text class="uni-body uni-white">info</text></view>
 					<view class="item-box">
-						<view class="item uni-info-disable-bg uni-white"><text class="uni-body uni-white">disable</text></view>
-						<view class="item uni-info-light-bg uni-white"><text class="uni-body uni-white">light</text></view>
+						<view class="item uni-info-disable-bg uni-white"><text class="uni-body uni-white">disable</text>
+						</view>
+						<view class="item uni-info-light-bg uni-white"><text class="uni-body uni-white">light</text>
+						</view>
 					</view>
 				</view>
 			</view>
 		</uni-section>
 		<uni-section title="中性色" sub-title="中性色用于文本、背景和边框颜色。通过运用不同的中性色，来表现层次结构。" type="line">
 			<view class="uni-ma-5 uni-radius">
-				<view class="box-base uni-radius uni-main-color-bg uni-mt-5"><text class="uni-body uni-white">main-color</text></view>
-				<view class="box-base uni-radius uni-base-color-bg uni-mt-5 "><text class="uni-body uni-white">base-color</text></view>
-				<view class="box-base uni-radius uni-secondary-color-bg uni-mt-5" ><text class="uni-body uni-white">secondary-color</text></view>
-				<view class="box-base uni-radius uni-extra-color-bg uni-mt-5"><text class="uni-body uni-white">extra-color</text></view>
+				<view class="box-base uni-radius uni-main-color-bg uni-mt-5"><text
+						class="uni-body uni-white">main-color</text></view>
+				<view class="box-base uni-radius uni-base-color-bg uni-mt-5 "><text
+						class="uni-body uni-white">base-color</text></view>
+				<view class="box-base uni-radius uni-secondary-color-bg uni-mt-5"><text
+						class="uni-body uni-white">secondary-color</text></view>
+				<view class="box-base uni-radius uni-extra-color-bg uni-mt-5"><text
+						class="uni-body uni-white">extra-color</text></view>
 			</view>
 		</uni-section>
 
 		<uni-section title="分隔线" sub-title="主要用于边框颜色" type="line">
 			<view class="uni-ma-5 uni-radius">
-				<view class="box-base uni-radius uni-border-4-bg uni-mt-5 "><text class="uni-body uni-secondary-color uni-white">border-4</text></view>
-				<view class="box-base uni-radius uni-border-3-bg uni-mt-5 "><text class="uni-body uni-secondary-color uni-white">border-3</text></view>
-				<view class="box-base uni-radius uni-border-2-bg uni-mt-5"><text class="uni-body uni-white">border-2</text></view>
-				<view class="box-base uni-radius uni-border-1-bg uni-mt-5"><text class="uni-body uni-white">border-1</text></view>
+				<view class="box-base uni-radius uni-border-4-bg uni-mt-5 "><text
+						class="uni-body uni-secondary-color uni-white">border-4</text></view>
+				<view class="box-base uni-radius uni-border-3-bg uni-mt-5 "><text
+						class="uni-body uni-secondary-color uni-white">border-3</text></view>
+				<view class="box-base uni-radius uni-border-2-bg uni-mt-5"><text
+						class="uni-body uni-white">border-2</text></view>
+				<view class="box-base uni-radius uni-border-1-bg uni-mt-5"><text
+						class="uni-body uni-white">border-1</text></view>
 			</view>
 		</uni-section>
 
 		<uni-section title="常规色" sub-title="通用颜色,如黑色白色" type="line">
 			<view class="uni-ma-5 uni-radius">
-				<view class="box-base uni-radius uni-border uni-white-bg uni-mt-5"><text class="uni-body uni-secondary-color">white</text></view>
-				<view class="box-base uni-radius uni-border uni-black-bg uni-mt-5"><text class="uni-body uni-secondary-color">black</text></view>
-				<view class="box-base uni-radius uni-border uni-transparent-bg uni-mt-5"><text class="uni-body uni-secondary-color">transparent</text>
+				<view class="box-base uni-radius uni-border uni-white-bg uni-mt-5"><text
+						class="uni-body uni-secondary-color">white</text></view>
+				<view class="box-base uni-radius uni-border uni-black-bg uni-mt-5"><text
+						class="uni-body uni-secondary-color">black</text></view>
+				<view class="box-base uni-radius uni-border uni-transparent-bg uni-mt-5"><text
+						class="uni-body uni-secondary-color">transparent</text>
 				</view>
-				<view class="box-base uni-radius uni-border uni-bg-color-bg uni-mt-5"><text class="uni-body uni-secondary-color">bg-color</text></view>
+				<view class="box-base uni-radius uni-border uni-bg-color-bg uni-mt-5"><text
+						class="uni-body uni-secondary-color">bg-color</text></view>
 			</view>
 		</uni-section>
 
 		<uni-section title="阴影" type="line">
-			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-sm  uni-mt-2"><text class="uni-body uni-secondary-color">shadow-sm</text></view>
-			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-base uni-secondary-color uni-mt-2"><text class="uni-body uni-secondary-color">shadow-base</text></view>
-			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-lg uni-secondary-color uni-mt-2"><text class="uni-body uni-secondary-color">shadow-lg</text></view>
+			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-sm  uni-mt-2"><text
+					class="uni-body uni-secondary-color">shadow-sm</text></view>
+			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-base uni-secondary-color uni-mt-2"><text
+					class="uni-body uni-secondary-color">shadow-base</text></view>
+			<view class="box-base uni-white-bg uni-ma-5 uni-radius uni-shadow-lg uni-secondary-color uni-mt-2"><text
+					class="uni-body uni-secondary-color">shadow-lg</text></view>
 		</uni-section>
 	</view>
 </template>
@@ -125,6 +142,7 @@
 			}
 		}
 	}
+
 	.box-base {
 		@include flex;
 		height: 50px;

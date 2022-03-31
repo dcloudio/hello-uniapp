@@ -69,7 +69,7 @@
 		<view>
 			<!-- 提示窗示例 -->
 			<uni-popup ref="alertDialog" type="dialog">
-				<uni-popup-dialog :type="msgType" title="通知" content="欢迎使用 uni-popup!" @confirm="dialogConfirm"
+				<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="同意" title="通知" content="欢迎使用 uni-popup!" @confirm="dialogConfirm"
 					@close="dialogClose"></uni-popup-dialog>
 			</uni-popup>
 		</view>
@@ -77,14 +77,14 @@
 		<view>
 			<!-- 输入框示例 -->
 			<uni-popup ref="inputDialog" type="dialog">
-				<uni-popup-dialog ref="inputClose" mode="input" title="输入内容" value="对话框预置提示内容!"
+				<uni-popup-dialog ref="inputClose"  mode="input" title="输入内容" value="对话框预置提示内容!"
 					placeholder="请输入内容" @confirm="dialogInputConfirm"></uni-popup-dialog>
 			</uni-popup>
 		</view>
 
 		<view>
 			<!-- 分享示例 -->
-			<uni-popup ref="share" type="share">
+			<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
 				<uni-popup-share></uni-popup-share>
 			</uni-popup>
 		</view>

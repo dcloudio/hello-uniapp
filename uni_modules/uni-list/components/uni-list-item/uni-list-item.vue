@@ -31,7 +31,7 @@
 					<view v-if="rightText || showBadge || showSwitch" class="uni-list-item__extra"
 						:class="{ 'flex--justify': direction === 'column' }">
 						<text v-if="rightText" class="uni-list-item__extra-text">{{ rightText }}</text>
-						<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" />
+						<uni-badge v-if="showBadge" :type="badgeType" :text="badgeText" :custom-style="badgeStyle" />
 						<switch v-if="showSwitch" :disabled="disabled" :checked="switchChecked"
 							@change="onSwitchChange" />
 					</view>
@@ -58,6 +58,7 @@
 	 * 	@value 	 sm			小图
 	 * @property {String} 	badgeText						数字角标内容
 	 * @property {String} 	badgeType 						数字角标类型，参考[uni-icons](https://ext.dcloud.net.cn/plugin?id=21)
+	 * @property {Object}   badgeStyle           数字角标样式
 	 * @property {String} 	rightText 						右侧文字内容
 	 * @property {Boolean} 	disabled = [true|false]			是否禁用
 	 * @property {Boolean} 	clickable = [true|false] 		是否开启点击反馈
@@ -138,6 +139,12 @@
 				type: String,
 				default: 'success'
 			},
+			badgeStyle:{
+				type: Object,
+				default () {
+					return {}
+				}
+			},
 			rightText: {
 				type: String,
 				default: ''
@@ -158,7 +165,7 @@
 				type: Object,
 				default () {
 					return {
-						type: 'contact',
+						type: '',
 						color: '#000000',
 						size: 20
 					};
@@ -268,7 +275,6 @@
 	$uni-bg-color-hover:#f1f1f1;
 	$uni-text-color-grey:#999;
 	$list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
-
 	.uni-list-item {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -283,15 +289,12 @@
 		cursor: pointer;
 		/* #endif */
 	}
-
 	.uni-list-item--disabled {
 		opacity: 0.3;
 	}
-
 	.uni-list-item--hover {
 		background-color: $uni-bg-color-hover;
 	}
-
 	.uni-list-item__container {
 		position: relative;
 		/* #ifndef APP-NVUE */
@@ -304,15 +307,12 @@
 		overflow: hidden;
 		// align-items: center;
 	}
-
 	.container--right {
 		padding-right: 0;
 	}
-
 	// .border--left {
 	// 	margin-left: $uni-spacing-row-lg;
 	// }
-
 	.uni-list--border {
 		position: absolute;
 		top: 0;
@@ -324,7 +324,6 @@
 		border-top-width: 0.5px;
 		/* #endif */
 	}
-
 	/* #ifndef APP-NVUE */
 	.uni-list--border:after {
 		position: absolute;
@@ -337,9 +336,7 @@
 		transform: scaleY(0.5);
 		background-color: $uni-border-color;
 	}
-
 	/* #endif */
-
 	.uni-list-item__content {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -352,24 +349,20 @@
 		justify-content: space-between;
 		overflow: hidden;
 	}
-
 	.uni-list-item__content--center {
 		justify-content: center;
 	}
-
 	.uni-list-item__content-title {
 		font-size: $uni-font-size-base;
 		color: #3b4144;
 		overflow: hidden;
 	}
-
 	.uni-list-item__content-note {
 		margin-top: 6rpx;
 		color: $uni-text-color-grey;
 		font-size: $uni-font-size-sm;
 		overflow: hidden;
 	}
-
 	.uni-list-item__extra {
 		// width: 25%;
 		/* #ifndef APP-NVUE */
@@ -379,7 +372,6 @@
 		justify-content: flex-end;
 		align-items: center;
 	}
-
 	.uni-list-item__header {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -387,14 +379,12 @@
 		flex-direction: row;
 		align-items: center;
 	}
-
 	.uni-list-item__icon {
 		margin-right: 18rpx;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 	}
-
 	.uni-list-item__icon-img {
 		/* #ifndef APP-NVUE */
 		display: block;
@@ -403,7 +393,6 @@
 		width: $uni-img-size-base;
 		margin-right: 10px;
 	}
-
 	.uni-icon-wrapper {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -411,40 +400,33 @@
 		align-items: center;
 		padding: 0 10px;
 	}
-
 	.flex--direction {
 		flex-direction: column;
 		/* #ifndef APP-NVUE */
 		align-items: initial;
 		/* #endif */
 	}
-
 	.flex--justify {
 		/* #ifndef APP-NVUE */
 		justify-content: initial;
 		/* #endif */
 	}
-
 	.uni-list--lg {
 		height: $uni-img-size-lg;
 		width: $uni-img-size-lg;
 	}
-
 	.uni-list--base {
 		height: $uni-img-size-base;
 		width: $uni-img-size-base;
 	}
-
 	.uni-list--sm {
 		height: $uni-img-size-sm;
 		width: $uni-img-size-sm;
 	}
-
 	.uni-list-item__extra-text {
 		color: $uni-text-color-grey;
 		font-size: $uni-font-size-sm;
 	}
-
 	.uni-ellipsis-1 {
 		/* #ifndef APP-NVUE */
 		overflow: hidden;
@@ -456,7 +438,6 @@
 		text-overflow:ellipsis;
 		/* #endif */
 	}
-
 	.uni-ellipsis-2 {
 		/* #ifndef APP-NVUE */
 		overflow: hidden;
@@ -465,7 +446,6 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		/* #endif */
-
 		/* #ifdef APP-NVUE */
 		lines: 2;
 		text-overflow:ellipsis;

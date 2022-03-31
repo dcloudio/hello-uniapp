@@ -123,7 +123,7 @@
 
 	.content-text {
 		font-size: 14px;
-		color: $uni-text-color;
+		color: #666;
 	}
 
 	.color-tag {

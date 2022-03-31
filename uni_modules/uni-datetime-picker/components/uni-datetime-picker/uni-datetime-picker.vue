@@ -266,7 +266,16 @@
 					this.initPicker(newVal)
 				}
 			},
-
+			modelValue: {
+				immediate: true,
+				handler(newVal, oldVal) {
+					if (this.isEmitValue) {
+						this.isEmitValue = false
+						return
+					}
+					this.initPicker(newVal)
+				}
+			},
 			start: {
 				immediate: true,
 				handler(newVal, oldVal) {
@@ -281,7 +290,6 @@
 					}
 				}
 			},
-
 			end: {
 				immediate: true,
 				handler(newVal, oldVal) {

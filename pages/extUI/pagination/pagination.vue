@@ -33,10 +33,15 @@
 		components: {},
 		data() {
 			return {
-				current: 1,
-				total: 0,
+				current: 3,
+				total: 10,
 				pageSize: 10
 			}
+		},
+		mounted() {
+			setTimeout(() => {
+				this.current = 5
+			}, 3000)
 		},
 		methods: {
 			add() {
@@ -54,8 +59,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
 	.example-body {
 		/* #ifndef APP-NVUE */
 		display: block;

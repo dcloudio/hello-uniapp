@@ -23,7 +23,7 @@
 				</uni-grid-item>
 			</uni-grid>
 		</uni-section>
-		
+
 		<uni-section title="滑动视图" type="line" padding>
 			<!-- 因为swiper特性的关系，请指定swiper的高度 ，swiper的高度并不会被内容撑开-->
 			<swiper class="swiper" :indicator-dots="true">
@@ -212,13 +212,13 @@
 
 <style lang="scss">
 	.image {
-		width: 50rpx;
-		height: 50rpx;
+		width: 25px;
+		height: 25px;
 	}
 
 	.text {
-		font-size: 26rpx;
-		margin-top: 10rpx;
+		font-size: 14px;
+		margin-top: 5px;
 	}
 
 	.example-body {

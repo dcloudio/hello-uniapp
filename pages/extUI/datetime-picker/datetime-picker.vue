@@ -5,7 +5,7 @@
 		</uni-card>
 		<uni-section :title="'日期用法：' + single" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @maskClick="maskClick" />
+			<uni-datetime-picker type="date" :clear-icon="false" v-model="single" @maskClick="maskClick" />
 		</view>
 		<uni-section :title="'日期时间用法：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
@@ -13,7 +13,7 @@
 		</view>
 		<uni-section :title="'日期范围用法：' + '[' + range + ']'" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker v-model="range" type="daterange" rangeSeparator="至" @maskClick="maskClick" />
+			<uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" />
 		</view>
 		<uni-section :title="'日期时间范围用法：' + '[' + datetimerange + ']' " type="line"></uni-section>
 		<view class="example-body">
@@ -39,6 +39,10 @@
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" :border="false" />
 		</view>
+		<uni-section :title="'隐藏清除按钮用法：' + single" type="line"></uni-section>
+		<view class="example-body">
+			<uni-datetime-picker v-model="single" :clearIcon="false" />
+		</view>
 		<uni-section :title="'disabled用法：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" disabled />
@@ -50,12 +54,12 @@
 	export default {
 		data() {
 			return {
-				single: '2021-5-3',
-				datetimesingle: '2021-07-3',
+				single: '',
+				datetimesingle: '',
 				range: ['2021-02-1', '2021-3-28'],
 				datetimerange: [],
-				start: '2021-7-2',
-				end: '2021-7-29'
+				start: Date.now() - 1000000000,
+				end: Date.now() + 1000000000
 			}
 		},
 
@@ -72,16 +76,16 @@
 		},
 		mounted() {
 			setTimeout(() => {
-				// this.datetimesingle = '2021-7-10'
-				// this.single = '2021-2-12'
+				this.datetimesingle = Date.now() - 2 * 24 * 3600 * 1000
+				this.single = '2021-2-12'
 				// this.range = ['2021-03-1', '2021-4-28']
-				// this.datetimerange = ["2021-07-08 0:00:00", "2021-08-08 23:59:59"]
+				this.datetimerange = ["2021-07-08 0:01:10", "2021-08-08 23:59:59"]
 				// this.start = '2021-07-10'
 				// this.end = '2021-07-20'
-			},3000)
+			}, 3000)
 		},
 
-		methods:{
+		methods: {
 			change(e) {
 				this.single = e
 				console.log('----change事件:', this.single = e);
@@ -89,7 +93,7 @@
 			changeLog(e) {
 				console.log('----change事件:', e);
 			},
-			maskClick(e){
+			maskClick(e) {
 				console.log('----maskClick事件:', e);
 			}
 		}

@@ -1,17 +1,20 @@
 <template>
 	<view class="uni-container">
 		<uni-card is-full>
-		<text class="uni-h6"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
+			<text class="uni-h6"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
 		</uni-card>
 		<uni-section title="基础用法" type="line">
-			<uni-goods-nav @click="onClick"/>
+			<uni-goods-nav @click="onClick" />
 		</uni-section>
 		<uni-section title="自定义用法" type="line">
-			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup" @click="onClick" @buttonClick="buttonClick" />
-			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick" @buttonClick="buttonClick" style="margin-top: 20px;" />
+			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup" @click="onClick"
+				@buttonClick="buttonClick" />
+			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
+				@buttonClick="buttonClick" style="margin-top: 20px;" />
 		</uni-section>
 		<view class="goods-carts">
-			<uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick" @buttonClick="buttonClick"/>
+			<uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick"
+				@buttonClick="buttonClick" />
 		</view>
 
 	</view>
@@ -29,8 +32,8 @@
 					icon: 'shop',
 					text: '店铺',
 					info: 2,
-					infoBackgroundColor:'#007aff',
-					infoColor:"#f5f5f5"
+					infoBackgroundColor: '#007aff',
+					infoColor: "#f5f5f5"
 				}, {
 					icon: 'cart',
 					text: '购物车',
@@ -58,13 +61,11 @@
 						color: '#fff'
 					}
 				],
-				customButtonGroup1: [
-					{
-						text: '立即购买',
-						backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
-						color: '#fff'
-					}
-				]
+				customButtonGroup1: [{
+					text: '立即购买',
+					backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
+					color: '#fff'
+				}]
 			}
 		},
 		onLoad() {},
@@ -84,7 +85,6 @@
 </script>
 
 <style lang="scss">
-
 	.example-body {
 		padding: 0;
 		/* #ifndef APP-NVUE */

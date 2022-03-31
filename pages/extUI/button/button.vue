@@ -6,19 +6,19 @@
 		</uni-card>
 		<uni-section title="按钮形状" sub-title="添加类名 .uni-btn-radius 可以使用圆角按钮" type="line">
 			<view class="uni-ma-5 uni-pb-5">
-				<button class="uni-btn" >默认按钮</button>
+				<button class="uni-btn">默认按钮</button>
 				<button class="uni-btn uni-btn-radius " hover-class="hover-class">圆角</button>
 			</view>
 		</uni-section>
 		<uni-section title="按钮形状(size=mini)" sub-title="添加类名 .uni-btn-radius 可以使用圆角按钮" type="line">
 			<view class="uni-ma-5 uni-pb-5">
-				<button class="uni-btn" size="mini" >默认按钮</button>
+				<button class="uni-btn" size="mini">默认按钮</button>
 				<button class="uni-btn uni-btn-radius" size="mini">圆角</button>
 			</view>
 		</uni-section>
 		<uni-section title="普通按钮" sub-title="指定不同的 type 属性 ,展示不同类型按钮" type="line">
 			<view class="uni-ma-5 uni-pb-5">
-				<button class="uni-btn" type="default" >default</button>
+				<button class="uni-btn" type="default">default</button>
 				<button class="uni-btn" type="primary">primary</button>
 				<button class="uni-btn" type="success">success</button>
 				<button class="uni-btn" type="warning">warning</button>
@@ -100,8 +100,8 @@
 </script>
 <style lang="scss">
 	.hover-class-test {
-		color:red;
-		border:1px red solid;
-		background:blue;
+		color: red;
+		border: 1px red solid;
+		background: blue;
 	}
 </style>

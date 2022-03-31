@@ -10,8 +10,7 @@
 				</button>
 				<uni-drawer ref="showLeft" mode="left" :width="320" @change="change($event,'showLeft')">
 					<view class="close">
-						<button
-							@click="closeDrawer('showLeft')"><text class="word-btn-white">关闭Drawer</text></button>
+						<button @click="closeDrawer('showLeft')"><text class="word-btn-white">关闭Drawer</text></button>
 					</view>
 				</uni-drawer>
 			</view>
@@ -35,7 +34,7 @@
 								<text>可滚动内容 {{item}}</text>
 							</view>
 							<view class="close">
-								<button  @click="closeDrawer('showRight')"><text
+								<button @click="closeDrawer('showRight')"><text
 										class="word-btn-white">关闭Drawer</text></button>
 							</view>
 						</scroll-view>
@@ -88,38 +87,43 @@
 </script>
 
 <style lang="scss">
-.example-body {
-	padding: 10px;
-}
-.scroll-view {
-	/* #ifndef APP-NVUE */
-	width: 100%;
-	height: 100%;
-	/* #endif */
-	flex:1
-}
-// 处理抽屉内容滚动
-.scroll-view-box {
-	flex: 1;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-.info {
-	padding: 15px;
-	color: #666;
-}
+	.example-body {
+		padding: 10px;
+	}
 
-.info-text {
-	font-size: 14px;
-	color: #666;
-}
-.info-content {
-	padding: 5px 15px;
-}
-.close {
-	padding: 10px;
-}
+	.scroll-view {
+		/* #ifndef APP-NVUE */
+		width: 100%;
+		height: 100%;
+		/* #endif */
+		flex: 1
+	}
+
+	// 处理抽屉内容滚动
+	.scroll-view-box {
+		flex: 1;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.info {
+		padding: 15px;
+		color: #666;
+	}
+
+	.info-text {
+		font-size: 14px;
+		color: #666;
+	}
+
+	.info-content {
+		padding: 5px 15px;
+	}
+
+	.close {
+		padding: 10px;
+	}
 </style>
