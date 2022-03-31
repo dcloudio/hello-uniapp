@@ -141,7 +141,6 @@
 </script>
 
 <style lang="scss">
-
 	.example-body {
 		/* #ifndef APP-PLUS-NVUE */
 		display: flex;

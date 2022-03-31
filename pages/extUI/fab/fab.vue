@@ -37,25 +37,26 @@
 					buttonColor: '#007AFF',
 					iconColor: '#fff'
 				},
-				is_color_type:false,
+				is_color_type: false,
 				content: [{
-					iconPath: '/static/image.png',
-					selectedIconPath: '/static/image-active.png',
-					text: '相册',
-					active: false
-				},
-				{
-					iconPath: '/static/home.png',
-					selectedIconPath: '/static/home-active.png',
-					text: '首页',
-					active: false
-				},
-				{
-					iconPath: '/static/star.png',
-					selectedIconPath: '/static/star-active.png',
-					text: '收藏',
-					active: false
-				}]
+						iconPath: '/static/image.png',
+						selectedIconPath: '/static/image-active.png',
+						text: '相册',
+						active: false
+					},
+					{
+						iconPath: '/static/home.png',
+						selectedIconPath: '/static/home-active.png',
+						text: '首页',
+						active: false
+					},
+					{
+						iconPath: '/static/star.png',
+						selectedIconPath: '/static/star-active.png',
+						text: '收藏',
+						active: false
+					}
+				]
 			}
 		},
 		onBackPress() {
@@ -97,12 +98,12 @@
 				}
 				this.$forceUpdate()
 			},
-			switchColor(){
+			switchColor() {
 				this.is_color_type = !this.is_color_type
-				if(this.is_color_type) {
+				if (this.is_color_type) {
 					this.pattern.iconColor = '#aaa'
 					this.pattern.buttonColor = '#fff'
-				}else{
+				} else {
 					this.pattern.iconColor = '#fff'
 					this.pattern.buttonColor = '#007AFF'
 				}
