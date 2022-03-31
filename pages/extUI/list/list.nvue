@@ -71,56 +71,38 @@
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow
 					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
 					thumb-size="lg" rightText="大图" />
-
 			</uni-list>
 		</uni-section>
 
 		<uni-section title="使用插槽" type="line">
-			<uni-list border-full>
+			<uni-list>
 				<uni-list-item>
-					<view class="slot-box">
-						<view class="slot-content">
-							<text class="slot-text">默认插槽</text>
+					<template v-slot:body>
+						<view class="slot-box">
+							<text class="slot-text">使用 body 插槽</text>
 						</view>
-						<uni-badge text="2" type="primary" />
-					</view>
+					</template>
 				</uni-list-item>
 				<uni-list-item title="自定义右侧插槽" note="列表描述信息" link>
-					<template v-slot:actions>
+					<template v-slot:footer>
+						<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
+					</template>
+				</uni-list-item>
+				<uni-list-item>
+					<template v-slot:header>
+						<view class="slot-box">
+							<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
+						</view>
+					</template>
+					<template v-slot:body>
+						<text class="slot-box slot-text">自定义两侧插槽</text>
+					</template>
+					<template v-slot:footer>
 						<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 					</template>
 				</uni-list-item>
 			</uni-list>
 		</uni-section>
-
-		<uni-section title="自定义内容" type="line">
-			<uni-list border-full>
-				<uni-list-item v-for="item in 3" :key="item">
-					<view class="slot-box">
-						<uni-card :is-shadow="false" :border="false" spacing="0" margin="0">
-							<image slot='cover' class="slot-cover" :src="cover" mode="aspectFill">
-							</image>
-							<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
-							<template slot="actions" class="card-actions">
-								<view class="card-actions-item">
-									<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
-									<text class="card-actions-item-text">分享</text>
-								</view>
-								<view class="card-actions-item">
-									<uni-icons type="heart" size="18" color="#999"></uni-icons>
-									<text class="card-actions-item-text">点赞</text>
-								</view>
-								<view class="card-actions-item">
-									<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
-									<text class="card-actions-item-text">评论</text>
-								</view>
-							</template>
-						</uni-card>
-					</view>
-				</uni-list-item>
-			</uni-list>
-		</uni-section>
-
 	</view>
 </template>
 
@@ -157,58 +139,26 @@
 
 <style lang="scss">
 	.slot-box {
+		/* #ifndef APP-NVUE */
 		display: flex;
-		flex: 1;
-		padding: 10px 0;
+		/* #endif */
 		flex-direction: row;
 		align-items: center;
-	}
-	.slot-cover {
-		/* #ifndef APP-NVUE */
-		width: 100%;
-		/* #endif */
-		/* #ifdef APP-NVUE */
-		flex: 1;
-		/* #endif */
-		height: 140px;
 	}
 
 	.slot-image {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
-		// margin-right: 10px;
+		margin-right: 10px;
 		width: 30px;
 		height: 30px;
 	}
 
-	.slot-content {
-		width: 100%;
-		flex: 1;
-	}
-
 	.slot-text {
+		flex: 1;
 		font-size: 14px;
 		color: #4cd964;
-	}
-
-	.card-actions {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 45px;
-	}
-
-	.card-actions-item {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-	}
-
-	.card-actions-item-text {
-		font-size: 12px;
-		color: #666;
-		margin-left: 5px;
+		margin-right: 10px;
 	}
 </style>
