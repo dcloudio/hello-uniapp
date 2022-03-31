@@ -1,35 +1,80 @@
 <template>
 	<view class="container">
-		<uni-nav-bar :fixed="true" color="#ffffff" background-color="#007AFF" :status-bar="true" left-icon="arrowleft"
-			left-text="返回" title="uni-nav-bar 标题" @clickLeft="back" />
+		<uni-nav-bar dark :fixed="true" shadow background-color="#007AFF" status-bar left-icon="left" left-text="返回"
+			title="自定义导航栏" @clickLeft="back" />
 		<uni-card is-full :isShadow="false">
 			<text
 				class="uni-h6">本导航栏为自定义组件，并非原生导航栏。除非原生导航栏无法满足需求，否则不推荐使用自定义导航栏组件。具体参考https://ask.dcloud.net.cn/article/34921</text>
 		</uni-card>
-		<uni-section title="基本用法" type="line" style="margin-bottom: 3px;">
-			<uni-nav-bar left-icon="left" title="标题" @clickLeft="back" />
+		<uni-section title="基本用法" subTitle="使用 title 属性设置导航栏标题" type="line" style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar title="标题" />
+			</view>
 		</uni-section>
-		<uni-section title="左右显示文字" type="line" style="margin-bottom: 3px;">
-			<uni-nav-bar left-icon="left" right-text="菜单" left-text="返回" title="标题" @clickLeft="back" />
+		<uni-section title="开启阴影" subTitle="使用 shadow 属性启用阴影" type="line" style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar shadow left-icon="left" title="开启阴影" @clickLeft="back" />
+			</view>
 		</uni-section>
-		<uni-section title="插入slot" type="line" style="margin-bottom: 3px;">
-			<uni-nav-bar :fixed="false" color="#333333" background-color="#FFFFFF" right-icon="scan" @clickLeft="showCity"
-				@clickRight="scan">
-				<template v-slot:left>
-					<view class="city">
-						<view>
-							<text class="uni-nav-bar-text">{{ city }}</text>
-						</view>
-						<uni-icons type="arrowdown" color="#333333" size="22" />
-					</view>
-				</template>
-				<view class="input-view">
-					<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
-					<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
-						@confirm="confirm" />
+		<uni-section title="开启暗黑模式" subTitle="使用 dark 属性设置暗黑模式" type="line" style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar shadow left-icon="left" dark title="暗黑模式" @clickLeft="back" />
+			</view>
+		</uni-section>
+		<uni-section title="带返回箭头+右侧图标" subTitle="使用 left-icon/right-icon 设置左右图标" type="line"
+			style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar shadow left-icon="left" right-icon="cart" title="标题" />
+			</view>
+		</uni-section>
+		<uni-section title="左侧文字+右侧文字" subTitle="使用 left-text/right-text 设置左右文字" type="line"
+			style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar shadow left-icon="left" leftText="返回" rightText="设置" title="标题" />
+			</view>
+		</uni-section>
+		<uni-section title="自定义颜色" subTitle="使用 color/background-color 属性设置前景背景色" type="line"
+			style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<view class="box-bg">
+					<uni-nav-bar dark color="#999" backgroundColor="#f5f5f5" shadow left-icon="left" leftText="返回"
+						rightText="设置" title="自定义颜色" />
 				</view>
-			</uni-nav-bar>
+			</view>
 		</uni-section>
+		<uni-section title="自定义高度" subTitle="使用 height 修改组件高度" type="line" style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<view class="box-bg">
+					<uni-nav-bar height="65px" dark shadow left-icon="left" leftText="返回" rightText="设置"
+						title="自定义高度" />
+				</view>
+			</view>
+		</uni-section>
+		<uni-section title="自定义内容" subTitle="使用 left/right/default 插槽自定义内容" type="line" style="margin-bottom: 3px;">
+			<view class="box-bg">
+				<uni-nav-bar>
+					<block slot="left">
+						<view class="city">
+							<view>
+								<text class="uni-nav-bar-text">{{ city }}</text>
+							</view>
+							<uni-icons type="arrowdown" color="#666" size="18" />
+						</view>
+					</block>
+					<view class="input-view">
+						<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
+						<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
+							@confirm="confirm" />
+					</view>
+					<block slot="right">
+						<view class="city">
+							搜索
+						</view>
+					</block>
+				</uni-nav-bar>
+			</view>
+		</uni-section>
+
 
 	</view>
 </template>
@@ -89,17 +134,12 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	$nav-height: 30px;
 
-	/* #ifndef APP-NVUE */
-	page {
-		height: 120%;
-	}
-
-	/* #endif */
-	.uni-nav-bar-text {
-		font-size: 12px;
+	.box-bg {
+		background-color: #F5F5F5;
+		padding: 5px 0;
 	}
 
 	.city {
@@ -140,14 +180,7 @@
 		width: 370rpx;
 		/* #endif */
 		padding: 0 5px;
-		font-size: 14px;
+		font-size: 12px;
 		background-color: #f8f8f8;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-		padding: 0;
 	}
 </style>
