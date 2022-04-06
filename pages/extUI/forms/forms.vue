@@ -23,7 +23,8 @@
 						<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="请输入自我介绍" />
 					</uni-forms-item>
 					<uni-forms-item label="日期时间">
-						<uni-datetime-picker type="datetime" return-type="timestamp" v-model="baseFormData.datetimesingle" @change="changeLog" />
+						<uni-datetime-picker type="datetime" return-type="timestamp"
+							v-model="baseFormData.datetimesingle" />
 					</uni-forms-item>
 				</uni-forms>
 			</view>
@@ -32,7 +33,8 @@
 		<uni-section title="对齐方式" type="line">
 			<view class="example">
 				<view class="segmented-control">
-					<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" styleType="button">
+					<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem"
+						styleType="button">
 					</uni-segmented-control>
 				</view>
 				<!-- 展示不同的排列方式 -->
@@ -105,8 +107,6 @@
 				</view>
 			</view>
 		</uni-section>
-
-
 	</view>
 </template>
 
@@ -287,7 +287,6 @@
 </script>
 
 <style lang="scss">
-
 	.example {
 		padding: 15px;
 		background-color: #fff;

@@ -44,6 +44,4 @@
 		flex-direction: column;
 		line-height: 1.5em;
 	}
-
-
 </style>

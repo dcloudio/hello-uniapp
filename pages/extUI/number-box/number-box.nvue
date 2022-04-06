@@ -4,10 +4,10 @@
 			<text class="uni-h6">数字输入框组件多用于购物车加减商品等场景</text>
 		</uni-card>
 		<uni-section title="基本用法" type="line" padding>
-				<uni-number-box @change="changeValue" />
+			<uni-number-box @change="changeValue" />
 		</uni-section>
 		<uni-section :title="'使用v-model : '+ vModelValue" subTitle="使用 v-model 显示默认值" type="line" padding>
-			<uni-number-box v-model = "vModelValue" @blur="blur" @focus="focus" @change="changeValue" />
+			<uni-number-box v-model="vModelValue" @blur="blur" @focus="focus" @change="changeValue" />
 		</uni-section>
 		<uni-section title="设置最小值和最大值" subTitle="使用 min \ max 属性设置最大最小值" type="line" padding>
 			<uni-number-box :min="2" :max="9" :value="555" />

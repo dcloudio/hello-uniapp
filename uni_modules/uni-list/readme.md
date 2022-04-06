@@ -1,5 +1,3 @@
-
-
 ## List 列表
 > **组件名：uni-list**
 > 代码块： `uList`、`uListItem`
@@ -125,7 +123,7 @@ uni-list不包含下拉刷新和上拉翻页。上拉翻页另见组件：[uni-l
 		<!-- 显示圆形头像 -->
 		<uni-list-chat :avatar-circle="true" title="uni-app" avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" note="您收到一条新的消息" time="2020-02-02 20:20" ></uni-list-chat>
 		<!-- 右侧带角标 -->
-		<uni-list-chat title="uni-app" avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-text="12"></uni-list-chat>
+		<uni-list-chat title="uni-app" avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-text="12" :badge-style="{backgroundColor:'#FF80AB'}"></uni-list-chat>
 		<!-- 头像显示圆点 -->
 		<uni-list-chat title="uni-app" avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png" note="您收到一条新的消息" time="2020-02-02 20:20" badge-positon="left" badge-text="dot"></uni-list-chat>
 		<!-- 头像显示角标 -->
@@ -204,7 +202,8 @@ thumb			|String		|-			|	左侧缩略图，若thumb有值，则不会显示扩展
 thumbSize		|String 	|medium 	|	略缩图尺寸，可选值，lg:大图;  medium:一般;	sm:小图;
 showBadge		|Boolean	|false		|	是否显示数字角标	
 badgeText		|String		|-			|	数字角标内容
-badgeType		|String		|-			|	数字角标类型，参考[uni-icons](https://ext.dcloud.net.cn/plugin?id=21)					
+badgeType		|String		|-			|	数字角标类型，参考[uni-icons](https://ext.dcloud.net.cn/plugin?id=21)	
+badgeStyle  |Object   |-      | 数字角标样式，使用uni-badge的custom-style参数
 rightText		|String		|-			|	右侧文字内容
 disabled		|Boolean	|false		|	是否禁用	
 showArrow 		|Boolean	|true		|	是否显示箭头图标			
@@ -259,17 +258,17 @@ footer	|	右/下内容插槽，可完全自定义右侧内容
 ```html
 <uni-list>
 	<uni-list-item title="自定义右侧插槽" note="列表描述信息" link>
-		<template v-slot:header>
+		<template slot="header">
 			<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 		</template>
 	</uni-list-item>
 	<uni-list-item>
 		<!-- 自定义 header -->
-		<view v-slot:header class="slot-box"><image class="slot-image" src="/static/logo.png" mode="widthFix"></image></view>
+		<view slot="header" class="slot-box"><image class="slot-image" src="/static/logo.png" mode="widthFix"></image></view>
 		<!-- 自定义 body -->
-		<text v-slot:body class="slot-box slot-text">自定义插槽</text>
+		<text slot="body" class="slot-box slot-text">自定义插槽</text>
 		<!-- 自定义 footer-->
-		<template v-slot:footer>
+		<template slot="footer">
 			<image class="slot-image" src="/static/logo.png" mode="widthFix"></image>
 		</template>
 	</uni-list-item>

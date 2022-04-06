@@ -7,12 +7,11 @@
 			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/"></uni-link>
 		</uni-section>
 		<uni-section title="自定义颜色" type="line" padding>
-			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/"
-				color="#007BFF"></uni-link>
+			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/" color="#007BFF"></uni-link>
 		</uni-section>
 		<uni-section title="自定义下划线" type="line" padding>
-			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/"
-				showUnderLine="false"></uni-link>
+			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/" showUnderLine="false">
+			</uni-link>
 		</uni-section>
 		<uni-section title="自定义字体大小" type="line" padding>
 			<uni-link href="https://uniapp.dcloud.io/" text="https://uniapp.dcloud.io/" showUnderLine="false"

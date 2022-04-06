@@ -33,34 +33,37 @@
 			return {
 				classes: '1-2',
 				dataTree: [{
-					text: "一年级",
-					value: "1-0",
-					children: [{
-						text: "1.1班",
-						value: "1-1"
+						text: "一年级",
+						value: "1-0",
+						children: [{
+								text: "1.1班",
+								value: "1-1"
+							},
+							{
+								text: "1.2班",
+								value: "1-2"
+							}
+						]
 					},
 					{
-						text: "1.2班",
-						value: "1-2"
-					}]
-				},
-				{
-					text: "二年级",
-					value: "2-0",
-					children: [{
-						text: "2.1班",
-						value: "2-1"
+						text: "二年级",
+						value: "2-0",
+						children: [{
+								text: "2.1班",
+								value: "2-1"
+							},
+							{
+								text: "2.2班",
+								value: "2-2"
+							}
+						]
 					},
 					{
-						text: "2.2班",
-						value: "2-2"
-					}]
-				},
-				{
-					text: "三年级",
-					value: "3-0",
-					disable: true
-				}]
+						text: "三年级",
+						value: "3-0",
+						disable: true
+					}
+				]
 			}
 		},
 		methods: {
@@ -73,7 +76,9 @@
 			onpopupclosed(e) {
 				console.log('popupclosed');
 			},
-			onchange(e) {}
+			onchange(e) {
+				console.log('---------onchange:', e);
+			}
 		}
 	}
 </script>
@@ -90,18 +95,19 @@
 		border: 1px #e5e5e5 solid;
 	}
 
-	 .popper__arrow {
-    top: -6px;
-    left: 50%;
-    margin-right: 3px;
-    border-top-width: 0;
-    border-bottom-color: #EBEEF5;
-}
- .popper__arrow {
-    top: -6px;
-    left: 50%;
-    margin-right: 3px;
-    border-top-width: 0;
-    border-bottom-color: #EBEEF5;
-}
+	.popper__arrow {
+		top: -6px;
+		left: 50%;
+		margin-right: 3px;
+		border-top-width: 0;
+		border-bottom-color: #EBEEF5;
+	}
+
+	.popper__arrow {
+		top: -6px;
+		left: 50%;
+		margin-right: 3px;
+		border-top-width: 0;
+		border-bottom-color: #EBEEF5;
+	}
 </style>

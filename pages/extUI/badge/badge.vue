@@ -31,9 +31,9 @@
 		</uni-section>
 
 		<uni-section title="定位: aboslute 属性" subTitle="注：在安卓端不支持 nvue" type="line" padding>
-				<uni-badge class="uni-badge-left-margin" :text="value" absolute="rightTop" size="small">
-					<view class="box"><text class="box-text">右上</text></view>
-				</uni-badge>
+			<uni-badge class="uni-badge-left-margin" :text="value" absolute="rightTop" size="small">
+				<view class="box"><text class="box-text">右上</text></view>
+			</uni-badge>
 		</uni-section>
 
 		<uni-section title="偏移: offset 属性(存在 aboslute)" type="line" padding>

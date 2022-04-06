@@ -4,8 +4,13 @@
 			<text class="uni-h6">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸。</text>
 		</uni-card>
 		<uni-section title="图标" type="line">
+			<template v-slot:right>
+				<view>
+					<switch :checked="checked" @change="change" />
+				</view>
+			</template>
 			<view class="icon-content">
-				<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
+				<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index,item)">
 					<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#5e6d82'" size="30" />
 					<text :style="{color:activeIndex === index?'#007aff':'#5e6d82'}"
 						class="uni-mt-5 uni-subtitle">{{ checked? item.unicode: item.name }}</text>
@@ -522,8 +527,17 @@
 				// e.detail.value在安卓手机上可能是String类型，后续修复后要修改
 				this.checked = e.detail.value === 'false' || !e.detail.value ? false : true
 			},
-			switchActive(index) {
+			switchActive(index,item) {
 				this.activeIndex = index
+				uni.setClipboardData({
+				    data: !this.checked ? item.name:item.unicode,
+				    success:  ()=> {
+				        uni.showToast({
+				        	icon:'none',
+									title:`${!this.checked ?'图标名称':'unicode'}复制成功`
+				        })
+				    }
+				});
 			}
 		}
 	}

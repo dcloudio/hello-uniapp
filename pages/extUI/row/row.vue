@@ -1,12 +1,12 @@
 <template>
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
-		<!-- #ifndef APP-NVUE -->
+			<!-- #ifndef APP-NVUE -->
 			<text class="uni-h6"> 流式栅格系统，随着屏幕或视口分为 24 份，可以迅速简便地创建布局</text>
-		<!-- #endif -->
-		<!-- #ifdef APP-NVUE -->
-		<text class="uni-h6"> 流式栅格系统，在nvue不可使用媒体查询</text>
-		<!-- #endif -->
+			<!-- #endif -->
+			<!-- #ifdef APP-NVUE -->
+			<text class="uni-h6"> 流式栅格系统，在nvue不可使用媒体查询</text>
+			<!-- #endif -->
 		</uni-card>
 
 		<uni-section title="基础布局" subTitle="使用单一分栏创建基础的栅格布局" type="line">
@@ -166,7 +166,7 @@
 				</uni-row>
 			</view>
 		</uni-section>
-		
+
 		<!-- #endif -->
 	</view>
 </template>
@@ -182,8 +182,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
 	.demo-uni-row {
 		margin-bottom: 10px;
 
@@ -198,7 +197,7 @@
 	// 支付宝小程序没有 demo-uni-row 层级
 	// 微信小程序使用了虚拟化节点，没有 demo-uni-row 层级
 	/* #ifdef MP-ALIPAY || MP-WEIXIN */
-  ::v-deep .uni-row {
+	::v-deep .uni-row {
 		margin-bottom: 10px;
 	}
 
@@ -206,7 +205,7 @@
 
 	.demo-uni-col {
 		height: 36px;
-		border-radius: $uni-border-radius-base;
+		border-radius: 5px;
 	}
 
 	.dark_deep {
