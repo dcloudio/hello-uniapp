@@ -30,7 +30,7 @@
 			<uni-card :cover="cover" @click="onClick">
 				<!-- <image slot='cover' style="width: 100%;" :src="cover"></image> -->
 				<text class="uni-body">这是一个带封面和操作栏的卡片示例，此示例展示了封面插槽和操作栏插槽的用法。</text>
-				<view slot="actions" class="card-actions">
+				<view v-slot:actions class="card-actions">
 					<view class="card-actions-item" @click="actionsClick('分享')">
 						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
 						<text class="card-actions-item-text">分享</text>
@@ -56,7 +56,7 @@
 				</template>
 				<image style="width: 100%;" :src="cover"></image>
 				<text class="uni-body uni-mt-5">卡片组件通用来显示完整独立的一段信息，同时让用户理解他的作用。例如一篇文章的预览图、作者信息、时间等，卡片通常是更复杂和更详细信息的入口点。</text>
-				<view slot="actions" class="card-actions">
+				<view v-slot:actions class="card-actions">
 					<view class="card-actions-item" @click="actionsClick('分享')">
 						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
 						<text class="card-actions-item-text">分享</text>
@@ -88,7 +88,7 @@
 					<uni-list-item title="今日新闻" showArrow></uni-list-item>
 					<uni-list-item title="今日新闻" showArrow></uni-list-item>
 				</uni-list>
-				<view slot="actions" class="card-actions no-border">
+				<view v-slot:actions class="card-actions no-border">
 					<view class="card-actions-item" @click="actionsClick('分享')">
 						<uni-icons type="pengyouquan" size="18" color="#999"></uni-icons>
 						<text class="card-actions-item-text">分享</text>
