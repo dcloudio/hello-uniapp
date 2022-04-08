@@ -30,7 +30,9 @@
 </template>
 
 <script>
-	import { dateUtils } from  '../../../common/util.js';
+	import {
+		dateUtils
+	} from '../../../common/util.js';
 
 	export default {
 		data() {
@@ -42,9 +44,9 @@
 				status: 'more',
 				adpid: '',
 				contentText: {
-					contentdown: '上拉加载更多',
-					contentrefresh: '加载中',
-					contentnomore: '没有更多'
+					contentdown: 'Scroll up to load more',
+					contentrefresh: 'Loading',
+					contentnomore: 'No more'
 				}
 			};
 		},
@@ -122,7 +124,8 @@
 					title: e.title
 				};
 				uni.navigateTo({
-					url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
+					url: '../list2detail-detail/list2detail-detail?detailDate=' + encodeURIComponent(JSON
+						.stringify(detail))
 				});
 			},
 			setTime: function(items) {

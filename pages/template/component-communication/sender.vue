@@ -1,6 +1,6 @@
 <template>
     <view class="sender-container">
-        <button type="primary" @click="send">点击发送消息</button>
+        <button type="primary" @click="send">Click to send message</button>
     </view>
 </template>
 

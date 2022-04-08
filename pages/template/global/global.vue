@@ -4,16 +4,16 @@
 			<view class="uni-divider__content">globalData</view>
 			<view class="uni-divider__line"></view>
 		</view>
-		<text class="text">globalData中text的值: {{gd.test}}</text>
-		<button @click="setGD()" class="button">修改上述值为123</button>
+		<text class="text">The value of text in globalData: {{gd.test}}</text>
+		<button @click="setGD()" class="button">Modify the above value to 123</button>
 
 		<view class="uni-divider">
 			<view class="uni-divider__content">vuex</view>
 			<view class="uni-divider__line"></view>
 		</view>
-		<text class="text">vuex中hasLogin的值: {{testvuex}}</text>
-		<button @click="setVUEX(true)" class="button">修改上述值为true</button>
-		<button @click="setVUEX(false)" class="button">修改上述值为false</button>
+		<text class="text">The value of hasLogin in vuex: {{testvuex}}</text>
+		<button @click="setVUEX(true)" class="button">Modify the above value to true</button>
+		<button @click="setVUEX(false)" class="button">Modify the above value to false</button>
 	</view>
 </template>
 

@@ -3,10 +3,10 @@
 		<page-head :title="title"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title">
-				<uni-icons size="16" type="info"></uni-icons>说明 : </view>
+				<uni-icons size="16" type="info"></uni-icons>Description : </view>
 			<view class="uni-helllo-text">
-				<view>在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听buttons的点击事件。</view>
-				<view>在小程序端，不支持配置buttons，故按钮不见了。</view>
+				<view>In the App side, you can configure the buttons in pages.json, do not support dynamically changing the style of the buttons, use onNavigationBarButtonTap to listen to the click event of the buttons.</view>
+				<view>In the applet side, configuration of buttons is not supported, so the button is missing.</view>
 			</view>
 		</view>
 	</view>
@@ -20,7 +20,7 @@
 		},
 		onNavigationBarButtonTap(e) {
 			uni.showToast({
-				title: e.index === 0 ? "你点了分享按钮" : "你点了收藏按钮",
+				title: e.index === 0 ? "You clicked the share button" : "You clicked the favorite button",
 				icon: "none"
 			})
 		}
@@ -28,5 +28,5 @@
 </script>
 
 <style>
-	
+
 </style>

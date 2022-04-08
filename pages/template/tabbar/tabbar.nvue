@@ -49,24 +49,24 @@
 
     const newsData = {
         data0: {
-            "datetime": "40分钟前",
+            "datetime": "40 minutes ago",
             "article_type": 0,
-            "title": "uni-app行业峰会频频亮相，开发者反响热烈!",
+            "title": "The uni-app industry summit was frequently presented and the response from developers was overwhelming!",
             "source": "DCloud",
             "comment_count": 639
         },
         data1: {
-            "datetime": "一天前",
+            "datetime": "One day ago",
             "article_type": 1,
-            "title": "DCloud完成B2轮融资，uni-app震撼发布!",
+            "title": "DCloud completes Series B2 funding, uni-app rocking launch!",
             "image_url": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b7c7f970-517d-11eb-97b7-0dc4655d6e68.jpg",
             "source": "DCloud",
             "comment_count": 11395
         },
         data2: {
-            "datetime": "一天前",
+            "datetime": "One day ago",
             "article_type": 2,
-            "title": "中国技术界小奇迹：HBuilder开发者突破200万",
+            "title": "Small miracle in China's tech world: HBuilder developers top 2 million",
             "image_url": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b4cd3000-517d-11eb-a16f-5b3e54966275.jpg",
             "source": "DCloud",
             "comment_count": 11395
@@ -86,15 +86,15 @@
                 "width": 640,
                 "height": 360
             }],
-            "datetime": "5分钟前",
-            "title": "uni-app 支持使用 npm 安装第三方包，生态更趋丰富",
+            "datetime": "5 minutes ago",
+            "title": "uni-app supports third-party package installation using npm, making the ecology more rich",
             "source": "DCloud",
             "comment_count": 11
         },
         data4: {
-            "datetime": "2小时前",
+            "datetime": "2 hours ago",
             "article_type": 4,
-            "title": "uni-app 支持原生小程序自定义组件，更开放、更自由",
+            "title": "uni-app supports native applet customization components, more open and free",
             "image_url": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b2e201d0-517d-11eb-8a36-ebb87efcf8c0.jpg",
             "source": "DCloud",
             "comment_count": 69
@@ -111,31 +111,31 @@
                 cacheTab: [],
                 tabIndex: 0,
                 tabBars: [{
-                    name: '关注',
+                    name: 'Focus',
                     id: 'guanzhu'
                 }, {
-                    name: '推荐',
+                    name: 'Recommend',
                     id: 'tuijian'
                 }, {
-                    name: '体育',
+                    name: 'Sports',
                     id: 'tiyu'
                 }, {
-                    name: '热点',
+                    name: 'Hot Spot',
                     id: 'redian'
                 }, {
-                    name: '财经',
+                    name: 'Finance',
                     id: 'caijing'
                 }, {
-                    name: '娱乐',
+                    name: 'Entertainment',
                     id: 'yule'
                 }, {
-                    name: '军事',
+                    name: 'Military',
                     id: 'junshi'
                 }, {
-                    name: '历史',
+                    name: 'History',
                     id: 'lishi'
                 }, {
-                    name: '本地',
+                    name: 'Local',
                     id: 'bendi'
                 }],
                 scrollInto: "",
@@ -152,7 +152,7 @@
                       data: [],
                       isLoading: false,
                       refreshText: "",
-                      loadingText: '加载更多...'
+                      loadingText: 'Load More...'
                   });
               });
               this.getList(0);
@@ -183,7 +183,7 @@
             },
             close(index1, index2) {
                 uni.showModal({
-                    content: '是否删除本条信息？',
+                    content: 'Whether to delete this message？',
                     success: (res) => {
                         if (res.confirm) {
                             this.newsList[index1].data.splice(index2, 1);
@@ -235,7 +235,7 @@
             },
             clearTabData(e) {
                 this.newsList[e].data.length = 0;
-                this.newsList[e].loadingText = "加载更多...";
+                this.newsList[e].loadingText = "Load More...";
             },
             refreshData() {},
             onrefresh(e) {
@@ -244,14 +244,14 @@
                     return;
                 }
                 tab.refreshing = true;
-                tab.refreshText = "正在刷新...";
+                tab.refreshText = "Being refreshed...";
 
                 setTimeout(() => {
                     this.refreshData();
                     this.pulling = true;
                     tab.refreshing = false;
 					tab.refreshFlag = false;
-                    tab.refreshText = "已刷新";
+                    tab.refreshText = "Refreshed";
                     setTimeout(() => { // TODO fix ios和Android 动画时间相反问题
                         this.pulling = false;
                     }, 500);
@@ -264,10 +264,10 @@
                 }
                 if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {
                     tab.refreshFlag = true;
-                    tab.refreshText = "释放立即刷新";
+                    tab.refreshText = "Release for immediate refresh";
                 } else {
                     tab.refreshFlag = false;
-                    tab.refreshText = "下拉可以刷新";
+                    tab.refreshText = "Scroll down to refresh";
                 }
             },
             newGuid() {

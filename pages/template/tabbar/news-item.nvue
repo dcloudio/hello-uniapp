@@ -17,7 +17,7 @@
 		<view class="media-foot flex-row" style="flex-direction: row;">
 			<view class="media-info flex-row" style="flex-direction: row;">
 				<text class="info-text">{{options.source}}</text>
-				<text class="info-text">{{options.comment_count}}条评论</text>
+				<text class="info-text">{{options.comment_count}} Comments</text>
 				<text class="info-text">{{options.datetime}}</text>
 			</view>
 			<view class="max-close-view" @click.stop="close">

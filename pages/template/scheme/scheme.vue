@@ -1,19 +1,19 @@
 <template>
 	<view>
 		<page-head title="通过scheme打开三方app示例"></page-head>
-		<button class="button" @click="openBrowser('https://uniapp.dcloud.io/h5')">使用浏览器打开指定URL</button>
-		<button class="button" @click="openMarket()">使用应用商店打开指定App</button>
-		<button class="button" @click="openMarket('com.tencent.android.qqdownloader')">强制使用应用宝打开指定App</button>
-		<button class="button" @click="openTaobao('taobao://s.taobao.com/search?q=uni-app')">打开淘宝搜索页面</button>
-		<button class="button" @click="openMap()">打开地图并指定地点</button>
+		<button class="button" @click="openBrowser('https://uniapp.dcloud.io/h5')">Open the specified URL using your browser</button>
+		<button class="button" @click="openMarket()">Open the specified app using the app store</button>
+		<button class="button" @click="openMarket('com.tencent.android.qqdownloader')">Force to use App Store to open the specifiedApp</button>
+		<button class="button" @click="openTaobao('taobao://s.taobao.com/search?q=uni-app')">Open Taobao search page</button>
+		<button class="button" @click="openMap()">Open the map and specify the location</button>
 		<view class="uni-divider">
-			<view class="uni-divider__content">打开QQ</view>
+			<view class="uni-divider__content">Open QQ</view>
 			<view class="uni-divider__line"></view>
 		</view>
 		<view class="uni-padding-wrap">
 			<form @submit="openQQ">
 				<view>
-					<view class="uni-title">请输入聊天对象QQ号：</view>
+					<view class="uni-title">Please enter the QQ number of the person you are chatting with：</view>
 					<view class="uni-list">
 						<view class="uni-list-cell">
 							<input class="uni-input" name="qqNum" type="number"/>
@@ -21,16 +21,16 @@
 					</view>
 				</view>
 				<view>
-					<view class="uni-title">请选择QQ号类型：</view>
+					<view class="uni-title">Please select the type of QQ number：</view>
 					<radio-group class="uni-flex" name="qqNumType">
 						<label>
-							<radio value="wpa" checked=""/>普通QQ号</label>
+							<radio value="wpa" checked=""/>General QQ number</label>
 						<label>
-							<radio value="crm" />营销QQ号(无需加好友直接聊天)</label>
+							<radio value="crm" />Marketing QQ number (no need to add friends to chat directly)</label>
 					</radio-group>
 				</view>
 				<view class="uni-btn-v uni-common-mt">
-					<button class="button" formType="submit">打开qq并到指定聊天界面</button>
+					<button class="button" formType="submit">Open qq and go to the designated chat screen</button>
 				</view>
 			</form>
 		</view>
@@ -41,7 +41,7 @@
 export default {
 	data() {
 		return {
-			
+
 		};
 	},
 	methods: {
@@ -63,17 +63,17 @@ export default {
 			} else{//强制指定某个Android应用市场的包名，通过这个包名启动指定app
 				if (plus.os.name=="Android") {
 					plus.runtime.openURL(appurl, function(res) {
-						plus.nativeUI.alert("本机没有安装应用宝");
+						plus.nativeUI.alert("There is no YinYongBao App Store installed on this machine");
 					},marketPackageName);
 				} else{
-					plus.nativeUI.alert("仅Android手机才支持应用宝");
+					plus.nativeUI.alert("Only Android phones support YinYongBao App Store");
 				}
 			}
 		},
 		openTaobao(url){
 			plus.runtime.openURL(url, function(res) {
 				uni.showModal({
-					content:"本机未检测到淘宝客户端，是否打开浏览器访问淘宝？",
+					content:"This machine does not detect the Taobao client, whether to open the browser to access Taobao？",
 					success:function(res){
 						if (res.confirm) {
 							plus.runtime.openURL("https://s.taobao.com/search?q=uni-app")
@@ -90,7 +90,7 @@ export default {
 				var urlBaiduMap = "baidumap://map/marker?location=39.968789,116.347247&title=DCloud&src=Hello%20uni-app";
 				var urlAmap = "androidamap://viewMap?sourceApplication=Hello%20uni-app&poiname=DCloud&lat=39.9631018208&lon=116.3406135236&dev=0"
 				if (hasAmap && hasBaiduMap) {
-					plus.nativeUI.actionSheet({title:"选择地图应用",cancel:"取消",buttons:[{title:"百度地图"},{title:"高德地图"}]}, function(e){
+					plus.nativeUI.actionSheet({title:"Select a map application",cancel:"Cancel",buttons:[{title:"Baidu map"},{title:"Gaode Map"}]}, function(e){
 						switch (e.index){
 							case 1:
 								plus.runtime.openURL(urlBaiduMap);
@@ -109,11 +109,11 @@ export default {
 				}
 				else{
 					url = "geo:39.96310,116.340698?q=%e6%95%b0%e5%ad%97%e5%a4%a9%e5%a0%82";
-					plus.runtime.openURL(url); //如果是国外应用，应该优先使用这个，会启动google地图。这个接口不能统一坐标系，进入百度地图时会有偏差
+					plus.runtime.openURL(url); //如果是国外应用，应该优先使用这个，会启动google地图。这个接口不能统一坐标系，进入Baidu map时会有偏差
 				}
 			} else{
 				// iOS上获取本机是否安装了百度高德地图，需要在manifest里配置，在manifest.json文件app-plus->distribute->apple->urlschemewhitelist节点下添加（如urlschemewhitelist:["iosamap","baidumap"]）
-				plus.nativeUI.actionSheet({title:"选择地图应用",cancel:"取消",buttons:[{title:"Apple地图"},{title:"百度地图"},{title:"高德地图"}]}, function(e){
+				plus.nativeUI.actionSheet({title:"Select a map application",cancel:"Cancel",buttons:[{title:"Apple Map"},{title:"Baidu map"},{title:"Gaode Map"}]}, function(e){
 					console.log("e.index: " + e.index);
 					switch (e.index){
 						case 1:
@@ -140,7 +140,7 @@ export default {
 			// console.log("e.detail.value: " + JSON.stringify(e.detail.value));
 			// 没有校验qq号是否为空或合法数字，如果不是可用的qq号，启动qq后会停留在qq主界面
 			plus.runtime.openURL('mqqwpa://im/chat?chat_type=' + e.detail.value.qqNumType + '&uin=' + e.detail.value.qqNum,function (res) {
-				plus.nativeUI.alert("本机没有安装QQ，无法启动");
+				plus.nativeUI.alert("No QQ installed on this machine, can't start");
 			});
 		}
 	}

@@ -25,19 +25,19 @@
             return {
                 title: 'list-with-collapses',
                 lists: [{
-                        title: "产品",
+                        title: "Products",
                         show: false,
                         item: ["iOS", "Android", "HTML5"]
                     },
                     {
-                        title: "方案",
+                        title: "Programs",
                         show: false,
-                        item: ["PC方案", "手机方案", "TV方案"]
+                        item: ["PC Programs", "Phone Programs", "TV Programs"]
                     },
                     {
-                        title: "新闻",
+                        title: "News",
                         show: false,
-                        item: ["公司新闻", "行业新闻"]
+                        item: ["Company News", "Industry News"]
                     }
                 ]
             }

@@ -1,6 +1,6 @@
 <template>
     <view class="sender-container">
-        <button type="primary" @click="send">自定义EventBus</button>
+        <button type="primary" @click="send">Custom EventBus</button>
     </view>
 </template>
 

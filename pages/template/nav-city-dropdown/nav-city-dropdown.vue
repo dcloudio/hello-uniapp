@@ -6,11 +6,13 @@
 				<!-- #ifndef H5 -->
 				<uni-icons size="16" type="info"></uni-icons>
 				<!-- #endif -->
-				说明 :
+				Description :
 			</view>
 			<view class="uni-helllo-text">
 				<view>
-					在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听城市选择按钮的点击事件。
+					In the App side, you can configure the buttons in pages.json, it does not support changing the style
+					of buttons dynamically, and use onNavigationBarButtonTap to listen to the click event of city
+					selection button.
 				</view>
 			</view>
 		</view>
@@ -38,19 +40,19 @@
 			return {
 				title: 'nav-city-dropdown',
 				pickerValueArray: [{
-						label: '北京市',
+						label: 'Beijing',
 						value: 110000
 					},
 					{
-						label: '天津市',
+						label: 'Tianjin',
 						value: 120000
 					},
 					{
-						label: '广州市',
+						label: 'Guangzhou City',
 						value: 440100
 					},
 					{
-						label: '深圳市',
+						label: 'Shenzhen',
 						value: 440300
 					}
 				],
@@ -63,10 +65,10 @@
 		},
 		onReady() {
 			// #ifdef VUE3
-			this.setStyle(0, '北京市')
+			this.setStyle(0, 'Beijing')
 			// #endif
 			// #ifndef VUE3
-			this.setStyle(1, '北京市')
+			this.setStyle(1, 'Beijing')
 			// #endif
 		},
 		methods: {

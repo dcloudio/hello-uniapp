@@ -1,7 +1,7 @@
 <template>
     <view>
         <view class="reciver">
-            {{msg===''?'等待发送':'收到消息：'}}{{msg}}
+            {{msg===''?'Waiting to be sent':'Receive message：'}}{{msg}}
         </view>
     </view>
 </template>

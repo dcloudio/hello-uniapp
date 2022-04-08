@@ -10,11 +10,11 @@
 		</swiper>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title">
-				<view>在App端默认为标题栏透明，当用户向下滚动时，标题栏逐渐由透明转变为不透明；当用户再次向上滚动时，标题栏又从不透明变为透明状态。</view>
-				<view>在微信小程序端，导航栏始终为不透明样式。</view>
+				<view>In the App side, the title bar is transparent by default. When the user scrolls down, the title bar gradually changes from transparent to opaque; when the user scrolls up again, the title bar changes from opaque to transparent again.</view>
+				<view>On the WeChat applet side, the navigation bar is always opaque.</view>
                 <!-- <view>在支付宝小程序里请使用真机调试查看效果。</view> -->
 			</view>
-			<view class="uni-title uni-common-mt">图片类型</view>
+			<view class="uni-title uni-common-mt">Image Type</view>
 		</view>
 		<view class="uni-list">
 			<radio-group @change="radioChange">
@@ -42,12 +42,12 @@
 				],
 				items: [{
 						value: "img",
-						name: '静态图',
+						name: 'Static image',
 						checked: true
 					},
 					{
 						value: "swiper",
-						name: '轮播图',
+						name: 'swiper',
 						checked: false
 					}
 				]

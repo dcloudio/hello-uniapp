@@ -48,34 +48,34 @@
 					// #ifdef APP-PLUS || H5 || MP-ALIPAY
 					{
 						id: 'navbar',
-						name: '顶部原生导航标题栏',
+						name: 'navbar',
 						open: false,
 						pages: [
 							// #ifdef APP-PLUS || H5
 							{
-								name: '导航栏带自定义按钮',
+								name: 'Nav Button',
 								url: 'nav-button'
 							},
 							{
-								name: '导航栏带红点和角标',
+								name: 'Nav Dot',
 								url: 'nav-dot'
 							},
 							{
-								name: '导航栏带城市选择',
+								name: 'Nav City Dropdown',
 								url: 'nav-city-dropdown'
 							},
 							{
-								name: '导航栏带搜索框',
+								name: 'Nav Search Input',
 								url: 'nav-search-input'
 							},
 							// #endif
 							// #ifdef APP-PLUS || H5 || MP-ALIPAY
 							{
-								name: '透明渐变样式',
+								name: 'Nav Transparent',
 								url: 'nav-transparent'
 							},
 							{
-								name: '导航栏带图片',
+								name: 'Nav Image',
 								url: 'nav-image'
 							}
 							// #endif
@@ -84,12 +84,12 @@
 					// #endif
 					// #ifndef QUICKAPP-WEBVIEW || MP-KUAISHOU
 					{
-						name: '顶部选项卡',
+						name: 'tabbar',
 						url: 'tabbar'
 					},
 					// #endif
 					{
-						name: '组件通讯',
+						name: 'Component Communication',
 						url: 'component-communication'
 					},
 					// #ifndef MP-QQ || QUICKAPP-WEBVIEW
@@ -100,14 +100,14 @@
 					// #endif
 					// #ifndef QUICKAPP-WEBVIEW
 					{
-						name: '列表到详情示例',
+						name: 'List to Detail-list',
 						url: 'list2detail-list'
 					},
 					// #endif
 					// #ifndef VUE3
 					// #ifdef APP-PLUS
 					// {
-					// 	name: '上下滑动切换视频',
+					// 	name: 'Swiper Vertical',
 					// 	url: 'swiper-vertical'
 					// },
 					// #endif
@@ -119,22 +119,22 @@
 					},
 					// #endif
 					{
-						name: 'GlobalData和vuex',
+						name: 'GlobalData and vuex',
 						url: 'global'
 					},
 					// #ifdef APP-PLUS
 					{
-						name: '问题反馈',
+						name: 'feedback',
 						url: '/platforms/app-plus/feedback/feedback'
 					},
 					{
-						name: '打开外部应用',
+						name: 'Open external app',
 						url: 'scheme'
 					},
 					// #endif
 					// #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || H5
 					// {
-					// 	name: '微信自定义组件示例（vant ui）',
+					// 	name: 'Vant Button',
 					// 	url: 'vant-button'
 					// }
 					// #endif
@@ -143,7 +143,7 @@
 		},
 		onShareAppMessage() {
 			return {
-				title: '欢迎体验uni-app',
+				title: 'Welcome to experience uni-app',
 				path: '/pages/tabBar/template/template'
 			}
 		},

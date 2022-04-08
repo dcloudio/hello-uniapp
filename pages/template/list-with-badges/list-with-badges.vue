@@ -4,7 +4,7 @@
 		<view class="uni-card">
 			<view class="uni-list">
 				<view class="uni-list-cell-divider">
-					右侧带箭头
+					Right side with arrow
 				</view>
 				<view class="uni-list-cell" hover-class="uni-list-cell-hover">
 					<view class="uni-list-cell-navigate uni-navigate-right">
@@ -17,7 +17,7 @@
 					</view>
 				</view>
 				<view class="uni-list-cell-divider">
-					右侧带数字角标
+					Right side with digital corner marker
 				</view>
 				<view class="uni-list-cell" hover-class="uni-list-cell-hover">
 					<view class="uni-list-cell-navigate">
@@ -32,7 +32,7 @@
 					</view>
 				</view>
 				<view class="uni-list-cell-divider">
-					右侧带数字角标+箭头
+					Right side with numeric corner marker + arrow
 				</view>
 				<view class="uni-list-cell" hover-class="uni-list-cell-hover">
 					<view class="uni-list-cell-navigate uni-navigate-right uni-navigate-badge">

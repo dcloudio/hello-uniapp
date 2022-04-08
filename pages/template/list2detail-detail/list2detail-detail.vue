@@ -6,7 +6,7 @@
 		</view>
 		<view class="article-meta">
 			<text class="article-author">{{banner.author_name}}</text>
-			<text class="article-text">发表于</text>
+			<text class="article-text">Posted in</text>
 			<text class="article-time">{{banner.published_at}}</text>
 		</view>
 		<view class="article-content">
@@ -29,12 +29,12 @@
 			switch (provider[i]) {
 				case 'weixin':
 					channels.push({
-						text: '分享到微信好友',
+						text: 'Share to WeChat friends',
 						id: 'weixin',
 						sort: 0
 					});
 					channels.push({
-						text: '分享到微信朋友圈',
+						text: 'Share to WeChat friend circle',
 						id: 'weixin',
 						sort: 1
 					});

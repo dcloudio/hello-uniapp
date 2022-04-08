@@ -1,6 +1,6 @@
 <template>
 	<view>
-        <page-head title="组件通讯示例"></page-head>
+        <page-head title="Component communication example"></page-head>
         <view class="uni-padding-wrap">
             <view class="uni-btn-v">
                 <reciver></reciver>
