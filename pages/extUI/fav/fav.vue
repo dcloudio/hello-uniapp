@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">用于收藏功能，可点击切换选中、不选中的状态。</text>
+			<text class="uni-h6">Used for collection function, you can click to switch the selected and unselected state.</text>
 		</uni-card>
-		<uni-section title="基本用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<view class="example-body">
 				<uni-fav :checked="checkList[0]" class="favBtn" @click="favClick(0)" />
 				<uni-fav :checked="checkList[1]" :star="false" class="favBtn" @click="favClick(1)" />
@@ -14,14 +14,14 @@
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义文字" type="line">
+		<uni-section title="Customized Text" type="line">
 			<view class="example-body">
 				<uni-fav :checked="checkList[4]" :content-text="contentText" @click="favClick(4)" />
 			</view>
 		</uni-section>
 
-		<uni-section title="在自定义导航栏使用" type="line">
-			<uni-nav-bar style="width: 100%;" :fixed="false" left-icon="arrowleft" title="标题" color="#333333"
+		<uni-section title="Use in the custom navigation bar" type="line">
+			<uni-nav-bar style="width: 100%;" :fixed="false" left-icon="arrowleft" title="Title" color="#333333"
 				background-color="#FFFFFF">
 				<template v-slot:right>
 					<uni-fav :checked="checkList[5]" :circle="true" @click="favClick(5)" />
@@ -41,8 +41,8 @@
 			return {
 				checkList: [false, false, false, false, false, false],
 				contentText: {
-					contentDefault: '追番',
-					contentFav: '已追番'
+					contentDefault: 'Follow',
+					contentFav: 'Followed'
 				}
 			}
 		},

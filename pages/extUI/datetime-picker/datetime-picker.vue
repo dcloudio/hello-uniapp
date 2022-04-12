@@ -1,49 +1,49 @@
 <template>
 	<view class="page container">
 		<uni-card is-full>
-			<text class="uni-h6">可以同时选择日期和时间的选择器</text>
+			<text class="uni-h6">The datetime-picker selector for both date and time</text>
 		</uni-card>
-		<uni-section :title="'日期用法：' + single" type="line"></uni-section>
+		<uni-section :title="'Date Usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker type="date" :clear-icon="false" v-model="single" @maskClick="maskClick" />
 		</view>
-		<uni-section :title="'日期时间用法：' + datetimesingle" type="line"></uni-section>
+		<uni-section :title="'Date and Time Usage：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker type="datetime" v-model="datetimesingle" @change="changeLog" />
 		</view>
-		<uni-section :title="'日期范围用法：' + '[' + range + ']'" type="line"></uni-section>
+		<uni-section :title="'Date Range Usage：' + '[' + range + ']'" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="range" type="daterange" @maskClick="maskClick" />
 		</view>
-		<uni-section :title="'日期时间范围用法：' + '[' + datetimerange + ']' " type="line"></uni-section>
+		<uni-section :title="'Date Time Range Usage：' + '[' + datetimerange + ']' " type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker v-model="datetimerange" type="datetimerange" rangeSeparator="至" />
+			<uni-datetime-picker v-model="datetimerange" type="datetimerange" rangeSeparator="To" />
 		</view>
-		<uni-section :title="'v-model用法：' + single" type="line"></uni-section>
+		<uni-section :title="'v-model usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" />
 		</view>
-		<uni-section :title="'时间戳用法：' + single" type="line"></uni-section>
+		<uni-section :title="'Timestamp Usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker returnType="timestamp" v-model="single" @change="changeLog($event)" />
 		</view>
-		<uni-section :title="'date 对象用法：' + datetimesingle" type="line"></uni-section>
+		<uni-section :title="'date Object Usage：' + datetimesingle" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker type="datetime" returnType="date" v-model="datetimesingle" @change="changeLog" />
 		</view>
-		<uni-section :title="'插槽用法：' + single" type="line"></uni-section>
+		<uni-section :title="'Slot Usage：' + single" type="line"></uni-section>
 		<view class="example-body">
-			<uni-datetime-picker v-model="single">我是一个插槽，点击我</uni-datetime-picker>
+			<uni-datetime-picker v-model="single">I am a slot, click me</uni-datetime-picker>
 		</view>
-		<uni-section :title="'无边框用法：' + single" type="line"></uni-section>
+		<uni-section :title="'Borderless usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" :border="false" />
 		</view>
-		<uni-section :title="'隐藏清除按钮用法：' + single" type="line"></uni-section>
+		<uni-section :title="'Hide Clear button usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" :clearIcon="false" />
 		</view>
-		<uni-section :title="'disabled用法：' + single" type="line"></uni-section>
+		<uni-section :title="'disabled Usage：' + single" type="line"></uni-section>
 		<view class="example-body">
 			<uni-datetime-picker v-model="single" disabled />
 		</view>
@@ -65,13 +65,13 @@
 
 		watch: {
 			datetimesingle(newval) {
-				console.log('单选:', this.datetimesingle);
+				console.log('Single choice:', this.datetimesingle);
 			},
 			range(newval) {
-				console.log('范围选:', this.range);
+				console.log('Range Selection:', this.range);
 			},
 			datetimerange(newval) {
-				console.log('范围选:', this.datetimerange);
+				console.log('Range Selection:', this.datetimerange);
 			}
 		},
 		mounted() {
@@ -88,13 +88,13 @@
 		methods: {
 			change(e) {
 				this.single = e
-				console.log('----change事件:', this.single = e);
+				console.log('----change:', this.single = e);
 			},
 			changeLog(e) {
-				console.log('----change事件:', e);
+				console.log('----change:', e);
 			},
 			maskClick(e) {
-				console.log('----maskClick事件:', e);
+				console.log('----maskClick:', e);
 			}
 		}
 	}

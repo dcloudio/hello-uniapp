@@ -1,27 +1,27 @@
 <template>
 	<view>
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">分页器组件，用于展示页码、请求数据等</text>
+			<text class="uni-h6">uni-pagination component for displaying page numbers, request data, etc.</text>
 		</uni-card>
-		<uni-section title="默认样式" type="line" padding>
-			<uni-pagination :total="50" title="标题文字" />
+		<uni-section title="Default Style" type="line" padding>
+			<uni-pagination :total="50" title="Title text" />
 		</uni-section>
-		<uni-section title="修改按钮文字" subTitle="使用 prev-text / next-text 属性修改按钮文字" type="line" padding>
-			<uni-pagination :total="50" title="标题文字" prev-text="前一页" next-text="后一页" />
+		<uni-section title="Modify button text" subTitle="Use prev-text / next-text modify button text" type="line" padding>
+			<uni-pagination :total="50" title="Title text" prev-text="prev" next-text="next" />
 		</uni-section>
-		<uni-section title="图标样式" subTitle="使用 show-icon 属性显示图标按钮" type="line" padding>
-			<uni-pagination :show-icon="true" :total="50" title="标题文字" />
+		<uni-section title="Icon style" subTitle="Use show-icon property display icon button" type="line" padding>
+			<uni-pagination :show-icon="true" :total="50" title="Title text" />
 		</uni-section>
-		<uni-section title="修改数据长度" type="line" padding>
-			<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
+		<uni-section title="Modify data length" type="line" padding>
+			<uni-pagination :current="current" :total="total" title="Title text" :show-icon="true" @change="change" />
 			<view class="btn-view">
 				<view>
-					<text class="example-info">当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>
+					<text class="example-info"> current page: {{ current }}, total data: {{ total }} items, data per page: {{ pageSize }}</text>
 				</view>
 				<view class="btn-flex">
 					<button class="button word-btn" hover-class="word-btn--hover" :hover-start-time="20"
-						:hover-stay-time="70" @click="add"><text class="word-btn-white">增加10条数据</text></button>
-					<button class="button" type="default" @click="reset">重置数据</button>
+						:hover-stay-time="70" @click="add"><text class="word-btn-white">Add 10 pieces of data</text></button>
+					<button class="button" type="default" @click="reset">Reset data</button>
 				</view>
 			</view>
 		</uni-section>

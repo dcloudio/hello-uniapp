@@ -1,65 +1,65 @@
 <template>
 	<view class="uni-content">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6"> 章节标题，通常用于记录页面标题，使用当前组件在 uni-app 开启统计的情况下，将会自动统计页面标题.</text>
+			<text class="uni-h6"> uni-title，This is usually used to record page titles, which are automatically counted using the current component if uni-app has statistics turned on.</text>
 		</uni-card>
-		<uni-section title="不同类型" type="line">
+		<uni-section title="Different Types" type="line">
 			<view class="example-body">
-				<uni-title type="h1" title="h1 一级标题"></uni-title>
-				<uni-title type="h2" title="h2 二级标题"></uni-title>
-				<uni-title type="h3" title="h3 三级标题"></uni-title>
-				<uni-title type="h4" title="h4 四级标题"></uni-title>
-				<uni-title type="h5" title="h5 五级标题"></uni-title>
+				<uni-title type="h1" title="h1 Level Title"></uni-title>
+				<uni-title type="h2" title="h2 Level Title"></uni-title>
+				<uni-title type="h3" title="h3 Level Title"></uni-title>
+				<uni-title type="h4" title="h4 Level Title"></uni-title>
+				<uni-title type="h5" title="h5 Level Title"></uni-title>
 			</view>
 		</uni-section>
 
-		<uni-section title="改变颜色" type="line">
+		<uni-section title="Change color" type="line">
 
 			<view class="example-body">
-				<uni-title type="h1" title="h1 一级标题" color="#027fff"></uni-title>
-				<uni-title type="h2" title="h2 二级标题" color="#2490ff"></uni-title>
-				<uni-title type="h3" title="h3 三级标题" color="#439ffc"></uni-title>
-				<uni-title type="h4" title="h4 四级标题" color="#60adfb"></uni-title>
-				<uni-title type="h5" title="h5 五级标题" color="#7db9f7"></uni-title>
+				<uni-title type="h1" title="h1 Level Title" color="#027fff"></uni-title>
+				<uni-title type="h2" title="h2 Level Title" color="#2490ff"></uni-title>
+				<uni-title type="h3" title="h3 Level Title" color="#439ffc"></uni-title>
+				<uni-title type="h4" title="h4 Level Title" color="#60adfb"></uni-title>
+				<uni-title type="h5" title="h5 Level Title" color="#7db9f7"></uni-title>
 			</view>
 		</uni-section>
-		<uni-section title="对齐方式" type="line">
+		<uni-section title="Alignment method" type="line">
 
 			<view class="example-body">
-				<uni-title type="h1" title="h1 左对齐" align="left"></uni-title>
-				<uni-title type="h2" title="h2 居中" align="center"></uni-title>
-				<uni-title type="h3" title="h3 右对齐" align="right"></uni-title>
-				<uni-title type="h4" title="h4 居中" align="center"></uni-title>
-				<uni-title type="h5" title="h5 左对齐" align="left"></uni-title>
+				<uni-title type="h1" title="h1 Left Alignment" align="left"></uni-title>
+				<uni-title type="h2" title="h2 Centering" align="center"></uni-title>
+				<uni-title type="h3" title="h3 Right Alignment" align="right"></uni-title>
+				<uni-title type="h4" title="h4 Centering" align="center"></uni-title>
+				<uni-title type="h5" title="h5 Left Alignment" align="left"></uni-title>
 			</view>
 		</uni-section>
-		<uni-section title="组合示例" type="line">
+		<uni-section title="Combination example" type="line">
 
 			<view class="example-body">
 				<view class="uni-box-head">
-					<uni-title type="h1" align="center" title="uni-app介绍"></uni-title>
+					<uni-title type="h1" align="center" title="uni-app Introduction"></uni-title>
 				</view>
 				<view class="uni-box">
-					<uni-title class="h3" type="h3" title="1 框架介绍"></uni-title>
+					<uni-title class="h3" type="h3" title="1 Framework Introduction"></uni-title>
 				</view>
 				<view class="uni-box">
-					<uni-title class="h4" type="h4" title="1.1 什么是uni-app"></uni-title>
+					<uni-title class="h4" type="h4" title="1.1 What is uni-app"></uni-title>
 				</view>
 				<view>
 					<text
-						class="uni-text">uni-app是一个使用Vue.js开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉）等多个平台。即使不跨端，uni-app同时也是更好的小程序开发框架。DCloud公司拥有370万开发者用户，旗下uni-app有5万+案例、900款插件、50+微信/qq群，并且被阿里小程序工具内置，开发者可以放心选择。</text>
+						class="uni-text">uni-app is a framework for developing all front-end applications using Vue.js. Developers write a set of code that can be published to multiple platforms such as iOS, Android, H5, and various applets (WeChat/Alipay/Baidu/Headlines/QQ/Nail). Even if not cross-end, uni-app is also a better framework for small program development. dCloud has 3.7 million developer users, its uni-app has 50,000+ cases, 900 plug-ins, 50+ WeChat/qq groups, and is built-in by Ali small program tools, developers can choose with confidence.</text>
 				</view>
 				<view class="uni-box">
-					<uni-title class="h4" type="h4" title="1.2 开发规范"></uni-title>
+					<uni-title class="h4" type="h4" title="1.2 Development specifications"></uni-title>
 				</view>
 				<view class="">
-					<uni-title class="h5" type="h5" color="#666" title="- 页面文件遵循 Vue 单文件组件 (SFC) 规范"></uni-title>
-					<uni-title class="h5" type="h5" color="#666" title="- 组件标签靠近小程序规范，详见uni-app 组件规范"></uni-title>
+					<uni-title class="h5" type="h5" color="#666" title="- Page files follow the Vue Single File Component (SFC) specification"></uni-title>
+					<uni-title class="h5" type="h5" color="#666" title="- Component tags are close to the applet specification, see uni-app component specification for details"></uni-title>
 					<uni-title class="h5" type="h5" color="#666"
-						title="- 接口能力（JS API）靠近微信小程序规范，但需将前缀 wx 替换为 uni，详见uni-app接口规范"></uni-title>
-					<uni-title class="h5" type="h5" color="#666" title="- 数据绑定及事件处理同 Vue.js 规范，同时补充了App及页面的生命周期">
+						title="- The interface capability (JS API) is close to the WeChat applet specification, but the prefix wx needs to be replaced with uni, see the uni-app interface specification for details"></uni-title>
+					<uni-title class="h5" type="h5" color="#666" title="- Data binding and event handling are the same as the Vue.js specification, while supplementing the lifecycle of apps and pages">
 					</uni-title>
-					<uni-title class="h5" type="h5" color="#666" title="- 为兼容多端运行，建议使用flex布局进行开发"></uni-title>
+					<uni-title class="h5" type="h5" color="#666" title="- It is recommended to use flex layout for development in order to be compatible with multi-side operation"></uni-title>
 				</view>
 			</view>
 		</uni-section>
@@ -71,7 +71,7 @@
 		components: {},
 		data() {
 			return {
-				title: '章节标题通常用于记录页面标题，例如商品标题、新闻标题等，当前组件会自动上报内容统计数据'
+				title: 'Chapter titles are usually used to record page titles, such as product titles, news titles, etc. The current component will automatically report content statistics'
 			}
 		},
 		onLoad() {},

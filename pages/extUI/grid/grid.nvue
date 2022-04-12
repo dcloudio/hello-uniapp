@@ -1,31 +1,31 @@
 <template>
 	<view class="warp">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">宫格组件主要使用场景如：商品推荐列表、热门内容等</text>
+			<text class="uni-h6">The main use scenarios of the palace component such as: product recommendation list, popular content, etc.</text>
 		</uni-card>
-		<uni-section title="基础样式" type="line" padding>
+		<uni-section title="Basic Style" type="line" padding>
 			<uni-grid :column="4" :highlight="true" @change="change">
 				<uni-grid-item v-for="(item, index) in 4" :index="index" :key="index">
 					<view class="grid-item-box" style="background-color: #fff;">
 						<uni-icons type="image" :size="30" color="#777" />
-						<text class="text">文本信息</text>
+						<text class="text">Text Message</text>
 					</view>
 				</uni-grid-item>
 			</uni-grid>
 		</uni-section>
-		<uni-section title="自定义列数" type="line" padding>
+		<uni-section title="Customize the number of columns" type="line" padding>
 			<uni-grid :column="4" :highlight="true" @change="change">
 				<uni-grid-item v-for="(item, index) in 8" :index="index" :key="index">
 					<view class="grid-item-box" style="background-color: #fff;">
 						<uni-icons type="image" :size="30" color="#777" />
-						<text class="text">文本信息</text>
+						<text class="text">Text Message</text>
 					</view>
 				</uni-grid-item>
 			</uni-grid>
 		</uni-section>
 
-		<uni-section title="滑动视图" type="line" padding>
-			<!-- 因为swiper特性的关系，请指定swiper的高度 ，swiper的高度并不会被内容撑开-->
+		<uni-section title="Sliding View" type="line" padding>
+			<!-- Because of the swiper feature, please specify the height of the swiper, the height of the swiper will not be propped up by the content-->
 			<swiper class="swiper" :indicator-dots="true">
 				<swiper-item>
 					<uni-grid :column="3" :highlight="true" @change="change">
@@ -59,7 +59,7 @@
 				</swiper-item>
 			</swiper>
 		</uni-section>
-		<uni-section title="动态加载" type="line" padding>
+		<uni-section title="Dynamic loading" type="line" padding>
 			<view class="grid-dynamic-box">
 				<uni-grid :column="3" :highlight="true" @change="change">
 					<uni-grid-item v-for="(item, index) in dynamicList" :index="index" :key="index">
@@ -70,11 +70,11 @@
 					</uni-grid-item>
 				</uni-grid>
 			</view>
-			<button type="primary" @click="add">点击添加一个宫格</button>
+			<button type="primary" @click="add">Click to add a palace</button>
 			<button v-if="dynamicList.length !== 0" type="primary" style="margin-top: 15px;"
-				@click="del">点击删除一个宫格</button>
+				@click="del">Click to delete a cell</button>
 		</uni-section>
-		<uni-section title="无边框带角标（3列）" type="line" padding>
+		<uni-section title="Borderless with corner markers (3 columns)" type="line" padding>
 			<uni-grid :column="3" :show-border="false" :square="false" @change="change">
 				<uni-grid-item v-for="(item ,index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
@@ -87,7 +87,7 @@
 				</uni-grid-item>
 			</uni-grid>
 		</uni-section>
-		<uni-section title="矩形宫格（3列）" type="line" padding>
+		<uni-section title="Rectangular palisade (3 columns)" type="line" padding>
 			<uni-grid :column="3" :square="false" :highlight="false" @change="change">
 				<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
@@ -97,7 +97,7 @@
 				</uni-grid-item>
 			</uni-grid>
 		</uni-section>
-		<uni-section title="边框颜色（4列 无文字）" type="line" padding>
+		<uni-section title="Border color (4 columns without text)" type="line" padding>
 			<uni-grid :column="4" border-color="#03a9f4" @change="change">
 				<uni-grid-item :index="0">
 					<view class="grid-item-box">
@@ -185,7 +185,7 @@
 				this.list[index].badge && this.list[index].badge++
 
 				uni.showToast({
-					title: `点击第${index+1}个宫格`,
+					title: `click the ${index+1} grid`,
 					icon: 'none'
 				})
 			},
@@ -198,7 +198,7 @@
 					})
 				} else {
 					uni.showToast({
-						title: '最多添加9个',
+						title: 'Add up to 9',
 						icon: 'none'
 					});
 				}

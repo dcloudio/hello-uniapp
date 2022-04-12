@@ -1,34 +1,34 @@
 <template>
 	<view class="container">
 		<uni-card is-full>
-			<text class="uni-h6">倒计时组件主要用于促销商品剩余时间，发送短信验证等待时间等场景</text>
+			<text class="uni-h6">The countdown component is mainly used to promote the remaining time of the product, send SMS to verify the waiting time and other scenarios</text>
 		</uni-card>
-		<uni-section title="一般用法" type="line" padding>
+		<uni-section title="General Usage" type="line" padding>
 			<uni-countdown :day="1" :hour="1" :minute="12" :second="40" />
 		</uni-section>
-		<uni-section title="不显示天数" subTitle="设置 show-day = false 不显示天" type="line" padding>
+		<uni-section title="No days displayed" subTitle="set show-day = false no days displayed" type="line" padding>
 			<uni-countdown :show-day="false" :hour="12" :minute="12" :second="12" />
 		</uni-section>
-		<uni-section title="文字分隔符" subTitle="设置 show-colon 属性设置分隔符样式" type="line" padding>
+		<uni-section title="Text separator" subTitle="Set the show-colon property to set the separator style" type="line" padding>
 			<uni-countdown :minute="30" :second="0" :show-colon="false" />
 		</uni-section>
-		<uni-section title="修改颜色" subTitle="设置 color \ background 属性设置组件颜色" type="line" padding>
+		<uni-section title="Modify color" subTitle="Set the color \ background property to set the component color" type="line" padding>
 			<uni-countdown :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF" background-color="#007AFF" />
 		</uni-section>
-		<uni-section title="修改字体大小" subTitle="设置 font-size 属性设置组件大小" type="line" padding>
+		<uni-section title="Modify font size" subTitle="Set the font-size property to set the component size" type="line" padding>
 			<uni-countdown :font-size="30" :day="1" :hour="2" :minute="30" :second="0" />
 		</uni-section>
-		<uni-section title="修改颜色 + 字体大小" type="line" padding>
+		<uni-section title="Change color + font size" type="line" padding>
 			<uni-countdown :font-size="30" :day="1" :hour="2" :minute="30" :second="0" color="#FFFFFF"
 				background-color="#007AFF" />
 		</uni-section>
-		<uni-section title="自由控制开始/暂停" subTitle="设置 start 属性控制是否自动开启" type="line" padding>
+		<uni-section title="Free control of start/pause" subTitle="Set the start property to control whether it is automatically turned on" type="line" padding>
 			<uni-countdown :start="start" :day="1" :hour="1" :minute="12" :second="40" />
 		</uni-section>
-		<uni-section title="倒计时回调事件" type="line" padding>
+		<uni-section title="Countdown callback event" type="line" padding>
 			<uni-countdown :show-day="false" :second="timeupSecond" @timeup="timeup" />
 		</uni-section>
-		<uni-section title="动态赋值" type="line" padding>
+		<uni-section title="Dynamic assignment" type="line" padding>
 			<uni-countdown :show-day="false" :hour="testHour" :minute="testMinute" :second="testSecond" />
 		</uni-section>
 	</view>
@@ -59,7 +59,7 @@
 		methods: {
 			timeup() {
 				uni.showToast({
-					title: '时间到'
+					title: 'Time to'
 				})
 				this.timeupSecond = 29
 			}

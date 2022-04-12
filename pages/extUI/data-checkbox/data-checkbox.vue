@@ -1,57 +1,57 @@
 <template>
 	<view>
 		<uni-card is-full>
-			<text class="uni-h6">通过数据驱动的单选框和复选框，可直接通过连接 uniCloud 获取数据，同时可以配合表单组件 uni-forms 使用</text>
+			<text class="uni-h6">Data-driven radio and checkboxes that can be accessed directly through a connection to uniCloud and can be used with the form component uni-forms</text>
 		</uni-card>
-		<uni-section title="单选" type="line">
+		<uni-section title="Single choice" type="line">
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">单选选中：{{JSON.stringify(radio1)}}</view>
+				<view class="text">Single check：{{JSON.stringify(radio1)}}</view>
 				<uni-data-checkbox v-model="radio1" :localdata="sex"></uni-data-checkbox>
 			</view>
 		</uni-section>
-		<uni-section title="多选" subTitle="使用multiple属性开启多选" type="line">
+		<uni-section title="多选" subTitle="Use the multiple attribute to enable multiple selection" type="line">
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">多选选中：{{JSON.stringify(checkbox1)}}</view>
+				<view class="text">Multi-Check：{{JSON.stringify(checkbox1)}}</view>
 				<uni-data-checkbox multiple v-model="checkbox1" :localdata="hobby"></uni-data-checkbox>
 			</view>
 		</uni-section>
 
-		<uni-section title="最大最小值" subTitle="使用 min / max 设置多选的最大最小值,单选无效">
+		<uni-section title="最大最小值" subTitle="Use min / max to set the maximum and minimum values for multiple selections, not valid for single selections">
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">选中：{{JSON.stringify(checkbox6)}}</view>
+				<view class="text">Selected {{JSON.stringify(checkbox6)}}</view>
 				<uni-data-checkbox min="1" max="2" multiple v-model="checkbox6" :localdata="hobby"></uni-data-checkbox>
 			</view>
 		</uni-section>
 
-		<uni-section title="更多样式 - button" subTitle="使用mode=button属性使用按钮样式" type="line">
+		<uni-section title="More styles - button" subTitle="Use the mode=button property to use the button style" type="line">
 			<view class="uni-px-5">
-				<view class="text">单选选中：{{JSON.stringify(radio2)}}</view>
+				<view class="text">Single check：{{JSON.stringify(radio2)}}</view>
 				<uni-data-checkbox mode="button" v-model="radio2" :localdata="sex"></uni-data-checkbox>
 			</view>
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">多选选中：{{JSON.stringify(checkbox2)}}</view>
+				<view class="text">Multi-Check：{{JSON.stringify(checkbox2)}}</view>
 				<uni-data-checkbox mode="button" multiple v-model="checkbox2" :localdata="hobby"></uni-data-checkbox>
 			</view>
 		</uni-section>
 
-		<uni-section title="更多样式 - tag" subTitle="使用mode=tag属性使用标签样式" type="line">
+		<uni-section title="More styles - tag" subTitle="Use tag style with mode=tag attribute" type="line">
 			<view class="uni-px-5">
-				<view class="text">单选选中：{{JSON.stringify(radio3)}}</view>
+				<view class="text">Single check：{{JSON.stringify(radio3)}}</view>
 				<uni-data-checkbox mode="tag" v-model="radio3" :localdata="sex"></uni-data-checkbox>
 			</view>
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">多选选中：{{JSON.stringify(checkbox3)}}</view>
+				<view class="text">Multi-Check：{{JSON.stringify(checkbox3)}}</view>
 				<uni-data-checkbox mode="tag" multiple v-model="checkbox3" :localdata="hobby"></uni-data-checkbox>
 			</view>
 		</uni-section>
 
-		<uni-section title="禁用" subTitle="数据中使用 disable 属性实现单独禁用,组件使用 disable 属性实现全部禁用" type="line">
+		<uni-section title="Disable" subTitle="The disable attribute is used in the data to disable it individually, and the disable attribute is used in the components to disable them all." type="line">
 			<view class="uni-px-5">
-				<view class="text">单选选中：{{JSON.stringify(radio4)}}</view>
+				<view class="text">Single check：{{JSON.stringify(radio4)}}</view>
 				<uni-data-checkbox mode="button" v-model="radio4" :localdata="sex1"></uni-data-checkbox>
 			</view>
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">多选选中：{{JSON.stringify(checkbox4)}}</view>
+				<view class="text">Multi-Check：{{JSON.stringify(checkbox4)}}</view>
 				<uni-data-checkbox mode="button" multiple v-model="checkbox4" :localdata="hobby2">
 				</uni-data-checkbox>
 			</view>
@@ -59,85 +59,17 @@
 
 
 
-		<uni-section title="自定义高亮颜色" subTitle="使用 selectedColor 属性修改颜色" type="line">
+		<uni-section title="Customized highlighting color" subTitle="Use the selectedColor property to modify the color" type="line">
 			<view class="uni-px-5">
-				<view class="text">单选选中：{{JSON.stringify(radio5)}}</view>
+				<view class="text">Single check：{{JSON.stringify(radio5)}}</view>
 				<uni-data-checkbox selectedColor="red" v-model="radio5" :localdata="sex1"></uni-data-checkbox>
 			</view>
 			<view class="uni-px-5 uni-pb-5">
-				<view class="text">多选选中：{{JSON.stringify(checkbox5)}}</view>
+				<view class="text">Multi-Check：{{JSON.stringify(checkbox5)}}</view>
 				<uni-data-checkbox selectedColor="red" multiple v-model="checkbox5" :localdata="hobby2">
 				</uni-data-checkbox>
 			</view>
 		</uni-section>
-
-
-
-		<!-- <uni-group title="基础用法">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
-		</uni-group>
-		<uni-group title="更多样式-button">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox mode="button" multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="更多样式-tag">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox mode="tag" multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="更多样式-list">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox mode="list" multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="禁用">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox mode="button" multiple v-model="formData.hobby" :localdata="hobby2"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="最大最小值">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox min="1" max="2" multiple v-model="formData.hobby" :localdata="hobby"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="自定义高亮颜色">
-			<view class="text">选中：{{JSON.stringify(formData.hobby)}}</view>
-			<uni-data-checkbox selectedColor="red" multiple v-model="formData.hobby" :localdata="hobby2">
-			</uni-data-checkbox>
-		</uni-group>
-
-		<uni-section title="单选" type="line"></uni-section>
-		<uni-group title="基础用法">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox v-model="formData.value" :localdata="sex"></uni-data-checkbox>
-		</uni-group>
-		<uni-group title="更多样式-button">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox mode="button" v-model="formData.value" :localdata="sex"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="更多样式-tag">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox mode="tag" v-model="formData.value" :localdata="sex"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="更多样式-list">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox mode="list" icon="right" v-model="formData.value" :localdata="sex"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="禁用">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox mode="button" v-model="formData.value" :localdata="sex1"></uni-data-checkbox>
-		</uni-group>
-
-		<uni-group title="自定义高亮颜色">
-			<view class="text">选中：{{formData.value}}</view>
-			<uni-data-checkbox selectedColor="red" v-model="formData.value" :localdata="sex1"></uni-data-checkbox>
-		</uni-group> -->
-
 	</view>
 </template>
 
@@ -158,46 +90,46 @@
 				checkbox5: [0],
 				checkbox6: [0],
 				sex: [{
-					text: '男',
+					text: 'Male',
 					value: 0
 				}, {
-					text: '女',
+					text: 'Female',
 					value: 1
 				}, {
-					text: '未知',
+					text: 'Unknown',
 					value: 2
 				}],
 				sex1: [{
-					text: '男',
+					text: 'Male',
 					value: 0
 				}, {
-					text: '女',
+					text: 'Female',
 					value: 1,
 					disable: true
 				}, {
-					text: '未知',
+					text: 'UnKnow',
 					value: 2
 				}],
 				hobby: [{
-					text: '足球',
+					text: 'Football',
 					value: 0
 				}, {
-					text: '篮球',
+					text: 'Basketball',
 					value: 1
 				}, {
-					text: '游泳',
+					text: 'Swimming',
 					value: 2
 				}],
 				hobby2: [{
-					text: '足球',
+					text: 'Football',
 					value: 0,
 					disable: true
 				}, {
-					text: '篮球',
+					text: 'Basketball',
 					value: 1,
 					disable: true
 				}, {
-					text: '游泳',
+					text: 'Swimming',
 					value: 2
 				}],
 			}

@@ -1,37 +1,37 @@
 <template>
 	<view class="container">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">文件选择上传组件，可以选择图片、视频等任意文件并上传到当前绑定的服务空间。</text>
+			<text class="uni-h6">The uni-file-picker component allows you to select any files such as images, videos, etc. and upload them to the currently bound service space.</text>
 		</uni-card>
-		<uni-section title="只选择图片" type="line">
+		<uni-section title="Select only images" type="line">
 			<view class="example-body">
-				<uni-file-picker limit="9" title="最多选择9张图片"></uni-file-picker>
+				<uni-file-picker limit="9" title="Select up to 9 images"></uni-file-picker>
 			</view>
 		</uni-section>
-		<uni-section title="只选择视频" type="line">
+		<uni-section title="Select video only" type="line">
 			<view class="example-body">
-				<uni-file-picker limit="9" file-mediatype="video" title="最多选择9个视频"></uni-file-picker>
+				<uni-file-picker limit="9" file-mediatype="video" title="Select up to 9 videos"></uni-file-picker>
 			</view>
 		</uni-section>
 
 
 		<!-- #ifdef H5 || MP-WEIXIN -->
-		<uni-section title="选择任意文件" type="line">
+		<uni-section title="Select any file" type="line">
 			<view class="example-body">
-				<uni-file-picker limit="5" file-mediatype="all" title="最多选择5个文件"></uni-file-picker>
+				<uni-file-picker limit="5" file-mediatype="all" title="Select up to 5 files"></uni-file-picker>
 			</view>
 		</uni-section>
 		<!-- #endif -->
 
-		<uni-section title="自定义图片大小" type="line">
+		<uni-section title="Customize image size" type="line">
 			<view class="example-body custom-image-box">
-				<text class="text">选择头像</text>
+				<text class="text">Select avatar</text>
 				<uni-file-picker limit="1" :del-icon="false" disable-preview :imageStyles="imageStyles"
-					file-mediatype="image">选择</uni-file-picker>
+					file-mediatype="image">select</uni-file-picker>
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义图片大小" type="line">
+		<uni-section title="Customize image size" type="line">
 			<view class="example-body ">
 				<uni-file-picker readonly :value="fileLists" :imageStyles="imageStyles" file-mediatype="image">
 				</uni-file-picker>
@@ -55,11 +55,8 @@
 					}
 				},
 				listStyles: {
-					// 是否显示边框
 					border: true,
-					// 是否显示分隔线
 					dividline: true,
-					// 线条样式
 					borderStyle: {
 						width: 1,
 						color: 'blue',

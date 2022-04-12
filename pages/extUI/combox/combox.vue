@@ -1,26 +1,26 @@
 <template>
 	<view class="container">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">组合框一般用于可以选择也可以输入的表单项。</text>
+			<text class="uni-h6">uni-combox Generally used for form entries that can be selected as well as entered.</text>
 		</uni-card>
-		<uni-section title="基本用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<view class="example-body">
-				<uni-combox :candidates="candidates" placeholder="请选择所在城市" v-model="city"></uni-combox>
+				<uni-combox :candidates="candidates" placeholder="Please select your cityPlease select your cityPlease select your city" v-model="city"></uni-combox>
 				<view class="result-box">
-					<text>所选城市为：{{city}}</text>
+					<text>city：{{city}}</text>
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="无边框" subTitle="使用 border = false 取消边框" type="line">
+		<uni-section title="Borderless" subTitle="Use border = false to cancel the border" type="line">
 			<view class="example-body">
-				<uni-combox :border="false" :candidates="candidates" placeholder="请选择所在城市"></uni-combox>
+				<uni-combox :border="false" :candidates="candidates" placeholder="Please select your cityPlease select your cityPlease select your city"></uni-combox>
 			</view>
 		</uni-section>
 
-		<uni-section title="设置无匹配项时的提示语" subTitle="使用 emptyTips 属性设置无匹配项时的提示语" type="line">
+		<uni-section title="Set the prompt when there is no match" subTitle="Use the emptyTips property to set the prompt when there are no matches" type="line">
 			<view class="example-body">
-				<uni-combox emptyTips="这里啥都没有" placeholder="请选择所在城市"></uni-combox>
+				<uni-combox emptyTips="There's nothing here." placeholder="Please select your cityPlease select your cityPlease select your city"></uni-combox>
 			</view>
 		</uni-section>
 	</view>
@@ -31,7 +31,7 @@
 		components: {},
 		data() {
 			return {
-				candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
+				candidates: ['Beijing', 'Nanjing', 'Tokyo', 'Wuhan', 'Tianjin', 'Shanghai', 'Haikou'],
 				city: ''
 			}
 		},

@@ -1,115 +1,115 @@
 <template>
 	<view class="container">
 		<uni-card is-full>
-			<text class="uni-h6">标签组件多用于商品分类、重点内容显示等场景。</text>
+			<text class="uni-h6">uni-tag components are mostly used in scenarios such as product classification and key content display.</text>
 		</uni-card>
 
-		<uni-section title="实心标签" type="line" padding>
+		<uni-section title="Solid tag" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag text="标签" type="primary" />
+					<uni-tag text="tag" type="primary" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" type="success" />
+					<uni-tag text="tag" type="success" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" type="warning" />
+					<uni-tag text="tag" type="warning" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" type="error" />
+					<uni-tag text="tag" type="error" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" />
+					<uni-tag text="tag" />
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="空心标签" subTitle="使用 inverted 属性显示空心表签" type="line" padding>
+		<uni-section title="inverted tag" subTitle="Use the inverted property to display hollow tabs" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag :inverted="true" text="标签" type="primary" />
+					<uni-tag :inverted="true" text="tag" type="primary" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :inverted="true" text="标签" type="success" />
+					<uni-tag :inverted="true" text="tag" type="success" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :inverted="true" text="标签" type="warning" />
+					<uni-tag :inverted="true" text="tag" type="warning" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :inverted="true" text="标签" type="error" />
+					<uni-tag :inverted="true" text="tag" type="error" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :inverted="true" text="标签" />
+					<uni-tag :inverted="true" text="tag" />
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="标签尺寸" subTitle="使用 size 属性控制标签大小" type="line" padding>
+		<uni-section title="tag size" subTitle="Use the size property to control the size of the tag" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag text="标签" type="primary" size="normal" />
+					<uni-tag text="tag" type="primary" size="normal" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" type="primary" size="small" />
+					<uni-tag text="tag" type="primary" size="small" />
 				</view>
 				<view class="tag-view">
-					<uni-tag text="标签" type="primary" size="mini" />
+					<uni-tag text="tag" type="primary" size="mini" />
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="圆角样式" subTitle="使用 circle 属性控制标签圆角" type="line" padding>
+		<uni-section title="circle corner style" subTitle="Use the circle property to control the rounded corners of the tag" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag :circle="true" text="标签" type="primary" />
+					<uni-tag :circle="true" text="tag" type="primary" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :circle="true" text="标签" type="primary" size="small" />
+					<uni-tag :circle="true" text="tag" type="primary" size="small" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :circle="true" text="标签" type="primary" size="mini" />
+					<uni-tag :circle="true" text="tag" type="primary" size="mini" />
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="标记样式" subTitle="使用 mark 属性显示标记样式" type="line" padding>
+		<uni-section title="Marker Style" subTitle="Using the mark attribute to display mark styles" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag :mark="true" text="标签" type="primary" size="default" />
+					<uni-tag :mark="true" text="tag" type="primary" size="default" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :mark="true" text="标签" type="primary" size="small" />
+					<uni-tag :mark="true" text="tag" type="primary" size="small" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :mark="true" text="标签" type="primary" size="mini" />
+					<uni-tag :mark="true" text="tag" type="primary" size="mini" />
 				</view>
 			</view>
 		</uni-section>
-		<uni-section title="不可点击状态" subTitle="使用 disabled 属性 显示禁用样式" type="line" padding>
+		<uni-section title="disabled" subTitle="Use the disabled property to display the disabled style" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag disabled text="标签" type="primary" />
+					<uni-tag disabled text="tag" type="primary" />
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义样式" subTitle="使用 custom-style 属性自定义样式" type="line" padding>
+		<uni-section title="Custom styles" subTitle="Use the custom-style property to customize the style" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag text="自定义标签样式"
+					<uni-tag text="Custom tag style"
 						custom-style="background-color: #4335d6; border-color: #4335d6; color: #fff;">
 					</uni-tag>
 				</view>
 			</view>
 		</uni-section>
 
-		<uni-section title="点击事件" type="line" padding>
+		<uni-section title="Click on the event" type="line" padding>
 			<view class="example-body">
 				<view class="tag-view">
-					<uni-tag :type="type" text="标签" @click="setType" />
+					<uni-tag :type="type" text="tag" @click="setType" />
 				</view>
 				<view class="tag-view">
-					<uni-tag :circle="true" :inverted="inverted" text="标签" type="primary" @click="setInverted" />
+					<uni-tag :circle="true" :inverted="inverted" text="tag" type="primary" @click="setInverted" />
 				</view>
 			</view>
 		</uni-section>

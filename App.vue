@@ -41,6 +41,7 @@
 				}
 			})
 			// #endif
+			uni.setLocale('en')
 		},
 		onShow: function() {
 			console.log('App Show')

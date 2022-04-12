@@ -4,7 +4,7 @@
 			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
 		</view>
 		<view v-if="!hasLeftWin" class="uni-hello-text">
-			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
+			<text class="hello-text">The following are examples of uni-app extension components, for more components see the Plugin Marketplace at</text>
 			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
 		</view>
 		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel" v-for="item in lists" :key="item.url">
@@ -31,7 +31,7 @@
 					'load-more'
 				],
 				lists: [{
-						name: "uni-badge 数字角标",
+						name: "uni-badge",
 						url: "badge"
 					},
 					// {
@@ -39,170 +39,170 @@
 					// 	url: "calendar"
 					// },
 					{
-						name: "uni-card 卡片",
+						name: "uni-card",
 						url: "card"
 					},
 					{
-						name: "uni-collapse 折叠面板",
+						name: "uni-collapse",
 						url: "collapse"
 					},
 
 					// #ifndef APP-NVUE 
 					{
-						name: "uni-combox 组合框",
+						name: "uni-combox",
 						url: "combox"
 					},
 					// #endif 
 					{
-						name: "uni-countdown 倒计时",
+						name: "uni-countdown",
 						url: "countdown"
 					},
 					{
-						name: "uni-data-checkbox 数据选择器",
+						name: "uni-data-checkbox",
 						url: "data-checkbox"
 					},
 					{
-						name: "uni-data-picker 数据驱动的picker选择器",
+						name: "uni-data-picker",
 						url: "data-picker"
 					},
 					{
-						name: "uni-dateformat 日期格式化",
+						name: "uni-dateformat",
 						url: "dateformat"
 					},
 					{
-						name: "uni-datetime-picker 日期选择器",
+						name: "uni-datetime-picker",
 						url: "datetime-picker"
 					},
 					{
-						name: "uni-drawer 抽屉",
+						name: "uni-drawer",
 						url: "drawer"
 					},
 					{
-						name: "uni-easyinput 增强输入框",
+						name: "uni-easyinput",
 						url: "easyinput"
 					},
 					{
-						name: "uni-fab 悬浮按钮",
+						name: "uni-fab",
 						url: "fab"
 					},
 					{
-						name: "uni-fav 收藏按钮",
+						name: "uni-fav",
 						url: "fav"
 					},
 					// #ifndef APP-NVUE 
 					{
-						name: "uni-file-picker 文件选择上传",
+						name: "uni-file-picker",
 						url: "file-picker"
 					},
 					// #endif 
 					{
-						name: "uni-forms 表单",
+						name: "uni-forms",
 						url: "forms"
 					},
 					{
-						name: "uni-goods-nav 商品导航",
+						name: "uni-goods-nav",
 						url: "goods-nav"
 					},
 					{
-						name: "uni-grid 宫格",
+						name: "uni-grid",
 						url: "grid"
 					},
 					{
-						name: "uni-group 分组",
+						name: "uni-group",
 						url: "group"
 					},
 					{
-						name: "uni-icons 图标",
+						name: "uni-icons",
 						url: "icons"
 					},
 					{
-						name: "uni-indexed-list 索引列表",
+						name: "uni-indexed-list",
 						url: "indexed-list"
 					},
 					{
-						name: "uni-link 超链接",
+						name: "uni-link",
 						url: "link"
 					},
 					{
-						name: "uni-list 列表",
+						name: "uni-list",
 						url: "list"
 					},
 					// #ifndef MP-JD
 					{
-						name: "uni-load-more 加载更多",
+						name: "uni-load-more",
 						url: "load-more"
 					},
 					// #endif
 					{
-						name: "uni-nav-bar 自定义导航栏",
+						name: "uni-nav-bar",
 						url: "nav-bar"
 					},
 					{
-						name: "uni-notice-bar 通告栏",
+						name: "uni-notice-bar",
 						url: "notice-bar"
 					},
 					{
-						name: "uni-number-box 数字输入框",
+						name: "uni-number-box",
 						url: "number-box"
 					},
 					{
-						name: "uni-pagination 分页器",
+						name: "uni-pagination",
 						url: "pagination"
 					},
 					{
-						name: "uni-popup 弹出层",
+						name: "uni-popup",
 						url: "popup"
 					},
 					{
-						name: "uni-rate 评分",
+						name: "uni-rate",
 						url: "rate"
 					},
 					{
-						name: "uni-row 布局-行",
+						name: "uni-row",
 						url: "row"
 					},
 					{
-						name: "uni-search-bar 搜索栏",
+						name: "uni-search-bar",
 						url: "search-bar"
 					},
 					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
 					{
-						name: "section 标题栏",
+						name: "section",
 						url: "section"
 					},
 					// #endif 
 					{
-						name: "uni-segmented-control 分段器",
+						name: "uni-segmented-control",
 						url: "segmented-control"
 					},
 					{
-						name: "uni-steps 步骤条",
+						name: "uni-steps",
 						url: "steps"
 					},
 					{
-						name: "uni-swipe-action 滑动操作",
+						name: "uni-swipe-action",
 						url: "swipe-action"
 					},
 					{
-						name: "uni-swiper-dot 轮播图指示点",
+						name: "uni-swiper-dot",
 						url: "swiper-dot"
 					},
 					// #ifndef APP-NVUE || MP-TOUTIAO || MP-BAIDU
 					{
-						name: "uni-table 表格",
+						name: "uni-table",
 						url: "table"
 					},
 					// #endif 
 					{
-						name: "uni-tag 标签",
+						name: "uni-tag",
 						url: "tag"
 					},
 					{
-						name: "uni-title 章节标题",
+						name: "uni-title",
 						url: "title"
 					},
 					{
-						name: "uni-transition 过渡动画",
+						name: "uni-transition",
 						url: "transition"
 					},
 				]

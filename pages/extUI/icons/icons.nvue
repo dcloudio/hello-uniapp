@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">图标组件方便用户在设计页面的时候，减少小图片的使用。可方便自定义图标单色、尺寸。</text>
+			<text class="uni-h6">uni-icon component facilitates users to design pages with fewer small images. Easy to customize icon monochrome and size.</text>
 		</uni-card>
-		<uni-section title="图标" type="line">
+		<uni-section title="icon" type="line">
 			<template v-slot:right>
 				<view>
 					<switch :checked="checked" @change="change" />
@@ -18,7 +18,7 @@
 			</view>
 		</uni-section>
 		<!-- #ifndef APP-PLUS -->
-		<uni-section title="自定义图标" subTitle="引入参考App.vue" type="line">
+		<uni-section title="Custom Icons" subTitle="引入参考App.vue" type="line">
 			<view class="icon-content">
 				<view class="icon-item" >
 					<uni-icons customPrefix="customicons" type="youxi" color="#5e6d82" size="22" />

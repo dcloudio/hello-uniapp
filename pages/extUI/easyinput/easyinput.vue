@@ -1,52 +1,49 @@
 <template>
 	<view>
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">easyinput 组件是对原生input组件的增强 ，是专门为配合表单组件 uni-forms 而设计的，easyinput 内置了边框，图标等，同时包含 input
-				所有功能</text>
+			<text class="uni-h6">easyinput component is an enhancement of the native input component, designed to work with uni-forms, easyinput has built-in borders, icons, etc., and includes input all functions</text>
 		</uni-card>
-		<uni-section title="默认" subTitle="使用 focus 属性自动获取输入框焦点" type="line" padding>
-			<uni-easyinput errorMessage v-model="value" focus placeholder="请输入内容" @input="input"></uni-easyinput>
+		<uni-section title="Default" subTitle="Use the focus property to automatically get the focus of the input box" type="line" padding>
+			<uni-easyinput errorMessage v-model="value" focus placeholder="Please enter the content" @input="input"></uni-easyinput>
 		</uni-section>
 
-		<uni-section title="去除空格" subTitle="使用 trim 属性 ,可以控制返回内容的空格 " type="line" padding>
-			<text class="uni-subtitle">输入内容：{{ '"'+value+'"' }}</text>
-			<uni-easyinput class="uni-mt-5" trim="all" v-model="value" placeholder="请输入内容" @input="input">
+		<uni-section title="去除空格" subTitle="Using the trim attribute, you can control the spaces in the returned content" type="line" padding>
+			<text class="uni-subtitle">Input content：{{ '"'+value+'"' }}</text>
+			<uni-easyinput class="uni-mt-5" trim="all" v-model="value" placeholder="Please enter the content" @input="input">
 			</uni-easyinput>
 		</uni-section>
 
 
-		<uni-section title="自定义样式" subTitle="使用 styles 属性 ,可以自定义输入框样式" type="line" padding>
-			<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" placeholder="请输入内容"
+		<uni-section title="Custom styles" subTitle="Using the styles property, you can customize the input box style" type="line" padding>
+			<uni-easyinput v-model="value" :styles="styles" :placeholderStyle="placeholderStyle" placeholder="Please enter the content"
 				@input="input"></uni-easyinput>
 		</uni-section>
 
-		<uni-section title="图标" subTitle="使用 prefixIcon / suffixIcon 属性 ,可以自定义输入框左右侧图标" type="line" padding>
-			<uni-easyinput prefixIcon="search" v-model="value" placeholder="左侧图标" @iconClick="iconClick">
+		<uni-section title="Icon" subTitle="Use the prefixIcon / suffixIcon property to customize the left and right icons of the input box" type="line" padding>
+			<uni-easyinput prefixIcon="search" v-model="value" placeholder="left icon" @iconClick="iconClick">
 			</uni-easyinput>
-			<uni-easyinput class="uni-mt-5" suffixIcon="search" v-model="value" placeholder="右侧图标"
+			<uni-easyinput class="uni-mt-5" suffixIcon="search" v-model="value" placeholder="right icon"
 				@iconClick="iconClick">
 			</uni-easyinput>
 		</uni-section>
 
 
-		<uni-section title="禁用" subTitle="使用 disabled 属性禁用输入框" type="line" padding>
-			<uni-easyinput disabled value="已禁用" placeholder="请输入内容"></uni-easyinput>
+		<uni-section title="disabled" subTitle="Use the disabled property to disable the input box" type="line" padding>
+			<uni-easyinput disabled value="Disabled" placeholder="Please enter the content"></uni-easyinput>
 		</uni-section>
 
-		<uni-section title="密码框" subTitle="指定属性 type=password 使用密码框,右侧会显示眼睛图标" type="line" padding>
-			<uni-easyinput type="password" v-model="password" placeholder="请输入密码"></uni-easyinput>
+		<uni-section title="password" subTitle="Specify the attribute type=password to use the password box, the eye icon will be displayed on the right side" type="line" padding>
+			<uni-easyinput type="password" v-model="password" placeholder="Please enter your password"></uni-easyinput>
 		</uni-section>
 
-		<uni-section title="多行文本" subTitle="指定属性 type=textarea 使用多行文本框" type="line" padding>
-			<uni-easyinput type="textarea" v-model="value" placeholder="请输入内容"></uni-easyinput>
-		</uni-section>
-
-
-		<uni-section title="多行文本自动高度" subTitle="使用属性 autoHeight 使多行文本框自动增高" type="line" padding>
-			<uni-easyinput type="textarea" autoHeight v-model="value" placeholder="请输入内容"></uni-easyinput>
+		<uni-section title="textarea" subTitle="type=textarea" type="line" padding>
+			<uni-easyinput type="textarea" v-model="value" placeholder="Please enter the content"></uni-easyinput>
 		</uni-section>
 
 
+		<uni-section title="textarea auto height" subTitle="autoHeight" type="line" padding>
+			<uni-easyinput type="textarea" autoHeight v-model="value" placeholder="Please enter the content"></uni-easyinput>
+		</uni-section>
 	</view>
 </template>
 
@@ -68,11 +65,11 @@
 		onReady() {},
 		methods: {
 			input(e) {
-				console.log('输入内容：', e);
+				console.log('Input content：', e);
 			},
 			iconClick(type) {
 				uni.showToast({
-					title: `点击了${type==='prefix'?'左侧':'右侧'}的图标`,
+					title: `Clicked on the ${type=='prefix'?' left':'right'} icon`,
 					icon: 'none'
 				})
 			}

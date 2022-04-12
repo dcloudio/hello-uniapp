@@ -1,18 +1,18 @@
 <template>
 	<view>
-		<uni-section title="基本用法" type="line" padding>
+		<uni-section title="Basic usage" type="line" padding>
 			<uni-steps :options="list1" :active="active" />
 		</uni-section>
-		<uni-section title="自定义图标" type="line" padding>
+		<uni-section title="Custom Icons" type="line" padding>
 			<uni-steps :options="list1" active-icon="checkbox" :active="active" />
 		</uni-section>
-		<uni-section title="自定义图标" type="line" padding>
+		<uni-section title="Custom Icons" type="line" padding>
 			<uni-steps :options="list1" active-icon="medal" :active="active" />
 		</uni-section>
-		<uni-section title="纵向排列" type="line" padding>
+		<uni-section title="Vertical alignment" type="line" padding>
 			<uni-steps :options="list2" active-color="#007AFF" :active="active" direction="column" />
 		</uni-section>
-		<button type="primary" size="mini" style="margin: 30px 10px; width: 100px;" @click="change">改变状态</button>
+		<button type="primary" size="mini" style="margin: 30px 10px; width: 100px;" @click="change">Change Status</button>
 	</view>
 </template>
 
@@ -23,25 +23,25 @@
 			return {
 				active: 1,
 				list1: [{
-					title: '事件一'
-				}, {
-					title: '事件二'
-				}, {
-					title: '事件三'
-				}, {
-					title: '事件四'
+					title: 'Events 1'
+				}, {               
+					title: 'Events 2'
+				}, {               
+					title: 'Events 3'
+				}, {               
+					title: 'Events 4'
 				}],
 				list2: [{
-					title: '买家下单',
+					title: 'order',
 					desc: '2018-11-11'
 				}, {
-					title: '卖家发货',
+					title: 'Shipping',
 					desc: '2018-11-12'
 				}, {
-					title: '买家签收',
+					title: 'Signature',
 					desc: '2018-11-13'
 				}, {
-					title: '交易完成',
+					title: 'Done',
 					desc: '2018-11-14'
 				}]
 			}

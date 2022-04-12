@@ -42,7 +42,7 @@
 					<view v-for="(item, index) in dotStyle" :class="{ active: styleIndex === index }" :key="index"
 						:style="{ 'background-color': item.selectedBackgroundColor }" class="example-body-item"
 						@click="selectStyle(index)">
-						<text class="example-body-item-text" :style="{ color: item.color }">内容</text>
+						<text class="example-body-item-text" :style="{ color: item.color }">content</text>
 					</view>
 				</template>
 			</view>
@@ -59,17 +59,17 @@
 				info: [{
 						colorClass: 'uni-bg-red',
 						url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg',
-						content: '内容 A'
+						content: 'content A'
 					},
 					{
 						colorClass: 'uni-bg-green',
 						url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg',
-						content: '内容 B'
+						content: 'content B'
 					},
 					{
 						colorClass: 'uni-bg-blue',
 						url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg',
-						content: '内容 C'
+						content: 'content C'
 					}
 				],
 				dotStyle: [{

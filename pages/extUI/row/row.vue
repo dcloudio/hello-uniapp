@@ -2,14 +2,14 @@
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
 			<!-- #ifndef APP-NVUE -->
-			<text class="uni-h6"> 流式栅格系统，随着屏幕或视口分为 24 份，可以迅速简便地创建布局</text>
+			<text class="uni-h6">uni-row Streaming raster system, with screens or viewports divided into 24 parts, allows for quick and easy layout creation</text>
 			<!-- #endif -->
 			<!-- #ifdef APP-NVUE -->
-			<text class="uni-h6"> 流式栅格系统，在nvue不可使用媒体查询</text>
+			<text class="uni-h6"> Streaming raster system, no media queries available at nvue</text>
 			<!-- #endif -->
 		</uni-card>
 
-		<uni-section title="基础布局" subTitle="使用单一分栏创建基础的栅格布局" type="line">
+		<uni-section title="Basic layout" subTitle="Create a basic grid layout with a single sub-column" type="line">
 			<view class="example-body">
 				<uni-row class="demo-uni-row" :width="nvueWidth">
 					<uni-col>
@@ -77,7 +77,7 @@
 		</uni-section>
 
 
-		<uni-section title="混合布局" subTitle="通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局" type="line">
+		<uni-section title="Hybrid layout" subTitle="Complex hybrid layouts can be created by extending the base 1/24 column in any combination" type="line">
 			<view class="example-body">
 				<uni-row class="demo-uni-row" :gutter="gutter" :width="nvueWidth">
 					<uni-col :span="8">
@@ -109,7 +109,7 @@
 		</uni-section>
 
 
-		<uni-section title="分栏偏移" subTitle="支持偏移指定的栏数" type="line">
+		<uni-section title="Column Offset" subTitle="Supports offsetting a specified number of columns" type="line">
 			<view class="example-body">
 				<uni-row class="demo-uni-row" :gutter="gutter" :width="nvueWidth">
 					<uni-col :span="8">
@@ -148,7 +148,7 @@
 
 
 		<!-- #ifndef APP-NVUE -->
-		<uni-section title="响应式布局" subTitle="共五个响应尺寸：xs、sm、md、lg 和 xl" type="line">
+		<uni-section title="Responsive layout" subTitle="There are five response sizes: xs, sm, md, lg and xl" type="line">
 			<view class="example-body">
 				<uni-row class="demo-uni-row" :gutter="gutter">
 					<uni-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">

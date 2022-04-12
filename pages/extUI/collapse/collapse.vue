@@ -1,59 +1,64 @@
 <template>
 	<view>
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">折叠面板用来折叠/显示过长的内容或者是列表。通常是在多内容分类项使用，折叠不重要的内容，显示重要内容。点击可以展开折叠部分。</text>
+			<text class="uni-h6">Collapse panel is used to collapse/display overly long content or lists. It is usually
+				used in multiple content categories to collapse unimportant content and display important content. Click
+				to expand the collapsed section.</text>
 		</uni-card>
-		<uni-section title="基础用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<uni-collapse ref="collapse" v-model="value" @change="change">
-				<uni-collapse-item title="默认开启" >
+				<uni-collapse-item title="Default On">
 					<view class="content">
 						<text class="text">{{content}}</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="折叠内容">
+				<uni-collapse-item title="Collapse content">
 					<view class="content">
-						<text class="text">折叠内容主体，这是一段比较长内容。默认折叠主要内容，只显示当前项标题。点击标题展开，才能看到这段文字。再次点击标题，折叠内容。</text>
+						<text class="text">Collapse the content body, which is a longer piece of content. By default,
+							the main content is collapsed and only the current item title is displayed. Click on the
+							title to expand it in order to see the paragraph. Click on the title again to collapse the
+							content.</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="禁用状态" disabled>
+				<uni-collapse-item title="Disable Status" disabled>
 					<view class="content">
-						<text class="text">禁用状态内容主体，页面上是看不到这段话的。</text>
+						<text class="text">Disable the status content body, the paragraph is not visible on the page.</text>
 					</view>
 				</uni-collapse-item>
 			</uni-collapse>
 		</uni-section>
 
-		<button class="button" type="primary" @click="add">动态修改内容</button>
-		<!-- TODO app 端默认不使用动画，app在使用高度动画的时候会有性能开销问题，所以应该要酌情使用 -->
-		<uni-section title="使用动画效果" type="line">
-			<uni-collapse >
-				<uni-collapse-item title="使用动画" :show-animation="true">
+		<button class="button" type="primary" @click="add">Dynamic modification of content</button>
+		<!-- TODO app The app will have performance overhead problems when using height animation, so it should be used as appropriate -->
+		<uni-section title="Using animation effects" type="line">
+			<uni-collapse>
+				<uni-collapse-item title="Use of animation" :show-animation="true">
 					<view class="content">
-						<text class="text">默认开启组件动画，使用动画效果折叠内容会有一个从上到下的动画。</text>
+						<text class="text">Component animation is enabled by default, and collapsing the content using the animation effect will have a top-to-bottom animation.</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="不使用动画" :show-animation="false">
+				<uni-collapse-item title="No animation" :show-animation="false">
 					<view class="content">
-						<text class="text">设置 show-animation="false",关闭当前组件动画效果。</text>
+						<text class="text">Set show-animation="false" to disable the current component animation effect.</text>
 					</view>
 				</uni-collapse-item>
 			</uni-collapse>
 		</uni-section>
-		<uni-section title="手风琴效果（只会保留一个的打开状态）" type="line">
-			<uni-collapse  accordion v-model="accordionVal" @change="change">
-				<uni-collapse-item title="手风琴效果">
+		<uni-section title="Accordion effect (only the open state of one will be retained)" type="line">
+			<uni-collapse accordion v-model="accordionVal" @change="change">
+				<uni-collapse-item title="Accordion effect">
 					<view class="content">
-						<text class="text">手风琴效果同时只会保留一个组件的打开状态，其余组件会自动关闭。</text>
+						<text class="text">Accordion effect At the same time only one component will remain open and the rest will be closed automatically.</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="手风琴效果">
+				<uni-collapse-item title="Accordion effect">
 					<view class="content">
-						<text class="text">手风琴效果同时只会保留一个组件的打开状态，其余组件会自动关闭。</text>
+						<text class="text">Accordion effectAt the same time only one component will remain open and the rest will be closed automatically.</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="手风琴效果">
+				<uni-collapse-item title="Accordion effect">
 					<view class="content">
-						<text class="text">手风琴效果同时只会保留一个组件的打开状态，其余组件会自动关闭。</text>
+						<text class="text">Accordion effectAt the same time only one component will remain open and the rest will be closed automatically.</text>
 					</view>
 				</uni-collapse-item>
 			</uni-collapse>
@@ -64,13 +69,13 @@
 				<uni-collapse-item title="标题文字"
 					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
 					<view class="content">
-						<text class="text">折叠内容主体，可自定义内容及样式</text>
+						<text class="text">Folded content body with customizable content and style</text>
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="标题文字"
 					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
 					<view class="content">
-						<text class="text">折叠内容主体，可自定义内容及样式</text>
+						<text class="text">Folded content body with customizable content and style</text>
 					</view>
 				</uni-collapse-item>
 			</uni-collapse>
@@ -86,19 +91,20 @@
 						</uni-list>
 					</template>
 					<view class="content">
-						<text class="text">折叠内容主体，可自定义内容及样式</text>
+						<text class="text">Folded content body with customizable content and style</text>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="折叠内容使用 uni-list 组件">
+				<uni-collapse-item title="Collapse content using the uni-list component">
 					<uni-list>
-						<uni-list-item title="列表文字"></uni-list-item>
-						<uni-list-item :disabled="true" title="列表文字" note="列表禁用状态"></uni-list-item>
-						<uni-list-item title="列表右侧显示 switch" :show-switch="true"></uni-list-item>
-						<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon" title="列表左侧带扩展图标"></uni-list-item>
-						<uni-list-item title="列表左侧带略缩图" note="列表描述信息"
+						<uni-list-item title="List Text"></uni-list-item>
+						<uni-list-item :disabled="true" title="List Text" note="List Disabled Status"></uni-list-item>
+						<uni-list-item title="The right side of the list shows switch" :show-switch="true"></uni-list-item>
+						<uni-list-item :show-extra-icon="true" :extra-icon="extraIcon" title="List with extended icons on the left side">
+						</uni-list-item>
+						<uni-list-item title="List with thumbnails on the left" note="List description information"
 							thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
-							thumb-size="lg" rightText="右侧文字" showArrow></uni-list-item>
-						<uni-list-item title="开启点击反馈" clickable showArrow @click="onClick"></uni-list-item>
+							thumb-size="lg" rightText="Right side text" showArrow></uni-list-item>
+						<uni-list-item title="Open Click Feedback" clickable showArrow @click="onClick"></uni-list-item>
 					</uni-list>
 				</uni-collapse-item>
 			</uni-collapse>
@@ -111,9 +117,9 @@
 		components: {},
 		data() {
 			return {
-				value:['0'],
-				accordionVal:'1',
-				content: '折叠内容主体，可自定义内容及样式，点击按钮修改内容使高度发生变化。',
+				value: ['0'],
+				accordionVal: '1',
+				content: 'Folded content body with customizable content and style，Clicking the button to modify the content causes the height to change.',
 				extraIcon: {
 					color: '#4cd964',
 					size: '26',
@@ -124,11 +130,11 @@
 		methods: {
 			add() {
 				if (this.content.length > 35) {
-					this.content = '折叠内容主体，可自定义内容及样式，点击按钮修改内容使高度发生变化。'
+					this.content = 'Folded content body with customizable content and style，Clicking the button to modify the content causes the height to change.'
 				} else {
-					this.content = '折叠内容主体，这是一段比较长内容。通过点击按钮修改后内容后，使组件高度发生变化，在次点击按钮恢复之前的内容和高度。'
+					this.content = 'Collapse the content body, which is a relatively long piece of content. After the content is modified by clicking the button, the height of the component is made to change, and the previous content and height are restored at the second click of the button.'
 				}
-				// TODO 小程序中不支持自动更新 ，需要手动resize 更新组件高度
+				// TODO The applet does not support automatic update, you need to manually resize to update the component height
 				// #ifdef MP
 				this.$nextTick(() => {
 					this.$refs.collapse.resize()
@@ -137,7 +143,7 @@
 			},
 			onClick(e) {
 				uni.showToast({
-					title: '列表被点击'
+					title: 'The list is clicked'
 				})
 			},
 			change(e) {

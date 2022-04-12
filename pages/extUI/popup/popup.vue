@@ -1,55 +1,55 @@
 <template>
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">弹出层组件用于弹出一个覆盖到页面上的内容，使用场景如：底部弹出分享弹窗、页面插屏广告等。</text>
+			<text class="uni-h6">uni-popoup component is used to pop up an overlay to the page, using scenarios such as: bottom pop-up sharing pop-ups, page insertion ads, etc.</text>
 		</uni-card>
-		<uni-section title="基本示例" type="line">
+		<uni-section title="Basic example" type="line">
 			<view class="example-body box">
-				<button class="button" type="primary" @click="toggle('top')"><text class="button-text">顶部</text></button>
-				<button class="button" type="primary" @click="toggle('bottom')"><text class="button-text">底部</text></button>
-				<button class="button" type="primary" @click="toggle('center')"><text class="button-text">居中</text></button>
-				<button class="button" type="primary" @click="toggle('left')"><text class="button-text">左侧</text></button>
-				<button class="button" type="primary" @click="toggle('right')"><text class="button-text">右侧</text></button>
+				<button class="button" type="primary" @click="toggle('top')"><text class="button-text">top</text></button>
+				<button class="button" type="primary" @click="toggle('bottom')"><text class="button-text">bottom</text></button>
+				<button class="button" type="primary" @click="toggle('center')"><text class="button-text">center</text></button>
+				<button class="button" type="primary" @click="toggle('left')"><text class="button-text">left</text></button>
+				<button class="button" type="primary" @click="toggle('right')"><text class="button-text">right</text></button>
 			</view>
 		</uni-section>
 
 		<uni-section title="提示消息" type="line">
 			<view class="example-body box">
 				<button class="button popup-success" @click="messageToggle('success')"><text
-						class="button-text success-text">成功</text></button>
+						class="button-text success-text">success</text></button>
 				<button class="button popup-error" @click="messageToggle('error')"><text
-						class="button-text error-text">失败</text></button>
+						class="button-text error-text">error</text></button>
 				<button class="button popup-warn" @click="messageToggle('warn')"><text
-						class="button-text warn-text">警告</text></button>
+						class="button-text warn-text">warn</text></button>
 				<button class="button popup-info" @click="messageToggle('info')"><text
-						class="button-text info-text">信息</text></button>
+						class="button-text info-text">info</text></button>
 			</view>
 		</uni-section>
 
 
-		<uni-section title="对话框示例" type="line" class="hideOnPc">
+		<uni-section title="Dialog box example" type="line" class="hideOnPc">
 			<view class="example-body box">
 				<button class="button popup-success" @click="dialogToggle('success')"><text
-						class="button-text success-text">成功</text></button>
+						class="button-text success-text">success</text></button>
 				<button class="button popup-error" @click="dialogToggle('error')"><text
-						class="button-text error-text">失败</text></button>
+						class="button-text error-text">error</text></button>
 				<button class="button popup-warn" @click="dialogToggle('warn')"><text
-						class="button-text warn-text">警告</text></button>
+						class="button-text warn-text">warn</text></button>
 				<button class="button popup-info" @click="dialogToggle('info')"><text
-						class="button-text info-text">信息</text></button>
+						class="button-text info-text">info</text></button>
 			</view>
 		</uni-section>
 
-		<uni-section title="输入框示例" type="line" padding>
+		<uni-section title="Example of input box" type="line" padding>
 			<view class="dialog-box">
-				<text class="dialog-text">输入内容：{{ value }}</text>
+				<text class="dialog-text">Input content：{{ value }}</text>
 			</view>
 			<button class="button" type="primary" @click="inputDialogToggle"><text
-					class="button-text">输入对话框</text></button>
+					class="button-text">Input dialog box</text></button>
 
 		</uni-section>
-		<uni-section title="底部分享示例" type="line" padding>
-			<button class="button" type="primary" @click="shareToggle"><text class="button-text">分享模版示例</text></button>
+		<uni-section title="Bottom sharing example" type="line" padding>
+			<button class="button" type="primary" @click="shareToggle"><text class="button-text">Sample Sharing Template</text></button>
 		</uni-section>
 		<view>
 			<!-- 普通弹窗 -->
@@ -69,7 +69,7 @@
 		<view>
 			<!-- 提示窗示例 -->
 			<uni-popup ref="alertDialog" type="dialog">
-				<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="同意" title="通知" content="欢迎使用 uni-popup!" @confirm="dialogConfirm"
+				<uni-popup-dialog :type="msgType" cancelText="close" confirmText="agree" title="Notify" content="Welcome to use uni-popup!" @confirm="dialogConfirm"
 					@close="dialogClose"></uni-popup-dialog>
 			</uni-popup>
 		</view>
@@ -77,8 +77,8 @@
 		<view>
 			<!-- 输入框示例 -->
 			<uni-popup ref="inputDialog" type="dialog">
-				<uni-popup-dialog ref="inputClose"  mode="input" title="输入内容" value="对话框预置提示内容!"
-					placeholder="请输入内容" @confirm="dialogInputConfirm"></uni-popup-dialog>
+				<uni-popup-dialog ref="inputClose"  mode="input" title="Input content" value="Dialog box with pre-set prompts!"
+					placeholder="Input content" @confirm="dialogInputConfirm"></uni-popup-dialog>
 			</uni-popup>
 		</view>
 
@@ -97,14 +97,14 @@
 			return {
 				type: 'center',
 				msgType: 'success',
-				messageText: '这是一条成功提示',
+				messageText: 'This is a SUCCESS tip',
 				value: ''
 			}
 		},
 		onReady() {},
 		methods: {
 			change(e) {
-				console.log('当前模式：' + e.type + ',状态：' + e.show);
+				console.log('Current mode:' + e.type + ',Status:' + e.show);
 			},
 			toggle(type) {
 				this.type = type
@@ -113,7 +113,7 @@
 			},
 			messageToggle(type) {
 				this.msgType = type
-				this.messageText = `这是一条${type}消息提示`
+				this.messageText = `This is a ${type} message prompt`
 				this.$refs.message.open()
 			},
 			dialogToggle(type) {
@@ -121,19 +121,19 @@
 				this.$refs.alertDialog.open()
 			},
 			dialogConfirm() {
-				console.log('点击确认')
-				this.messageText = `点击确认了 ${this.msgType} 窗口`
+				console.log('Click to confirm')
+				this.messageText = `Click to confirm the ${this.msgType} window`
 				this.$refs.message.open()
 			},
 			inputDialogToggle() {
 				this.$refs.inputDialog.open()
 			},
 			dialogClose() {
-				console.log('点击关闭')
+				console.log('Click to close')
 			},
 			dialogInputConfirm(val) {
 				uni.showLoading({
-					title: '3秒后会关闭'
+					title: 'Will turn off after 3 seconds'
 				})
 
 				setTimeout(() => {

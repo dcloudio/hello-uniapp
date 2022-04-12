@@ -1,18 +1,18 @@
 <template>
 	<view>
 		<uni-card is-full>
-			<text class="uni-h6">标签组件多用于商品分类、重点内容显示等场景。</text>
+			<text class="uni-h6">uni-segmented-control component is mostly used in scenarios such as product classification and key content display.</text>
 		</uni-card>
 
-		<uni-section title="实心标签" type="line">
+		<uni-section title="Solid tab" type="line">
 			<view class="uni-padding-wrap uni-common-mt">
 				<uni-segmented-control :current="current" :values="items" :style-type="styleType"
 					:active-color="activeColor" @clickItem="onClickItem" />
 			</view>
 			<view class="content">
-				<view v-if="current === 0"><text class="content-text">选项卡1的内容</text></view>
-				<view v-if="current === 1"><text class="content-text">选项卡2的内容</text></view>
-				<view v-if="current === 2"><text class="content-text">选项卡3的内容</text></view>
+				<view v-if="current === 0"><text class="content-text">Tab 1</text></view>
+				<view v-if="current === 1"><text class="content-text">Tab 2</text></view>
+				<view v-if="current === 2"><text class="content-text">Tab 3</text></view>
 			</view>
 		</uni-section>
 
@@ -54,15 +54,15 @@
 		components: {},
 		data() {
 			return {
-				items: ['选项卡1', '选项卡2', '选项卡3'],
+				items: ['Tab 1', 'Tab 2', 'Tab 3'],
 				styles: [{
 						value: 'button',
-						text: '按钮',
+						text: 'button',
 						checked: true
 					},
 					{
 						value: 'text',
-						text: '文字'
+						text: 'text'
 					}
 				],
 				colors: ['#007aff', '#4cd964', '#dd524d'],

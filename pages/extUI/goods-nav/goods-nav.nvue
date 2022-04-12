@@ -1,12 +1,12 @@
 <template>
 	<view class="uni-container">
 		<uni-card is-full>
-			<text class="uni-h6"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
+			<text class="uni-h6"> uni-goods-nav Component mainly used for e-commerce applications bottom navigation, can be customized to join the shopping cart, purchase and other operations</text>
 		</uni-card>
-		<uni-section title="基础用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<uni-goods-nav @click="onClick" />
 		</uni-section>
-		<uni-section title="自定义用法" type="line">
+		<uni-section title="Custom Usage" type="line">
 			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup" @click="onClick"
 				@buttonClick="buttonClick" />
 			<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
@@ -27,42 +27,42 @@
 			return {
 				options: [{
 					icon: 'chat',
-					text: '客服'
+					text: 'chat'
 				}, {
 					icon: 'shop',
-					text: '店铺',
-					info: 2,
+					text: 'shop',
+					info: 2, 
 					infoBackgroundColor: '#007aff',
 					infoColor: "#f5f5f5"
 				}, {
 					icon: 'cart',
-					text: '购物车',
+					text: 'cart',
 					info: 2
 				}],
 				buttonGroup: [{
-						text: '加入购物车',
+						text: 'Add to Cart',
 						backgroundColor: 'linear-gradient(90deg, #FFCD1E, #FF8A18)',
 						color: '#fff'
 					},
 					{
-						text: '立即购买',
+						text: 'Buy Now',
 						backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
 						color: '#fff'
 					}
 				],
 				customButtonGroup: [{
-						text: '加入购物车',
+						text: 'Add to Cart',
 						backgroundColor: 'linear-gradient(90deg, #1E83FF, #0053B8)',
 						color: '#fff'
 					},
 					{
-						text: '立即购买',
+						text: 'Buy Now',
 						backgroundColor: 'linear-gradient(90deg, #60F3FF, #088FEB)',
 						color: '#fff'
 					}
 				],
 				customButtonGroup1: [{
-					text: '立即购买',
+					text: 'Buy Now',
 					backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
 					color: '#fff'
 				}]
@@ -72,7 +72,7 @@
 		methods: {
 			onClick(e) {
 				uni.showToast({
-					title: `点击${e.content.text}`,
+					title: `Clicked ${e.content.text}`,
 					icon: 'none'
 				})
 			},

@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">数字角标通用来标记重点信息使用，如接受到新消息、有未读消息等</text>
+			<text class="uni-h6">uni-badge are commonly used to mark key messages, such as new messages received, unread messages, etc.</text>
 		</uni-card>
-		<uni-section title="基础用法" type="line" padding>
+		<uni-section title="Basic usage" type="line" padding>
 			<view class="example-body">
 				<uni-badge class="uni-badge-left-margin" text="1" />
 				<uni-badge class="uni-badge-left-margin" text="2" type="primary" />
@@ -12,7 +12,7 @@
 				<uni-badge class="uni-badge-left-margin" text="123" type="info" />
 			</view>
 		</uni-section>
-		<uni-section title="无底色" type="line" padding>
+		<uni-section title="No base color" type="line" padding>
 			<view class="example-body">
 				<uni-badge class="uni-badge-left-margin" :inverted="true" text="1" />
 				<uni-badge class="uni-badge-left-margin" :inverted="true" text="2" type="primary" />
@@ -22,7 +22,7 @@
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义样式" type="line" padding>
+		<uni-section title="Custom styles" type="line" padding>
 			<view class="example-body">
 				<uni-badge class="uni-badge-left-margin" text="2" type="primary"
 					:customStyle="{background: '#4335d6'}" />
@@ -30,20 +30,20 @@
 			</view>
 		</uni-section>
 
-		<uni-section title="定位: aboslute 属性" subTitle="注：在安卓端不支持 nvue" type="line" padding>
+		<uni-section title="Position" subTitle="Note: Not supported on the Android side nvue" type="line" padding>
 			<uni-badge class="uni-badge-left-margin" :text="value" absolute="rightTop" size="small">
-				<view class="box"><text class="box-text">右上</text></view>
+				<view class="box"><text class="box-text">Top right</text></view>
 			</uni-badge>
 		</uni-section>
 
-		<uni-section title="偏移: offset 属性(存在 aboslute)" type="line" padding>
+		<uni-section title="Offset" type="line" padding>
 			<uni-badge class="uni-badge-left-margin" :text="8" absolute="rightTop" :offset="[-3, -3]" size="small">
-				<view class="box"><text class="box-text">右上</text></view>
+				<view class="box"><text class="box-text">Top right</text></view>
 			</uni-badge>
 		</uni-section>
-		<uni-section title="仅显示点: is-dot 属性" type="line" padding>
+		<uni-section title="is-dot" type="line" padding>
 			<uni-badge class="uni-badge-left-margin" :is-dot="true" :text="value" absolute="rightTop" size="small">
-				<view class="box"><text class="box-text">圆点</text></view>
+				<view class="box"><text class="box-text">Dots</text></view>
 			</uni-badge>
 		</uni-section>
 	</view>

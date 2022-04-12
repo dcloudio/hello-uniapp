@@ -4,7 +4,7 @@
 			<image class="uni-header-image" src="/static/templateIndex.png"></image>
 		</view>
 		<view v-if="!hasLeftWin" class="uni-hello-text">
-			<text class="hello-text">以下是部分模板示例，更多模板见插件市场：</text>
+			<text class="hello-text">The following are some sample templates, more templates are available in the plugin market：</text>
 			<u-link class="hello-link" href="https://ext.dcloud.net.cn" :text="'https://ext.dcloud.net.cn'"
 				:inWhiteList="true"></u-link>
 		</view>

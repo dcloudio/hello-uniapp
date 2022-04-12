@@ -1,32 +1,32 @@
 <template>
 	<view>
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">搜索栏组件，通常用于搜索商品、文章等。</text>
+			<text class="uni-h6">uni-search-bar component, usually used to search for products, articles, etc.</text>
 		</uni-card>
 
-		<uni-section title="基本用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<uni-search-bar @confirm="search" :focus="true" v-model="searchValue" @blur="blur" @focus="focus" @input="input"
 				@cancel="cancel" @clear="clear">
 			</uni-search-bar>
 			<view class="search-result">
-				<text class="search-result-text">当前输入为：{{ searchValue }}</text>
+				<text class="search-result-text">The current input is：{{ searchValue }}</text>
 			</view>
 
 		</uni-section>
 
-		<uni-section title="自定义样式" subTitle="使用 bgColor 属性自定义背景色" type="line">
-			<uni-search-bar placeholder="自定义背景色" bgColor="#EEEEEE" @confirm="search" />
+		<uni-section title="Custom styles" subTitle="Use the bgColor property to customize the background color" type="line">
+			<uni-search-bar placeholder="Custom background color" bgColor="#EEEEEE" @confirm="search" />
 		</uni-section>
-		<uni-section title="自定义icon" type="line">
-			<uni-search-bar placeholder="自定义searchIcon" @confirm="search" @cancel="cancel" cancel-text="cancel">
+		<uni-section title="Customicon" type="line">
+			<uni-search-bar placeholder="CustomsearchIcon" @confirm="search" @cancel="cancel" cancel-text="cancel">
 				<uni-icons v-slot:searchIcon color="#999999" size="18" type="home" />
 			</uni-search-bar>
 		</uni-section>
-		<uni-section title="控制清除/取消按钮" subTitle="使用 clearButton 属性设置清除按钮" type="line">
-			<uni-search-bar radius="5" placeholder="一直显示" clearButton="always" cancelButton="always" @confirm="search"
+		<uni-section title="Control clear/cancel button" subTitle="Use the clearButton property to set the clear button" type="line">
+			<uni-search-bar radius="5" placeholder="Always show" clearButton="always" cancelButton="always" @confirm="search"
 				@cancel="cancel" />
-			<uni-search-bar class="uni-mt-10" radius="5" placeholder="自动显示隐藏" clearButton="auto" cancelButton="none" @confirm="search" />
-			<uni-search-bar class="uni-mt-10" radius="100" placeholder="一直不显示" clearButton="none" cancelButton="none" @confirm="search" />
+			<uni-search-bar class="uni-mt-10" radius="5" placeholder="Show hidden automatically" clearButton="auto" cancelButton="none" @confirm="search" />
+			<uni-search-bar class="uni-mt-10" radius="100" placeholder="Never shows" clearButton="none" cancelButton="none" @confirm="search" />
 		</uni-section>
 	</view>
 </template>
@@ -41,7 +41,7 @@
 		methods: {
 			search(res) {
 				uni.showToast({
-					title: '搜索：' + res.value,
+					title: 'search：' + res.value,
 					icon: 'none'
 				})
 			},
@@ -50,25 +50,25 @@
 			},
 			clear(res) {
 				uni.showToast({
-					title: 'clear事件，清除值为：' + res.value,
+					title: 'clear event：' + res.value,
 					icon: 'none'
 				})
 			},
 			blur(res) {
 				uni.showToast({
-					title: 'blur事件，输入值为：' + res.value,
+					title: 'blur event：' + res.value,
 					icon: 'none'
 				})
 			},
 			focus(e) {
 				uni.showToast({
-					title: 'focus事件，输出值为：' + e.value,
+					title: 'focus event：' + e.value,
 					icon: 'none'
 				})
 			},
 			cancel(res) {
 				uni.showToast({
-					title: '点击取消，输入值为：' + res.value,
+					title: 'cancel：' + res.value,
 					icon: 'none'
 				})
 			}

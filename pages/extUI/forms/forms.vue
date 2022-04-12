@@ -1,28 +1,28 @@
 <template>
 	<view class="container">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">uni-forms 组件一般由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。</text>
+			<text class="uni-h6">uni-forms Components generally consist of controls such as input boxes, selectors, radio boxes, and multi-select boxes to collect, validate, and submit data.</text>
 		</uni-card>
 		<uni-section title="基本用法" type="line">
 			<view class="example">
 				<!-- 基础用法，不包含校验规则 -->
 				<uni-forms ref="baseForm" :modelValue="baseFormData">
-					<uni-forms-item label="姓名" required>
-						<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
+					<uni-forms-item label="Name" required>
+						<uni-easyinput v-model="baseFormData.name" placeholder="Please enter your name" />
 					</uni-forms-item>
-					<uni-forms-item label="年龄" required>
-						<uni-easyinput v-model="baseFormData.age" placeholder="请输入年龄" />
+					<uni-forms-item label="Age" required>
+						<uni-easyinput v-model="baseFormData.age" placeholder="Please enter your age" />
 					</uni-forms-item>
-					<uni-forms-item label="性别" required>
+					<uni-forms-item label="Gender" required>
 						<uni-data-checkbox v-model="baseFormData.sex" :localdata="sexs" />
 					</uni-forms-item>
-					<uni-forms-item label="兴趣爱好" required>
+					<uni-forms-item label="Hobbies" required>
 						<uni-data-checkbox v-model="baseFormData.hobby" multiple :localdata="hobbys" />
 					</uni-forms-item>
-					<uni-forms-item label="自我介绍">
-						<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="请输入自我介绍" />
+					<uni-forms-item label="Self-Introduction">
+						<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="Please enter your self introduction" />
 					</uni-forms-item>
-					<uni-forms-item label="日期时间">
+					<uni-forms-item label="Date and time">
 						<uni-datetime-picker type="datetime" return-type="timestamp"
 							v-model="baseFormData.datetimesingle" />
 					</uni-forms-item>
@@ -30,7 +30,7 @@
 			</view>
 		</uni-section>
 
-		<uni-section title="对齐方式" type="line">
+		<uni-section title="Alignment method" type="line">
 			<view class="example">
 				<view class="segmented-control">
 					<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem"
@@ -39,71 +39,71 @@
 				</view>
 				<!-- 展示不同的排列方式 -->
 				<uni-forms ref="baseForm" :modelValue="alignmentFormData" :label-position="alignment">
-					<uni-forms-item label="姓名" required>
-						<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
+					<uni-forms-item label="Name" required>
+						<uni-easyinput v-model="baseFormData.name" placeholder="Please enter your name" />
 					</uni-forms-item>
-					<uni-forms-item label="年龄" required>
-						<uni-easyinput v-model="baseFormData.age" placeholder="请输入年龄" />
+					<uni-forms-item label="Age" required>
+						<uni-easyinput v-model="baseFormData.age" placeholder="Please enter your age" />
 					</uni-forms-item>
 				</uni-forms>
 			</view>
 		</uni-section>
 
-		<uni-section title="表单校验" type="line">
+		<uni-section title="Form Validation" type="line">
 			<view class="example">
-				<!-- 基础表单校验 -->
+				<!-- Basic form validation -->
 				<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
-					<uni-forms-item label="姓名" required name="name">
-						<uni-easyinput v-model="valiFormData.name" placeholder="请输入姓名" />
+					<uni-forms-item label="Name" required name="name">
+						<uni-easyinput v-model="valiFormData.name" placeholder="Please enter Name" />
 					</uni-forms-item>
-					<uni-forms-item label="年龄" required name="age">
-						<uni-easyinput v-model="valiFormData.age" placeholder="请输入年龄" />
+					<uni-forms-item label="Age" required name="age">
+						<uni-easyinput v-model="valiFormData.age" placeholder="Please enter Age" />
 					</uni-forms-item>
-					<uni-forms-item label="自我介绍" name="introduction">
-						<uni-easyinput type="textarea" v-model="valiFormData.introduction" placeholder="请输入自我介绍" />
+					<uni-forms-item label="Self Introduction" name="introduction">
+						<uni-easyinput type="textarea" v-model="valiFormData.introduction" placeholder="Please enter self introduction" />
 					</uni-forms-item>
 				</uni-forms>
-				<button type="primary" @click="submit('valiForm')">提交</button>
+				<button type="primary" @click="submit('valiForm')">commit</button>
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义校验规则" type="line">
+		<uni-section title="Custom check rules" type="line">
 			<view class="example">
-				<!-- 自定义表单校验 -->
+				<!-- Custom form validation -->
 				<uni-forms ref="customForm" :rules="customRules" :modelValue="customFormData">
-					<uni-forms-item label="姓名" required name="name">
-						<uni-easyinput v-model="customFormData.name" placeholder="请输入姓名" />
+					<uni-forms-item label="Name" required name="name">
+						<uni-easyinput v-model="customFormData.name" placeholder="Please enter Name" />
 					</uni-forms-item>
-					<uni-forms-item label="年龄" required name="age">
-						<uni-easyinput v-model="customFormData.age" placeholder="请输入年龄" />
+					<uni-forms-item label="Age" required name="age">
+						<uni-easyinput v-model="customFormData.age" placeholder="Please enter Age" />
 					</uni-forms-item>
-					<uni-forms-item label="兴趣爱好" required name="hobby">
+					<uni-forms-item label="Hobbies" required name="hobby">
 						<uni-data-checkbox v-model="customFormData.hobby" multiple :localdata="hobbys" />
 					</uni-forms-item>
 				</uni-forms>
-				<button type="primary" @click="submit('customForm')">提交</button>
+				<button type="primary" @click="submit('customForm')">commit</button>
 			</view>
 		</uni-section>
 
 
-		<uni-section title="动态表单" type="line">
+		<uni-section title="Dynamic Forms" type="line">
 			<view class="example">
-				<!-- 动态表单校验 -->
+				<!-- Dynamic form validation -->
 				<uni-forms ref="dynamicForm" :rules="dynamicRules" :modelValue="dynamicFormData">
-					<uni-forms-item label="邮箱" required name="email">
-						<uni-easyinput v-model="dynamicFormData.email" placeholder="请输入姓名" />
+					<uni-forms-item label="Email" required name="email">
+						<uni-easyinput v-model="dynamicFormData.email" placeholder="Please enter Name" />
 					</uni-forms-item>
 					<uni-forms-item v-for="(item,index) in dynamicLists" :key="item.id" :label="item.label+' '+index"
 						required :rules="item.rules" :name="'domains[' + item.id + ']'">
 						<view class="form-item">
-							<uni-easyinput v-model="dynamicFormData.domains[item.id]" placeholder="请输入域名" />
+							<uni-easyinput v-model="dynamicFormData.domains[item.id]" placeholder="Please enter domain name" />
 							<button class="button" size="mini" type="default" @click="del(item.id)">删除</button>
 						</view>
 					</uni-forms-item>
 				</uni-forms>
 				<view class="button-group">
-					<button type="primary" size="mini" @click="add">新增域名</button>
-					<button type="primary" size="mini" @click="submit('dynamicForm')">提交</button>
+					<button type="primary" size="mini" @click="add">Domain Name</button>
+					<button type="primary" size="mini" @click="submit('dynamicForm')">commit</button>
 				</view>
 			</view>
 		</uni-section>
@@ -130,38 +130,38 @@
 				},
 				// 单选数据源
 				sexs: [{
-					text: '男',
+					text: ' Male',
 					value: 0
 				}, {
-					text: '女',
+					text: 'Female',
 					value: 1
 				}, {
-					text: '保密',
+					text: 'Confidential',
 					value: 2
 				}],
 				// 多选数据源
 				hobbys: [{
-					text: '跑步',
+					text: 'Running',
 					value: 0
 				}, {
-					text: '游泳',
+					text: 'swimming',
 					value: 1
 				}, {
-					text: '绘画',
+					text: 'Drawing',
 					value: 2
 				}, {
-					text: '足球',
+					text: 'Football',
 					value: 3
 				}, {
-					text: '篮球',
+					text: 'Basketball',
 					value: 4
 				}, {
-					text: '其他',
+					text: 'Other',
 					value: 5
 				}],
 				// 分段器数据
 				current: 0,
-				items: ['左对齐', '顶部对齐'],
+				items: ['Left Align', 'Top Align'],
 				// 校验表单数据
 				valiFormData: {
 					name: '',
@@ -173,16 +173,16 @@
 					name: {
 						rules: [{
 							required: true,
-							errorMessage: '姓名不能为空'
+							errorMessage: 'Name can`t be empty'
 						}]
 					},
 					age: {
 						rules: [{
 							required: true,
-							errorMessage: '年龄不能为空'
+							errorMessage: 'Age can`t be empty'
 						}, {
 							format: 'number',
-							errorMessage: '年龄只能输入数字'
+							errorMessage: 'Age only numbers can be entered'
 						}]
 					}
 				},
@@ -197,13 +197,13 @@
 					name: {
 						rules: [{
 							required: true,
-							errorMessage: '姓名不能为空'
+							errorMessage: 'Name can`t be empty'
 						}]
 					},
 					age: {
 						rules: [{
 							required: true,
-							errorMessage: '年龄不能为空'
+							errorMessage: 'Age can`t be empty'
 						}]
 					},
 					hobby: {
@@ -213,7 +213,7 @@
 							{
 								validateFunction: function(rule, value, data, callback) {
 									if (value.length < 2) {
-										callback('请至少勾选两个兴趣爱好')
+										callback('Please check at least two Hobbies')
 									}
 									return true
 								}
@@ -231,10 +231,10 @@
 					email: {
 						rules: [{
 							required: true,
-							errorMessage: '域名不能为空'
+							errorMessage: 'Domain name can`t be empty'
 						}, {
 							format: 'email',
-							errorMessage: '域名格式错误'
+							errorMessage: 'Domain name format error'
 						}]
 					}
 				}
@@ -260,10 +260,10 @@
 			},
 			add() {
 				this.dynamicLists.push({
-					label: '域名',
+					label: 'Domain name',
 					rules: [{
 						'required': true,
-						errorMessage: '域名项必填'
+						errorMessage: 'Domain name field is required'
 					}],
 					id: Date.now()
 				})
@@ -276,7 +276,7 @@
 				this.$refs[ref].validate().then(res => {
 					console.log('success', res);
 					uni.showToast({
-						title: `校验通过`
+						title: `Calibration passed`
 					})
 				}).catch(err => {
 					console.log('err', err);

@@ -1,10 +1,10 @@
 <template>
 	<view class="container">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6">通过滑动触发选项的容器，容器内可放置列表等组件，通过左右滑动来触发一些操作。</text>
+			<text class="uni-h6">uni-swipe-action, a container for triggering options by sliding, the container can hold components such as lists and trigger some actions by sliding left and right。</text>
 		</uni-card>
 		<uni-section
-		    title="基本用法"
+		    title="Basic usage"
 		    type="line"
 		></uni-section>
 		<uni-swipe-action>
@@ -15,7 +15,7 @@
 			    @click="bindClick"
 			>
 				<view class="content-box" @click="contentClick">
-					<text class="content-text">使用数据填充</text>
+					<text class="content-text">Using Data Fill</text>
 				</view>
 			</uni-swipe-action-item>
 			<uni-swipe-action-item @click="bindClick">
@@ -23,15 +23,15 @@
 					<view class="slot-button">
 						<text
 						    class="slot-button-text"
-						    @click="bindClick({position:'left',content:{text:'置顶'}})"
-						>置顶</text>
+						    @click="bindClick({position:'left',content:{text:'Sticky'}})"
+						>Sticky</text>
 					</view>
 				</template>
 				<view class="content-box" @click="contentClick">
-					<text class="content-text">使用左右插槽</text>
+					<text class="content-text">Use of left and right slots</text>
 				</view>
 				<template v-slot:right>
-					<view class="slot-button" @click="bindClick({position:'right',content:{text:'删除'}})"><text class="slot-button-text">删除</text></view>
+					<view class="slot-button" @click="bindClick({position:'right',content:{text:'delete'}})"><text class="slot-button-text">delete</text></view>
 				</template>
 			</uni-swipe-action-item>
 			<uni-swipe-action-item
@@ -41,27 +41,27 @@
 				<template v-slot:left>
 					<view class="slot-button"><text
 						    class="slot-button-text"
-						    @click="bindClick({position:'left',content:{text:'置顶'}})"
-						>置顶</text></view>
+						    @click="bindClick({position:'left',content:{text:'Sticky'}})"
+						>Sticky</text></view>
 				</template>
 				<view class="content-box" @click="contentClick">
-					<text class="content-text">数据与插槽混合使用</text>
+					<text class="content-text">Mixed data and slot usage</text>
 				</view>
 			</uni-swipe-action-item>
 		</uni-swipe-action>
 		<uni-section
-		    title="禁止滑动"
+		    title="No sliding"
 		    type="line"
 		></uni-section>
 		<uni-swipe-action>
 			<uni-swipe-action-item :disabled="true">
 				<view class="content-box">
-					<text class="content-text">禁止左右滚动</text>
+					<text class="content-text">No left or right scrolling</text>
 				</view>
 			</uni-swipe-action-item>
 		</uni-swipe-action>
 		<uni-section
-		    title="使用变量控制开关"
+		    title="Using variable control switches"
 		    type="line"
 		></uni-section>
 		<view class="example-body">
@@ -69,7 +69,7 @@
 			    class="button"
 			    @click="setOpened"
 			>
-				<text class="button-text">当前状态：{{ isOpened }}</text>
+				<text class="button-text">Current Status：{{ isOpened }}</text>
 			</view>
 		</view>
 		<uni-swipe-action>
@@ -82,13 +82,13 @@
 			    @click="bindClick"
 			>
 				<view class="content-box">
-					<text class="content-text">使用变量控制SwipeAction的开启状态</text>
+					<text class="content-text">Use variables to control the opening state of SwipeAction</text>
 				</view>
 			</uni-swipe-action-item>
 		</uni-swipe-action>
 
 		<uni-section
-		    title="swipe-action 列表"
+		    title="swipe-action List"
 		    type="line"
 		></uni-section>
 		<uni-swipe-action ref="swipeAction">
@@ -115,16 +115,16 @@
 				show: false,
 				isOpened: 'none',
 				options1: [{
-					text: '取消置顶'
+					text: 'cancel Sticky'
 				}],
 				options2: [{
-						text: '取消',
+						text: 'cancel',
 						style: {
 							backgroundColor: '#007aff'
 						}
 					},
 					{
-						text: '确认',
+						text: 'confirm',
 						style: {
 							backgroundColor: '#F56C6C'
 						}
@@ -132,21 +132,21 @@
 				],
 				swipeList: [{
 						options: [{
-							text: '添加',
+							text: 'add',
 							style: {
 								backgroundColor: '#F56C6C'
 							}
 						}],
 						id: 0,
-						content: '左滑点击添加新增一条数据'
+						content: 'Left click to add a new data'
 					},
 					{
 						id: 1,
 						options: [{
-								text: '置顶'
+								text: 'Sticky'
 							},
 							{
-								text: '删除',
+								text: 'delete',
 								style: {
 									backgroundColor: 'rgb(255,58,49)'
 								}
@@ -157,16 +157,16 @@
 					{
 						id: 2,
 						options: [{
-								text: '置顶'
+								text: 'Sticky'
 							},
 							{
-								text: '标记为已读',
+								text: 'Mark as read',
 								style: {
 									backgroundColor: 'rgb(254,156,1)'
 								}
 							},
 							{
-								text: '删除',
+								text: 'delete',
 								style: {
 									backgroundColor: 'rgb(255,58,49)'
 								}
@@ -182,12 +182,12 @@
 			setTimeout(() => {
 				this.isOpened = 'right';
 			}, 1000);
-			
+
 			uni.$on('update',res=>{
 				console.log(111);
 				this.swipeClick({
 					content:{
-						text:'添加'
+						text:'add'
 					}
 				})
 			})
@@ -223,63 +223,63 @@
 			},
 			change(e) {
 				this.isOpened = e;
-				console.log('返回：', e);
+				console.log('return：', e);
 			},
 			swipeChange(e, index) {
-				console.log('返回：', e);
-				console.log('当前索引：', index);
+				console.log('return：', e);
+				console.log('current idnex：', index);
 			},
 			swipeClick(e, index) {
 				let {
 					content
 				} = e;
-				if (content.text === '删除') {
+				if (content.text === 'delete') {
 					uni.showModal({
-						title: '提示',
-						content: '是否删除',
+						title: 'Tips',
+						content: 'whether delete?',
 						success: res => {
 							if (res.confirm) {
 								this.swipeList.splice(index, 1);
 							} else if (res.cancel) {
-								console.log('用户点击取消');
+								console.log('User click cancel');
 							}
 						}
 					});
-				} else if (content.text === '添加') {
+				} else if (content.text === 'add') {
 					if (this.swipeList.length < 10) {
 						this.swipeList.push({
 							id: new Date().getTime(),
 							options: [{
-									text: '置顶'
+									text: 'Sticky'
 								},
 								{
-									text: '标记为已读',
+									text: 'Mark as read',
 									style: {
 										backgroundColor: 'rgb(254,156,1)'
 									}
 								},
 								{
-									text: '删除',
+									text: 'delete',
 									style: {
 										backgroundColor: 'rgb(255,58,49)'
 									}
 								}
 							],
-							content: '新增' + new Date().getTime()
+							content: 'add' + new Date().getTime()
 						});
 						uni.showToast({
-							title: `添加了一条数据`,
+							title: `add a pice data`,
 							icon: 'none'
 						});
 					} else {
 						uni.showToast({
-							title: `最多添加十条数据`,
+							title: `Up to ten data items`,
 							icon: 'none'
 						});
 					}
 				} else {
 					uni.showToast({
-						title: `点击了${e.content.text}按钮`,
+						title: `Clicked on the ${e.content.text} button`,
 						icon: 'none'
 					});
 				}

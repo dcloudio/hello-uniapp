@@ -10,7 +10,7 @@
 		},
 		methods: {
 			bindClick(e) {
-				console.log('点击item，返回数据' + JSON.stringify(e))
+				console.log('Click on the item to return the data' + JSON.stringify(e))
 			}
 		}
 	}
