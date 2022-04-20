@@ -1,8 +1,12 @@
 let mpMixins = {}
-// #ifdef APP-VUE|| MP-WEIXIN || H5
+
+// #ifdef H5
 import {
 	isPC
 } from "./isPC"
+// #endif
+// #ifdef APP-VUE|| MP-WEIXIN || H5
+
 mpMixins = {
 	data() {
 		return {
@@ -38,9 +42,8 @@ mpMixins = {
 		},
 
 		appTouchStart(e) {
-			// #ifdef H5
-			if (isPC()) return
-			// #endif
+			let is_pc = isPC() || false
+			if (is_pc) return
 			const {
 				clientX
 			} = e.changedTouches[0]
@@ -48,9 +51,8 @@ mpMixins = {
 			this.timestamp = new Date().getTime()
 		},
 		appTouchEnd(e, index, item, position) {
-			// #ifdef H5
-			if (isPC()) return
-			// #endif
+			let is_pc = isPC() || false
+			if (is_pc) return
 			const {
 				clientX
 			} = e.changedTouches[0]
@@ -66,8 +68,10 @@ mpMixins = {
 			}
 		},
 		onClickForPC(index, item, position) {
+
+			let is_pc = isPC() || false
+			if (is_pc) return
 			// #ifdef H5
-			if (!isPC()) return
 			this.$emit('click', {
 				content: item,
 				index,
