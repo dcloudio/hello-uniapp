@@ -737,6 +737,12 @@
 					}
 				},
 				{
+					"path": "breadcrumb/breadcrumb",
+					"style": {
+						"navigationBarTitleText": "Breadcrumb 面包屑"
+					}
+				},
+				{
 					"path": "countdown/countdown",
 					"style": {
 						"navigationBarTitleText": "Countdown 倒计时"
@@ -936,6 +942,12 @@
 					}
 				},
 				{
+					"path": "tooltip/tooltip",
+					"style": {
+						"navigationBarTitleText": "Tooltip 文字提示"
+					}
+				},
+				{
 					"path": "link/link",
 					"style": {
 						"navigationBarTitleText": "Link 链接"
@@ -983,6 +995,13 @@
 					"path": "data-picker/data-picker",
 					"style": {
 						"navigationBarTitleText": "DataPicker 级联选择",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "data-select/data-select",
+					"style": {
+						"navigationBarTitleText": "DataSelect 下拉框",
 						"enablePullDownRefresh": false
 					}
 				},
