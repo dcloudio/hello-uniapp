@@ -5,10 +5,13 @@
 		</view>
 		<view v-if="!hasLeftWin" class="uni-hello-text">
 			<text class="hello-text">以下是uni-app扩展组件示例，更多组件见插件市场：</text>
-			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'" :inWhiteList="true"></u-link>
+			<u-link class="hello-link" :href="'https://ext.dcloud.net.cn/'" :text="'https://ext.dcloud.net.cn'"
+				:inWhiteList="true"></u-link>
 		</view>
-		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel" v-for="item in lists" :key="item.url">
-			<view :class="{'left-win-active': leftWinActive ===  item.url && hasLeftWin}" class="uni-panel-h" @click="goDetailPage(item.url)">
+		<view :class="{'pc-hide': hideList.indexOf(item.url) !== -1  && hasLeftWin}" class="uni-panel"
+			v-for="item in lists" :key="item.url">
+			<view :class="{'left-win-active': leftWinActive ===  item.url && hasLeftWin}" class="uni-panel-h"
+				@click="goDetailPage(item.url)">
 				<text class="uni-panel-text">{{item.name}}</text>
 				<text class="uni-panel-icon uni-icon">&#xe470;</text>
 			</view>
@@ -34,6 +37,10 @@
 						name: "uni-badge 数字角标",
 						url: "badge"
 					},
+					{
+						name: "uni-breadcrumb 面包屑",
+						url: "breadcrumb"
+					},
 					// {
 					// 	name: "uni-calendar 日历",
 					// 	url: "calendar"
@@ -47,12 +54,12 @@
 						url: "collapse"
 					},
 
-					// #ifndef APP-NVUE 
+					// #ifndef APP-NVUE
 					{
 						name: "uni-combox 组合框",
 						url: "combox"
 					},
-					// #endif 
+					// #endif
 					{
 						name: "uni-countdown 倒计时",
 						url: "countdown"
@@ -64,6 +71,10 @@
 					{
 						name: "uni-data-picker 数据驱动的picker选择器",
 						url: "data-picker"
+					},
+					{
+						name: "uni-data-select 数据驱动的下拉框",
+						url: "data-select"
 					},
 					{
 						name: "uni-dateformat 日期格式化",
@@ -89,12 +100,12 @@
 						name: "uni-fav 收藏按钮",
 						url: "fav"
 					},
-					// #ifndef APP-NVUE 
+					// #ifndef APP-NVUE
 					{
 						name: "uni-file-picker 文件选择上传",
 						url: "file-picker"
 					},
-					// #endif 
+					// #endif
 					{
 						name: "uni-forms 表单",
 						url: "forms"
@@ -165,12 +176,12 @@
 						name: "uni-search-bar 搜索栏",
 						url: "search-bar"
 					},
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ 
+					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
 					{
 						name: "section 标题栏",
 						url: "section"
 					},
-					// #endif 
+					// #endif
 					{
 						name: "uni-segmented-control 分段器",
 						url: "segmented-control"
@@ -192,7 +203,7 @@
 						name: "uni-table 表格",
 						url: "table"
 					},
-					// #endif 
+					// #endif
 					{
 						name: "uni-tag 标签",
 						url: "tag"
@@ -200,6 +211,10 @@
 					{
 						name: "uni-title 章节标题",
 						url: "title"
+					},
+					{
+						name: "uni-tooltip 文字提示",
+						url: "tooltip"
 					},
 					{
 						name: "uni-transition 过渡动画",
