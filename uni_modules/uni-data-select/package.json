@@ -1,7 +1,7 @@
 {
   "id": "uni-data-select",
   "displayName": "uni-data-select 下拉框选择器",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "通过数据驱动的下拉框选择器",
   "keywords": [
     "uni-ui",
@@ -71,7 +71,8 @@
           "阿里": "y",
           "百度": "y",
           "字节跳动": "y",
-          "QQ": "y"
+        "QQ": "y",
+        "京东": "u"
         },
         "快应用": {
           "华为": "y",
