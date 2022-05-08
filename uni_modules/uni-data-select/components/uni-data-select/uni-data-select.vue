@@ -139,18 +139,29 @@
 		},
 		methods: {
 			initDefVal() {
-				let defItem = ''
-				if (this.defItem > 0 && this.defItem < this.mixinDatacomResData.length) {
-					defItem = this.mixinDatacomResData[this.defItem - 1].value
+				let defValue = ''
+				if (this.value ||this.value === 0) {
+					defValue =  this.value
+				} else if(this.modelValue || this.modelValue === 0 ) {
+					defValue = this.modelValue
+				} else {
+					let strogeValue
+					if (this.collection) {
+						strogeValue = uni.getStorageSync(this.last)
+					}
+					if (strogeValue || strogeValue === 0) {
+						defValue = strogeValue
+					} else {
+						let defItem = ''
+						if (this.defItem > 0 && this.defItem < this.mixinDatacomResData.length) {
+							defItem = this.mixinDatacomResData[this.defItem - 1].value
+						}
+						defValue = defItem
+					}
+					this.emit(defValue)
 				}
-				let strogeValue
-				if (this.collection) {
-					strogeValue = uni.getStorageSync(this.last)
-				}
-				const defValue = this.value || this.modelValue || strogeValue || defItem
 				const def = this.mixinDatacomResData.find(item => item.value === defValue)
 				this.current = def ? this.formatItemName(def) : ''
-				this.emit(defValue)
 			},
 
 			clearVal() {
