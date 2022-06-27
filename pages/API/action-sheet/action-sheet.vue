@@ -12,7 +12,7 @@
 	export default {
 		data() {
 			return {
-				title: 'action-sheet',
+				title: 'action-sheet',//这是一个标题
 				buttonRect: {}
 			}
 		},
