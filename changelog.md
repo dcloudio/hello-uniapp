@@ -1,4 +1,4 @@
-## 3.3.9（2022-06-29）
+## 3.4.0（2022-06-29）
 - 新增 支持 ios 安全区
 ## 3.3.8（2022-05-08）
 - 新增 同步 uni-ui@1.4.15
@@ -23,7 +23,7 @@
 - 修复 删除 map.nvue 中多余的 enableOverlooking 变量
 - 修复 swipe-dot.nvue 中条件编译媒体查询
 ## 3.3.2（2022-01-26）
-- 修复 默认运行到 vue2 
+- 修复 默认运行到 vue2
 ## 3.3.1（2022-01-26）
 - 新增 同步 uni-ui@1.4.11
 	- uni-collapse 修复 微信小程序resize后组件收起的bug
@@ -61,7 +61,7 @@
 - 修复 uni-popup 示例的 button 文字在 iPhone 5 上换行的 bug
 - 修复 uni-table 示例，页面顶部距离不对的 bug
 - 修复 GlobalData示例，在vue3是无效的 bug
-- 优化 删除无用的 project.swan.json 文件 
+- 优化 删除无用的 project.swan.json 文件
 ## 3.2.6（2021-10-08）
 - 由于体验问题，暂时撤销 uni-ui 以 uni_modules 方式引入的修改
 
@@ -91,10 +91,10 @@
 	- uni-file-picker 修复 v-model 值设为 null 报错的Bug
 	- uni-swipe-action 新增 close-all 方法，关闭所有已打开的组件
 	- uni-swipe-action 新增 resize() 方法，在非微信小程序、h5、app-vue端出现不能滑动的问题的时候，重置组件
-	- uni-swipe-action 修复 app 端偶尔出现类似 Page[x][-x,xx;-x,xx,x,x-x] 的问题 
+	- uni-swipe-action 修复 app 端偶尔出现类似 Page[x][-x,xx;-x,xx,x,x-x] 的问题
 	- uni-swipe-action 优化 微信小程序、h5、app-vue 滑动逻辑，避免出现动态新增组件后不能滑动的问题
 
-	
+
 ## 3.2.3（2021-08-27）
 - 优化 tabbar 页面移除 vuex 相关代码
 - 新增 适配 vue3 (app)
@@ -119,9 +119,9 @@
 ## 3.2.1（2021-07-31）
 - 新增 同步 uni-ui@1.3.8
 ## 3.2.0（2021-07-30）
-- 新增 同时兼容 vue2 & vue3 
+- 新增 同时兼容 vue2 & vue3
 ## 3.1.20（2021-07-30）
-- 新增 同时兼容 vue2 & vue3 
+- 新增 同时兼容 vue2 & vue3
 ## 3.1.17（2021-05-26）
 - 修复 3.1.16 依赖 sass 的问题
 - 条件编译 nuve 不支持 css 属性
