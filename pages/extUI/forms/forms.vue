@@ -6,7 +6,7 @@
 		<uni-section title="基本用法" type="line">
 			<view class="example">
 				<!-- 基础用法，不包含校验规则 -->
-				<uni-forms ref="baseForm" :modelValue="baseFormData">
+				<uni-forms ref="baseForm" :model="baseFormData" labelWidth="80px">
 					<uni-forms-item label="姓名" required>
 						<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
 					</uni-forms-item>
@@ -52,14 +52,14 @@
 		<uni-section title="表单校验" type="line">
 			<view class="example">
 				<!-- 基础表单校验 -->
-				<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
+				<uni-forms ref="valiForm" :rules="rules" :model="valiFormData" labelWidth="80px">
 					<uni-forms-item label="姓名" required name="name">
 						<uni-easyinput v-model="valiFormData.name" placeholder="请输入姓名" />
 					</uni-forms-item>
 					<uni-forms-item label="年龄" required name="age">
 						<uni-easyinput v-model="valiFormData.age" placeholder="请输入年龄" />
 					</uni-forms-item>
-					<uni-forms-item label="自我介绍" name="introduction">
+					<uni-forms-item label="自我介绍">
 						<uni-easyinput type="textarea" v-model="valiFormData.introduction" placeholder="请输入自我介绍" />
 					</uni-forms-item>
 				</uni-forms>
@@ -70,7 +70,7 @@
 		<uni-section title="自定义校验规则" type="line">
 			<view class="example">
 				<!-- 自定义表单校验 -->
-				<uni-forms ref="customForm" :rules="customRules" :modelValue="customFormData">
+				<uni-forms ref="customForm" :rules="customRules" labelWidth="80px" :modelValue="customFormData">
 					<uni-forms-item label="姓名" required name="name">
 						<uni-easyinput v-model="customFormData.name" placeholder="请输入姓名" />
 					</uni-forms-item>
@@ -89,14 +89,14 @@
 		<uni-section title="动态表单" type="line">
 			<view class="example">
 				<!-- 动态表单校验 -->
-				<uni-forms ref="dynamicForm" :rules="dynamicRules" :modelValue="dynamicFormData">
+				<uni-forms ref="dynamicForm" :rules="dynamicRules" :model="dynamicFormData" labelWidth="80px">
 					<uni-forms-item label="邮箱" required name="email">
 						<uni-easyinput v-model="dynamicFormData.email" placeholder="请输入姓名" />
 					</uni-forms-item>
-					<uni-forms-item v-for="(item,index) in dynamicLists" :key="item.id" :label="item.label+' '+index"
-						required :rules="item.rules" :name="'domains[' + item.id + ']'">
+					<uni-forms-item v-for="(item,index) in dynamicFormData.domains" :key="item.id" :label="item.label+' '+index"
+						required :rules="item.rules" :name="['domains',index,'value']">
 						<view class="form-item">
-							<uni-easyinput v-model="dynamicFormData.domains[item.id]" placeholder="请输入域名" />
+							<uni-easyinput v-model="dynamicFormData.domains[index].value" placeholder="请输入域名" />
 							<button class="button" size="mini" type="default" @click="del(item.id)">删除</button>
 						</view>
 					</uni-forms-item>
@@ -224,7 +224,7 @@
 				},
 				dynamicFormData: {
 					email: '',
-					domains: {}
+					domains: []
 				},
 				dynamicLists: [],
 				dynamicRules: {
@@ -259,8 +259,9 @@
 				this.current = e.currentIndex
 			},
 			add() {
-				this.dynamicLists.push({
+				this.dynamicFormData.domains.push({
 					label: '域名',
+					value: '',
 					rules: [{
 						'required': true,
 						errorMessage: '域名项必填'
@@ -305,12 +306,14 @@
 	.form-item {
 		display: flex;
 		align-items: center;
+		flex: 1;
 	}
 
 	.button {
 		display: flex;
 		align-items: center;
 		height: 35px;
+		line-height: 35px;
 		margin-left: 10px;
 	}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-content">
 		<uni-card is-full :is-shadow="false">
-			<text class="uni-h6"> 章节标题，通常用于记录页面标题，使用当前组件在 uni-app 开启统计的情况下，将会自动统计页面标题.</text>
+			<text class="uni-h6"> 标题组件，通常用于记录页面标题，使用当前组件在 uni-app 开启统计的情况下，将会自动统计页面标题.</text>
 		</uni-card>
 		<uni-section title="不同类型" type="line">
 			<view class="example-body">
@@ -71,7 +71,7 @@
 		components: {},
 		data() {
 			return {
-				title: '章节标题通常用于记录页面标题，例如商品标题、新闻标题等，当前组件会自动上报内容统计数据'
+				title: '标题组件通常用于记录页面标题，例如商品标题、新闻标题等，当前组件会自动上报内容统计数据'
 			}
 		},
 		onLoad() {},

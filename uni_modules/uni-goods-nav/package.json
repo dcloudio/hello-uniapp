@@ -1,7 +1,7 @@
 {
   "id": "uni-goods-nav",
   "displayName": "uni-goods-nav 商品导航",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "商品导航组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作",
   "keywords": [
     "uni-ui",

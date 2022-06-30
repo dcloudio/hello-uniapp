@@ -35,6 +35,10 @@
 			mode: {
 				type: String,
 				default: 'default'
+			},
+			stat:{
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -45,7 +49,7 @@
 		},
 		watch: {
 			title(newVal) {
-				if (uni.report && newVal !== '') {
+				if (uni.report && this.stat && newVal !== '') {
 					uni.report('title', newVal)
 				}
 			}
@@ -77,7 +81,7 @@
 		}
 	}
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 	.uni-group {
 		background: #fff;
 		margin-top: 10px;

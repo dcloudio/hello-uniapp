@@ -1,19 +1,19 @@
 const MIN_DISTANCE = 10;
 export default {
-	showWatch(newVal, oldVal, ownerInstance, instance,self) {
+	showWatch(newVal, oldVal, ownerInstance, instance, self) {
 		var state = self.state
 		var $el = ownerInstance.$el || ownerInstance.$vm && ownerInstance.$vm.$el
-		if(!$el) return
-		this.getDom(instance, ownerInstance,self)
+		if (!$el) return
+		this.getDom(instance, ownerInstance, self)
 		if (newVal && newVal !== 'none') {
-			this.openState(newVal, instance, ownerInstance,self)
+			this.openState(newVal, instance, ownerInstance, self)
 			return
 		}
 
 		if (state.left) {
-			this.openState('none', instance, ownerInstance,self)
+			this.openState('none', instance, ownerInstance, self)
 		}
-		this.resetTouchStatus(instance,self)
+		this.resetTouchStatus(instance, self)
 	},
 
 	/**
@@ -49,7 +49,7 @@ export default {
 	touchmove(e, ownerInstance, self) {
 		let instance = e.instance;
 		// 删除之后已经那不到实例了
-		if(!instance) return;
+		if (!instance) return;
 		let disabled = instance.getDataset().disabled
 		let state = self.state
 		// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
@@ -209,7 +209,7 @@ export default {
 
 		state.isopen = type
 		// 添加动画类
-		ins.requestAnimationFrame(()=> {
+		ins.requestAnimationFrame(() => {
 			ins.addClass('ani');
 			this.move(left, ins, ownerInstance, self)
 		})

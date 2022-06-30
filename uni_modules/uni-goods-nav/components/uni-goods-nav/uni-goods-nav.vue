@@ -38,6 +38,7 @@
 	 * @property {Array} options 组件参数
 	 * @property {Array} buttonGroup 组件按钮组参数
 	 * @property {Boolean} fill = [true | false] 组件按钮组参数
+	 * @property {Boolean} stat 是否开启统计功能
 	 * @event {Function} click 左侧点击事件
 	 * @event {Function} buttonClick 右侧按钮组点击事件
 	 * @example <uni-goods-nav :fill="true"  options="" buttonGroup="buttonGroup"  @click="" @buttonClick="" />
@@ -77,6 +78,10 @@
 			fill: {
 				type: Boolean,
 				default: false
+			},
+			stat:{
+				type: Boolean,
+				default: false
 			}
 		},
 		methods: {
@@ -87,7 +92,7 @@
 				})
 			},
 			buttonClick(index, item) {
-				if (uni.report) {
+				if (uni.report && this.stat) {
 					uni.report(item.text, item.text)
 				}
 				this.$emit('buttonClick', {
@@ -99,7 +104,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 	.flex {
 		/* #ifndef APP-NVUE */
 		display: flex;

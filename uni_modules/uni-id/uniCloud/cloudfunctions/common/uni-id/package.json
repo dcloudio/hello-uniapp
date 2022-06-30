@@ -1,0 +1,16 @@
+{
+  "name": "uni-id",
+  "version": "3.3.25",
+  "description": "uni-id for uniCloud",
+  "main": "index.js",
+  "homepage": "https://uniapp.dcloud.io/uniCloud/uni-id",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitee.com/dcloud/uni-id.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "uni-config-center": "file:../../../../../uni-config-center/uniCloud/cloudfunctions/common/uni-config-center"
+  }
+}

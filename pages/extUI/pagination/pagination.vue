@@ -13,7 +13,7 @@
 			<uni-pagination :show-icon="true" :total="50" title="标题文字" />
 		</uni-section>
 		<uni-section title="修改数据长度" type="line" padding>
-			<uni-pagination :current="current" :total="total" title="标题文字" :show-icon="true" @change="change" />
+			<uni-pagination :current="current" :total="total" :pageSize="20" title="标题文字" :show-icon="true" @change="change" />
 			<view class="btn-view">
 				<view>
 					<text class="example-info">当前页：{{ current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>

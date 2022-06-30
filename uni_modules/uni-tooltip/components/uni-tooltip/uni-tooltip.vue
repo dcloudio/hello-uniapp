@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-tooltip">
 		<slot></slot>
-		<view class="uni-tooltip-popup">
+		<view v-if="content || $slots.content" class="uni-tooltip-popup">
 			<slot name="content">
 				{{content}}
 			</slot>
@@ -12,7 +12,7 @@
 
 <script>
 	/**
-	 * Breadcrumb 提示文字
+	 * Tooltip 提示文字
 	 * @description 常用于展示鼠标 hover 时的提示信息。
 	 * @tutorial https://uniapp.dcloud.io/component/uniui/uni-tooltip
 	 * @property {String} content   弹出层显示的内容

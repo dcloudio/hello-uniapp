@@ -144,7 +144,7 @@
 			}
 		},
 		watch: {
-			filters(newVal) {
+			filterData(newVal) {
 				this._copyFilters()
 			},
 			indeterminate(newVal) {

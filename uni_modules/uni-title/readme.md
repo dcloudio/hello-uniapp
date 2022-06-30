@@ -1,6 +1,6 @@
 
 
-## Title 章节标题
+## Title 标题
 > **组件名：uni-title**
 > 代码块： `uTitle`
 

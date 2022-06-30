@@ -5,12 +5,12 @@
 		</uni-card>
 		<uni-section title="基础用法" type="line" padding>
 				<uni-breadcrumb separator="/">
-					<uni-breadcrumb-item v-for="route in routes" :to="route.to">{{route.name}}</uni-breadcrumb-item>
+					<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">{{route.name}}</uni-breadcrumb-item>
 				</uni-breadcrumb>
 		</uni-section>
 		<uni-section title="自定义分隔符" type="line" padding>
 				<uni-breadcrumb separator=">">
-					<uni-breadcrumb-item v-for="route in routes" :to="route.to">{{route.name}}</uni-breadcrumb-item>
+					<uni-breadcrumb-item v-for="(route,index) in routes" :key="index" :to="route.to">{{route.name}}</uni-breadcrumb-item>
 				</uni-breadcrumb>
 		</uni-section>
 	</view>
@@ -22,7 +22,7 @@
 		data() {
 			return {
 				routes: [ {
-					to: '/',
+					to: '/pages/index/index',
 					name: '首页'
 				}, {
 					to: '',

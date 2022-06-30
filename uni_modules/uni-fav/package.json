@@ -1,7 +1,7 @@
 {
   "id": "uni-fav",
   "displayName": "uni-fav 收藏按钮",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": " Fav 收藏组件，可自定义颜色、大小。",
   "keywords": [
     "fav",

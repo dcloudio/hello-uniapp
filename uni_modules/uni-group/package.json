@@ -1,7 +1,7 @@
 {
   "id": "uni-group",
   "displayName": "uni-group 分组",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "分组组件可用于将组件用于分组，添加间隔，以产生明显的区块",
   "keywords": [
     "uni-ui",

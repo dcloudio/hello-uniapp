@@ -1,7 +1,7 @@
 {
   "id": "uni-data-select",
   "displayName": "uni-data-select 下拉框选择器",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "通过数据驱动的下拉框选择器",
   "keywords": [
     "uni-ui",
@@ -51,7 +51,7 @@
       "client": {
         "App": {
           "app-vue": "u",
-          "app-nvue": "y"
+          "app-nvue": "n"
         },
         "H5-mobile": {
           "Safari": "y",
@@ -68,15 +68,15 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "y",
-          "百度": "y",
-          "字节跳动": "y",
-        "QQ": "y",
+          "阿里": "u",
+          "百度": "u",
+          "字节跳动": "u",
+        "QQ": "u",
         "京东": "u"
         },
         "快应用": {
-          "华为": "y",
-          "联盟": "y"
+          "华为": "u",
+          "联盟": "u"
         },
         "Vue": {
             "vue2": "y",

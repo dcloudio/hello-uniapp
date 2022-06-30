@@ -9,11 +9,14 @@
 	"uni-datetime-picker.ok": "确定",
 	"uni-datetime-picker.clear": "清除",
 	"uni-datetime-picker.cancel": "取消",
+	"uni-datetime-picker.year": "年",
+	"uni-datetime-picker.month": "月",
 	"uni-calender.SUN": "日",
 	"uni-calender.MON": "一",
 	"uni-calender.TUE": "二",
 	"uni-calender.WED": "三",
 	"uni-calender.THU": "四",
 	"uni-calender.FRI": "五",
-	"uni-calender.SAT": "六"
+	"uni-calender.SAT": "六",
+	"uni-calender.confirm": "确认"
 }

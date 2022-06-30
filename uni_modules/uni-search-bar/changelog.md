@@ -1,3 +1,9 @@
+## 1.2.3（2022-05-24）
+- 新增 readonly 属性，组件只读
+## 1.2.2（2022-05-06）
+- 修复  vue3 input 事件不生效的bug
+## 1.2.1（2022-05-06）
+- 修复 多余代码导致的bug
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-search-bar](https://uniapp.dcloud.io/component/uniui/uni-search-bar)

@@ -1,3 +1,19 @@
+## 1.1.0（2022-06-30）
+- 新增 在 uni-forms 1.4.0 中使用可以在 blur 时校验内容
+- 新增 clear 事件，点击右侧叉号图标触发
+- 新增 change 事件 ，仅在输入框失去焦点或用户按下回车时触发
+- 优化 组件样式，组件获取焦点时高亮显示，图标颜色调整等
+-
+## 1.0.5（2022-06-07）
+- 优化 clearable 显示策略
+## 1.0.4（2022-06-07）
+- 优化 clearable 显示策略
+## 1.0.3（2022-05-20）
+- 修复 关闭图标某些情况下无法取消的bug
+## 1.0.2（2022-04-12）
+- 修复 默认值不生效的bug
+## 1.0.1（2022-04-02）
+- 修复 value不能为0的bug
 ## 1.0.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-easyinput](https://uniapp.dcloud.io/component/uniui/uni-easyinput)

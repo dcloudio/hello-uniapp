@@ -182,13 +182,13 @@
 			},
 			show() {
 				this.isOpened = true
-				this.$nextTick(() => {
+				setTimeout(() => {
 					this.$refs.pickerView.updateData({
 						treeData: this._treeData,
 						selected: this.selected,
 						selectedIndex: this.selectedIndex
 					})
-				})
+				}, 200)
 				this.$emit('popupopened')
 			},
 			hide() {
