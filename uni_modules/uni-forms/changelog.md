@@ -1,3 +1,16 @@
+## 1.4.5（2022-07-05）
+- 新增 更多表单示例
+- 优化 子表单组件过期提示的问题
+- 优化 子表单组件uni-datetime-picker、uni-data-select、uni-data-picker的显示样式
+## 1.4.4（2022-07-04）
+- 更新 删除组件日志
+## 1.4.3（2022-07-04）
+- 修复 由 1.4.0 引发的 label 插槽不生效的bug
+## 1.4.2（2022-07-04）
+- 修复 子组件找不到 setValue 报错的bug
+## 1.4.1（2022-07-04）
+- 修复 uni-data-picker 在 uni-forms-item 中报错的bug
+- 修复 uni-data-picker 在 uni-forms-item 中宽度不正确的bug
 ## 1.4.0（2022-06-30）
 - 【重要】组件逻辑重构，部分用法用旧版本不兼容，请注意兼容问题
 - 【重要】组件使用 Provide/Inject 方式注入依赖，提供了自定义表单组件调用 uni-forms 校验表单的能力

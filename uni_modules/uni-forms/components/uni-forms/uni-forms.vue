@@ -188,6 +188,8 @@
 
 			// 子组件实例数组
 			this.childrens = []
+			// TODO 兼容旧版 uni-data-picker ,新版本中无效，只是避免报错
+			this.inputChildrens = []
 			this.setRules(this.rules)
 		},
 		methods: {

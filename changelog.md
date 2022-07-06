@@ -1,3 +1,37 @@
+## 3.4.2（2022-07-06）
+- 新增 同步 uni-ui@1.4.18
+	- uni-forms 【重要】组件逻辑重构，部分用法旧版本不兼容，请注意兼容问题
+	- uni-forms 【重要】组件使用 Provide/Inject 方式注入依赖，提供了自定义表单组件调用 uni-forms 校验表单的能力
+	- uni-forms 新增 更多表单示例
+	- uni-forms 新增 model 属性，等同于原 value/modelValue 属性，旧属性即将废弃
+	- uni-forms 新增 validateTrigger 属性的 blur 值，仅 uni-easyinput 生效
+	- uni-forms 新增 onFieldChange 方法，可以对子表单进行校验，可替代binddata方法
+	- uni-forms 新增 子表单的 setRules 方法，配合自定义校验函数使用
+	- uni-forms 新增 uni-forms-item 的 setRules 方法，配置动态表单使用可动态更新校验规则
+	- uni-forms 修复 由 1.4.0 引发的 label 插槽不生效的bug
+	- uni-forms 修复 子组件找不到 setValue 报错的bug
+	- uni-forms 修复 uni-data-picker 在 uni-forms-item 中报错的bug
+	- uni-forms 修复 uni-data-picker 在 uni-forms-item 中宽度不正确的bug
+	- uni-forms 修复 表单校验顺序无序问题
+	- uni-forms 优化 子表单组件uni-datetime-picker、uni-data-select、uni-data-picker的显示样式
+	- uni-forms 优化 动态表单校验方式，废弃拼接name的方式
+	- uni-breadcrumb 修复 微信小程序 separator 不显示问题
+	- uni-data-checkbox 优化 在 uni-forms 中的依赖注入方式
+	- uni-data-picker 修复 uni-data-picker 在 uni-forms-item 中宽度不正确的bug
+	- uni-data-picker 优化 显示样式
+	- uni-data-select 优化 显示样式
+	- uni-datetime-picker 修复 日历顶部年月及底部确认未国际化 bug
+	- uni-datetime-picker 优化 组件样式，调整了组件图标大小、高度、颜色等，与uni-ui风格保持一致
+	- uni-easyinput 新增 在 uni-forms 1.4.0 中使用可以在 blur 时校验内容
+	- uni-easyinput 新增 clear 事件，点击右侧叉号图标触发
+	- uni-easyinput 新增 change 事件 ，仅在输入框失去焦点或用户按下回车时触发
+	- uni-easyinput 优化 组件样式，组件获取焦点时高亮显示，图标颜色调整等
+	- uni-easyinput 优化 clearable 显示策略
+	- uni-file-picker 修复 在uni-forms下样式不生效的bug
+	- uni-nav-bar 修复 组件示例中插槽用法无法显示内容的bug
+	- uni-swipe-action 修复 vue3 下使用组件不能正常运行的Bug
+	- uni-swipe-action 修复 h5端点击click触发两次的Bug
+	- uni-table 修复 微信小程序存在无使用组件的问题
 ## 3.4.1（2022-06-30）
 - 新增 支持 ios 安全区
 ## 3.3.8（2022-05-08）

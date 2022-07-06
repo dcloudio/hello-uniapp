@@ -84,6 +84,9 @@
 			uploadImage,
 			uploadFile
 		},
+		options: {
+			virtualHost: true
+		},
 		emits: ['select', 'success', 'fail', 'progress', 'delete', 'update:modelValue', 'input'],
 		props: {
 			// #ifdef VUE3
@@ -278,7 +281,7 @@
 						files.push(Object.assign({}, v))
 					}
 				})
-				this.uploadFiles(files)
+				return this.uploadFiles(files)
 			},
 			async setValue(newVal, oldVal) {
 				const newData =  async (v) => {
@@ -416,11 +419,12 @@
 			 */
 			uploadFiles(files) {
 				files = [].concat(files)
-				uploadCloudFiles.call(this, files, 5, res => {
+				return uploadCloudFiles.call(this, files, 5, res => {
 						this.setProgress(res, res.index, true)
 					})
 					.then(result => {
 						this.setSuccessAndError(result)
+						return result;
 					})
 					.catch(err => {
 						console.log(err)
@@ -606,7 +610,9 @@
 		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
 		overflow: hidden;
+		width: 100%;
 		/* #endif */
+		flex: 1;
 	}
 
 	.uni-file-picker__header {

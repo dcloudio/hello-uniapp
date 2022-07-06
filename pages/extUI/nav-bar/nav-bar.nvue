@@ -53,7 +53,7 @@
 		<uni-section title="自定义内容" subTitle="使用 left/right/default 插槽自定义内容" type="line" style="margin-bottom: 3px;">
 			<view class="box-bg">
 				<uni-nav-bar>
-					<template #left>
+					<template v-slot:left>
 						<view class="city">
 							<view>
 								<text class="uni-nav-bar-text">{{ city }}</text>
@@ -66,7 +66,7 @@
 						<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
 							@confirm="confirm" />
 					</view>
-					<template #right>
+					<template v-slot:right>
 						<view class="city">
 							搜索
 						</view>

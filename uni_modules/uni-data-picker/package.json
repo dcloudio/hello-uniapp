@@ -1,7 +1,7 @@
 {
   "id": "uni-data-picker",
   "displayName": "uni-data-picker 数据驱动的picker选择器",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "单列、多列级联选择器，常用于省市区城市选择、公司部门选择、多级分类等场景",
   "keywords": [
     "uni-ui",
@@ -76,7 +76,8 @@
           "阿里": "y",
           "百度": "y",
           "字节跳动": "y",
-          "QQ": "y"
+        "QQ": "y",
+        "京东": "u"
         },
         "快应用": {
           "华为": "u",

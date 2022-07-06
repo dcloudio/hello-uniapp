@@ -26,6 +26,15 @@
 						<uni-datetime-picker type="datetime" return-type="timestamp"
 							v-model="baseFormData.datetimesingle" />
 					</uni-forms-item>
+					<uni-forms-item label="选择城市">
+						<uni-data-picker v-model="baseFormData.city" :localdata="cityData" popup-title="选择城市">
+						</uni-data-picker>
+					</uni-forms-item>
+
+					<uni-forms-item label="选择技能">
+						<uni-data-select v-model="baseFormData.skills" :localdata="skillsRange" >
+						</uni-data-select>
+					</uni-forms-item>
 				</uni-forms>
 			</view>
 		</uni-section>
@@ -93,8 +102,8 @@
 					<uni-forms-item label="邮箱" required name="email">
 						<uni-easyinput v-model="dynamicFormData.email" placeholder="请输入姓名" />
 					</uni-forms-item>
-					<uni-forms-item v-for="(item,index) in dynamicFormData.domains" :key="item.id" :label="item.label+' '+index"
-						required :rules="item.rules" :name="['domains',index,'value']">
+					<uni-forms-item v-for="(item,index) in dynamicFormData.domains" :key="item.id"
+						:label="item.label+' '+index" required :rules="item.rules" :name="['domains',index,'value']">
 						<view class="form-item">
 							<uni-easyinput v-model="dynamicFormData.domains[index].value" placeholder="请输入域名" />
 							<button class="button" size="mini" type="default" @click="del(item.id)">删除</button>
@@ -121,8 +130,34 @@
 					introduction: '',
 					sex: 2,
 					hobby: [5],
-					datetimesingle: 1627529992399
+					datetimesingle: 1627529992399,
+					city: '',
+					skills: 0
 				},
+				// 城市数据
+				cityData: [{
+					text: "北京",
+					value: "10001",
+				}, {
+					text: "上海",
+					value: "10002",
+				}, {
+					text: "深圳",
+					value: "10004",
+				}],
+				skillsRange: [{
+						value: 0,
+						text: "编程"
+					},
+					{
+						value: 1,
+						text: "绘画"
+					},
+					{
+						value: 2,
+						text: "运动"
+					},
+				],
 				// 表单数据
 				alignmentFormData: {
 					name: '',
@@ -274,6 +309,7 @@
 				this.dynamicLists.splice(index, 1)
 			},
 			submit(ref) {
+				console.log(this.baseFormData);
 				this.$refs[ref].validate().then(res => {
 					console.log('success', res);
 					uni.showToast({

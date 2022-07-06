@@ -1,25 +1,28 @@
 <template>
 	<view class="uni-stat__select">
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
-		<view class="uni-select">
-			<view class="uni-select__input-box" @click="toggleSelector">
-				<view v-if="current" class="uni-select__input-text">{{current}}</view>
-				<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
-				<uni-icons v-if="current && clear" type="clear" color="#e1e1e1" size="18" @click="clearVal" />
-				<uni-icons v-else :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
-			</view>
-			<view class="uni-select--mask" v-if="showSelector" @click="toggleSelector" />
-			<view class="uni-select__selector" v-if="showSelector">
-				<view class="uni-popper__arrow"></view>
-				<scroll-view scroll-y="true" class="uni-select__selector-scroll">
-					<view class="uni-select__selector-empty" v-if="mixinDatacomResData.length === 0">
-						<text>{{emptyTips}}</text>
-					</view>
-					<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData"
-						:key="index" @click="change(item)">
-						<text :class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
-					</view>
-				</scroll-view>
+		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
+			<view class="uni-select">
+				<view class="uni-select__input-box" @click="toggleSelector">
+					<view v-if="current" class="uni-select__input-text">{{current}}</view>
+					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
+					<uni-icons v-if="current && clear" type="clear" color="#c0c4cc" size="24" @click="clearVal" />
+					<uni-icons v-else :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
+				</view>
+				<view class="uni-select--mask" v-if="showSelector" @click="toggleSelector" />
+				<view class="uni-select__selector" v-if="showSelector">
+					<view class="uni-popper__arrow"></view>
+					<scroll-view scroll-y="true" class="uni-select__selector-scroll">
+						<view class="uni-select__selector-empty" v-if="mixinDatacomResData.length === 0">
+							<text>{{emptyTips}}</text>
+						</view>
+						<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData"
+							:key="index" @click="change(item)">
+							<text
+								:class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
+						</view>
+					</scroll-view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -100,7 +103,7 @@
 					'opendb-app-channels': '渠道',
 					'opendb-app-list': '应用'
 				}
-				const common = '请选择'
+				const common = this.placeholder
 				const placeholder = text[this.collection]
 				return placeholder ?
 					common + placeholder :
@@ -111,7 +114,7 @@
 			localdata: {
 				immediate: true,
 				handler(val, old) {
-					if (Array.isArray(val)) {
+					if (Array.isArray(val) && old !== val) {
 						this.mixinDatacomResData = val
 					}
 				}
@@ -224,9 +227,9 @@
 
 <style lang="scss">
 	$uni-base-color: #6a6a6a !default;
-	$uni-main-color: #3a3a3a !default;
+	$uni-main-color: #333 !default;
 	$uni-secondary-color: #909399 !default;
-	$uni-border-3: #DCDCDC;
+	$uni-border-3: #e5e5e5;
 
 
 	/* #ifndef APP-NVUE */
@@ -240,8 +243,22 @@
 	.uni-stat__select {
 		display: flex;
 		align-items: center;
-		padding: 15px;
+		// padding: 15px;
 		cursor: pointer;
+		width: 100%;
+		flex: 1;
+		box-sizing: border-box;
+	}
+
+	.uni-stat-box {
+		width: 100%;
+		flex: 1;
+	}
+
+	.uni-stat__actived {
+		width: 100%;
+		flex: 1;
+		// outline: 1px solid #2979ff;
 	}
 
 	.uni-label-text {
@@ -258,6 +275,7 @@
 		box-sizing: border-box;
 		border-radius: 4px;
 		padding: 0 5px;
+		padding-left: 10px;
 		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -266,17 +284,21 @@
 		flex-direction: row;
 		align-items: center;
 		border-bottom: solid 1px $uni-border-3;
+		width: 100%;
+		flex: 1;
+		height: 35px;
 	}
 
 	.uni-select__label {
 		font-size: 16px;
-		line-height: 22px;
+		// line-height: 22px;
+		height: 35px;
 		padding-right: 10px;
 		color: $uni-secondary-color;
 	}
 
 	.uni-select__input-box {
-		min-height: 36px;
+		// height: 35px;
 		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -327,7 +349,7 @@
 		display: flex;
 		cursor: pointer;
 		/* #endif */
-		line-height: 36px;
+		line-height: 35px;
 		font-size: 14px;
 		text-align: center;
 		/* border-bottom: solid 1px $uni-border-3; */
@@ -380,7 +402,8 @@
 	}
 
 	.uni-select__input-text {
-		width: 280px;
+		// width: 280px;
+		width: 100%;
 		color: $uni-main-color;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -390,6 +413,7 @@
 
 	.uni-select__input-placeholder {
 		color: $uni-base-color;
+		font-size: 12px;
 	}
 
 	.uni-select--mask {
