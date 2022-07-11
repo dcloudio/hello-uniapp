@@ -1,6 +1,6 @@
 <template>
 	<!-- #ifdef H5 -->
-	<th :rowspan="rowspan" :colspan="colspan" class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: width + 'px', 'text-align': align }">
+	<th :rowspan="rowspan" :colspan="colspan" class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: customWidth + 'px', 'text-align': align }">
 		<view class="uni-table-th-row">
 			<view class="uni-table-th-content" :style="{ 'justify-content': contentAlign }" @click="sort">
 				<slot></slot>
@@ -14,17 +14,19 @@
 	</th>
 	<!-- #endif -->
 	<!-- #ifndef H5 -->
-	<view class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: width + 'px', 'text-align': align }"><slot></slot></view>
+	<view class="uni-table-th" :class="{ 'table--border': border }" :style="{ width: customWidth + 'px', 'text-align': align }"><slot></slot></view>
 	<!-- #endif -->
 </template>
 
 <script>
+	// #ifdef H5
 	import dropdown from './filter-dropdown.vue'
+	// #endif
 /**
  * Th 表头
  * @description 表格内的表头单元格组件
  * @tutorial https://ext.dcloud.net.cn/plugin?id=3270
- * @property {Number} 	width 						单元格宽度
+ * @property {Number | String} 	width 	单元格宽度（支持纯数字、携带单位px或rpx）
  * @property {Boolean} 	sortable 					是否启用排序
  * @property {Number} 	align = [left|center|right]	单元格对齐方式
  * @value left   	单元格文字左侧对齐
@@ -42,7 +44,9 @@ export default {
 		virtualHost: true
 	},
 	components: {
+		// #ifdef H5
 		dropdown
+		// #endif
 	},
 	emits:['sort-change','filter-change'],
 	props: {
@@ -85,6 +89,29 @@ export default {
 		}
 	},
 	computed: {
+		// 根据props中的width属性 自动匹配当前th的宽度(px)
+		customWidth(){
+			if(typeof this.width === 'number'){
+				return this.width
+			} else if(typeof this.width === 'string') {
+				let regexHaveUnitPx = new RegExp(/^[1-9][0-9]*px$/g)
+				let regexHaveUnitRpx = new RegExp(/^[1-9][0-9]*rpx$/g)
+				let regexHaveNotUnit = new RegExp(/^[1-9][0-9]*$/g)
+				if (this.width.match(regexHaveUnitPx) !== null) { // 携带了 px
+					return this.width.replace('px', '')
+				} else if (this.width.match(regexHaveUnitRpx) !== null) { // 携带了 rpx
+					let numberRpx = Number(this.width.replace('rpx', ''))
+					let widthCoe = uni.getSystemInfoSync().screenWidth / 750
+					return Math.round(numberRpx * widthCoe)
+				} else if (this.width.match(regexHaveNotUnit) !== null) { // 未携带 rpx或px 的纯数字 String
+					return this.width
+				} else { // 不符合格式
+					return ''
+				}
+			} else {
+				return ''
+			}
+		},
 		contentAlign() {
 			let align = 'left'
 			switch (this.align) {
@@ -104,7 +131,7 @@ export default {
 	created() {
 		this.root = this.getTable('uniTable')
 		this.rootTr = this.getTable('uniTr')
-		this.rootTr.minWidthUpdate(this.width ? this.width : 140)
+		this.rootTr.minWidthUpdate(this.customWidth ? this.customWidth : 140)
 		this.border = this.root.border
 		this.root.thChildren.push(this)
 	},

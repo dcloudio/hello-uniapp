@@ -5,12 +5,12 @@
 				<view class="uni-date-editor--x" :class="{'uni-date-editor--x__disabled': disabled,
 		'uni-date-x--border': border}">
 					<view v-if="!isRange" class="uni-date-x uni-date-single">
-						<uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons>
+						<uni-icons type="calendar" color="#c0c4cc" size="22"></uni-icons>
 						<input class="uni-date__x-input" type="text" v-model="singleVal"
 							:placeholder="singlePlaceholderText" :disabled="true" />
 					</view>
 					<view v-else class="uni-date-x uni-date-range">
-						<uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons>
+						<uni-icons type="calendar" color="#c0c4cc" size="22"></uni-icons>
 						<input class="uni-date__x-input t-c" type="text" v-model="range.startDate"
 							:placeholder="startPlaceholderText" :disabled="true" />
 						<slot>
@@ -20,7 +20,7 @@
 							:placeholder="endPlaceholderText" :disabled="true" />
 					</view>
 					<view v-if="showClearIcon" class="uni-date__icon-clear" @click.stop="clear">
-						<uni-icons type="clear" color="#e1e1e1" size="18"></uni-icons>
+						<uni-icons type="clear" color="#c0c4cc" size="24"></uni-icons>
 					</view>
 				</view>
 			</slot>
@@ -39,9 +39,9 @@
 							:disabled="!tempSingleDate" />
 					</time-picker>
 				</view>
-				<calendar ref="pcSingle" :showMonth="false"
-					:start-date="caleRange.startDate" :end-date="caleRange.endDate" :date="defSingleDate"
-					@change="singleChange" style="padding: 0 8px;" />
+				<calendar ref="pcSingle" :showMonth="false" :start-date="caleRange.startDate"
+					:end-date="caleRange.endDate" :date="defSingleDate" @change="singleChange"
+					style="padding: 0 8px;" />
 				<view v-if="hasTime" class="popup-x-footer">
 					<!-- <text class="">此刻</text> -->
 					<text class="confirm" @click="confirmSingleChange">{{okText}}</text>
@@ -74,13 +74,12 @@
 					</view>
 				</view>
 				<view class="popup-x-body">
-					<calendar ref="left" :showMonth="false"
-						:start-date="caleRange.startDate" :end-date="caleRange.endDate" :range="true"
-						@change="leftChange" :pleStatus="endMultipleStatus" @firstEnterCale="updateRightCale"
-						@monthSwitch="leftMonthSwitch" style="padding: 0 8px;" />
-					<calendar ref="right" :showMonth="false"
-						:start-date="caleRange.startDate" :end-date="caleRange.endDate" :range="true"
-						@change="rightChange" :pleStatus="startMultipleStatus" @firstEnterCale="updateLeftCale"
+					<calendar ref="left" :showMonth="false" :start-date="caleRange.startDate"
+						:end-date="caleRange.endDate" :range="true" @change="leftChange" :pleStatus="endMultipleStatus"
+						@firstEnterCale="updateRightCale" @monthSwitch="leftMonthSwitch" style="padding: 0 8px;" />
+					<calendar ref="right" :showMonth="false" :start-date="caleRange.startDate"
+						:end-date="caleRange.endDate" :range="true" @change="rightChange"
+						:pleStatus="startMultipleStatus" @firstEnterCale="updateLeftCale"
 						@monthSwitch="rightMonthSwitch" style="padding: 0 8px;border-left: 1px solid #F1F1F1;" />
 				</view>
 				<view v-if="hasTime" class="popup-x-footer">
@@ -128,9 +127,22 @@
 
 	export default {
 		name: 'UniDatetimePicker',
+		options: {
+			virtualHost: true
+		},
 		components: {
 			calendar,
 			timePicker
+		},
+		inject: {
+			form: {
+				from: 'uniForm',
+				default: null
+			},
+			formItem: {
+				from: 'uniFormItem',
+				default: null
+			},
 		},
 		data() {
 			return {
@@ -256,6 +268,7 @@
 					}
 				}
 			},
+			// #ifndef VUE3
 			value: {
 				immediate: true,
 				handler(newVal, oldVal) {
@@ -266,6 +279,8 @@
 					this.initPicker(newVal)
 				}
 			},
+			// #endif
+			// #ifdef VUE3
 			modelValue: {
 				immediate: true,
 				handler(newVal, oldVal) {
@@ -276,6 +291,7 @@
 					this.initPicker(newVal)
 				}
 			},
+			// #endif
 			start: {
 				immediate: true,
 				handler(newVal, oldVal) {
@@ -372,39 +388,27 @@
 				return t("uni-datetime-picker.clear")
 			},
 			showClearIcon() {
-				const { clearIcon, disabled, singleVal, range } = this
+				const {
+					clearIcon,
+					disabled,
+					singleVal,
+					range
+				} = this
 				const bool = clearIcon && !disabled && (singleVal || (range.startDate && range.endDate))
 				return bool
 			}
 		},
 		created() {
-			this.form = this.getForm('uniForms')
-			this.formItem = this.getForm('uniFormsItem')
-
-			// if (this.formItem) {
-			// 	if (this.formItem.name) {
-			// 		this.rename = this.formItem.name
-			// 		this.form.inputChildrens.push(this)
-			// 	}
+			// if (this.form && this.formItem) {
+			// 	this.$watch('formItem.errMsg', (newVal) => {
+			// 		this.localMsg = newVal
+			// 	})
 			// }
 		},
 		mounted() {
 			this.platform()
 		},
 		methods: {
-			/**
-			 * 获取父元素实例
-			 */
-			getForm(name = 'uniForms') {
-				let parent = this.$parent;
-				let parentName = parent.$options.name;
-				while (parentName !== name) {
-					parent = parent.$parent;
-					if (!parent) return false
-					parentName = parent.$options.name;
-				}
-				return parent;
-			},
 			initPicker(newVal) {
 				if (!newVal || Array.isArray(newVal) && !newVal.length) {
 					this.$nextTick(() => {
@@ -537,7 +541,8 @@
 						}
 					}
 				}
-				this.formItem && this.formItem.setValue(value)
+				
+				
 				this.$emit('change', value)
 				this.$emit('input', value)
 				this.$emit('update:modelValue', value)
@@ -702,7 +707,15 @@
 						this.$refs.pcSingle && this.$refs.pcSingle.clearCalender()
 					}
 					if (needEmit) {
-						this.formItem && this.formItem.setValue('')
+						// 校验规则
+						// if(this.form  && this.formItem){
+						// 	const {
+						// 		validateTrigger
+						// 	} = this.form
+						// 	if (validateTrigger === 'blur') {
+						// 		this.formItem.onFieldChange()
+						// 	}
+						// }
 						this.$emit('change', '')
 						this.$emit('input', '')
 						this.$emit('update:modelValue', '')
@@ -722,7 +735,6 @@
 						this.$refs.right && this.$refs.right.next()
 					}
 					if (needEmit) {
-						this.formItem && this.formItem.setValue([])
 						this.$emit('change', [])
 						this.$emit('input', [])
 						this.$emit('update:modelValue', [])
@@ -771,6 +783,12 @@
 </script>
 
 <style>
+	.uni-date {
+		/* #ifndef APP-NVUE */
+		width: 100%;
+		/* #endif */
+		flex: 1;
+	}
 	.uni-date-x {
 		display: flex;
 		flex-direction: row;
@@ -781,25 +799,25 @@
 		background-color: #fff;
 		color: #666;
 		font-size: 14px;
+		flex: 1;
 	}
 
 	.uni-date-x--border {
 		box-sizing: border-box;
 		border-radius: 4px;
-		border: 1px solid #dcdfe6;
+		border: 1px solid #e5e5e5;
 	}
 
 	.uni-date-editor--x {
+		display: flex;
+		align-items: center;
 		position: relative;
 	}
 
 	.uni-date-editor--x .uni-date__icon-clear {
-		position: absolute;
-		top: 0;
-		right: 0;
-		display: inline-block;
-		box-sizing: border-box;
-		border: 9px solid transparent;
+		padding: 0 5px;
+		display: flex;
+		align-items: center;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
@@ -807,10 +825,15 @@
 
 	.uni-date__x-input {
 		padding: 0 8px;
-		height: 40px;
-		width: 100%;
-		line-height: 40px;
+		/* #ifndef APP-NVUE */
+		width: auto;
+		/* #endif */
+		position: relative;
+		overflow: hidden;
+		flex: 1;
+		line-height: 1;
 		font-size: 14px;
+		height: 35px;
 	}
 
 	.t-c {

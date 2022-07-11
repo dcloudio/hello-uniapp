@@ -64,6 +64,7 @@
 	 * @property {Boolean} fixed = [true|false] 是否固定顶部
 	 * @property {Boolean} statusBar = [true|false] 是否包含状态栏
 	 * @property {Boolean} shadow = [true|false] 导航栏下是否有阴影
+	 * @property {Boolean} stat 是否开启统计标题上报
 	 * @event {Function} clickLeft 左侧按钮点击时触发
 	 * @event {Function} clickRight 右侧按钮点击时触发
 	 * @event {Function} clickTitle 中间标题点击时触发
@@ -135,6 +136,10 @@
 				type: [Number, String],
 				default: 60
 			},
+			stat: {
+				type: [Boolean, String],
+				default: ''
+			}
 		},
 		computed: {
 			themeBgColor() {
@@ -170,7 +175,7 @@
 			}
 		},
 		mounted() {
-			if (uni.report && this.title !== '') {
+			if (uni.report && this.stat && this.title !== '') {
 				uni.report('title', this.title)
 			}
 		},

@@ -1,12 +1,12 @@
 <template>
 	<view class="uni-stat__select">
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
-		<view :class="{'uni-stat__actived': current}">
+		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
 			<view class="uni-select">
 				<view class="uni-select__input-box" @click="toggleSelector">
 					<view v-if="current" class="uni-select__input-text">{{current}}</view>
 					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
-					<uni-icons v-if="current && clear" type="clear" color="#e1e1e1" size="18" @click="clearVal" />
+					<uni-icons v-if="current && clear" type="clear" color="#c0c4cc" size="24" @click="clearVal" />
 					<uni-icons v-else :type="showSelector? 'top' : 'bottom'" size="14" color="#999" />
 				</view>
 				<view class="uni-select--mask" v-if="showSelector" @click="toggleSelector" />
@@ -18,7 +18,8 @@
 						</view>
 						<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData"
 							:key="index" @click="change(item)">
-							<text>{{formatItemName(item)}}</text>
+							<text
+								:class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
 						</view>
 					</scroll-view>
 				</view>
@@ -102,7 +103,7 @@
 					'opendb-app-channels': '渠道',
 					'opendb-app-list': '应用'
 				}
-				const common = '请选择'
+				const common = this.placeholder
 				const placeholder = text[this.collection]
 				return placeholder ?
 					common + placeholder :
@@ -113,7 +114,7 @@
 			localdata: {
 				immediate: true,
 				handler(val, old) {
-					if (Array.isArray(val) && !old) {
+					if (Array.isArray(val) && old !== val) {
 						this.mixinDatacomResData = val
 					}
 				}
@@ -140,9 +141,9 @@
 		methods: {
 			initDefVal() {
 				let defValue = ''
-				if (this.value ||this.value === 0) {
-					defValue =  this.value
-				} else if(this.modelValue || this.modelValue === 0 ) {
+				if ((this.value || this.value === 0) && !this.isDisabled(this.value)) {
+					defValue = this.value
+				} else if ((this.modelValue || this.modelValue === 0) && !this.isDisabled(this.modelValue)) {
 					defValue = this.modelValue
 				} else {
 					let strogeValue
@@ -164,6 +165,22 @@
 				this.current = def ? this.formatItemName(def) : ''
 			},
 
+			/**
+			 * @param {[String, Number]} value
+			 * 判断用户给的 value 是否同时为禁用状态
+			 */
+			isDisabled(value) {
+				let isDisabled = false;
+
+				this.mixinDatacomResData.forEach(item => {
+					if (item.value === value) {
+						isDisabled = item.disable
+					}
+				})
+
+				return isDisabled;
+			},
+
 			clearVal() {
 				this.emit('')
 				if (this.collection) {
@@ -171,9 +188,11 @@
 				}
 			},
 			change(item) {
-				this.showSelector = false
-				this.current = this.formatItemName(item)
-				this.emit(item.value)
+				if (!item.disable) {
+					this.showSelector = false
+					this.current = this.formatItemName(item)
+					this.emit(item.value)
+				}
 			},
 			emit(val) {
 				this.$emit('change', val)
@@ -206,7 +225,13 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	$uni-base-color: #6a6a6a !default;
+	$uni-main-color: #333 !default;
+	$uni-secondary-color: #909399 !default;
+	$uni-border-3: #e5e5e5;
+
+
 	/* #ifndef APP-NVUE */
 	@media screen and (max-width: 500px) {
 		.hide-on-phone {
@@ -218,28 +243,39 @@
 	.uni-stat__select {
 		display: flex;
 		align-items: center;
-		padding: 15px;
+		// padding: 15px;
 		cursor: pointer;
+		width: 100%;
+		flex: 1;
+		box-sizing: border-box;
+	}
+
+	.uni-stat-box {
+		width: 100%;
+		flex: 1;
 	}
 
 	.uni-stat__actived {
-		outline: 1px solid #2979ff;
+		width: 100%;
+		flex: 1;
+		// outline: 1px solid #2979ff;
 	}
 
 	.uni-label-text {
 		font-size: 14px;
 		font-weight: bold;
-		color: #555;
+		color: $uni-base-color;
 		margin: auto 0;
 		margin-right: 5px;
 	}
 
 	.uni-select {
 		font-size: 14px;
-		border: 1px solid #DCDFE6;
+		border: 1px solid $uni-border-3;
 		box-sizing: border-box;
 		border-radius: 4px;
 		padding: 0 5px;
+		padding-left: 10px;
 		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -247,18 +283,22 @@
 		/* #endif */
 		flex-direction: row;
 		align-items: center;
-		border-bottom: solid 1px #DDDDDD;
+		border-bottom: solid 1px $uni-border-3;
+		width: 100%;
+		flex: 1;
+		height: 35px;
 	}
 
 	.uni-select__label {
 		font-size: 16px;
-		line-height: 22px;
+		// line-height: 22px;
+		height: 35px;
 		padding-right: 10px;
-		color: #999999;
+		color: $uni-secondary-color;
 	}
 
 	.uni-select__input-box {
-		min-height: 36px;
+		// height: 35px;
 		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -277,7 +317,7 @@
 
 	.uni-select__input-plac {
 		font-size: 14px;
-		color: #999;
+		color: $uni-secondary-color;
 	}
 
 	.uni-select__selector {
@@ -309,10 +349,10 @@
 		display: flex;
 		cursor: pointer;
 		/* #endif */
-		line-height: 36px;
+		line-height: 35px;
 		font-size: 14px;
 		text-align: center;
-		/* border-bottom: solid 1px #DDDDDD; */
+		/* border-bottom: solid 1px $uni-border-3; */
 		padding: 0px 10px;
 	}
 
@@ -325,6 +365,11 @@
 		/* #ifndef APP-NVUE */
 		border-bottom: none;
 		/* #endif */
+	}
+
+	.uni-select__selector__disabled {
+		opacity: 0.4;
+		cursor: default;
 	}
 
 	/* picker 弹出层通用的指示小三角 */
@@ -357,8 +402,9 @@
 	}
 
 	.uni-select__input-text {
-		width: 280px;
-		color: #333;
+		// width: 280px;
+		width: 100%;
+		color: $uni-main-color;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		-o-text-overflow: ellipsis;
@@ -366,7 +412,8 @@
 	}
 
 	.uni-select__input-placeholder {
-		color: #666;
+		color: $uni-base-color;
+		font-size: 12px;
 	}
 
 	.uni-select--mask {

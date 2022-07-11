@@ -10,7 +10,7 @@
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
 					<text
-						class="uni-calendar__header-text">{{ (nowDate.year||'') + ' 年 ' + ( nowDate.month||'') +' 月'}}</text>
+						class="uni-calendar__header-text">{{ (nowDate.year||'') + yearText + ( nowDate.month||'') + monthText}}</text>
 				</picker>
 				<view v-if="right" class="uni-calendar__header-btn-box" @click.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
@@ -31,7 +31,7 @@
 						<text class="uni-calendar__weeks-day-text">{{SUNText}}</text>
 					</view>
 					<view class="uni-calendar__weeks-day">
-						<text class="uni-calendar__weeks-day-text">{{monText}}</text>
+						<text class="uni-calendar__weeks-day-text">{{MONText}}</text>
 					</view>
 					<view class="uni-calendar__weeks-day">
 						<text class="uni-calendar__weeks-day-text">{{TUEText}}</text>
@@ -86,7 +86,7 @@
 				<!-- <view class="uni-calendar__header-btn-box">
 					<text class="uni-calendar__button-text uni-calendar--fixed-width">{{okText}}</text>
 				</view> -->
-				<view class="uni-datetime-picker--btn" @click="confirm">确认</view>
+				<view class="uni-datetime-picker--btn" @click="confirm">{{confirmText}}</view>
 			</view>
 		</view>
 	</view>
@@ -332,7 +332,13 @@
 			okText() {
 				return t("uni-datetime-picker.ok")
 			},
-			monText() {
+			yearText() {
+				return t("uni-datetime-picker.year")
+			},
+			monthText() {
+				return t("uni-datetime-picker.month")
+			},
+			MONText() {
 				return t("uni-calender.MON")
 			},
 			TUEText() {
@@ -352,6 +358,9 @@
 			},
 			SUNText() {
 				return t("uni-calender.SUN")
+			},
+			confirmText() {
+				return t("uni-calender.confirm")
 			},
 		},
 		created() {
@@ -887,7 +896,7 @@
 		background-color: #007aff;
 		color: #fff;
 		font-size: 16px;
-		letter-spacing: 5px;
+		letter-spacing: 2px;
 	}
 
 	/* #ifndef APP-NVUE */

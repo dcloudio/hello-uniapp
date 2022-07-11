@@ -1,6 +1,5 @@
 <template>
-	<view v-if="showPopup" class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']"
-		@touchmove.stop.prevent="clear">
+	<view v-if="showPopup" class="uni-popup" :class="[popupstyle, isDesktop ? 'fixforpc-z-index' : '']">
 		<view @touchstart="touchstart">
 			<uni-transition key="1" v-if="maskShow" name="mask" mode-class="fade" :styles="maskClass"
 				:duration="duration" :show="showTrans" @click="onTap" />

@@ -20,7 +20,7 @@
 					</scroll-view>
 				</view>
 				<view class="footer flex-center">
-					<template v-if="isiOS">
+					<template v-if="isAppStore">
 						<button class="content-button" style="border: none;color: #fff;" plain @click="jumpToAppStore">
 							{{downLoadBtnTextiOS}}
 						</button>
@@ -88,7 +88,7 @@
 			if (curV1 > curV2) {
 				result = 1
 				break;
-			} else if(curV1 < curV2) {
+			} else if (curV1 < curV2) {
 				result = -1
 				break;
 			}
@@ -183,6 +183,9 @@
 			},
 			isiOS() {
 				return !this.isWGT ? this.platform.includes(platform_iOS) : false;
+			},
+			isAppStore() {
+				return this.isiOS || (!this.isiOS && !this.isWGT && this.url.indexOf('.apk') === -1)
 			}
 		},
 		methods: {
@@ -195,7 +198,7 @@
 						savedFilePath,
 						installed
 					} = localFilePathRecord
-					
+
 					// 比对版本
 					if (!installed && compare(version, this.version) === 0) {
 						this.downloadSuccess = true;

@@ -69,6 +69,8 @@ bindIngXMixins = {
 			})
 		},
 		touchstart(e) {
+			// fix by mehaotian 禁止滑动
+			if (this.disabled) return
 			// 每次只触发一次，避免多次监听造成闪烁
 			if (this.stop) return
 			this.stop = true

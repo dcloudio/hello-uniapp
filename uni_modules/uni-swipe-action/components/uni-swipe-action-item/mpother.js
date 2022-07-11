@@ -2,7 +2,7 @@ let otherMixins = {}
 
 // #ifndef APP-PLUS|| MP-WEIXIN  ||  H5
 const MIN_DISTANCE = 10;
-otherMixins =  {
+otherMixins = {
 	data() {
 		// TODO 随机生生元素ID，解决百度小程序获取同一个元素位置信息的bug
 		const elClass = `Uni_${Math.ceil(Math.random() * 10e5).toString(36)}`
@@ -11,7 +11,7 @@ otherMixins =  {
 			left: 0,
 			buttonShow: 'none',
 			ani: false,
-			moveLeft:'',
+			moveLeft: '',
 			elClass
 		}
 	},
@@ -20,10 +20,10 @@ otherMixins =  {
 			if (this.autoClose) return
 			this.openState(newVal)
 		},
-		left(){
+		left() {
 			this.moveLeft = `translateX(${this.left}px)`
 		},
-		buttonShow(newVal){
+		buttonShow(newVal) {
 			if (this.autoClose) return
 			this.openState(newVal)
 		},
@@ -42,7 +42,7 @@ otherMixins =  {
 		this.init()
 	},
 	methods: {
-		init(){
+		init() {
 			clearTimeout(this.timer)
 			this.timer = setTimeout(() => {
 				this.getSelectorQuery()
@@ -134,11 +134,13 @@ otherMixins =  {
 				this.openState('none')
 				return
 			}
-			if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth > 0 && rightWidth +
+			if ((isopen === 'none' && rightWidth > 0 && -left > threshold) || (isopen !== 'none' && rightWidth >
+					0 && rightWidth +
 					left < threshold)) {
 				// right
 				this.openState('right')
-			} else if ((isopen === 'none' && leftWidth > 0 && left > threshold) || (isopen !== 'none' && leftWidth > 0 &&
+			} else if ((isopen === 'none' && leftWidth > 0 && left > threshold) || (isopen !== 'none' && leftWidth >
+					0 &&
 					leftWidth - left < threshold)) {
 				// left
 				this.openState('left')
@@ -234,9 +236,9 @@ otherMixins =  {
 		getSelectorQuery() {
 			const views = uni.createSelectorQuery().in(this)
 			views
-				.selectAll('.'+this.elClass)
+				.selectAll('.' + this.elClass)
 				.boundingClientRect(data => {
-					if(data.length === 0) return
+					if (data.length === 0) return
 					let show = 'none'
 					if (this.autoClose) {
 						show = 'none'

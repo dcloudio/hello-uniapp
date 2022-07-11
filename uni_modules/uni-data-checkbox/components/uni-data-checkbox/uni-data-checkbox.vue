@@ -155,17 +155,17 @@
 			value(newVal) {
 				this.dataList = this.getDataList(newVal)
 				// fix by mehaotian is_reset 在 uni-forms 中定义
-				if(!this.is_reset){
-					this.is_reset = false
-					this.formItem && this.formItem.setValue(newVal)
-				}
+				// if(!this.is_reset){
+				// 	this.is_reset = false
+				// 	this.formItem && this.formItem.setValue(newVal)
+				// }
 			},
 			modelValue(newVal) {
 				this.dataList = this.getDataList(newVal);
-				if(!this.is_reset){
-					this.is_reset = false
-					this.formItem && this.formItem.setValue(newVal)
-				}
+				// if(!this.is_reset){
+				// 	this.is_reset = false
+				// 	this.formItem && this.formItem.setValue(newVal)
+				// }
 			}
 		},
 		data() {
@@ -193,22 +193,22 @@
 			}
 		},
 		created() {
-			this.form = this.getForm('uniForms')
-			this.formItem = this.getForm('uniFormsItem')
+			// this.form = this.getForm('uniForms')
+			// this.formItem = this.getForm('uniFormsItem')
 			// this.formItem && this.formItem.setValue(this.value)
 
-			if (this.formItem) {
-				this.isTop = 6
-				if (this.formItem.name) {
-					// 如果存在name添加默认值,否则formData 中不存在这个字段不校验
-					if(!this.is_reset){
-						this.is_reset = false
-						this.formItem.setValue(this.dataValue)
-					}
-					this.rename = this.formItem.name
-					this.form.inputChildrens.push(this)
-				}
-			}
+			// if (this.formItem) {
+			// 	this.isTop = 6
+			// 	if (this.formItem.name) {
+			// 		// 如果存在name添加默认值,否则formData 中不存在这个字段不校验
+			// 		if(!this.is_reset){
+			// 			this.is_reset = false
+			// 			this.formItem.setValue(this.dataValue)
+			// 		}
+			// 		this.rename = this.formItem.name
+			// 		this.form.inputChildrens.push(this)
+			// 	}
+			// }
 
 			if (this.localdata && this.localdata.length !== 0) {
 				this.isLocal = true
@@ -273,7 +273,7 @@
 						}
 					}
 				}
-				this.formItem && this.formItem.setValue(detail.value)
+				// this.formItem && this.formItem.setValue(detail.value)
 				// TODO 兼容 vue2
 				this.$emit('input', detail.value);
 				// // TOTO 兼容 vue3
@@ -375,7 +375,7 @@
 						selectedArr.push(item[this.map.value])
 					}
 				})
-				return this.dataValue && this.dataValue.length > 0 ? this.dataValue : selectedArr
+				return this.dataValue.length > 0 ? this.dataValue : selectedArr
 			},
 
 			/**

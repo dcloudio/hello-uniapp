@@ -53,24 +53,24 @@
 		<uni-section title="自定义内容" subTitle="使用 left/right/default 插槽自定义内容" type="line" style="margin-bottom: 3px;">
 			<view class="box-bg">
 				<uni-nav-bar>
-					<block slot="left">
+					<template v-slot:left>
 						<view class="city">
 							<view>
 								<text class="uni-nav-bar-text">{{ city }}</text>
 							</view>
 							<uni-icons type="arrowdown" color="#666" size="18" />
 						</view>
-					</block>
+					</template>
 					<view class="input-view">
 						<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 						<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
 							@confirm="confirm" />
 					</view>
-					<block slot="right">
+					<template v-slot:right>
 						<view class="city">
 							搜索
 						</view>
-					</block>
+					</template>
 				</uni-nav-bar>
 			</view>
 		</uni-section>

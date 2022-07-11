@@ -28,6 +28,7 @@
 	 * @property {Boolean} circle = [true|false] 是否为圆角
 	 * @property {Boolean} checked = [true|false] 是否为已收藏
 	 * @property {Object} contentText = [true|false] 收藏按钮文字
+	 * @property {Boolean} stat 是否开启统计功能
 	 * @event {Function} click 点击 fav按钮触发事件
 	 * @example <uni-fav :checked="true"/>
 	 */
@@ -79,6 +80,10 @@
 						contentFav: ""
 					};
 				}
+			},
+			stat:{
+				type: Boolean,
+				default: false
 			}
 		},
 		computed: {
@@ -91,7 +96,7 @@
 		},
 		watch: {
 			checked() {
-				if (uni.report) {
+				if (uni.report && this.stat) {
 					if (this.checked) {
 						uni.report("收藏", "收藏");
 					} else {
@@ -108,7 +113,7 @@
 	};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 	$fav-height: 25px;
 
 	.uni-fav {

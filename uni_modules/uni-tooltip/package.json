@@ -1,8 +1,8 @@
 {
   "id": "uni-tooltip",
   "displayName": "uni-tooltip",
-  "version": "0.2.0",
-  "description": "uni-tooltip",
+  "version": "0.2.1",
+  "description": "Tooltip 提示文字",
   "keywords": [
     "uni-tooltip",
     "uni-ui",
@@ -11,8 +11,7 @@
     "文字提示"
 ],
   "repository": "",
-  "engines": {
-    "HBuilderX": "^3.1.0"
+"engines": {
   },
   "dcloudext": {
     "category": [
@@ -31,7 +30,7 @@
       "qq": ""
     },
     "declaration": {
-      "ads": "无",
+      "ads": "无 ",
       "data": "无",
       "permissions": "无"
     },
@@ -52,7 +51,7 @@
         },
         "App": {
           "app-vue": "y",
-          "app-nvue": "y"
+          "app-nvue": "u"
         },
         "H5-mobile": {
           "Safari": "y",
@@ -69,14 +68,14 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "y",
-          "百度": "y",
-          "字节跳动": "y",
-          "QQ": "y"
+          "阿里": "u",
+          "百度": "u",
+          "字节跳动": "u",
+          "QQ": "u"
         },
         "快应用": {
-          "华为": "y",
-          "联盟": "y"
+          "华为": "u",
+          "联盟": "u"
         }
       }
     }

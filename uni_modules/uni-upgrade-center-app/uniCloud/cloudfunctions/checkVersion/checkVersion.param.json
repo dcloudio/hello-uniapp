@@ -1,0 +1,14 @@
+// 本文件中的json内容将在云对象【运行】时作为参数传给云对象。
+// 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
+{
+    // 调用云对象的方法名称
+    "method": "checkVersion",
+    // 传递给调用方法的参数列表
+    "params": [
+		{
+			"appid": "__UNI__HelloUNIApp",
+			"appVersion": "1.0.0",
+			"wgtVersion": "1.0.0"
+		}
+    ]
+}

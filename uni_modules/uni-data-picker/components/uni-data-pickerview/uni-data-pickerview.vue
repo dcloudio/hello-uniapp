@@ -5,16 +5,16 @@
 				<template v-for="(item,index) in selected">
 					<view class="selected-item"
 						:class="{'selected-item-active':index==selectedIndex, 'selected-item-text-overflow': ellipsis}"
-						:key="index" v-if="item.text" @click="handleSelect(index)">
+						 v-if="item.text" @click="handleSelect(index)">
 						<text class="">{{item.text}}</text>
 					</view>
 				</template>
 			</view>
 		</scroll-view>
 		<view class="tab-c">
-			<template v-for="(child, i) in dataList">
+			<template v-for="(child, i) in dataList" >
 				<scroll-view class="list" :key="i" v-if="i==selectedIndex" :scroll-y="true">
-					<view class="item" :class="{'is-disabled': !!item.disable}" v-for="(item, j) in child" :key="j"
+					<view class="item" :class="{'is-disabled': !!item.disable}" v-for="(item, j) in child"
 						@click="handleNodeClick(item, i, j)">
 						<text class="item-text item-text-overflow">{{item[map.text]}}</text>
 						<view class="check" v-if="selected.length > i && item[map.value] == selected[i].value"></view>

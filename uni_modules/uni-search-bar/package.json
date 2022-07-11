@@ -1,7 +1,7 @@
 {
   "id": "uni-search-bar",
   "displayName": "uni-search-bar 搜索栏",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "搜索栏组件，通常用于搜索商品、文章等",
   "keywords": [
     "uni-ui",

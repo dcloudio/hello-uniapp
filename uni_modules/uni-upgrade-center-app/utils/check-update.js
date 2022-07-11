@@ -64,11 +64,14 @@ export default function() {
 						uni.removeStorageSync(PACKAGE_INFO_KEY)
 					}
 				})
+				
+				return
 			} else if (code < 0) {
 				// TODO 云函数报错处理
 				console.error(message)
-				reject(e)
+				return reject(e)
 			}
+			return resolve(e)
 		}).catch(err => {
 			// TODO 云函数报错处理
 			console.error(err.message)
