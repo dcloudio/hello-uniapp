@@ -1,55 +1,28 @@
 <template>
 	<view class="uni-wrap">
-		<scroll-view class="scroll" scroll-y>
 			<view class="example-info">
-				<text class="example-info-text"> uni-section 组件主要用于文章、列表详情的等标题展示 </text>
+				<text class="example-info-text"> uni-section 组件主要用于文章、列表详情等标题展示 </text>
 			</view>
-			<uni-section class="uni-section" title="基础用法" sub-title="副标题"></uni-section>
-			<view class="example-body">
-				<uni-list>
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-				</uni-list>
-			</view>
-			<uni-section title="竖线装饰" sub-title="副标题" type="line"></uni-section>
-			<view class="example-body">
-				<uni-list>
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-				</uni-list>
-			</view>
-			<uni-section title="圆形装饰" sub-title="副标题" type="circle"></uni-section>
-			<view class="example-body">
-				<uni-list>
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-					<uni-list-item title="item" />
-				</uni-list>
-			</view>
-		</scroll-view>
+			<uni-section class="mb-10" title="基础用法" sub-title="副标题"></uni-section>
+			<uni-section class="mb-10" title="竖线装饰" sub-title="副标题" type="line"></uni-section>
+			<uni-section class="mb-10" title="装饰器插槽" sub-title="副标题">
+        <template v-slot:decoration>
+          <view class="decoration"></view>
+        </template>
+      </uni-section>
+			<uni-section class="mb-10" title="默认插槽" sub-title="副标题" padding="0 0 5px 10px">默认插槽内容</uni-section>
+			<uni-section class="mb-10" title="主标题">
+				<template v-slot:right>
+					right slot
+				</template>
+			</uni-section>
 	</view>
 </template>
 
 <script>
 	export default {
-		components: {},
 		data() {
 			return {
-				appear: false,
 			}
 		},
 		onReady() {
@@ -62,6 +35,7 @@
 </script>
 
 <style lang="scss">
+  $uni-success: #18bc37 !default;
 
 	.uni-wrap {
 		flex-direction: column;
@@ -74,15 +48,15 @@
 		flex: 1;
 	}
 
-	.scroll {
-		flex-direction: column;
-		flex: 1;
+	.mb-10 {
+		margin-bottom: 10px;
 	}
 
-	.example-body {
-		padding: 0;
-		/* #ifndef APP-NVUE */
-		display: block;
-		/* #endif */
-	}
+  .decoration{
+    width: 6px;
+    height: 6px;
+		margin-right: 4px;
+    border-radius: 50%;
+		background-color: $uni-success;
+  }
 </style>

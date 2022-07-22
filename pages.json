@@ -926,7 +926,7 @@
 				{
 					"path": "section/section",
 					"style": {
-						"navigationBarTitleText": "Section 章节标题"
+						"navigationBarTitleText": "Section 标题栏"
 					}
 				},
 				{
