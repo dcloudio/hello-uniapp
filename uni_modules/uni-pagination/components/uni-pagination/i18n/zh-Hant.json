@@ -1,4 +1,5 @@
 {
 	"uni-pagination.prevText": "上一頁",
-	"uni-pagination.nextText": "下一頁"
+	"uni-pagination.nextText": "下一頁",
+	"uni-pagination.piecePerPage": "條/頁"
 }

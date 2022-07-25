@@ -1,4 +1,5 @@
 {
 	"uni-pagination.prevText": "prev",
-	"uni-pagination.nextText": "next"
+	"uni-pagination.nextText": "next",
+	"uni-pagination.piecePerPage": "piece/page"
 }

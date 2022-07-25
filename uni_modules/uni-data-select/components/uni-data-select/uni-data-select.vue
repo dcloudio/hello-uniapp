@@ -249,12 +249,12 @@
 		flex: 1;
 		box-sizing: border-box;
 	}
-
+	
 	.uni-stat-box {
 		width: 100%;
 		flex: 1;
 	}
-
+	
 	.uni-stat__actived {
 		width: 100%;
 		flex: 1;

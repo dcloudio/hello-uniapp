@@ -332,7 +332,22 @@
 			}
 		}
 		// #endif
-	],
+	,{
+    "path": "uni_modules/uni-upgrade-center-app/pages/upgrade-popup",
+    "style": {
+        "app-plus": {
+            "animationDuration": 200,
+            "animationType": "fade-in",
+            "background": "transparent",
+            "backgroundColorTop": "transparent",
+            "popGesture": "none",
+            "scrollIndicator": false,
+            "titleNView": false
+        },
+        "disableScroll": true
+    }
+}
+],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
