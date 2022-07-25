@@ -1,14 +1,12 @@
 {
-  "id": "uni-forms",
-  "displayName": "uni-forms 表单",
-  "version": "1.4.6",
-  "description": "由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据",
+  "id": "uni-section",
+  "displayName": "uni-section 标题栏",
+  "version": "0.0.1",
+  "description": "标题栏组件",
   "keywords": [
     "uni-ui",
-    "表单",
-    "校验",
-    "表单校验",
-    "表单验证"
+    "uniui",
+    "标题栏"
 ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
@@ -42,8 +40,7 @@
   },
   "uni_modules": {
     "dependencies": [
-			"uni-scss",
-      "uni-icons"
+      "uni-scss"
     ],
     "encrypt": [],
     "platforms": {
@@ -74,8 +71,7 @@
           "阿里": "y",
           "百度": "y",
           "字节跳动": "y",
-        "QQ": "y",
-        "京东": "u"
+          "QQ": "y"
         },
         "快应用": {
           "华为": "u",

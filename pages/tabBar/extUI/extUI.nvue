@@ -176,12 +176,10 @@
 						name: "uni-search-bar 搜索栏",
 						url: "search-bar"
 					},
-					// #ifndef APP || H5 || MP-WEIXIN || MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ
 					{
-						name: "section 标题栏",
+						name: "uni-section 标题栏",
 						url: "section"
 					},
-					// #endif
 					{
 						name: "uni-segmented-control 分段器",
 						url: "segmented-control"

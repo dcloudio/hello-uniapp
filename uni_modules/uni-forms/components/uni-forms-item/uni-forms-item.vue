@@ -181,8 +181,9 @@
 					(value, oldVal) => {
 						const isEqual = this.form._isEqual(value, oldVal)
 						// 简单判断前后值的变化，只有发生变化才会发生校验
-						// TODO 如果 oldVal = undefined ，那么大概率是源数据里没有值导致 ，这个情况不哦校验 ,可能不严谨 ，需要在做观察
-						if (!isEqual && oldVal !== undefined) {
+						// TODO  如果 oldVal = undefined ，那么大概率是源数据里没有值导致 ，这个情况不哦校验 ,可能不严谨 ，需要在做观察
+						// fix by mehaotian 暂时取消 && oldVal !== undefined ，如果formData 中不存在，可能会不校验
+						if (!isEqual) {
 							const val = this.itemSetValue(value)
 							this.onFieldChange(val, false)
 						}

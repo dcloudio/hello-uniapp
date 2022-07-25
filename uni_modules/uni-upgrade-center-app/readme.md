@@ -1,3 +1,7 @@
+## 升级中心 - app插件与 `uni-admin` 版本关系
+
+### `uni-admin >= 1.9.3`：云函数 `checkVersion` 废弃，使用 uni-admin 自带的 `uni-upgrade-center` 云函数。
+
 # uni-upgrade-center - App
 
 ### 概述
