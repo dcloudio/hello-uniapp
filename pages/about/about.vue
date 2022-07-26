@@ -59,7 +59,7 @@
 								data.push({
 									name: '分享到微信朋友圈',
 									id: 'weixin',
-									type: 'WXSenceTimeline'
+									type: 'WXSceneTimeline'
 								});
 								break;
 							case 'qq':
@@ -117,8 +117,8 @@
 						let provider = this.providerList[res.tapIndex].id;
 						uni.share({
 							provider: provider,
-							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
-								'WXSenceTimeline' : "WXSceneSession",
+							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSceneTimeline' ?
+								'WXSceneTimeline' : "WXSceneSession",
 							type: (provider === "qq") ? 1 : 0,
 							title: '欢迎体验uni-app',
 							summary: 'uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架',
