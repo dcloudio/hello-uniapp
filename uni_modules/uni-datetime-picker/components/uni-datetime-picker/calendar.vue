@@ -10,7 +10,7 @@
 				</view>
 				<picker mode="date" :value="date" fields="month" @change="bindDateChange">
 					<text
-						class="uni-calendar__header-text">{{ (nowDate.year||'') + ' 年 ' + ( nowDate.month||'') +' 月'}}</text>
+						class="uni-calendar__header-text">{{headerText}}</text>
 				</picker>
 				<view v-if="right" class="uni-calendar__header-btn-box" @click.stop="next">
 					<view class="uni-calendar__header-btn uni-calendar--right"></view>
@@ -353,6 +353,12 @@
 			SUNText() {
 				return t("uni-calender.SUN")
 			},
+			headerText() {
+				const year = (this.nowDate.year||'') + ` ${t('uni-calender.YEAR')} `;
+				const localMonth = t('uni-calender.MONTH.' + this.nowDate.month)
+				const month = localMonth || (this.nowDate.month||'') +' 月'
+				return year + month
+			}
 		},
 		created() {
 			// 获取日历方法实例

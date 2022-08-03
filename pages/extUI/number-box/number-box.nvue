@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">数字输入框组件多用于购物车加减商品等场景</text>
+			<text class="uni-h6">The digital input box component is mostly used in scenarios such as adding or subtracting items from the shopping cart</text>
 		</uni-card>
 		<uni-section title="Basic usage" type="line" padding>
 			<uni-number-box @change="changeValue" />
@@ -15,7 +15,8 @@
 		<uni-section title="Set step size (step size 0.1)" subTitle="Use step Property setting step" type="line" padding>
 			<uni-number-box :value="1.1" :step="0.1" />
 		</uni-section>
-		<uni-section title="Customized background" type="line" subTitle="Use background 属性设置自定义背景色" padding>
+		<uni-section title="Customized background" type="line" subTitle="set a custom background color Use background attribute
+" padding>
 			<uni-number-box :value="50" background="#2979FF" color="#fff" />
 		</uni-section>
 		<uni-section title="Disable Status" subTitle="Use disabled Property Settings Component Disabled" type="line" padding>

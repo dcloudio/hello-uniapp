@@ -3,10 +3,10 @@
 		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">uni-forms Components generally consist of controls such as input boxes, selectors, radio boxes, and multi-select boxes to collect, validate, and submit data.</text>
 		</uni-card>
-		<uni-section title="基本用法" type="line">
+		<uni-section title="Basic usage" type="line">
 			<view class="example">
 				<!-- 基础用法，不包含校验规则 -->
-				<uni-forms ref="baseForm" :modelValue="baseFormData">
+				<uni-forms ref="baseForm" :modelValue="baseFormData" :labelWidth="labelWidth">
 					<uni-forms-item label="Name" required>
 						<uni-easyinput v-model="baseFormData.name" placeholder="Please enter your name" />
 					</uni-forms-item>
@@ -38,7 +38,7 @@
 					</uni-segmented-control>
 				</view>
 				<!-- 展示不同的排列方式 -->
-				<uni-forms ref="baseForm" :modelValue="alignmentFormData" :label-position="alignment">
+				<uni-forms ref="baseForm" :modelValue="alignmentFormData" :label-position="alignment" :labelWidth="labelWidth">
 					<uni-forms-item label="Name" required>
 						<uni-easyinput v-model="baseFormData.name" placeholder="Please enter your name" />
 					</uni-forms-item>
@@ -52,7 +52,7 @@
 		<uni-section title="Form Validation" type="line">
 			<view class="example">
 				<!-- Basic form validation -->
-				<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
+				<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData" :labelWidth="labelWidth">
 					<uni-forms-item label="Name" required name="name">
 						<uni-easyinput v-model="valiFormData.name" placeholder="Please enter Name" />
 					</uni-forms-item>
@@ -70,7 +70,7 @@
 		<uni-section title="Custom check rules" type="line">
 			<view class="example">
 				<!-- Custom form validation -->
-				<uni-forms ref="customForm" :rules="customRules" :modelValue="customFormData">
+				<uni-forms ref="customForm" :rules="customRules" :modelValue="customFormData" :labelWidth="labelWidth">
 					<uni-forms-item label="Name" required name="name">
 						<uni-easyinput v-model="customFormData.name" placeholder="Please enter Name" />
 					</uni-forms-item>
@@ -89,7 +89,7 @@
 		<uni-section title="Dynamic Forms" type="line">
 			<view class="example">
 				<!-- Dynamic form validation -->
-				<uni-forms ref="dynamicForm" :rules="dynamicRules" :modelValue="dynamicFormData">
+				<uni-forms ref="dynamicForm" :rules="dynamicRules" :modelValue="dynamicFormData" :labelWidth="labelWidth">
 					<uni-forms-item label="Email" required name="email">
 						<uni-easyinput v-model="dynamicFormData.email" placeholder="Please enter Name" />
 					</uni-forms-item>
@@ -114,6 +114,7 @@
 	export default {
 		data() {
 			return {
+				labelWidth: '90px',
 				// 基础表单数据
 				baseFormData: {
 					name: '',

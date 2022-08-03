@@ -1,3 +1,29 @@
+## 1.4.6（2022-07-13）
+- 修复 model 需要校验的值没有声明对应字段时，导致第一次不触发校验的bug
+## 1.4.5（2022-07-05）
+- 新增 更多表单示例
+- 优化 子表单组件过期提示的问题
+- 优化 子表单组件uni-datetime-picker、uni-data-select、uni-data-picker的显示样式
+## 1.4.4（2022-07-04）
+- 更新 删除组件日志
+## 1.4.3（2022-07-04）
+- 修复 由 1.4.0 引发的 label 插槽不生效的bug
+## 1.4.2（2022-07-04）
+- 修复 子组件找不到 setValue 报错的bug
+## 1.4.1（2022-07-04）
+- 修复 uni-data-picker 在 uni-forms-item 中报错的bug
+- 修复 uni-data-picker 在 uni-forms-item 中宽度不正确的bug
+## 1.4.0（2022-06-30）
+- 【重要】组件逻辑重构，部分用法用旧版本不兼容，请注意兼容问题
+- 【重要】组件使用 Provide/Inject 方式注入依赖，提供了自定义表单组件调用 uni-forms 校验表单的能力
+- 新增 model 属性，等同于原 value/modelValue 属性，旧属性即将废弃
+- 新增 validateTrigger 属性的 blur 值，仅 uni-easyinput 生效
+- 新增 onFieldChange 方法，可以对子表单进行校验，可替代binddata方法
+- 新增 子表单的 setRules 方法，配合自定义校验函数使用
+- 新增 uni-forms-item 的 setRules 方法，配置动态表单使用可动态更新校验规则
+- 优化 动态表单校验方式，废弃拼接name的方式
+## 1.3.3（2022-06-22）
+- 修复 表单校验顺序无序问题
 ## 1.3.2（2021-12-09）
 -
 ## 1.3.1（2021-11-19）

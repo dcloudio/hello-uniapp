@@ -127,7 +127,7 @@
         "template" : "template.h5.html",
         "router" : {
             "mode" : "history",
-            "base" : ""
+            "base" : "/en/"
         },
         "sdkConfigs" : {
             "maps" : {
@@ -140,5 +140,5 @@
             "timeout" : 20000
         }
     },
-    "vueVersion" : "3"
+    "vueVersion" : "2"
 }

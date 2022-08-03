@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<page-head title="scroll-view,区域滚动视图"></page-head>
+		<page-head title="scroll-view,Area scroll view"></page-head>
 		<view class="uni-padding-wrap uni-common-mt">
 			<view class="uni-title uni-common-mt">
 				Vertical Scroll
@@ -17,7 +17,7 @@
 			<view @tap="goTop" class="uni-link uni-center uni-common-mt">
 				Click here to return to the top
 			</view>
-			
+
 			<view class="uni-title uni-common-mt">
 				Horizontal Scroll
 				<text>\nHorizontal scrolling</text>
@@ -62,7 +62,7 @@
 				});
 				uni.showToast({
 					icon:"none",
-					title:"纵向滚动 scrollTop 值已被修改为 0"
+					title:"The scrollTop value for vertical scroll has been modified to 0"
 				})
 			}
 		}

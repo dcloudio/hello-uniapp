@@ -15,5 +15,18 @@
 	"uni-calender.WED": "三",
 	"uni-calender.THU": "四",
 	"uni-calender.FRI": "五",
-	"uni-calender.SAT": "六"
+	"uni-calender.SAT": "六",
+	"uni-calender.YEAR": "年",
+	"uni-calender.MONTH.01": "",
+	"uni-calender.MONTH.02": "",
+	"uni-calender.MONTH.03": "",
+	"uni-calender.MONTH.04": "",
+	"uni-calender.MONTH.05": "",
+	"uni-calender.MONTH.06": "",
+	"uni-calender.MONTH.07": "",
+	"uni-calender.MONTH.08": "",
+	"uni-calender.MONTH.09": "",
+	"uni-calender.MONTH.10": "",
+	"uni-calender.MONTH.11": "",
+	"uni-calender.MONTH.12": ""
 }

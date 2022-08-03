@@ -18,7 +18,7 @@
 			</view>
 		</uni-section>
 		<!-- #ifndef APP-PLUS -->
-		<uni-section title="Custom Icons" subTitle="引入参考App.vue" type="line">
+		<uni-section title="Custom Icons" subTitle="Usage reference App.vue" type="line">
 			<view class="icon-content">
 				<view class="icon-item" >
 					<uni-icons customPrefix="customicons" type="youxi" color="#5e6d82" size="22" />

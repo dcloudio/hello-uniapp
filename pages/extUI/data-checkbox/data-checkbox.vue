@@ -9,14 +9,14 @@
 				<uni-data-checkbox v-model="radio1" :localdata="sex"></uni-data-checkbox>
 			</view>
 		</uni-section>
-		<uni-section title="多选" subTitle="Use the multiple attribute to enable multiple selection" type="line">
+		<uni-section title="Multiple choice" subTitle="Use the multiple attribute to enable multiple selection" type="line">
 			<view class="uni-px-5 uni-pb-5">
 				<view class="text">Multi-Check：{{JSON.stringify(checkbox1)}}</view>
 				<uni-data-checkbox multiple v-model="checkbox1" :localdata="hobby"></uni-data-checkbox>
 			</view>
 		</uni-section>
 
-		<uni-section title="最大最小值" subTitle="Use min / max to set the maximum and minimum values for multiple selections, not valid for single selections">
+		<uni-section title="Maximum and minimum values" subTitle="Use min / max to set the maximum and minimum values for multiple selections, not valid for single selections">
 			<view class="uni-px-5 uni-pb-5">
 				<view class="text">Selected {{JSON.stringify(checkbox6)}}</view>
 				<uni-data-checkbox min="1" max="2" multiple v-model="checkbox6" :localdata="hobby"></uni-data-checkbox>

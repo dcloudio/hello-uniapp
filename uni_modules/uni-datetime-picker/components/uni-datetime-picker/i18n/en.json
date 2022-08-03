@@ -15,5 +15,18 @@
 	"uni-calender.THU": "THU",
 	"uni-calender.FRI": "FRI",
 	"uni-calender.SAT": "SAT",
-	"uni-calender.SUN": "SUN"
+	"uni-calender.SUN": "SUN",
+	"uni-calender.YEAR": "",
+	"uni-calender.MONTH.01": "January",
+	"uni-calender.MONTH.02": "February",
+	"uni-calender.MONTH.03": "March",
+	"uni-calender.MONTH.04": "April",
+	"uni-calender.MONTH.05": "May",
+	"uni-calender.MONTH.06": "June",
+	"uni-calender.MONTH.07": "July",
+	"uni-calender.MONTH.08": "August",
+	"uni-calender.MONTH.09": "September",
+	"uni-calender.MONTH.10": "October",
+	"uni-calender.MONTH.11": "November",
+	"uni-calender.MONTH.12": "December"
 }
