@@ -49,7 +49,7 @@
 		{
 			"path": "pages/tabBar/template/template",
 			"style": {
-				"navigationBarTitleText": "模版",
+				"navigationBarTitleText": "Template",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
