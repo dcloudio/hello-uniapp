@@ -69,7 +69,7 @@
 						pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
 							'slider',
 							'switch', 'textarea',
-							// #ifdef APP-PLUS || MP-WEIXIN || H5
+							// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-BAIDU
 							'editor',
 							// #endif
 						]
