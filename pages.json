@@ -197,7 +197,7 @@
 				"navigationBarTitleText": "textarea"
 			}
 		},
-		// #ifdef APP-PLUS || MP-WEIXIN || H5
+		// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-BAIDU
 		{
 			"path": "pages/component/editor/editor",
 			"style": {
@@ -205,6 +205,11 @@
 				"app-plus": {
 					"softinputMode": "adjustResize"
 				}
+				// #ifdef MP-BAIDU
+				,"usingComponents": {
+					"editor": "dynamicLib://editorLib/editor"
+				}
+				// #endif
 			}
 		},
 		// #endif
