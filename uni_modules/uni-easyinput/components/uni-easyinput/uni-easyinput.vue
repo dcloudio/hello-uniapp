@@ -18,7 +18,7 @@
 				<!-- 开启密码时显示小眼睛 -->
 				<uni-icons v-if="isVal" class="content-clear-icon" :class="{'is-textarea-icon':type==='textarea'}"
 					:type="showPassword?'eye-slash-filled':'eye-filled'" :size="22"
-					:color="focusShow?'#2979ff':'#c0c4cc'" @click="onEyes">
+					:color="focusShow ? primaryColor :'#c0c4cc'" @click="onEyes">
 				</uni-icons>
 			</template>
 			<template v-else-if="suffixIcon">
@@ -28,7 +28,7 @@
 			<template v-else>
 				<uni-icons v-if="clearable && isVal && !disabled  && type !== 'textarea'" class="content-clear-icon"
 					:class="{'is-textarea-icon':type==='textarea'}" type="clear" :size="clearSize"
-					:color="msg?'#dd524d':(focusShow?'#2979ff':'#c0c4cc')" @click="onClear"></uni-icons>
+					:color="msg?'#dd524d':(focusShow? primaryColor :'#c0c4cc')" @click="onClear"></uni-icons>
 			</template>
 			<slot name="right"></slot>
 		</view>
@@ -59,6 +59,7 @@
 	 * @property {Number }	clearSize	清除图标的大小，单位px（默认15）
 	 * @property {String}	prefixIcon	输入框头部图标
 	 * @property {String}	suffixIcon	输入框尾部图标
+	 * @property {String}	primaryColor	设置主题色（默认#2979ff）
 	 * @property {Boolean}	trim	是否自动去除两端的空格
 	 * @value both	去除两端空格
 	 * @value left	去除左侧空格
@@ -177,6 +178,10 @@
 				type: Boolean,
 				default: true
 			},
+			primaryColor: {
+				type: String,
+				default: '#2979ff'
+			},
 			styles: {
 				type: Object,
 				default () {
@@ -202,7 +207,8 @@
 				showClearIcon: false,
 				showPassword: false,
 				focusShow: false,
-				localMsg: ''
+				localMsg: '',
+				isEnter: false // 用于判断当前是否是使用回车操作
 			};
 		},
 		computed: {
@@ -243,7 +249,7 @@
 				})
 			},
 			inputContentStyle() {
-				const focusColor = this.focusShow ? '#2979ff' : this.styles.borderColor
+				const focusColor = this.focusShow ? this.primaryColor : this.styles.borderColor
 				const borderColor = this.inputBorder && this.msg ? '#dd524d' : focusColor
 				return obj2strStyle({
 					'border-color': borderColor || '#e5e5e5',
@@ -372,7 +378,9 @@
 				this.focusShow = false
 				this.$emit('blur', event);
 				// 根据类型返回值，在event中获取的值理论上讲都是string
-				this.$emit('change', this.val)
+				if (this.isEnter === false) {
+					this.$emit('change', this.val)
+				}
 				// 失去焦点时参与表单校验
 				if (this.form && this.formItem) {
 					const {
@@ -390,7 +398,11 @@
 			 */
 			onConfirm(e) {
 				this.$emit('confirm', this.val);
+				this.isEnter = true;
 				this.$emit('change', this.val)
+				this.$nextTick(() => {
+					this.isEnter = false
+				})
 			},
 
 			/**

@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="container">
 		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">数字输入框组件多用于购物车加减商品等场景</text>
 		</uni-card>

@@ -1,7 +1,7 @@
 {
   "id": "uni-data-checkbox",
   "displayName": "uni-data-checkbox 数据选择器",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "通过数据驱动的单选框和复选框",
   "keywords": [
     "uni-ui",
@@ -17,11 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -38,7 +34,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": ["uni-load-more","uni-scss"],

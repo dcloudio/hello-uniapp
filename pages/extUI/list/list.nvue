@@ -62,7 +62,7 @@
 			<uni-list>
 				<uni-list-item :show-extra-icon="true" showArrow :extra-icon="extraIcon" title="列表左侧带扩展图标" />
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow
-					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
+					thumb="/static/c1.png"
 					thumb-size="sm" rightText="小图" />
 
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow

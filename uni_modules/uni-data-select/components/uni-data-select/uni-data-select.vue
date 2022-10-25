@@ -2,7 +2,7 @@
 	<view class="uni-stat__select">
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
 		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
-			<view class="uni-select">
+			<view class="uni-select"  :class="{'uni-select--disabled':disabled}">
 				<view class="uni-select__input-box" @click="toggleSelector">
 					<view v-if="current" class="uni-select__input-text">{{current}}</view>
 					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
@@ -39,6 +39,7 @@
 	 * @property {Boolean} emptyText 没有数据时显示的文字 ，本地数据无效
 	 * @property {String} label 左侧标题
 	 * @property {String} placeholder 输入框的提示文字
+	 * @property {Boolean} disabled 是否禁用
 	 * @event {Function} change  选中发生变化触发
 	 */
 
@@ -88,6 +89,10 @@
 			defItem: {
 				type: Number,
 				default: 0
+			},
+      disabled: {
+				type: Boolean,
+				default: false
 			}
 		},
 		created() {
@@ -204,6 +209,10 @@
 			},
 
 			toggleSelector() {
+        if(this.disabled){
+          return
+        }
+
 				this.showSelector = !this.showSelector
 			},
 			formatItemName(item) {
@@ -249,12 +258,12 @@
 		flex: 1;
 		box-sizing: border-box;
 	}
-	
+
 	.uni-stat-box {
 		width: 100%;
 		flex: 1;
 	}
-	
+
 	.uni-stat__actived {
 		width: 100%;
 		flex: 1;
@@ -287,6 +296,11 @@
 		width: 100%;
 		flex: 1;
 		height: 35px;
+
+    &--disabled{
+      background-color: #f5f7fa;
+      cursor: not-allowed;
+    }
 	}
 
 	.uni-select__label {
@@ -298,7 +312,7 @@
 	}
 
 	.uni-select__input-box {
-		// height: 35px;
+		height: 35px;
 		position: relative;
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -332,7 +346,7 @@
 		border: 1px solid #EBEEF5;
 		border-radius: 6px;
 		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-		z-index: 2;
+		z-index: 3;
 		padding: 4px 0;
 	}
 

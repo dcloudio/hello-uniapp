@@ -1,3 +1,5 @@
+## 1.2.1（2022-09-05）
+- 修复 当 text 超过 max-num 时，badge 的宽度计算是根据 text 的长度计算，更改为 css 计算实际展示宽度，详见:[https://ask.dcloud.net.cn/question/150473](https://ask.dcloud.net.cn/question/150473)
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-badge](https://uniapp.dcloud.io/component/uniui/uni-badge)

@@ -62,6 +62,8 @@
 </script>
 
 <style lang="scss" >
+	$uni-primary: #007aff !default;
+
 	.uni-calendar-item__weeks-box {
 		flex: 1;
 		/* #ifndef APP-NVUE */
@@ -78,7 +80,7 @@
 		font-size: 14px;
 		// font-family: Lato-Bold, Lato;
 		font-weight: bold;
-		color: #455997;
+		color: darken($color: $uni-primary, $amount: 40%);
 	}
 
 	.uni-calendar-item__weeks-lunar-text {
@@ -138,7 +140,7 @@
 	}
 
 	.uni-calendar-item__weeks-box .uni-calendar-item--checked {
-		background-color: #007aff;
+		background-color: $uni-primary;
 		border-radius: 50%;
 		box-sizing: border-box;
 		border: 3px solid #fff;
@@ -159,7 +161,7 @@
 
 	.uni-calendar-item--multiple .uni-calendar-item--before-checked,
 	.uni-calendar-item--multiple .uni-calendar-item--after-checked {
-		background-color: #409eff;
+		background-color: $uni-primary;
 		border-radius: 50%;
 		box-sizing: border-box;
 		border: 3px solid #F6F7FC;

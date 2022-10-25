@@ -1,7 +1,7 @@
 {
   "id": "uni-data-select",
   "displayName": "uni-data-select 下拉框选择器",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "通过数据驱动的下拉框选择器",
   "keywords": [
     "uni-ui",
@@ -17,11 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -38,7 +34,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": ["uni-load-more"],

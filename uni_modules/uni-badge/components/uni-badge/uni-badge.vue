@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-badge--x">
 		<slot />
-		<text v-if="text" :class="classNames" :style="[badgeWidth, positionStyle, customStyle, dotStyle]"
+		<text v-if="text" :class="classNames" :style="[positionStyle, customStyle, dotStyle]"
 			class="uni-badge" @click="onClick()">{{displayValue}}</text>
 	</view>
 </template>
@@ -130,16 +130,13 @@
 				const match = whiteList[this.absolute]
 				return match ? match : whiteList['rightTop']
 			},
-			badgeWidth() {
-				return {
-					width: `${this.width}px`
-				}
-			},
 			dotStyle() {
 				if (!this.isDot) return {}
 				return {
 					width: '10px',
+					minWidth: '0',
 					height: '10px',
+					padding: '0',
 					borderRadius: '10px'
 				}
 			},
@@ -160,7 +157,7 @@
 	};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 	$uni-primary: #2979ff !default;
 	$uni-success: #4cd964 !default;
 	$uni-warning: #f0ad4e !default;
@@ -199,6 +196,8 @@
 		justify-content: center;
 		flex-direction: row;
 		height: 20px;
+		min-width: 20px;
+		padding: 0 4px;
 		line-height: 18px;
 		color: #fff;
 		border-radius: 100px;
@@ -207,6 +206,7 @@
 		border: 1px solid #fff;
 		text-align: center;
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		font-feature-settings: "tnum";
 		font-size: $bage-size;
 		/* #ifdef H5 */
 		z-index: 999;

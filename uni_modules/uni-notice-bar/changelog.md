@@ -1,3 +1,5 @@
+## 1.2.1（2022-09-05）
+- 新增 属性 fontSize，可修改文字大小。
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-notice-bar](https://uniapp.dcloud.io/component/uniui/uni-notice-bar)

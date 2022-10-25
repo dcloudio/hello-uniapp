@@ -1,5 +1,5 @@
 <template>
-	<view class="warp">
+	<view class="container">
 		<uni-card is-full :is-shadow="false">
 			<text class="uni-h6">宫格组件主要使用场景如：商品推荐列表、热门内容等</text>
 		</uni-card>

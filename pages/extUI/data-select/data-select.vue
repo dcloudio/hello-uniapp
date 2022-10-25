@@ -1,11 +1,16 @@
 <template>
 	<view>
-		<uni-card is-full>
+		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">通过数据驱动的单选框和复选框，可直接通过连接 uniCloud 获取数据，同时可以配合表单组件 uni-forms 使用</text>
 		</uni-card>
 		<uni-section title="本地数据" type="line">
 			<view class="uni-px-5 uni-pb-5">
 				<uni-data-select v-model="value" :localdata="range" @change="change"></uni-data-select>
+			</view>
+		</uni-section>
+		<uni-section title="禁用状态" type="line">
+			<view class="uni-px-5 uni-pb-5">
+				<uni-data-select v-model="value" :disabled="true" :localdata="range"></uni-data-select>
 			</view>
 		</uni-section>
 		<!-- 		<uni-section title="云端数据" subTitle="连接云服务空间, 且存在相关的数据表才能生效(此处演示, 未连接云服务空间, 故不生效, 且有报错)" type="line">

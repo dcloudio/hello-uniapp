@@ -1,7 +1,7 @@
 {
   "id": "uni-datetime-picker",
   "displayName": "uni-datetime-picker 日期选择器",
-  "version": "2.2.6",
+  "version": "2.2.11",
   "description": "uni-datetime-picker 日期时间选择器，支持日历，支持范围选择",
   "keywords": [
     "uni-datetime-picker",
@@ -17,11 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -38,7 +34,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [

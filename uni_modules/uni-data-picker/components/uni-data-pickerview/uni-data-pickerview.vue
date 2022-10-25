@@ -177,7 +177,9 @@
 		}
 	}
 </script>
-<style >
+<style lang="scss">
+	$uni-primary: #007aff !default;
+
 	.uni-data-pickerview {
 		flex: 1;
 		/* #ifndef APP-NVUE */
@@ -265,11 +267,11 @@
 	}
 
 	.selected-item-active {
-		border-bottom: 2px solid #007aff;
+		border-bottom: 2px solid $uni-primary;
 	}
 
 	.selected-item-text {
-		color: #007aff;
+		color: $uni-primary;
 	}
 
 	.tab-c {
@@ -319,7 +321,7 @@
 
 	.check {
 		margin-right: 5px;
-		border: 2px solid #007aff;
+		border: 2px solid $uni-primary;
 		border-left: 0;
 		border-top: 0;
 		height: 12px;

@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-calendar" @mouseleave="leaveCale">
 		<view v-if="!insert&&show" class="uni-calendar__mask" :class="{'uni-calendar--mask-show':aniMaskShow}"
-			@click="clean"></view>
+			@click="clean();maskClick()"></view>
 		<view v-if="insert || show" class="uni-calendar__content"
 			:class="{'uni-calendar--fixed':!insert,'uni-calendar--ani-show':aniMaskShow, 'uni-calendar__content-mobile': aniMaskShow}">
 			<view class="uni-calendar__header" :class="{'uni-calendar__header-mobile' :!insert}">
@@ -74,7 +74,9 @@
 						:hide-second="hideSecond" :disabled="!tempRange.before" class="time-picker-style">
 					</time-picker>
 				</view>
-				<uni-icons type="arrowthinright" color="#999" style="line-height: 50px;"></uni-icons>
+				<view style="line-height: 50px;">
+					<uni-icons type="arrowthinright" color="#999"></uni-icons>
+				</view>
 				<view class="uni-date-changed--time-end">
 					<view class="uni-date-changed--time-date">{{tempRange.after ? tempRange.after : endDateText}}</view>
 					<time-picker type="time" :end="reactEndTime" v-model="timeRange.endTime" :border="false"
@@ -411,6 +413,11 @@
 				this.close()
 			},
 
+			// 蒙版点击事件
+			maskClick() {
+				this.$emit('maskClose')
+			},
+
 			clearCalender() {
 				if (this.range) {
 					this.timeRange.startTime = ''
@@ -546,8 +553,16 @@
 				this.cale.setMultiple(this.calendar.fullDate, true)
 				this.weeks = this.cale.weeks
 				this.tempSingleDate = this.calendar.fullDate
-				this.tempRange.before = this.cale.multipleStatus.before
-				this.tempRange.after = this.cale.multipleStatus.after
+				const beforeStatus = this.cale.multipleStatus.before
+				const beforeDate = new Date(this.cale.multipleStatus.before).getTime()
+				const afterDate = new Date(this.cale.multipleStatus.after).getTime()
+				if (beforeDate > afterDate && afterDate) {
+					this.tempRange.before = this.cale.multipleStatus.after
+					this.tempRange.after = this.cale.multipleStatus.before
+				} else {
+					this.tempRange.before = this.cale.multipleStatus.before
+					this.tempRange.after = this.cale.multipleStatus.after
+				}
 				this.change()
 			},
 			/**
@@ -604,6 +619,8 @@
 </script>
 
 <style lang="scss" >
+	$uni-primary: #007aff !default;
+
 	.uni-calendar {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -714,7 +731,7 @@
 		text-align: center;
 		width: 100px;
 		font-size: 14px;
-		color: #007aff;
+		color: $uni-primary;
 		/* #ifndef APP-NVUE */
 		letter-spacing: 3px;
 		/* #endif */
@@ -893,7 +910,7 @@
 		border-radius: 100px;
 		height: 40px;
 		line-height: 40px;
-		background-color: #007aff;
+		background-color: $uni-primary;
 		color: #fff;
 		font-size: 16px;
 		letter-spacing: 2px;
