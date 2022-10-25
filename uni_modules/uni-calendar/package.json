@@ -1,7 +1,7 @@
 {
   "id": "uni-calendar",
   "displayName": "uni-calendar 日历",
-  "version": "1.4.5",
+  "version": "1.4.7",
   "description": "日历组件",
   "keywords": [
     "uni-ui",
@@ -18,11 +18,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -39,7 +35,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [],

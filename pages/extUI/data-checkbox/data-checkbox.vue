@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-card is-full>
+		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">通过数据驱动的单选框和复选框，可直接通过连接 uniCloud 获取数据，同时可以配合表单组件 uni-forms 使用</text>
 		</uni-card>
 		<uni-section title="单选" type="line">

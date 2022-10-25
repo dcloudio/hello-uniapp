@@ -29,6 +29,20 @@
 		</uni-section>
 
 
+		<uni-section title="插槽" subTitle="使用 prefixIcon / suffixIcon 插槽 ,可以自定义输入框左右侧内容" type="line" padding>
+			<uni-easyinput v-model="value" placeholder="请输入网址">
+				<template #prefixIcon>
+					<view style="background-color: #f2f2f2;padding: 0 10rpx;height: 70rpx;line-height: 70rpx;margin-right: 10rpx;">https://</view>
+				</template>
+			</uni-easyinput>
+			<uni-easyinput class="uni-mt-5" prefixIcon="search" v-model="value" placeholder="想看什么,搜索一下">
+				<template #suffixIcon>
+					<button class="uni-btn uni-btn-mini uni-btn-radius" type="primary" size="mini">搜索</button>
+				</template>
+			</uni-easyinput>
+		</uni-section>
+
+
 		<uni-section title="禁用" subTitle="使用 disabled 属性禁用输入框" type="line" padding>
 			<uni-easyinput disabled value="已禁用" placeholder="请输入内容"></uni-easyinput>
 		</uni-section>

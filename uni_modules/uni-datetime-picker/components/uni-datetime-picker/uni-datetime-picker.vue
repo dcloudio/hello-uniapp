@@ -91,7 +91,7 @@
 		<calendar v-show="isPhone" ref="mobile" :clearDate="false" :date="defSingleDate" :defTime="reactMobDefTime"
 			:start-date="caleRange.startDate" :end-date="caleRange.endDate" :selectableTimes="mobSelectableTime"
 			:pleStatus="endMultipleStatus" :showMonth="false" :range="isRange" :typeHasTime="hasTime" :insert="false"
-			:hideSecond="hideSecond" @confirm="mobileChange" />
+			:hideSecond="hideSecond" @confirm="mobileChange" @maskClose="close" />
 	</view>
 </template>
 <script>
@@ -516,6 +516,7 @@
 				setTimeout(() => {
 					this.popup = false
 					this.$emit('maskClick', this.value)
+					this.$refs.mobile.close()
 				}, 20)
 			},
 			setEmit(value) {
@@ -782,7 +783,9 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	$uni-primary: #007aff !default;
+	
 	.uni-date {
 		/* #ifndef APP-NVUE */
 		width: 100%;
@@ -941,14 +944,14 @@
 	}
 
 	.popup-x-footer text:hover {
-		color: #007aff;
+		color: $uni-primary;
 		cursor: pointer;
 		opacity: 0.8;
 	}
 
 	.popup-x-footer .confirm {
 		margin-left: 20px;
-		color: #007aff;
+		color: $uni-primary;
 	}
 
 	.uni-date-changed {

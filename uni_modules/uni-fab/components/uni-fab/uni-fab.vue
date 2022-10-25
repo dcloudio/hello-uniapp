@@ -5,7 +5,9 @@
         'uni-fab--rightBottom': rightBottom,
         'uni-fab--leftTop': leftTop,
         'uni-fab--rightTop': rightTop
-      }" class="uni-fab">
+      }" class="uni-fab"
+				:style="nvueBottom"
+			>
 			<view :class="{
           'uni-fab__content--left': horizontal === 'left',
           'uni-fab__content--right': horizontal === 'right',
@@ -32,7 +34,7 @@
 		  'uni-fab__circle--leftTop': leftTop,
 		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
-		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor }" @click="_onClick">
+		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor, 'bottom': nvueBottom }" @click="_onClick">
 			<uni-icons class="fab-circle-icon" type="plusempty" :color="styles.iconColor" size="32"
 				:class="{'uni-fab__plus--active': isShow && content.length > 0}"></uni-icons>
 			<!-- <view class="fab-circle-v"  :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
@@ -158,6 +160,16 @@
 			},
 			horizontalRight() {
 				return this.getPosition(2, 'horizontal', 'right')
+			},
+			// 计算 nvue bottom
+			nvueBottom() {
+				const safeBottom = uni.getSystemInfoSync().windowBottom;
+				// #ifdef APP-NVUE
+				return 30 + safeBottom
+				// #endif
+				// #ifndef APP-NVUE
+				return 30
+				// #endif
 			}
 		},
 		watch: {

@@ -1,6 +1,6 @@
 <template>
 	<view class="page container">
-		<uni-card is-full>
+		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">可以同时选择日期和时间的选择器</text>
 		</uni-card>
 		<uni-section :title="'日期用法：' + single" type="line"></uni-section>

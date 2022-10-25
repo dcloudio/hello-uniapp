@@ -1,7 +1,7 @@
 {
   "id": "uni-data-picker",
   "displayName": "uni-data-picker 数据驱动的picker选择器",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "单列、多列级联选择器，常用于省市区城市选择、公司部门选择、多级分类等场景",
   "keywords": [
     "uni-ui",
@@ -18,11 +18,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -39,7 +35,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [
@@ -56,7 +53,7 @@
       "client": {
         "App": {
           "app-vue": "y",
-          "app-nvue": "y"
+          "app-nvue": "u"
         },
         "H5-mobile": {
           "Safari": "y",

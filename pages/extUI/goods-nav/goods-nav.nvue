@@ -1,6 +1,6 @@
 <template>
-	<view class="uni-container">
-		<uni-card is-full>
+	<view class="container">
+		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6"> uni-goods-nav 组件主要用于电商类应用底部导航，可自定义加入购物车，购买等操作</text>
 		</uni-card>
 		<uni-section title="基础用法" type="line">

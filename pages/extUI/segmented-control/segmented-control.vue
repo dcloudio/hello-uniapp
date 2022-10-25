@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-card is-full>
+		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">标签组件多用于商品分类、重点内容显示等场景。</text>
 		</uni-card>
 
