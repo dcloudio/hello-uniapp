@@ -1,7 +1,7 @@
 {
   "id": "uni-data-select",
   "displayName": "uni-data-select 下拉框选择器",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "通过数据驱动的下拉框选择器",
   "keywords": [
     "uni-ui",

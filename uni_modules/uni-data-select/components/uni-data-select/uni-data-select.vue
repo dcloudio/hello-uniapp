@@ -2,7 +2,7 @@
 	<view class="uni-stat__select">
 		<span v-if="label" class="uni-label-text hide-on-phone">{{label + '：'}}</span>
 		<view class="uni-stat-box" :class="{'uni-stat__actived': current}">
-			<view class="uni-select"  :class="{'uni-select--disabled':disabled}">
+			<view class="uni-select" :class="{'uni-select--disabled':disabled}">
 				<view class="uni-select__input-box" @click="toggleSelector">
 					<view v-if="current" class="uni-select__input-text">{{current}}</view>
 					<view v-else class="uni-select__input-text uni-select__input-placeholder">{{typePlaceholder}}</view>
@@ -16,10 +16,9 @@
 						<view class="uni-select__selector-empty" v-if="mixinDatacomResData.length === 0">
 							<text>{{emptyTips}}</text>
 						</view>
-						<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData"
-							:key="index" @click="change(item)">
-							<text
-								:class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
+						<view v-else class="uni-select__selector-item" v-for="(item,index) in mixinDatacomResData" :key="index"
+							@click="change(item)">
+							<text :class="{'uni-select__selector__disabled': item.disable}">{{formatItemName(item)}}</text>
 						</view>
 					</scroll-view>
 				</view>
@@ -90,7 +89,7 @@
 				type: Number,
 				default: 0
 			},
-      disabled: {
+			disabled: {
 				type: Boolean,
 				default: false
 			}
@@ -98,7 +97,7 @@
 		created() {
 			this.last = `${this.collection}_last_selected_option_value`
 			if (this.collection && !this.localdata.length) {
-				this.mixinDatacomEasyGet()
+				this.query();
 			}
 		},
 		computed: {
@@ -144,6 +143,14 @@
 			}
 		},
 		methods: {
+			// 执行数据库查询
+			query(){
+				this.mixinDatacomEasyGet();
+			},
+			// 监听查询条件变更事件
+			onMixinDatacomPropsChange(){
+				this.query();
+			},
 			initDefVal() {
 				let defValue = ''
 				if ((this.value || this.value === 0) && !this.isDisabled(this.value)) {
@@ -159,12 +166,14 @@
 						defValue = strogeValue
 					} else {
 						let defItem = ''
-						if (this.defItem > 0 && this.defItem < this.mixinDatacomResData.length) {
+						if (this.defItem > 0 && this.defItem <= this.mixinDatacomResData.length) {
 							defItem = this.mixinDatacomResData[this.defItem - 1].value
 						}
 						defValue = defItem
 					}
-					this.emit(defValue)
+          if (defValue || defValue === 0) {
+					  this.emit(defValue)
+          }
 				}
 				const def = this.mixinDatacomResData.find(item => item.value === defValue)
 				this.current = def ? this.formatItemName(def) : ''
@@ -209,9 +218,9 @@
 			},
 
 			toggleSelector() {
-        if(this.disabled){
-          return
-        }
+				if (this.disabled) {
+					return
+				}
 
 				this.showSelector = !this.showSelector
 			},
@@ -297,10 +306,10 @@
 		flex: 1;
 		height: 35px;
 
-    &--disabled{
-      background-color: #f5f7fa;
-      cursor: not-allowed;
-    }
+		&--disabled {
+			background-color: #f5f7fa;
+			cursor: not-allowed;
+		}
 	}
 
 	.uni-select__label {
