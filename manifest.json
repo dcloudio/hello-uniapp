@@ -127,7 +127,7 @@
         "template" : "template.h5.html",
         "router" : {
             "mode" : "history",
-            "base" : "/web/"
+            "base" : "/en/"
         },
         "sdkConfigs" : {
             "maps" : {
