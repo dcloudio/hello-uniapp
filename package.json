@@ -103,6 +103,15 @@
 				"define": {
 					"MP-DINGTALK": true
 				}
+			},
+			"hello-uniapp-demo": {
+				"title": "hello-uniapp 演示网站",
+				"env": {
+					"UNI_PLATFORM": "h5"
+				},
+				"define": {
+					"H5-DEMO": true
+				}
 			}
 		}
 	}
