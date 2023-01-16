@@ -92,7 +92,12 @@
 			disabled: {
 				type: Boolean,
 				default: false
-			}
+			},
+			// 格式化输出 用法 field="_id as value, version as text, uni_platform as label" format="{label} - {text}"
+			format: {
+				type: String,
+				default: ''
+			},
 		},
 		created() {
 			this.last = `${this.collection}_last_selected_option_value`
@@ -149,7 +154,9 @@
 			},
 			// 监听查询条件变更事件
 			onMixinDatacomPropsChange(){
-				this.query();
+				if (this.collection) {
+					this.query()
+				}
 			},
 			initDefVal() {
 				let defValue = ''
@@ -231,13 +238,24 @@
 					channel_code
 				} = item
 				channel_code = channel_code ? `(${channel_code})` : ''
-				return this.collection.indexOf('app-list') > 0 ?
-					`${text}(${value})` :
-					(
-						text ?
-						text :
-						`未命名${channel_code}`
-					)
+
+				if (this.format) {
+					// 格式化输出
+					let str = "";
+					str = this.format;
+					for (let key in item) {
+						str = str.replace(new RegExp(`{${key}}`,"g"),item[key]);
+					}
+					return str;
+				} else {
+					return this.collection.indexOf('app-list') > 0 ?
+						`${text}(${value})` :
+						(
+							text ?
+							text :
+							`未命名${channel_code}`
+						)
+				}
 			}
 		}
 	}
