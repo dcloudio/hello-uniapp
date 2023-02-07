@@ -61,7 +61,7 @@
 				bgAudioMannager.singer = '暂无';
 			}
 			if(!bgAudioMannager.coverImgUrl){
-				bgAudioMannager.coverImgUrl = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c517b410-5184-11eb-b997-9918a5dda011.jpeg';
+				bgAudioMannager.coverImgUrl = 'https://web-assets.dcloud.net.cn/unidoc/zh/Alice.jpeg';
 			}
 
 			bgAudioMannager.onPlay(() => {

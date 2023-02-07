@@ -100,7 +100,7 @@
 			// #ifndef MP-ALIPAY || MP-TOUTIAO
 			openDocument() {
 				uni.downloadFile({
-					url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b3f1d0b0-5168-11eb-bd01-97bc1429a9ff.pdf',
+					url: 'https://web-assets.dcloud.net.cn/unidoc/zh/helloworld.pdf',
 					success: (res) => {
 						uni.openDocument({
 							filePath: res.tempFilePath,

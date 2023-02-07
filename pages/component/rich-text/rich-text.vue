@@ -37,7 +37,7 @@
 						text: 'Hello&nbsp;uni-app!'
 					}]
 				}],
-				strings: '<div style="text-align:center;"><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/ceb770c0-5164-11eb-8a36-ebb87efcf8c0.png"/></div>'
+				strings: '<div style="text-align:center;"><img src="https://web-assets.dcloud.net.cn/unidoc/zh/uni@2x.png"/></div>'
 			}
 		}
 	}
