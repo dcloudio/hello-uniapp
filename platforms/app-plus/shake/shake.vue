@@ -1,10 +1,10 @@
 <template>
 	<view class="root" :style="{backgroundImage:'url('+img+')'}">
 		<view :class="[show ? 'up' : '','shake-up']">
-			<image mode="aspectFit" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b718cdb0-517d-11eb-a16f-5b3e54966275.png"></image>
+			<image mode="aspectFit" src="https://web-assets.dcloud.net.cn/unidoc/zh/shakeup.png"></image>
 		</view>
 		<view :class="[show ? 'down' : '','shake-down']">
-			<image mode="aspectFit" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6600500-517d-11eb-8ff1-d5dcf8779628.png"></image>
+			<image mode="aspectFit" src="https://web-assets.dcloud.net.cn/unidoc/zh/shakedown.png"></image>
 		</view>
 	</view>
 </template>
@@ -12,7 +12,7 @@
 	export default {
 		data() {
 			return {
-				img: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/aff47ed0-517d-11eb-8ff1-d5dcf8779628.jpg',
+				img: 'https://web-assets.dcloud.net.cn/unidoc/zh/1.jpg',
 				show: false,
 				isOpened: false,
 				index: 1
@@ -35,7 +35,7 @@
 		},
 		onLoad: function () {
 			this.music = uni.createInnerAudioContext();
-			this.music.src = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b5897b20-517d-11eb-a16f-5b3e54966275.wav';
+			this.music.src = 'https://web-assets.dcloud.net.cn/unidoc/zh/shake.wav';
 
 			let t = null;
 			uni.onAccelerometerChange((res) => {

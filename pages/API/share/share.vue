@@ -72,7 +72,7 @@
 			return {
 				title: this.shareText ? this.shareText : "欢迎体验uni-app",
 				path: '/pages/tabBar/component/component',
-				imageUrl:this.image ? this.image : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
+				imageUrl:this.image ? this.image : 'https://web-assets.dcloud.net.cn/unidoc/zh/share-logo@3.png'
 			}
 		},
 		onUnload:function(){

@@ -15,7 +15,7 @@
 		data() {
 			return {
 				current: {
-					poster: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/c517b410-5184-11eb-b997-9918a5dda011.jpeg',
+					poster: 'https://web-assets.dcloud.net.cn/unidoc/zh/Alice.jpeg',
 					name: '致爱丽丝',
 					author: '暂无',
 					src: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3',

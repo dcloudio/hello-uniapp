@@ -66,7 +66,7 @@
 					thumb-size="sm" rightText="小图" />
 
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow
-					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
+					thumb="https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
 					thumb-size="base" rightText="默认" />
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow
 					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
@@ -111,7 +111,7 @@
 		components: {},
 		data() {
 			return {
-				cover: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/094a9dc0-50c0-11eb-b680-7980c8a877b8.jpg',
+				cover: 'https://web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg',
 				avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
 				extraIcon: {
 					color: '#4cd964',

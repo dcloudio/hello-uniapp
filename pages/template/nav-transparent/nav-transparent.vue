@@ -37,8 +37,8 @@
 				showSwiper: false,
 				imgUrls: [
 					"../../../static/shuijiao.jpg",
-					"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b4b60b10-5168-11eb-bd01-97bc1429a9ff.jpg",
-					"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b1dcfa70-5168-11eb-bd01-97bc1429a9ff.jpg"
+					"https://web-assets.dcloud.net.cn/unidoc/zh/muwu.jpg",
+					"https://web-assets.dcloud.net.cn/unidoc/zh/cbd.jpg"
 				],
 				items: [{
 						value: "img",
