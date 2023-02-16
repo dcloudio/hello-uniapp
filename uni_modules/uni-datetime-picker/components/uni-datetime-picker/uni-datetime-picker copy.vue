@@ -14,12 +14,12 @@
 
 					<view v-else class="uni-date-x uni-date-range">
 						<uni-icons class="icon-calendar" type="calendar" color="#c0c4cc" size="22"></uni-icons>
-						<input class="uni-date__x-input t-c" type="text" v-model="range.startDate"
+						<input class="uni-date__x-input t-c" type="text" v-model="displayRangeValue.startDate"
 							:placeholder="startPlaceholderText" :disabled="true" />
 
             <view class="range-separator">{{rangeSeparator}}</view>
 
-						<input class="uni-date__x-input t-c" type="text" v-model="range.endDate"
+						<input class="uni-date__x-input t-c" type="text" v-model="displayRangeValue.endDate"
 							:placeholder="endPlaceholderText" :disabled="true" />
 					</view>
 
@@ -47,8 +47,8 @@
 					</time-picker>
 				</view>
 
-				<calendar ref="pcSingle" :showMonth="false" :start-date="caleRange.startDate"
-					:end-date="caleRange.endDate" :date="calendarDate" @change="singleChange"
+				<Calendar ref="pcSingle" :showMonth="false" :start-date="calendarRange.startDate"
+					:end-date="calendarRange.endDate" :date="calendarDate" @change="singleChange"
 					style="padding: 0 8px;" />
 
 				<view v-if="hasTime" class="popup-x-footer">
@@ -86,11 +86,11 @@
 				</view>
 
 				<view class="popup-x-body">
-					<calendar ref="left" :showMonth="false" :start-date="caleRange.startDate"
-						:end-date="caleRange.endDate" :range="true" @change="leftChange" :pleStatus="endMultipleStatus"
+					<Calendar ref="left" :showMonth="false" :start-date="calendarRange.startDate"
+						:end-date="calendarRange.endDate" :range="true" @change="leftChange" :pleStatus="endMultipleStatus"
 						@firstEnterCale="updateRightCale" style="padding: 0 8px;" />
-					<calendar ref="right" :showMonth="false" :start-date="caleRange.startDate"
-						:end-date="caleRange.endDate" :range="true" @change="rightChange"
+					<Calendar ref="right" :showMonth="false" :start-date="calendarRange.startDate"
+						:end-date="calendarRange.endDate" :range="true" @change="rightChange"
 						:pleStatus="startMultipleStatus" @firstEnterCale="updateLeftCale"
 						style="padding: 0 8px;border-left: 1px solid #F1F1F1;" />
 				</view>
@@ -102,8 +102,8 @@
 			</view>
 		</view>
 
-		<calendar v-if="isPhone" ref="mobile" :clearDate="false" :date="calendarDate" :defTime="reactMobDefTime"
-			:start-date="caleRange.startDate" :end-date="caleRange.endDate" :selectableTimes="mobSelectableTime"
+		<Calendar v-if="isPhone" ref="mobile" :clearDate="false" :date="calendarDate" :defTime="reactMobDefTime"
+			:start-date="calendarRange.startDate" :end-date="calendarRange.endDate" :selectableTimes="mobSelectableTime"
       :startPlaceholder="startPlaceholder" :endPlaceholder="endPlaceholder"
 			:pleStatus="endMultipleStatus" :showMonth="false" :range="isRange" :typeHasTime="hasTime" :insert="false"
 			:hideSecond="hideSecond" @confirm="mobileChange" @maskClose="close" />
@@ -131,8 +131,8 @@
 	 * @event {Function} close 关闭弹出层
 	 * @event {Function} clear 清除上次选中的状态和值
 	 **/
-	import calendar from './calendar.vue'
-	import timePicker from './time-picker.vue'
+	import Calendar from './calendar.vue'
+	import TimePicker from './time-picker.vue'
 	import { initVueI18n } from '@dcloudio/uni-i18n'
 	import i18nMessages from './i18n/index.js'
 
@@ -142,8 +142,8 @@
 			virtualHost: true
 		},
 		components: {
-			calendar,
-			timePicker
+			Calendar,
+			TimePicker
 		},
 		data() {
 			return {
@@ -153,14 +153,13 @@
 				inputDate: '',
 				calendarDate: '',
 				pickerTime: '',
-				// 范围选
-				caleRange: {
+				calendarRange: {
 					startDate: '',
 					startTime: '',
 					endDate: '',
 					endTime: ''
 				},
-				range: {
+				displayRangeValue: {
 					startDate: '',
 					endDate: '',
 				},
@@ -289,9 +288,9 @@
 						defDate,
 						defTime
 					} = this.parseDate(newVal)
-					this.caleRange.startDate = defDate
+					this.calendarRange.startDate = defDate
 					if (this.hasTime) {
-						this.caleRange.startTime = defTime
+						this.calendarRange.startTime = defTime
 					}
 				}
 			},
@@ -303,9 +302,9 @@
 						defDate,
 						defTime
 					} = this.parseDate(newVal)
-					this.caleRange.endDate = defDate
+					this.calendarRange.endDate = defDate
 					if (this.hasTime) {
-						this.caleRange.endTime = defTime
+						this.calendarRange.endTime = defTime
 					}
 				}
 			},
@@ -313,12 +312,12 @@
 		computed: {
 			reactStartTime() {
 				const activeDate = this.isRange ? this.tempRange.startDate : this.inputDate
-				const res = activeDate === this.caleRange.startDate ? this.caleRange.startTime : ''
+				const res = activeDate === this.calendarRange.startDate ? this.calendarRange.startTime : ''
 				return res
 			},
 			reactEndTime() {
 				const activeDate = this.isRange ? this.tempRange.endDate : this.inputDate
-				const res = activeDate === this.caleRange.endDate ? this.caleRange.endTime : ''
+				const res = activeDate === this.calendarRange.endDate ? this.calendarRange.endTime : ''
 				return res
 			},
 			reactMobDefTime() {
@@ -330,8 +329,8 @@
 			},
 			mobSelectableTime() {
 				return {
-					start: this.caleRange.startTime,
-					end: this.caleRange.endTime
+					start: this.calendarRange.startTime,
+					end: this.calendarRange.endTime
 				}
 			},
 			datePopupWidth() {
@@ -379,7 +378,7 @@
 				return this.i18nT("uni-datetime-picker.clear")
 			},
 			showClearIcon() {
-				return this.clearIcon && !this.disabled && (this.displayValue || (this.range.startDate && this.range.endDate))
+				return this.clearIcon && !this.disabled && (this.displayValue || (this.displayRangeValue.startDate && this.displayRangeValue.endDate))
 			}
 		},
 		created() {
@@ -418,12 +417,12 @@
 					const defAfter = this.parseDate(after)
 					const startDate = defBefore.defDate
 					const endDate = defAfter.defDate
-					this.range.startDate = this.tempRange.startDate = startDate
-					this.range.endDate = this.tempRange.endDate = endDate
+					this.displayRangeValue.startDate = this.tempRange.startDate = startDate
+					this.displayRangeValue.endDate = this.tempRange.endDate = endDate
 
 					if (this.hasTime) {
-						this.range.startDate = defBefore.defDate + ' ' + defBefore.defTime
-						this.range.endDate = defAfter.defDate + ' ' + defAfter.defTime
+						this.displayRangeValue.startDate = defBefore.defDate + ' ' + defBefore.defTime
+						this.displayRangeValue.endDate = defAfter.defDate + ' ' + defAfter.defTime
 						this.tempRange.startTime = defBefore.defTime
 						this.tempRange.endTime = defAfter.defTime
 					}
@@ -706,8 +705,8 @@
           }
         }
 				if (!this.hasTime) {
-          start = this.range.startDate = this.tempRange.startDate
-					end = this.range.endDate = this.tempRange.endDate
+          start = this.displayRangeValue.startDate = this.tempRange.startDate
+					end = this.displayRangeValue.endDate = this.tempRange.endDate
 				} else {
           if(startDateLaterRangeStartDate){
             this.tempRange.startTime = startTime || this.getDefaultSecond()
@@ -726,14 +725,14 @@
           if(!this.tempRange.endTime){
             this.tempRange.endTime = this.getTime(Date.now())
           }
-					start = this.range.startDate = `${this.tempRange.startDate} ${this.tempRange.startTime}`
-					end = this.range.endDate = `${this.tempRange.endDate} ${this.tempRange.endTime}`
+					start = this.displayRangeValue.startDate = `${this.tempRange.startDate} ${this.tempRange.startTime}`
+					end = this.displayRangeValue.endDate = `${this.tempRange.endDate} ${this.tempRange.endTime}`
 				}
         if(!this.dateCompare(start,end)){
           [start, end] = [end, start]
         }
-				this.range.startDate = start
-				this.range.endDate = end
+				this.displayRangeValue.startDate = start
+				this.displayRangeValue.endDate = end
 				const displayRange = [start, end]
 				this.setEmit(displayRange)
 				this.pickerVisible = false
@@ -785,8 +784,8 @@
 						this.$emit('update:modelValue', '')
 					}
 				} else {
-					this.range.startDate = ''
-					this.range.endDate = ''
+					this.displayRangeValue.startDate = ''
+					this.displayRangeValue.endDate = ''
 					this.tempRange.startDate = ''
 					this.tempRange.startTime = ''
 					this.tempRange.endDate = ''

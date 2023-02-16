@@ -77,21 +77,13 @@
 				</view>
 			</view>
 		</view>
-		<!-- #ifdef H5 -->
-		<!-- <keypress v-if="visible" @esc="tiggerTimePicker" @enter="setTime" /> -->
-		<!-- #endif -->
 	</view>
 </template>
 
 <script>
-	// #ifdef H5
-	import keypress from './keypress'
-	// #endif
-	import {
-		initVueI18n
-	} from '@dcloudio/uni-i18n'
-	import messages from './i18n/index.js'
-	const {	t	} = initVueI18n(messages)
+	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import i18nMessages from './i18n/index.js'
+	const {	t	} = initVueI18n(i18nMessages)
 
 	/**
 	 * DatetimePicker 时间选择器
@@ -108,11 +100,6 @@
 
 	export default {
 		name: 'UniDatetimePicker',
-		components: {
-			// #ifdef H5
-			keypress
-			// #endif
-		},
 		data() {
 			return {
 				indicatorStyle: `height: 50px;`,
@@ -185,9 +172,24 @@
 			}
 		},
 		watch: {
+			// #ifndef VUE3
 			value: {
-				handler(newVal, oldVal) {
-					if (newVal) {
+				handler(newVal) {
+          if (newVal) {
+            this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+						this.initTime(false)
+					} else {
+            this.time = ''
+						this.parseValue(Date.now())
+					}
+				},
+				immediate: true
+			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+        handler(newVal) {
+          if (newVal) {
 						this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
 						this.initTime(false)
 					} else {
@@ -197,6 +199,7 @@
 				},
 				immediate: true
 			},
+			// #endif
 			type: {
 				handler(newValue) {
 					if (newValue === 'date') {
@@ -527,7 +530,7 @@
 					const day = now.getDate()
 					dateBase = year + '/' + month + '/' + day + ' '
 				}
-				if (Number(value) && typeof value !== NaN) {
+				if (Number(value)) {
 					value = parseInt(value)
 					dateBase = 0
 				}
@@ -598,7 +601,7 @@
 						pointType === 'start' ? this.startYear = this.year - 60 : this.endYear = this.year + 60
 						return
 					}
-					if (Number(point) && Number(point) !== NaN) {
+					if (Number(point)) {
 						point = parseInt(point)
 					}
 					// datetime 的 end 没有时分秒, 则不限制
@@ -736,7 +739,7 @@
 			 */
 			initTimePicker() {
 				if (this.disabled) return
-				const value = this.fixIosDateFormat(this.value)
+				const value = this.fixIosDateFormat(this.time)
 				this.initPickerValue(value)
 				this.visible = !this.visible
 			},
