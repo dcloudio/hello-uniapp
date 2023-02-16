@@ -116,7 +116,6 @@
 	}
 
 	.uni-calendar-item__weeks-box .uni-calendar-item--disable {
-		// background-color: rgba(249, 249, 249, $uni-opacity-disabled);
 		cursor: default;
 	}
 

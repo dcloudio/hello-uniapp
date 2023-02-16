@@ -19,8 +19,6 @@
 					<view class="dialog-close-plus" data-id="close"></view>
 					<view class="dialog-close-plus dialog-close-rotate" data-id="close"></view>
 				</view>
-
-				<!-- <text class="uni-calendar__backtoday" @click="backtoday">回到今天</text> -->
 			</view>
 			<view class="uni-calendar__box">
 				<view v-if="showMonth" class="uni-calendar__box-bg">
@@ -85,9 +83,6 @@
 				</view>
 			</view>
 			<view v-if="!insert" class="uni-date-changed uni-date-btn--ok">
-				<!-- <view class="uni-calendar__header-btn-box">
-					<text class="uni-calendar__button-text uni-calendar--fixed-width">{{okText}}</text>
-				</view> -->
 				<view class="uni-datetime-picker--btn" @click="confirm">{{confirmText}}</view>
 			</view>
 		</view>
@@ -98,13 +93,11 @@
 	import Calendar from './util.js';
 	import calendarItem from './calendar-item.vue'
 	import timePicker from './time-picker.vue'
-	import {
-		initVueI18n
-	} from '@dcloudio/uni-i18n'
-	import messages from './i18n/index.js'
-	const {
-		t
-	} = initVueI18n(messages)
+
+	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import i18nMessages from './i18n/index.js'
+	const { t } = initVueI18n(i18nMessages)
+
 	/**
 	 * Calendar 日历
 	 * @description 日历组件可以查看日期，选择任意范围内的日期，打点操作。常用场景如：酒店日期预订、火车机票选择购买日期、上下班打卡等
@@ -160,6 +153,14 @@
 				default: ''
 			},
 			endDate: {
+				type: String,
+				default: ''
+			},
+      startPlaceholder: {
+        type: String,
+				default: ''
+			},
+			endPlaceholder: {
 				type: String,
 				default: ''
 			},
@@ -234,7 +235,7 @@
 		watch: {
 			date: {
 				immediate: true,
-				handler(newVal, oldVal) {
+				handler(newVal) {
 					if (!this.range) {
 						this.tempSingleDate = newVal
 						setTimeout(() => {
@@ -245,33 +246,44 @@
 			},
 			defTime: {
 				immediate: true,
-				handler(newVal, oldVal) {
+				handler(newVal) {
 					if (!this.range) {
 						this.time = newVal
 					} else {
-						// console.log('-----', newVal);
 						this.timeRange.startTime = newVal.start
 						this.timeRange.endTime = newVal.end
 					}
 				}
 			},
 			startDate(val) {
+				// 字节小程序 watch 早于 created
+				if(!this.cale){
+					return
+				}
 				this.cale.resetSatrtDate(val)
 				this.cale.setDate(this.nowDate.fullDate)
 				this.weeks = this.cale.weeks
 			},
 			endDate(val) {
+				// 字节小程序 watch 早于 created
+				if(!this.cale){
+					return
+				}
 				this.cale.resetEndDate(val)
 				this.cale.setDate(this.nowDate.fullDate)
 				this.weeks = this.cale.weeks
 			},
 			selected(newVal) {
+				// 字节小程序 watch 早于 created
+				if(!this.cale){
+					return
+				}
 				this.cale.setSelectInfo(this.nowDate.fullDate, newVal)
 				this.weeks = this.cale.weeks
 			},
 			pleStatus: {
 				immediate: true,
-				handler(newVal, oldVal) {
+				handler(newVal) {
 					const {
 						before,
 						after,
@@ -294,6 +306,11 @@
 								this.cale.lastHover = false
 							}
 						} else {
+              // 字节小程序 watch 早于 created
+              if(!this.cale){
+                return
+              }
+
 							this.cale.setDefaultMultiple(before, after)
 							if (which === 'left') {
 								this.setDate(before)
@@ -368,17 +385,13 @@
 		created() {
 			// 获取日历方法实例
 			this.cale = new Calendar({
-				// date: new Date(),
 				selected: this.selected,
 				startDate: this.startDate,
 				endDate: this.endDate,
 				range: this.range,
-				// multipleStatus: this.pleStatus
 			})
 			// 选中某一天
-			// this.cale.setDate(this.date)
 			this.init(this.date)
-			// this.setDay
 		},
 		methods: {
 			leaveCale() {
@@ -449,17 +462,6 @@
 				this.weeks = this.cale.weeks
 				this.nowDate = this.calendar = this.cale.getInfo(date)
 			},
-			// choiceDate(weeks) {
-			// 	if (weeks.disable) return
-			// 	this.calendar = weeks
-			// 	// 设置多选
-			// 	this.cale.setMultiple(this.calendar.fullDate, true)
-			// 	this.weeks = this.cale.weeks
-			// 	this.tempSingleDate = this.calendar.fullDate
-			// 	this.tempRange.before = this.cale.multipleStatus.before
-			// 	this.tempRange.after = this.cale.multipleStatus.after
-			// 	this.change()
-			// },
 			/**
 			 * 打开日历弹窗
 			 */
@@ -553,7 +555,6 @@
 				this.cale.setMultiple(this.calendar.fullDate, true)
 				this.weeks = this.cale.weeks
 				this.tempSingleDate = this.calendar.fullDate
-				const beforeStatus = this.cale.multipleStatus.before
 				const beforeDate = new Date(this.cale.multipleStatus.before).getTime()
 				const afterDate = new Date(this.cale.multipleStatus.after).getTime()
 				if (beforeDate > afterDate && afterDate) {
