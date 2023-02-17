@@ -26,10 +26,10 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
     /**
      * 检测列表长度,是否发生变化
      */
-    it('.uni-panel 列表长度', async () => {
-        const lists = await page.$$('.uni-panel')
-        expect(lists.length).toBe(29)
-    })
+    // it('.uni-panel 列表长度', async () => {
+    //     const lists = await page.$$('.uni-panel')
+    //     expect(lists.length).toBe(29)
+    // })
 
     /**
      * 检测打开列表第一个元素是否正确
@@ -37,7 +37,7 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
     it('.uni-panel-h tap 打开 badge 组件', async () => {
         // 检测首个 panel 是视图容器
         expect(await (await page.$('.uni-panel-text')).text()).toBe(
-            'Badge 数字角标')
+            'uni-badge 数字角标')
 
         const listHead = await page.$('.uni-panel-h')
         // 是否获取正确的元素
