@@ -1,6 +1,6 @@
 // uni-app自动化测试教程: uni-app自动化测试教程: https://uniapp.dcloud.net.cn/worktile/auto/hbuilderx-extension/
 
-describe('test title', () => {
+describe('pages/API/download-file/download-file.vue', () => {
 
 	let page;
 	beforeAll(async () => {
