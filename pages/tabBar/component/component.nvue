@@ -127,12 +127,12 @@
 					},
 					// #endif
 					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK || MP-JD
-					{
-						id: 'ad',
-						url: 'ad',
-						name: 'AD',
-						open: false
-					},
+					// {
+					// 	id: 'ad',
+					// 	url: 'ad',
+					// 	name: 'AD',
+					// 	open: false
+					// },
 					// #endif
 				]
 			}
