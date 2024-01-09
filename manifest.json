@@ -166,7 +166,7 @@
             "enable" : true
         }
     },
-    "vueVersion" : "3",
+    "vueVersion" : "2",
     "mp-kuaishou" : {
         "uniStatistics" : {
             "enable" : true
