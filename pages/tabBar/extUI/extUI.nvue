@@ -41,10 +41,10 @@
 						name: "uni-breadcrumb 面包屑",
 						url: "breadcrumb"
 					},
-					// {
-					// 	name: "uni-calendar 日历",
-					// 	url: "calendar"
-					// },
+					{
+						name: "uni-calendar 日历",
+						url: "calendar"
+					},
 					{
 						name: "uni-card 卡片",
 						url: "card"
