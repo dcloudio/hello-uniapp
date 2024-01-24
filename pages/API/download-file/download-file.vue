@@ -34,7 +34,7 @@
 				})
 				var self = this
 				uni.downloadFile({
-					url: "https://web-assets.dcloud.net.cn/unidoc/zh/uni-app.png",
+					url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/uni-app.png",
 					success: (res) => {
 						console.log('downloadFile success, res is', res)
 						self.imageSrc = res.tempFilePath;
