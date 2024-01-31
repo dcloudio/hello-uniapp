@@ -18,7 +18,7 @@
 					poster: 'https://web-assets.dcloud.net.cn/unidoc/zh/Alice.jpeg',
 					name: '致爱丽丝',
 					author: '暂无',
-					src: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3',
+					src: 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3',
 				},
 				audioAction: {
 					method: 'pause'
