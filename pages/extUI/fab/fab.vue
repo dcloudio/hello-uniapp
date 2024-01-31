@@ -10,7 +10,6 @@
 				<button class="button" type="primary" @click="switchBtn('left', 'bottom')">左下角显示</button>
 				<button class="button" type="primary" @click="switchBtn('right', 'bottom')">右下角显示</button>
 				<button class="button" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
-				<button class="button" type="primary" @click="switchBtn('left', 'top')">左上角显示</button>
 				<button class="button" type="primary" @click="switchBtn('right', 'top')">右上角显示</button>
 				<button class="button" type="primary" @click="switchColor">修改颜色</button>
 			</view>

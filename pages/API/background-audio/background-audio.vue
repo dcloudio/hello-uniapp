@@ -42,7 +42,7 @@
 			return {
 				title: 'backgroundAudio',
 				bgAudioMannager: null,
-				dataUrl: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3',
+				dataUrl: 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3',
 				playing: false,
 				playTime: 0,
 				formatedPlayTime: '00:00:00'
