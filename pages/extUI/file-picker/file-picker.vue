@@ -37,15 +37,6 @@
 			</view>
 		</uni-section>
 
-		<uni-section title="自定义图片大小" type="line">
-			<view class="example-body ">
-				<uni-file-picker readonly :value="fileLists" :imageStyles="imageStyles" file-mediatype="image">
-				</uni-file-picker>
-				<uni-file-picker readonly :value="fileLists" :listStyles="listStyles" file-mediatype="all">
-				</uni-file-picker>
-			</view>
-		</uni-section>
-
 	</view>
 </template>
 
