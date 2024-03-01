@@ -1,3 +1,32 @@
+## 0.7.8（2024-01-04）
+- 新增 移除无用代码
+## 0.7.7（2024-01-04）
+- 新增 uni-app x 项目中新增 @show 回调
+## 0.7.6（2023-12-21）
+- 修复 iOS使用升级中心云打包时报错（使用新版的 [uts-progressNotification](https://ext.dcloud.net.cn/plugin?name=uts-progressNotification) 插件，如果之前下载过请删除 `uts-progressNotification\utssdk\app-ios` 文件夹）
+## 0.7.5（2023-12-12）
+- 新增 通知栏进度条使用 uts-progressNotification 插件
+- 新增 依赖 uni-installApk、uts-progressNotification。使用前要安装插件三方依赖
+## 0.7.4（2023-11-29）
+- 修复 uni-app-x 项目中由上版引发的无法升级的Bug
+## 0.7.3（2023-11-27）
+- 修复 在 uni-app x 中无更新时报错的Bug
+## 0.7.2（2023-11-20）
+- 新增 插件根目录 utils 文件夹中新增 check-update-nvue.js 文件（vue2 的 nvue 页面请引用该文件）
+## 0.7.1（2023-11-17）
+- 修复 运行至浏览器 ts 语法报错
+## 0.7.0（2023-11-10）
+- 新增 兼容 uni-app x 项目 [详情](https://uniapp.dcloud.net.cn/uniCloud/upgrade-center.html)
+## 0.6.5（2023-10-27）
+- 修复 安装 wgt 报错 manifest.json 文件不存在的Bug
+## 0.6.4（2023-09-01）
+chore: 优化代码结构
+## 0.6.3（2023-08-30）
+- 修复 下载 wgt 时如果后缀名不正确，重命名后安装
+## 0.6.2（2022-11-21）
+- 处理 cloudfunctions 目录
+## 0.6.1（2022-08-17）
+- 修复 后台添加应用市场，但都没有启用的情况下报错的Bug （需要 uni-admin 1.9.3+）
 ## 0.6.0（2022-07-19）
 - 新增 支持多应用商店配置（需要 uni-admin 1.9.3+）
 ## 0.4.1（2022-05-27）

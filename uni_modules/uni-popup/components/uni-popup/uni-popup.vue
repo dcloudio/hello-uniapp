@@ -163,7 +163,7 @@
 				},
 				maskShow: true,
 				mkclick: true,
-				popupstyle: this.isDesktop ? 'fixforpc-top' : 'top'
+				popupstyle: 'top'
 			}
 		},
 		computed: {
@@ -269,8 +269,7 @@
 			open(direction) {
 				// fix by mehaotian 处理快速打开关闭的情况
 				if (this.showPopup) {
-					clearTimeout(this.timer)
-					this.showPopup = false
+					return
 				}
 				let innerType = ['top', 'center', 'bottom', 'left', 'right', 'message', 'dialog', 'share']
 				if (!(direction && innerType.indexOf(direction) !== -1)) {
@@ -360,7 +359,13 @@
 			 */
 			center(type) {
 				this.popupstyle = 'center'
-				this.ani = ['zoom-out', 'fade']
+				//微信小程序下，组合动画会出现文字向上闪动问题，再此做特殊处理
+				// #ifdef MP-WEIXIN
+					this.ani = ['fade']
+				// #endif
+				// #ifndef MP-WEIXIN
+					this.ani = ['zoom-out', 'fade']
+				// #endif
 				this.transClass = {
 					position: 'fixed',
 					/* #ifndef APP-NVUE */

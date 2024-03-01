@@ -42,7 +42,7 @@ export default {
     },
     pageSize: {
       type: Number,
-      default: 20
+      default: 500
     },
     getcount: {
       type: [Boolean, String],
@@ -94,7 +94,7 @@ export default {
     },
     map: {
       type: Object,
-      default() {
+      default () {
         return {
           text: "text",
           value: "value"
@@ -122,19 +122,22 @@ export default {
     }
   },
   computed: {
-    isLocaldata() {
-      return !this.collection.length
+    isLocalData() {
+      return !this.collection.length;
     },
-    postField() {
-      let fields = [this.field];
-      if (this.parentField) {
-        fields.push(`${this.parentField} as parent_value`);
-      }
-      return fields.join(',');
+    isCloudData() {
+      return this.collection.length > 0;
+    },
+    isCloudDataList() {
+      return (this.isCloudData && (!this.parentField && !this.selfField));
+    },
+    isCloudDataTree() {
+      return (this.isCloudData && this.parentField && this.selfField);
     },
     dataValue() {
-      let isModelValue = Array.isArray(this.modelValue) ? (this.modelValue.length > 0) : (this.modelValue !== null || this.modelValue !== undefined)
-      return isModelValue ? this.modelValue : this.value
+      let isModelValue = Array.isArray(this.modelValue) ? (this.modelValue.length > 0) : (this.modelValue !== null ||
+        this.modelValue !== undefined);
+      return isModelValue ? this.modelValue : this.value;
     },
     hasValue() {
       if (typeof this.dataValue === 'number') {
@@ -183,8 +186,169 @@ export default {
   },
   methods: {
     onPropsChange() {
-      this._treeData = []
+      this._treeData = [];
     },
+
+    // 填充 pickview 数据
+    async loadData() {
+      if (this.isLocalData) {
+        this.loadLocalData();
+      } else if (this.isCloudDataList) {
+        this.loadCloudDataList();
+      } else if (this.isCloudDataTree) {
+        this.loadCloudDataTree();
+      }
+    },
+
+    // 加载本地数据
+    async loadLocalData() {
+      this._treeData = [];
+      this._extractTree(this.localdata, this._treeData);
+
+      let inputValue = this.dataValue;
+      if (inputValue === undefined) {
+        return;
+      }
+
+      if (Array.isArray(inputValue)) {
+        inputValue = inputValue[inputValue.length - 1];
+        if (typeof inputValue === 'object' && inputValue[this.map.value]) {
+          inputValue = inputValue[this.map.value];
+        }
+      }
+
+      this.selected = this._findNodePath(inputValue, this.localdata);
+    },
+
+    // 加载 Cloud 数据 (单列)
+    async loadCloudDataList() {
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
+
+      try {
+        let response = await this.getCommand();
+        let responseData = response.result.data;
+
+        this._treeData = responseData;
+
+        this._updateBindData();
+        this._updateSelected();
+
+        this.onDataChange();
+      } catch (e) {
+        this.errorMessage = e;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    // 加载 Cloud 数据 (树形)
+    async loadCloudDataTree() {
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
+
+      try {
+        let commandOptions = {
+          field: this._cloudDataPostField(),
+          where: this._cloudDataTreeWhere()
+        };
+        if (this.gettree) {
+          commandOptions.startwith = `${this.selfField}=='${this.dataValue}'`;
+        }
+
+        let response = await this.getCommand(commandOptions);
+        let responseData = response.result.data;
+
+        this._treeData = responseData;
+        this._updateBindData();
+        this._updateSelected();
+
+        this.onDataChange();
+      } catch (e) {
+        this.errorMessage = e;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    // 加载 Cloud 数据 (节点)
+    async loadCloudDataNode(callback) {
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
+
+      try {
+        let commandOptions = {
+          field: this._cloudDataPostField(),
+          where: this._cloudDataNodeWhere()
+        };
+
+        let response = await this.getCommand(commandOptions);
+        let responseData = response.result.data;
+
+        callback(responseData);
+      } catch (e) {
+        this.errorMessage = e;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    // 回显 Cloud 数据
+    getCloudDataValue() {
+      if (this.isCloudDataList) {
+        return this.getCloudDataListValue();
+      }
+
+      if (this.isCloudDataTree) {
+        return this.getCloudDataTreeValue();
+      }
+    },
+
+    // 回显 Cloud 数据 (单列)
+    getCloudDataListValue() {
+      // 根据 field's as value标识匹配 where 条件
+      let where = [];
+      let whereField = this._getForeignKeyByField();
+      if (whereField) {
+        where.push(`${whereField} == '${this.dataValue}'`)
+      }
+
+      where = where.join(' || ');
+
+      if (this.where) {
+        where = `(${this.where}) && (${where})`
+      }
+
+      return this.getCommand({
+        field: this._cloudDataPostField(),
+        where
+      }).then((res) => {
+        this.selected = res.result.data;
+        return res.result.data;
+      });
+    },
+
+    // 回显 Cloud 数据 (树形)
+    getCloudDataTreeValue() {
+      return this.getCommand({
+        field: this._cloudDataPostField(),
+        getTreePath: {
+          startWith: `${this.selfField}=='${this.dataValue}'`
+        }
+      }).then((res) => {
+        let treePath = [];
+        this._extractTreePath(res.result.data, treePath);
+        this.selected = treePath;
+        return treePath;
+      });
+    },
+
     getCommand(options = {}) {
       /* eslint-disable no-undef */
       let db = uniCloud.database(this.spaceInfo)
@@ -229,125 +393,16 @@ export default {
 
       return db
     },
-		getNodeData(callback) {
-		  if (this.loading) {
-		    return
-		  }
-		  this.loading = true
-		  this.getCommand({
-		    field: this.postField,
-				where: this._pathWhere()
-		  }).then((res) => {
-		    this.loading = false
-		    this.selected = res.result.data
-		    callback && callback()
-		  }).catch((err) => {
-		    this.loading = false
-		    this.errorMessage = err
-		  })
-		},
-    getTreePath(callback) {
-      if (this.loading) {
-        return
-      }
-      this.loading = true
 
-      this.getCommand({
-        field: this.postField,
-        getTreePath: {
-          startWith: `${this.selfField}=='${this.dataValue}'`
-        }
-      }).then((res) => {
-        this.loading = false
-        let treePath = []
-        this._extractTreePath(res.result.data, treePath)
-        this.selected = treePath
-        callback && callback()
-      }).catch((err) => {
-        this.loading = false
-        this.errorMessage = err
-      })
+    _cloudDataPostField() {
+      let fields = [this.field];
+      if (this.parentField) {
+        fields.push(`${this.parentField} as parent_value`);
+      }
+      return fields.join(',');
     },
-    loadData() {
-      if (this.isLocaldata) {
-        this._processLocalData()
-        return
-      }
 
-      if (this.dataValue != null) {
-        this._loadNodeData((data) => {
-          this._treeData = data
-          this._updateBindData()
-          this._updateSelected()
-        })
-        return
-      }
-
-      if (this.stepSearh) {
-        this._loadNodeData((data) => {
-          this._treeData = data
-          this._updateBindData()
-        })
-      } else {
-        this._loadAllData((data) => {
-          this._treeData = []
-          this._extractTree(data, this._treeData, null)
-          this._updateBindData()
-        })
-      }
-    },
-    _loadAllData(callback) {
-      if (this.loading) {
-        return
-      }
-      this.loading = true
-
-      this.getCommand({
-        field: this.postField,
-        gettree: true,
-        startwith: `${this.selfField}=='${this.dataValue}'`
-      }).then((res) => {
-        this.loading = false
-        callback(res.result.data)
-        this.onDataChange()
-      }).catch((err) => {
-        this.loading = false
-        this.errorMessage = err
-      })
-    },
-    _loadNodeData(callback, pw) {
-      if (this.loading) {
-        return
-      }
-      this.loading = true
-
-      this.getCommand({
-        field: this.postField,
-        where: pw || this._postWhere(),
-        pageSize: 500
-      }).then((res) => {
-        this.loading = false
-        callback(res.result.data)
-        this.onDataChange()
-      }).catch((err) => {
-        this.loading = false
-        this.errorMessage = err
-      })
-    },
-    _pathWhere() {
-      let result = []
-      let where_field = this._getParentNameByField();
-      if (where_field) {
-        result.push(`${where_field} == '${this.dataValue}'`)
-      }
-
-      if (this.where) {
-        return `(${this.where}) && (${result.join(' || ')})`
-      }
-
-      return result.join(' || ')
-    },
-    _postWhere() {
+    _cloudDataTreeWhere() {
       let result = []
       let selected = this.selected
       let parentField = this.parentField
@@ -364,17 +419,35 @@ export default {
       if (this.where) {
         where.push(`(${this.where})`)
       }
+
       if (result.length) {
         where.push(`(${result.join(' || ')})`)
       }
 
       return where.join(' && ')
     },
-    _nodeWhere() {
-      let result = []
-      let selected = this.selected
+
+    _cloudDataNodeWhere() {
+      let where = []
+      let selected = this.selected;
       if (selected.length) {
-        result.push(`${this.parentField} == '${selected[selected.length - 1].value}'`)
+        where.push(`${this.parentField} == '${selected[selected.length - 1].value}'`);
+      }
+
+      where = where.join(' || ');
+
+      if (this.where) {
+        return `(${this.where}) && (${where})`
+      }
+
+      return where
+    },
+
+    _getWhereByForeignKey() {
+      let result = []
+      let whereField = this._getForeignKeyByField();
+      if (whereField) {
+        result.push(`${whereField} == '${this.dataValue}'`)
       }
 
       if (this.where) {
@@ -383,41 +456,23 @@ export default {
 
       return result.join(' || ')
     },
-    _getParentNameByField() {
-      const fields = this.field.split(',');
-      let where_field = null;
+
+    _getForeignKeyByField() {
+      let fields = this.field.split(',');
+      let whereField = null;
       for (let i = 0; i < fields.length; i++) {
         const items = fields[i].split('as');
         if (items.length < 2) {
           continue;
         }
         if (items[1].trim() === 'value') {
-          where_field = items[0].trim();
+          whereField = items[0].trim();
           break;
         }
       }
-      return where_field
+      return whereField;
     },
-    _isTreeView() {
-      return (this.parentField && this.selfField)
-    },
-    _updateSelected() {
-      var dl = this.dataList
-      var sl = this.selected
-      let textField = this.map.text
-      let valueField = this.map.value
-      for (var i = 0; i < sl.length; i++) {
-        var value = sl[i].value
-        var dl2 = dl[i]
-        for (var j = 0; j < dl2.length; j++) {
-          var item2 = dl2[j]
-          if (item2[valueField] === value) {
-            sl[i].text = item2[textField]
-            break
-          }
-        }
-      }
-    },
+
     _updateBindData(node) {
       const {
         dataList,
@@ -445,6 +500,25 @@ export default {
         hasNodes
       }
     },
+
+    _updateSelected() {
+      let dl = this.dataList
+      let sl = this.selected
+      let textField = this.map.text
+      let valueField = this.map.value
+      for (let i = 0; i < sl.length; i++) {
+        let value = sl[i].value
+        let dl2 = dl[i]
+        for (let j = 0; j < dl2.length; j++) {
+          let item2 = dl2[j]
+          if (item2[valueField] === value) {
+            sl[i].text = item2[textField]
+            break
+          }
+        }
+      }
+    },
+
     _filterData(data, paths) {
       let dataList = []
       let hasNodes = true
@@ -453,8 +527,8 @@ export default {
         return (item.parent_value === null || item.parent_value === undefined || item.parent_value === '')
       }))
       for (let i = 0; i < paths.length; i++) {
-        var value = paths[i].value
-        var nodes = data.filter((item) => {
+        let value = paths[i].value
+        let nodes = data.filter((item) => {
           return item.parent_value === value
         })
 
@@ -470,6 +544,7 @@ export default {
         hasNodes
       }
     },
+
     _extractTree(nodes, result, parent_value) {
       let list = result || []
       let valueField = this.map.value
@@ -493,6 +568,7 @@ export default {
         }
       }
     },
+
     _extractTreePath(nodes, result) {
       let list = result || []
       for (let i = 0; i < nodes.length; i++) {
@@ -512,6 +588,7 @@ export default {
         }
       }
     },
+
     _findNodePath(key, nodes, path = []) {
       let textField = this.map.text
       let valueField = this.map.value
@@ -540,24 +617,6 @@ export default {
         path.pop()
       }
       return []
-    },
-    _processLocalData() {
-      this._treeData = []
-      this._extractTree(this.localdata, this._treeData)
-
-      var inputValue = this.dataValue
-      if (inputValue === undefined) {
-        return
-      }
-
-      if (Array.isArray(inputValue)) {
-        inputValue = inputValue[inputValue.length - 1]
-        if (typeof inputValue === 'object' && inputValue[this.map.value]) {
-          inputValue = inputValue[this.map.value]
-        }
-      }
-
-      this.selected = this._findNodePath(inputValue, this.localdata)
     }
   }
 }

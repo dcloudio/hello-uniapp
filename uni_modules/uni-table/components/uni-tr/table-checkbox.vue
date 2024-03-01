@@ -77,7 +77,7 @@
 </script>
 
 <style lang="scss">
-	$checked-color: #007aff;
+	$uni-primary: #007aff !default;
 	$border-color: #DCDFE6;
 	$disable:0.4;
 
@@ -125,8 +125,8 @@
 			}
 
 			&.checkbox--indeterminate {
-				border-color: $checked-color;
-				background-color: $checked-color;
+				border-color: $uni-primary;
+				background-color: $uni-primary;
 
 				.checkbox__inner-icon {
 					position: absolute;
@@ -147,7 +147,7 @@
 				}
 			}
 			&:hover{
-				border-color: $checked-color;
+				border-color: $uni-primary;
 			}
 			// 禁用
 			&.is-disable {
@@ -160,8 +160,8 @@
 
 			// 选中
 			&.is-checked {
-				border-color: $checked-color;
-				background-color: $checked-color;
+				border-color: $uni-primary;
+				background-color: $uni-primary;
 
 				.checkbox__inner-icon {
 					opacity: 1;

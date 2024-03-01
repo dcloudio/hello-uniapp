@@ -1,0 +1,19 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+  "bsonType": "object",
+  "required": ["_id", "value"],
+  "properties": {
+    "_id": {
+      "bsonType": "string",
+      "description": "key，格式：uni-id:[provider]:[appid]:[openid]:[access-token|user-access-token|session-key|encrypt-key-version|ticket]"
+    },
+    "value": {
+      "bsonType": "object",
+      "description": "字段_id对应的值"
+    },
+    "expired": {
+      "bsonType": "date",
+      "description": "过期时间"
+    }
+  }
+}

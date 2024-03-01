@@ -1,7 +1,7 @@
 {
 	"uni-datetime-picker.selectDate": "select date",
 	"uni-datetime-picker.selectTime": "select time",
-	"uni-datetime-picker.selectDateTime": "select datetime",
+	"uni-datetime-picker.selectDateTime": "select date and time",
 	"uni-datetime-picker.startDate": "start date",
 	"uni-datetime-picker.endDate": "end date",
 	"uni-datetime-picker.startTime": "start time",

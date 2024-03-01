@@ -31,7 +31,7 @@ bindIngXMixins = {
 	},
 	created() {
 		this.swipeaction = this.getSwipeAction()
-		if (this.swipeaction.children !== undefined) {
+		if (this.swipeaction && Array.isArray(this.swipeaction.children)) {
 			this.swipeaction.children.push(this)
 		}
 	},
@@ -74,7 +74,7 @@ bindIngXMixins = {
 			// 每次只触发一次，避免多次监听造成闪烁
 			if (this.stop) return
 			this.stop = true
-			if (this.autoClose) {
+			if (this.autoClose && this.swipeaction) {
 				this.swipeaction.closeOther(this)
 			}
 

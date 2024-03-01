@@ -84,6 +84,7 @@
 	import { initVueI18n } from '@dcloudio/uni-i18n'
 	import i18nMessages from './i18n/index.js'
 	const {	t	} = initVueI18n(i18nMessages)
+  import { fixIosDateFormat } from './util'
 
 	/**
 	 * DatetimePicker 时间选择器
@@ -176,7 +177,7 @@
 			value: {
 				handler(newVal) {
           if (newVal) {
-            this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+            this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
             this.time = ''
@@ -190,7 +191,7 @@
 			modelValue: {
         handler(newVal) {
           if (newVal) {
-						this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+						this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
 						this.time = ''
@@ -220,13 +221,13 @@
 			},
 			start: {
 				handler(newVal) {
-					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'start') //兼容 iOS、safari 日期格式
+					this.parseDatetimeRange(fixIosDateFormat(newVal), 'start')
 				},
 				immediate: true
 			},
 			end: {
 				handler(newVal) {
-					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'end') //兼容 iOS、safari 日期格式
+					this.parseDatetimeRange(fixIosDateFormat(newVal), 'end')
 				},
 				immediate: true
 			},
@@ -648,14 +649,6 @@
 				return new Date(year, month, 0).getDate();
 			},
 
-			//兼容 iOS、safari 日期格式
-			fixIosDateFormat(value) {
-				if (typeof value === 'string') {
-					value = value.replace(/-/g, '/')
-				}
-				return value
-			},
-
 			/**
 			 * 生成时间戳
 			 * @param {Object} time
@@ -739,7 +732,7 @@
 			 */
 			initTimePicker() {
 				if (this.disabled) return
-				const value = this.fixIosDateFormat(this.time)
+				const value = fixIosDateFormat(this.time)
 				this.initPickerValue(value)
 				this.visible = !this.visible
 			},

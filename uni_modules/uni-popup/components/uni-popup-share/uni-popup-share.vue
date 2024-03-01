@@ -47,7 +47,7 @@
 					{
 						text: '支付宝',
 						icon: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/d684ae40-50be-11eb-8ff1-d5dcf8779628.png',
-						name: 'wx'
+						name: 'ali'
 					},
 					{
 						text: 'QQ',

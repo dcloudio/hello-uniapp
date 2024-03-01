@@ -1,7 +1,7 @@
 {
   "id": "uni-list",
   "displayName": "uni-list 列表",
-  "version": "1.2.1",
+  "version": "1.2.14",
   "description": "List 组件 ，帮助使用者快速构建列表。",
   "keywords": [
     "",
@@ -18,11 +18,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -39,7 +35,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [

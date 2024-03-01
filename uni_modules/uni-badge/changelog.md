@@ -1,3 +1,5 @@
+## 1.2.2（2023-01-28）
+- 修复 运行/打包 控制台警告问题
 ## 1.2.1（2022-09-05）
 - 修复 当 text 超过 max-num 时，badge 的宽度计算是根据 text 的长度计算，更改为 css 计算实际展示宽度，详见:[https://ask.dcloud.net.cn/question/150473](https://ask.dcloud.net.cn/question/150473)
 ## 1.2.0（2021-11-19）

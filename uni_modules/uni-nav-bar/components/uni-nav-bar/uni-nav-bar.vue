@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-navbar" :class="{'uni-dark':dark, 'uni-nvue-fixed': fixed}">
 		<view class="uni-navbar__content" :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }"
-			:style="{ 'background-color': themeBgColor }" >
+			:style="{ 'background-color': themeBgColor, 'border-bottom-color':themeColor }" >
 			<status-bar v-if="statusBar" />
 			<view :style="{ color: themeColor,backgroundColor: themeBgColor ,height:navbarHeight}"
 				class="uni-navbar__header">

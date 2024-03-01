@@ -1,3 +1,7 @@
+## 3.3.31（2023-12-13）
+- 移除无用文件
+## 3.3.30（2023-12-13）
+- 短信、一键登录相关密钥改为非必填
 ## 3.3.29（2022-10-20）
 - 使用[uni-open-bridge-common](https://uniapp.dcloud.net.cn/uniCloud/uni-open-bridge.html#common)存储用户三方凭证，以便其他服务使用。
 ## 3.3.28（2022-07-27）

@@ -7,7 +7,7 @@
 			</view>
 		</template>
 		<template v-else>
-			<checkbox-group v-if="multiple" class="checklist-group" :class="{'is-list':mode==='list' || wrap}" @change="chagne">
+			<checkbox-group v-if="multiple" class="checklist-group" :class="{'is-list':mode==='list' || wrap}" @change="change">
 				<label class="checklist-box" :class="['is--'+mode,item.selected?'is-checked':'',(disabled || !!item.disabled)?'is-disable':'',index!==0&&mode==='list'?'is-list-border':'']"
 				 :style="item.styleBackgroud" v-for="(item,index) in dataList" :key="index">
 					<checkbox class="hidden" hidden :disabled="disabled || !!item.disabled" :value="item[map.value]+''" :checked="item.selected" />
@@ -20,7 +20,7 @@
 					</view>
 				</label>
 			</checkbox-group>
-			<radio-group v-else class="checklist-group" :class="{'is-list':mode==='list','is-wrap':wrap}" @change="chagne">
+			<radio-group v-else class="checklist-group" :class="{'is-list':mode==='list','is-wrap':wrap}" @change="change">
 				<!-- -->
 				<label class="checklist-box" :class="['is--'+mode,item.selected?'is-checked':'',(disabled || !!item.disabled)?'is-disable':'',index!==0&&mode==='list'?'is-list-border':'']"
 				 :style="item.styleBackgroud" v-for="(item,index) in dataList" :key="index">
@@ -248,7 +248,7 @@
 				}
 				return parent;
 			},
-			chagne(e) {
+			change(e) {
 				const values = e.detail.value
 
 				let detail = {

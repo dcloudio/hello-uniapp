@@ -6,9 +6,7 @@
  */
 export const debounce = function(func, wait = 1000, immediate = true) {
 	let timer;
-	console.log(1);
 	return function() {
-		console.log(123);
 		let context = this,
 			args = arguments;
 		if (timer) clearTimeout(timer);

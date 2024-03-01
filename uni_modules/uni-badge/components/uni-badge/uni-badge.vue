@@ -21,7 +21,7 @@
 	 * 	@value error 红色
 	 * @property {String} inverted = [true|false] 是否无需背景颜色
 	 * @property {Number} maxNum 展示封顶的数字值，超过 99 显示 99+
-	 * @property {String} absolute = [rightTop|rightBottom|leftBottom|leftTop] 开启绝对定位, 角标将定位到其包裹的标签的四角上		
+	 * @property {String} absolute = [rightTop|rightBottom|leftBottom|leftTop] 开启绝对定位, 角标将定位到其包裹的标签的四角上
 	 * 	@value rightTop 右上
 	 * 	@value rightBottom 右下
 	 * 	@value leftTop 左上
@@ -192,11 +192,12 @@
 		display: flex;
 		overflow: hidden;
 		box-sizing: border-box;
+		font-feature-settings: "tnum";
+		min-width: 20px;
 		/* #endif */
 		justify-content: center;
 		flex-direction: row;
 		height: 20px;
-		min-width: 20px;
 		padding: 0 4px;
 		line-height: 18px;
 		color: #fff;
@@ -206,7 +207,6 @@
 		border: 1px solid #fff;
 		text-align: center;
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
-		font-feature-settings: "tnum";
 		font-size: $bage-size;
 		/* #ifdef H5 */
 		z-index: 999;
