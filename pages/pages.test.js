@@ -81,8 +81,6 @@ const pages = [
 	"/pages/extUI/button/button",
 	"/pages/template/nav-default/nav-default",
 	"/pages/template/component-communication/component-communication",
-
-	"/pages/template/list2detail-list/list2detail-list",
 	"/pages/template/list2detail-detail/list2detail-detail",
 	"/pages/template/tabbar/detail/detail",
 	"/pages/template/scheme/scheme",
@@ -97,7 +95,6 @@ const pages = [
 	"/pages/API/websocket-socketTask/websocket-socketTask",
 	"/pages/extUI/forms/forms",
 	"/pages/extUI/group/group",
-	"/pages/extUI/badge/badge",
 	"/pages/extUI/breadcrumb/breadcrumb",
 	"/pages/extUI/drawer/drawer",
 
@@ -126,7 +123,6 @@ const pages = [
 
 	...((isMatch('android') || isMatch('mp-weixin')) ? [
 		// // 只有app和微信小程序支持
-		"/pages/API/rewarded-video-ad/rewarded-video-ad",
 		"/pages/API/ibeacon/ibeacon",
 	] : []),
 
@@ -150,13 +146,16 @@ const pages = [
 	// "/pages/template/vant-button/vant-button",
 
 	// 动态内容
-	//"/pages/component/ad/ad",
+	// "/pages/component/ad/ad",
 	// "/pages/component/swiper/swiper",
 	// "/pages/component/canvas/canvas",
 	// "/pages/extUI/dateformat/dateformat",
 	// "/pages/extUI/datetime-picker/datetime-picker",
 	// "/pages/extUI/list/chat",
 	// "/pages/extUI/notice-bar/notice-bar",
+	// "/pages/template/list2detail-list/list2detail-list",
+	// "/pages/API/rewarded-video-ad/rewarded-video-ad",
+	// "/pages/extUI/badge/badge",
 
 	// 网络图片加载
 	// "/pages/template/nav-search-input/nav-search-input",
@@ -219,7 +218,7 @@ describe("page screenshot test", () => {
 	});
 	beforeEach(async () => {
 		page = await program.reLaunch(pages[pageIndex]);
-		await page.waitFor(1000);
+		await page.waitFor(2000);
 	});
 	afterEach(() => {
 		pageIndex++;
