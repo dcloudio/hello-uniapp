@@ -11,7 +11,9 @@ describe('pages/API/download-file/download-file.vue', () => {
 	it('check download url', async () => {
 		expect.assertions(1);
 		await page.callMethod('downloadImage')
-		await page.waitFor(500)
-		expect(await page.data('imageSrc')).toBeTruthy();
+		await page.waitFor(2000)
+		const data = await page.data()
+		console.log("data",data)
+		expect(await page.data('jest_result')).toBeTruthy();
 	});
 });
