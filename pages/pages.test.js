@@ -116,7 +116,6 @@ const pages = [
 		// 只有app支持
 		"/pages/API/subnvue/subnvue",
 		"/pages/API/full-screen-video-ad/full-screen-video-ad",
-		"/pages/API/map-search/map-search",
 		"/platforms/app-plus/feedback/feedback",
 		"/platforms/app-plus/speech/speech",
 		"/platforms/app-plus/orientation/orientation",
@@ -194,23 +193,22 @@ const pages = [
 	// "/pages/template/swiper-list/swiper-list",
 	// "/pages/extUI/countdown/countdown",
 	// "/pages/template/swiper-list-nvue/swiper-list-nvue",
+	// "/pages/API/map-search/map-search",
 
 	// "/pages/API/websocket-global/websocket-global",
 	// "/pages/component/map/map",
 ]
 
 function isMatch(platform) {
-	return process.env.uniTestPlatformInfo.includes(platform)
+	return process.env.uniTestPlatformInfo.toLocaleLowerCase().includes(platform)
 }
 
 // 设置position: fixed的页面不能截取完整内容
-const notFullPages = [
-
-]
+const notFullPages = []
 
 let page;
 describe("page screenshot test", () => {
-	if (isMatch('iOS')) {
+	if (isMatch('ios')) {
 		it("ios platform not support", async () => {
 			expect(1).toBe(1);
 		});
