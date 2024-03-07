@@ -52,7 +52,6 @@ const pages = [
 	"/pages/API/download-file/download-file",
 	"/pages/API/image/image",
 	"/pages/API/voice/voice",
-	"/pages/API/inner-audio/inner-audio",
 	"/pages/API/background-audio/background-audio",
 	"/pages/API/video/video",
 	"/pages/API/file/file",
@@ -97,6 +96,8 @@ const pages = [
 	"/pages/extUI/group/group",
 	"/pages/extUI/breadcrumb/breadcrumb",
 	"/pages/extUI/drawer/drawer",
+	"/pages/template/nav-search-input/nav-search-input",
+	"/pages/about/about",
 
 	...(isMatch('web') ? [
 		// 只有h5支持
@@ -122,12 +123,12 @@ const pages = [
 	] : []),
 
 	...((isMatch('android') || isMatch('mp-weixin')) ? [
-		// // 只有app和微信小程序支持
+		// 只有app和微信小程序支持
 		"/pages/API/ibeacon/ibeacon",
 	] : []),
 
 	...(isMatch('mp-weixin') ? [] : [
-		// // 微信小程序不支持
+		// 微信小程序不支持
 		"/pages/component/web-view-local/web-view-local",
 		"/pages/template/nav-transparent/nav-transparent",
 		"/pages/template/nav-image/nav-image",
@@ -135,6 +136,11 @@ const pages = [
 		"/pages/template/nav-dot/nav-dot",
 		"/pages/template/nav-search-input/detail/detail",
 		"/pages/template/nav-button/nav-button",
+	]),
+
+	...(isMatch('safari') ? [] : [
+		// safari 在此页面会莫名卡住
+		"/pages/API/inner-audio/inner-audio",
 	]),
 
 	// 只有vue3支持
@@ -156,10 +162,6 @@ const pages = [
 	// "/pages/template/list2detail-list/list2detail-list",
 	// "/pages/API/rewarded-video-ad/rewarded-video-ad",
 	// "/pages/extUI/badge/badge",
-
-	// 网络图片加载
-	// "/pages/template/nav-search-input/nav-search-input",
-	// "/pages/about/about"
 
 	// nvue页面截图白屏
 	// "/pages/tabBar/component/component",
