@@ -115,7 +115,8 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+        "libVersion" : "latest"
     },
     "mp-alipay" : {
         "usingComponents" : true,

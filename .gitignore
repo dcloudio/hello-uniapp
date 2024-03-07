@@ -5,3 +5,4 @@ unpackage/
 wxcomponents/**/*.vue
 wxcomponents/**/*.css
 .hbuilderx/
+__image_snapshots__
