@@ -10,7 +10,8 @@ describe('pages/API/download-file/download-file.vue', () => {
 		expect.assertions(1);
 		await page.callMethod('downloadImage')
 		await page.waitFor(2000)
-		console.log(await page.data('imageSrc'))
-		expect(await page.data('imageSrc')).toBeTruthy();
+		const data = await page.data()
+		console.log("data",data)
+		expect(await page.data('jest_result')).toBeTruthy();
 	});
 });

@@ -21,7 +21,9 @@
 		data() {
 			return {
 				title: 'downloadFile',
-				imageSrc: ''
+				imageSrc: '',
+				//自动化测试例专用
+				jest_result: false
 			}
 		},
 		onUnload() {
@@ -36,12 +38,14 @@
 				uni.downloadFile({
 					url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/uni-app.png",
 					success: (res) => {
+						this.jest_result = true
 						console.log('downloadFile success, res is', res)
 						self.imageSrc = res.tempFilePath;
 						uni.hideLoading();
 					},
 					fail: (err) => {
 						console.log('downloadFile fail, err is:', err)
+						this.jest_result = false
 					}
 				})
 			}
