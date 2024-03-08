@@ -96,8 +96,6 @@ const pages = [
 	"/pages/extUI/group/group",
 	"/pages/extUI/breadcrumb/breadcrumb",
 	"/pages/extUI/drawer/drawer",
-	"/pages/template/nav-search-input/nav-search-input",
-	"/pages/about/about",
 
 	...(isMatch('web') ? [
 		// 只有h5支持
@@ -136,6 +134,8 @@ const pages = [
 		"/pages/template/nav-dot/nav-dot",
 		"/pages/template/nav-search-input/detail/detail",
 		"/pages/template/nav-button/nav-button",
+		"/pages/template/nav-search-input/nav-search-input",
+		"/pages/about/about",
 	]),
 
 	...(isMatch('safari') ? [] : [
