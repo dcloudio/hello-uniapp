@@ -4,7 +4,7 @@ import Build from 'android.os.Build';
 import View from 'android.view.View';
 import Color from 'android.graphics.Color';
 import WindowManager from 'android.view.WindowManager';
-import { globalNotificationProgressFinishCallBack, globalNotificationProgressCallBack } from './index.uts';
+import { globalNotificationProgressFinishCallBack, globalNotificationProgressCallBack } from './callbacks.uts';
 import { ACTION_DOWNLOAD_FINISH, ACTION_DOWNLOAD_PROGRESS } from "./constant.uts"
 
 
