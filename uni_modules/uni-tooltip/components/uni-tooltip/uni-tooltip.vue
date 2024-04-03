@@ -85,6 +85,7 @@
 	.uni-tooltip {
 		position: relative;
 		cursor: pointer;
+		display: inline-block;
 	}
 
 	.uni-tooltip-popup {

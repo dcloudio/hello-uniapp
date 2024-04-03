@@ -1,7 +1,7 @@
 {
   "id": "uni-upgrade-center-app",
   "displayName": "升级中心 uni-upgrade-center - App",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "uni升级中心 - 客户端检查更新",
   "keywords": [
     "uniCloud",

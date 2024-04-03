@@ -18,7 +18,7 @@ export type UniUpgradeCenterResult = {
 	uni_platform : string // "android" | "ios" // 版本号 1.0.0
 	stable_publish : boolean // 是否是稳定版
 	is_mandatory : boolean // 是否强制更新
-	is_silently : boolean	// 是否静默更新
+	is_silently : boolean | null	// 是否静默更新
 	create_env : string // "upgrade-center"
 	create_date : number
 	message : string
@@ -85,7 +85,7 @@ export default function () : Promise<UniUpgradeCenterResult> {
 					      code: res.result['code'],
 					      message: res.result['message']
 					    })
-					  } else if (code < 0) {
+					  } else if ((code as number) < 0) {
 					    reject({
 					      code: res.result['code'],
 					      message: res.result['message']

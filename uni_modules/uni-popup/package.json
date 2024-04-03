@@ -1,7 +1,7 @@
 {
 	"id": "uni-popup",
 	"displayName": "uni-popup 弹出层",
-	"version": "1.8.8",
+	"version": "1.9.1",
 	"description": " Popup 组件，提供常用的弹层",
 	"keywords": [
         "uni-ui",
@@ -46,7 +46,8 @@
 		"platforms": {
 			"cloud": {
 				"tcb": "y",
-				"aliyun": "y"
+                "aliyun": "y",
+                "alipay": "n"
 			},
 			"client": {
 				"App": {

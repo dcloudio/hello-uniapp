@@ -83,7 +83,8 @@
 							title:'页面预载成功'
 						})
 					},
-					fail(){
+					fail(e){
+						console.error(e);
 						uni.showToast({
 							title:'页面预载失败'
 						})

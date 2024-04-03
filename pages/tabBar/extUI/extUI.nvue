@@ -223,15 +223,17 @@
 		},
 		onLoad() {},
 		onReady() {
-			// // #ifdef APP-NVUE
-			// uni.preloadPage({
-			// 	url: "/pages/extUI/calendar/calendar",
-			// 	success() {
-			// 		console.log("preloadPage /pages/extUI/calendar/calendar")
-			// 	},
-			// 	fail() {}
-			// })
-			// // #endif
+			// #ifdef APP-NVUE
+			uni.preloadPage({
+				url: "/pages/extUI/calendar/calendar",
+				success() {
+					console.log("preloadPage/pages/extUI/calendar/calendar")
+				},
+				fail(e) {
+					console.log(e);
+				}
+			})
+			// #endif
 		},
 		onShareAppMessage() {
 			return {

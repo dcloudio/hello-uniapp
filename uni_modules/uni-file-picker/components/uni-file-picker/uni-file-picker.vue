@@ -533,6 +533,7 @@
 			 */
 			delFile(index) {
 				this.$emit('delete', {
+					index,
 					tempFile: this.files[index],
 					tempFilePath: this.files[index].url
 				})

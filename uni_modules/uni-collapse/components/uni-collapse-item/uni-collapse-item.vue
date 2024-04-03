@@ -40,7 +40,7 @@
 	 * @property {String} name 唯一标志符
 	 * @property {Boolean} open = [true|false] 是否展开组件
 	 * @property {Boolean} titleBorder = [true|false] 是否显示标题分隔线
-	 * @property {Boolean} border = [true|false] 是否显示分隔线
+	 * @property {String} border = ['auto'|'show'|'none'] 是否显示分隔线
 	 * @property {Boolean} disabled = [true|false] 是否展开面板
 	 * @property {Boolean} showAnimation = [true|false] 开启动画
 	 * @property {Boolean} showArrow = [true|false] 是否显示右侧箭头

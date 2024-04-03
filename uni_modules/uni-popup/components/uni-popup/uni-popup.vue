@@ -5,7 +5,7 @@
 				:duration="duration" :show="showTrans" @click="onTap" />
 			<uni-transition key="2" :mode-class="ani" name="content" :styles="transClass" :duration="duration"
 				:show="showTrans" @click="onTap">
-				<view class="uni-popup__wrapper" :style="{ backgroundColor: bg }" :class="[popupstyle]" @click="clear">
+				<view class="uni-popup__wrapper" :style="getStyles" :class="[popupstyle]" @click="clear">
 					<slot />
 				</view>
 			</uni-transition>
@@ -39,6 +39,7 @@
 	 * @property {Boolean} isMaskClick = [true|false] 蒙版点击是否关闭弹窗
 	 * @property {String}  backgroundColor 主窗口背景色
 	 * @property {String}  maskBackgroundColor 蒙版颜色
+	 * @property {String}  borderRadius 设置圆角(左上、右上、右下和左下) 示例:"10px 10px 10px 10px"
 	 * @property {Boolean} safeArea		   是否适配底部安全区
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
 	 * @event {Function} maskClick 点击遮罩触发
@@ -86,6 +87,9 @@
 				type: String,
 				default: 'rgba(0, 0, 0, 0.4)'
 			},
+			borderRadius:{
+				type: String,
+			}
 		},
 
 		watch: {
@@ -157,6 +161,8 @@
 					backgroundColor: 'rgba(0, 0, 0, 0.4)'
 				},
 				transClass: {
+					backgroundColor: 'transparent',
+					borderRadius: this.borderRadius || "0",
 					position: 'fixed',
 					left: 0,
 					right: 0
@@ -167,6 +173,13 @@
 			}
 		},
 		computed: {
+			getStyles() {
+				let res = { backgroundColor: this.bg };
+				if (this.borderRadius || "0") {
+					res = Object.assign(res, { borderRadius: this.borderRadius })
+				}
+				return res;
+			},
 			isDesktop() {
 				return this.popupWidth >= 500 && this.popupHeight >= 500
 			},
@@ -221,6 +234,12 @@
 			this.setH5Visible()
 		},
 		// #endif
+		activated() {
+   	  this.setH5Visible(!this.showPopup);
+    },
+    deactivated() {
+      this.setH5Visible(true);
+    },
 		created() {
 			// this.mkclick =  this.isMaskClick || this.maskClick
 			if (this.isMaskClick === null && this.maskClick === null) {
@@ -240,10 +259,10 @@
 			this.maskClass.backgroundColor = this.maskBackgroundColor
 		},
 		methods: {
-			setH5Visible() {
+			setH5Visible(visible = true) {
 				// #ifdef H5
 				// fix by mehaotian 处理 h5 滚动穿透的问题
-				document.getElementsByTagName('body')[0].style.overflow = 'visible'
+				document.getElementsByTagName('body')[0].style.overflow =  visible ? "visible" : "hidden";
 				// #endif
 			},
 			/**
@@ -323,7 +342,8 @@
 					position: 'fixed',
 					left: 0,
 					right: 0,
-					backgroundColor: this.bg
+					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0"
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -347,7 +367,8 @@
 					right: 0,
 					bottom: 0,
 					paddingBottom: this.safeAreaInsets + 'px',
-					backgroundColor: this.bg
+					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -377,7 +398,8 @@
 					right: 0,
 					top: 0,
 					justifyContent: 'center',
-					alignItems: 'center'
+					alignItems: 'center',
+					borderRadius:this.borderRadius || "0"
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
@@ -393,6 +415,7 @@
 					bottom: 0,
 					top: 0,
 					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 					/* #ifndef APP-NVUE */
 					display: 'flex',
 					flexDirection: 'column'
@@ -412,6 +435,7 @@
 					right: 0,
 					top: 0,
 					backgroundColor: this.bg,
+					borderRadius:this.borderRadius || "0",
 					/* #ifndef APP-NVUE */
 					display: 'flex',
 					flexDirection: 'column'
