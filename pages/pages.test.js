@@ -238,7 +238,7 @@ describe("page screenshot test", () => {
 		const image = await program.screenshot({
 			fullPage: fullPage
 		});
-		expect(image).toMatchImageSnapshot();
+		expect(image).toSaveImageSnapshot();
 		await page.waitFor(500);
 	});
 });
