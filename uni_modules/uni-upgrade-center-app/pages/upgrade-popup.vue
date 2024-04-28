@@ -139,7 +139,11 @@
 				// 默认安装包信息
 				title: '更新日志',
 				contents: '',
+				version: '',
 				is_mandatory: false,
+				url: '',
+				platform: [],
+				store_list: null,
 
 				// 可自定义属性
 				subTitle: '发现新版本',

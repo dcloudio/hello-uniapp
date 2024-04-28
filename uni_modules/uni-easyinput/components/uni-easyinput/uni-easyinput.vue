@@ -142,7 +142,7 @@
 			// #ifdef MP-TOUTIAO
 			virtualHost: false,
 			// #endif
-			// #ifdef MP-TOUTIAO
+			// #ifndef MP-TOUTIAO
 			virtualHost: true
 			// #endif
 		},

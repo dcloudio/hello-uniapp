@@ -82,11 +82,11 @@ function chooseVideo(opts) {
 							name: item.name || '',
 							path: item.tempFilePath,
 							thumbTempFilePath: item.thumbTempFilePath,
-							size:item.size,
+							size: item.size,
 							type: (res.tempFile && res.tempFile.type) || '',
-							width:item.width,
-							height:item.height,
-							duration:item.duration,
+							width: item.width,
+							height: item.height,
+							duration: item.duration,
 							fileType: 'video',
 							cloudPath: '',
 						}
@@ -190,7 +190,7 @@ function normalizeChooseAndUploadFileRes(res, fileType) {
 	return res;
 }
 
-function uploadCloudFiles(files, max = 5, onUploadProgress) {
+function uploadCloudFiles(files, max = 5, onUploadProgress, isPrivate, domain) {
 	files = JSON.parse(JSON.stringify(files))
 	const len = files.length
 	let count = 0
@@ -235,6 +235,24 @@ function uploadCloudFiles(files, max = 5, onUploadProgress) {
 						next()
 					}
 				})
+			if (isPrivate) {
+				if(!domain){
+					uni.showToast({
+						title:"私有化上传开启时域名不能为空",
+						icon:"error"
+					})
+					return;
+				}
+				const extStorageManager = uniCloud.getExtStorageManager({
+					provider: "qiniu",
+					domain, // 域名地址
+				});
+				let res = await extStorageManager.updateFileStatus({
+					fileID: fileItem.cloudPath, // 待修改的文件
+					isPrivate: true, // true 私有 false 公共
+				});
+
+			}
 		}
 	})
 }

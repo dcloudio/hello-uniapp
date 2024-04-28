@@ -81,7 +81,7 @@
 				<view class="popup-x-body">
 					<Calendar ref="left" :showMonth="false" :start-date="calendarRange.startDate"
 						:end-date="calendarRange.endDate" :range="true" :pleStatus="endMultipleStatus" @change="leftChange"
-						@firstEnterCale="updateRightCale" style="padding: 0 8px;" />
+						@firstEnterCale="updateRightCale" style="padding: 0 8px;"/>
 					<Calendar ref="right" :showMonth="false" :start-date="calendarRange.startDate"
 						:end-date="calendarRange.endDate" :range="true" @change="rightChange" :pleStatus="startMultipleStatus"
 						@firstEnterCale="updateLeftCale" style="padding: 0 8px;border-left: 1px solid #F1F1F1;" />
@@ -98,7 +98,7 @@
 			:start-date="calendarRange.startDate" :end-date="calendarRange.endDate" :selectableTimes="mobSelectableTime"
 			:startPlaceholder="startPlaceholder" :endPlaceholder="endPlaceholder" :default-value="defaultValue"
 			:pleStatus="endMultipleStatus" :showMonth="false" :range="isRange" :hasTime="hasTime" :insert="false"
-			:hideSecond="hideSecond" @confirm="mobileChange" @maskClose="close" />
+			:hideSecond="hideSecond" @confirm="mobileChange" @maskClose="close" @change="calendarClick"/>
 	</view>
 </template>
 <script>
@@ -142,8 +142,14 @@
 
 	export default {
 		name: 'UniDatetimePicker',
+
 		options: {
+			// #ifdef MP-TOUTIAO
+			virtualHost: false,
+			// #endif
+			// #ifndef MP-TOUTIAO
 			virtualHost: true
+			// #endif
 		},
 		components: {
 			Calendar,
@@ -616,6 +622,7 @@
 					fulldate: e.fulldate
 				}
 				this.startMultipleStatus = Object.assign({}, this.startMultipleStatus, obj)
+				this.$emit('calendarClick', e)
 			},
 			rightChange(e) {
 				const {
@@ -630,6 +637,7 @@
 					fulldate: e.fulldate
 				}
 				this.endMultipleStatus = Object.assign({}, this.endMultipleStatus, obj)
+				this.$emit('calendarClick', e)
 			},
 			mobileChange(e) {
 				if (this.isRange) {
@@ -753,7 +761,7 @@
 			},
 			handleStartAndEnd(before, after, temp = false) {
 				if (!before) return
-				if(!after)after = before;
+				if (!after) after = before;
 				const type = temp ? 'tempRange' : 'range'
 				const isStartEarlierEnd = dateCompare(before, after)
 				this[type].startDate = isStartEarlierEnd ? before : after
@@ -817,6 +825,10 @@
 						this.$emit('update:modelValue', [])
 					}
 				}
+			},
+
+			calendarClick(e) {
+				this.$emit('calendarClick', e)
 			}
 		}
 	}

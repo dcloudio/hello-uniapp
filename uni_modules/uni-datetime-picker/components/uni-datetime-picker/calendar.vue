@@ -58,9 +58,8 @@
 
 				<view class="uni-calendar__weeks" v-for="(item,weekIndex) in weeks" :key="weekIndex">
 					<view class="uni-calendar__weeks-item" v-for="(weeks,weeksIndex) in item" :key="weeksIndex">
-						<calendar-item class="uni-calendar-item--hook" :weeks="weeks" :calendar="calendar"
-							:selected="selected" :checkHover="range" @change="choiceDate"
-							@handleMouse="handleMouse">
+						<calendar-item class="uni-calendar-item--hook" :weeks="weeks" :calendar="calendar" :selected="selected"
+							:checkHover="range" @change="choiceDate" @handleMouse="handleMouse">
 						</calendar-item>
 					</view>
 				</view>
@@ -101,13 +100,21 @@
 </template>
 
 <script>
-	import { Calendar, getDate, getTime } from './util.js';
+	import {
+		Calendar,
+		getDate,
+		getTime
+	} from './util.js';
 	import calendarItem from './calendar-item.vue'
 	import timePicker from './time-picker.vue'
 
-	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
 	import i18nMessages from './i18n/index.js'
-	const { t } = initVueI18n(i18nMessages)
+	const {
+		t
+	} = initVueI18n(i18nMessages)
 
 	/**
 	 * Calendar 日历
@@ -133,6 +140,15 @@
 		components: {
 			calendarItem,
 			timePicker
+		},
+
+		options: {
+			// #ifdef MP-TOUTIAO
+			virtualHost: false,
+			// #endif
+			// #ifndef MP-TOUTIAO
+			virtualHost: true
+			// #endif
 		},
 		props: {
 			date: {
@@ -163,8 +179,8 @@
 				type: String,
 				default: ''
 			},
-      startPlaceholder: {
-        type: String,
+			startPlaceholder: {
+				type: String,
 				default: ''
 			},
 			endPlaceholder: {
@@ -210,10 +226,10 @@
 					}
 				}
 			},
-      defaultValue: {
-        type: [String, Object, Array],
-        default: ''
-      }
+			defaultValue: {
+				type: [String, Object, Array],
+				default: ''
+			}
 		},
 		data() {
 			return {
@@ -260,7 +276,7 @@
 			},
 			startDate(val) {
 				// 字节小程序 watch 早于 created
-				if(!this.cale){
+				if (!this.cale) {
 					return
 				}
 				this.cale.setStartDate(val)
@@ -269,7 +285,7 @@
 			},
 			endDate(val) {
 				// 字节小程序 watch 早于 created
-				if(!this.cale){
+				if (!this.cale) {
 					return
 				}
 				this.cale.setEndDate(val)
@@ -278,7 +294,7 @@
 			},
 			selected(newVal) {
 				// 字节小程序 watch 早于 created
-				if(!this.cale){
+				if (!this.cale) {
 					return
 				}
 				this.cale.setSelectInfo(this.nowDate.fullDate, newVal)
@@ -309,16 +325,16 @@
 								this.cale.lastHover = false
 							}
 						} else {
-              // 字节小程序 watch 早于 created
-              if(!this.cale){
-                return
-              }
+							// 字节小程序 watch 早于 created
+							if (!this.cale) {
+								return
+							}
 
 							this.cale.setDefaultMultiple(before, after)
 							if (which === 'left' && before) {
 								this.setDate(before)
 								this.weeks = this.cale.weeks
-							} else if(after) {
+							} else if (after) {
 								this.setDate(after)
 								this.weeks = this.cale.weeks
 							}
@@ -423,7 +439,7 @@
 			},
 			// 蒙版点击事件
 			maskClick() {
-        this.close()
+				this.close()
 				this.$emit('maskClose')
 			},
 
@@ -454,36 +470,38 @@
 			 * @param {Object} date
 			 */
 			init(date) {
-        // 字节小程序 watch 早于 created
-				if(!this.cale){
+				// 字节小程序 watch 早于 created
+				if (!this.cale) {
 					return
 				}
 				this.cale.setDate(date || new Date())
 				this.weeks = this.cale.weeks
 				this.nowDate = this.cale.getInfo(date)
-        this.calendar = {...this.nowDate}
-        if(!date){
-          // 优化date为空默认不选中今天
-          this.calendar.fullDate = ''
-          if(this.defaultValue && !this.range){
-            // 暂时只支持移动端非范围选择
-            const defaultDate = new Date(this.defaultValue)
-            const fullDate = getDate(defaultDate)
-            const year = defaultDate.getFullYear()
-            const month = defaultDate.getMonth()+1
-            const date = defaultDate.getDate()
-            const day = defaultDate.getDay()
-            this.calendar = {
-              fullDate,
-              year,
-              month,
-              date,
-              day
-            },
-            this.tempSingleDate = fullDate
-            this.time = getTime(defaultDate, this.hideSecond)
-          }
-        }
+				this.calendar = {
+					...this.nowDate
+				}
+				if (!date) {
+					// 优化date为空默认不选中今天
+					this.calendar.fullDate = ''
+					if (this.defaultValue && !this.range) {
+						// 暂时只支持移动端非范围选择
+						const defaultDate = new Date(this.defaultValue)
+						const fullDate = getDate(defaultDate)
+						const year = defaultDate.getFullYear()
+						const month = defaultDate.getMonth() + 1
+						const date = defaultDate.getDate()
+						const day = defaultDate.getDay()
+						this.calendar = {
+								fullDate,
+								year,
+								month,
+								date,
+								day
+							},
+							this.tempSingleDate = fullDate
+						this.time = getTime(defaultDate, this.hideSecond)
+					}
+				}
 			},
 			/**
 			 * 打开日历弹窗
@@ -523,8 +541,8 @@
 			/**
 			 * 变化触发
 			 */
-			change() {
-				if (!this.insert) return
+			change(isSingleChange) {
+				if (!this.insert && !isSingleChange) return
 				this.setEmit('change')
 			},
 			/**
@@ -545,13 +563,13 @@
 			 * @param {Object} name
 			 */
 			setEmit(name) {
-        if(!this.range){
-					if(!this.calendar.fullDate){
-					  this.calendar = this.cale.getInfo(new Date())
-					  this.tempSingleDate = this.calendar.fullDate
+				if (!this.range) {
+					if (!this.calendar.fullDate) {
+						this.calendar = this.cale.getInfo(new Date())
+						this.tempSingleDate = this.calendar.fullDate
 					}
-					if(this.hasTime && !this.time) {
-					  this.time = getTime(new Date(), this.hideSecond)
+					if (this.hasTime && !this.time) {
+						this.time = getTime(new Date(), this.hideSecond)
 					}
 				}
 				let {
@@ -593,19 +611,19 @@
 					this.tempRange.before = this.cale.multipleStatus.before
 					this.tempRange.after = this.cale.multipleStatus.after
 				}
-				this.change()
+				this.change(true)
 			},
-      changeMonth(type) {
-        let newDate
-        if(type === 'pre') {
-          newDate = this.cale.getPreMonthObj(this.nowDate.fullDate).fullDate
-        } else if(type === 'next') {
-          newDate = this.cale.getNextMonthObj(this.nowDate.fullDate).fullDate
-        }
+			changeMonth(type) {
+				let newDate
+				if (type === 'pre') {
+					newDate = this.cale.getPreMonthObj(this.nowDate.fullDate).fullDate
+				} else if (type === 'next') {
+					newDate = this.cale.getNextMonthObj(this.nowDate.fullDate).fullDate
+				}
 
-        this.setDate(newDate)
+				this.setDate(newDate)
 				this.monthSwitch()
-      },
+			},
 			/**
 			 * 设置日期
 			 * @param {Object} date
@@ -619,7 +637,7 @@
 	}
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 	$uni-primary: #007aff !default;
 
 	.uni-calendar {
@@ -855,17 +873,17 @@
 
 	.uni-date-changed--time-end {
 		/* #ifndef APP-NVUE */
-    display: flex;
+		display: flex;
 		/* #endif */
 		align-items: center;
 	}
 
 	.uni-date-changed--time-date {
-    color: #999;
+		color: #999;
 		line-height: 50px;
-    /* #ifdef MP-TOUTIAO */
-    font-size: 16px;
-    /* #endif */
+		/* #ifdef MP-TOUTIAO */
+		font-size: 16px;
+		/* #endif */
 		margin-right: 5px;
 		// opacity: 0.6;
 	}
@@ -924,5 +942,6 @@
 	.uni-datetime-picker--btn:active {
 		opacity: 0.7;
 	}
+
 	/* #endif */
 </style>

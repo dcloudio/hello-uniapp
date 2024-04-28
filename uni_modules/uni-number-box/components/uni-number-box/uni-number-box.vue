@@ -145,7 +145,7 @@
 				this.$emit('blur', event)
 				let value = event.detail.value;
 				if (isNaN(value)) {
-					this.inputValue = this.min;
+					this.inputValue = this.value;
 					return;
 				}
 				value = +value;
@@ -200,8 +200,7 @@
 		height: $box-height;
 		text-align: center;
 		font-size: 14px;
-		border-left-width: 0;
-		border-right-width: 0;
+		border-width: 0;
 		color: $color;
 	}
 

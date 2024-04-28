@@ -25,8 +25,7 @@
 
 			};
 		},
-		methods: {
-		},
+		methods: {},
 		computed: {
 			initPlacement() {
 				let style = {};
@@ -75,7 +74,7 @@
 
 			placement: {
 				type: String,
-				default: 'left'
+				default: 'bottom'
 			},
 		}
 	}

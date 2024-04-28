@@ -81,10 +81,16 @@
 </template>
 
 <script>
-	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
 	import i18nMessages from './i18n/index.js'
-	const {	t	} = initVueI18n(i18nMessages)
-  import { fixIosDateFormat } from './util'
+	const {
+		t
+	} = initVueI18n(i18nMessages)
+	import {
+		fixIosDateFormat
+	} from './util'
 
 	/**
 	 * DatetimePicker 时间选择器
@@ -134,6 +140,14 @@
 				endSecond: 59,
 			}
 		},
+		options: {
+			// #ifdef MP-TOUTIAO
+			virtualHost: false,
+			// #endif
+			// #ifndef MP-TOUTIAO
+			virtualHost: true
+			// #endif
+		},
 		props: {
 			type: {
 				type: String,
@@ -176,11 +190,11 @@
 			// #ifndef VUE3
 			value: {
 				handler(newVal) {
-          if (newVal) {
-            this.parseValue(fixIosDateFormat(newVal))
+					if (newVal) {
+						this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
-            this.time = ''
+						this.time = ''
 						this.parseValue(Date.now())
 					}
 				},
@@ -189,8 +203,8 @@
 			// #endif
 			// #ifdef VUE3
 			modelValue: {
-        handler(newVal) {
-          if (newVal) {
+				handler(newVal) {
+					if (newVal) {
 						this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
