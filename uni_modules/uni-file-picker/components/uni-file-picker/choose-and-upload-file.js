@@ -190,7 +190,7 @@ function normalizeChooseAndUploadFileRes(res, fileType) {
 	return res;
 }
 
-function uploadCloudFiles(files, max = 5, onUploadProgress, isPrivate, domain) {
+function uploadCloudFiles(files, max = 5, onUploadProgress) {
 	files = JSON.parse(JSON.stringify(files))
 	const len = files.length
 	let count = 0
@@ -224,6 +224,32 @@ function uploadCloudFiles(files, max = 5, onUploadProgress, isPrivate, domain) {
 				.then(res => {
 					fileItem.url = res.fileID
 					fileItem.index = index
+
+					// if (isPrivate) {
+					// 	if (!domain) {
+					// 		uni.showToast({
+					// 			title: "私有化上传开启时域名不能为空",
+					// 			icon: "error"
+					// 		})
+					// 		return;
+					// 	}
+					// 	const extStorageManager = uniCloud.getExtStorageManager({
+					// 		provider: "qiniu",
+					// 		domain, // 域名地址
+					// 	});
+					// 	extStorageManager.updateFileStatus({
+					// 		fileID: fileItem.cloudPath, // 待修改的文件
+					// 		isPrivate: true, // true 私有 false 公共
+					// 	}).then(res => {
+					// 		console.log(res);
+					// 		if (res.errCode !== 0) {
+					// 			uni.showToast({
+					// 				title: res.errMsg,
+					// 				icon: "error"
+					// 			})
+					// 		}
+					// 	})
+					// }
 					if (cur < len) {
 						next()
 					}
@@ -235,24 +261,6 @@ function uploadCloudFiles(files, max = 5, onUploadProgress, isPrivate, domain) {
 						next()
 					}
 				})
-			if (isPrivate) {
-				if(!domain){
-					uni.showToast({
-						title:"私有化上传开启时域名不能为空",
-						icon:"error"
-					})
-					return;
-				}
-				const extStorageManager = uniCloud.getExtStorageManager({
-					provider: "qiniu",
-					domain, // 域名地址
-				});
-				let res = await extStorageManager.updateFileStatus({
-					fileID: fileItem.cloudPath, // 待修改的文件
-					isPrivate: true, // true 私有 false 公共
-				});
-
-			}
 		}
 	})
 }
