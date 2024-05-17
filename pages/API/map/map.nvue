@@ -40,23 +40,26 @@
                 <text class="list-text">是否开启实时路况</text>
                 <switch :checked="enableTraffic" @change="changeEnableTraffic" />
             </view> -->
-				<!-- #ifndef MP-JD -->
+			<!-- #ifndef MP-JD -->
             <button class="button" @click="changeScale">changeScale</button>
-            <button class="button" @click="changeRotate">changeRotate</button>
-				<button class="button" @click="changeSkew">skew</button>
-				<!-- #endif -->
+			<!-- #endif -->
+			<!-- #ifndef H5 || APP || MP-JD || MP-KUAISHOU -->
+			<button class="button" @click="changeRotate">changeRotate</button>
+			<button class="button" @click="changeSkew">changeSkew</button>
+			<!-- #endif -->
+
             <button class="button" @click="addMarkers">addMarkers</button>
             <button class="button" @click="addPolyline">addPolyline</button>
-				<!-- #ifndef MP-JD -->
+			<!-- #ifndef MP-JD -->
             <button class="button" @click="addPolygons">addPolygons</button>
-				<!-- #endif -->
+			<!-- #endif -->
             <button class="button" @click="addCircles">addCircles</button>
             <button class="button" @click="includePoint">includePoints</button>
             <button class="button" @click="handleGetCenterLocation">getCenterLocation</button>
             <button class="button" @click="handleGetRegion">getRegion</button>
-				<!-- #ifndef MP-JD -->
+			<!-- #ifndef MP-JD -->
             <button class="button" @click="handleTranslateMarker">translateMarker</button>
-				<!-- #endif -->
+			<!-- #endif -->
         </scroll-view>
     </view>
 </template>
@@ -417,14 +420,11 @@
 		/* #ifdef H5 */
 		width: 100%;
 		/* #endif */
-        height: 250px;
+        height: 350px;
         background-color: #f0f0f0;
     }
 
     .scrollview {
-		/* #ifdef H5 */
-		margin-top: 240px;
-		/* #endif */
         flex: 1;
         padding: 10px;
     }
