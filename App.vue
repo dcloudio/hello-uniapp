@@ -5,8 +5,9 @@
 	import {
 		version
 	} from './package.json'
+	// #ifdef APP-PLUS
 	import checkUpdate from '@/uni_modules/uni-upgrade-center-app/utils/check-update';
-
+	// #endif
 	export default {
 		onLaunch: function() {
 			// #ifdef H5

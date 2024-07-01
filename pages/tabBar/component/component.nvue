@@ -53,7 +53,10 @@
 							'swiper'
 							// #ifndef MP-TOUTIAO || MP-LARK
 							,
-							'movable-view',
+							'movable-view'
+							// #endif
+							// #ifndef  MP-TOUTIAO || MP-LARK || APP-HARMONY
+							,
 							'cover-view'
 							// #endif
 						]
@@ -66,7 +69,11 @@
 						id: 'form',
 						name: '表单组件',
 						open: false,
-						pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
+						pages: ['button', 'checkbox', 'form', 'input', 'label',
+						// #ifndef APP-HARMONY
+						'picker',
+						// #endif
+						'picker-view', 'radio',
 							'slider',
 							'switch', 'textarea',
 							// #ifdef APP-PLUS || MP-WEIXIN || H5 || MP-BAIDU
@@ -87,7 +94,7 @@
 							'video'
 						],
 					},
-					// #ifndef MP-TOUTIAO || MP-KUAISHOU
+					// #ifndef MP-TOUTIAO || MP-KUAISHOU || APP-HARMONY
 					{
 						id: 'map',
 						name: '地图',
@@ -126,7 +133,7 @@
 						pages: ['web-view']
 					},
 					// #endif
-					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK || MP-JD
+					// #ifndef H5 || MP-BAIDU || QUICKAPP-WEBVIEW || MP-LARK || MP-JD || APP-HARMONY
 					{
 						id: 'ad',
 						url: 'ad',

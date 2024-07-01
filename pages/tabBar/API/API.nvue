@@ -107,6 +107,7 @@
                             url: 'set-tabbar'
                         },
                         //#endif
+                        // #ifndef APP-HARMONY
                         {
                             name: '下拉刷新',
                             url: 'pull-down-refresh'
@@ -115,6 +116,7 @@
                             name: '创建动画',
                             url: 'animation'
                         },
+						// #endif
 						// #ifndef QUICKAPP-WEBVIEW-UNION
                         {
                             name: '创建绘画',
@@ -153,10 +155,13 @@
                     id: 'device',
                     name: '设备',
                     open: false,
-                    pages: [{
+                    pages: [
+						// #ifndef APP-HARMONY
+						{
                             name: '获取设备网络状态',
                             url: 'get-network-type'
                         },
+						// #endif
                         {
                             name: '获取设备系统信息',
                             url: 'get-system-info'
@@ -165,25 +170,27 @@
                             name: '打电话',
                             url: 'make-phone-call'
                         },
-                        //#ifndef H5
-                        {
-                            name: '震动',
-                            url: 'vibrate'
-                        },
-                        {
-                            name: '添加手机联系人',
-                            url: 'add-phone-contact'
-                        },
-                        {
-                            name: '扫码',
-                            url: 'scan-code'
-                        },
-						//#endif
+						// #ifndef H5 || APP-HARMONY
+						{
+						    name: '震动',
+						    url: 'vibrate'
+						},
+						{
+						    name: '添加手机联系人',
+						    url: 'add-phone-contact'
+						},
+						{
+						    name: '扫码',
+						    url: 'scan-code'
+						},
+						// #endif
+						// #ifndef APP-HARMONY
                         {
                             name: '剪贴板',
                             url: 'clipboard'
                         },
-                        // #ifndef H5 || MP-ALIPAY
+						// #endif
+                        // #ifndef H5 || MP-ALIPAY || APP-HARMONY
                         {
                             name: '屏幕亮度',
                             url: 'brightness'
@@ -207,13 +214,13 @@
                             url: 'ibeacon'
                         },
                         // #endif
-						// #ifdef APP || MP-WEIXIN
+						// #ifdef APP || MP-WEIXIN || APP-HARMONY
 						{
 							name: '监听加速度传感器',
 							url: 'on-accelerometer-change'
 						},
 						// #endif
-						// #ifdef APP || H5 ||MP-WEIXIN
+						// #ifdef APP || H5 || MP-WEIXIN || APP-HARMONY
 						{
 							name: '监听罗盘数据',
 							url: 'on-compass-change'
@@ -260,10 +267,12 @@
                             url: 'websocket-socketTask'
                         },
                         // #endif
-                        {
-                            name: '全局websocket',
-                            url: 'websocket-global'
-                        }
+						// #ifndef APP-HARMONY
+						{
+						    name: '全局websocket',
+						    url: 'websocket-global'
+						}
+						// #endif
                     ]
                 },
                 {
@@ -272,7 +281,7 @@
                     open: false,
                     pages: mediaPages
                 },
-				// #ifndef MP-KUAISHOU
+				// #ifndef MP-KUAISHOU || APP-HARMONY
                 {
                     id: 'location',
                     name: '位置',
@@ -338,7 +347,7 @@
                     open: false
                 },
                 // #endif
-                // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU || MP-LARK
+                // #ifndef H5 || QUICKAPP-WEBVIEW || MP-KUAISHOU || MP-LARK || APP-HARMONY
                 {
                     id: 'login',
                     name: '登录',
@@ -354,7 +363,7 @@
                     ]
                 },
 				// #endif
-				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
+				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION || APP-HARMONY
                 {
                     id: 'share',
                     name: '分享',

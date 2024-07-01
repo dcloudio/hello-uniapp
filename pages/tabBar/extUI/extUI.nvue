@@ -214,10 +214,12 @@
 						name: "uni-tooltip 文字提示",
 						url: "tooltip"
 					},
+					// #ifndef APP-HARMONY
 					{
 						name: "uni-transition 过渡动画",
 						url: "transition"
 					},
+					// #endif
 				]
 			};
 		},

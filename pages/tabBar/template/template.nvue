@@ -88,10 +88,12 @@
 						url: 'tabbar'
 					},
 					// #endif
+					// #ifndef APP-HARMONY
 					{
 						name: '组件通讯',
 						url: 'component-communication'
 					},
+					// #endif
 					// #ifndef MP-QQ || QUICKAPP-WEBVIEW
 					// {
 					// 	name: 'uCharts 图表',
