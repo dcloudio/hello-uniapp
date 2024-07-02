@@ -107,11 +107,11 @@
                             url: 'set-tabbar'
                         },
                         //#endif
-                        // #ifndef APP-HARMONY
                         {
                             name: '下拉刷新',
                             url: 'pull-down-refresh'
                         },
+                        // #ifndef APP-HARMONY
                         {
                             name: '创建动画',
                             url: 'animation'
