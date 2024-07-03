@@ -69,13 +69,13 @@
                     url: 'video'
                 },
                 // #endif
-                // #ifndef H5
+                // #ifndef H5 || APP-HARMONY
                 {
                     name: '文件',
                     url: 'file'
                 },
                 // #endif
-                // #ifndef H5 || MP-ALIPAY
+                // #ifndef H5 || MP-ALIPAY || APP-HARMONY
                 {
                     name: '保存媒体到本地',
                     url: 'save-media'
