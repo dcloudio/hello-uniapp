@@ -1,27 +1,33 @@
 <template>
-	<view class="uni-container">
-		<view v-if="!hasLeftWin" class="uni-header-logo">
-			<image class="uni-header-image" src="/static/componentIndex.png"></image>
-		</view>
-		<view v-if="!hasLeftWin" class="uni-hello-text">
-			<text class="hello-text">uni-app内置组件，展示样式仅供参考，文档详见：</text>
-			<u-link class="hello-link" :href="'https://uniapp.dcloud.io/component/'" :text="'https://uniapp.dcloud.io/component/'"
-			 :inWhiteList="true"></u-link>
-		</view>
-		<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
-			<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
-				<text class="uni-panel-text">{{item.name}}</text>
-				<text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+	<view>
+		<view class="uni-container" v-if="isAgree === true || isAgree === null">
+			<view v-if="!hasLeftWin" class="uni-header-logo">
+				<image class="uni-header-image" src="/static/componentIndex.png"></image>
 			</view>
-			<view class="uni-panel-c" v-if="item.open">
-				<view :class="{'left-win-active': leftWinActive === (item2.url ? item2.url.split('/')[3] : item2) && hasLeftWin}"
-				 class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item.id, item2)">
-					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
-					<text class="uni-navigate-icon uni-icon">&#xe470;</text>
+			<view v-if="!hasLeftWin" class="uni-hello-text">
+				<text class="hello-text">uni-app内置组件，展示样式仅供参考，文档详见：</text>
+				<u-link class="hello-link" :href="'https://uniapp.dcloud.io/component/'" :text="'https://uniapp.dcloud.io/component/'"
+				 :inWhiteList="true"></u-link>
+			</view>
+			<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
+				<view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index, item.id)">
+					<text class="uni-panel-text">{{item.name}}</text>
+					<text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+				</view>
+				<view class="uni-panel-c" v-if="item.open">
+					<view :class="{'left-win-active': leftWinActive === (item2.url ? item2.url.split('/')[3] : item2) && hasLeftWin}"
+					 class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" @click="goDetailPage(item.id, item2)">
+						<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
+						<text class="uni-navigate-icon uni-icon">&#xe470;</text>
+					</view>
 				</view>
 			</view>
 		</view>
+		<!-- #ifdef APP-HARMONY -->
+		<privacy-dialog ref="privacyDialogRef" :tabBar="true" @agree="isAgree=true" @disagree="isAgree=false"></privacy-dialog>
+		<!-- #endif -->
 	</view>
+
 </template>
 <script>
 	// TODO 修复Android v3 加载过慢问题
@@ -43,6 +49,7 @@
 		},
 		data() {
 			return {
+				isAgree: null,
 				list: [{
 						id: 'view',
 						name: '视图容器',
@@ -154,6 +161,14 @@
 			uni.navigateTo({
 				url: '/pages/about/about'
 			});
+		},
+		onReady() {
+			// #ifdef APP-HARMONY
+			let isAgree = this.$refs.privacyDialogRef.getIsAgree();
+			if (!isAgree) {
+				this.$refs.privacyDialogRef.open();
+			}
+			// #endif
 		},
 		// #ifdef H5
 		watch: {

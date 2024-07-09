@@ -82,7 +82,7 @@
 						]
 					},
 					// #endif
-					// #ifndef QUICKAPP-WEBVIEW || MP-KUAISHOU
+					// #ifndef QUICKAPP-WEBVIEW || MP-KUAISHOU || APP-HARMONY
 					{
 						name: '顶部选项卡',
 						url: 'tabbar'
@@ -100,7 +100,7 @@
 					// 	url: 'ucharts'
 					// },
 					// #endif
-					// #ifndef QUICKAPP-WEBVIEW
+					// #ifndef QUICKAPP-WEBVIEW || APP-HARMONY
 					{
 						name: '列表到详情示例',
 						url: 'list2detail-list'

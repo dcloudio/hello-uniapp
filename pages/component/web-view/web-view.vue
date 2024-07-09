@@ -12,8 +12,15 @@
 			}
 		},
 		onLoad(options) {
-			if (options && options.url) {
-				this.url = options.url;
+			if (options) {
+				if (options.url) {
+					this.url = decodeURIComponent(options.url);
+				}
+				if (options.title) {
+					uni.setNavigationBarTitle({
+						title: options.title
+					});
+				}
 			}
 		},
 		methods: {
