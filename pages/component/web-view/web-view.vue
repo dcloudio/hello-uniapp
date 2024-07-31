@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view :src="url" @message="getMessage"></web-view>
+		<web-view :src="url" :update-title="updateTitle" @message="getMessage"></web-view>
 	</view>
 </template>
 
@@ -8,7 +8,8 @@
 	export default {
 		data() {
 			return {
-				url: 'https://uniapp.dcloud.io/static/web-view.html'
+				url: 'https://uniapp.dcloud.io/static/web-view.html',
+				updateTitle: true
 			}
 		},
 		onLoad(options) {
@@ -17,6 +18,7 @@
 					this.url = decodeURIComponent(options.url);
 				}
 				if (options.title) {
+					this.updateTitle = false;
 					uni.setNavigationBarTitle({
 						title: options.title
 					});

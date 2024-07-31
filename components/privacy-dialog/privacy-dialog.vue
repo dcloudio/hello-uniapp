@@ -14,7 +14,7 @@
 				<text class="privacy-dialog-text">我们非常重视您的隐私保护，为了更好的保护您的隐私权益，我们将在您使用我们的产品前，向您说明我们的隐私政策。</text>
 				<text class="privacy-dialog-text">
 					您应当仔细阅读并同意
-					<text class="link" @click="openPrivacyLink">《用户隐身保护协议》</text>
+					<text class="link" @click="openPrivacyLink">《用户隐私保护协议》</text>
 					，当您同意我们的隐私政策后，我们才会为您提供服务。
 				</text>
 				<text class="privacy-dialog-text">如您同意，请点击“同意”开始接受我们的服务。</text>
