@@ -27,9 +27,9 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
     it('.uni-panel 列表长度', async () => {
 		const lists = await page.$$('.uni-panel')
 		if(process.env.UNI_PLATFORM == 'app-plus'){
-			expect(lists.length).toBe(41)
+			expect(lists.length).toBe(40)
 		}else if(process.env.UNI_PLATFORM == 'h5' || process.env.UNI_PLATFORM == 'mp-weixin'){
-			expect(lists.length).toBe(44)
+			expect(lists.length).toBe(43)
 		}
     })
     /**
