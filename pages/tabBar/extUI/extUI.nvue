@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-container">
+	<view class="uni-container extUI">
 		<view v-if="!hasLeftWin" class="uni-header-logo">
 			<image class="uni-header-image" src="/static/extuiIndex.png"></image>
 		</view>
