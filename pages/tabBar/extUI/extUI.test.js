@@ -25,14 +25,20 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
      * 检测列表长度,是否发生变化
      */
     it('.uni-panel 列表长度', async () => {
-		const lists = await page.$$('.uni-panel')
-		console.log('lists.length:',lists.length)
+		let lists = []
+		if(process.env.UNI_PLATFORM == 'h5'){
+			lists = await page.$$('.uni-container.extUI .uni-panel')
+		}else{
+			const extUIEl  = await page.$('.extUI')
+			lists = await extUIEl.$$('.uni-panel')
+		}
+		console.log('lists.length:',lists.length,(await page.data('lists')).length)
 		console.log('uniTestPlatformInfo:',process.env.uniTestPlatformInfo)
-		// if(process.env.UNI_PLATFORM == 'app-plus'){
-		// 	expect(lists.length).toBe(40)
-		// }else if(process.env.UNI_PLATFORM == 'h5' || process.env.UNI_PLATFORM == 'mp-weixin'){
-		// 	expect(lists.length).toBe(44)
-		// }
+		if(process.env.UNI_PLATFORM == 'app-plus'){
+			expect(lists.length).toBe(41)
+		}else if(process.env.UNI_PLATFORM == 'h5' || process.env.UNI_PLATFORM == 'mp-weixin'){
+			expect(lists.length).toBe(44)
+		}
     })
     /**
      * 检测打开列表第一个元素是否正确
