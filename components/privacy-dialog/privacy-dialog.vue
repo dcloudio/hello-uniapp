@@ -57,7 +57,7 @@
 			},
 			openPrivacyLink() {
 				let title = "用户隐私保护协议";
-				let url = encodeURIComponent("https://hellouniapp.dcloud.net.cn/markdown-share-docs/7565357f4d32ae17e6a4988c9b41b666/index.html");
+				let url = encodeURIComponent("https://hellouniapp.dcloud.net.cn/markdown-share-docs/7565357f4d32ae17e6a4988c9b41b666/index.html?v=20240911");
 				uni.navigateTo({
 					url: `/pages/component/web-view/web-view?title=${title}&url=${url}`
 				});
@@ -107,12 +107,14 @@
 			top: 0;
 			right: 0;
 			padding: 0;
-			width: 750rpx;
-			height: calc(100vh - 100rpx);
+			width: 100%;
+			height: 100vh;
 			display: none;
 
 			&.show {
-				display: block;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
 			.privacy-dialog-popup-mask {
@@ -127,24 +129,23 @@
 
 		.privacy-dialog-content {
 			position: relative;
-			border-radius: 20rpx;
-			margin: 40% auto 0 auto;
-			padding: 30rpx;
-			width: 650rpx;
+			border-radius: 10px;
+			padding: 15px;
+			width: 325px;
 			background-color: #fff;
 
 			.privacy-dialog-title {
-				font-size: 36rpx;
+				font-size: 18px;
 				color: #333;
-				margin-bottom: 40rpx;
+				margin-bottom: 20px;
 				text-align: center;
 				font-weight: bold;
 			}
 
 			.privacy-dialog-text {
-				font-size: 28rpx;
+				font-size: 14px;
 				color: #7a7e83;
-				margin-bottom: 20rpx;
+				margin-bottom: 10px;
 			}
 
 			.privacy-dialog-btns {
@@ -156,12 +157,12 @@
 
 			.privacy-dialog-btn {
 				flex: 1;
-				margin: 0 20rpx;
-				height: 80rpx;
-				line-height: 80rpx;
+				margin: 0 10px;
+				height: 40px;
+				line-height: 40px;
 				text-align: center;
-				border-radius: 10rpx;
-				font-size: 28rpx;
+				border-radius: 5px;
+				font-size: 14px;
 
 				&.primary {
 					background-color: #18bc37;
@@ -176,21 +177,21 @@
 		}
 
 		.disagree-box {
-			padding: 30rpx;
+			padding: 15px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 
 			.agree-btn {
-				width: 650rpx;
-				height: 80rpx;
-				line-height: 80rpx;
+				width: 325px;
+				height: 40px;
+				line-height: 40px;
 				text-align: center;
 				background-color: #18bc37;
 				color: #fff;
-				border-radius: 10rpx;
-				margin-top: 20rpx;
+				border-radius: 5px;
+				margin-top: 10px;
 			}
 		}
 	}
