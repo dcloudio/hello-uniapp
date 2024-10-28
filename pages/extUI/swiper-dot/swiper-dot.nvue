@@ -155,19 +155,6 @@
 		background-color: #cee1fd;
 	}
 
-	.image {
-		width: 750rpx;
-	}
-
-	/* #ifndef APP-NVUE */
-	::v-deep .image img {
-		-webkit-user-drag: none;
-		-khtml-user-drag: none;
-		-moz-user-drag: none;
-		-o-user-drag: none;
-		user-drag: none;
-	}
-
 	/* #endif */
 
 	@media screen and (min-width: 500px) {
