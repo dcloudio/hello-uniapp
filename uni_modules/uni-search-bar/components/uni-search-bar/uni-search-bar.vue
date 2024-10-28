@@ -8,8 +8,8 @@
 				</slot>
 			</view>
 			<input v-if="show || searchVal" :focus="showSync" :disabled="readonly" :placeholder="placeholderText" :maxlength="maxlength"
-				class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal"
-				@confirm="confirm" @blur="blur" @focus="emitFocus" />
+				class="uni-searchbar__box-search-input" confirm-type="search" type="text" v-model="searchVal" :style="{color:textColor}"
+				@confirm="confirm" @blur="blur" @focus="emitFocus"/>
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
 			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='') &&!readonly"
 				class="uni-searchbar__box-icon-clear" @click="clear">
@@ -49,6 +49,7 @@
 	 * 	@value none 一直不显示
 	 * @property {String} cancelText 取消按钮的文字
 	 * @property {String} bgColor 输入框背景颜色
+	 * @property {String} textColor 输入文字颜色
 	 * @property {Boolean} focus 是否自动聚焦
 	 * @property {Boolean} readonly 组件只读，不能有任何操作，只做展示
 	 * @event {Function} confirm uniSearchBar 的输入框 confirm 事件，返回参数为uniSearchBar的value，e={value:Number}
@@ -80,11 +81,15 @@
 			},
 			cancelText: {
 				type: String,
-				default: '取消'
+				default: ""
 			},
 			bgColor: {
 				type: String,
 				default: "#F8F8F8"
+			},
+			textColor: {
+				type: String,
+				default: "#000000"
 			},
 			maxlength: {
 				type: [Number, String],
@@ -176,10 +181,10 @@
 				})
 			},
 			clear() {
-				this.$emit("clear", {
-					value: this.searchVal
-				})
 				this.searchVal = ""
+				this.$nextTick(() => {
+					this.$emit("clear", { value: "" })
+				})
 			},
 			cancel() {
 				if(this.readonly) return
@@ -242,11 +247,11 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		box-sizing: border-box;
+		justify-content: left;
 		/* #endif */
 		overflow: hidden;
 		position: relative;
 		flex: 1;
-		justify-content: center;
 		flex-direction: row;
 		align-items: center;
 		height: $uni-searchbar-height;
@@ -269,6 +274,11 @@
 		flex: 1;
 		font-size: 14px;
 		color: #333;
+		margin-left: 5px;
+		margin-top: 1px;
+		/* #ifndef APP-NVUE */
+		background-color: inherit;
+		/* #endif */
 	}
 
 	.uni-searchbar__box-icon-clear {
@@ -284,6 +294,7 @@
 		font-size: 14px;
 		color: #B3B3B3;
 		margin-left: 5px;
+		text-align: left;
 	}
 
 	.uni-searchbar__cancel {

@@ -10,14 +10,15 @@
 		</view>
 		<view v-else class="uni-dialog-content">
 			<slot>
-				<input class="uni-dialog-input" v-model="val" type="text" :placeholder="placeholderText" :focus="focus" >
+				<input class="uni-dialog-input" :maxlength="maxlength" v-model="val" :type="inputType"
+					:placeholder="placeholderText" :focus="focus">
 			</slot>
 		</view>
 		<view class="uni-dialog-button-group">
-			<view class="uni-dialog-button" @click="closeDialog">
+			<view class="uni-dialog-button" v-if="showClose" @click="closeDialog">
 				<text class="uni-dialog-button-text">{{closeText}}</text>
 			</view>
-			<view class="uni-dialog-button uni-border-left" @click="onOk">
+			<view class="uni-dialog-button" :class="showClose?'uni-border-left':''" @click="onOk">
 				<text class="uni-dialog-button-text uni-button-color">{{okText}}</text>
 			</view>
 		</view>
@@ -28,16 +29,19 @@
 <script>
 	import popup from '../uni-popup/popup.js'
 	import {
-	initVueI18n
+		initVueI18n
 	} from '@dcloudio/uni-i18n'
 	import messages from '../uni-popup/i18n/index.js'
-	const {	t } = initVueI18n(messages)
+	const {
+		t
+	} = initVueI18n(messages)
 	/**
 	 * PopUp 弹出层-对话框样式
 	 * @description 弹出层-对话框样式
 	 * @tutorial https://ext.dcloud.net.cn/plugin?id=329
 	 * @property {String} value input 模式下的默认值
 	 * @property {String} placeholder input 模式下输入提示
+	 * @property {Boolean} focus input模式下是否自动聚焦，默认为true
 	 * @property {String} type = [success|warning|info|error] 主题样式
 	 *  @value success 成功
 	 * 	@value warning 提示
@@ -46,8 +50,10 @@
 	 * @property {String} mode = [base|input] 模式、
 	 * 	@value base 基础对话框
 	 * 	@value input 可输入对话框
+	 * @showClose {Boolean} 是否显示关闭按钮
 	 * @property {String} content 对话框内容
 	 * @property {Boolean} beforeClose 是否拦截取消事件
+	 * @property {Number} maxlength 输入
 	 * @event {Function} confirm 点击确认按钮触发
 	 * @event {Function} close 点击取消按钮触发
 	 */
@@ -55,12 +61,30 @@
 	export default {
 		name: "uniPopupDialog",
 		mixins: [popup],
-		emits:['confirm','close'],
+		emits: ['confirm', 'close', 'update:modelValue', 'input'],
 		props: {
+			inputType: {
+				type: String,
+				default: 'text'
+			},
+			showClose: {
+				type: Boolean,
+				default: true
+			},
+			// #ifdef VUE2
 			value: {
 				type: [String, Number],
 				default: ''
 			},
+			// #endif
+			// #ifdef VUE3
+			modelValue: {
+				type: [Number, String],
+				default: ''
+			},
+			// #endif
+
+
 			placeholder: {
 				type: [String, Number],
 				default: ''
@@ -85,19 +109,26 @@
 				type: Boolean,
 				default: false
 			},
-			cancelText:{
+			cancelText: {
 				type: String,
 				default: ''
 			},
-			confirmText:{
+			confirmText: {
 				type: String,
 				default: ''
+			},
+			maxlength: {
+				type: Number,
+				default: -1,
+			},
+			focus: {
+				type: Boolean,
+				default: true,
 			}
 		},
 		data() {
 			return {
 				dialogType: 'error',
-				focus: false,
 				val: ""
 			}
 		},
@@ -125,7 +156,21 @@
 				}
 			},
 			value(val) {
-				this.val = val
+				if (this.maxlength != -1 && this.mode === 'input') {
+					this.val = val.slice(0, this.maxlength);
+				} else {
+					this.val = val
+				}
+			},
+			val(val) {
+				// #ifdef VUE2
+				// TODO 兼容 vue2
+				this.$emit('input', val);
+				// #endif
+				// #ifdef VUE3
+				// TODO　兼容　vue3
+				this.$emit('update:modelValue', val);
+				// #endif
 			}
 		},
 		created() {
@@ -134,25 +179,25 @@
 			// this.popup.closeMask()
 			if (this.mode === 'input') {
 				this.dialogType = 'info'
-				this.val = this.value
+				this.val = this.value;
+				// #ifdef VUE3
+				this.val = this.modelValue;
+				// #endif
 			} else {
 				this.dialogType = this.type
 			}
-		},
-		mounted() {
-			this.focus = true
 		},
 		methods: {
 			/**
 			 * 点击确认按钮
 			 */
 			onOk() {
-				if (this.mode === 'input'){
+				if (this.mode === 'input') {
 					this.$emit('confirm', this.val)
-				}else{
+				} else {
 					this.$emit('confirm')
 				}
-				if(this.beforeClose) return
+				if (this.beforeClose) return
 				this.popup.close()
 			},
 			/**
@@ -160,17 +205,17 @@
 			 */
 			closeDialog() {
 				this.$emit('close')
-				if(this.beforeClose) return
+				if (this.beforeClose) return
 				this.popup.close()
 			},
-			close(){
+			close() {
 				this.popup.close()
 			}
 		}
 	}
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 	.uni-popup-dialog {
 		width: 300px;
 		border-radius: 11px;

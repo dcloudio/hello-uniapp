@@ -90,6 +90,7 @@ export const get_file_data = async (files, type = 'image') => {
 		extname: extname || '',
 		cloudPath: files.cloudPath,
 		fileType: files.fileType,
+		thumbTempFilePath: files.thumbTempFilePath,
 		url: files.path || files.path,
 		size: files.size, //单位是字节
 		image: {},

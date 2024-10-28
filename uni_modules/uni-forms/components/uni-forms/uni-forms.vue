@@ -52,7 +52,7 @@
 	 * @property {String} labelPosition = [top|left]	label 位置 默认 left
 	 * @value top		顶部显示 label
 	 * @value left	左侧显示 label
-	 * @property {String} labelWidth	label 宽度，默认 65px
+	 * @property {String} labelWidth	label 宽度，默认 70px
 	 * @property {String} labelAlign = [left|center|right]	label 居中方式  默认 left
 	 * @value left		label 左侧显示
 	 * @value center	label 居中

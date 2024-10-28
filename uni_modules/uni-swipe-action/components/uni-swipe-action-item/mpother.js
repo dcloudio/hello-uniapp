@@ -36,7 +36,7 @@ otherMixins = {
 	},
 	mounted() {
 		this.swipeaction = this.getSwipeAction()
-		if (this.swipeaction.children !== undefined) {
+		if (this.swipeaction && Array.isArray(this.swipeaction.children)) {
 			this.swipeaction.children.push(this)
 		}
 		this.init()
@@ -53,8 +53,9 @@ otherMixins = {
 		},
 
 		closeSwipe(e) {
-			if (!this.autoClose) return
-			this.swipeaction.closeOther(this)
+			if (this.autoClose && this.swipeaction) {
+				this.swipeaction.closeOther(this)
+			}
 		},
 		appTouchStart(e) {
 			const {

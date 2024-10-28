@@ -1,7 +1,7 @@
 {
   "id": "uni-collapse",
   "displayName": "uni-collapse 折叠面板",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Collapse 组件，可以折叠 / 展开的内容区域。",
   "keywords": [
     "uni-ui",
@@ -16,11 +16,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -37,7 +33,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [

@@ -112,6 +112,12 @@
 						value: 'value'
 					}
 				}
+			},
+			filterDefaultValue: {
+				type: [Array,String],
+				default () {
+					return ""
+				}
 			}
 		},
 		computed: {
@@ -157,7 +163,7 @@
 				enabled: true,
 				isOpened: false,
 				dataList: [],
-				filterValue: '',
+				filterValue: this.filterDefaultValue,
 				checkedValues: [],
 				gtValue: '',
 				ltValue: '',
@@ -286,6 +292,8 @@
 </script>
 
 <style lang="scss">
+	$uni-primary: #1890ff !default;
+	
 	.flex-r {
 		display: flex;
 		flex-direction: row;
@@ -315,8 +323,8 @@
 	}
 
 	.icon-select.active {
-		background-color: #1890ff;
-		border-top-color: #1890ff;
+		background-color: $uni-primary;
+		border-top-color: $uni-primary;
 	}
 
 	.icon-search {
@@ -343,11 +351,11 @@
 	}
 
 	.icon-search.active .icon-search-0 {
-		border-color: #1890ff;
+		border-color: $uni-primary;
 	}
 
 	.icon-search.active .icon-search-1 {
-		background-color: #1890ff;
+		background-color: $uni-primary;
 	}
 
 	.icon-calendar {
@@ -387,14 +395,14 @@
 	}
 
 	.icon-calendar.active {
-		color: #1890ff;
+		color: $uni-primary;
 	}
 
 	.icon-calendar.active .icon-calendar-0,
 	.icon-calendar.active .icon-calendar-1,
 	.icon-calendar.active .icon-calendar-0:before,
 	.icon-calendar.active .icon-calendar-0:after {
-		background-color: #1890ff;
+		background-color: $uni-primary;
 	}
 
 	.uni-filter-dropdown {
@@ -497,7 +505,7 @@
 	}
 
 	.btn-submit {
-		background-color: #1890ff;
+		background-color: $uni-primary;
 		color: #ffffff;
 	}
 </style>

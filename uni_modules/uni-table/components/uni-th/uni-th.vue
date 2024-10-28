@@ -9,7 +9,7 @@
 					<text class="arrow down" :class="{ active: descending }" @click.stop="descendingFn"></text>
 				</view>
 			</view>
-			<dropdown v-if="filterType || filterData.length" :filterData="filterData" :filterType="filterType" @change="ondropdown"></dropdown>
+			<dropdown v-if="filterType || filterData.length" :filterDefaultValue="filterDefaultValue" :filterData="filterData" :filterType="filterType" @change="ondropdown"></dropdown>
 		</view>
 	</th>
 	<!-- #endif -->
@@ -78,6 +78,12 @@ export default {
 			type: Array,
 			default () {
 				return []
+			}
+		},
+		filterDefaultValue: {
+			type: [Array,String],
+			default () {
+				return ""
 			}
 		}
 	},
@@ -200,6 +206,7 @@ export default {
 
 <style lang="scss">
 $border-color: #ebeef5;
+$uni-primary: #007aff !default;
 
 .uni-table-th {
 	padding: 12px 10px;
@@ -254,7 +261,7 @@ $border-color: #ebeef5;
 	}
 	&.active {
 		::after {
-			background-color: #007aff;
+			background-color: $uni-primary;
 		}
 	}
 }
@@ -271,7 +278,7 @@ $border-color: #ebeef5;
 	}
 	&.active {
 		::after {
-			background-color: #007aff;
+			background-color: $uni-primary;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 {
   "name": "uni-id",
-  "version": "3.3.29",
+  "version": "3.3.30",
   "description": "uni-id for uniCloud",
   "main": "index.js",
   "homepage": "https://uniapp.dcloud.io/uniCloud/uni-id",
@@ -11,7 +11,6 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "uni-config-center": "file:../../../../../uni-config-center/uniCloud/cloudfunctions/common/uni-config-center",
-    "uni-open-bridge-common": "file:../../../../../uni-open-bridge-common/uniCloud/cloudfunctions/common/uni-open-bridge-common"
+    "uni-config-center": "file:../../../../../uni-config-center/uniCloud/cloudfunctions/common/uni-config-center"
   }
 }

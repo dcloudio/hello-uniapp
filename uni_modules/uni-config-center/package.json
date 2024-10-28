@@ -1,7 +1,7 @@
 {
   "id": "uni-config-center",
   "displayName": "uni-config-center",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "uniCloud 配置中心",
   "keywords": [
     "配置",
@@ -11,11 +11,7 @@
   "engines": {
     "HBuilderX": "^3.1.0"
   },
-  "dcloudext": {
-    "category": [
-      "uniCloud",
-      "云函数模板"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -32,7 +28,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": ""
+    "npmurl": "",
+    "type": "unicloud-template-function"
   },
   "directories": {
     "example": "../../../scripts/dist"
@@ -73,6 +70,10 @@
         "快应用": {
           "华为": "u",
           "联盟": "u"
+        },
+        "Vue": {
+            "vue2": "y",
+            "vue3": "u"
         }
       }
     }

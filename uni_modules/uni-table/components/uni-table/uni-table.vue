@@ -3,9 +3,9 @@
 		<!-- #ifdef H5 -->
 		<table class="uni-table" border="0" cellpadding="0" cellspacing="0" :class="{ 'table--stripe': stripe }" :style="{ 'min-width': minWidth + 'px' }">
 			<slot></slot>
-			<view v-if="noData" class="uni-table-loading">
-				<view class="uni-table-text" :class="{ 'empty-border': border }">{{ emptyText }}</view>
-			</view>
+			<tr v-if="noData" class="uni-table-loading">
+				<td class="uni-table-text" :class="{ 'empty-border': border }">{{ emptyText }}</td>
+			</tr>
 			<view v-if="loading" class="uni-table-mask" :class="{ 'empty-border': border }"><div class="uni-table--loader"></div></view>
 		</table>
 		<!-- #endif -->
@@ -125,7 +125,7 @@ export default {
 			} else {
 				startIndex = theadChildren.rowspan - 1
 			}
-			let isHaveData = this.data && this.data.length.length > 0
+			let isHaveData = this.data && this.data.length > 0
 			theadChildren.checked = true
 			theadChildren.indeterminate = false
 			this.trChildren.forEach((item, index) => {

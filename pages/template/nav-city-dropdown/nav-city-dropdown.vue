@@ -9,31 +9,16 @@
 				说明 :
 			</view>
 			<view class="uni-helllo-text">
-				<view>
+				<text>
 					在App端可在pages.json里配置buttons，暂不支持动态改变buttons的样式，使用onNavigationBarButtonTap可监听城市选择按钮的点击事件。
-				</view>
+				</text>
 			</view>
 		</view>
-		<mpvue-picker :themeColor="themeColor" ref="mpvuePicker" :mode="mode" :deepLength="deepLength"
-			:pickerValueDefault="pickerValueDefault" @onConfirm="onConfirm" @onCancel="onCancel"
-			:pickerValueArray="pickerValueArray"></mpvue-picker>
-
-		<!-- 		<picker ref="mpvuePicker" @change="bindPickerChange" :value="index" :range="pickerValueArray" range-key="label">
-			<view class="">{{pickerValueArray[index].label}}</view>
-		</picker>
- -->
 	</view>
 </template>
 
 <script>
-	// https://github.com/zhetengbiji/mpvue-picker
-	import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
-	// https://github.com/zhetengbiji/mpvue-citypicker
-
 	export default {
-		components: {
-			mpvuePicker
-		},
 		data() {
 			return {
 				title: 'nav-city-dropdown',
@@ -54,11 +39,6 @@
 						value: 440300
 					}
 				],
-				themeColor: '#007AFF',
-				mode: '',
-				deepLength: 1,
-				pickerValueDefault: [0],
-				index: 0,
 			};
 		},
 		onReady() {
@@ -70,25 +50,6 @@
 			// #endif
 		},
 		methods: {
-			onCancel(e) {
-				console.log(e);
-			},
-			// 单列
-			showSinglePicker() {
-				this.mode = 'selector';
-				this.deepLength = 1;
-				this.pickerValueDefault = [0];
-				this.$refs.mpvuePicker.show();
-			},
-			onConfirm(e) {
-				console.log(e.label);
-				// #ifdef VUE3
-				this.setStyle(0, e.label)
-				// #endif
-				// #ifndef VUE3
-				this.setStyle(1, e.label)
-				// #endif
-			},
 			/**
 			 * 修改导航栏buttons
 			 * index[number] 修改的buttons 下标索引，最右边索引为0
@@ -116,23 +77,26 @@
 				// #endif
 			}
 		},
-		onBackPress() {
-			if (this.$refs.mpvuePicker.showPicker) {
-				this.$refs.mpvuePicker.pickerCancel();
-				return true;
-			}
-		},
-		onUnload() {
-			if (this.$refs.mpvuePicker.showPicker) {
-				this.$refs.mpvuePicker.pickerCancel();
-			}
-		},
 		onNavigationBarButtonTap(e) {
+			let that = this;
 			if (e.index === 0) {
-				this.showSinglePicker();
+				uni.showActionSheet({
+					itemList: that.pickerValueArray.map(item => item.label),
+					success: function(res) {
+						let index = res.tapIndex;
+						// #ifdef VUE3
+						that.setStyle(0, that.pickerValueArray[index].label)
+						// #endif
+						// #ifndef VUE3
+						that.setStyle(1, that.pickerValueArray[index].label)
+						// #endif
+						console.log(JSON.stringify(that.pickerValueArray[index]));
+					},
+					fail: function(res) {
+						console.log(res.errMsg);
+					}
+				});
 			}
 		}
 	};
 </script>
-
-<style></style>

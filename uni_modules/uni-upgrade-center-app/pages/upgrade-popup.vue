@@ -3,14 +3,14 @@
 		<view class="content botton-radius">
 			<view class="content-top">
 				<text class="content-top-text">{{title}}</text>
-				<image class="content-top" style="top: 0;" width="100%" height="100%" src="../images/bg_top.png">
+				<image class="content-top" style="top: 0;" width="100%" height="100%" src="/uni_modules/uni-upgrade-center-app/static/bg_top.png">
 				</image>
 			</view>
 			<view class="content-header"></view>
 			<view class="content-body">
 				<view class="title">
 					<text>{{subTitle}}</text>
-					<!-- <text style="padding-left:20rpx;font-size: 0.5em;color: #666;">v.{{version}}</text> -->
+					<text class="content-body-version">{{version}}</text>
 				</view>
 				<view class="body">
 					<scroll-view class="box-des-scroll" scroll-y="true">
@@ -28,26 +28,28 @@
 					<template v-else>
 						<template v-if="!downloadSuccess">
 							<view class="progress-box flex-column" v-if="downloading">
-								<progress class="progress" border-radius="35" :percent="downLoadPercent"
-									activeColor="#3DA7FF" show-info stroke-width="10" />
+								<progress class="progress" :percent="downLoadPercent" activeColor="#3DA7FF" show-info
+									stroke-width="10"/>
 								<view style="width:100%;font-size: 28rpx;display: flex;justify-content: space-around;">
 									<text>{{downLoadingText}}</text>
 									<text>({{downloadedSize}}/{{packageFileSize}}M)</text>
 								</view>
 							</view>
 
-							<button v-else class="content-button" style="border: none;color: #fff;" plain
-								@click="updateApp">
+							<button v-else class="content-button" style="border: none;color: #fff;" plain @click="updateApp">
 								{{downLoadBtnText}}
 							</button>
 						</template>
-						<button v-else-if="downloadSuccess && !installed" class="content-button"
-							style="border: none;color: #fff;" plain :loading="installing" :disabled="installing"
-							@click="installPackage">
+						<button v-else-if="downloadSuccess && !installed" class="content-button" style="border: none;color: #fff;"
+							plain :loading="installing" :disabled="installing" @click="installPackage">
 							{{installing ? '正在安装……' : '下载完成，立即安装'}}
 						</button>
+						<button v-else-if="installed && !isWGT" class="content-button" style="border: none;color: #fff;"
+							plain :loading="installing" :disabled="installing" @click="installPackage">
+							安装未完成，点击安装
+						</button>
 
-						<button v-if="installed && isWGT" class="content-button" style="border: none;color: #fff;" plain
+						<button v-else-if="installed && isWGT" class="content-button" style="border: none;color: #fff;" plain
 							@click="restart">
 							安装完毕，点击重启
 						</button>
@@ -55,15 +57,19 @@
 				</view>
 			</view>
 
-			<image v-if="!is_mandatory" class="close-img" src="../images/app_update_close.png"
-				@click.stop="closeUpdate"></image>
+			<image v-if="!is_mandatory" class="close-img" src="/uni_modules/uni-upgrade-center-app/static/app_update_close.png" @click.stop="closeUpdate">
+			</image>
 		</view>
 	</view>
 </template>
 
 <script>
+	// #ifdef APP
+  import { createNotificationProgress, cancelNotificationProgress, finishNotificationProgress } from '@/uni_modules/uts-progressNotification'
+	// #endif
 	const localFilePathKey = 'UNI_ADMIN_UPGRADE_CENTER_LOCAL_FILE_PATH'
 	const platform_iOS = 'iOS';
+	const platform_Android = 'Android';
 	let downloadTask = null;
 	let openSchemePromise
 
@@ -133,7 +139,11 @@
 				// 默认安装包信息
 				title: '更新日志',
 				contents: '',
+				version: '',
 				is_mandatory: false,
+				url: '',
+				platform: [],
+				store_list: null,
 
 				// 可自定义属性
 				subTitle: '发现新版本',
@@ -172,11 +182,8 @@
 		},
 		onBackPress() {
 			// 强制更新不允许返回
-			if (this.is_mandatory) {
-				return true
-			}
-
-			downloadTask && downloadTask.abort()
+			if (this.is_mandatory) return true
+			if (!this.needNotificationProgress) downloadTask && downloadTask.abort()
 		},
 		onHide() {
 			openSchemePromise = null
@@ -186,10 +193,16 @@
 				return this.type === 'wgt'
 			},
 			isiOS() {
-				return !this.isWGT ? this.platform.includes(platform_iOS) : false;
+				return !this.isWGT ? this.platform.indexOf(platform_iOS) !== -1 : false;
+			},
+			isAndroid() {
+				return this.platform.indexOf(platform_Android) !== -1
 			},
 			isAppStore() {
 				return this.isiOS || (!this.isiOS && !this.isWGT && this.url.indexOf('.apk') === -1)
+			},
+			needNotificationProgress() {
+				return this.platform.indexOf(platform_iOS) === -1 && !this.is_mandatory
 			}
 		},
 		methods: {
@@ -214,6 +227,20 @@
 					}
 				}
 			},
+			askAbortDownload() {
+				uni.showModal({
+					title: '是否取消下载？',
+					cancelText: '否',
+					confirmText: '是',
+					success: res => {
+						if (res.confirm) {
+							downloadTask && downloadTask.abort()
+              cancelNotificationProgress()
+							uni.navigateBack()
+						}
+					}
+				});
+			},
 			async closeUpdate() {
 				if (this.downloading) {
 					if (this.is_mandatory) {
@@ -223,39 +250,33 @@
 							duration: 500
 						})
 					}
-					uni.showModal({
-						title: '是否取消下载？',
-						cancelText: '否',
-						confirmText: '是',
-						success: res => {
-							if (res.confirm) {
-								downloadTask && downloadTask.abort()
-								uni.navigateBack()
-							}
-						}
-					});
-					return;
+					if (!this.needNotificationProgress) {
+						this.askAbortDownload()
+						return;
+					}
 				}
 
-				if (this.downloadSuccess && this.tempFilePath) {
+				if (!this.needNotificationProgress && this.downloadSuccess && this.tempFilePath) {
 					// 包已经下载完毕，稍后安装，将包保存在本地
 					await this.saveFile(this.tempFilePath, this.version)
-					uni.navigateBack()
-					return;
 				}
 
 				uni.navigateBack()
 			},
 			updateApp() {
-				this.checkStoreScheme().catch(() => {
-					this.downloadPackage()
-				})
+				this.checkStoreScheme()
+          .catch(() => {
+            this.downloadPackage()
+          })
+          .finally(() => {
+            openSchemePromise = null
+          })
 			},
 			// 跳转应用商店
 			checkStoreScheme() {
-				if (this.store_list && this.store_list.length) {
-					this.store_list
-						.filter(item => item.enable)
+				const storeList = (this.store_list || []).filter(item => item.enable)
+				if (storeList && storeList.length) {
+					storeList
 						.sort((cur, next) => next.priority - cur.priority)
 						.map(item => item.scheme)
 						.reduce((promise, cur, curIndex) => {
@@ -270,7 +291,7 @@
 						}, openSchemePromise)
 					return openSchemePromise
 				}
-				
+
 				return Promise.reject()
 			},
 			downloadPackage() {
@@ -281,23 +302,25 @@
 					url: this.url,
 					success: res => {
 						if (res.statusCode == 200) {
-							this.downloadSuccess = true;
-							this.tempFilePath = res.tempFilePath
-
-							// 强制更新，直接安装
-							if (this.is_mandatory) {
-								this.installPackage();
+							// fix: wgt 文件下载完成后后缀不是 wgt
+							if (this.isWGT && res.tempFilePath.split('.').slice(-1)[0] !== 'wgt') {
+								const failCallback = (e) => {
+									console.log('[FILE RENAME FAIL]：', JSON.stringify(e));
+								}
+								plus.io.resolveLocalFileSystemURL(res.tempFilePath, (entry) => {
+									entry.getParent((parent) => {
+										const newName = `new_wgt_${Date.now()}.wgt`
+										entry.copyTo(parent, newName, (res) => {
+											this.tempFilePath = res.fullPath
+											this.downLoadComplete()
+										}, failCallback)
+									}, failCallback)
+								}, failCallback);
+							} else {
+								this.tempFilePath = res.tempFilePath
+								this.downLoadComplete()
 							}
 						}
-					},
-					complete: () => {
-						this.downloading = false;
-
-						this.downLoadPercent = 0
-						this.downloadedSize = 0
-						this.packageFileSize = 0
-
-						downloadTask = null;
 					}
 				});
 
@@ -305,7 +328,46 @@
 					this.downLoadPercent = res.progress;
 					this.downloadedSize = (res.totalBytesWritten / Math.pow(1024, 2)).toFixed(2);
 					this.packageFileSize = (res.totalBytesExpectedToWrite / Math.pow(1024, 2)).toFixed(2);
+
+					if (this.needNotificationProgress && !this.downloadSuccess) {
+						createNotificationProgress({
+							title: "升级中心正在下载安装包……",
+							content: `${this.downLoadPercent}%`,
+							progress: this.downLoadPercent,
+							onClick: () => {
+								this.askAbortDownload()
+							}
+						})
+					}
 				});
+				if (this.needNotificationProgress) {
+					uni.navigateBack()
+				}
+			},
+			downLoadComplete() {
+				this.downloadSuccess = true;
+				this.downloading = false;
+
+				this.downLoadPercent = 0
+				this.downloadedSize = 0
+				this.packageFileSize = 0
+
+				downloadTask = null;
+
+				if (this.needNotificationProgress) {
+					finishNotificationProgress({
+						title: "安装升级包",
+						content: "下载完成"
+					})
+
+					this.installPackage();
+					return
+				}
+
+				// 强制更新，直接安装
+				if (this.is_mandatory) {
+					this.installPackage();
+				}
 			},
 			installPackage() {
 				// #ifdef APP-PLUS
@@ -477,6 +539,16 @@
 		line-height: 38px;
 	}
 
+	.content-body-version {
+		padding-left: 10px;
+		color: #fff;
+		font-size: 10px;
+		margin-left: 5px;
+		padding: 2px 4px;
+		border-radius: 10px;
+		background: #50aefd;
+	}
+
 	.footer {
 		height: 150rpx;
 		display: flex;
@@ -504,7 +576,7 @@
 	.progress {
 		width: 90%;
 		height: 40rpx;
-		border-radius: 35px;
+		/* border-radius: 35px; */
 	}
 
 	.close-img {

@@ -9,11 +9,8 @@
 		name: 'UniStatusBar',
 		data() {
 			return {
-				statusBarHeight: 20
+				statusBarHeight: uni.getSystemInfoSync().statusBarHeight + 'px'
 			}
-		},
-		mounted() {
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		}
 	}
 </script>

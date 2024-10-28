@@ -17,6 +17,7 @@
 				latitude: 39.909,
 				longitude: 116.39742,
 				covers: [{
+					id: 1,
 					latitude: 39.9085,
 					longitude: 116.39747,
 					// #ifdef APP-PLUS
@@ -26,6 +27,7 @@
 					iconPath: '../../../static/location.png',
 					// #endif
 				}, {
+					id: 2,
 					latitude: 39.90,
 					longitude: 116.39,
 					// #ifdef APP-PLUS

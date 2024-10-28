@@ -1,7 +1,7 @@
 {
   "id": "uni-badge",
   "displayName": "uni-badge 数字角标",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "数字角标（徽章）组件，在元素周围展示消息提醒，一般用于列表、九宫格、按钮等地方。",
   "keywords": [
     "",

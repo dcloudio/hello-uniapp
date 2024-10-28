@@ -1,3 +1,9 @@
+## 1.2.3（2024-04-02）
+- 修复 修复在微信小程序下inactiveColor失效bug
+## 1.2.2（2024-03-28）
+- 修复 在vue2下:style动态绑定导致编译失败的bug
+## 1.2.1（2024-03-20）
+- 新增 inActiveColor属性，可供配置未激活时的颜色
 ## 1.2.0（2021-11-19）
 - 优化 组件UI，并提供设计资源，详见:[https://uniapp.dcloud.io/component/uniui/resource](https://uniapp.dcloud.io/component/uniui/resource)
 - 文档迁移，详见:[https://uniapp.dcloud.io/component/uniui/uni-segmented-control](https://uniapp.dcloud.io/component/uniui/uni-segmented-control)

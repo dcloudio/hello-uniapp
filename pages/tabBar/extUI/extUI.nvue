@@ -227,9 +227,11 @@
 			uni.preloadPage({
 				url: "/pages/extUI/calendar/calendar",
 				success() {
-					console.log("preloadPage /pages/extUI/calendar/calendar")
+					console.log("preloadPage/pages/extUI/calendar/calendar")
 				},
-				fail() {}
+				fail(e) {
+					console.log(e);
+				}
 			})
 			// #endif
 		},

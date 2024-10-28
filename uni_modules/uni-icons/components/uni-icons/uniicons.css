@@ -1,3 +1,12 @@
+
+.uniui-cart-filled:before {
+  content: "\e6d0";
+}
+
+.uniui-gift-filled:before {
+  content: "\e6c4";
+}
+
 .uniui-color:before {
   content: "\e6cf";
 }
@@ -58,10 +67,6 @@
   content: "\e6c3";
 }
 
-.uniui-gift-filled:before {
-  content: "\e6c4";
-}
-
 .uniui-fire-filled:before {
   content: "\e6c5";
 }
@@ -82,6 +87,18 @@
   content: "\e698";
 }
 
+.uniui-arrowthinleft:before {
+  content: "\e6d2";
+}
+
+.uniui-arrowthinup:before {
+  content: "\e6d3";
+}
+
+.uniui-arrowthindown:before {
+  content: "\e6d4";
+}
+
 .uniui-back:before {
   content: "\e6b9";
 }
@@ -94,15 +111,7 @@
   content: "\e6bb";
 }
 
-.uniui-arrowthinright:before {
-  content: "\e6bb";
-}
-
 .uniui-arrow-left:before {
-  content: "\e6bc";
-}
-
-.uniui-arrowthinleft:before {
   content: "\e6bc";
 }
 
@@ -110,39 +119,35 @@
   content: "\e6bd";
 }
 
-.uniui-arrowthinup:before {
-  content: "\e6bd";
-}
-
 .uniui-arrow-down:before {
   content: "\e6be";
 }
 
-.uniui-arrowthindown:before {
-  content: "\e6be";
+.uniui-arrowthinright:before {
+  content: "\e6d1";
+}
+
+.uniui-down:before {
+  content: "\e6b8";
 }
 
 .uniui-bottom:before {
   content: "\e6b8";
 }
 
-.uniui-arrowdown:before {
-  content: "\e6b8";
+.uniui-arrowright:before {
+  content: "\e6d5";
 }
 
 .uniui-right:before {
   content: "\e6b5";
 }
 
-.uniui-arrowright:before {
-  content: "\e6b5";
-}
-
-.uniui-top:before {
+.uniui-up:before {
   content: "\e6b6";
 }
 
-.uniui-arrowup:before {
+.uniui-top:before {
   content: "\e6b6";
 }
 
@@ -150,8 +155,8 @@
   content: "\e6b7";
 }
 
-.uniui-arrowleft:before {
-  content: "\e6b7";
+.uniui-arrowup:before {
+  content: "\e6d6";
 }
 
 .uniui-eye:before {
@@ -636,10 +641,6 @@
 
 .uniui-bars:before {
   content: "\e627";
-}
-
-.uniui-cart-filled:before {
-  content: "\e629";
 }
 
 .uniui-checkbox:before {

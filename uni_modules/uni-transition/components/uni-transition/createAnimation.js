@@ -10,7 +10,10 @@ const nvueAnimation = uni.requireNativePlugin('animation')
 class MPAnimation {
 	constructor(options, _this) {
 		this.options = options
-		this.animation = uni.createAnimation(options)
+		// 在iOS10+QQ小程序平台下，传给原生的对象一定是个普通对象而不是Proxy对象，否则会报parameter should be Object instead of ProxyObject的错误
+		this.animation = uni.createAnimation({
+			...options
+		})
 		this.currentStepAnimates = {}
 		this.next = 0
 		this.$ = _this

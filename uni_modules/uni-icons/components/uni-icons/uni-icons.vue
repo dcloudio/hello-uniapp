@@ -1,24 +1,28 @@
 <template>
 	<!-- #ifdef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" @click="_onClick">{{unicode}}</text>
+	<text :style="styleObj" class="uni-icons" @click="_onClick">{{unicode}}</text>
 	<!-- #endif -->
 	<!-- #ifndef APP-NVUE -->
-	<text :style="{ color: color, 'font-size': iconSize }" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @click="_onClick"></text>
+	<text :style="styleObj" class="uni-icons" :class="['uniui-'+type,customPrefix,customPrefix?type:'']" @click="_onClick">
+		<slot></slot>
+	</text>
 	<!-- #endif -->
 </template>
 
 <script>
-	import icons from './icons.js';
+	import { fontData } from './uniicons_file_vue.js';
+
 	const getVal = (val) => {
 		const reg = /^[0-9]*$/g
-		return (typeof val === 'number' ||　reg.test(val) )? val + 'px' : val;
-	} 
+		return (typeof val === 'number' || reg.test(val)) ? val + 'px' : val;
+	}
+
 	// #ifdef APP-NVUE
 	var domModule = weex.requireModule('dom');
 	import iconUrl from './uniicons.ttf'
 	domModule.addRule('fontFace', {
 		'fontFamily': "uniicons",
-		'src': "url('"+iconUrl+"')"
+		'src': "url('" + iconUrl + "')"
 	});
 	// #endif
 
@@ -34,7 +38,7 @@
 	 */
 	export default {
 		name: 'UniIcons',
-		emits:['click'],
+		emits: ['click'],
 		props: {
 			type: {
 				type: String,
@@ -48,26 +52,36 @@
 				type: [Number, String],
 				default: 16
 			},
-			customPrefix:{
+			customPrefix: {
+				type: String,
+				default: ''
+			},
+			fontFamily: {
 				type: String,
 				default: ''
 			}
 		},
 		data() {
 			return {
-				icons: icons.glyphs
+				icons: fontData
 			}
 		},
-		computed:{
-			unicode(){
-				let code = this.icons.find(v=>v.font_class === this.type)
-				if(code){
-					return unescape(`%u${code.unicode}`)
+		computed: {
+			unicode() {
+				let code = this.icons.find(v => v.font_class === this.type)
+				if (code) {
+					return code.unicode
 				}
 				return ''
 			},
-			iconSize(){
+			iconSize() {
 				return getVal(this.size)
+			},
+			styleObj() {
+				if (this.fontFamily !== '') {
+					return `color: ${this.color}; font-size: ${this.iconSize}; font-family: ${this.fontFamily};`
+				}
+				return `color: ${this.color}; font-size: ${this.iconSize};`
 			}
 		},
 		methods: {
@@ -81,9 +95,10 @@
 <style lang="scss">
 	/* #ifndef APP-NVUE */
 	@import './uniicons.css';
+
 	@font-face {
 		font-family: uniicons;
-		src: url('./uniicons.ttf') format('truetype');
+		src: url('./uniicons.ttf');
 	}
 
 	/* #endif */
@@ -92,5 +107,4 @@
 		text-decoration: none;
 		text-align: center;
 	}
-
 </style>

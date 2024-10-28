@@ -1,0 +1,17 @@
+import Intent from 'android.content.Intent';
+import Uri from 'android.net.Uri';
+
+export function openSchema(url : string) : Promise<boolean> {
+  return new Promise<boolean>((resolve, reject) => {
+    try {
+      const context = UTSAndroid.getUniActivity()!;
+      const uri = Uri.parse(url)
+      const intent = new Intent(Intent.ACTION_VIEW, uri)
+      intent.setData(uri);
+      context.startActivity(intent);
+      resolve(true)
+    } catch (e) {
+      reject(e)
+    }
+  })
+}

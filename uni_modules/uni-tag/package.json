@@ -1,7 +1,7 @@
 {
   "id": "uni-tag",
   "displayName": "uni-tag 标签",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Tag 组件，用于展示1个或多个文字标签，可点击切换选中、不选中的状态。",
   "keywords": [
     "uni-ui",
@@ -17,11 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -38,7 +34,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": ["uni-scss"],

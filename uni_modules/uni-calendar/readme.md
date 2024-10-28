@@ -77,7 +77,7 @@ export default {
 ### Calendar Props
 
 |  属性名	|    类型	| 默认值| 说明																													|
-| 		| 																													|
+| -	| -	| - | - |
 | date		| String	|-		| 自定义当前时间，默认为今天																							|
 | lunar		| Boolean	| false	| 显示农历																												|
 | startDate	| String	|-		| 日期选择范围-开始日期																									|
@@ -91,7 +91,7 @@ export default {
 ### Calendar Events
 
 |  事件名		| 说明								|返回值|
-| 								|		| 									|
+| -	|	-	| -	|
 | open	| 弹出日历组件，`insert :false` 时生效|- 	|
 
 

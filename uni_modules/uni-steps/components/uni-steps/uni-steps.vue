@@ -12,21 +12,20 @@
 			</view>
 			<view :class="[direction==='column'?'uni-steps__column-container':'uni-steps__row-container']">
 				<view :class="[direction==='column'?'uni-steps__column-line-item':'uni-steps__row-line-item']"
-					v-for="(item,index) in options" :key="index">
+					v-for="(item,index) in options" :key="index" :style="{height: direction === 'column'?heightArr[index]+'px':'14px'}">
 					<view
 						:class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--before':'uni-steps__row-line--before']"
 						:style="{backgroundColor:index<=active&&index!==0?activeColor:index===0?'transparent':deactiveColor}">
 					</view>
 					<view :class="[direction==='column'?'uni-steps__column-check':'uni-steps__row-check']"
 						v-if="index === active">
-						<uni-icons :color="activeColor" :type="activeIcon" size="14"></uni-icons>
+						<uni-icons :color="activeColor" :type="activeIcon" size="14" />
 					</view>
 					<view v-else :class="[direction==='column'?'uni-steps__column-circle':'uni-steps__row-circle']"
-						:style="{backgroundColor:index<active?activeColor:deactiveColor}"></view>
+						:style="{backgroundColor:index<active?activeColor:deactiveColor}" />
 					<view
 						:class="[direction==='column'?'uni-steps__column-line':'uni-steps__row-line',direction==='column'?'uni-steps__column-line--after':'uni-steps__row-line--after']"
-						:style="{backgroundColor:index<active&&index!==options.length-1?activeColor:index===options.length-1?'transparent':deactiveColor}">
-					</view>
+						:style="{backgroundColor:index<active&&index!==options.length-1?activeColor:index===options.length-1?'transparent':deactiveColor}" />
 				</view>
 			</view>
 		</view>
@@ -82,14 +81,27 @@
 			} // 数据
 		},
 		data() {
-			return {}
-		}
+			return {
+				heightArr: [],
+			}
+		},
+		mounted() {
+			//根据内容设置步骤条的长度
+			if (this.direction === 'column') {
+				let that = this;
+				//只能用类选择器，用id选择器所获取的元素信息不准确
+				uni.createSelectorQuery().in(this).selectAll('.uni-steps__column-text').boundingClientRect(data => {
+					that.heightArr = data.map(item => item.height + 1);
+				}).exec()
+			}
+		},
 	}
 </script>
 
 <style lang="scss">
 	$uni-primary: #2979ff !default;
-	$uni-border-color:#EDEDED;
+	$uni-border-color: #EDEDED;
+
 	.uni-steps {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -207,7 +219,6 @@
 		display: flex;
 		/* #endif */
 		flex-direction: column;
-		flex: 1;
 		align-items: center;
 		justify-content: center;
 	}

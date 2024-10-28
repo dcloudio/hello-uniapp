@@ -9,10 +9,10 @@
 		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current"
 			@onTabItemTap="toSecondMenu" />
 
-		<!-- #ifdef H5-DEMO -->
-
+		<!-- #ifdef H5 -->
 		<uni-link class="phone-link" href="/en" text="英文版"></uni-link>
 		<uni-link class="phone-link" href="https://m3w.cn/uniapp" text="体验手机版"></uni-link>
+
 		<!-- #ifdef VUE2 -->
 		<uni-link class="phone-link" href="http://vue3-hellouniapp.dcloud.net.cn/pages/component/view/view" text="体验 vue 3.0 版"></uni-link>
 		<svg t="1628163727478" class="new-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"

@@ -81,9 +81,16 @@
 </template>
 
 <script>
-	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
 	import i18nMessages from './i18n/index.js'
-	const {	t	} = initVueI18n(i18nMessages)
+	const {
+		t
+	} = initVueI18n(i18nMessages)
+	import {
+		fixIosDateFormat
+	} from './util'
 
 	/**
 	 * DatetimePicker 时间选择器
@@ -133,6 +140,14 @@
 				endSecond: 59,
 			}
 		},
+		options: {
+			// #ifdef MP-TOUTIAO
+			virtualHost: false,
+			// #endif
+			// #ifndef MP-TOUTIAO
+			virtualHost: true
+			// #endif
+		},
 		props: {
 			type: {
 				type: String,
@@ -175,11 +190,11 @@
 			// #ifndef VUE3
 			value: {
 				handler(newVal) {
-          if (newVal) {
-            this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+					if (newVal) {
+						this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
-            this.time = ''
+						this.time = ''
 						this.parseValue(Date.now())
 					}
 				},
@@ -188,9 +203,9 @@
 			// #endif
 			// #ifdef VUE3
 			modelValue: {
-        handler(newVal) {
-          if (newVal) {
-						this.parseValue(this.fixIosDateFormat(newVal)) //兼容 iOS、safari 日期格式
+				handler(newVal) {
+					if (newVal) {
+						this.parseValue(fixIosDateFormat(newVal))
 						this.initTime(false)
 					} else {
 						this.time = ''
@@ -220,13 +235,13 @@
 			},
 			start: {
 				handler(newVal) {
-					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'start') //兼容 iOS、safari 日期格式
+					this.parseDatetimeRange(fixIosDateFormat(newVal), 'start')
 				},
 				immediate: true
 			},
 			end: {
 				handler(newVal) {
-					this.parseDatetimeRange(this.fixIosDateFormat(newVal), 'end') //兼容 iOS、safari 日期格式
+					this.parseDatetimeRange(fixIosDateFormat(newVal), 'end')
 				},
 				immediate: true
 			},
@@ -648,14 +663,6 @@
 				return new Date(year, month, 0).getDate();
 			},
 
-			//兼容 iOS、safari 日期格式
-			fixIosDateFormat(value) {
-				if (typeof value === 'string') {
-					value = value.replace(/-/g, '/')
-				}
-				return value
-			},
-
 			/**
 			 * 生成时间戳
 			 * @param {Object} time
@@ -739,7 +746,7 @@
 			 */
 			initTimePicker() {
 				if (this.disabled) return
-				const value = this.fixIosDateFormat(this.time)
+				const value = fixIosDateFormat(this.time)
 				this.initPickerValue(value)
 				this.visible = !this.visible
 			},

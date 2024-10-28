@@ -35,7 +35,7 @@
 		  'uni-fab__circle--rightTop': rightTop,
 		  'uni-fab__content--other-platform': !isAndroidNvue
 		}" class="uni-fab__circle uni-fab__plus" :style="{ 'background-color': styles.buttonColor, 'bottom': nvueBottom }" @click="_onClick">
-			<uni-icons class="fab-circle-icon" type="plusempty" :color="styles.iconColor" size="32"
+			<uni-icons class="fab-circle-icon" :type="styles.icon" :color="styles.iconColor" size="32"
 				:class="{'uni-fab__plus--active': isShow && content.length > 0}"></uni-icons>
 			<!-- <view class="fab-circle-v"  :class="{'uni-fab__plus--active': isShow && content.length > 0}"></view>
 			<view class="fab-circle-h" :class="{'uni-fab__plus--active': isShow  && content.length > 0}"></view> -->
@@ -115,7 +115,8 @@
 					selectedColor: '#007AFF',
 					backgroundColor: '#fff',
 					buttonColor: '#007AFF',
-					iconColor: '#fff'
+					iconColor: '#fff',
+					icon: 'plusempty'
 				}
 			}
 		},
@@ -206,6 +207,9 @@
 			 * 按钮点击事件
 			 */
 			_onItemClick(index, item) {
+				if (!this.isShow) {
+					return
+				}
 				this.$emit('trigger', {
 					index,
 					item

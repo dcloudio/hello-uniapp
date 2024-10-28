@@ -51,11 +51,10 @@
 </template>
 
 <script>
-	import {
-	initVueI18n
-	} from '@dcloudio/uni-i18n'
-	import messages from './i18n/index.js'
-	const {	t	} = initVueI18n(messages)
+	import { initVueI18n } from '@dcloudio/uni-i18n'
+	import i18nMessages from './i18n/index.js'
+	const {	t	} = initVueI18n(i18nMessages)
+
 	export default {
 		emits:['change'],
 		props: {

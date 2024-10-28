@@ -1,7 +1,7 @@
 {
   "id": "uni-upgrade-center-app",
   "displayName": "升级中心 uni-upgrade-center - App",
-  "version": "0.6.0",
+  "version": "0.7.9",
   "description": "uni升级中心 - 客户端检查更新",
   "keywords": [
     "uniCloud",
@@ -11,13 +11,9 @@
 ],
   "repository": "https://gitee.com/dcloud/uni-upgrade-center/tree/master/uni_modules/uni-upgrade-center-app",
   "engines": {
-    "HBuilderX": "^3.1.0"
+    "HBuilderX": "^3.97"
   },
-  "dcloudext": {
-    "category": [
-        "uniCloud",
-        "云端一体页面模板"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -34,10 +30,14 @@
       "data": "插件不采集任何数据",
       "permissions": "无"
     },
-    "npmurl": ""
+    "npmurl": "",
+    "type": "unicloud-template-page"
   },
   "uni_modules": {
-    "dependencies": [],
+    "dependencies": [
+      "uni-installApk",
+      "uts-progressNotification"
+    ],
     "encrypt": [],
     "platforms": {
       "cloud": {
@@ -67,7 +67,8 @@
           "阿里": "u",
           "百度": "u",
           "字节跳动": "u",
-          "QQ": "u"
+        "QQ": "u",
+        "京东": "u"
         },
         "快应用": {
           "华为": "u",
