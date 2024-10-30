@@ -155,8 +155,6 @@
 		background-color: #cee1fd;
 	}
 
-	/* #endif */
-
 	@media screen and (min-width: 500px) {
 		.uni-swiper-dot-box {
 			width: 400px;
