@@ -10,6 +10,7 @@
 	// #endif
 	export default {
 		onLaunch: function() {
+			throw new Error('该分支作废，请使用 http://git.dcloud.io/web_team/hello-uniapp-harmony.git')
 			// #ifdef H5
 			console.log(
 				`%c hello uniapp %c v${version} `,
