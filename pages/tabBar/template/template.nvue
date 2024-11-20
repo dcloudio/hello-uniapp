@@ -122,6 +122,10 @@
 						name: 'GlobalData和vuex',
 						url: 'global'
 					},
+					{
+						name: 'renderjs',
+						url: 'renderjs'
+					},
 					// #ifdef APP-PLUS
 					{
 						name: '问题反馈',
