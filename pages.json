@@ -1321,6 +1321,15 @@
 				},
 				// #endif
 				// #endif
+				// #ifdef APP-PLUS || H5
+				{
+					"path" : "renderjs/renderjs",
+					"style" :
+					{
+						"navigationBarTitleText" : "renderjs"
+					}
+				},
+				// #endif
 				{
 					"path": "global/global",
 					"style": {
