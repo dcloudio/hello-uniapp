@@ -1336,6 +1336,17 @@
 						"navigationBarTitleText": "GlobalData和vuex"
 					}
 				}
+				// #ifdef VUE3
+				,
+				{
+					"path" : "pinia/pinia",
+					"style" :
+					{
+						"navigationBarTitleText" : "pinia"
+					}
+				}
+				// #endif
+
 			]
 		}
 	],
