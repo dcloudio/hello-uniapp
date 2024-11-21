@@ -1,0 +1,87 @@
+// uni-app自动化测试教程: uni-app自动化测试教程: https://uniapp.dcloud.net.cn/worktile/auto/hbuilderx-extension/
+
+let page, nvuePath, vuepath,containsVite, isApp;
+containsVite = process.env.UNI_CLI_PATH.includes('uniapp-cli-vite')
+isApp = process.env.UNI_PLATFORM.includes('app')
+
+function createTests(pagePath, type) {
+	return describe(`测试页面路径: ${pagePath}`, () => {
+		async function toScreenshot(imgName) {
+			await page.waitFor(300)
+			const image = await program.screenshot({
+				deviceShot: true
+			});
+			expect(image).toSaveImageSnapshot({
+				customSnapshotIdentifier() {
+					return imgName
+				}
+			})
+			await page.waitFor(500);
+		}
+		beforeAll(async () => {
+			page = await program.reLaunch(pagePath)
+			await page.waitFor('view');
+			console.log(type,page);
+			await toScreenshot(type)
+		});
+		afterAll(async () => {
+			await page.callMethod('resetAge')
+		});
+		it('check page data', async () => {
+			const username = await page.$('.username');
+			expect(await username.text()).toEqual('用户名：foo');
+			const sex = await page.$('.sex');
+			expect(await sex.text()).toEqual('性别：男');
+			const age = await page.$('.age');
+			expect(await age.text()).toEqual('年龄：10');
+			const doubleAge = await page.$('.doubleAge');
+			expect(await doubleAge.text()).toEqual('年龄翻倍：20');
+		});
+		it('store mutations', async () => {
+			await page.callMethod('addAge')
+			const age = await page.$('.age');
+			expect(await age.text()).toEqual('年龄：11');
+			const doubleAge = await page.$('.doubleAge');
+			expect(await doubleAge.text()).toEqual('年龄翻倍：22');
+		});
+		it('store getters', async () => {
+			await page.callMethod('addAgeTen')
+			const age = await page.$('.age');
+			expect(await age.text()).toEqual('年龄：21');
+			const doubleAge = await page.$('.doubleAge');
+			expect(await doubleAge.text()).toEqual('年龄翻倍：42');
+		});
+		it('store actions', async () => {
+			await page.callMethod('addAgeAction')
+			const age = await page.$('.age');
+			expect(await age.text()).toEqual('年龄：41');
+			const doubleAge = await page.$('.doubleAge');
+			expect(await doubleAge.text()).toEqual('年龄翻倍：82');
+		});
+	})
+}
+
+// vue3-nvue不支持自动化测试
+nvuePath = '/pages/template/vuex-nvue/vuex-nvue'
+vuepath = '/pages/template/vuex-vue/vuex-vue'
+if (containsVite) {
+	console.log('vue3: ', containsVite);
+	if(isApp){
+		createTests(nvuePath, 'vue3-App-nvue');
+		createTests(vuepath, 'vue3-App-vue');
+	}else if(process.env.UNI_PLATFORM == 'h5'){
+		createTests(vuepath, 'vue3-H5-vue');
+	}else{
+		createTests(vuepath, 'vue3-Mp-vue');
+	}
+} else{
+	console.log('vue2');
+	if(isApp){
+		createTests(nvuePath, 'vue2-App-nvue');
+		createTests(vuepath, 'vue2-App-vue');
+	}else if(process.env.UNI_PLATFORM == 'h5'){
+		createTests(vuepath, 'vue2-H5-vue');
+	}else{
+		createTests(vuepath, 'vue2-Mp-vue');
+	}
+}
