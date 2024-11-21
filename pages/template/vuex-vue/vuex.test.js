@@ -1,9 +1,6 @@
-// uni-app自动化测试教程: uni-app自动化测试教程: https://uniapp.dcloud.net.cn/worktile/auto/hbuilderx-extension/
-
 let page, nvuePath, vuepath,containsVite, isApp;
 containsVite = process.env.UNI_CLI_PATH.includes('uniapp-cli-vite')
 isApp = process.env.UNI_PLATFORM.includes('app')
-
 function createTests(pagePath, type) {
 	return describe(`测试页面路径: ${pagePath}`, () => {
 		async function toScreenshot(imgName) {
@@ -67,7 +64,6 @@ vuepath = '/pages/template/vuex-vue/vuex-vue'
 if (containsVite) {
 	console.log('vue3: ', containsVite);
 	if(isApp){
-		createTests(nvuePath, 'vue3-App-nvue');
 		createTests(vuepath, 'vue3-App-vue');
 	}else if(process.env.UNI_PLATFORM == 'h5'){
 		createTests(vuepath, 'vue3-H5-vue');
