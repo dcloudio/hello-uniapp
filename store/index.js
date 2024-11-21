@@ -22,7 +22,11 @@ const store = createStore({
 		leftWinActive: '/pages/component/view/view',
 		activeOpen: '',
 		menu: [],
-		univerifyErrorMsg: ''
+		univerifyErrorMsg: '',
+		// vuex测试例使用
+		username: "foo",
+		sex: "男",
+		age: 10
 	},
 	mutations: {
 		login(state, provider) {
@@ -66,14 +70,32 @@ const store = createStore({
 		},
 		setUniverifyErrorMsg(state,payload = ''){
 			state.univerifyErrorMsg = payload
+		},
+		// vuex测试例使用
+		increment(state) {
+		  state.age++;
+		},
+		incrementTen(state, payload) {
+		  state.age += payload.amount
+		},
+		resetAge(state){
+		  state.age = 10
 		}
 	},
 	getters: {
 		currentColor(state) {
 			return state.colorList[state.colorIndex]
+		},
+		// vuex测试例使用
+		doubleAge(state) {
+		  return state.age * 2;
 		}
 	},
 	actions: {
+		// vuex测试例使用
+		incrementAsync(context , payload) {
+		  context.commit('incrementTen',payload)
+		},
 		// lazy loading openid
 		getUserOpenId: async function({
 			commit,
