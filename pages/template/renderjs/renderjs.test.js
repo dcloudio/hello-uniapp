@@ -29,6 +29,8 @@ describe('renderjs', () => {
     expect(await data3.text()).toEqual('serviceData改变了');
   });
   it('trigger getServiceData', async () => {
+	await page.waitFor(300);
+	console.log('data: ',await page.data());
     expect(await page.data('newValue')).toEqual('serviceData改变了');
     expect(await page.data('oldValue')).toEqual('renderjsData');
   });
