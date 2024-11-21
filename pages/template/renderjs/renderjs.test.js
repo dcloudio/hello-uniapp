@@ -1,5 +1,12 @@
 describe('renderjs', () => {
   let page,btns;
+  if (process.env.UNI_PLATFORM === "mp-weixin") {
+  	// renderjs仅支持App和H5
+    it('is mp-weixin', async () => {
+      expect(1).toBe(1)
+    })
+    return
+  }
   beforeAll(async () => {
     page = await program.reLaunch('/pages/template/renderjs/renderjs')
     await page.waitFor('view');
