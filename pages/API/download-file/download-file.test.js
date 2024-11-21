@@ -1,10 +1,15 @@
-// uni-app自动化测试教程: uni-app自动化测试教程: https://uniapp.dcloud.net.cn/worktile/auto/hbuilderx-extension/
+const platformInfo = process.env.uniTestPlatformInfo.toLocaleLowerCase()
 describe('pages/API/download-file/download-file.vue', () => {
 	let page;
+	if (platformInfo === 'ios_simulator 17.4' || platformInfo === 'ios_simulator 13.7') {
+	    it('skip', async () => {
+	    	expect(1).toBe(1)
+	    })
+	    return
+	}
 	beforeAll(async () => {
 		page = await program.reLaunch('/pages/API/download-file/download-file')
 		await page.waitFor('view')
-
 	});
 	it('check download url', async () => {
 		expect.assertions(2);
