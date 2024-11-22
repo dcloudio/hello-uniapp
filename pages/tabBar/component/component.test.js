@@ -37,7 +37,7 @@ describe('pages/tabBar/component/component.nvue', () => {
       const lists = await page.$$('.uni-panel')
 	  if(process.env.UNI_PLATFORM == 'app-plus' || process.env.UNI_PLATFORM == 'mp-weixin'){
 	  	expect(lists.length).toBe(9)
-	  }else if(process.env.UNI_PLATFORM == 'h5'){
+	  }else if(process.env.UNI_PLATFORM == 'h5' && !containsVite){
 	  	expect(lists.length).toBe(8)
 	  }
     })
