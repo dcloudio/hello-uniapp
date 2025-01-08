@@ -1,5 +1,7 @@
+## 1.2.1（2024-09-13）
+- 修复 微信小程序平台 当微信的服务器返回`encrypt_key`的过期时间`expire_in`为`0`时特殊处理为`1`天，否者可能无法验证客户端请求携带的版本
 ## 1.2.0（2023-04-27）
-- 优化 微信小程序平台 使用微信新增 API getStableAccessToken 获取 access_token, access_token 有效期内重复调用该接口不会更新 access_token, [详情](https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getStableAccessToken.html)
+- 重要 微信小程序平台 使用微信新增 API getStableAccessToken 获取 access_token, access_token 有效期内重复调用该接口不会更新 access_token, [详情](https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getStableAccessToken.html)
 ## 1.1.5（2023-03-27）
 - 修复 微信小程序平台 某些情况下 encrypt_key 插入错误的问题
 ## 1.1.4（2023-03-13）

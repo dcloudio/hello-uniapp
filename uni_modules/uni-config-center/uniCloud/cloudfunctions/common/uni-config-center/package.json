@@ -1,9 +1,13 @@
 {
-  "name": "uni-config-center",
-  "version": "0.0.3",
-  "description": "配置中心",
-  "main": "index.js",
-  "keywords": [],
-  "author": "DCloud",
-  "license": "Apache-2.0"
+    "name": "uni-config-center",
+    "version": "0.0.3",
+    "description": "配置中心",
+    "main": "index.js",
+    "keywords": [],
+    "author": "DCloud",
+    "license": "Apache-2.0",
+    "origin-plugin-dev-name": "uni-config-center",
+    "origin-plugin-version": "0.0.3",
+    "plugin-dev-name": "uni-config-center",
+    "plugin-version": "0.0.3"
 }

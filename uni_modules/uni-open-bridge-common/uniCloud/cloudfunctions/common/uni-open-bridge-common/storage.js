@@ -49,7 +49,12 @@ class Storage {
     // 后续考虑支持
   }
 
-  async fallback(key) {}
+  async fallback(key) {
+    return {
+      value: null,
+      duration: -1
+    }
+  }
 
   getKeyString(key) {
     const keyArray = [Storage.Prefix]
