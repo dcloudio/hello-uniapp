@@ -1,7 +1,7 @@
 {
   "id": "uni-list",
   "displayName": "uni-list 列表",
-  "version": "1.2.14",
+  "version": "1.2.15",
   "description": "List 组件 ，帮助使用者快速构建列表。",
   "keywords": [
     "",
@@ -47,12 +47,15 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "App": {
-          "app-vue": "y",
-          "app-nvue": "y"
+            "app-vue": "y",
+            "app-nvue": "y",
+            "app-harmony": "u",
+            "app-uvue": "u"
         },
         "H5-mobile": {
           "Safari": "y",

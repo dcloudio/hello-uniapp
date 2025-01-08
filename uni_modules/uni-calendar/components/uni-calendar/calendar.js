@@ -351,10 +351,8 @@ var calendar = {
         s = '\u521d\u5341'; break
       case 20:
         s = '\u4e8c\u5341'; break
-        break
       case 30:
         s = '\u4e09\u5341'; break
-        break
       default :
         s = this.nStr2[Math.floor(d / 10)]
         s += this.nStr1[d % 10]

@@ -1,7 +1,7 @@
 {
   "id": "uni-combox",
   "displayName": "uni-combox 组合框",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "可以选择也可以输入的表单项 ",
   "keywords": [
     "uni-ui",
@@ -17,11 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-  "dcloudext": {
-    "category": [
-      "前端组件",
-      "通用组件"
-    ],
+"dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -38,7 +34,8 @@
       "data": "无",
       "permissions": "无"
     },
-    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui"
+    "npmurl": "https://www.npmjs.com/package/@dcloudio/uni-ui",
+    "type": "component-vue"
   },
   "uni_modules": {
     "dependencies": [
@@ -49,7 +46,8 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "App": {

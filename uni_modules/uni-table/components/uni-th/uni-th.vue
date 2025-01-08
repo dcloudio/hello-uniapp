@@ -41,7 +41,12 @@
 export default {
 	name: 'uniTh',
 	options: {
+		// #ifdef MP-TOUTIAO
+		virtualHost: false,
+		// #endif
+		// #ifndef MP-TOUTIAO
 		virtualHost: true
+		// #endif
 	},
 	components: {
 		// #ifdef H5
@@ -107,7 +112,12 @@ export default {
 					return this.width.replace('px', '')
 				} else if (this.width.match(regexHaveUnitRpx) !== null) { // 携带了 rpx
 					let numberRpx = Number(this.width.replace('rpx', ''))
+					// #ifdef MP-WEIXIN
+					let widthCoe = uni.getWindowInfo().screenWidth / 750
+					// #endif
+					// #ifndef MP-WEIXIN
 					let widthCoe = uni.getSystemInfoSync().screenWidth / 750
+					// #endif
 					return Math.round(numberRpx * widthCoe)
 				} else if (this.width.match(regexHaveNotUnit) !== null) { // 未携带 rpx或px 的纯数字 String
 					return this.width

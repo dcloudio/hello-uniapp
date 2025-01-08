@@ -1,7 +1,7 @@
 {
   "id": "uni-table",
   "displayName": "uni-table 表格",
-  "version": "1.2.4",
+  "version": "1.2.8",
   "description": "表格组件，多用于展示多条结构类似的数据，如",
   "keywords": [
     "uni-ui",
@@ -42,7 +42,8 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "App": {

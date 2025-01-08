@@ -296,7 +296,7 @@ class Calendar {
 
 		if (!this.range) return
 		if (before && after) {
-			this.multipleStatus.before = ''
+			this.multipleStatus.before = fullDate
 			this.multipleStatus.after = ''
 			this.multipleStatus.data = []
 		} else {

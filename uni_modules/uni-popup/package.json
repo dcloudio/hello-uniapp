@@ -1,7 +1,7 @@
 {
 	"id": "uni-popup",
 	"displayName": "uni-popup 弹出层",
-	"version": "1.9.1",
+	"version": "1.9.6",
 	"description": " Popup 组件，提供常用的弹层",
 	"keywords": [
         "uni-ui",
@@ -51,9 +51,11 @@
 			},
 			"client": {
 				"App": {
-					"app-vue": "y",
-					"app-nvue": "y"
-				},
+                    "app-vue": "y",
+                    "app-nvue": "y",
+                    "app-harmony": "u",
+                    "app-uvue": "u"
+                },
 				"H5-mobile": {
 					"Safari": "y",
 					"Android Browser": "y",

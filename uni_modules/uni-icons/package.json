@@ -1,7 +1,7 @@
 {
   "id": "uni-icons",
   "displayName": "uni-icons 图标",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "图标组件，用于展示移动端常见的图标，可自定义颜色、大小。",
   "keywords": [
     "uni-ui",
@@ -42,7 +42,8 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "App": {
