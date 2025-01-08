@@ -2,7 +2,7 @@
 	"id": "hello-uniapp",
 	"name": "hello-uniapp",
 	"displayName": "hello-uniapp 示例工程",
-	"version": "3.4.4",
+	"version": "3.4.7",
 	"description": "uni-app 框架示例，一套代码，同时发行到iOS、Android、H5、小程序等多个平台，请使用手机扫码快速体验 uni-app 的强大功能",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -21,12 +21,8 @@
 	},
 	"homepage": "https://github.com/dcloudio/hello-uniapp#readme",
 	"dependencies": {},
-	"dcloudext": {
-		"category": [
-			"前端页面模板",
-			"uni-app前端项目模板"
-		],
-		"sale": {
+    "dcloudext": {
+        "sale": {
 			"regular": {
 				"price": "0.00"
 			},
@@ -42,7 +38,8 @@
 			"data": "无",
 			"permissions": "无"
 		},
-		"npmurl": ""
+        "npmurl": "",
+        "type": "uniapp-template-project"
 	},
 	"uni_modules": {
 		"dependencies": [],
@@ -50,13 +47,16 @@
 		"platforms": {
 			"cloud": {
 				"tcb": "y",
-				"aliyun": "y"
+                "aliyun": "y",
+                "alipay": "n"
 			},
 			"client": {
 				"App": {
-					"app-vue": "y",
-					"app-nvue": "y"
-				},
+                    "app-vue": "y",
+                    "app-nvue": "y",
+                    "app-harmony": "u",
+                    "app-uvue": "u"
+                },
 				"H5-mobile": {
 					"Safari": "y",
 					"Android Browser": "y",
