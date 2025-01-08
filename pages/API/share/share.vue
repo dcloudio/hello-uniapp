@@ -135,7 +135,7 @@
 		methods: {
 			async share(e) {
 				console.log('分享通道:'+ e.id +'； 分享类型:' + this.shareType);
-				
+
 				if(!this.shareText && (this.shareType === 1 || this.shareType === 0)){
 					uni.showModal({
 						content:'分享内容不能为空',
@@ -143,7 +143,7 @@
 					})
 					return;
 				}
-				
+
 				if(!this.image && (this.shareType === 2 || this.shareType === 0)){
 					uni.showModal({
 						content:'分享图片不能为空',
@@ -151,10 +151,10 @@
 					})
 					return;
 				}
-				
+
 				let shareOPtions = {
 					provider: e.id,
-					scene: e.type && e.type === 'WXSceneTimeline' ? 'WXSceneTimeline' : 'WXSceneSession', //WXSceneSession”分享到聊天界面，“WXSceneTimeline”分享到朋友圈，“WXSceneFavorite”分享到微信收藏     
+					scene: e.type && e.type === 'WXSceneTimeline' ? 'WXSceneTimeline' : 'WXSceneSession', //WXSceneSession”分享到聊天界面，“WXSceneTimeline”分享到朋友圈，“WXSceneFavorite”分享到微信收藏
 					type: this.shareType,
 					success: (e) => {
 						console.log('success', e);
@@ -174,7 +174,7 @@
 						console.log('分享操作结束!')
 					}
 				}
-				
+
 				switch (this.shareType){
 					case 0:
 						shareOPtions.summary = this.shareText;
@@ -189,7 +189,7 @@
 						shareOPtions.imageUrl = this.image;
 						break;
 					case 5:
-						shareOPtions.imageUrl = this.image ? this.image : 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b6304f00-5168-11eb-bd01-97bc1429a9ff.png'
+						shareOPtions.imageUrl = this.image ? this.image : 'https://web-ext-storage.dcloud.net.cn/hello-uni-app/share.png'
 						shareOPtions.title = '欢迎体验uniapp';
 						shareOPtions.miniProgram = {
 							id:'gh_33446d7f7a26',
@@ -201,8 +201,8 @@
 					default:
 						break;
 				}
-				
-				if(shareOPtions.type === 0 && plus.os.name === 'iOS'){//如果是图文分享，且是ios平台，则压缩图片 
+
+				if(shareOPtions.type === 0 && plus.os.name === 'iOS'){//如果是图文分享，且是ios平台，则压缩图片
 					shareOPtions.imageUrl = await this.compress();
 				}
 				if(shareOPtions.type === 1 && shareOPtions.provider === 'qq'){//如果是分享文字到qq，则必须加上href和title
@@ -253,7 +253,7 @@
 					console.log('after' + localPath);
 					// 压缩size
 					plus.io.resolveLocalFileSystemURL(localPath, (entry) => {
-						entry.file((file) => {// 可通过entry对象操作图片 
+						entry.file((file) => {// 可通过entry对象操作图片
 							console.log('getFile:' + JSON.stringify(file));
 							if(file.size > 20480) {// 压缩后size 大于20Kb
 								plus.zip.compressImage({

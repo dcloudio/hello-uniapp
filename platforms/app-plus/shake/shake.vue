@@ -21,15 +21,15 @@
 		computed:{
 			pageIndex() {
 				if (this.index === 1) {
-					return 'aff47ed0-517d-11eb-8ff1-d5dcf8779628'
+					return 'shake-1'
 				} else if (this.index === 2) {
-					return '1fc36f80-5199-11eb-a16f-5b3e54966275'
+					return 'shake-2'
 				} else if (this.index === 3) {
-					return '20a3bd60-5199-11eb-97b7-0dc4655d6e68'
+					return 'shake-3'
 				} else if (this.index === 4) {
-					return '8b872410-51a7-11eb-8a36-ebb87efcf8c0'
+					return 'shake-4'
 				} else {
-					return 'aff47ed0-517d-11eb-8ff1-d5dcf8779628'
+					return 'shake-1'
 				}
 			}
 		},
@@ -46,7 +46,7 @@
 						if (this.index > 4) {
 							this.index = 1
 						}
-						this.img = 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/' + this.pageIndex + '.jpg';
+						this.img = 'https://web-ext-storage.dcloud.net.cn/hello-uni-app/' + this.pageIndex + '.jpg';
 					}, 2000);
 					this.show = true;
 					if (t) {

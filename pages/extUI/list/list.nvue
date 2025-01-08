@@ -69,7 +69,7 @@
 					thumb="https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
 					thumb-size="base" rightText="默认" />
 				<uni-list-item title="列表左侧带略缩图" note="列表描述信息" showArrow
-					thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
+					thumb="https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
 					thumb-size="lg" rightText="大图" />
 			</uni-list>
 		</uni-section>
@@ -112,7 +112,7 @@
 		data() {
 			return {
 				cover: 'https://web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg',
-				avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
+				avatar: 'https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png',
 				extraIcon: {
 					color: '#4cd964',
 					size: '22',

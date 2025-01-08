@@ -79,11 +79,11 @@
 					extname: 'png',
 					name: 'shuijiao.png'
 				}, {
-					url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b7c7f970-517d-11eb-97b7-0dc4655d6e68.jpg',
+					url: 'https://web-assets.dcloud.net.cn/unidoc/zh/shuijiao-small.jpg',
 					extname: 'png',
 					name: 'uniapp-logo.png'
 				}, {
-					url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/b7c7f970-517d-11eb-97b7-0dc4655d6e68.jpg',
+					url: 'https://web-assets.dcloud.net.cn/unidoc/zh/shuijiao-small.jpg',
 					extname: 'png',
 					name: 'shuijiao.png'
 				}]
