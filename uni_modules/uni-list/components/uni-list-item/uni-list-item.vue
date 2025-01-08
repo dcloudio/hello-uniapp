@@ -352,7 +352,7 @@
 	}
 
 	.uni-list-item--hover {
-		background-color: $uni-bg-color-hover !important;
+		background-color: $uni-bg-color-hover;
 	}
 
 	.uni-list-item__container {

@@ -68,7 +68,12 @@
 		name: 'uniForms',
 		emits: ['validate', 'submit'],
 		options: {
+			// #ifdef MP-TOUTIAO
+			virtualHost: false,
+			// #endif
+			// #ifndef MP-TOUTIAO
 			virtualHost: true
+			// #endif
 		},
 		props: {
 			// 即将弃用
@@ -180,7 +185,9 @@
 							}
 						}
 						if (!formVm) return console.error('当前 uni-froms 组件缺少 ref 属性');
-						formVm.setValue(name, value);
+						if(formVm.model)formVm.model[name] = value
+						if(formVm.modelValue)formVm.modelValue[name] = value
+						if(formVm.value)formVm.value[name] = value
 					}
 				}
 			}

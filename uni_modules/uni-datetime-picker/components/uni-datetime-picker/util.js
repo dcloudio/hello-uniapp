@@ -182,8 +182,8 @@ class Calendar {
 		if (!date) {
 			date = new Date()
 		}
-
-		return this.calendar.find(item => item.fullDate === this.getDateObj(date).fullDate)
+		const res = this.calendar.find(item => item.fullDate === this.getDateObj(date).fullDate)
+		return res ? res : this.getDateObj(date)
 	}
 
 	/**

@@ -37,7 +37,12 @@
 <script>
 	let platform
 	setTimeout(() => {
+		// #ifdef MP-WEIXIN
+		platform = uni.getDeviceInfo().platform
+		// #endif
+		// #ifndef MP-WEIXIN
 		platform = uni.getSystemInfoSync().platform
+		// #endif
 	}, 16)
 
 	import {

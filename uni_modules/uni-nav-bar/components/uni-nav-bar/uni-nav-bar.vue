@@ -318,7 +318,7 @@
 
 	.uni-navbar--fixed {
 		position: fixed;
-		z-index: 998;
+		z-index: 99;
 		/* #ifdef H5 */
 		left: var(--window-left);
 		right: var(--window-right);

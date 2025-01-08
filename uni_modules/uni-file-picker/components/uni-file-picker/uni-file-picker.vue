@@ -89,24 +89,18 @@
 		},
 		emits: ['select', 'success', 'fail', 'progress', 'delete', 'update:modelValue', 'input'],
 		props: {
-			// #ifdef VUE3
 			modelValue: {
 				type: [Array, Object],
 				default () {
 					return []
 				}
 			},
-			// #endif
-
-			// #ifndef VUE3
 			value: {
 				type: [Array, Object],
 				default () {
 					return []
 				}
 			},
-			// #endif
-
 			disabled: {
 				type: Boolean,
 				default: false
@@ -204,22 +198,18 @@
 			}
 		},
 		watch: {
-			// #ifndef VUE3
 			value: {
 				handler(newVal, oldVal) {
 					this.setValue(newVal, oldVal)
 				},
 				immediate: true
 			},
-			// #endif
-			// #ifdef VUE3
 			modelValue: {
 				handler(newVal, oldVal) {
 					this.setValue(newVal, oldVal)
 				},
 				immediate: true
 			},
-			// #endif
 		},
 		computed: {
 			filesList() {
