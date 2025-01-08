@@ -133,7 +133,7 @@ class Encryptkey extends Storage {
 
     return {
       value,
-      duration: keyInfo.expire_in
+      duration: keyInfo.expire_in || (24 * 60 * 60)
     }
   }
 }

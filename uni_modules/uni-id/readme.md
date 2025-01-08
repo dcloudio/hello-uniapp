@@ -1,6 +1,6 @@
-**文档已移至[uni-id文档](https://uniapp.dcloud.net.cn/uniCloud/uni-id)**
+**文档已移至[uni-id文档](https://doc.dcloud.net.cn/uniCloud/uni-id/old.html)**
 
-> 一般uni-id升级大版本时为不兼容更新，从低版本迁移到高版本请参考：[uni-id迁移指南](https://uniapp.dcloud.net.cn/uniCloud/uni-id?id=migration)
+> 一般uni-id升级大版本时为不兼容更新，从低版本迁移到高版本请参考：[uni-id迁移指南](https://doc.dcloud.net.cn/uniCloud/uni-id/old.html#m1to2)
 
 ## 重要升级说明
 
@@ -14,7 +14,7 @@
 
 详细checkToken流程如下：
 
-![](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/ed45d350-5a4d-11eb-b997-9918a5dda011.jpg)
+![](https://web-ext-storage.dcloud.net.cn/ext/uni-id/uni-id-flow.jpg)
 
 可以看出，旧版token（removePermissionAndRoleFromToken为true时生成的）在checkToken时如需返回权限需要进行两次数据库查询。新版token不需要查库即可返回权限信息。
 
