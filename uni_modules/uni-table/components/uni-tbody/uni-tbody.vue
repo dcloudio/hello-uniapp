@@ -13,11 +13,16 @@
 export default {
 	name: 'uniBody',
 	options: {
+		// #ifdef MP-TOUTIAO
+		virtualHost: false,
+		// #endif
+		// #ifndef MP-TOUTIAO
 		virtualHost: true
+		// #endif
 	},
 	data() {
 		return {
-			
+
 		}
 	},
 	created() {},

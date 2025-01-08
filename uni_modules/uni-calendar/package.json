@@ -1,7 +1,7 @@
 {
   "id": "uni-calendar",
   "displayName": "uni-calendar 日历",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "description": "日历组件",
   "keywords": [
     "uni-ui",
@@ -44,7 +44,8 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "App": {

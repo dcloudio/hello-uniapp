@@ -192,6 +192,17 @@
 		},
 		mounted() {
 			const fixSize = () => {
+				// #ifdef MP-WEIXIN
+				const {
+					windowWidth,
+					windowHeight,
+					windowTop,
+					safeArea,
+					screenHeight,
+					safeAreaInsets
+				} = uni.getWindowInfo()
+				// #endif
+				// #ifndef MP-WEIXIN
 				const {
 					windowWidth,
 					windowHeight,
@@ -200,6 +211,7 @@
 					screenHeight,
 					safeAreaInsets
 				} = uni.getSystemInfoSync()
+				// #endif
 				this.popupWidth = windowWidth
 				this.popupHeight = windowHeight + (windowTop || 0)
 				// TODO fix by mehaotian 是否适配底部安全区 ,目前微信ios 、和 app ios 计算有差异，需要框架修复
@@ -350,6 +362,7 @@
 				this.showPopup = true
 				this.showTrans = true
 				this.$nextTick(() => {
+					this.showPoptrans()
 					if (this.messageChild && this.type === 'message') {
 						this.messageChild.timerClose()
 					}
@@ -372,8 +385,7 @@
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
-				this.showPopup = true
-				this.showTrans = true
+				this.showPoptrans()
 			},
 			/**
 			 * 中间弹出样式处理
@@ -403,8 +415,7 @@
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
-				this.showPopup = true
-				this.showTrans = true
+				this.showPoptrans()
 			},
 			left(type) {
 				this.popupstyle = 'left'
@@ -423,8 +434,7 @@
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
-				this.showPopup = true
-				this.showTrans = true
+				this.showPoptrans()
 			},
 			right(type) {
 				this.popupstyle = 'right'
@@ -443,8 +453,13 @@
 				}
 				// TODO 兼容 type 属性 ，后续会废弃
 				if (type) return
-				this.showPopup = true
-				this.showTrans = true
+				this.showPoptrans()
+			},
+			showPoptrans(){
+				this.$nextTick(()=>{
+					this.showPopup = true
+					this.showTrans = true
+				})
 			}
 		}
 	}

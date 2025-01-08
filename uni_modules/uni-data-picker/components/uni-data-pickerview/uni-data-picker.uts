@@ -256,7 +256,6 @@ export const dataPicker = defineMixin({
   methods: {
     onPropsChange() {
       this.selectedIndex = 0
-      this.treeData.length = 0
       this.selectedNodes.length = 0
       this.selectedPages.length = 0
       this.selectedPaths.length = 0
