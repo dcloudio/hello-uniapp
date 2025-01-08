@@ -1,11 +1,6 @@
 <template>
   <view class="uni-product">
-	<!-- #ifdef VUE2 -->
-	<page-head title="vue2"></page-head>
-	<!-- #endif -->
-	<!-- #ifdef VUE3 -->
-	<page-head title="vue3"></page-head>
-	<!-- #endif -->
+	<page-head title="vuex:vue页面"></page-head>
     <text class="username">用户名：{{username}}</text>
     <text class="sex">性别：{{sex}}</text>
     <view class="age">年龄：{{age}}</view>
