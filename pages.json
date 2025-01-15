@@ -1354,6 +1354,15 @@
 					}
 				},
 				// #endif
+				// #ifdef MP-WEIXIN
+				{
+					"path" : "issue-15216/issue-15216",
+					"style" :
+					{
+						"navigationBarTitleText" : "issue-15216"
+					}
+				},
+				// #endif
 				{
 					"path" : "vuex-vue/vuex-vue",
 					"style" :
