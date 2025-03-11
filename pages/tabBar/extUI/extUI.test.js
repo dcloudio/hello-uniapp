@@ -40,8 +40,6 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
 			const extUIEl  = await page.$('.extUI')
 			lists = await extUIEl.$$('.uni-panel')
 		}
-		console.log('lists.length:',lists.length,(await page.data('lists')).length)
-		console.log('uniTestPlatformInfo:',process.env.uniTestPlatformInfo)
 		if(process.env.UNI_PLATFORM == 'app-plus'){
 			expect(lists.length).toBe(41)
 		}else if(process.env.UNI_PLATFORM == 'h5' || process.env.UNI_PLATFORM == 'mp-weixin'){
@@ -59,7 +57,12 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
         expect(await listHead.attribute('class')).toContain('uni-panel-h')
         // 点击第一个 item，验证打开的新页面是否正确
         await listHead.tap()
-		await page.waitFor(2000)
+		if(process.env.UNI_PLATFORM == 'mp-weixin'){
+			await page.waitFor(5000)
+		}else{
+			await page.waitFor(2000)
+		}
+		console.log('currentPage ',await program.currentPage());
         expect((await program.currentPage()).path).toBe('pages/extUI/badge/badge')
         await page.waitFor(500)
         // 执行 navigateBack 验证是否返回
