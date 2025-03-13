@@ -1376,6 +1376,7 @@
 			"navigationStyle": "custom"
 		},
 		"h5": {
+			"titleNView": false, // 禁用H5默认导航栏
 			"maxWidth": 1190,
 			"navigationBarTextStyle": "black",
 			"navigationBarBackgroundColor": "#F1F1F1"
