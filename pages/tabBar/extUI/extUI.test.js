@@ -57,12 +57,8 @@ describe('pages/tabBar/extUI/extUI.nvue', () => {
         expect(await listHead.attribute('class')).toContain('uni-panel-h')
         // 点击第一个 item，验证打开的新页面是否正确
         await listHead.tap()
-		if(process.env.UNI_PLATFORM == 'mp-weixin'){
-			await page.waitFor(5000)
-		}else{
-			await page.waitFor(2000)
-		}
-		console.log('currentPage ',await program.currentPage());
+		const waitTime = process.env.UNI_PLATFORM == 'mp-weixin'? 5000 : 2000
+		await page.waitFor(waitTime)
         expect((await program.currentPage()).path).toBe('pages/extUI/badge/badge')
         await page.waitFor(500)
         // 执行 navigateBack 验证是否返回
