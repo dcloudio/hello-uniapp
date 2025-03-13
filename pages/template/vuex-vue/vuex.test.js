@@ -26,7 +26,6 @@ function createTests(pagePath, type) {
 		beforeAll(async () => {
 			page = await program.reLaunch(pagePath)
 			await page.waitFor('view');
-			console.log(type, page);
 			await toScreenshot(type)
 		});
 		afterAll(async () => {
@@ -70,7 +69,7 @@ function createTests(pagePath, type) {
 const nvuePath = '/pages/template/vuex-nvue/vuex-nvue'
 const vuepath = '/pages/template/vuex-vue/vuex-vue'
 if (containsVite) {
-	console.log('vue3: ', containsVite);
+	// vue3
 	if (isApp) {
 		createTests(vuepath, 'vue3-App-vue');
 	} else if (process.env.UNI_PLATFORM == 'h5') {
@@ -79,7 +78,7 @@ if (containsVite) {
 		createTests(vuepath, 'vue3-Mp-vue');
 	}
 } else {
-	console.log('vue2');
+	// vue2
 	if (isApp) {
 		createTests(nvuePath, 'vue2-App-nvue');
 		createTests(vuepath, 'vue2-App-vue');

@@ -3,7 +3,6 @@ describe('pages/API/download-file/download-file.vue', () => {
 	let page;
 	const versions = ['12.4', '13.7', '17.4', '17.5_深色主题', '18.1'];
 	const [platform, version] = platformInfo.split(' ');
-	console.log('platform: ',platform,'version: ',version);
 	if (platform === 'ios_simulator' && versions.includes(version)) {
 	    it('skip', async () => {
 	        expect(1).toBe(1);
@@ -22,7 +21,6 @@ describe('pages/API/download-file/download-file.vue', () => {
 		await page.waitFor(async () => {
 		  return await page.data('jest_result') === true || (Date.now() - start > waitTime)
 		})
-		console.log("data",await page.data(),Date.now() - start > waitTime)
 		expect(await page.data('jest_result')).toBeTruthy();
 		expect(await page.data('imageSrc')).toBeTruthy();
 	});
