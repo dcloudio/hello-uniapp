@@ -138,10 +138,12 @@
 						url: 'pinia'
 					},
 					// #endif
+					// #ifdef APP-PLUS || H5
 					{
 						name: 'renderjs',
 						url: 'renderjs'
 					},
+					// #endif
 					// #ifdef APP-PLUS
 					{
 						name: '问题反馈',
