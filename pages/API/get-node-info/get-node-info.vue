@@ -20,6 +20,13 @@
 					</view>
 				</view>
 			</view>
+			<!-- #ifdef APP-PLUS -->
+			<view>
+				<view class="box box1"></view>
+				<view class="box box2"></view>
+				<view class="box box3"></view>
+			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
@@ -113,5 +120,18 @@
 	.span {
 		width: 100rpx;
 		display: inline-block;
+	}
+
+	.box {
+		width: 50px;
+	}
+	.box1 {
+		height: var(--status-bar-height);
+	}
+	.box2 {
+		height: var(--window-bottom);
+	}
+	.box3 {
+		height: var(--window-top);
 	}
 </style>
