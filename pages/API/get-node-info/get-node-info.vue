@@ -25,6 +25,7 @@
 				<view class="box box1"></view>
 				<view class="box box2"></view>
 				<view class="box box3"></view>
+				<view class="box box4"></view>
 			</view>
 			<!-- #endif -->
 		</view>
@@ -133,5 +134,8 @@
 	}
 	.box3 {
 		height: var(--window-top);
+	}
+	.box4 {
+		height: calc(var(--status-bar-height) + 2px);
 	}
 </style>
