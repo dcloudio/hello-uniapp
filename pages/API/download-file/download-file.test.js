@@ -1,7 +1,7 @@
 const platformInfo = process.env.uniTestPlatformInfo.toLocaleLowerCase()
 describe('pages/API/download-file/download-file.vue', () => {
 	let page;
-	const versions = ['12.4', '13.7', '17.4', '17.5_深色主题', '18.1'];
+	const versions = ['12.4', '13.7', '15.5', '17.4', '17.5_深色主题', '18.1'];
 	const [platform, version] = platformInfo.split(' ');
 	if (platform === 'ios_simulator' && versions.includes(version)) {
 	    it('skip', async () => {
