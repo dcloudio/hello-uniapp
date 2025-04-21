@@ -1321,7 +1321,7 @@
 				},
 				// #endif
 				// #endif
-				// #ifdef APP-PLUS || H5
+				// #ifdef APP || H5
 				{
 					"path" : "renderjs/renderjs",
 					"style" :
