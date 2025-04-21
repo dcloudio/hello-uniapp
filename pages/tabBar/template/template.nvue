@@ -138,7 +138,7 @@
 						url: 'pinia'
 					},
 					// #endif
-					// #ifdef APP-PLUS || H5
+					// #ifdef APP || H5
 					{
 						name: 'renderjs',
 						url: 'renderjs'
