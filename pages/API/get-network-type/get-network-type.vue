@@ -11,12 +11,14 @@
 				<block v-if="hasNetworkType === true">
 					<view class="uni-h2 uni-center uni-common-mt">{{networkType}}</view>
 				</block>
+				<!-- #ifndef MP-HARMONY -->
 				<view v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-textarea uni-common-mt">
 					<textarea :value="connectedWifi"></textarea>
 				</view>
+				<!-- #endif -->
 			</view>
 			<view class="uni-btn-v uni-common-mt">
-				<button type="primary"  @tap="getNetworkType">获取设备网络状态</button>
+				<button type="primary" @tap="getNetworkType">获取设备网络状态</button>
 				<!-- #ifdef MP-WEIXIN  || MP-JD-->
 				<button v-if="hasNetworkType === true && networkType === 'wifi'" class="uni-common-mt" type="primary" @tap="getConnectedWifi">获取 wifi 信息</button>
 				<!-- #endif -->

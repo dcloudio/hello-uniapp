@@ -10,7 +10,7 @@
 			<text class="article-time">{{banner.published_at}}</text>
 		</view>
 		<view class="article-content">
-			<rich-text :nodes="htmlNodes"></rich-text>
+			<rich-text v-if="visible" :nodes="htmlNodes"></rich-text>
 		</view>
 		<!-- #ifdef MP-WEIXIN || MP-QQ -->
 		<ad v-if="htmlNodes.length > 0" unit-id="adunit-01b7a010bf53d74e"></ad>
@@ -54,7 +54,9 @@
 			return {
 				title: '',
 				banner: {},
-				htmlNodes: []
+				htmlNodes: [],
+				visible: true,
+
 			}
 		},
 		onLoad(event) {
@@ -126,6 +128,12 @@
 						if (data.statusCode == 200) {
 							var htmlString = data.data.content.replace(/\\/g, "").replace(/<img/g, "<img style=\"display:none;\"");
 							this.htmlNodes = htmlParser(htmlString);
+							// #ifdef MP-HARMONY
+							this.visible = false;
+							this.$nextTick(()=>{
+								this.visible = true
+							})
+							// #endif
 						}
 					},
 					fail: () => {
