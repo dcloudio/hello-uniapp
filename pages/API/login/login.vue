@@ -92,6 +92,9 @@
 							case 'univerify':
 								providerName = '一键登录'
 								break;
+							case 'huawei':
+								providerName = '华为登录'
+								break;
 						}
 						return {
 							name: providerName,
@@ -259,7 +262,7 @@
 					provider
 				});
 				// #endif
-				
+
 				// #ifdef VUE3
 				try {
 					result = await uni.getUserInfo({
@@ -269,7 +272,7 @@
 					getUserInfoErr = e
 				}
 				// #endif
-				
+
 				if (getUserInfoErr) {
 					let content = getUserInfoErr.errMsg;
 					if (~content.indexOf('uni.login')) {

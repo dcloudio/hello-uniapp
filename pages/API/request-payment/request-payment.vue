@@ -55,6 +55,13 @@
 									loading: false
 								});
 								break;
+							case 'huawei':
+								providerList.push({
+									name: '华为',
+									id: value,
+									loading: false
+								});
+								break;
 							default:
 								break;
 						}

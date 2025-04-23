@@ -31,6 +31,9 @@ export default {
 		},
 		shortshock() {
 			uni.vibrateShort({
+				// #ifdef MP-HARMONY
+				type:"medium",
+				// #endif
 				success: function() {
 					console.log('success');
 				}
