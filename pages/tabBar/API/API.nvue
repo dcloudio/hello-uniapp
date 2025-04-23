@@ -47,13 +47,13 @@
                     name: '图片',
                     url: 'image'
                 },
-				// #ifndef MP-LARK
+				// #ifndef MP-LARK || MP-HARMONY
 				{
 				    name: '音频',
 				    url: 'inner-audio'
 				},
                 // #endif
-                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ|| MP-JD
+                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ|| MP-JD || MP-HARMONY
                 {
                     name: '录音',
                     url: 'voice'
@@ -111,10 +111,12 @@
                             name: '下拉刷新',
                             url: 'pull-down-refresh'
                         },
+						// #ifndef MP-HARMONY
                         {
                             name: '创建动画',
                             url: 'animation'
                         },
+						// #endif
 						// #ifndef QUICKAPP-WEBVIEW-UNION
                         {
                             name: '创建绘画',
@@ -127,10 +129,12 @@
                             url: 'get-node-info'
                         },
 						// #endif
+						// #ifndef MP-HARMONY
                         {
                             name: '节点布局交互状态',
                             url: 'intersection-observer'
                         },
+						// #endif
                         {
                             name: '显示操作菜单',
                             url: 'action-sheet'
@@ -189,7 +193,7 @@
                             url: 'brightness'
                         },
                         // #endif
-                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || MP-JD
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ || MP-JD || MP-HARMONY
                         {
                             name: '蓝牙',
                             url: 'bluetooth'
@@ -207,13 +211,13 @@
                             url: 'ibeacon'
                         },
                         // #endif
-						// #ifdef APP || MP-WEIXIN
+						// #ifdef APP || MP-WEIXIN || MP-HARMONY
 						{
 							name: '监听加速度传感器',
 							url: 'on-accelerometer-change'
 						},
 						// #endif
-						// #ifdef APP || H5 ||MP-WEIXIN
+						// #ifdef APP || H5 ||MP-WEIXIN || MP-HARMONY
 						{
 							name: '监听罗盘数据',
 							url: 'on-compass-change'
@@ -347,14 +351,16 @@
                             name: '登录',
                             url: 'login'
                         },
+						// #ifndef MP-HARMONY
                         {
                             name: '获取用户信息',
                             url: 'get-user-info'
                         }
+						// #endif
                     ]
                 },
 				// #endif
-				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION
+				// #ifndef H5 || QUICKAPP-WEBVIEW-UNION || MP-HARMONY
                 {
                     id: 'share',
                     name: '分享',

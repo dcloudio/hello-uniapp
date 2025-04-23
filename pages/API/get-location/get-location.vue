@@ -70,8 +70,22 @@
                     return;
                 }
                 // #endif
-
-                this.doGetLocation();
+				// #ifdef MP-HARMONY
+				uni.authorize({
+					scope: "scope.userLocation",
+					success: () => {
+						this.doGetLocation();
+					},
+					fail: () => {
+						uni.showToast({
+							title: "未授权获取地理位置权限"
+						})
+					}
+				})
+				// #endif
+				// #ifndef MP-HARMONY
+				this.doGetLocation();
+				// #endif
             },
             doGetLocation() {
                 uni.getLocation({
