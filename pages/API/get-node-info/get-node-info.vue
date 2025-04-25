@@ -20,7 +20,7 @@
 					</view>
 				</view>
 			</view>
-			<!-- #ifdef APP-PLUS -->
+			<!-- #ifdef APP -->
 			<view>
 				<view class="box box1"></view>
 				<view class="box box2"></view>
