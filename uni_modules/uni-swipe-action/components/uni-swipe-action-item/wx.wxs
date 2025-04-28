@@ -134,9 +134,14 @@ function getDom(instance, ownerInstance) {
 	var rightStyles = {
 		width: 0
 	}
-	leftStyles = leftDom.getBoundingClientRect()
-	rightStyles = rightDom.getBoundingClientRect()
 
+	if (leftDom) {
+		leftStyles = leftDom.getBoundingClientRect()
+	}
+
+	if (rightDom) {
+		rightStyles = rightDom.getBoundingClientRect()
+	}
 	state.leftWidth = leftStyles.width || 0
 	state.rightWidth = rightStyles.width || 0
 	state.threshold = instance.getDataset().threshold

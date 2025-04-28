@@ -1,13 +1,13 @@
 <template>
 	<!-- 在微信小程序 app vue端 h5 使用wxs 实现-->
-	<!-- #ifdef APP-VUE || MP-WEIXIN || H5 -->
+	<!-- #ifdef APP-VUE || APP-HARMONY || MP-WEIXIN || H5 -->
 	<view class="uni-swipe">
-		<!--  #ifdef MP-WEIXIN || VUE3 -->
+		<!--  #ifdef MP-WEIXIN || H5 -->
 		<view class="uni-swipe_box" :change:prop="wxsswipe.showWatch" :prop="is_show" :data-threshold="threshold"
 			:data-disabled="disabled" @touchstart="wxsswipe.touchstart" @touchmove="wxsswipe.touchmove"
 			@touchend="wxsswipe.touchend">
-		<!-- #endif -->
-			<!--  #ifndef MP-WEIXIN || VUE3 -->
+			<!-- #endif -->
+			<!--  #ifndef MP-WEIXIN || H5 -->
 			<view class="uni-swipe_box" :change:prop="renderswipe.showWatch" :prop="is_show" :data-threshold="threshold"
 				:data-disabled="disabled+''" @touchstart="renderswipe.touchstart" @touchmove="renderswipe.touchmove"
 				@touchend="renderswipe.touchend">
@@ -142,7 +142,7 @@
 	 * @property {Boolean} autoClose = [true|false] 	滑动打开当前组件，是否关闭其他组件
 	 * @property {Number}  threshold 					滑动缺省值
 	 * @property {Array} leftOptions 					左侧选项内容及样式
-	 * @property {Array} rgihtOptions 					右侧选项内容及样式
+	 * @property {Array} rightOptions 					右侧选项内容及样式
 	 * @event {Function} click 							点击选项按钮时触发事件，e = {content,index} ，content（点击内容）、index（下标)
 	 * @event {Function} change 						组件打开或关闭时触发，left\right\none
 	 */
