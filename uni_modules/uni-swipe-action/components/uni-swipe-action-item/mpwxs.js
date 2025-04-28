@@ -6,7 +6,7 @@ import {
 } from "./isPC"
 is_pc = isPC()
 // #endif
-// #ifdef APP-VUE|| MP-WEIXIN || H5
+// #ifdef APP-VUE || APP-HARMONY || MP-WEIXIN || H5
 
 mpMixins = {
 	data() {

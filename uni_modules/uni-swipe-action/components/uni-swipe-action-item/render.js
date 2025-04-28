@@ -1,7 +1,7 @@
 const MIN_DISTANCE = 10;
 export default {
 	showWatch(newVal, oldVal, ownerInstance, instance, self) {
-		var state = self.state
+		var state = self.state || {}
 		var $el = ownerInstance.$el || ownerInstance.$vm && ownerInstance.$vm.$el
 		if (!$el) return
 		this.getDom(instance, ownerInstance, self)
@@ -24,7 +24,7 @@ export default {
 	touchstart(e, ownerInstance, self) {
 		let instance = e.instance;
 		let disabled = instance.getDataset().disabled
-		let state = self.state;
+		let state = self.state || {};
 		this.getDom(instance, ownerInstance, self)
 		// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
 		disabled = this.getDisabledType(disabled)
@@ -51,7 +51,7 @@ export default {
 		// 删除之后已经那不到实例了
 		if (!instance) return;
 		let disabled = instance.getDataset().disabled
-		let state = self.state
+		let state = self.state || {}
 		// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
 		disabled = this.getDisabledType(disabled)
 		if (disabled) return
@@ -76,7 +76,7 @@ export default {
 	touchend(e, ownerInstance, self) {
 		let instance = e.instance;
 		let disabled = instance.getDataset().disabled
-		let state = self.state
+		let state = self.state || {}
 		// fix by mehaotian, TODO 兼容 app-vue 获取dataset为字符串 , h5 获取 为 undefined 的问题,待框架修复
 		disabled = this.getDisabledType(disabled)
 
@@ -95,7 +95,7 @@ export default {
 	 */
 	move(value, instance, ownerInstance, self) {
 		value = value || 0
-		let state = self.state
+		let state = self.state || {}
 		let leftWidth = state.leftWidth
 		let rightWidth = state.rightWidth
 		// 获取可滑动范围
@@ -115,13 +115,20 @@ export default {
 	 * @param {Object} ownerInstance
 	 */
 	getDom(instance, ownerInstance, self) {
-		var state = self.state
+		var state = self.state || {}
 		var $el = ownerInstance.$el || ownerInstance.$vm && ownerInstance.$vm.$el
 		var leftDom = $el.querySelector('.button-group--left')
 		var rightDom = $el.querySelector('.button-group--right')
-
-		state.leftWidth = leftDom.offsetWidth || 0
-		state.rightWidth = rightDom.offsetWidth || 0
+		if (leftDom && leftDom.offsetWidth) {
+			state.leftWidth = leftDom.offsetWidth || 0
+		} else {
+			state.leftWidth = 0
+		}
+		if (rightDom && rightDom.offsetWidth) {
+			state.rightWidth = rightDom.offsetWidth || 0
+		} else {
+			state.rightWidth = 0
+		}
 		state.threshold = instance.getDataset().threshold
 	},
 
@@ -148,7 +155,7 @@ export default {
 	 * @param {Object} ins
 	 */
 	moveDirection(left, ins, ownerInstance, self) {
-		var state = self.state
+		var state = self.state || {}
 		var threshold = state.threshold
 		var position = state.position
 		var isopen = state.isopen || 'none'
@@ -181,7 +188,7 @@ export default {
 	 * @param {Object} ownerInstance
 	 */
 	openState(type, ins, ownerInstance, self) {
-		let state = self.state
+		let state = self.state || {}
 		let leftWidth = state.leftWidth
 		let rightWidth = state.rightWidth
 		let left = ''
@@ -231,7 +238,7 @@ export default {
 	 * @param {Object} event
 	 */
 	resetTouchStatus(instance, self) {
-		let state = self.state;
+		let state = self.state || {};
 		state.direction = '';
 		state.deltaX = 0;
 		state.deltaY = 0;
@@ -245,7 +252,7 @@ export default {
 	 */
 	stopTouchStart(event, ownerInstance, self) {
 		let instance = event.instance;
-		let state = self.state
+		let state = self.state || {}
 		this.resetTouchStatus(instance, self);
 		var touch = event.touches[0];
 		state.startX = touch.clientX;
@@ -258,7 +265,7 @@ export default {
 	 */
 	stopTouchMove(event, self) {
 		let instance = event.instance;
-		let state = self.state;
+		let state = self.state || {};
 		let touch = event.touches[0];
 
 		state.deltaX = touch.clientX - state.startX;
