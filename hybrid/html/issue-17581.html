@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>点击显示小点</title>
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: aqua;
+				cursor: pointer;
+			}
+
+			.dot {
+				position: absolute;
+				width: 8px;
+				height: 8px;
+				background-color: red;
+				border-radius: 50%;
+				pointer-events: none;
+			}
+		</style>
+	</head>
+	<body>
+
+	</body>
+	<script type="text/javascript" src="https://doc.dcloud.net.cn/uni.webview.1.5.6.js"></script>
+	<script>
+		document.addEventListener('click', function(e) {
+			const {
+				clientX,
+				clientY
+			} = e
+			uni.postMessage({
+				data: {
+					action: 'click',
+					clientX,
+					clientY
+				}
+			});
+			const dot = document.createElement('div');
+			dot.className = 'dot';
+			dot.style.left = `${clientX - 4}px`;
+			dot.style.top = `${clientY - 4}px`;
+			document.body.appendChild(dot);
+			setTimeout(() => {
+				dot.remove();
+			}, 500); // 显示 500 毫秒后消失
+		});
+	</script>
+</html>

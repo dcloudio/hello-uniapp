@@ -279,10 +279,16 @@
 			}
 		},
 		// #endif
-		// #ifdef APP-PLUS || H5
+		// #ifdef APP || H5
 		{
 			"path": "pages/component/web-view-local/web-view-local",
 			"style": {}
+		},
+		{
+			"path": "pages/component/web-view-local/issue-17581",
+			"style": {
+				"navigationBarTitleText": "issue-17581"
+			}
 		},
 		// #endif
 		{
