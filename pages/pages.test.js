@@ -203,13 +203,13 @@ const pages = [
 function isMatch(platform) {
 	return process.env.uniTestPlatformInfo.toLocaleLowerCase().includes(platform)
 }
-
 // 设置position: fixed的页面不能截取完整内容
 const notFullPages = []
 
 let page;
 describe("page screenshot test", () => {
-	if (isMatch('ios')) {
+	// HarmonyOS平台不支持截图，直接跳过
+	if (isMatch('ios') || isMatch('harmony')) {
 		it("ios platform not support", async () => {
 			expect(1).toBe(1);
 		});
