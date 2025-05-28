@@ -2,7 +2,7 @@ let page;
 const containsVite = process.env.UNI_CLI_PATH.includes('uniapp-cli-vite');
 const isApp = process.env.UNI_PLATFORM.includes('app');
 const platformInfo = process.env.uniTestPlatformInfo.toLocaleLowerCase();
-
+const isHarmony = platformInfo.startsWith('harmony')
 function createTests(pagePath, type) {
 	return describe(`测试页面路径: ${pagePath}`, () => {
 		async function toScreenshot(imgName) {
@@ -26,7 +26,8 @@ function createTests(pagePath, type) {
 		beforeAll(async () => {
 			page = await program.reLaunch(pagePath)
 			await page.waitFor('view');
-			await toScreenshot(type)
+			// isHarmony不支持截图跳过
+			if (!isHarmony) {await toScreenshot(type)}
 		});
 		afterAll(async () => {
 			await page.callMethod('resetAge')
