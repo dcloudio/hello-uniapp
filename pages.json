@@ -1366,6 +1366,13 @@
 					{
 						"navigationBarTitleText" : "vuex-vue"
 					}
+				},
+				{
+					"path" : "crypto-api/crypto-api",
+					"style" :
+					{
+						"navigationBarTitleText" : "crypto"
+					}
 				}
 			]
 		}
