@@ -21,6 +21,9 @@
 				</view>
 			</view>
 		</view>
+		<!-- #ifdef APP-HARMONY -->
+		<privacy-dialog ref="privacyDialogRef" :tabBar="true" @agree="isAgree = true" @disagree="isAgree = false"></privacy-dialog>
+		<!-- #endif -->
 	</view>
 </template>
 <script>
@@ -43,6 +46,7 @@
 		},
 		data() {
 			return {
+				isAgree: null,
 				list: [{
 						id: 'view',
 						name: '视图容器',
@@ -150,6 +154,15 @@
 				url: '/pages/about/about'
 			});
 		},
+		onReady() {
+		  // #ifdef APP-HARMONY
+		  let isAgree = this.$refs.privacyDialogRef.getIsAgree();
+		  console.log('is argree',isAgree);
+		  if (!isAgree) {
+		    this.$refs.privacyDialogRef.open();
+		  }
+		  // #endif
+		},
 		// #ifdef H5
 		watch: {
 			$route: {
@@ -208,6 +221,9 @@
 						})
 					}
 				}
+			},
+			resetPrivacy(){
+				uni.removeStorageSync('uni-privacy-agree')
 			}
 		}
 	}
