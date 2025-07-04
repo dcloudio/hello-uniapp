@@ -1,7 +1,9 @@
 <template>
 	<view>
-		<view id="str">{{str.join('-')}}</view>
-		<button id="button" @click="getRandomValues">crypto.getRandomValues</button>
+		<view id="str">{{ str.join("-") }}</view>
+		<button id="button" @click="getRandomValues">
+			crypto.getRandomValues
+		</button>
 	</view>
 </template>
 
@@ -10,25 +12,24 @@
 		data() {
 			return {
 				str: [false, false, false]
-			}
+			};
 		},
 		methods: {
 			getRandomValues() {
 				try {
-					this.str[0] = typeof crypto === 'object';
-					this.str[1] = typeof crypto.getRandomValues === 'function';
+					const isExists = typeof crypto === "object";
+					const hasFunction =
+						typeof crypto.getRandomValues === "function";
 					var rnds8 = new Uint8Array(16);
 					const res = crypto.getRandomValues(rnds8);
-
-					this.str[2] = res.length === 16
+					const isLengthSame = res.length === 16;
+					this.str = [isExists, hasFunction, isLengthSame];
 				} catch (e) {
 					console.log("crypto error:", e);
 				}
-			}
-		}
-	}
+			},
+		},
+	};
 </script>
 
-<style>
-
-</style>
+<style></style>
