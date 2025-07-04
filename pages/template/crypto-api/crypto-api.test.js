@@ -3,6 +3,17 @@
 describe('/pages/template/crypto-api/crypto-api.vue', () => {
 	let page
 
+	//  weixin 不提供俱全变量 crypto
+	console.log(33, process.env.UNI_PLATFORM)
+	const isWeixin = process.env.UNI_PLATFORM === "mp-weixin"
+
+	if (isWeixin) {
+		it('微信小程序不支持 crypto API', () => {
+			expect(true).toBe(true)
+		})
+		return
+	}
+
 	beforeAll(async () => {
 		// 重新reLaunch至首页，并获取首页page对象（其中 program 是uni-automator自动注入的全局对象）
 		page = await program.reLaunch('/pages/template/crypto-api/crypto-api')
