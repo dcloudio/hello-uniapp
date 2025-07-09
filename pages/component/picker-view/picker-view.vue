@@ -42,6 +42,7 @@
             for (let i = 1; i <= 31; i++) {
                 days.push(i)
             }
+            const yearIdx = years.findIndex(item => item === year)
             return {
                 title: 'picker-view',
                 years,
@@ -50,7 +51,7 @@
                 month,
                 days,
                 day,
-                value: [9999, month - 1, day - 1],
+                value: [yearIdx, month - 1, day - 1],
 				/**
 				 * 解决动态设置indicator-style不生效的问题
 				 */
