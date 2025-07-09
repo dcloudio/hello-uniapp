@@ -6,7 +6,7 @@
 			<view>
 				<checkbox-group>
 					<label>
-						<checkbox value="cb1" checked="true" />选中
+						<checkbox value="cb1" :checked="true" />选中
 					</label>
 					<label>
 						<checkbox value="cb" />未选中
@@ -17,7 +17,7 @@
 			<view>
 				<checkbox-group>
 					<label>
-						<checkbox value="cb1" checked="true" color="#FFCC33" style="transform:scale(0.7)" />选中
+						<checkbox value="cb1" :checked="true" color="#FFCC33" style="transform:scale(0.7)" />选中
 					</label>
 					<label>
 						<checkbox value="cb" color="#FFCC33" style="transform:scale(0.7)" />未选中
