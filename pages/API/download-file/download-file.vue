@@ -23,7 +23,8 @@
 				title: 'downloadFile',
 				imageSrc: '',
 				//自动化测试例专用
-				jest_result: false
+				jest_result: false,
+				baseImg:"https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/uni-app.png"
 			}
 		},
 		onUnload() {
@@ -36,7 +37,7 @@
 				})
 				var self = this
 				uni.downloadFile({
-					url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/uni-app.png",
+					url: this.baseImg,
 					success: (res) => {
 						this.jest_result = true
 						console.log('downloadFile success, res is', res)
