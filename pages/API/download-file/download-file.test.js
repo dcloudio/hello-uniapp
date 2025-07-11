@@ -34,8 +34,5 @@ describe('pages/API/download-file/download-file.vue', () => {
 		await page.waitFor(2000);
 		expect(await page.data('jest_result')).toBeTruthy();
 		expect(await page.data('imageSrc')).toBeTruthy();
-		await program.screenshot({
-			fullPage: true,
-		});
 	});
 });
