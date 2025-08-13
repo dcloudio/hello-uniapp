@@ -16,21 +16,31 @@
 				</block>
 				<block v-if="hasLogin === false">
 					<view class="uni-h3 uni-center uni-common-mt">未登录</view>
+					<!-- #ifdef MP-HARMONY -->
 					<view class="uni-hello-text uni-center">
 						请点击按钮登录
 					</view>
+					<!-- #endif -->
 				</block>
 			</view>
 			<view class="uni-btn-v uni- uni-common-mt">
 				<!-- #ifdef MP-TOUTIAO  -->
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList"
+					@click="tologin(value)" :key="key">
 					登录
 				</button>
 				<!-- #endif -->
-				<!-- #ifndef MP-TOUTIAO -->
-				<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)"
-				 :loading="value.id === 'univerify' ? univerifyBtnLoading : false" :key="key">{{value.name}}</button>
+				<!-- #ifdef MP-HARMONY -->
+				<view class="uni-center">
+					<text class="page-body-button">静默登录</text>
+				</view>
 				<!-- #endif -->
+				<!-- #ifndef MP-TOUTIAO || MP-HARMONY -->
+				<button type="primary" class="page-body-button" v-for="(value,key) in providerList"
+					@click="tologin(value)" :loading="value.id === 'univerify' ? univerifyBtnLoading : false"
+					:key="key">{{value.name}}</button>
+				<!-- #endif -->
+
 			</view>
 		</view>
 	</view>
@@ -81,8 +91,8 @@
 								providerName = '百度登录'
 								break;
 							case 'jd':
-							  providerName = '京东登录'
-							  break;
+								providerName = '京东登录'
+								break;
 							case 'toutiao':
 								providerName = '头条登录'
 								break;
@@ -113,6 +123,14 @@
 					this.phoneNumber = phoneNumber
 				})
 			}
+
+			// mp-harmony 强制要求静默登录
+			// #ifdef MP-HARMONY
+			if (!this.hasLogin) {
+				const MPHarmony = this.providerList.find(i => i.id === 'huawei')
+				this.tologin(MPHarmony)
+			}
+			// #endif
 		},
 		methods: {
 			...mapMutations(['login', 'setUniverifyLogin']),
@@ -201,7 +219,9 @@
 								success: (res) => {
 									if (res.confirm) {
 										setTimeout(() => {
-											plus.runtime.openWeb('https://ask.dcloud.net.cn/article/37965')
+											plus.runtime.openWeb(
+												'https://ask.dcloud.net.cn/article/37965'
+												)
 										}, 500)
 									}
 								}
@@ -268,7 +288,7 @@
 					result = await uni.getUserInfo({
 						provider
 					});
-				} catch(e) {
+				} catch (e) {
 					getUserInfoErr = e
 				}
 				// #endif
@@ -295,7 +315,7 @@
 					},
 					success: (res) => {
 						console.log('uniId login success', res);
-						if(res.data.code !== 0){
+						if (res.data.code !== 0) {
 							uni.showModal({
 								showCancel: false,
 								content: `苹果登录失败: ${JSON.stringify(res.data.msg)}`,
