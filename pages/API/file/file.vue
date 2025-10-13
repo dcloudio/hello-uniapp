@@ -66,6 +66,12 @@
 			},
 			saveFile() {
 				if (this.tempFilePath.length > 0) {
+					// #ifdef MP-HARMONY
+					const _uni = uni.getFileSystemManager()
+					// #endif
+					// #ifndef MP-HARMONY
+					const _uni = uni
+					// #endif
 					uni.saveFile({
 						tempFilePath: this.tempFilePath,
 						success: (res) => {
