@@ -14,7 +14,7 @@
 		<uni-link class="phone-link" href="https://m3w.cn/uniapp" text="体验手机版"></uni-link>
 
 		<!-- #ifdef VUE2 -->
-		<uni-link class="phone-link" href="http://vue3-hellouniapp.dcloud.net.cn/pages/component/view/view" text="体验 vue 3.0 版"></uni-link>
+		<uni-link class="phone-link" href="http://hellouniapp.dcloud.net.cn" text="体验 vue 3.0 版"></uni-link>
 		<svg t="1628163727478" class="new-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
 			p-id="1334" width="40" height="40">
 			<path
@@ -23,7 +23,7 @@
 		</svg>
 		<!-- #endif -->
 		<!-- #ifdef VUE3 -->
-		<uni-link class="phone-link" href="http://hellouniapp.dcloud.net.cn/" text="体验 vue 2.x 版"></uni-link>
+		<uni-link class="phone-link" href="http://hellouniapp.dcloud.net.cn/vue2/" text="体验 vue 2.x 版"></uni-link>
 		<!-- #endif -->
 
 		<!-- #endif -->
