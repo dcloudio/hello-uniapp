@@ -8,7 +8,7 @@
 	export default {
 		data() {
 			return {
-				url: 'https://hellouniapp.dcloud.net.cn/html/web-view.html'
+				url: 'https://hellouniapp.dcloud.net.cn/html/web-view.html?v=2'
 			}
 		},
 		onLoad(options) {

@@ -124,7 +124,7 @@
 						}]
 					},
 					// #endif
-					// #ifndef APP-PLUS || H5 || MP-LARK || MP-JD || MP-HARMONY
+					// #ifndef APP-PLUS || H5 || MP-LARK || MP-JD
 					{
 						id: 'web-view',
 						name: '网页',
