@@ -15,6 +15,7 @@
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableRotate" title="是否支持旋转" @switchChange="changeEnableRotate" />
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableSatellite" title="是否开启卫星图" @switchChange="changeEnableSatellite" />
             <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="enableTraffic" title="是否开启实时路况" @switchChange="changeEnableTraffic" />
+            <uni-list-item :show-arrow="false" :show-switch="true" :switch-checked="showIncludePoints" title="缩放至包含指定点" @switchChange="changeShowIncludePoints" />
         </uni-list>
     </view>
 </template>
@@ -226,6 +227,7 @@
                 enableRotate: true,
                 enableSatellite: false,
                 enableTraffic: false,
+                showIncludePoints: false,
                 polyline: [],
                 markers: [],
                 polygons: [],
@@ -269,6 +271,14 @@
             },
             changeEnableTraffic(e) {
                 this.enableTraffic = e.value;
+            },
+            changeShowIncludePoints(e) {
+                this.showIncludePoints = e.value;
+                if (e.value) {
+                    this.includePoints = testIncludePoints;
+                } else {
+                    this.includePoints = [];
+                }
             }
         }
     }
