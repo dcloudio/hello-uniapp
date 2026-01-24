@@ -13,6 +13,12 @@
 				<text>00:21</text>
 			</view>
 			<view class="uni-hello-text">注意：离开当前页面后背景音乐将保持播放，但退出uni-app将停止</view>
+			<view class="uni-common-mt">
+				<view class="uni-list-cell uni-list-cell-pd">
+					<view class="uni-list-cell-db">循环播放</view>
+					<switch id="setLoopButton" :checked="isLoop" @change="setLoop"></switch>
+				</view>
+			</view>
 			<view class="page-body-buttons">
 				<block v-if="playing">
 					<view class="page-body-button" @tap="stop">
@@ -42,10 +48,11 @@
 			return {
 				title: 'backgroundAudio',
 				bgAudioMannager: null,
-				dataUrl: 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3',
+				dataUrl: '/static/009_156.1-183.8.mp3',
 				playing: false,
 				playTime: 0,
-				formatedPlayTime: '00:00:00'
+				formatedPlayTime: '00:00:00',
+				isLoop: false
 			}
 		},
 		onLoad: function () {
@@ -73,10 +80,17 @@
 				this.$backgroundAudioData.playing = this.playing = false;
 			})
 			bgAudioMannager.onEnded(() => {
-				this.playing = false;
-				this.$backgroundAudioData.playing = false;
-				this.$backgroundAudioData.playTime = this.playTime = 0;
-				this.$backgroundAudioData.formatedPlayTime = this.formatedPlayTime = util.formatTime(0);
+				if (this.isLoop) {
+					console.log("播放结束，开始循环播放");
+					this.bgAudioMannager.src = this.dataUrl;
+					this.bgAudioMannager.play();
+				} else {
+					console.log("播放结束");
+					this.playing = false;
+					this.$backgroundAudioData.playing = false;
+					this.$backgroundAudioData.playTime = this.playTime = 0;
+					this.$backgroundAudioData.formatedPlayTime = this.formatedPlayTime = util.formatTime(0);
+				}
 			})
 
 			bgAudioMannager.onTimeUpdate((e) => {
@@ -109,6 +123,10 @@
 				this.$backgroundAudioData.playing = this.playing = false;
 				this.$backgroundAudioData.playTime = this.playTime = 0;
 				this.$backgroundAudioData.formatedPlayTime = this.formatedPlayTime = util.formatTime(0);
+			},
+			setLoop: function () {
+				this.isLoop = !this.isLoop;
+				console.log('当前是否设置循环播放，loop= ', this.isLoop);
 			}
 		}
 	}
