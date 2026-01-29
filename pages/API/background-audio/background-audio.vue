@@ -6,11 +6,11 @@
 				<text class="time-big">{{formatedPlayTime}}</text>
 			</view>
 			<view class="uni-common-mt">
-				<slider class="slider" min="0" max="21" step="1" :value="playTime" @change="seek"></slider>
+				<slider class="slider" min="0" max="175" step="1" :value="playTime" @change="seek"></slider>
 			</view>
 			<view class="play-time">
 				<text>00:00</text>
-				<text>00:21</text>
+				<text>02:55</text>
 			</view>
 			<view class="uni-hello-text">注意：离开当前页面后背景音乐将保持播放，但退出uni-app将停止</view>
 			<view class="uni-common-mt">
@@ -48,7 +48,7 @@
 			return {
 				title: 'backgroundAudio',
 				bgAudioMannager: null,
-				dataUrl: '/static/009_156.1-183.8.mp3',
+				dataUrl: 'https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3',
 				playing: false,
 				playTime: 0,
 				formatedPlayTime: '00:00:00',
