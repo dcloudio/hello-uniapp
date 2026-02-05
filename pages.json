@@ -532,6 +532,12 @@
 					}
 				},
 				{
+					"path": "add-interceptor/add-interceptor",
+					"style": {
+						"navigationBarTitleText": "拦截器"
+					}
+				},
+				{
 					"path": "add-phone-contact/add-phone-contact",
 					"style": {
 						"navigationBarTitleText": "添加手机联系人"
