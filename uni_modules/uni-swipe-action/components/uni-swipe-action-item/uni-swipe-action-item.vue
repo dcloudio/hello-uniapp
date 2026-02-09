@@ -2,11 +2,17 @@
 	<!-- 在微信小程序 app vue端 h5 使用wxs 实现-->
 	<!-- #ifdef APP-VUE || APP-HARMONY || MP-WEIXIN || H5 -->
 	<view class="uni-swipe">
-		<!--  #ifdef MP-WEIXIN || H5 -->
+		<!--  #ifdef H5 -->
 		<view class="uni-swipe_box" :change:prop="wxsswipe.showWatch" :prop="is_show" :data-threshold="threshold"
 			:data-disabled="disabled" @touchstart="wxsswipe.touchstart" @touchmove="wxsswipe.touchmove"
-			@touchend="wxsswipe.touchend">
+			@touchend="wxsswipe.touchend" @mousedown="wxsswipe.mousedown" @mousemove="wxsswipe.mousemove"
+			@mouseup="wxsswipe.mouseup" @mouseleave="wxsswipe.mouseleave">
 			<!-- #endif -->
+			<!--  #ifdef MP-WEIXIN -->
+			<view class="uni-swipe_box" :change:prop="wxsswipe.showWatch" :prop="is_show" :data-threshold="threshold"
+				:data-disabled="disabled" @touchstart="wxsswipe.touchstart" @touchmove="wxsswipe.touchmove"
+				@touchend="wxsswipe.touchend">
+				<!-- #endif -->
 			<!--  #ifndef MP-WEIXIN || H5 -->
 			<view class="uni-swipe_box" :change:prop="renderswipe.showWatch" :prop="is_show" :data-threshold="threshold"
 				:data-disabled="disabled+''" @touchstart="renderswipe.touchstart" @touchmove="renderswipe.touchmove"
@@ -72,7 +78,7 @@
 		</view>
 		<!-- #endif -->
 		<!-- 其他平台使用 js ，长列表性能可能会有影响-->
-		<!-- #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ -->
+		<!-- #ifdef MP-ALIPAY || MP-BAIDU || MP-TOUTIAO || MP-QQ || MP-HARMONY -->
 		<view class="uni-swipe">
 			<view class="uni-swipe_box" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend"
 				:style="{transform:moveLeft}" :class="{ani:ani}">

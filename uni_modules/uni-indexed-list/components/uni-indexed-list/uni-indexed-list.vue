@@ -218,9 +218,8 @@
 			},
 
 			/**
-			 * 兼容 PC @tian
+			 * 兼容 PC
 			 */
-
 			mousedown(e) {
 				if (!this.isPC) return
 				this.touchStart(e)
@@ -236,16 +235,26 @@
 
 			// #ifdef H5
 			IsPC() {
-				var userAgentInfo = navigator.userAgent;
-				var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-				var flag = true;
-				for (let v = 0; v < Agents.length - 1; v++) {
-					if (userAgentInfo.indexOf(Agents[v]) > 0) {
-						flag = false;
-						break;
-					}
+				var userAgentInfo = navigator.userAgent || '';
+				var info = typeof uni !== 'undefined' && uni.getSystemInfoSync ? uni.getSystemInfoSync() : null;
+				if (info && info.deviceType) {
+					if (info.deviceType === 'pc') return true;
+					if (info.deviceType === 'phone' || info.deviceType === 'pad') return false;
 				}
-				return flag;
+				var isMobileUA = /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod|Mobile|Harmony|HarmonyOS/i.test(userAgentInfo);
+				if (isMobileUA) return false;
+				var hasTouch = false;
+				if (typeof navigator.maxTouchPoints === 'number') {
+					hasTouch = navigator.maxTouchPoints > 0;
+				} else if (typeof window !== 'undefined') {
+					hasTouch = 'ontouchstart' in window;
+				}
+				if (hasTouch && typeof window !== 'undefined' && window.matchMedia) {
+					var finePointer = window.matchMedia('(pointer: fine)').matches;
+					var canHover = window.matchMedia('(hover: hover)').matches;
+					return finePointer || canHover;
+				}
+				return !hasTouch;
 			},
 			// #endif
 
