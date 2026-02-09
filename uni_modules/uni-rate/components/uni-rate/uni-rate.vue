@@ -119,7 +119,8 @@
 				valueSync: "",
 				userMouseFristMove: true,
 				userRated: false,
-				userLastRate: 1
+				userLastRate: 1,
+				PC: false
 			};
 		},
 		watch: {
@@ -162,31 +163,31 @@
 			this.valueSync = Number(this.value || this.modelValue);
 			this._rateBoxLeft = 0
 			this._oldValue = null
+			// #ifdef H5
+			this.PC = this.IsPC()
+			// #endif
 		},
 		mounted() {
 			setTimeout(() => {
 				this._getSize()
 			}, 100)
-			// #ifdef H5
-			this.PC = this.IsPC()
-			// #endif
 		},
 		methods: {
 			touchstart(e) {
 				// #ifdef H5
-				if (this.IsPC()) return
+				if (this.PC) return
 				// #endif
 				if (this.readonly || this.disabled) return
 				const {
 					clientX,
 					screenX
 				} = e.changedTouches[0]
-				// TODO 做一下兼容，只有 Nvue 下才有 screenX，其他平台式 clientX
+				// TODO 做一下兼容，只有 Nvue 下才有 screenX，其他平台是 clientX
 				this._getRateCount(clientX || screenX)
 			},
 			touchmove(e) {
 				// #ifdef H5
-				if (this.IsPC()) return
+				if (this.PC) return
 				// #endif
 				if (this.readonly || this.disabled || !this.touchable) return
 				const {
@@ -202,7 +203,7 @@
 
 			mousedown(e) {
 				// #ifdef H5
-				if (!this.IsPC()) return
+				if (!this.PC) return
 				if (this.readonly || this.disabled) return
 				const {
 					clientX,
@@ -214,10 +215,9 @@
 			},
 			mousemove(e) {
 				// #ifdef H5
-				if (!this.IsPC()) return
+				if (!this.PC) return
 				if (this.userRated) return
 				if (this.userMouseFristMove) {
-					console.log('---mousemove----', this.valueSync);
 					this.userLastRate = this.valueSync
 					this.userMouseFristMove = false
 				}
@@ -230,7 +230,7 @@
 			},
 			mouseleave(e) {
 				// #ifdef H5
-				if (!this.IsPC()) return
+				if (!this.PC) return
 				if (this.readonly || this.disabled || !this.touchable) return
 				if (this.userRated) {
 					this.userRated = false
@@ -241,16 +241,26 @@
 			},
 			// #ifdef H5
 			IsPC() {
-				var userAgentInfo = navigator.userAgent;
-				var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-				var flag = true;
-				for (let v = 0; v < Agents.length - 1; v++) {
-					if (userAgentInfo.indexOf(Agents[v]) > 0) {
-						flag = false;
-						break;
-					}
+				var userAgentInfo = navigator.userAgent || '';
+				var info = typeof uni !== 'undefined' && uni.getSystemInfoSync ? uni.getSystemInfoSync() : null;
+				if (info && info.deviceType) {
+					if (info.deviceType === 'pc') return true;
+					if (info.deviceType === 'phone' || info.deviceType === 'pad') return false;
 				}
-				return flag;
+				var isMobileUA = /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod|Mobile|Harmony|HarmonyOS/i.test(userAgentInfo);
+				if (isMobileUA) return false;
+				var hasTouch = false;
+				if (typeof navigator.maxTouchPoints === 'number') {
+					hasTouch = navigator.maxTouchPoints > 0;
+				} else if (typeof window !== 'undefined') {
+					hasTouch = 'ontouchstart' in window;
+				}
+				if (hasTouch && typeof window !== 'undefined' && window.matchMedia) {
+					var finePointer = window.matchMedia('(pointer: fine)').matches;
+					var canHover = window.matchMedia('(hover: hover)').matches;
+					return finePointer || canHover;
+				}
+				return !hasTouch;
 			},
 			// #endif
 
