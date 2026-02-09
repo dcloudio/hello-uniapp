@@ -22,7 +22,7 @@
 			// 公开给用户使用，重制组件样式
 			resize(){
 				// wxs 会自己计算组件大小，所以无需执行下面代码
-				// #ifndef APP-VUE || H5 || MP-WEIXIN
+				// #ifndef APP-VUE || H5 || MP-WEIXIN || MP-HARMONY
 				this.children.forEach(vm=>{
 					vm.init()
 				})
@@ -31,22 +31,22 @@
 			// 公开给用户使用，关闭全部 已经打开的组件
 			closeAll(){
 				this.children.forEach(vm=>{
-					// #ifdef APP-VUE || H5 || MP-WEIXIN
+					// #ifdef APP-VUE || H5 || MP-WEIXIN || MP-HARMONY
 					vm.is_show = 'none'
 					// #endif
 
-					// #ifndef APP-VUE || H5 || MP-WEIXIN
+					// #ifndef APP-VUE || H5 || MP-WEIXIN || MP-HARMONY
 					vm.close()
 					// #endif
 				})
 			},
 			closeOther(vm) {
 				if (this.openItem && this.openItem !== vm) {
-					// #ifdef APP-VUE || H5 || MP-WEIXIN
+					// #ifdef APP-VUE || H5 || MP-WEIXIN || MP-HARMONY
 					this.openItem.is_show = 'none'
 					// #endif
 
-					// #ifndef APP-VUE || H5 || MP-WEIXIN
+					// #ifndef APP-VUE || H5 || MP-WEIXIN || MP-HARMONY
 					this.openItem.close()
 					// #endif
 				}
