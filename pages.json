@@ -271,6 +271,14 @@
 				"navigationBarTitleText": "web-view"
 			}
 		},
+		// #ifdef APP-HARMONY
+		{
+			"path": "pages/component/web-view/issue-27817",
+			"style": {
+				"navigationBarTitleText": "web-view issue-27817"
+			}
+		},
+		// #endif
 		// #ifdef APP-VUE || APP-NVUE
 		{
 			"path": "pages/component/ad/ad",
