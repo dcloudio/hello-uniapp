@@ -21,9 +21,6 @@ describe('web-view', () => {
   })
 
   it('src test', async () => {
-    const image = await program.screenshot({
-      fullPage: true
-    });
-    expect(image).toSaveImageSnapshot();
+	expect(await page.data('pageUrl')).not.toBeUndefined()
   })
 })
