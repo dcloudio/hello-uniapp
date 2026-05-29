@@ -5,7 +5,7 @@
         </template>
         <template v-else>
             <view v-if="!hasLeftWin" class="uni-header-logo">
-                <image class="uni-header-image" src="/static/apiIndex.png"></image>
+                <image class="uni-header-image" src="/static/apiIndex.png" @click="triggerError"></image>
             </view>
             <view v-if="!hasLeftWin" class="uni-hello-text">
                 <text class="hello-text">以下将演示uni-app接口能力，详细文档见：</text>
@@ -457,6 +457,12 @@
 		},
 		// #endif
         methods: {
+			triggerError() {
+				setTimeout(() => {
+					throw new Error('This is an actively triggered error(In setTimeout).')
+				}, 200)
+				throw new Error('This is an actively triggered error')
+			},
             triggerCollapse(e, id) {
                 if (!this.list[e].pages) {
                     this.goDetailPage('', this.list[e].url);
