@@ -16,8 +16,11 @@
 				</block>
 			</view>
 			<view class="uni-btn-v">
-				<!-- #ifdef APP-PLUS || MP-ALIPAY || MP-TOUTIAO -->
+				<!-- #ifdef APP-PLUS || MP-TOUTIAO -->
 				<button type="primary" :loading="btnLoading" @click="getUserInfo">获取用户信息</button>
+				<!-- #endif -->
+				<!-- #ifdef MP-ALIPAY -->
+				<button type="primary" :loading="btnLoading" open-type="getAuthorize" scope='userInfo' @getAuthorize="getUserInfo">获取用户信息</button>
 				<!-- #endif -->
 				<!-- #ifdef MP-WEIXIN || MP-BAIDU || MP-QQ  || MP-JD -->
 				<button type="primary" open-type="getUserInfo" @getuserinfo="mpGetUserInfo">获取用户信息</button>
