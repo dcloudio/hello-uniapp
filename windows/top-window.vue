@@ -23,7 +23,7 @@
 		</svg>
 		<!-- #endif -->
 		<!-- #ifdef VUE3 -->
-		<uni-link class="phone-link" href="http://hellouniapp.dcloud.net.cn/" text="体验 vue 2.x 版"></uni-link>
+		<uni-link class="phone-link" href="http://hellouniapp.dcloud.net.cn/vue2/" text="体验 vue 2.x 版"></uni-link>
 		<!-- #endif -->
 
 		<!-- #endif -->
